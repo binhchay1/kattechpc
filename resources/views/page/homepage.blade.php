@@ -25,10 +25,10 @@
     <meta property="og:image" content="https://hanoicomputercdn.com/media/lib/01-09-2022/favicon-hacom.png" />
     <meta property="og:image:alt" content="HACOM |  HI-END COMPUTER WORLD" />
 
-    <link rel="stylesheet" href="/template/july_2021/script/style2020_zip.css?v=1707064466">
-    <link rel="stylesheet" href="/template/july_2021/script/media2020.css?v=18.10.2023.2:84">
-    <link href="/template/july_2021/script/style_tuyendung_2021.css?v=1831" rel="stylesheet" />
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K06S0V95LK"></script>
+    <link rel="stylesheet" href="/template/july_2021/script/style2020_zip.css">
+    <link rel="stylesheet" href="/template/july_2021/script/media2020.css">
+    <link href="/template/july_2021/script/style_tuyendung_2021.css" rel="stylesheet" />
+
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -39,23 +39,6 @@
 
         gtag('config', 'G-K06S0V95LK');
     </script>
-
-    <meta name="google-site-verification" content="s7uycOXAZKOLsFPW9Lym9C5cEpzwLiQkMC1CdsZo-b8" />
-    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>-->
-
-    <!-- Without the `?module` param, the UMD version is loaded and sets the `webVitals` global -->
-    <!--<script defer src="https://unpkg.com/web-vitals"></script>
-        <script>
-            addEventListener('DOMContentLoaded', function() {
-                console.log('web-vitals data:');
-                webVitals.getCLS(console.log);
-                webVitals.getFID(console.log);
-                webVitals.getLCP(console.log);
-            });
-        </script>-->
-
-
-
 
     <style>
         @media (min-width: 1650px) {
@@ -1750,11 +1733,6 @@
                                     </div>
                                     <div class="align-items-center d-flex flex-wrap justify-content-between my-2">
                                         <a class="align-items-center d-flex" href="/vo-case-asus-rog-hyperion-gr701-full-tower-mau-den#tab5">
-
-
-
-
-
                                             <img src="/media/lib/star_0.png" alt="rate" class="p-rating" style="width:76px;height: 12px" width="76" height="12">
                                             <span class="p-count-rate">(0)</span>
                                         </a>
@@ -1763,28 +1741,17 @@
 
                                     <div class="p-info">
                                         <h3 class="p-name"><a href="/vo-case-asus-rog-hyperion-gr701-full-tower-mau-den">Vỏ Case Asus ROG Hyperion GR701  (Full Tower / Màu Đen )</a></h3>
-
                                         <span class="p-mprice"> 11.499.000₫ </span>
                                         <span class="p-discount">
-
                                             <span class="noMinPrice" id="p-discount-70769" style="letter-spacing: -0.4px;"> </span>
-
                                         </span>
-                                        <!-- <span class="p-price"> 10.989.000₫</span> -->
                                         <span class="p-price js-get-minPrice" data-extend-price1="0" data-extend-price2="" data-extend-price3="" data-price="10989000" data-prodId="70769" data-marketPrice="11499000" id="minPrice-70769-1"> </span>
-                                        <!-- <p class="giahocsinhvien giahocsinhvienhome"></p> -->
-
-
                                     </div>
                                     <div class="p-action">
-
                                         <span class="p-qty">
                                             <i class="fa fa-check" aria-hidden="true"></i> Sẵn hàng
                                         </span>
-
-
                                         <a href="javascript:;" onclick="listenBuyPro(70769,0,1,'','');" class="p-buy"></a>
-
                                     </div>
                                     <div class="hover_content_pro tooltip-2019">
                                         <a href="/vo-case-asus-rog-hyperion-gr701-full-tower-mau-den" class="hover_name">Vỏ Case Asus ROG Hyperion GR701  (Full Tower / Màu Đen )</a>
@@ -1807,7 +1774,6 @@
                                                     </span>
                                                 </td>
                                             </tr>
-                                            <!--  -->
                                             <tr>
                                                 <td>- Bảo hành:</td>
                                                 <td>12 tháng</td>
@@ -1815,12 +1781,9 @@
                                             <tr>
                                                 <td>- Kho hàng:</td>
                                                 <td>
-
                                                     <span class="dongbotonkho js-dongbotonkho dongbotonkho-70769" data-id="70769">
-                                                        <!-- <span>Liên hệ </span><br/> -->
                                                         <span class="detail " style="color: red; white-space:pre-line;"></span>
                                                     </span>
-
                                                 </td>
                                             </tr>
 
@@ -1828,27 +1791,18 @@
 
                                         <span class="tooltip-title"><i class="fal fa-layer-group"></i> Thông số sản phẩm</span>
                                         <div class="hover_offer ">
-
-
                                             - Kích thước siêu rộng với dạng full tower
                                             <br />
-
                                             - Nhận diện thương hiệu dễ dàng với logo ROG được dập nổi ở mọi nơi
                                             <br />
-
                                             - Phù hợp cho Mainboard kích thước E-ATX và VGA độ dài rộng lên tới 460x130mm
                                             <br />
-
                                             - Hỗ trợ Radiator 420mm x 2
                                             <br />
-
                                             - Trang bị 2 cổng type C công suất lên tới 60w
                                             <br />
-
                                         </div>
-
-
-                                    </div><!--hover_content_pro-->
+                                    </div>
                                 </div>
 
                                 <div class="p-component item" data-id="75358">
@@ -1869,18 +1823,11 @@
 
                                     <div class="p-info">
                                         <h3 class="p-name"><a href="/vo-case-asus-a21-wht-mid-tower-mau-trang">Vỏ Case ASUS A21 WHT (Mid Tower / Màu Trắng)</a></h3>
-
                                         <span class="p-mprice"> 1.999.000₫ </span>
                                         <span class="p-discount">
-
                                             <span class="noMinPrice" id="p-discount-75358" style="letter-spacing: -0.4px;"> </span>
-
                                         </span>
-                                        <!-- <span class="p-price"> 1.550.000₫</span> -->
                                         <span class="p-price js-get-minPrice" data-extend-price1="0" data-extend-price2="" data-extend-price3="" data-price="1550000" data-prodId="75358" data-marketPrice="1999000" id="minPrice-75358-1"> </span>
-                                        <!-- <p class="giahocsinhvien giahocsinhvienhome"></p> -->
-
-
                                     </div>
                                     <div class="p-action">
 

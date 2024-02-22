@@ -190,7 +190,6 @@ p.text_right {
     display: none;
     position: relative;
     width: 100%;
-    -ms-touch-action: pan-y
 }
 
 #category-fixed-left {
@@ -528,7 +527,6 @@ p.text_right {
     background: -o-linear-gradient(right, black, #870000, red);
     background: -moz-linear-gradient(right, black, #870000, red);
     background: linear-gradient(to right, black, #870000, red);
-    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent
 }
 
@@ -808,11 +806,9 @@ strong {
     -webkit-box-flex: 0;
     -ms-flex: 0;
     flex: 0;
-    display: none
-        /*max-width:0*/
+    display: none;
 }
 
-/* .header-2019 .header-bottom .header-bottom-left img{max-width:150px} */
 .hotline {
     display: inline-block;
     position: relative;
@@ -4117,7 +4113,6 @@ span.cart-top-checkout a {
     z-index: 22
 }
 
-/*Sticker cho trang Product detail*/
 .p-bh-1y {
     position: absolute;
     left: 10px;
@@ -4129,7 +4124,6 @@ span.cart-top-checkout a {
     z-index: 22
 }
 
-/*End:Sticker cho trang Product detail*/
 #bg-opacity,
 .popup-common {
     display: none;
@@ -4798,7 +4792,6 @@ span.cart-top-checkout a {
 .form-regis label {
     display: inline-block;
     width: 120px;
-    float: left;
     font-weight: 600
 }
 
@@ -6121,8 +6114,6 @@ h2.home-categories-header-title {
     width: 75%;
     background-color: #FBD2D3;
     padding: 15px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px
 }
 
 .hacom-customer .wrap-hacom-customer .hacom-customer-title {
