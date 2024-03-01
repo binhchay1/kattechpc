@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Session;
 
 class TailwickController extends Controller
 {
-    //
     public function lang($locale)
     {
         if ($locale) {
