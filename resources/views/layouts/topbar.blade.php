@@ -357,7 +357,7 @@
                             <div class="absolute z-50 hidden p-4 ltr:text-left rtl:text-right bg-white rounded-md shadow-md !top-4 dropdown-menu min-w-[14rem] dark:bg-zink-600"
                                 aria-labelledby="dropdownMenuButton">
                                 <h5 class="mb-2 text-sm font-normal text-slate-500 dark:text-zink-300 flex">
-                                    {{ Auth::user()->currentTeam->name }}
+
                                     <svg class="ms-2 -me-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                         fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -367,7 +367,7 @@
                                 <ul class="pt-2 mt-2 border-t border-slate-200 dark:border-zink-500">
                                     <li>
                                         <a class="block ltr:pr-4 rtl:pl-4 py-1.5 text-base font-medium transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:text-custom-500 focus:text-custom-500 dark:text-zink-200 dark:hover:text-custom-500 dark:focus:text-custom-500"
-                                            href="{{ route('teams.show', Auth::user()->currentTeam->id) }}"><i
+                                            href=""><i
                                                 data-lucide="user-2"
                                                 class="inline-block size-4 ltr:mr-2 rtl:ml-2"></i> Team Setting</a>
                                     </li>
