@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TailwickController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,15 +18,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Admin
+Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.home');
+
 Route::get('index/{locale}', [TailwickController::class, 'lang']);
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
-    Route::get("/", [RouteController::class, 'index'])->name('dashboard');
 
     Route::group(['prefix' => 'admin'], function () {
         Route::group(['middleware' => ['permission.admin']], function () {
-            Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.home');
+
             Route::get('/export', [AdminController::class, 'export'])->name('admin.export');
             Route::get('/getanalystorder', [AdminController::class, 'getAnalystOrder']);
             Route::get('/getdataanalysis', [AdminController::class, 'getDataAnalysis']);
