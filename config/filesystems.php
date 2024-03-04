@@ -55,6 +55,15 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
+    
+        'public-image-product' => [
+            'driver' => 'local',
+            'root' => public_path() . '/images/upload/product/',
+            'url' => env('APP_URL') . '/images/upload/product/',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
 
     ],
 

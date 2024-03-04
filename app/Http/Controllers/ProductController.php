@@ -32,8 +32,17 @@ class ProductController extends Controller
     
     public function storeProduct(Request $request)
     {
-        $inputProduct = $request->all();
-        $product = $this->productRepository->create($inputProduct);
+        $input= $request->all();
+        dd($input);
+        if (isset($input['image'])) {
+            $img = $this->utility->saveImageLeague($input);
+            if ($img) {
+                $path = '/images/upload/product/' . $input['image']->getClientOriginalName();
+                $input['image'] = $path;
+            }
+        }
+        
+        $product = $this->productRepository->store($input);
         
         return redirect()->route('admin.product.index');
     }

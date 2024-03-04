@@ -17,9 +17,9 @@ class ProductRepository extends BaseRepository
         return $this->model->orderBy('created_at', 'DESC')->get();
     }
     
-    public function store($inputProduct)
+    public function store($input)
     {
-        return $this->model->create($inputProduct);
+        return $this->model->create($input);
     }
     
 }
