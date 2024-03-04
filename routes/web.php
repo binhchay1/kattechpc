@@ -20,6 +20,15 @@ use Illuminate\Support\Facades\Route;
 
 //Admin
 Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.home');
+Route::group(['prefix' => 'product'], function () {
+    Route::get('list-products', [ProductController::class, 'index'])->name('admin.product.index');
+    Route::get('detail-product/{id}', [ProductController::class, 'show'])->name('admin.product.show');
+    Route::get('/create-product', [ProductController::class, 'createProduct'])->name('admin.create.product');
+    Route::post('/store-product', [ProductController::class, 'storeProduct'])->name('admin.store.product');
+    Route::post('/edit-product/{id}', [ProductController::class, 'editProduct'])->name('admin.edit.product');
+    Route::post('/update-product/{id}', [ProductController::class, 'updateProduct'])->name('admin.update.product');
+    Route::get('/delete/{id}', [ProductController::class, 'deleteProduct'])->name('admin.delete.products');
+});
 
 Route::get('index/{locale}', [TailwickController::class, 'lang']);
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
@@ -42,16 +51,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
                 Route::get('/delete/{id}', [UserController::class, 'deleteUser'])->name('admin.delete.user');
             });
 
-            Route::group(['prefix' => 'product'], function () {
-                Route::get('/', [ProductController::class, 'listProductAdmin'])->name('admin.products.index');
-                Route::get('/add', [ProductController::class, 'createProduct'])->name('admin.create.products');
-                Route::get('/update/{product}', [ProductController::class, 'viewUpdateProduct'])->name('admin.update.products.view');
-                Route::post('/update/{product}', [ProductController::class, 'updateProduct'])->name('admin.update.products');
-                Route::post('/update', [ProductController::class, 'updateProduct'])->name('admin.update.product.test');
-                Route::post('/store', [ProductController::class, 'storeProduct'])->name('admin.store.products');
-                Route::get('/delete/{id}', [ProductController::class, 'deleteProduct'])->name('admin.delete.products');
-                Route::get('/delete', [ProductController::class, 'deleteProduct'])->name('admin.delete.products.test');
-            });
+        
 
             Route::group(['prefix' => 'promotion'], function () {
                 Route::get('/', [AdminController::class, 'promotionView'])->name('admin.promotion.index');

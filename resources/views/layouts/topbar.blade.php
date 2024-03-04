@@ -379,17 +379,7 @@
                                         </li>
                                     @endcan
                                     <!-- Team Switcher -->
-                                    @if (Auth::user()->allTeams()->count() > 1)
-                                        <div class="border-t border-gray-200 mt-3 dark:border-zink-500"></div>
 
-                                        <div class="block px-4 py-2 text-xs text-gray-400">
-                                            {{ __('Switch Teams') }}
-                                        </div>
-
-                                        @foreach (Auth::user()->allTeams() as $team)
-                                            <x-switchable-team :team="$team" />
-                                        @endforeach
-                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -401,7 +391,7 @@
                             id="dropdownMenuButton" data-bs-toggle="dropdown">
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                 <div class="bg-pink-100 rounded-full">
-                                    <img src="{{ Auth::user()->profile_photo_url }}" alt=""
+                                    <img src="" alt=""
                                         class="w-[37.5px] h-[37.5px] rounded-full">
                                 </div>
                             @else
@@ -417,15 +407,15 @@
                                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                     <div class="relative inline-block shrink-0">
                                         <div class="rounded bg-slate-100 dark:bg-zink-500">
-                                            <img src="{{ Auth::user()->profile_photo_url }}"
-                                                alt="{{ Auth::user()->name }}" class="w-12 h-12 rounded">
+                                            <img src=""
+                                                alt="" class="w-12 h-12 rounded">
                                         </div>
                                         <span
                                             class="-top-1 ltr:-right-1 rtl:-left-1 absolute w-2.5 h-2.5 bg-green-400 border-2 border-white rounded-full dark:border-zink-600"></span>
                                     </div>
                                 @endif
                                 <div>
-                                    <h6 class="mb-1 text-15">{{ Auth::user()->name }}</h6>
+                                    <h6 class="mb-1 text-15"></h6>
                                     <p class="text-slate-500 dark:text-zink-300">CEO & Founder</p>
                                 </div>
                             </a>
