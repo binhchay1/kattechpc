@@ -23,8 +23,12 @@ class ProductController extends Controller
         
         return view('admin.product.index', compact('listProducts'));
     }
-
-
+    
+    public function show($id)
+    {
+        $product = $this->productRepository->show($id);
+    }
+    
     public function createProduct()
     {
         return view('admin.product.create');
@@ -33,7 +37,6 @@ class ProductController extends Controller
     public function storeProduct(Request $request)
     {
         $input= $request->all();
-        dd($input);
         if (isset($input['image'])) {
             $img = $this->utility->saveImageLeague($input);
             if ($img) {
@@ -51,51 +54,29 @@ class ProductController extends Controller
     public function editProduct($id)
     {
         $product = $this->productRepository->show($id);
-        return view('admin.product.update', compact('product'));
+        return view('admin.product.edit', compact('product'));
     }
 
-    public function updateProduct(UpdateProductRequest $request, Product $product)
+    public function updateProduct(UpdateProductRequest $request, $id)
     {
-        $data = [
-            'name' => $request->name,
-            'description' => $request->description,
-            'price' => $request->price,
-            'type' => $request->type,
-        ];
-
-        if ($request->file()) {
-
-            $path = '/uploads/product';
-            $image = $request->file('img');
-            //Lấy Tên files
-            $image_name = $image->getClientOriginalName();
-            $image_add = $image_name . "_" . time();
-            $image->move(public_path($path), $image_add);
-
-            $data['image'] = "$path/$image_add";
+        $input= $request->all();
+        if (isset($input['image'])) {
+            $img = $this->utility->saveImageLeague($input);
+            if ($img) {
+                $path = '/images/upload/product/' . $input['image']->getClientOriginalName();
+                $input['image'] = $path;
+            }
         }
-
-        $isUpdated = $this->productRepository->updateById($product->id, $data);
-        if ($isUpdated) {
-            alert()->success('Thành công!', 'Cập nhật ' . $request->name . ' thành công!');
-        } else {
-            alert()->warning('Cảnh báo!', 'Cập nhật sản phẩm lỗi!');
-        }
-
-        return redirect()->route('admin.products.index');
+    
+        $product = $this->productRepository->update($input, $id);
+    
+        return redirect()->route('admin.product.index');
     }
 
 
-    public function deleteProduct(int $productId = 0)
+    public function deleteProduct()
     {
-        if (request()->get('id')) {
-            $productId = (int) request()->get('id');
-        }
-
-        $product = $this->productRepository->deleteById($productId);
-        $storage = $this->storageRepository->deleteByProductId($productId);
-        $history = $this->storageHistoryRepository->updateStatusByProductId($productId, \App\Enums\StatusStorage::DELETED);
-
+        
         alert()->success('Thành công!', 'Xóa sản phẩm thành công!');
         return redirect()->route('admin.products.index');
     }

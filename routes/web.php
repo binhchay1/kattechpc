@@ -21,11 +21,12 @@ use Illuminate\Support\Facades\Route;
 //Admin
 Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.home');
 Route::group(['prefix' => 'product'], function () {
-    Route::get('list-products', [ProductController::class, 'index'])->name('admin.products.index');
-    Route::get('/create-product', [ProductController::class, 'createProduct'])->name('admin.create.products');
-    Route::post('/store-product', [ProductController::class, 'storeProduct'])->name('admin.store.products');
-    Route::post('/edit/{id}', [ProductController::class, 'editProduct'])->name('admin.edit.products');
-    Route::post('/update/{id}', [ProductController::class, 'updateProduct'])->name('admin.update.product.test');
+    Route::get('list-products', [ProductController::class, 'index'])->name('admin.product.index');
+    Route::get('detail-product/{id}', [ProductController::class, 'show'])->name('admin.product.show');
+    Route::get('/create-product', [ProductController::class, 'createProduct'])->name('admin.create.product');
+    Route::post('/store-product', [ProductController::class, 'storeProduct'])->name('admin.store.product');
+    Route::post('/edit-product/{id}', [ProductController::class, 'editProduct'])->name('admin.edit.product');
+    Route::post('/update-product/{id}', [ProductController::class, 'updateProduct'])->name('admin.update.product');
     Route::get('/delete/{id}', [ProductController::class, 'deleteProduct'])->name('admin.delete.products');
 });
 
