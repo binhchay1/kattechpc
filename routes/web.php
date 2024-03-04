@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\TailwickController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TailwickController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,13 +21,22 @@ use Illuminate\Support\Facades\Route;
 //Admin
 Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.home');
 Route::group(['prefix' => 'product'], function () {
-    Route::get('list-products', [ProductController::class, 'index'])->name('admin.product.index');
-    Route::get('detail-product/{id}', [ProductController::class, 'show'])->name('admin.product.show');
-    Route::get('/create-product', [ProductController::class, 'createProduct'])->name('admin.product.create');
-    Route::post('/store-product', [ProductController::class, 'storeProduct'])->name('admin.product.store');
-    Route::post('/edit-product/{id}', [ProductController::class, 'editProduct'])->name('admin.product.edit');
-    Route::post('/update-product/{id}', [ProductController::class, 'updateProduct'])->name('admin.product.update');
+    Route::get('/', [ProductController::class, 'index'])->name('admin.product.index');
+    Route::get('/detail/{id}', [ProductController::class, 'show'])->name('admin.product.show');
+    Route::get('/create', [ProductController::class, 'createProduct'])->name('admin.product.create');
+    Route::post('/store', [ProductController::class, 'storeProduct'])->name('admin.product.store');
+    Route::post('/edit/{id}', [ProductController::class, 'editProduct'])->name('admin.product.edit');
+    Route::post('/update/{id}', [ProductController::class, 'updateProduct'])->name('admin.product.update');
     Route::get('/delete/{id}', [ProductController::class, 'deleteProduct'])->name('admin.product.delete');
+});
+
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
+    Route::get('/add', [UserController::class, 'createUser'])->name('admin.user.create');
+    Route::post('/store', [UserController::class, 'storeUser'])->name('admin.user.store');
+    Route::get('/update/{user}', [UserController::class, 'editUser'])->name('admin.user.edit');
+    Route::post('/update/{user}', [UserController::class, 'updateUser'])->name('admin.user.update');
+    Route::get('/delete/{id}', [UserController::class, 'deleteUser'])->name('admin.user.delete');
 });
 
 Route::get('index/{locale}', [TailwickController::class, 'lang']);
@@ -42,14 +51,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
             Route::get('/getanalystorder', [AdminController::class, 'getAnalystOrder']);
             Route::get('/getdataanalysis', [AdminController::class, 'getDataAnalysis']);
 
-            Route::group(['prefix' => 'users'], function () {
-                Route::get('/', [UserController::class, 'index'])->name('admin.users.index');
-                Route::get('/add', [UserController::class, 'createUser'])->name('admin.create.user');
-                Route::get('/update/{user}', [UserController::class, 'viewUpdateUser'])->name('admin.update.user.view');
-                Route::post('/update/{user}', [UserController::class, 'updateUser'])->name('admin.update.user');
-                Route::post('/store', [UserController::class, 'storeUser'])->name('admin.store.user');
-                Route::get('/delete/{id}', [UserController::class, 'deleteUser'])->name('admin.delete.user');
-            });
 
 
 
