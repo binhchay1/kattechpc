@@ -13,7 +13,7 @@
                     <div class="flex items-center">
                         <h6 class="text-15 grow">Users List</h6>
                         <div class="lg:col-span-2 ltr:lg:text-right rtl:lg:text-left xl:col-span-2 xl:col-start-11">
-                            <a href="{{route('admin.create.products')}}" type="button"
+                            <a href="{{route('admin.product.create')}}" type="button"
                                class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20"><i
                                     data-lucide="plus" class="inline-block size-4"></i> <span class="align-middle">Add
                             Product</span></a>
@@ -63,63 +63,50 @@
                             <thead class="text-left">
                             <tr
                                 class="relative rounded-md bg-slate-100 dark:bg-zink-600 after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">
-                                    <div class="flex items-center h-full">
-                                        <input id="CheckboxAll"
-                                               class="size-4 bg-white border border-slate-200 checked:bg-none dark:bg-zink-700 dark:border-zink-500 rounded-sm appearance-none arrow-none relative after:absolute after:content-['\eb7b'] after:top-0 after:left-0 after:font-remix after:leading-none after:opacity-0 checked:after:opacity-100 after:text-custom-500 checked:border-custom-500 dark:after:text-custom-500 dark:checked:border-custom-800 cursor-pointer"
-                                               type="checkbox">
-                                    </div>
-                                </th>
+
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">
-                                    User ID</th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="name">Name
+                                    Product Code</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="name">Product Name
                                 </th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">
-                                    Location</th>
+                                    Category</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="email">
-                                    Email</th>
+                                    Brand</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort"
-                                    data-sort="phone-number">Phone Number</th>
+                                    data-sort="phone-number">Description</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort"
-                                    data-sort="joining-date">Joining Date</th>
+                                    data-sort="joining-date">Price</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="status">
                                     Status</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">Action</th>
                             </tr>
                             </thead>
                             <tbody class="list">
+                            @foreach($listProducts as $product)
                             <tr
                                 class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center h-full">
-                                        <input id="Checkbox1"
-                                               class="size-4 bg-white border border-slate-200 checked:bg-none dark:bg-zink-700 dark:border-zink-500 rounded-sm appearance-none arrow-none relative after:absolute after:content-['\eb7b'] after:top-0 after:left-0 after:font-remix after:leading-none after:opacity-0 checked:after:opacity-100 after:text-custom-500 checked:border-custom-500 dark:after:text-custom-500 dark:checked:border-custom-800 cursor-pointer"
-                                               type="checkbox">
-                                    </div>
+
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$product->code}}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><a href="#!"
-                                                                                  class="transition-all duration-150 ease-linear text-custom-500 hover:text-custom-600 user-id">#TW1500001</a>
-                                </td>
+
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
                                     <div class="flex items-center gap-2">
                                         <div
                                             class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
-                                            <img src="{{ URL::asset('build/images/users/avatar-2.png') }}"
+                                            <img src="{{$product->image}}"
                                                  alt="" class="h-10 rounded-full">
                                         </div>
                                         <div class="grow">
-                                            <h6 class="mb-1"><a href="#!" class="name">Marie Prohaska</a></h6>
-                                            <p class="text-slate-500 dark:text-zink-200">Graphic Designer</p>
+                                            <h6 class="mb-1"><a href="#!" class="name">{{$product->name}}</a></h6>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">United Kingdom</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 email">prohaska@tailwick.com</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 phone-number">853 565 9802</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 joining-date">04 Jan, 2023</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><span
-                                        class="px-2.5 py-0.5 text-xs font-medium rounded border bg-green-100 border-transparent text-green-500 dark:bg-green-500/20 dark:border-transparent inline-flex items-center status"><i
-                                            data-lucide="check-circle" class="size-3 mr-1.5"></i> Verified</span></td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$product->category}}
+                                </td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">{{$product->brand}}</td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 email">{{$product->description}}</td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 phone-number">{{$product->price}}</td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 joining-date">0{{$product->status}}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
                                     <div class="relative dropdown">
                                         <button
@@ -130,14 +117,14 @@
                                             aria-labelledby="usersAction1">
                                             <li>
                                                 <a class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="{{ url('pages-account') }}"><i data-lucide="eye"
+                                                   href="{{route('admin.product.show', $product['id'])}}"><i data-lucide="eye"
                                                                                         class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
                                                         class="align-middle">Overview</span></a>
                                             </li>
                                             <li>
                                                 <a data-modal-target="addUserModal"
                                                    class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="file-edit"
+                                                   href="{{route('admin.product.edit', $product['id'])}}"><i data-lucide="file-edit"
                                                                 class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
                                                         class="align-middle">Edit</span></a>
                                             </li>
@@ -152,593 +139,11 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr
-                                class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 active dark:[&.active]:bg-zink-600">
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center h-full">
-                                        <input id="Checkbox2"
-                                               class="size-4 bg-white border border-slate-200 checked:bg-none dark:bg-zink-700 dark:border-zink-500 rounded-sm appearance-none arrow-none relative after:absolute after:content-['\eb7b'] after:top-0 after:left-0 after:font-remix after:leading-none after:opacity-0 checked:after:opacity-100 after:text-custom-500 checked:border-custom-500 dark:after:text-custom-500 dark:checked:border-custom-800 cursor-pointer"
-                                               type="checkbox" checked>
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><a href="#!"
-                                                                                  class="transition-all duration-150 ease-linear text-custom-500 hover:text-custom-600 user-id">#TW1500002</a>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center gap-2">
-                                        <div
-                                            class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
-                                            <img src="{{ URL::asset('build/images/users/avatar-3.png') }}"
-                                                 alt="" class="h-10 rounded-full">
-                                        </div>
-                                        <div class="grow">
-                                            <h6 class="mb-1"><a href="#!" class="name">Jaqueline Hammes</a>
-                                            </h6>
-                                            <p class="text-slate-500 dark:text-zink-200">ASP.Net Developer</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">Brazil</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 email">jaqueline@tailwick.com</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 phone-number">546 6334 586</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 joining-date">18 Jan, 2023</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><span
-                                        class="px-2.5 py-0.5 inline-flex items-center text-xs font-medium rounded border bg-slate-100 border-transparent text-slate-500 dark:bg-slate-500/20 dark:text-zink-200 dark:border-transparent status"><i
-                                            data-lucide="loader" class="size-3 mr-1.5"></i> Waiting</span></td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="relative dropdown">
-                                        <button
-                                            class="flex items-center justify-center size-[30px] dropdown-toggle p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"
-                                            id="usersAction2" data-bs-toggle="dropdown"><i
-                                                data-lucide="more-horizontal" class="size-3"></i></button>
-                                        <ul class="absolute z-50 hidden py-2 mt-1 ltr:text-left rtl:text-right list-none bg-white rounded-md shadow-md dropdown-menu min-w-[10rem] dark:bg-zink-600"
-                                            aria-labelledby="usersAction2">
-                                            <li>
-                                                <a class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="{{ url('pages-account') }}"><i data-lucide="eye"
-                                                                                        class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Overview</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="addUserModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="file-edit"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Edit</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="deleteModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="trash-2"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Delete</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr
-                                class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100">
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center h-full">
-                                        <input id="Checkbox3"
-                                               class="size-4 bg-white border border-slate-200 checked:bg-none dark:bg-zink-700 dark:border-zink-500 rounded-sm appearance-none arrow-none relative after:absolute after:content-['\eb7b'] after:top-0 after:left-0 after:font-remix after:leading-none after:opacity-0 checked:after:opacity-100 after:text-custom-500 checked:border-custom-500 dark:after:text-custom-500 dark:checked:border-custom-800 cursor-pointer"
-                                               type="checkbox">
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><a href="#!"
-                                                                                  class="transition-all duration-150 ease-linear text-custom-500 hover:text-custom-600 user-id">#TW1500003</a>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center gap-2">
-                                        <div
-                                            class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
-                                            <img src="{{ URL::asset('build/images/users/avatar-4.png') }}"
-                                                 alt="" class="h-10 rounded-full">
-                                        </div>
-                                        <div class="grow">
-                                            <h6 class="mb-1"><a href="#!" class="name">Marlene Hirthe</a>
-                                            </h6>
-                                            <p class="text-slate-500 dark:text-zink-200">Angular Developer</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">Spain</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 email">marlene@tailwick.com</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 phone-number">141 654 9876</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 joining-date">04 Feb, 2023</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><span
-                                        class="px-2.5 py-0.5 text-xs font-medium rounded border bg-green-100 border-transparent text-green-500 dark:bg-green-500/20 dark:border-transparent inline-flex items-center status"><i
-                                            data-lucide="check-circle" class="size-3 mr-1.5"></i> Verified</span>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="relative dropdown">
-                                        <button
-                                            class="flex items-center justify-center size-[30px] dropdown-toggle p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"
-                                            id="usersAction3" data-bs-toggle="dropdown"><i
-                                                data-lucide="more-horizontal" class="size-3"></i></button>
-                                        <ul class="absolute z-50 hidden py-2 mt-1 ltr:text-left rtl:text-right list-none bg-white rounded-md shadow-md dropdown-menu min-w-[10rem] dark:bg-zink-600"
-                                            aria-labelledby="usersAction3">
-                                            <li>
-                                                <a class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="{{ url('pages-account') }}"><i data-lucide="eye"
-                                                                                        class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Overview</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="addUserModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="file-edit"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Edit</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="deleteModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="trash-2"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Delete</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr
-                                class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100">
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center h-full">
-                                        <input id="Checkbox4"
-                                               class="size-4 bg-white border border-slate-200 checked:bg-none dark:bg-zink-700 dark:border-zink-500 rounded-sm appearance-none arrow-none relative after:absolute after:content-['\eb7b'] after:top-0 after:left-0 after:font-remix after:leading-none after:opacity-0 checked:after:opacity-100 after:text-custom-500 checked:border-custom-500 dark:after:text-custom-500 dark:checked:border-custom-800 cursor-pointer"
-                                               type="checkbox">
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><a href="#!"
-                                                                                  class="transition-all duration-150 ease-linear text-custom-500 hover:text-custom-600 user-id">#TW1500004</a>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center gap-2">
-                                        <div
-                                            class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
-                                            <img src="{{ URL::asset('build/images/users/avatar-5.png') }}"
-                                                 alt="" class="h-10 rounded-full">
-                                        </div>
-                                        <div class="grow">
-                                            <h6 class="mb-1"><a href="#!" class="name">Akeem Paucek</a></h6>
-                                            <p class="text-slate-500 dark:text-zink-200">Jr. Developer</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">Mexico</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 email">akeem.p@tailwick.com</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 phone-number">783 962 3972</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 joining-date">12 Feb, 2023</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><span
-                                        class="px-2.5 py-0.5 inline-flex items-center text-xs font-medium rounded border bg-red-100 border-transparent text-red-500 dark:bg-red-500/20 dark:border-transparent status"><i
-                                            data-lucide="x" class="size-3 mr-1.5"></i> Rejected</span></td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="relative dropdown">
-                                        <button
-                                            class="flex items-center justify-center size-[30px] dropdown-toggle p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"
-                                            id="usersAction4" data-bs-toggle="dropdown"><i
-                                                data-lucide="more-horizontal" class="size-3"></i></button>
-                                        <ul class="absolute z-50 hidden py-2 mt-1 ltr:text-left rtl:text-right list-none bg-white rounded-md shadow-md dropdown-menu min-w-[10rem] dark:bg-zink-600"
-                                            aria-labelledby="usersAction4">
-                                            <li>
-                                                <a class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="{{ url('pages-account') }}"><i data-lucide="eye"
-                                                                                        class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Overview</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="addUserModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="file-edit"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Edit</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="deleteModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="trash-2"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Delete</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr
-                                class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100">
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center h-full">
-                                        <input id="Checkbox5"
-                                               class="size-4 bg-white border border-slate-200 checked:bg-none dark:bg-zink-700 dark:border-zink-500 rounded-sm appearance-none arrow-none relative after:absolute after:content-['\eb7b'] after:top-0 after:left-0 after:font-remix after:leading-none after:opacity-0 checked:after:opacity-100 after:text-custom-500 checked:border-custom-500 dark:after:text-custom-500 dark:checked:border-custom-800 cursor-pointer"
-                                               type="checkbox">
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><a href="#!"
-                                                                                  class="transition-all duration-150 ease-linear text-custom-500 hover:text-custom-600 user-id">#TW1500005</a>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center gap-2">
-                                        <div
-                                            class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
-                                            <img src="{{ URL::asset('build/images/users/avatar-6.png') }}"
-                                                 alt="" class="h-10 rounded-full">
-                                        </div>
-                                        <div class="grow">
-                                            <h6 class="mb-1"><a href="#!" class="name">Stephon Trantow</a>
-                                            </h6>
-                                            <p class="text-slate-500 dark:text-zink-200">Full Stack Developer</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">Spain</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 email">akeem.p@tailwick.com</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 phone-number">032 126 5833</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 joining-date">31 Feb, 2023</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><span
-                                        class="px-2.5 py-0.5 inline-flex items-center text-xs font-medium rounded border bg-slate-100 border-transparent text-slate-500 dark:bg-slate-500/20 dark:text-zink-200 dark:border-transparent status"><i
-                                            data-lucide="loader" class="size-3 mr-1.5"></i> Waiting</span></td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="relative dropdown">
-                                        <button
-                                            class="flex items-center justify-center size-[30px] dropdown-toggle p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"
-                                            id="usersAction4" data-bs-toggle="dropdown"><i
-                                                data-lucide="more-horizontal" class="size-3"></i></button>
-                                        <ul class="absolute z-50 hidden py-2 mt-1 ltr:text-left rtl:text-right list-none bg-white rounded-md shadow-md dropdown-menu min-w-[10rem] dark:bg-zink-600"
-                                            aria-labelledby="usersAction4">
-                                            <li>
-                                                <a class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:focus:text-zink-200 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500"
-                                                   href="{{ url('pages-account') }}"><i data-lucide="eye"
-                                                                                        class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Overview</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="addUserModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="file-edit"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Edit</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="deleteModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="trash-2"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Delete</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr
-                                class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100">
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center h-full">
-                                        <input id="Checkbox6"
-                                               class="size-4 bg-white border border-slate-200 checked:bg-none dark:bg-zink-700 dark:border-zink-500 rounded-sm appearance-none arrow-none relative after:absolute after:content-['\eb7b'] after:top-0 after:left-0 after:font-remix after:leading-none after:opacity-0 checked:after:opacity-100 after:text-custom-500 checked:border-custom-500 dark:after:text-custom-500 dark:checked:border-custom-800 cursor-pointer"
-                                               type="checkbox">
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><a href="#!"
-                                                                                  class="transition-all duration-150 ease-linear text-custom-500 hover:text-custom-600 user-id">#TW1500006</a>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center gap-2">
-                                        <div
-                                            class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
-                                            DT
-                                        </div>
-                                        <div class="grow">
-                                            <h6 class="mb-1"><a href="#!" class="name">Domenic Tromp</a>
-                                            </h6>
-                                            <p class="text-slate-500 dark:text-zink-200">Team Leader</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">Germany</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 email">domenic@tailwick.com</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 phone-number">612 6088 735</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 joining-date">27 Oct, 2023</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><span
-                                        class="px-2.5 py-0.5 text-xs font-medium rounded border bg-green-100 border-transparent text-green-500 dark:bg-green-500/20 dark:border-transparent inline-flex items-center status"><i
-                                            data-lucide="check-circle" class="size-3 mr-1.5"></i> Verified</span>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="relative dropdown">
-                                        <button
-                                            class="flex items-center justify-center size-[30px] dropdown-toggle p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"
-                                            id="usersAction4" data-bs-toggle="dropdown"><i
-                                                data-lucide="more-horizontal" class="size-3"></i></button>
-                                        <ul class="absolute z-50 hidden py-2 mt-1 ltr:text-left rtl:text-right list-none bg-white rounded-md shadow-md dropdown-menu min-w-[10rem] dark:bg-zink-600"
-                                            aria-labelledby="usersAction4">
-                                            <li>
-                                                <a class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="{{ url('pages-account') }}"><i data-lucide="eye"
-                                                                                        class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Overview</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="addUserModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="file-edit"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Edit</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="deleteModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="trash-2"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Delete</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr
-                                class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100">
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center h-full">
-                                        <input id="Checkbox7"
-                                               class="size-4 bg-white border border-slate-200 checked:bg-none dark:bg-zink-700 dark:border-zink-500 rounded-sm appearance-none arrow-none relative after:absolute after:content-['\eb7b'] after:top-0 after:left-0 after:font-remix after:leading-none after:opacity-0 checked:after:opacity-100 after:text-custom-500 checked:border-custom-500 dark:after:text-custom-500 dark:checked:border-custom-800 cursor-pointer"
-                                               type="checkbox">
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><a href="#!"
-                                                                                  class="transition-all duration-150 ease-linear text-custom-500 hover:text-custom-600 user-id">#TW1500007</a>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center gap-2">
-                                        <div
-                                            class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
-                                            <img src="{{ URL::asset('build/images/users/avatar-7.png') }}"
-                                                 alt="" class="h-10 rounded-full">
-                                        </div>
-                                        <div class="grow">
-                                            <h6 class="mb-1"><a href="#!" class="name">Ethel Corwin</a></h6>
-                                            <p class="text-slate-500 dark:text-zink-200">Web Designer</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">Italy</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 email">ecorwin@tailwick.com</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 phone-number">216 897 4978</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 joining-date">03 Aug, 2023</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><span
-                                        class="px-2.5 py-0.5 text-xs font-medium rounded border bg-green-100 border-transparent text-green-500 dark:bg-green-500/20 dark:border-transparent inline-flex items-center status"><i
-                                            data-lucide="check-circle" class="size-3 mr-1.5"></i> Verified</span>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="relative dropdown">
-                                        <button
-                                            class="flex items-center justify-center size-[30px] dropdown-toggle p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"
-                                            id="usersAction4" data-bs-toggle="dropdown"><i
-                                                data-lucide="more-horizontal" class="size-3"></i></button>
-                                        <ul class="absolute z-50 hidden py-2 mt-1 ltr:text-left rtl:text-right list-none bg-white rounded-md shadow-md dropdown-menu min-w-[10rem] dark:bg-zink-600"
-                                            aria-labelledby="usersAction4">
-                                            <li>
-                                                <a class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="{{ url('pages-account') }}"><i data-lucide="eye"
-                                                                                        class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Overview</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="addUserModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="file-edit"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Edit</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="deleteModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="trash-2"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Delete</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr
-                                class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100">
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center h-full">
-                                        <input id="Checkbox8"
-                                               class="size-4 bg-white border border-slate-200 checked:bg-none dark:bg-zink-700 dark:border-zink-500 rounded-sm appearance-none arrow-none relative after:absolute after:content-['\eb7b'] after:top-0 after:left-0 after:font-remix after:leading-none after:opacity-0 checked:after:opacity-100 after:text-custom-500 checked:border-custom-500 dark:after:text-custom-500 dark:checked:border-custom-800 cursor-pointer"
-                                               type="checkbox">
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><a href="#!"
-                                                                                  class="transition-all duration-150 ease-linear text-custom-500 hover:text-custom-600 user-id">#TW1500008</a>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center gap-2">
-                                        <div
-                                            class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
-                                            <img src="{{ URL::asset('build/images/users/avatar-8.png') }}"
-                                                 alt="" class="h-10 rounded-full">
-                                        </div>
-                                        <div class="grow">
-                                            <h6 class="mb-1"><a href="#!" class="name">Rickie Cremin</a>
-                                            </h6>
-                                            <p class="text-slate-500 dark:text-zink-200">Web Designer</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">France</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 email">ecorwin@tailwick.com</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 phone-number">388 946 3889</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 joining-date">01 July, 2023</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><span
-                                        class="px-2.5 py-0.5 inline-flex items-center text-xs font-medium rounded border bg-slate-100 border-transparent text-slate-500 dark:bg-slate-500/20 dark:text-zink-200 dark:border-transparent status"><i
-                                            data-lucide="loader" class="size-3 mr-1.5"></i> Waiting</span></td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="relative dropdown">
-                                        <button
-                                            class="flex items-center justify-center size-[30px] dropdown-toggle p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"
-                                            id="usersAction4" data-bs-toggle="dropdown"><i
-                                                data-lucide="more-horizontal" class="size-3"></i></button>
-                                        <ul class="absolute z-50 hidden py-2 mt-1 ltr:text-left rtl:text-right list-none bg-white rounded-md shadow-md dropdown-menu min-w-[10rem] dark:bg-zink-600"
-                                            aria-labelledby="usersAction4">
-                                            <li>
-                                                <a class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="{{ url('pages-account') }}"><i data-lucide="eye"
-                                                                                        class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Overview</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="addUserModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="file-edit"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Edit</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="deleteModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="trash-2"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Delete</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr
-                                class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100">
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center h-full">
-                                        <input id="Checkbox9"
-                                               class="size-4 bg-white border border-slate-200 checked:bg-none dark:bg-zink-700 dark:border-zink-500 rounded-sm appearance-none arrow-none relative after:absolute after:content-['\eb7b'] after:top-0 after:left-0 after:font-remix after:leading-none after:opacity-0 checked:after:opacity-100 after:text-custom-500 checked:border-custom-500 dark:after:text-custom-500 dark:checked:border-custom-800 cursor-pointer"
-                                               type="checkbox">
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><a href="#!"
-                                                                                  class="transition-all duration-150 ease-linear text-custom-500 hover:text-custom-600 user-id">#TW1500009</a>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center gap-2">
-                                        <div
-                                            class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
-                                            RL
-                                        </div>
-                                        <div class="grow">
-                                            <h6 class="mb-1"><a href="#!" class="name">Reagan Larson</a>
-                                            </h6>
-                                            <p class="text-slate-500 dark:text-zink-200">Team Leader</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">Denmark</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 email">reagan@tailwick.com</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 phone-number">612 6088 735</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 joining-date">27 Oct, 2023</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><span
-                                        class="px-2.5 py-0.5 text-xs font-medium rounded border bg-green-100 border-transparent text-green-500 dark:bg-green-500/20 dark:border-transparent inline-flex items-center status"><i
-                                            data-lucide="check-circle" class="size-3 mr-1.5"></i> Verified</span>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="relative dropdown">
-                                        <button
-                                            class="flex items-center justify-center size-[30px] dropdown-toggle p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"
-                                            id="usersAction4" data-bs-toggle="dropdown"><i
-                                                data-lucide="more-horizontal" class="size-3"></i></button>
-                                        <ul class="absolute z-50 hidden py-2 mt-1 ltr:text-left rtl:text-right list-none bg-white rounded-md shadow-md dropdown-menu min-w-[10rem] dark:bg-zink-600"
-                                            aria-labelledby="usersAction4">
-                                            <li>
-                                                <a class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="{{ url('pages-account') }}"><i data-lucide="eye"
-                                                                                        class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Overview</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="addUserModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="file-edit"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Edit</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="deleteModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="trash-2"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Delete</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr
-                                class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100">
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center h-full">
-                                        <input id="Checkbox10"
-                                               class="size-4 bg-white border border-slate-200 checked:bg-none dark:bg-zink-700 dark:border-zink-500 rounded-sm appearance-none arrow-none relative after:absolute after:content-['\eb7b'] after:top-0 after:left-0 after:font-remix after:leading-none after:opacity-0 checked:after:opacity-100 after:text-custom-500 checked:border-custom-500 dark:after:text-custom-500 dark:checked:border-custom-800 cursor-pointer"
-                                               type="checkbox">
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><a href="#!"
-                                                                                  class="transition-all duration-150 ease-linear text-custom-500 hover:text-custom-600 user-id">#TW1500010</a>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center gap-2">
-                                        <div
-                                            class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
-                                            <img src="{{ URL::asset('build/images/users/avatar-9.png') }}"
-                                                 alt="" class="h-10 rounded-full">
-                                        </div>
-                                        <div class="grow">
-                                            <h6 class="mb-1"><a href="#!" class="name">Glennie Langosh</a>
-                                            </h6>
-                                            <p class="text-slate-500 dark:text-zink-200">Project Manager</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">Germany</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 email">glennie@tailwick.com</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 phone-number">357 716 8847</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 joining-date">11 Dec, 2023</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"><span
-                                        class="px-2.5 py-0.5 inline-flex items-center text-xs font-medium rounded border bg-red-100 border-transparent text-red-500 dark:bg-red-500/20 dark:border-transparent status"><i
-                                            data-lucide="x" class="size-3 mr-1.5"></i> Rejected</span></td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="relative dropdown">
-                                        <button
-                                            class="flex items-center justify-center size-[30px] dropdown-toggle p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"
-                                            id="usersAction4" data-bs-toggle="dropdown"><i
-                                                data-lucide="more-horizontal" class="size-3"></i></button>
-                                        <ul class="absolute z-50 hidden py-2 mt-1 ltr:text-left rtl:text-right list-none bg-white rounded-md shadow-md dropdown-menu min-w-[10rem] dark:bg-zink-600"
-                                            aria-labelledby="usersAction4">
-                                            <li>
-                                                <a class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="{{ url('pages-account') }}"><i data-lucide="eye"
-                                                                                        class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Overview</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="addUserModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="file-edit"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Edit</span></a>
-                                            </li>
-                                            <li>
-                                                <a data-modal-target="deleteModal"
-                                                   class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="#!"><i data-lucide="trash-2"
-                                                                class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Delete</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
+                        {!! $listProducts->links() !!}
+
                         <div class="noresult" style="display: none">
                             <div class="py-6 text-center">
                                 <i data-lucide="search"
@@ -749,57 +154,58 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col items-center mt-8 md:flex-row">
-                        <div class="mb-4 grow md:mb-0">
-                            <p class="text-slate-500 dark:text-zink-200">Showing <b>10</b> of <b>57</b> Results</p>
-                        </div>
-                        <ul class="flex flex-wrap items-center gap-2">
-                            <li>
-                                <a href="#!"
-                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto"><i
-                                        class="size-4 rtl:rotate-180" data-lucide="chevrons-left"></i></a>
-                            </li>
-                            <li>
-                                <a href="#!"
-                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto"><i
-                                        class="size-4 rtl:rotate-180" data-lucide="chevron-left"></i></a>
-                            </li>
-                            <li>
-                                <a href="#!"
-                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto">1</a>
-                            </li>
-                            <li>
-                                <a href="#!"
-                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto">2</a>
-                            </li>
-                            <li>
-                                <a href="#!"
-                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto active">3</a>
-                            </li>
-                            <li>
-                                <a href="#!"
-                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto">4</a>
-                            </li>
-                            <li>
-                                <a href="#!"
-                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto">5</a>
-                            </li>
-                            <li>
-                                <a href="#!"
-                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto">6</a>
-                            </li>
-                            <li>
-                                <a href="#!"
-                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto"><i
-                                        class="size-4 rtl:rotate-180" data-lucide="chevron-right"></i></a>
-                            </li>
-                            <li>
-                                <a href="#!"
-                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto"><i
-                                        class="size-4 rtl:rotate-180" data-lucide="chevrons-right"></i></a>
-                            </li>
-                        </ul>
-                    </div>
+{{--                    <div class="flex flex-col items-center mt-8 md:flex-row">--}}
+{{--                       --}}
+{{--                        <div class="mb-4 grow md:mb-0">--}}
+{{--                            <p class="text-slate-500 dark:text-zink-200">Showing <b>10</b> of <b>57</b> Results</p>--}}
+{{--                        </div>--}}
+{{--                        <ul class="flex flex-wrap items-center gap-2">--}}
+{{--                            <li>--}}
+{{--                                <a href="#!"--}}
+{{--                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto"><i--}}
+{{--                                        class="size-4 rtl:rotate-180" data-lucide="chevrons-left"></i></a>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <a href="#!"--}}
+{{--                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto"><i--}}
+{{--                                        class="size-4 rtl:rotate-180" data-lucide="chevron-left"></i></a>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <a href="#!"--}}
+{{--                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto">1</a>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <a href="#!"--}}
+{{--                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto">2</a>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <a href="#!"--}}
+{{--                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto active">3</a>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <a href="#!"--}}
+{{--                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto">4</a>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <a href="#!"--}}
+{{--                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto">5</a>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <a href="#!"--}}
+{{--                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto">6</a>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <a href="#!"--}}
+{{--                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto"><i--}}
+{{--                                        class="size-4 rtl:rotate-180" data-lucide="chevron-right"></i></a>--}}
+{{--                            </li>--}}
+{{--                            <li>--}}
+{{--                                <a href="#!"--}}
+{{--                                   class="inline-flex items-center justify-center bg-white dark:bg-zink-700 size-8 transition-all duration-150 ease-linear border border-slate-200 dark:border-zink-500 rounded text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500 hover:bg-custom-50 dark:hover:bg-custom-500/10 focus:bg-custom-50 dark:focus:bg-custom-500/10 focus:text-custom-500 dark:focus:text-custom-500 [&.active]:text-custom-50 dark:[&.active]:text-custom-50 [&.active]:bg-custom-500 dark:[&.active]:bg-custom-500 [&.active]:border-custom-500 dark:[&.active]:border-custom-500 [&.disabled]:text-slate-400 dark:[&.disabled]:text-zink-300 [&.disabled]:cursor-auto"><i--}}
+{{--                                        class="size-4 rtl:rotate-180" data-lucide="chevrons-right"></i></a>--}}
+{{--                            </li>--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
                 </div>
             </div><!--end card-->
         </div><!--end col-->

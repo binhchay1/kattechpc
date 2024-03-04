@@ -12,13 +12,13 @@
                 <div class="card-body">
                     <h6 class="mb-4 text-15">Create Product</h6>
 
-                    <form action="{{route('admin.update.product', $product['id'])}}" method="POST">
+                    <form action="{{route('admin.product.update', $product['id'])}}" method="POST">
                         @csrf
                         <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
                             <div class="xl:col-span-6">
                                 <label for="productNameInput" class="inline-block mb-2 text-base font-medium">Product
                                     Name</label>
-                                <input type="text" id="productNameInput" name="name"
+                                <input type="text" id="productNameInput" name="name" value="{{$produc->name}}"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                        placeholder="Enter Product Name" >
                                 <p class="mt-1 text-sm text-slate-400 dark:text-zink-200">Do not exceed 20 characters when
@@ -27,7 +27,7 @@
                             <div class="xl:col-span-6">
                                 <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">Product
                                     Code</label>
-                                <input type="text" id="productCodeInput" name="code"
+                                <input type="text" id="productCodeInput" name="code" value="{{$produc->code}}"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                        placeholder="Enter Product Code" value="TWT145015"  >
 
@@ -115,12 +115,12 @@
                                            class="inline-block mb-2 text-base font-medium">Description</label>
                                     <textarea
                                         class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                        id="productDescription" name="description" placeholder="Enter Product Description" rows="5"></textarea>
+                                        id="productDescription" name="description" value="{{$produc->description}}" placeholder="Enter Product Description" rows="5"></textarea>
                                 </div>
                             </div>
                             <div class="xl:col-span-4">
                                 <label for="productPrice" class="inline-block mb-2 text-base font-medium">Price</label>
-                                <input type="number" id="productPrice" name="price"
+                                <input type="number" id="productPrice" name="price" value="{{$produc->price}}"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                        placeholder="$0.00" >
                             </div><!--end col-->

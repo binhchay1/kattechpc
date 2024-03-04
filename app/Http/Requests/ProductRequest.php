@@ -11,7 +11,7 @@ class ProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -31,7 +31,7 @@ class ProductRequest extends FormRequest
             'image' =>'image|mimes:jpeg,png,jpg|max:2048'
         ];
     }
-    
+
     public function messages()
     {
         return [
@@ -48,5 +48,5 @@ class ProductRequest extends FormRequest
             'image.max' => __('validation.max'),
         ];
     }
-    
+
 }
