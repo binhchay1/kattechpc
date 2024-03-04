@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Repositories\ProductRepository;
-use App\Http\Requests\ProductRequest;
 use App\Enums\Utility;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
+use App\Repositories\ProductRepository;
+use Illuminate\Http\Request;
+use function App\Http\Controllers\alert;
 
 class ProductController extends Controller
 {
@@ -64,7 +66,7 @@ class ProductController extends Controller
         return view('admin.product.edit', compact('product'));
     }
 
-    public function updateProduct(UpdateProductRequest $request, $id)
+    public function updateProduct(ProductRequest $request, $id)
     {
         $input= $request->all();
         if (isset($input['image'])) {
