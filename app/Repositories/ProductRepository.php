@@ -11,27 +11,27 @@ class ProductRepository extends BaseRepository
     {
         return Product::class;
     }
-    
+
     public function index()
     {
-        return $this->model->orderBy('created_at', 'DESC')->get();
+        return $this->model->orderBy('created_at', 'DESC')->paginate(1);
     }
-    
+
     public function store($input)
     {
         return $this->model->create($input);
     }
-    
+
     public function show($id)
     {
         return $this->model->where('id', $id)->first();
     }
-    
+
     public function update($input, $id)
     {
         return $this->model->where('id', $id)->update($input);
     }
-    
+
 }
 
 

@@ -5,52 +5,59 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\ProductRepository;
 use App\Http\Requests\ProductRequest;
+use App\Enums\Utility;
 
 class ProductController extends Controller
 {
     private $productRepository ;
+    private $utility;
 
     public function __construct(
-        ProductRepository $productRepository
-      
+        ProductRepository $productRepository,
+        Utility $utility
+
     ) {
         $this->productRepository = $productRepository;
+        $this->utility = $utility;
     }
 
     public function index()
     {
         $listProducts = $this->productRepository->index();
-        
         return view('admin.product.index', compact('listProducts'));
     }
-    
+
     public function show($id)
     {
         $product = $this->productRepository->show($id);
     }
-    
+
     public function createProduct()
     {
         return view('admin.product.create');
     }
-    
-    public function storeProduct(Request $request)
+
+    public function storeProduct(ProductRequest $request)
     {
+
+        $input = $request->except(['_token']);
+
         $input= $request->all();
         if (isset($input['image'])) {
-            $img = $this->utility->saveImageLeague($input);
+
+            $img = $this->utility->saveImageProduct($input);
             if ($img) {
                 $path = '/images/upload/product/' . $input['image']->getClientOriginalName();
                 $input['image'] = $path;
             }
         }
-        
+
         $product = $this->productRepository->store($input);
-        
+
         return redirect()->route('admin.product.index');
     }
-    
-    
+
+
     public function editProduct($id)
     {
         $product = $this->productRepository->show($id);
@@ -61,22 +68,22 @@ class ProductController extends Controller
     {
         $input= $request->all();
         if (isset($input['image'])) {
-            $img = $this->utility->saveImageLeague($input);
+            $img = $this->utility->saveImageProduct($input);
             if ($img) {
                 $path = '/images/upload/product/' . $input['image']->getClientOriginalName();
                 $input['image'] = $path;
             }
         }
-    
+
         $product = $this->productRepository->update($input, $id);
-    
+
         return redirect()->route('admin.product.index');
     }
 
 
     public function deleteProduct()
     {
-        
+
         alert()->success('Thành công!', 'Xóa sản phẩm thành công!');
         return redirect()->route('admin.products.index');
     }

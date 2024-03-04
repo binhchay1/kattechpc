@@ -23,11 +23,11 @@ Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin
 Route::group(['prefix' => 'product'], function () {
     Route::get('list-products', [ProductController::class, 'index'])->name('admin.product.index');
     Route::get('detail-product/{id}', [ProductController::class, 'show'])->name('admin.product.show');
-    Route::get('/create-product', [ProductController::class, 'createProduct'])->name('admin.create.product');
-    Route::post('/store-product', [ProductController::class, 'storeProduct'])->name('admin.store.product');
-    Route::post('/edit-product/{id}', [ProductController::class, 'editProduct'])->name('admin.edit.product');
-    Route::post('/update-product/{id}', [ProductController::class, 'updateProduct'])->name('admin.update.product');
-    Route::get('/delete/{id}', [ProductController::class, 'deleteProduct'])->name('admin.delete.products');
+    Route::get('/create-product', [ProductController::class, 'createProduct'])->name('admin.product.create');
+    Route::post('/store-product', [ProductController::class, 'storeProduct'])->name('admin.product.store');
+    Route::post('/edit-product/{id}', [ProductController::class, 'editProduct'])->name('admin.product.edit');
+    Route::post('/update-product/{id}', [ProductController::class, 'updateProduct'])->name('admin.product.update');
+    Route::get('/delete/{id}', [ProductController::class, 'deleteProduct'])->name('admin.product.delete');
 });
 
 Route::get('index/{locale}', [TailwickController::class, 'lang']);
@@ -51,7 +51,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
                 Route::get('/delete/{id}', [UserController::class, 'deleteUser'])->name('admin.delete.user');
             });
 
-        
+
 
             Route::group(['prefix' => 'promotion'], function () {
                 Route::get('/', [AdminController::class, 'promotionView'])->name('admin.promotion.index');
