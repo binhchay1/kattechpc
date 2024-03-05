@@ -28,6 +28,7 @@
                                 <p class="mt-1 text-sm text-slate-400 dark:text-zink-200">Do not exceed 20 characters when
                                     entering the product name.</p>
                             </div><!--end col-->
+
                             <div class="xl:col-span-6">
                                 <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">User Email
                                 </label>
@@ -38,6 +39,7 @@
                                     <span class="text-danger">{{ $errors->first('email') }}</span>
                                 @endif
                             </div><!--end col-->
+
                             <div class="xl:col-span-6">
                                 <div class="form-group">
                                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">Image</label>
@@ -59,6 +61,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="xl:col-span-6">
                                 <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">Address
                                 </label>
@@ -80,6 +83,7 @@
                                     <span class="text-danger">{{ $errors->first('phone') }}</span>
                                 @endif
                             </div><!--end col-->
+
                             <div class="xl:col-span-4">
                                 <label for="productPrice" class="inline-block mb-2 text-base font-medium">Age</label>
                                 <input type="date" id="productPrice" name="age" value="{{$user->age}}"
@@ -100,7 +104,6 @@
                                     @endforeach
                                 </select>
                             </div><!--end col-->
-
                         </div><!--end grid-->
                         <input type="hidden" id="custId" name="password" value="3487">
                         <div class="flex justify-end gap-2 mt-4">
@@ -109,9 +112,6 @@
                             <button type="submit"
                                     class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Update
                                 User</button>
-                            <button type="button"
-                                    class="text-white bg-green-500 border-green-500 btn hover:text-white hover:bg-green-600 hover:border-green-600 focus:text-white focus:bg-green-600 focus:border-green-600 focus:ring focus:ring-green-100 active:text-white active:bg-green-600 active:border-green-600 active:ring active:ring-green-100 dark:ring-green-400/10">Draft
-                                & Preview</button>
                         </div>
                     </form>
                 </div>

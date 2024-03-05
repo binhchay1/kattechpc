@@ -27,6 +27,7 @@ class ProductRequest extends FormRequest
             'description' =>'required',
             'status' =>'required',
             'code' =>'required|max:255',
+            'price' =>'required|max:255',
             'image' =>'image|mimes:jpeg,png,jpg|max:2048'
         ];
     }
@@ -40,6 +41,7 @@ class ProductRequest extends FormRequest
             'description.required' => __('validation.required'),
             'status.required' => __('validation.required'),
             'code.required' => __('validation.required'),
+            'price.required' => __('validation.required'),
             'code.max' => __('validation.max'),
             'image.image' => __('validation.image'),
             'image.mimes' => __('validation.mimes'),
