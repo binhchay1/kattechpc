@@ -15,7 +15,7 @@ class UserRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->orderBy('created_at', 'DESC')->paginate(1);
+        return $this->model->orderBy('created_at', 'DESC')->paginate(10);
     }
 
     public function store($input)
