@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\User;
 use App\Enums\Utility;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use function App\Http\Controllers\alert;
@@ -35,15 +38,15 @@ class UserController extends Controller
 
     public function createUser()
     {
-        return view('admin.user.create');
+        $genderUser = User::SEX;
+        return view('admin.user.create', compact('genderUser'));
     }
 
-    public function storeUser(Request $request)
+    public function storeUser(UserRequest $request)
     {
-
         $input = $request->except(['_token']);
-
         $input= $request->all();
+        $input['password'] = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; // password
         if (isset($input['profile_photo_path'])) {
 
             $img = $this->utility->saveImageuser($input);
@@ -54,20 +57,21 @@ class UserController extends Controller
         }
 
         $user = $this->userRepository->store($input);
-
-        return redirect()->route('admin.user.index');
+        return redirect()->route('admin.user.index')->with('success', 'User successfully created.');
     }
 
 
     public function editUser($id)
     {
         $user = $this->userRepository->show($id);
-        return view('admin.user.edit', compact('user'));
+        $genderUser = User::SEX;
+    
+        return view('admin.user.edit', compact('user','genderUser'));
     }
 
-    public function updateUser(Request $request, $id)
+    public function updateUser(UserUpdateRequest $request, $id)
     {
-        $input= $request->all();
+        $input = $request->except(['_token']);
         if (isset($input['profile_photo_path'])) {
             $img = $this->utility->saveImageUser($input);
             if ($img) {
@@ -78,15 +82,16 @@ class UserController extends Controller
 
         $user = $this->userRepository->update($input, $id);
 
-        return redirect()->route('admin.user.index');
+        return redirect()->route('admin.user.index')->with('success', 'User successfully updated.');
     }
 
 
-    public function deleteUser()
+    public function deleteUser($id)
     {
-
-        alert()->success('Thành công!', 'Xóa sản phẩm thành công!');
-        return redirect()->route('admin.users.index');
+    
+        $this->userRepository->destroy($id);
+    
+        return back()->with('success', 'User successfully deleted.');
     }
 
     public function userSearch(Request $request)
