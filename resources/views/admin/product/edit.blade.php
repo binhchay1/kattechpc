@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <!-- page title -->
-    <x-page-title title="Add New" pagetitle="Products" />
+    <x-page-title title="Edit Product" pagetitle="Products" />
 
     <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5">
         <div class="xl:col-span-12">
@@ -12,8 +12,8 @@
                 <div class="card-body">
                     <h6 class="mb-4 text-15">Update Product</h6>
 
-                    <form action="{{route('admin.product.update', $product['id'])}}" method="POST">
-                        @csrf
+                    <form action="{{route('admin.product.update', $product['id'])}}" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
                         <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
                             <div class="xl:col-span-6">
                                 <label for="productNameInput" class="inline-block mb-2 text-base font-medium">Product
@@ -21,6 +21,9 @@
                                 <input type="text" id="productNameInput" name="name" value="{{$product->name}}"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                        placeholder="Enter Product Name" >
+                                @if ($errors->has('name'))
+                                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                                @endif
                                 <p class="mt-1 text-sm text-slate-400 dark:text-zink-200">Do not exceed 20 characters when
                                     entering the product name.</p>
                             </div><!--end col-->
@@ -31,7 +34,7 @@
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                        placeholder="Enter Product Code" value="TWT145015"  >
                             </div><!--end col-->
-                            <div class="xl:col-span-4">
+                            <div class="xl:col-span-6">
                                 <div class="form-group">
                                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">Image</label>
                                     <div class="">
@@ -53,43 +56,27 @@
                                 </div>
                             </div>
 
-                            <div class="xl:col-span-4">
+                            <div class="xl:col-span-6">
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">Category</label>
                                 <select
                                     class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                    data-choices data-choices-search-false  id="categorySelect" name="category" value="{{ $product->category }}">
-                                    <option value="">Select Category</option>
-                                    <option value="Mobiles, Computers">Mobiles, Computers</option>
-                                    <option value="TV, Appliances, Electronics">TV, Appliances, Electronics</option>
-                                    <option value="Men's Fashion">Men's Fashion</option>
-                                    <option value="Women's Fashion">Women's Fashion</option>
-                                    <option value="Home, Kitchen, Pets">Home, Kitchen, Pets</option>
-                                    <option value="Beauty, Health, Grocery">Beauty, Health, Grocery</option>
-                                    <option value="Books">Books</option>
+                                    data-choices data-choices-search-false  id="categorySelect" name="category" value="">
+                                    @foreach ($listCategories as $category)
+                                        <option value="{{ $category->name }}" @if($product->category == $category->name) selected @endif>
+                                            {{$category->name}}
+                                        </option>
+                                    @endforeach
+
                                 </select>
                             </div><!--end col-->
-                            <div class="xl:col-span-4">
-                                <label for="categorySelect" class="inline-block mb-2 text-base font-medium">Brand</label>
-                                <select
-                                    class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                    data-choices data-choices-search-false id="categorySelect" name="brand">
-                                    <option value="">Select Category</option>
-                                    <option value="Mobiles, Computers">Mobiles, Computers</option>
-                                    <option value="TV, Appliances, Electronics">TV, Appliances, Electronics</option>
-                                    <option value="Men's Fashion">Men's Fashion</option>
-                                    <option value="Women's Fashion">Women's Fashion</option>
-                                    <option value="Home, Kitchen, Pets">Home, Kitchen, Pets</option>
-                                    <option value="Beauty, Health, Grocery">Beauty, Health, Grocery</option>
-                                    <option value="Books">Books</option>
-                                </select>
-                            </div><!--end col-->
+
                             <div class="lg:col-span-2 xl:col-span-12">
                                 <div>
                                     <label for="productDescription"
                                            class="inline-block mb-2 text-base font-medium">Description</label>
                                     <textarea
                                         class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                        id="productDescription" name="description" value="{{$product->description}}" placeholder="Enter Product Description" rows="5"></textarea>
+                                        id="productDescription" name="description" value="" placeholder="Enter Product Description" rows="5">{{$product->description}}</textarea>
                                 </div>
                             </div>
                             <div class="xl:col-span-4">
@@ -104,10 +91,9 @@
                                 <select
                                     class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                     data-choices data-choices-search-false  id="productStatus" name="status">
-                                    <option value="Draft">Draft</option>
-                                    <option value="Published">Published</option>
-                                    <option value="Scheduled">Scheduled</option>
-                                    <option value="Entertainment">Entertainment</option>
+                                    @foreach($statusProduct as $type => $value)
+                                        <option id="type_of_league" value="{{ $value }}" {{$value == $product->status ? 'selected' : ''}}>{{ $value }}</option>
+                                    @endforeach
                                 </select>
                             </div><!--end col-->
 

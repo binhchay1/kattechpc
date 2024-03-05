@@ -70,8 +70,6 @@
                                 </th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">
                                     Category</th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="email">
-                                    Brand</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort"
                                     data-sort="phone-number">Description</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort"
@@ -103,10 +101,9 @@
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$product->category}}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">{{$product->brand}}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 email">{{$product->description}}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 phone-number">{{$product->price}}</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 joining-date">0{{$product->status}}</td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 joining-date">{{$product->status}}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
                                     <div class="relative dropdown">
                                         <button
@@ -115,12 +112,6 @@
                                                 data-lucide="more-horizontal" class="size-3"></i></button>
                                         <ul class="absolute z-50 hidden py-2 mt-1 ltr:text-left rtl:text-right list-none bg-white rounded-md shadow-md dropdown-menu min-w-[10rem] dark:bg-zink-600"
                                             aria-labelledby="usersAction1">
-                                            <li>
-                                                <a class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                   href="{{route('admin.product.show', $product['id'])}}"><i data-lucide="eye"
-                                                                                        class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Overview</span></a>
-                                            </li>
                                             <li>
                                                 <a data-modal-target="addUserModal"
                                                    class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
@@ -139,6 +130,31 @@
                                     </div>
                                 </td>
                             </tr>
+                            <div id="deleteModal" modal-center
+                                 class="fixed flex flex-col hidden transition-all duration-300 ease-in-out left-2/4 z-drawer -translate-x-2/4 -translate-y-2/4 show">
+                                <div class="w-screen md:w-[25rem] bg-white shadow rounded-md dark:bg-zink-600">
+                                    <div class="max-h-[calc(theme('height.screen')_-_180px)] overflow-y-auto px-6 py-8">
+                                        <div class="float-right">
+                                            <button data-modal-close="deleteModal"
+                                                    class="transition-all duration-200 ease-linear text-slate-500 hover:text-red-500"><i
+                                                    data-lucide="x" class="size-5"></i></button>
+                                        </div>
+                                        <img src="{{ URL::asset('build/images/delete.png') }}" alt="" class="block h-12 mx-auto">
+                                        <div class="mt-5 text-center">
+                                            <h5 class="mb-1">Are you sure?</h5>
+                                            <p class="text-slate-500 dark:text-zink-200">Are you certain you want to delete this record?</p>
+                                            <div class="flex justify-center gap-2 mt-6">
+                                                <button type="reset" data-modal-close="deleteModal"
+                                                        class="bg-white text-slate-500 btn hover:text-slate-500 hover:bg-slate-100 focus:text-slate-500 focus:bg-slate-100 active:text-slate-500 active:bg-slate-100 dark:bg-zink-600 dark:hover:bg-slate-500/10 dark:focus:bg-slate-500/10 dark:active:bg-slate-500/10">Cancel</button>
+                                                <a href="{{route('admin.product.delete',$product['id'])}}">
+                                                    <button
+                                                        class="text-white bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-custom-400/20">Yes,
+                                                        Delete It!</button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             @endforeach
                             </tbody>
                         </table>
@@ -149,31 +165,7 @@
         </div><!--end col-->
     </div><!--end grid-->
 
-    <div id="deleteModal" modal-center
-         class="fixed flex flex-col hidden transition-all duration-300 ease-in-out left-2/4 z-drawer -translate-x-2/4 -translate-y-2/4 show">
-        <div class="w-screen md:w-[25rem] bg-white shadow rounded-md dark:bg-zink-600">
-            <div class="max-h-[calc(theme('height.screen')_-_180px)] overflow-y-auto px-6 py-8">
-                <div class="float-right">
-                    <button data-modal-close="deleteModal"
-                            class="transition-all duration-200 ease-linear text-slate-500 hover:text-red-500"><i
-                            data-lucide="x" class="size-5"></i></button>
-                </div>
-                <img src="{{ URL::asset('build/images/delete.png') }}" alt="" class="block h-12 mx-auto">
-                <div class="mt-5 text-center">
-                    <h5 class="mb-1">Are you sure?</h5>
-                    <p class="text-slate-500 dark:text-zink-200">Are you certain you want to delete this record?</p>
-                    <div class="flex justify-center gap-2 mt-6">
-                        <button type="reset" data-modal-close="deleteModal"
-                                class="bg-white text-slate-500 btn hover:text-slate-500 hover:bg-slate-100 focus:text-slate-500 focus:bg-slate-100 active:text-slate-500 active:bg-slate-100 dark:bg-zink-600 dark:hover:bg-slate-500/10 dark:focus:bg-slate-500/10 dark:active:bg-slate-500/10">Cancel</button>
-                        <a href="{{route('admin.product.delete',$product['id'])}}">
-                        <button
-                            class="text-white bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-custom-400/20">Yes,
-                            Delete It!</button></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 @endsection
 @push('scripts')
     <!-- list js-->

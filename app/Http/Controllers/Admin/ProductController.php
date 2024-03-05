@@ -69,13 +69,17 @@ class ProductController extends Controller
 
     public function editProduct($id)
     {
+        
+        $statusProduct = Product::STATUS;
+        $listCategories = $this->categoryRepository->index();
         $product = $this->productRepository->show($id);
-        return view('admin.product.edit', compact('product'));
+        return view('admin.product.edit', compact('product', 'listCategories','statusProduct'));
     }
 
     public function updateProduct(ProductRequest $request, $id)
     {
-        $input= $request->all();
+        $input = $request->except(['_token']);
+    
         if (isset($input['image'])) {
             $img = $this->utility->saveImageProduct($input);
             if ($img) {
