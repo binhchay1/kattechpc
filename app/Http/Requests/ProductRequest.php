@@ -23,7 +23,6 @@ class ProductRequest extends FormRequest
     {
         return [
             'category'=> 'required',
-            'brand'=> 'required',
             'name' =>'required|max:255',
             'description' =>'required',
             'status' =>'required',
@@ -38,7 +37,6 @@ class ProductRequest extends FormRequest
             'category.required' => __('validation.required'),
             'name.required' => __('validation.required'),
             'name.max' => __('validation.max'),
-            'brand.required' => __('validation.required'),
             'description.required' => __('validation.required'),
             'status.required' => __('validation.required'),
             'code.required' => __('validation.required'),

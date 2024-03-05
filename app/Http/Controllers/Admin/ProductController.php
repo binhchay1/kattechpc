@@ -3,23 +3,28 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\Utility;
+use App\Enums\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Repositories\ProductRepository;
+use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use function App\Http\Controllers\alert;
 
 class ProductController extends Controller
 {
     private $productRepository ;
+    private $categoryRepository ;
     private $utility;
 
     public function __construct(
         ProductRepository $productRepository,
+        CategoryRepository $categoryRepository,
         Utility $utility
 
     ) {
         $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
         $this->utility = $utility;
     }
 
@@ -36,7 +41,9 @@ class ProductController extends Controller
 
     public function createProduct()
     {
-        return view('admin.product.create');
+        $statusProduct = Product::STATUS;
+        $listCategories = $this->categoryRepository->index();
+        return view('admin.product.create', compact('listCategories','statusProduct'));
     }
 
     public function storeProduct(ProductRequest $request)
@@ -62,13 +69,17 @@ class ProductController extends Controller
 
     public function editProduct($id)
     {
+        
+        $statusProduct = Product::STATUS;
+        $listCategories = $this->categoryRepository->index();
         $product = $this->productRepository->show($id);
-        return view('admin.product.edit', compact('product'));
+        return view('admin.product.edit', compact('product', 'listCategories','statusProduct'));
     }
 
     public function updateProduct(ProductRequest $request, $id)
     {
-        $input= $request->all();
+        $input = $request->except(['_token']);
+    
         if (isset($input['image'])) {
             $img = $this->utility->saveImageProduct($input);
             if ($img) {
@@ -83,11 +94,11 @@ class ProductController extends Controller
     }
 
 
-    public function deleteProduct()
+    public function deleteProduct($id)
     {
-
-        alert()->success('Thành công!', 'Xóa sản phẩm thành công!');
-        return redirect()->route('admin.products.index');
+        $this->productRepository->destroy($id);
+    
+        return back()->with('success', __('Delete Product successfully!'));
     }
 
     public function productSearch(Request $request)
