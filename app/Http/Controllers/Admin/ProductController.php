@@ -63,7 +63,7 @@ class ProductController extends Controller
 
         $product = $this->productRepository->store($input);
 
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.product.index')->with('success', 'Product successfully created.');
     }
 
 
@@ -90,7 +90,7 @@ class ProductController extends Controller
 
         $product = $this->productRepository->update($input, $id);
 
-        return redirect()->route('admin.product.index');
+        return redirect()->route('admin.product.index')->with('success', 'Product successfully updated.');
     }
 
 
@@ -98,7 +98,7 @@ class ProductController extends Controller
     {
         $this->productRepository->destroy($id);
     
-        return back()->with('success', __('Delete Product successfully!'));
+        return back()->with('success', 'Product successfully deleted.');
     }
 
     public function productSearch(Request $request)

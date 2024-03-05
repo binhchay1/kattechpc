@@ -30,20 +30,6 @@
                                 <i data-lucide="search"
                                    class="inline-block size-4 absolute ltr:left-2.5 rtl:right-2.5 top-2.5 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-600"></i>
                             </div><!--end col-->
-
-                            <div class="xl:col-span-3 xl:col-start-10">
-                                <div class="flex gap-2 xl:justify-end">
-                                    <div>
-                                        <button type="button"
-                                                class="bg-white border-dashed text-custom-500 btn border-custom-500 hover:text-custom-500 hover:bg-custom-50 hover:border-custom-600 focus:text-custom-600 focus:bg-custom-50 focus:border-custom-600 active:text-custom-600 active:bg-custom-50 active:border-custom-600 dark:bg-zink-700 dark:ring-custom-400/20 dark:hover:bg-custom-800/20 dark:focus:bg-custom-800/20 dark:active:bg-custom-800/20"><i
-                                                data-lucide="download" class="inline-block size-4"></i> <span
-                                                class="align-middle">Import</span></button>
-                                    </div>
-                                    <button
-                                        class="flex items-center justify-center size-[37.5px] p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"><i
-                                            data-lucide="sliders-horizontal" class="size-4"></i></button>
-                                </div>
-                            </div><!--end col-->
                         </div><!--end grid-->
                     </form>
                 </div>
@@ -92,7 +78,7 @@
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$user->address}}
                                     </td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">{{$user->phone}}</td>
-                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">{{$user->birthday}}</td>
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">{{$user->age}}</td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">{{$user->sex}}</td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
                                         <div class="relative dropdown">
@@ -136,9 +122,10 @@
                                                 <div class="flex justify-center gap-2 mt-6">
                                                     <button type="reset" data-modal-close="deleteModal"
                                                             class="bg-white text-slate-500 btn hover:text-slate-500 hover:bg-slate-100 focus:text-slate-500 focus:bg-slate-100 active:text-slate-500 active:bg-slate-100 dark:bg-zink-600 dark:hover:bg-slate-500/10 dark:focus:bg-slate-500/10 dark:active:bg-slate-500/10">Cancel</button>
-                                                    <button type="submit"
+                                                    <a href="{{route('admin.user.delete',$user['id'])}}">
+                                                        <button
                                                             class="text-white bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-custom-400/20">Yes,
-                                                        Delete It!</button>
+                                                            Delete It!</button></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -176,4 +163,10 @@
 
     <!-- App js -->
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
+
+    <script>
+        setTimeout(function() {
+            $('.alert-block').remove();
+        }, 5000);
+    </script>
 @endpush

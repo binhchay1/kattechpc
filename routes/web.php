@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Admin
-Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.home');
+Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
 Route::group(['prefix' => 'product'], function () {
     Route::get('/', [ProductController::class, 'index'])->name('admin.product.index');
     Route::get('/detail/{id}', [ProductController::class, 'show'])->name('admin.product.show');

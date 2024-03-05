@@ -5,7 +5,7 @@
 @section('content')
 
     <!-- page title -->
-    <x-page-title title="Add New" pagetitle="Products" />
+    <x-page-title title="Add New" pagetitle="Product" />
 
     <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5">
         <div class="xl:col-span-12">
@@ -46,7 +46,7 @@
                                             <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                                             <div class=" choose-avatar">
                                                 <div id="btnimage">
-                                                    <img id="showImage" class="show-avatar" src="{{ asset('/images/product.png') }}" alt="avatar" style="width: 450px; height: 450px">
+                                                    <img id="showImage" class="show-avatar" src="{{ asset('/images/product.png') }}" alt="avatar" >
                                                 </div>
                                                 <div id="button">
                                                     <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image') }}</i>
@@ -126,6 +126,8 @@
     <!--product create init js-->
     <script src="{{ URL::asset('build/js/pages/apps-ecommerce-product-create.init.js') }}"></script>
 
+    <!-- App css -->
+    <link rel="stylesheet" href="{{ asset('css/admin/product.css') }}">
     <!-- App js -->
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
     <script src="{{ URL::asset('js/eventImage.js') }}"></script>

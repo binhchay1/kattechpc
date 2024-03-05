@@ -32,6 +32,11 @@ class UserRepository extends BaseRepository
     {
         return $this->model->where('id', $id)->update($input);
     }
+    
+    public function destroy($id)
+    {
+        return $this->model->where('id', $id)->delete();
+    }
 
 }
 
