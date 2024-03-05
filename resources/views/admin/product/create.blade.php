@@ -11,14 +11,13 @@
         <div class="xl:col-span-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="mb-4 text-15">Create Product</h6>
+                    <h6 class="mb-4 text-15">{{__('Add Product')}}</h6>
 
                     <form method="POST" action="{{route('admin.product.store')}}"  enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
                             <div class="xl:col-span-6">
-                                <label for="productNameInput" class="inline-block mb-2 text-base font-medium">Product
-                                    Name</label>
+                                <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Product Name')}}</label>
                                 <input type="text" id="productNameInput" name="name"
                                        class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                        placeholder="Enter Product Name" >
@@ -28,8 +27,7 @@
                             </div><!--end col-->
 
                             <div class="xl:col-span-6">
-                                <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">Product
-                                    Code</label>
+                                <label for="productCodeInput" class="inline-block mb-2 text-base font-medium"> {{__('Product Code')}}</label>
                                 <input type="text" id="productCodeInput" name="code"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                        placeholder="Enter Product Code">
@@ -40,7 +38,7 @@
 
                             <div class="xl:col-span-6">
                                 <div class="form-group">
-                                    <label for="categorySelect" class="inline-block mb-2 text-base font-medium">Image</label>
+                                    <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Image')}}</label>
                                     <div class="">
                                         <div class="" style="display: inline-grid;">
                                             <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
@@ -61,7 +59,7 @@
                             </div>
 
                             <div class="xl:col-span-6">
-                                <label for="categorySelect" class="inline-block mb-2 text-base font-medium">Category</label>
+                                <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Category')}}</label>
                                 <select
                                     class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                     data-choices data-choices-search-false  id="categorySelect" name="category" >
@@ -74,7 +72,7 @@
                             <div class="lg:col-span-2 xl:col-span-12">
                                 <div>
                                     <label for="productDescription"
-                                           class="inline-block mb-2 text-base font-medium">Description</label>
+                                           class="inline-block mb-2 text-base font-medium">{{__('Description')}}</label>
                                     <textarea
                                         class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                         id="productDescription" name="description" placeholder="Enter Product Description" rows="5"></textarea>
@@ -85,7 +83,7 @@
                             </div>
 
                             <div class="xl:col-span-4">
-                                <label for="productPrice" class="inline-block mb-2 text-base font-medium">Price</label>
+                                <label for="productPrice" class="inline-block mb-2 text-base font-medium">{{__('Price')}}</label>
                                 <input type="number" id="productPrice" name="price"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                        placeholder="$0.00" >
@@ -95,7 +93,7 @@
                             </div><!--end col-->
 
                             <div class="xl:col-span-4">
-                                <label for="productStatus" class="inline-block mb-2 text-base font-medium">Status</label>
+                                <label for="productStatus" class="inline-block mb-2 text-base font-medium">{{__('Status')}}</label>
                                 <select
                                     class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                     data-choices data-choices-search-false  id="productStatus" name="status">
@@ -108,10 +106,10 @@
                         </div><!--end grid-->
                         <div class="flex justify-end gap-2 mt-4">
                             <button type="reset"
-                                    class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">Reset</button>
+                                    class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">{{__('Reset')}}</button>
                             <button type="submit"
-                                    class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Create
-                                Product</button>
+                                    class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">
+                                {{__('Add Product')}}</button>
 
                         </div>
                     </form>
