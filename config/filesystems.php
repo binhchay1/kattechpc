@@ -56,6 +56,23 @@ return [
             'throw' => false,
         ],
 
+        'public-image-product' => [
+            'driver' => 'local',
+            'root' => public_path() . '/images/upload/product/',
+            'url' => env('APP_URL') . '/images/upload/product/',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'public-image-user' => [
+            'driver' => 'local',
+            'root' => public_path() . '/images/upload/user/',
+            'url' => env('APP_URL') . '/images/upload/user/',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+
     ],
 
     /*
