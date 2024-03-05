@@ -11,26 +11,24 @@
         <div class="xl:col-span-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="mb-4 text-15">Create User</h6>
+                    <h6 class="mb-4 text-15">{{__('Update User')}}</h6>
 
                     <form method="POST" action="{{route('admin.user.update', $user['id'])}}"  enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
                             <div class="xl:col-span-6">
-                                <label for="productNameInput" class="inline-block mb-2 text-base font-medium">User
-                                    Name</label>
+                                <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('User
+                                    Name')}}</label>
                                 <input type="text" id="productNameInput" name="name" value="{{$user->name}}"
                                        class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                        placeholder="Enter User Name" >
                                 @if ($errors->has('name'))
                                     <span class="text-danger">{{ $errors->first('name') }}</span>
                                 @endif
-                                <p class="mt-1 text-sm text-slate-400 dark:text-zink-200">Do not exceed 20 characters when
-                                    entering the product name.</p>
                             </div><!--end col-->
 
                             <div class="xl:col-span-6">
-                                <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">User Email
+                                <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('User Email')}}
                                 </label>
                                 <input type="text" id="productCodeInput" name="email" value="{{$user->email}}"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
@@ -42,7 +40,7 @@
 
                             <div class="xl:col-span-6">
                                 <div class="form-group">
-                                    <label for="categorySelect" class="inline-block mb-2 text-base font-medium">Image</label>
+                                    <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Image')}}</label>
                                     <div class="">
                                         <div class="" style="display: inline-grid;">
                                             <input value="" type="file" class="border-0 bg-light pl-0" name="profile_photo_path" id="image" hidden>
@@ -63,7 +61,7 @@
                             </div>
 
                             <div class="xl:col-span-6">
-                                <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">Address
+                                <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Address')}}
                                 </label>
                                 <input type="text" id="productCodeInput" name="address" value="{{$user->address}}"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
@@ -74,7 +72,7 @@
                             </div><!--end col-->
 
                             <div class="xl:col-span-4">
-                                <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">Phone Number
+                                <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Phone Number')}}
                                 </label>
                                 <input type="text" id="productCodeInput" name="phone" value="{{$user->address}}"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
@@ -85,7 +83,7 @@
                             </div><!--end col-->
 
                             <div class="xl:col-span-4">
-                                <label for="productPrice" class="inline-block mb-2 text-base font-medium">Age</label>
+                                <label for="productPrice" class="inline-block mb-2 text-base font-medium">{{__('Age')}}</label>
                                 <input type="date" id="productPrice" name="age" value="{{$user->age}}"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                        placeholder="Enter User Age" >
@@ -95,7 +93,7 @@
                             </div><!--end col-->
 
                             <div class="xl:col-span-4">
-                                <label for="productStatus" class="inline-block mb-2 text-base font-medium">Sex</label>
+                                <label for="productStatus" class="inline-block mb-2 text-base font-medium">{{__('Sex')}}</label>
                                 <select
                                     class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                     data-choices data-choices-search-false  id="productStatus" name="sex">
@@ -108,10 +106,9 @@
                         <input type="hidden" id="custId" name="password" value="3487">
                         <div class="flex justify-end gap-2 mt-4">
                             <button type="reset"
-                                    class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">Reset</button>
+                                    class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">{{__('Reset')}}</button>
                             <button type="submit"
-                                    class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Update
-                                User</button>
+                                    class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">{{__('Update User')}}</button>
                         </div>
                     </form>
                 </div>
