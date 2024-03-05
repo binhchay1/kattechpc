@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->string('code')->change();
             $table->string('status')->change();
+            $table->dropColumn('brand');
         });
     }
     
@@ -22,6 +23,7 @@ return new class extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->integer('code')->change();
             $table->integer('status')->change();
+            $table->integer('brand');
         });
     }
 };
