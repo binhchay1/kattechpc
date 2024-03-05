@@ -34,7 +34,7 @@
                                     Code</label>
                                 <input type="text" id="productCodeInput" name="code"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                       placeholder="Enter Product Code" value="TWT145015"  >
+                                       placeholder="Enter Product Code">
                                 @if ($errors->has('code'))
                                     <span class="text-danger">{{ $errors->first('code') }}</span>
                                 @endif
@@ -47,7 +47,7 @@
                                             <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                                             <div class=" choose-avatar">
                                                 <div id="btnimage">
-                                                    <img id="showImage" class="show-avatar" src="{{ asset('/images/champion.png') }}" alt="avatar">
+                                                    <img id="showImage" class="show-avatar" src="{{ asset('/images/product.png') }}" alt="avatar" style="width: 450px; height: 450px">
                                                 </div>
                                                 <div id="button">
                                                     <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image') }}</i>
