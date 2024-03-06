@@ -30,6 +30,9 @@
         @include('layouts.page-wrapper')
 
             <div class="container-fluid group-data-[content=boxed]:max-w-boxed mx-auto">
+                <div id="message">
+                    @include('layouts.flash-message')
+                </div>
                 <!-- content -->
                 @yield('content')
             </div>

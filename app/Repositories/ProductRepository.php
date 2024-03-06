@@ -14,7 +14,7 @@ class ProductRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->orderBy('created_at', 'DESC')->paginate(3);
+        return $this->model->orderBy('created_at', 'DESC')->paginate(10);
     }
 
     public function store($input)

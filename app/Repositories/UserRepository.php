@@ -15,7 +15,7 @@ class UserRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->orderBy('created_at', 'DESC')->paginate(1);
+        return $this->model->orderBy('created_at', 'DESC')->paginate(10);
     }
 
     public function store($input)
@@ -31,6 +31,11 @@ class UserRepository extends BaseRepository
     public function update($input, $id)
     {
         return $this->model->where('id', $id)->update($input);
+    }
+    
+    public function destroy($id)
+    {
+        return $this->model->where('id', $id)->delete();
     }
 
 }

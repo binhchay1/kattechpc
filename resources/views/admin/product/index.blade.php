@@ -11,12 +11,11 @@
             <div class="card" id="usersTable">
                 <div class="card-body">
                     <div class="flex items-center">
-                        <h6 class="text-15 grow">Products List</h6>
+                        <h6 class="text-15 grow">{{__('Product List')}}</h6>
                         <div class="lg:col-span-2 ltr:lg:text-right rtl:lg:text-left xl:col-span-2 xl:col-start-11">
                             <a href="{{route('admin.product.create')}}" type="button"
                                class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20"><i
-                                    data-lucide="plus" class="inline-block size-4"></i> <span class="align-middle">Add
-                            Product</span></a>
+                                    data-lucide="plus" class="inline-block size-4"></i> <span class="align-middle">{{__('Add Product')}}</span></a>
                         </div>
                     </div>
                 </div>
@@ -30,30 +29,6 @@
                                 <i data-lucide="search"
                                    class="inline-block size-4 absolute ltr:left-2.5 rtl:right-2.5 top-2.5 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-600"></i>
                             </div><!--end col-->
-                            <div class="xl:col-span-2">
-                                <select
-                                    class="form-select border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                    data-choices id="choices-single-default">
-                                    <option value="">Select Status</option>
-                                    <option value="Verified">Verified</option>
-                                    <option value="Waiting">Waiting</option>
-                                    <option value="Rejected">Rejected</option>
-                                    <option value="Hidden">Hidden</option>
-                                </select>
-                            </div><!--end col-->
-                            <div class="xl:col-span-3 xl:col-start-10">
-                                <div class="flex gap-2 xl:justify-end">
-                                    <div>
-                                        <button type="button"
-                                                class="bg-white border-dashed text-custom-500 btn border-custom-500 hover:text-custom-500 hover:bg-custom-50 hover:border-custom-600 focus:text-custom-600 focus:bg-custom-50 focus:border-custom-600 active:text-custom-600 active:bg-custom-50 active:border-custom-600 dark:bg-zink-700 dark:ring-custom-400/20 dark:hover:bg-custom-800/20 dark:focus:bg-custom-800/20 dark:active:bg-custom-800/20"><i
-                                                data-lucide="download" class="inline-block size-4"></i> <span
-                                                class="align-middle">Import</span></button>
-                                    </div>
-                                    <button
-                                        class="flex items-center justify-center size-[37.5px] p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20"><i
-                                            data-lucide="sliders-horizontal" class="size-4"></i></button>
-                                </div>
-                            </div><!--end col-->
                         </div><!--end grid-->
                     </form>
                 </div>
@@ -65,18 +40,18 @@
                                 class="relative rounded-md bg-slate-100 dark:bg-zink-600 after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
 
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">
-                                    Product Code</th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="name">Product Name
+                                    {{__('Product Code')}}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="name">{{__('Product Name')}}
                                 </th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">
-                                    Category</th>
+                                    {{__('Category')}}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort"
-                                    data-sort="phone-number">Description</th>
+                                    data-sort="phone-number">{{__('Description')}}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort"
-                                    data-sort="joining-date">Price</th>
+                                    data-sort="joining-date">{{__('Price')}}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="status">
                                     Status</th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">Action</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">{{__('Action')}}</th>
                             </tr>
                             </thead>
                             <tbody class="list">
@@ -117,14 +92,14 @@
                                                    class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
                                                    href="{{route('admin.product.edit', $product['id'])}}"><i data-lucide="file-edit"
                                                                 class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Edit</span></a>
+                                                        class="align-middle">{{__('Edit')}}</span></a>
                                             </li>
                                             <li>
                                                 <a data-modal-target="deleteModal"
                                                    class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
                                                    href="#!"><i data-lucide="trash-2"
                                                                 class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                        class="align-middle">Delete</span></a>
+                                                        class="align-middle">{{__('Delete')}}</span></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -141,15 +116,15 @@
                                         </div>
                                         <img src="{{ URL::asset('build/images/delete.png') }}" alt="" class="block h-12 mx-auto">
                                         <div class="mt-5 text-center">
-                                            <h5 class="mb-1">Are you sure?</h5>
-                                            <p class="text-slate-500 dark:text-zink-200">Are you certain you want to delete this record?</p>
+                                            <h5 class="mb-1">{{__('Are you sure?')}}</h5>
+                                            <p class="text-slate-500 dark:text-zink-200">{{__('Are you certain you want to delete this record?')}}</p>
                                             <div class="flex justify-center gap-2 mt-6">
                                                 <button type="reset" data-modal-close="deleteModal"
                                                         class="bg-white text-slate-500 btn hover:text-slate-500 hover:bg-slate-100 focus:text-slate-500 focus:bg-slate-100 active:text-slate-500 active:bg-slate-100 dark:bg-zink-600 dark:hover:bg-slate-500/10 dark:focus:bg-slate-500/10 dark:active:bg-slate-500/10">Cancel</button>
                                                 <a href="{{route('admin.product.delete',$product['id'])}}">
                                                     <button
-                                                        class="text-white bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-custom-400/20">Yes,
-                                                        Delete It!</button></a>
+                                                        class="text-white bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-custom-400/20">{{__('Yes,
+                                                        Delete It!')}}</button></a>
                                             </div>
                                         </div>
                                     </div>
@@ -177,4 +152,10 @@
 
     <!-- App js -->
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
+
+    <script>
+        setTimeout(function() {
+            $('.alert-block').remove();
+        }, 5000);
+    </script>
 @endpush
