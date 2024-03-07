@@ -66,7 +66,7 @@ class UserController extends Controller
     {
         $user = $this->userRepository->show($id);
         $genderUser = User::SEX;
-    
+
         return view('admin.user.edit', compact('user','genderUser'));
     }
 
@@ -89,9 +89,9 @@ class UserController extends Controller
 
     public function deleteUser($id)
     {
-    
+
         $this->userRepository->destroy($id);
-    
+
         return back()->with('success', 'User successfully deleted.');
     }
 
