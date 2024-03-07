@@ -102,7 +102,7 @@
                             </div><!--end col-->
 
                         </div><!--end grid-->
-                        <input type="hidden" name="password" class="form-control" id="name" placeholder="Enter name" value="password">
+                        <input type="hidden" name="password" class="form-control" id="name" placeholder="Enter name" value="1234">
                         @if ($errors->has('password'))
                             <span class="text-danger">{{ $errors->first('password') }}</span>
                         @endif

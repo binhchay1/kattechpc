@@ -10,23 +10,23 @@ use Illuminate\Http\Request;
 class WarehouseController extends Controller
 {
     private $warehouseRepository;
-    
+
     public function __construct(
         WarehouseRepository $warehouseRepository
     )
     {
         $this->warehouseRepository = $warehouseRepository;
     }
-    
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $listWareHouses = $this->warehouseRepository->index();
-        
+
         return view('admin.warehouse.index',compact('listWareHouses'));
-    
+
     }
 
     /**
@@ -45,7 +45,7 @@ class WarehouseController extends Controller
         $input = $request->except(['_token']);
         $input = $request->all();
         $this->warehouseRepository->create($input);
-        
+
         return redirect()->route('admin.warehouse.index')->with('success', 'Warehouse successfully updated.');
     }
 
@@ -69,11 +69,11 @@ class WarehouseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function updateWarehouse(Request $request,  $id)
+    public function updateWarehouse(WarehouseReuqest $request,  $id)
     {
         $input = $request->except(['_token']);
         $input = $this->warehouseRepository->update($input, $id);
-        
+
         return redirect()->route('admin.warehouse.index')->with('success', 'Warehouse successfully updated.');
     }
 
