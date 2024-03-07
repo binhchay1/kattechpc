@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\WarehouseController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TailwickController;
@@ -20,6 +21,19 @@ use Illuminate\Support\Facades\Route;
 
 //Admin
 Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
+
+//warehouse
+Route::group(['prefix' => 'warehouse'], function () {
+    Route::get('/', [WarehouseController::class, 'index'])->name('admin.warehouse.index');
+    Route::get('/detail/{id}', [WarehouseController::class, 'showWarehouse'])->name('admin.warehouse.show');
+    Route::get('/add', [WarehouseController::class, 'createWarehouse'])->name('admin.warehouse.create');
+    Route::post('/store', [WarehouseController::class, 'storeWarehouse'])->name('admin.warehouse.store');
+    Route::get('/update/{id}', [WarehouseController::class, 'editWarehouse'])->name('admin.warehouse.edit');
+    Route::post('/update/{id}', [WarehouseController::class, 'updateWarehouse'])->name('admin.warehouse.update');
+    Route::get('/delete/{id}', [WarehouseController::class, 'deleteWarehouse'])->name('admin.warehouse.delete');
+});
+
+//product
 Route::group(['prefix' => 'product'], function () {
     Route::get('/', [ProductController::class, 'index'])->name('admin.product.index');
     Route::get('/detail/{id}', [ProductController::class, 'show'])->name('admin.product.show');
@@ -30,6 +44,7 @@ Route::group(['prefix' => 'product'], function () {
     Route::get('/delete/{id}', [ProductController::class, 'deleteProduct'])->name('admin.product.delete');
 });
 
+//user
 Route::group(['prefix' => 'user'], function () {
     Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
     Route::get('/add', [UserController::class, 'createUser'])->name('admin.user.create');
