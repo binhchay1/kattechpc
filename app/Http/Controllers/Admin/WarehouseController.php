@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\WarehouseReuqest;
 use App\Repositories\WarehouseRepository;
 use Illuminate\Http\Request;
 
@@ -31,48 +32,57 @@ class WarehouseController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function createWarehouse()
     {
-        //
+        return view('admin.warehouse.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function storeWarehouse(WarehouseReuqest $request)
     {
-        //
+        $input = $request->except(['_token']);
+        $input = $request->all();
+        $this->warehouseRepository->create($input);
+        
+        return redirect()->route('admin.warehouse.index')->with('success', 'Warehouse successfully updated.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function showWarehouse( $id)
     {
-        //
+        $this->warehouseRepository->show($id);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function editWarehouse( $id)
     {
-        //
+        $warehouse = $this->warehouseRepository->show($id);
+        return view('admin.warehouse.edit', compact('warehouse'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function updateWarehouse(Request $request,  $id)
     {
-        //
+        $input = $request->except(['_token']);
+        $input = $this->warehouseRepository->update($input, $id);
+        
+        return redirect()->route('admin.warehouse.index')->with('success', 'Warehouse successfully updated.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function deleteWarehouse( $id)
     {
-        //
+        $this->warehouseRepository->destroy($id);
+        return back()->with('success', 'Warehouse successfully updated.');
     }
 }

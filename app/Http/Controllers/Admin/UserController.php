@@ -9,6 +9,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use function App\Http\Controllers\alert;
 
 class UserController extends Controller
@@ -46,7 +47,7 @@ class UserController extends Controller
     {
         $input = $request->except(['_token']);
         $input= $request->all();
-        $input['password'] = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; // password
+        $input['password'] = Hash::make( $input['password']);
         if (isset($input['profile_photo_path'])) {
 
             $img = $this->utility->saveImageuser($input);

@@ -102,7 +102,10 @@
                             </div><!--end col-->
 
                         </div><!--end grid-->
-                        <input type="hidden" id="custId" name="password" value="3487">
+                        <input type="hidden" name="password" class="form-control" id="name" placeholder="Enter name" value="password">
+                        @if ($errors->has('password'))
+                            <span class="text-danger">{{ $errors->first('password') }}</span>
+                        @endif
                         <div class="flex justify-end gap-2 mt-4">
                             <button type="reset"
                                     class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">{{__('Reset')}}</button>

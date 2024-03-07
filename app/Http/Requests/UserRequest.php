@@ -47,7 +47,7 @@ class UserRequest extends FormRequest
             'profile_photo_path.image' => __('validation.image'),
             'profile_photo_path.mimes' => __('validation.mimes'),
             'profile_photo_path.max' => __('validation.max'),
-            'password.required' => __('validation.max'),
+            'password.required' => __('validation.required'),
         ];
     }
 }
