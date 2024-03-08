@@ -9,6 +9,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use function App\Http\Controllers\alert;
 
 class UserController extends Controller
@@ -46,7 +47,7 @@ class UserController extends Controller
     {
         $input = $request->except(['_token']);
         $input= $request->all();
-        $input['password'] = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; // password
+        $input['password'] = Hash::make( $input['password']);
         if (isset($input['profile_photo_path'])) {
 
             $img = $this->utility->saveImageuser($input);
@@ -57,7 +58,7 @@ class UserController extends Controller
         }
 
         $user = $this->userRepository->store($input);
-        return redirect()->route('admin.user.index')->with('success', 'User successfully created.');
+        return redirect()->route('admin.user.index')->with('success', 'User successfully added.');
     }
 
 
@@ -65,7 +66,7 @@ class UserController extends Controller
     {
         $user = $this->userRepository->show($id);
         $genderUser = User::SEX;
-    
+
         return view('admin.user.edit', compact('user','genderUser'));
     }
 
@@ -88,9 +89,9 @@ class UserController extends Controller
 
     public function deleteUser($id)
     {
-    
+
         $this->userRepository->destroy($id);
-    
+
         return back()->with('success', 'User successfully deleted.');
     }
 
@@ -102,12 +103,5 @@ class UserController extends Controller
 
         return view('pages.users', compact('users', 'categories'));
     }
-
-    public function userDetail(Request $request)
-    {
-        $id = $request->id;
-        $user = $this->userRepository->with('storage')->getById($id);
-
-        return view('pages.detail', compact('user'));
-    }
+    
 }
