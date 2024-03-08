@@ -50,7 +50,7 @@
                             </tr>
                             </thead>
                             <tbody class="list">
-                            @foreach($listPost as $post)
+                            @foreach($listPosts as $post)
                                 <tr
                                     class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
 
@@ -58,9 +58,9 @@
                                     </td>
 
 
-                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$Post->slug}}
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->slug}}
                                     </td>
-                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$Post->content}}
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->content}}
                                     </td>
                                     <td>
                                         <div class="relative dropdown">

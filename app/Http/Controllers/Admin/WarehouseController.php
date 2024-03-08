@@ -46,7 +46,7 @@ class WarehouseController extends Controller
         $input = $request->all();
         $this->warehouseRepository->create($input);
 
-        return redirect()->route('admin.warehouse.index')->with('success', 'Warehouse successfully updated.');
+        return redirect()->route('admin.warehouse.index')->with('success', 'Warehouse successfully added.');
     }
 
     /**
@@ -83,6 +83,6 @@ class WarehouseController extends Controller
     public function deleteWarehouse( $id)
     {
         $this->warehouseRepository->destroy($id);
-        return back()->with('success', 'Warehouse successfully updated.');
+        return back()->with('success', 'Warehouse successfully deleted.');
     }
 }
