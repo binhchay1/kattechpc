@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Repositories\PostRepository;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -43,9 +44,10 @@ class PostController extends Controller
     {
         $input = $request->except(['_token']);
         $input = $request->all();
+        $input['slug'] =  Str::slug($input['title']);
         $this->postRepository->create($input);
 
-        return redirect()->route('admin.post.index')->with('success', 'Post successfully updated.');
+        return redirect()->route('admin.post.index')->with('success', 'Post successfully added.');
     }
 
     /**
@@ -61,8 +63,8 @@ class PostController extends Controller
      */
     public function editPost( $id)
     {
-        $Post = $this->postRepository->show($id);
-        return view('admin.post.edit', compact('Post'));
+        $post = $this->postRepository->show($id);
+        return view('admin.post.edit', compact('post'));
     }
 
     /**
@@ -71,6 +73,8 @@ class PostController extends Controller
     public function updatePost(PostRequest $request,  $id)
     {
         $input = $request->except(['_token']);
+        $input['slug'] =  Str::slug($input['title']);
+    
         $input = $this->postRepository->update($input, $id);
 
         return redirect()->route('admin.post.index')->with('success', 'Post successfully updated.');

@@ -58,7 +58,7 @@ class UserController extends Controller
         }
 
         $user = $this->userRepository->store($input);
-        return redirect()->route('admin.user.index')->with('success', 'User successfully created.');
+        return redirect()->route('admin.user.index')->with('success', 'User successfully added.');
     }
 
 
@@ -103,12 +103,5 @@ class UserController extends Controller
 
         return view('pages.users', compact('users', 'categories'));
     }
-
-    public function userDetail(Request $request)
-    {
-        $id = $request->id;
-        $user = $this->userRepository->with('storage')->getById($id);
-
-        return view('pages.detail', compact('user'));
-    }
+    
 }

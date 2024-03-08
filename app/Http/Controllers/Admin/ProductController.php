@@ -63,7 +63,7 @@ class ProductController extends Controller
 
         $product = $this->productRepository->store($input);
 
-        return redirect()->route('admin.product.index')->with('success', 'Product successfully created.');
+        return redirect()->route('admin.product.index')->with('success', 'Product successfully added.');
     }
 
 
@@ -109,12 +109,5 @@ class ProductController extends Controller
 
         return view('pages.products', compact('products', 'categories'));
     }
-
-    public function productDetail(Request $request)
-    {
-        $id = $request->id;
-        $product = $this->productRepository->with('storage')->getById($id);
-
-        return view('pages.detail', compact('product'));
-    }
+    
 }
