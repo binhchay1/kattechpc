@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\WarehouseController;
+use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TailwickController;
@@ -34,15 +34,15 @@ Route::group(['prefix' => 'post'], function () {
     Route::get('/delete/{id}', [PostController::class, 'deletePost'])->name('admin.post.delete');
 });
 
-//warehouse
-Route::group(['prefix' => 'warehouse'], function () {
-    Route::get('/', [WarehouseController::class, 'index'])->name('admin.warehouse.index');
-    Route::get('/detail/{id}', [WarehouseController::class, 'showWarehouse'])->name('admin.warehouse.show');
-    Route::get('/add', [WarehouseController::class, 'createWarehouse'])->name('admin.warehouse.create');
-    Route::post('/store', [WarehouseController::class, 'storeWarehouse'])->name('admin.warehouse.store');
-    Route::get('/update/{id}', [WarehouseController::class, 'editWarehouse'])->name('admin.warehouse.edit');
-    Route::post('/update/{id}', [WarehouseController::class, 'updateWarehouse'])->name('admin.warehouse.update');
-    Route::get('/delete/{id}', [WarehouseController::class, 'deleteWarehouse'])->name('admin.warehouse.delete');
+//storage
+Route::group(['prefix' => 'storage'], function () {
+    Route::get('/', [StorageController::class, 'index'])->name('admin.storage.index');
+    Route::get('/detail/{id}', [StorageController::class, 'showStorage'])->name('admin.storage.show');
+    Route::get('/add', [StorageController::class, 'createStorage'])->name('admin.storage.create');
+    Route::post('/store', [StorageController::class, 'storeStorage'])->name('admin.storage.store');
+    Route::get('/update/{id}', [StorageController::class, 'editStorage'])->name('admin.storage.edit');
+    Route::post('/update/{id}', [StorageController::class, 'updateStorage'])->name('admin.storage.update');
+    Route::get('/delete/{id}', [StorageController::class, 'deleteStorage'])->name('admin.storage.delete');
 });
 
 //product
