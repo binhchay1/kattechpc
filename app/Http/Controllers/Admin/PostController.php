@@ -25,7 +25,7 @@ class PostController extends Controller
     {
         $listPosts = $this->postRepository->index();
 
-        return view('admin.Post.index',compact('listPosts'));
+        return view('admin.post.index',compact('listPosts'));
 
     }
 
@@ -74,7 +74,7 @@ class PostController extends Controller
     {
         $input = $request->except(['_token']);
         $input['slug'] =  Str::slug($input['title']);
-    
+
         $input = $this->postRepository->update($input, $id);
 
         return redirect()->route('admin.post.index')->with('success', 'Post successfully updated.');
