@@ -4,5 +4,5 @@
 <!-- Icons CSS -->
 <link rel="stylesheet" href="{{ URL::asset('build/css/icons.min.css') }}">
 <!-- Tailwind CSS -->
-<link rel="stylesheet" href="{{ URL::asset('build/css/tailwind.min.css') }}">   
-<script>var app_url = '{{ env('APP_URL') }}' </script>
+<link rel="stylesheet" href="{{ URL::asset('build/css/tailwind.min.css') }}">
+<script>var app_url = '<?php echo env('APP_URL') ?>' </script>
