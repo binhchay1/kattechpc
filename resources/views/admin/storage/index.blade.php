@@ -4,18 +4,18 @@
 @endsection
 @section('content')
     <!-- page title -->
-    <x-page-title title="List View" pagetitle="Warehouses" />
+    <x-page-title title="List View" pagetitle="Storages" />
 
     <div class="grid grid-cols-1 gap-x-5 xl:grid-cols-12">
         <div class="xl:col-span-12">
             <div class="card" id="usersTable">
                 <div class="card-body">
                     <div class="flex items-center">
-                        <h6 class="text-15 grow">{{__('Warehouse List')}}</h6>
+                        <h6 class="text-15 grow">{{__('Storage List')}}</h6>
                         <div class="lg:col-span-2 ltr:lg:text-right rtl:lg:text-left xl:col-span-2 xl:col-start-11">
-                            <a href="{{route('admin.warehouse.create')}}" type="button"
+                            <a href="{{route('admin.storage.create')}}" type="button"
                                class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20"><i
-                                    data-lucide="plus" class="inline-block size-4"></i> <span class="align-middle">{{__('Add Warehouse')}}</span></a>
+                                    data-lucide="plus" class="inline-block size-4"></i> <span class="align-middle">{{__('Add Storage')}}</span></a>
                         </div>
                     </div>
                 </div>
@@ -48,15 +48,15 @@
                             </tr>
                             </thead>
                             <tbody class="list">
-                            @foreach($listWareHouses as $warehouse)
+                            @foreach($listStorages as $storage)
                                 <tr
                                     class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
 
-                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$warehouse->name}}
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$storage->name}}
                                     </td>
 
 
-                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$warehouse->address}}
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$storage->address}}
                                     </td>
                                     <td>
                                         <div class="relative dropdown">
@@ -69,7 +69,7 @@
                                                 <li>
                                                     <a data-modal-target="addUserModal"
                                                        class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                       href="{{route('admin.warehouse.edit', $warehouse['id'])}}"><i data-lucide="file-edit"
+                                                       href="{{route('admin.storage.edit', $storage['id'])}}"><i data-lucide="file-edit"
                                                                                                            class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
                                                             class="align-middle">{{__('Edit')}}</span></a>
                                                 </li>
@@ -100,7 +100,7 @@
                                                 <div class="flex justify-center gap-2 mt-6">
                                                     <button type="reset" data-modal-close="deleteModal"
                                                             class="bg-white text-slate-500 btn hover:text-slate-500 hover:bg-slate-100 focus:text-slate-500 focus:bg-slate-100 active:text-slate-500 active:bg-slate-100 dark:bg-zink-600 dark:hover:bg-slate-500/10 dark:focus:bg-slate-500/10 dark:active:bg-slate-500/10">Cancel</button>
-                                                    <a href="{{route('admin.warehouse.delete',$warehouse['id'])}}">
+                                                    <a href="{{route('admin.storage.delete',$storage['id'])}}">
                                                         <button
                                                             class="text-white bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-custom-400/20">{{__('Yes,
                                                         Delete It!')}}</button></a>
@@ -113,7 +113,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                        {!! $listWareHouses->links() !!}
+                        {!! $listStorages->links() !!}
                     </div>
                 </div>
             </div><!--end card-->
