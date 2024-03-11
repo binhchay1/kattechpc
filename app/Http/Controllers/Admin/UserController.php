@@ -7,6 +7,7 @@ use App\Enums\Utility;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserUpdateRequest;
+use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -16,14 +17,17 @@ class UserController extends Controller
 {
     private $userRepository ;
     private $utility;
+    private $roleRepository;
 
     public function __construct(
         UserRepository $userRepository,
-        Utility $utility
+        Utility $utility,
+        RoleRepository $roleRepository
 
     ) {
         $this->userRepository = $userRepository;
         $this->utility = $utility;
+        $this->roleRepository = $roleRepository;
     }
 
     public function index()
@@ -40,7 +44,8 @@ class UserController extends Controller
     public function createUser()
     {
         $genderUser = User::SEX;
-        return view('admin.user.create', compact('genderUser'));
+        $roles = $this->roleRepository->index();
+        return view('admin.user.create', compact('genderUser', 'roles'));
     }
 
     public function storeUser(UserRequest $request)
@@ -64,10 +69,11 @@ class UserController extends Controller
 
     public function editUser($id)
     {
+        $roles = $this->roleRepository->index();
         $user = $this->userRepository->show($id);
         $genderUser = User::SEX;
 
-        return view('admin.user.edit', compact('user','genderUser'));
+        return view('admin.user.edit', compact('user','genderUser', 'roles'));
     }
 
     public function updateUser(UserUpdateRequest $request, $id)
