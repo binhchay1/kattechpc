@@ -2,7 +2,7 @@
 
 
 @section('content')
-<section class="header-bottom ">
+<div class="header-bottom ">
     <div class="index-slider--wrap">
         <div class="index-slider--nav">
             <div class="sidebar-menu">
@@ -1879,9 +1879,9 @@
             <div class="index-slider--row">
                 <div class="index-slider--coll coll-left">
                     <div class="index-banner--top">
-                        <div id="index-slider" class="index-slider slick-style style-banner slick-initialized slick-slider slick-dotted"><button type="button" class="slick-prev slick-arrow" style=""><svg width="8" height="17" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
+                        <div id="index-slider" class="index-slider slick-style style-banner slick-initialized slick-slider slick-dotted"><button type="button" class="slick-prev slick-arrow"><svg width="8" height="17" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 50 50" enable-background="new 0 0 50 50" xml:space="preserve">
                                     <metadata><!--?xpacket begin="&#65279;" id="W5M0MpCehiHzreSzNTczkc9d"?-->
-                                        <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.3-c011 66.145661, 2012/02/06-14:56:27"></x:xmpmeta><!--?xpacket end="w"?-->
+
                                     </metadata>
                                     <g display="none">
                                         <rect x="1" y="1" display="inline" fill="#000000" width="48" height="48"></rect>
@@ -1986,19 +1986,10 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-
-                            <button type="button" class="slick-next slick-arrow" style=""><svg width="8" height="17" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+                            <button type="button" class="slick-next slick-arrow"><svg width="8" height="17" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
                                     <polygon points="6.379,20.908 7.546,22.075 17.621,12 7.546,1.925 6.379,3.092 15.287,12 "></polygon>
                                 </svg></button>
-                            <ul class="slick-dots" style="" role="tablist">
+                            <ul class="slick-dots" role="tablist">
                                 <li class="" role="presentation"><button type="button" role="tab" id="slick-slide-control00" aria-controls="slick-slide00" aria-label="1 of 10" tabindex="-1">1</button></li>
                                 <li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control01" aria-controls="slick-slide01" aria-label="2 of 10" tabindex="-1">2</button></li>
                                 <li role="presentation" class=""><button type="button" role="tab" id="slick-slide-control02" aria-controls="slick-slide02" aria-label="3 of 10" tabindex="-1">3</button></li>
@@ -2069,5 +2060,5 @@
             </div>
         </div>
     </div>
-</section>
+</div>
 @endsection
