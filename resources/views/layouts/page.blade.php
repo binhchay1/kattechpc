@@ -17,17 +17,18 @@
 
 <body>
     <div>
-        <div>
+        @include('includes.item-banner')
+        <div id="header-page">
             @include('includes.header-page')
         </div>
-        <div>
+        <div id="content-page">
             @yield('content')
         </div>
-        <div>
+        <div id="footer-page">
             @include('includes.footer-page')
         </div>
-
     </div>
+
     @yield('js')
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
