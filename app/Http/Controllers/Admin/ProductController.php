@@ -79,7 +79,6 @@ class ProductController extends Controller
     public function updateProduct(ProductRequest $request, $id)
     {
         $input = $request->except(['_token']);
-    
         if (isset($input['image'])) {
             $img = $this->utility->saveImageProduct($input);
             if ($img) {
