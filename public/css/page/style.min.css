@@ -1,0 +1,117 @@
+body {
+    font-family: "Open Sans", Arial, sans-serif;
+    color: #333e48;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    overflow-x: hidden;
+    overflow-y: auto;
+    min-width: 1200px;
+    word-break: break-word;
+}
+
+body a {
+    text-decoration: none;
+    color: #333e48;
+}
+
+.header {
+    background: #fff;
+}
+
+.header-top {
+    background: #f4f4f4;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+
+.header-top-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1200px;
+    max-width: 100%;
+    padding: 0 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.header-top-right {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-bottom-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1200px;
+    max-width: 100%;
+    padding: 0 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.search-area {
+    flex-grow: 1;
+}
+
+.input-search {
+    position: relative;
+    max-width: 900px;
+    border-radius: 20px;
+
+    transition: all 0.3s;
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .1), 0 2px 6px 2px rgba(60, 64, 67, .15);
+}
+
+.inline-search {
+    width: 90%;
+    height: 42px;
+    margin: 0;
+    padding: 0 20px;
+    font-size: 13px;
+    outline: 0;
+    border: 2px solid #4287f5;
+    border-radius: 95px 0 0 99px;
+}
+
+.button-search {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    border: none;
+    color: #fff;
+    font-weight: 400;
+    outline: 0;
+    background: #4287f5;
+    padding: 0 20px;
+    font-size: 22px;
+    cursor: pointer;
+    border-radius: 0 99px 99px 0;
+}
+
+.build-area i {
+    background: #fff;
+    height: 46px;
+    width: 46px;
+    line-height: 44px;
+    text-align: center;
+    font-size: 24px;
+    border: 1px solid #aaa;
+    border-radius: 30px;
+}
+
+.cart-area i {
+    background: #fff;
+    height: 46px;
+    width: 46px;
+    line-height: 44px;
+    text-align: center;
+    font-size: 24px;
+    border: 1px solid #aaa;
+    border-radius: 30px;
+}
