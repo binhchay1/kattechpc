@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RoleRequest;
 use App\Repositories\RoleRepository;
 use Illuminate\Http\Request;
 
@@ -32,13 +33,13 @@ class RoleController extends Controller
      */
     public function createRole()
     {
-        return view('admin.user.add-role');
+        return view('admin.user.role.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function storeRole(Request $request)
+    public function storeRole(RoleRequest $request)
     {
         $input = $request->except(['token']);
         $input = $request->all();
@@ -60,15 +61,19 @@ class RoleController extends Controller
      */
     public function editRole(string $id)
     {
-        //
+        $role = $this->roleRepository->show($id);
+        return view('admin.user.role.edit', compact('role'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function updateRole(Request $request, string $id)
+    public function updateRole(RoleRequest $request, string $id)
     {
-        //
+        $input = $request->except(['_token']);
+        $this->roleRepository->update($input, $id);
+    
+        return redirect()->route('admin.role.index')->with('success', 'Role successfully updated.');
     }
 
     /**
@@ -76,6 +81,9 @@ class RoleController extends Controller
      */
     public function deleteRole(string $id)
     {
-        //
+    
+        $this->roleRepository->destroy($id);
+    
+        return back()->with('success', 'Role successfully deleted.');
     }
 }
