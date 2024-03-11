@@ -4,18 +4,18 @@
 @endsection
 @section('content')
     <!-- page title -->
-    <x-page-title title="List View" pagetitle="Posts" />
+    <x-page-title title="List View" pagetitle="Roles" />
 
     <div class="grid grid-cols-1 gap-x-5 xl:grid-cols-12">
         <div class="xl:col-span-12">
             <div class="card" id="usersTable">
                 <div class="card-body">
                     <div class="flex items-center">
-                        <h6 class="text-15 grow">{{__('Post List')}}</h6>
+                        <h6 class="text-15 grow">{{__('Roles List')}}</h6>
                         <div class="lg:col-span-2 ltr:lg:text-right rtl:lg:text-left xl:col-span-2 xl:col-start-11">
-                            <a href="{{route('admin.post.create')}}" type="button"
+                            <a href="{{route('admin.role.create')}}" type="button"
                                class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20"><i
-                                    data-lucide="plus" class="inline-block size-4"></i> <span class="align-middle">{{__('Add Post')}}</span></a>
+                                    data-lucide="plus" class="inline-block size-4"></i> <span class="align-middle">{{__('Add Role')}}</span></a>
                         </div>
                     </div>
                 </div>
@@ -40,27 +40,16 @@
                                 class="relative rounded-md bg-slate-100 dark:bg-zink-600 after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
 
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">
-                                    {{__('Title')}}</th>
-
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{__('Slug')}}
-                                </th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{__('Content')}}
-                                </th>
+                                    {{__('Name')}}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">{{__('Action')}}</th>
                             </tr>
                             </thead>
                             <tbody class="list">
-                            @foreach($listPosts as $post)
+                            @foreach($listRoles as $role)
                                 <tr
                                     class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
 
-                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->title}}
-                                    </td>
-
-
-                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->slug}}
-                                    </td>
-                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->content}}
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$role->name}}
                                     </td>
                                     <td>
                                         <div class="relative dropdown">
@@ -73,8 +62,8 @@
                                                 <li>
                                                     <a data-modal-target="addUserModal"
                                                        class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
-                                                       href="{{route('admin.post.edit', $post['id'])}}"><i data-lucide="file-edit"
-                                                                                                                     class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
+                                                       href="{{route('admin.role.edit', $role['id'])}}"><i data-lucide="file-edit"
+                                                                                                           class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
                                                             class="align-middle">{{__('Edit')}}</span></a>
                                                 </li>
                                                 <li>
@@ -104,7 +93,7 @@
                                                 <div class="flex justify-center gap-2 mt-6">
                                                     <button type="reset" data-modal-close="deleteModal"
                                                             class="bg-white text-slate-500 btn hover:text-slate-500 hover:bg-slate-100 focus:text-slate-500 focus:bg-slate-100 active:text-slate-500 active:bg-slate-100 dark:bg-zink-600 dark:hover:bg-slate-500/10 dark:focus:bg-slate-500/10 dark:active:bg-slate-500/10">Cancel</button>
-                                                    <a href="{{route('admin.post.delete',$post['id'])}}">
+                                                    <a href="{{route('admin.role.delete',$role['id'])}}">
                                                         <button
                                                             class="text-white bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-custom-400/20">{{__('Yes,
                                                         Delete It!')}}</button></a>
@@ -117,7 +106,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                        {!! $listPosts->links() !!}
+                        {!! $listRoles->links() !!}
                     </div>
                 </div>
             </div><!--end card-->
