@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ExportStorage;
+use App\Exports\ImportStorage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorageRequest;
 use App\Repositories\StorageRepository;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StorageController extends Controller
 {
@@ -63,6 +66,9 @@ class StorageController extends Controller
     public function editStorage( $id)
     {
         $storage = $this->storageRepository->show($id);
+        if (empty($storage)) {
+            abort(404);
+        }
         return view('admin.storage.edit', compact('storage'));
     }
 
@@ -84,5 +90,14 @@ class StorageController extends Controller
     {
         $this->storageRepository->destroy($id);
         return back()->with('success', 'storage successfully updated.');
+    }
+    
+    public function import(Request $request){
+        Excel::import(new ImportStorage(), $request->file('file')->store('files'));
+        return redirect()->back();
+    }
+    
+    public function export(Request $request){
+        return Excel::download(new ExportStorage(), 'storage.xlsx');
     }
 }

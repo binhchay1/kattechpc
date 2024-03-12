@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
@@ -33,6 +34,8 @@ Route::group(['prefix' => 'order'], function () {
     Route::get('/update/{id}', [OrderController::class, 'editOrder'])->name('admin.order.edit');
     Route::post('/update/{id}', [OrderController::class, 'updateOrder'])->name('admin.order.update');
     Route::get('/delete/{id}', [OrderController::class, 'deleteOrder'])->name('admin.order.delete');
+    Route::get('/export',[OrderController::class,'export'])->name('admin.order.export');
+    
 });
 
 //post
@@ -55,6 +58,8 @@ Route::group(['prefix' => 'storage'], function () {
     Route::get('/update/{id}', [StorageController::class, 'editStorage'])->name('admin.storage.edit');
     Route::post('/update/{id}', [StorageController::class, 'updateStorage'])->name('admin.storage.update');
     Route::get('/delete/{id}', [StorageController::class, 'deleteStorage'])->name('admin.storage.delete');
+    Route::post('/import',[StorageController::class,'import'])->name('admin.storage.import');
+    Route::get('/export',[StorageController::class,'export'])->name('admin.storage.export');
 });
 
 //product
@@ -76,6 +81,17 @@ Route::group(['prefix' => 'user'], function () {
     Route::get('/update/{user}', [UserController::class, 'editUser'])->name('admin.user.edit');
     Route::post('/update/{user}', [UserController::class, 'updateUser'])->name('admin.user.update');
     Route::get('/delete/{id}', [UserController::class, 'deleteUser'])->name('admin.user.delete');
+});
+
+//role
+Route::group(['prefix' => 'role'], function () {
+    Route::get('/', [RoleController::class, 'index'])->name('admin.role.index');
+    Route::get('/add', [RoleController::class, 'createRole'])->name('admin.role.create');
+    Route::post('/store', [RoleController::class, 'storeRole'])->name('admin.role.store');
+    Route::get('/update/{role}', [RoleController::class, 'editRole'])->name('admin.role.edit');
+    Route::post('/update/{role}', [RoleController::class, 'updateRole'])->name('admin.role.update');
+    Route::get('/delete/{id}', [RoleController::class, 'deleteRole'])->name('admin.role.delete');
+
 });
 
 Route::get('index/{locale}', [TailwickController::class, 'lang']);

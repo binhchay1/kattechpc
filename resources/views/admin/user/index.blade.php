@@ -1,21 +1,20 @@
 @extends('layouts.master-admin')
 @section('title')
-    {{ __('List View') }}
+    {{ __('Danh sách người dùng') }}
 @endsection
 @section('content')
     <!-- page title -->
-    <x-page-title title="List View" pagetitle="Users" />
 
-    <div class="grid grid-cols-1 gap-x-5 xl:grid-cols-12">
+    <div class="grid grid-cols-1 gap-x-5 xl:grid-cols-12 mt-4">
         <div class="xl:col-span-12">
             <div class="card" id="usersTable">
                 <div class="card-body">
                     <div class="flex items-center">
-                        <h6 class="text-15 grow">{{__('User List')}}</h6>
+                        <h6 class="text-15 grow">{{__('Danh sách người dùng')}}</h6>
                         <div class="lg:col-span-2 ltr:lg:text-right rtl:lg:text-left xl:col-span-2 xl:col-start-11">
                             <a href="{{route('admin.user.create')}}" type="button"
                                class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20"><i
-                                    data-lucide="plus" class="inline-block size-4"></i> <span class="align-middle">{{__('Add User')}}</span></a>
+                                    data-lucide="plus" class="inline-block size-4"></i> <span class="align-middle">{{__('Thêm người dùng')}}</span></a>
                         </div>
                     </div>
                 </div>
@@ -40,18 +39,20 @@
                                 class="relative rounded-md bg-slate-100 dark:bg-zink-600 after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
 
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">
-                                    {{__('Name')}}</th>
+                                    {{__('Tên')}}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="name">{{__('Email')}}
                                 </th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{__('Address')}}
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{__('Địa chỉ')}}
                                     </th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="email">{{__(' Phone Number')}}
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="email">{{__(' Số điện thoại')}}
                                    </th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort"
-                                    data-sort="phone-number"></th>{{__('Birthday')}}
+                                    data-sort="phone-number"></th>{{__('Ngày sinh')}}
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort"
-                                    data-sort="phone-number">{{__('Sex')}}</th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">{{__('Action')}}</th>
+                                    data-sort="phone-number">{{__('Giới tính')}}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort"
+                                    data-sort="phone-number">{{__('QUyền truy cập')}}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">{{__('Hành động')}}</th>
                             </tr>
                             </thead>
                             <tbody class="list">
@@ -79,6 +80,10 @@
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">{{$user->phone}}</td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">{{$user->age}}</td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 location">{{$user->sex}}</td>
+                                    <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500 status">
+                                <span
+                                    class="status px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-orange-100 border-transparent text-orange-500 dark:bg-orange-500/20 dark:border-transparent">{{$user->role}}</span>
+                                    </td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
                                         <div class="relative dropdown">
                                             <button
@@ -92,14 +97,14 @@
                                                        class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
                                                        href="{{route('admin.user.edit', $user['id'])}}"><i data-lucide="file-edit"
                                                                                                                  class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                            class="align-middle">{{__('Edit')}}</span></a>
+                                                            class="align-middle">{{__('Sửa')}}</span></a>
                                                 </li>
                                                 <li>
                                                     <a data-modal-target="deleteModal"
                                                        class="block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200"
                                                        href="#!"><i data-lucide="trash-2"
                                                                     class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span
-                                                            class="align-middle">{{__('Delete')}}</span></a>
+                                                            class="align-middle">{{__('Xóa')}}</span></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -116,15 +121,14 @@
                                             </div>
                                             <img src="{{ URL::asset('build/images/delete.png') }}" alt="" class="block h-12 mx-auto">
                                             <div class="mt-5 text-center">
-                                                <h5 class="mb-1">{{__('Are you sure?')}}</h5>
-                                                <p class="text-slate-500 dark:text-zink-200">{{__('Are you certain you want to delete this record?')}}</p>
+                                                <h5 class="mb-1">{{__('Bạn có chắc không?')}}</h5>
+                                                <p class="text-slate-500 dark:text-zink-200">{{__('Bạn có muốn xóa người dùng này không?')}}</p>
                                                 <div class="flex justify-center gap-2 mt-6">
                                                     <button type="reset" data-modal-close="deleteModal"
-                                                            class="bg-white text-slate-500 btn hover:text-slate-500 hover:bg-slate-100 focus:text-slate-500 focus:bg-slate-100 active:text-slate-500 active:bg-slate-100 dark:bg-zink-600 dark:hover:bg-slate-500/10 dark:focus:bg-slate-500/10 dark:active:bg-slate-500/10">Cancel</button>
+                                                            class="bg-white text-slate-500 btn hover:text-slate-500 hover:bg-slate-100 focus:text-slate-500 focus:bg-slate-100 active:text-slate-500 active:bg-slate-100 dark:bg-zink-600 dark:hover:bg-slate-500/10 dark:focus:bg-slate-500/10 dark:active:bg-slate-500/10">{{__('Hủy')}}</button>
                                                     <a href="{{route('admin.user.delete',$user['id'])}}">
                                                         <button
-                                                            class="text-white bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-custom-400/20">{{__('Yes,
-                                                        Delete It!')}}</button></a>
+                                                            class="text-white bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-custom-400/20">{{__('Xóa người dùng!')}}</button></a>
                                                 </div>
                                             </div>
                                         </div>
