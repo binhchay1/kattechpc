@@ -35,7 +35,7 @@
         <div class="header-bottom-container">
             <div class="logo">
                 <a href="/">
-                    <img src="https://hanoicomputercdn.com/media/lib/09-08-2023/logo-hacom-since-2001.png" alt="logo Kattech PC" width="auto" height="auto" class="loading">
+                    <img src="{{ asset('/images/logo/logo.png') }}" alt="logo Kattech PC" width="200" height="100" class="loading">
                 </a>
             </div>
 

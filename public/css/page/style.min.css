@@ -308,3 +308,30 @@ body a {
     right: 0;
     background-color: #186cf2;
 }
+
+.main-slider {
+    width: var(--flex-width);
+    max-width: 100%;
+    padding: 0 10px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.main-slider ul {
+    list-style-type: none;
+}
+
+.main-slider svg {
+    right: 4px;
+    margin: auto;
+    width: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-menu-item {
+    display: flex;
+}
