@@ -4,8 +4,12 @@
 <title>{{ __('Trang chủ') }} | Kattech PC</title>
 @endsection
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('/plugins/owlcarousel/owl.theme.default.min.css') }}" />
+@endsection
+
 @section('content')
-<section class="slider-banner">
+<section class=" slider-banner">
     <div class="slider-banner-main">
         <div class="menu-main">
             <nav class="menu-nav">
@@ -45,22 +49,36 @@
             </nav>
         </div>
 
-        <div>
-            <div>
-                <img >
+        <div class="news-main">
+            <div class="news-main-left">
+                <div class="owl-carousel owl-theme">
+                    <!-- <div></div><img src="{{ asset('/images/test_img/bottom-1.webp') }}">
+                    <img src="{{ asset('/images/test_img/right-1.webp') }}">
+                    <img src="{{ asset('/images/test_img/right-2.webp') }}"> -->
+
+                </div>
             </div>
-            <div>
+            <div class="news-main-right">
                 <div>
-
+                    <img src="{{ asset('/images/test_img/right-1.webp') }}">
                 </div>
                 <div>
-
+                    <img src="{{ asset('/images/test_img/right-2.webp') }}">
                 </div>
                 <div>
-
+                    <img src="{{ asset('/images/test_img/right-3.webp') }}">
                 </div>
             </div>
         </div>
     </div>
 </section>
+@endsection
+
+@section('js')
+<script src="{{ asset('/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $('.owl-carousel').owlCarousel();
+    });
+</script>
 @endsection

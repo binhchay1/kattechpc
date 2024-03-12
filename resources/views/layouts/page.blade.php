@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     @yield('title')
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta content="Kattechpc" name="description">
     <meta content="Kattechpc" name="author">
     <link rel="shortcut icon" href="{{ asset('/images/logo/favicon.ico') }}">
@@ -17,7 +17,10 @@
 
 <body>
     <div>
-        <!-- @include('includes.item-banner') -->
+        <div id="page-banner">
+            @include('includes.item-banner')
+        </div>
+
         <div id="header-page">
             @include('includes.header-page')
         </div>
@@ -29,9 +32,8 @@
         </div>
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     @yield('js')
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 </body>
 
 </html>

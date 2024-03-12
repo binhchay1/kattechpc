@@ -317,6 +317,7 @@ body a {
     padding: 10px;
     margin-right: auto;
     margin-left: auto;
+    display: flex;
 }
 
 .menu-main {
@@ -378,4 +379,29 @@ body a {
 .menu-main .menu-nav-item .menu-nav-arrow svg {
     width: 8px;
     height: 8px;
+}
+
+.news-main {
+    display: flex;
+}
+
+.news-main-right {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 992px) {
+
+    body {
+        min-width: inherit;
+    }
+
+    #page-banner {
+        display: none;
+    }
+
+    .policy-area {
+        display: flex;
+        flex-direction: column;
+    }
 }
