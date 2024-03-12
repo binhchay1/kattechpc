@@ -35,12 +35,6 @@
                                 <div class="sub-menu-nav-item smg-1">
                                     <a class="sub-menu-nav-item-name" href="/pages/laptop-van-phong">Thương hiệu</a>
                                     <a class="sub-menu-nav-item-filter" href="/collections/laptop-asus-hoc-tap-va-lam-viec">ASUS</a>
-                                    <a class="sub-menu-nav-item-filter" href="/collections/laptop-acer-hoc-tap-va-lam-viec">ACER</a>
-                                    <a class="sub-menu-nav-item-filter" href="/collections/laptop-msi-hoc-tap-va-lam-viec">MSI</a>
-                                    <a class="sub-menu-nav-item-filter" href="/collections/laptop-lenovo-hoc-tap-va-lam-viec">LENOVO</a>
-                                    <a class="sub-menu-nav-item-filter" href="/collections/laptop-dell-hoc-tap-va-lam-viec">DELL</a>
-                                    <a class="sub-menu-nav-item-filter" href="/collections/laptop-hp">HP</a>
-                                    <a class="sub-menu-nav-item-filter" href="/collections/laptop-lg-gram">LG Gram</a>
                                 </div>
                             </div>
                         </div>
@@ -54,10 +48,10 @@
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="img-fluid" src="{{ asset('/images/test_img/bottom-1.webp') }}" alt="Image">
+                            <img src="{{ asset('/images/test_img/slide-1.png') }}" width="850" height="403" alt="Image">
                         </div>
                         <div class="carousel-item">
-                            <img class="img-fluid" src="{{ asset('/images/test_img/right-1.webp') }}" alt="Image">
+                            <img src="{{ asset('/images/test_img/slide-2.png') }}" width="850" height="403" alt="Image">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
@@ -73,14 +67,11 @@
                 </div>
             </div>
             <div class="news-main-right">
-                <div>
-                    <img src="{{ asset('/images/test_img/right-1.webp') }}">
+                <div class="news-main-right-1">
+                    <img src="{{ asset('/images/test_img/right-1.webp') }}" width="400">
                 </div>
-                <div>
-                    <img src="{{ asset('/images/test_img/right-2.webp') }}">
-                </div>
-                <div>
-                    <img src="{{ asset('/images/test_img/right-3.webp') }}">
+                <div class="news-main-right-2">
+                    <img src="{{ asset('/images/test_img/right-2.webp') }}" width="400">
                 </div>
             </div>
         </div>
@@ -92,30 +83,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
 <script>
-    // Vendor carousel
     $('.vendor-carousel').owlCarousel({
         loop: true,
         nav: false,
         autoplay: true,
         smartSpeed: 1000,
-        responsive: {
-            0: {
-                items: 2
-            },
-            576: {
-                items: 3
-            },
-            768: {
-                items: 4
-            },
-            992: {
-                items: 5
-            },
-            1200: {
-                items: 6
-            }
-        }
     });
-
 </script>
 @endsection

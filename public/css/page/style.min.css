@@ -383,15 +383,25 @@ body a {
 
 .news-main {
     display: flex;
+    margin-left: 10px;
+}
+
+.news-main-top {
+    display: flex;
+    margin-left: 10px;
 }
 
 .news-main-right {
     display: flex;
     flex-direction: column;
+    margin-left: 10px;
+}
+
+.news-main-left {
+    max-width: 850px;
 }
 
 @media screen and (max-width: 992px) {
-
     body {
         min-width: inherit;
     }
