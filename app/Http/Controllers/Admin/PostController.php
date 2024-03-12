@@ -64,6 +64,9 @@ class PostController extends Controller
     public function editPost( $id)
     {
         $post = $this->postRepository->show($id);
+        if (empty($post)) {
+            abort(404);
+        }
         return view('admin.post.edit', compact('post'));
     }
 

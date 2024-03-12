@@ -1,37 +1,36 @@
 @extends('layouts.master-admin')
 @section('title')
-    {{ __('Add New') }}
+    {{ __('Thêm người dùng') }}
 @endsection
 @section('content')
 
     <!-- page title -->
-    <x-page-title title="Add New" pagetitle="User" />
 
-    <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5">
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5 mt-4">
         <div class="xl:col-span-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="mb-4 text-15">{{__('Create User')}}</h6>
+                    <h6 class="mb-4 text-15">{{__('Thêm người dùng')}}</h6>
 
                     <form method="POST" action="{{route('admin.user.store')}}"  enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
                             <div class="xl:col-span-6">
-                                <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('User Name')}}</label>
+                                <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Tên người dùng')}}</label>
                                 <input type="text" id="productNameInput" name="name" value="{{old('name')}}"
                                        class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                       placeholder="Enter User Name" >
+                                       placeholder="{{__('Tên người dùng')}}" >
                                 @if ($errors->has('name'))
                                     <span class="text-danger">{{ $errors->first('name') }}</span>
                                 @endif
                             </div><!--end col-->
 
                             <div class="xl:col-span-6">
-                                <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('User Email')}}
+                                <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Địa chỉ email')}}
                                     </label>
                                 <input type="text" id="productCodeInput" name="email" value="{{old('email')}}"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                       placeholder="Enter User Email">
+                                       placeholder="{{__('Địa chỉ email')}}">
                                 @if ($errors->has('email'))
                                     <span class="text-danger">{{ $errors->first('email') }}</span>
                                 @endif
@@ -39,7 +38,7 @@
 
                             <div class="xl:col-span-6">
                                 <div class="form-group">
-                                    <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Image')}}</label>
+                                    <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
                                     <div class="">
                                         <div class="" style="display: inline-grid;">
                                             <input value="" type="file" class="border-0 bg-light pl-0" name="profile_photo_path" id="image" hidden>
@@ -48,7 +47,7 @@
                                                     <img id="showImage" class="show-avatar" src="{{ asset('/images/user/avatar.jpg') }}" alt="avatar" >
                                                 </div>
                                                 <div id="button">
-                                                    <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image') }}</i>
+                                                    <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
                                                 </div>
                                             </div>
                                             @if ($errors->has('profile_photo_path'))
@@ -60,38 +59,48 @@
                             </div>
 
                             <div class="xl:col-span-6">
-                                <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Address')}}
-                                </label>
-                                <input type="text" id="productCodeInput" name="address" value="{{old('address')}}"
-                                       class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                       placeholder="Enter User Address">
-                                @if ($errors->has('address'))
-                                    <span class="text-danger">{{ $errors->first('address') }}</span>
-                                @endif
-                            </div><!--end col-->
+                                <label for="productStatus" class="inline-block mb-2 text-base font-medium">{{__('Quyền truy cập')}}</label>
+                                <select
+                                    class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                    data-choices data-choices-search-false  id="productStatus" name="sex">
+                                    @foreach($roles as $role)
+                                        <option value="{{$role->name}}">{{$role->name}}</option>
+                                    @endforeach
+                                </select>
+                                <div class="xl:col-span-4 mt-4">
+                                    <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Đỉa chỉ')}}
+                                    </label>
+                                    <input type="text" id="productCodeInput" name="address" value="{{old('address')}}"
+                                           class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                           placeholder="{{__('Đỉa chỉ')}}">
+                                    @if ($errors->has('address'))
+                                        <span class="text-danger">{{ $errors->first('address') }}</span>
+                                    @endif
+                                </div>
+                            </div>
 
                             <div class="xl:col-span-4">
-                                <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Phone Number')}}
+                                <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Số điện thoại')}}
                                 </label>
                                 <input type="text" id="productCodeInput" name="phone" value="{{old('phone')}}"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                       placeholder="Enter User PhoneNumber">
+                                       placeholder="{{__('Số điện thoại')}}">
                                 @if ($errors->has('phone'))
                                     <span class="text-danger">{{ $errors->first('phone') }}</span>
                                 @endif
                             </div><!--end col-->
                             <div class="xl:col-span-4">
-                                <label for="productPrice" class="inline-block mb-2 text-base font-medium">{{__('Age')}}</label>
+                                <label for="productPrice" class="inline-block mb-2 text-base font-medium">{{__('Ngày sinh')}}</label>
                                 <input type="date" id="productPrice" name="age" value="{{old('age')}}"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                       placeholder="Enter User Age" >
+                                       placeholder="{{__('Ngày sinh')}}" >
                                 @if ($errors->has('age'))
                                     <span class="text-danger">{{ $errors->first('age') }}</span>
                                 @endif
                             </div><!--end col-->
 
                             <div class="xl:col-span-4">
-                                <label for="productStatus" class="inline-block mb-2 text-base font-medium">{{__('Sex')}}</label>
+                                <label for="productStatus" class="inline-block mb-2 text-base font-medium">{{__('Giới tính')}}</label>
                                 <select
                                     class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                     data-choices data-choices-search-false  id="productStatus" name="sex">
@@ -108,9 +117,9 @@
                         @endif
                         <div class="flex justify-end gap-2 mt-4">
                             <button type="reset"
-                                    class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">{{__('Reset')}}</button>
+                                    class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">{{__('Xóa toàn bộ')}}</button>
                             <button type="submit"
-                                    class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">{{__('Add User')}}</button>
+                                    class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">{{__('Thêm người dùng')}}</button>
                         </div>
                     </form>
                 </div>
