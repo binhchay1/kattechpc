@@ -10,4 +10,19 @@ class HomeController extends Controller
     {
         return view('page.homepage');
     }
+
+    public function viewPolicy()
+    {
+        return view('page.policy');
+    }
+
+    public function viewPromotion()
+    {
+        return view('page.homepage');
+    }
+
+    public function viewAccount()
+    {
+        return view('page.account');
+    }
 }
