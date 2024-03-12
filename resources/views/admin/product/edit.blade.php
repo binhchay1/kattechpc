@@ -1,41 +1,40 @@
 @extends('layouts.master-admin')
 @section('title')
-    {{ __('Add New') }}
+    {{ __('Sửa sản phẩm') }}
 @endsection
 @section('content')
     <!-- page title -->
-    <x-page-title title="Edit Product" pagetitle="Products" />
 
-    <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5">
+    <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5 mt-4">
         <div class="xl:col-span-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="mb-4 text-15">{{__('Update Product')}}</h6>
+                    <h6 class="mb-4 text-15">{{__('Sửa sản phẩm')}}</h6>
 
                     <form action="{{route('admin.product.update', $product['id'])}}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
                             <div class="xl:col-span-6">
-                                <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Product Name')}}</label>
+                                <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Tên sản phẩm')}}</label>
                                 <input type="text" id="productNameInput" name="name" value="{{old('name', $product->name)}}"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                       placeholder="Enter Product Name" >
+                                       placeholder="{{__('Tên sản phẩm')}}" >
                                 @if ($errors->has('name'))
                                     <span class="text-danger">{{ $errors->first('name') }}</span>
                                 @endif
 
                             </div><!--end col-->
                             <div class="xl:col-span-6">
-                                <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Product Code')}}
+                                <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Mã sản phẩm')}}
                                     </label>
                                 <input type="text" id="productCodeInput" name="code" value="{{old('code', $product->name)}}"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                       placeholder="Enter Product Code" value="TWT145015"  >
+                                       placeholder="{{__('Mã sản phẩm')}}" value="TWT145015"  >
                             </div><!--end col-->
 
                             <div class="xl:col-span-6">
                                 <div class="form-group">
-                                    <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Image')}}</label>
+                                    <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
                                     <div class="">
                                         <div class="" style="display: inline-grid;">
                                             <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
@@ -44,7 +43,7 @@
                                                     <img id="showImage" class="show-avatar" src="{{$product->image ?? asset('/images/product.png') }}" alt="avatar" >
                                                 </div>
                                                 <div id="button">
-                                                    <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Choose Image') }}</i>
+                                                    <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
                                                 </div>
                                             </div>
                                             @if ($errors->has('image'))
@@ -56,7 +55,7 @@
                             </div>
 
                             <div class="xl:col-span-6">
-                                <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Category')}}</label>
+                                <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Thể loại')}}</label>
                                 <select
                                     class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                     data-choices data-choices-search-false  id="categorySelect" name="category" value="">
@@ -72,21 +71,21 @@
                             <div class="lg:col-span-2 xl:col-span-12">
                                 <div>
                                     <label for="productDescription"
-                                           class="inline-block mb-2 text-base font-medium">{{__('Description')}}</label>
+                                           class="inline-block mb-2 text-base font-medium">{{__('Miêu tả')}}</label>
                                     <textarea
                                         class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                        id="productDescription" name="description" value="" placeholder="Enter Product Description" rows="5"> {{old('description', $product->description)}}</textarea>
+                                        id="productDescription" name="description" value="" placeholder="{{__('Miêu tả')}}" rows="5"> {{old('description', $product->description)}}</textarea>
                                 </div>
                             </div>
                             <div class="xl:col-span-4">
-                                <label for="productPrice" class="inline-block mb-2 text-base font-medium">{{__('Price')}}</label>
+                                <label for="productPrice" class="inline-block mb-2 text-base font-medium">{{__('Giá')}}</label>
                                 <input type="number" id="productPrice" name="price" value="{{old('price', $product->price)}}"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                       placeholder="$0.00" >
+                                       placeholder="{{__('Giá')}}" >
                             </div><!--end col-->
 
                             <div class="xl:col-span-4">
-                                <label for="productStatus" class="inline-block mb-2 text-base font-medium">{{__('Status')}}</label>
+                                <label for="productStatus" class="inline-block mb-2 text-base font-medium">{{__('Trạng thái')}}</label>
                                 <select
                                     class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                     data-choices data-choices-search-false  id="productStatus" name="status">
