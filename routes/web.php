@@ -34,6 +34,8 @@ Route::group(['prefix' => 'order'], function () {
     Route::get('/update/{id}', [OrderController::class, 'editOrder'])->name('admin.order.edit');
     Route::post('/update/{id}', [OrderController::class, 'updateOrder'])->name('admin.order.update');
     Route::get('/delete/{id}', [OrderController::class, 'deleteOrder'])->name('admin.order.delete');
+    Route::get('/export',[OrderController::class,'export'])->name('admin.order.export');
+    
 });
 
 //post
@@ -56,6 +58,8 @@ Route::group(['prefix' => 'storage'], function () {
     Route::get('/update/{id}', [StorageController::class, 'editStorage'])->name('admin.storage.edit');
     Route::post('/update/{id}', [StorageController::class, 'updateStorage'])->name('admin.storage.update');
     Route::get('/delete/{id}', [StorageController::class, 'deleteStorage'])->name('admin.storage.delete');
+    Route::post('/import',[StorageController::class,'import'])->name('admin.storage.import');
+    Route::get('/export',[StorageController::class,'export'])->name('admin.storage.export');
 });
 
 //product
