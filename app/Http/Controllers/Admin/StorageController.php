@@ -66,6 +66,9 @@ class StorageController extends Controller
     public function editStorage( $id)
     {
         $storage = $this->storageRepository->show($id);
+        if (empty($storage)) {
+            abort(404);
+        }
         return view('admin.storage.edit', compact('storage'));
     }
 

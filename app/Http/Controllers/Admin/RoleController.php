@@ -62,6 +62,9 @@ class RoleController extends Controller
     public function editRole(string $id)
     {
         $role = $this->roleRepository->show($id);
+        if (empty($role)) {
+            abort(404);
+        }
         return view('admin.user.role.edit', compact('role'));
     }
 

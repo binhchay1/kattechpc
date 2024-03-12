@@ -71,6 +71,9 @@ class UserController extends Controller
     {
         $roles = $this->roleRepository->index();
         $user = $this->userRepository->show($id);
+        if (empty($user)) {
+            abort(404);
+        }
         $genderUser = User::SEX;
 
         return view('admin.user.edit', compact('user','genderUser', 'roles'));
