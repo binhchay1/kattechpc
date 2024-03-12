@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Warehouse;
+use App\Models\Storage;
 use Illuminate\Support\Facades\DB;
 
 class StorageRepository extends BaseRepository
@@ -10,7 +10,7 @@ class StorageRepository extends BaseRepository
 {
     public function model()
     {
-       return Warehouse::class;
+       return Storage::class;
     }
 
     public function index()
