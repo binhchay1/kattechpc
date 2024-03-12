@@ -32,10 +32,20 @@ class UserRepository extends BaseRepository
     {
         return $this->model->where('id', $id)->update($input);
     }
-    
+
     public function destroy($id)
     {
         return $this->model->where('id', $id)->delete();
+    }
+
+    public function getUserByGoogle($googleID)
+    {
+        return $this->model->where('google_id', $googleID)->first();
+    }
+
+    public function getUserByFacebook($facebookID)
+    {
+        return $this->model->where('facebook_id', $facebookID)->first();
     }
 
 }

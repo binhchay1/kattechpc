@@ -1,7 +1,9 @@
 @extends('layouts.master-without-nav')
+
 @section('title')
 {{ __('t-login') }}
 @endsection
+
 @section('content')
 
 <body class="flex items-center justify-center min-h-screen px-4 py-16 bg-cover bg-auth-pattern dark:bg-auth-pattern-dark dark:text-zink-100 font-public">
@@ -66,20 +68,8 @@
                 </div>
             </div>
             <div class="mx-2 mt-2 mb-2 border-none shadow-none lg:col-span-7 card bg-white/60 dark:bg-zink-500/60">
-                <div class="!px-10 !pt-10 h-full !pb-0 card-body flex flex-col">
-                    <div class="flex items-center justify-between gap-3">
-                        <div class="grow">
-                            <a href="{{ url('index') }}">
-                                <x-application-logo />
-                            </a>
-                        </div>
-                        <div class="shrink-0">
-                            <x-language />
-                        </div>
-                    </div>
-                    <div style="margin-top: 20%;">
-                        <img src="{{ asset('/images/logo/logo.png') }}" alt="" class="md:max-w-[32rem] mx-auto">
-                    </div>
+                <div class="!px-10 !pt-10 h-full !pb-0 card-body flex" style="align-items: center;">
+                    <img src="{{ asset('/images/logo/logo.png') }}" class="md:max-w-[32rem] mx-auto">
                 </div>
             </div>
         </div>

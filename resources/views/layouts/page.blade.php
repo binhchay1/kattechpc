@@ -17,7 +17,7 @@
 
 <body>
     <div>
-        @include('includes.item-banner')
+        <!-- @include('includes.item-banner') -->
         <div id="header-page">
             @include('includes.header-page')
         </div>
