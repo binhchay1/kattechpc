@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\AdminController;
@@ -92,6 +93,11 @@ Route::group(['prefix' => 'role'], function () {
     Route::post('/update/{role}', [RoleController::class, 'updateRole'])->name('admin.role.update');
     Route::get('/delete/{id}', [RoleController::class, 'deleteRole'])->name('admin.role.delete');
 
+});
+
+Route::group(['prefix' => 'profile'], function () {
+    Route::get('/update/{id}', [ProfileController::class, 'editProfile'])->name('admin.profile.edit');
+    Route::post('/update/{id}', [ProfileController::class, 'updateProfile'])->name('admin.profile.update');
 });
 
 Route::get('index/{locale}', [TailwickController::class, 'lang']);
