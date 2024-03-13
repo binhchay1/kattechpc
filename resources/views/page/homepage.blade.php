@@ -51,11 +51,25 @@
 
         <div class="news-main">
             <div class="news-main-left">
-                <div class="owl-carousel owl-theme">
-                    <!-- <div></div><img src="{{ asset('/images/test_img/bottom-1.webp') }}">
-                    <img src="{{ asset('/images/test_img/right-1.webp') }}">
-                    <img src="{{ asset('/images/test_img/right-2.webp') }}"> -->
-
+                <div id="header-carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="img-fluid" src="{{ asset('/images/test_img/bottom-1.webp') }}" alt="Image">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="img-fluid" src="{{ asset('/images/test_img/right-1.webp') }}" alt="Image">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                            <span class="carousel-control-prev-icon mb-n2"></span>
+                        </div>
+                    </a>
+                    <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                            <span class="carousel-control-next-icon mb-n2"></span>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="news-main-right">
@@ -75,10 +89,33 @@
 @endsection
 
 @section('js')
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
 <script>
-    $(document).ready(function() {
-        $('.owl-carousel').owlCarousel();
+    // Vendor carousel
+    $('.vendor-carousel').owlCarousel({
+        loop: true,
+        nav: false,
+        autoplay: true,
+        smartSpeed: 1000,
+        responsive: {
+            0: {
+                items: 2
+            },
+            576: {
+                items: 3
+            },
+            768: {
+                items: 4
+            },
+            992: {
+                items: 5
+            },
+            1200: {
+                items: 6
+            }
+        }
     });
+
 </script>
 @endsection

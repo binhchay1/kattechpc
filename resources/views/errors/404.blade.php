@@ -1,18 +1,19 @@
 @extends('layouts.master-without-nav')
+
 @section('title')
-    {{ __('404') }}
+{{ __('404') }}
 @endsection
+
 @section('content')
 
-    <body
-        class="flex items-center justify-center min-h-screen py-16 bg-cover bg-auth-pattern dark:bg-auth-pattern-dark font-public">
+<body class="flex items-center justify-center min-h-screen py-16 bg-cover bg-auth-pattern dark:bg-auth-pattern-dark font-public">
 
-        <div class="mb-0 border-none shadow-none lg:w-[500px] card bg-white/70 dark:bg-zink-500/70">
-            <div class="!px-10 !py-12 card-body">
-                <a href="index">
-                    <img src="{{ URL::asset('build/images/logo-light.png') }}" alt="" class="hidden h-6 mx-auto dark:block">
-                    <img src="{{ URL::asset('build/images/logo-dark.png') }}" alt="" class="block h-6 mx-auto dark:hidden">
-                </a>
+    <div class="mb-0 border-none shadow-none lg:w-[500px] card bg-white/70 dark:bg-zink-500/70">
+        <div class="!px-10 !py-12 card-body">
+            <a href="index">
+                <img src="{{ URL::asset('build/images/logo-light.png') }}" alt="" class="hidden h-6 mx-auto dark:block">
+                <img src="{{ URL::asset('build/images/logo-dark.png') }}" alt="" class="block h-6 mx-auto dark:hidden">
+            </a>
 
                 <div class="mt-10">
                     <img src="{{ URL::asset('build/images/auth/error-404.png') }}" alt="" class="h-64 mx-auto">
@@ -28,4 +29,5 @@
                 </div>
             </div>
         </div>
+    </div>
     @endsection
