@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     @yield('title')
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Kattechpc" name="description">
     <meta content="Kattechpc" name="author">
     <link rel="shortcut icon" href="{{ asset('/images/logo/favicon.ico') }}">

@@ -6,7 +6,7 @@
             </div>
             <div class="header-top-right">
                 <div>
-                    <a href="{{ route('policy') }}" class="sep-item-link" target="_blank"><i class="fa fa-pen"></i> {{ __('Chính sách') }}</a>
+                    <a href="{{ route('policy') }}" class="sep-item-link" target="_blank"><i class="fa fa-pen"></i> {{ __('Chính sách bảo hành') }}</a>
                 </div>
                 <div class="ml-15px">
                     <a href="{{ route('support') }}" class="sep-item-link" target="_blank"><i class="fa fa-wrench"></i> {{ __('Hỗ trợ') }}</a>
