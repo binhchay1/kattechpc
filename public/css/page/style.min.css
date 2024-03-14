@@ -1,6 +1,6 @@
 :root {
     --flex-width: 1420px;
-    --color-primary: #4287f5;
+    --color-primary: #b42328;
 }
 
 body {
@@ -26,10 +26,15 @@ body a {
 }
 
 .header-top {
-    background: #f4f4f4;
+    background: #000000;
     margin-bottom: 20px;
     border-bottom: 1px solid #ccc;
     padding: 10px;
+    color: var(--color-primary);
+}
+
+.header-top a {
+    color: var(--color-primary);;
 }
 
 .header-top-container {
@@ -60,7 +65,7 @@ body a {
 }
 
 .hotline {
-    background: repeating-linear-gradient(to right, #7faffa 0, var(--color-primary) 50%, #186cf2 100%);
+    background: repeating-linear-gradient(to right, #fd7272 0, var(--color-primary) 50%, #f50c0c 100%);
     animation: 2s linear infinite forwards gradient;
     background-size: 200% auto;
     background-position: 0 100%;
@@ -399,6 +404,64 @@ body a {
 
 .news-main-left {
     max-width: 850px;
+}
+
+.flash-sale-banner {
+    width: var(--flex-width);
+    margin: 0 auto;
+    background: linear-gradient(180deg, #0967E9 0%, #DCF6FD 100%);
+}
+
+.flash-sale-area {
+    padding: 15px;
+}
+
+.flash-sale-title {
+    font-size: 32px;
+    line-height: 48px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+}
+
+.flash-sale-title-area {
+    margin-top: 10px;
+    gap: 16px;
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+    min-height: 300px;
+}
+
+.swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+}
+
+.swiper-slide {
+    width: 186px;
+    margin-right: 12px;
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
 }
 
 @media screen and (max-width: 992px) {
