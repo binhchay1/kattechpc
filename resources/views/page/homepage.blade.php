@@ -100,9 +100,9 @@
         </div>
 
         <div class="swiper box-list-item-deal swiper-box-deal swiper-initialized swiper-horizontal swiper-pointer-events">
-            <div class="swiper-wrapper loaded" id="js-deal-box" aria-live="off" style="transition-duration: 1000ms; transform: translate3d(-990px, 0px, 0px);">
-                <div class="swiper-slide" style="width: 186px; margin-right: 12px;" role="group" aria-label="1 / 11">
-                    <div class="product-item" data-id="25869" data-time="123020" data-type="deal">
+            <div class="swiper-wrapper loaded">
+                <div class="swiper-slide" role="group">
+                    <div class="product-item">
                         <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
                             <img data-src="/media/product/250-25869-gaming-msi-thin-gf63.jpg" width="164" height="164" alt="Laptop Gaming MSI Thin GF63 (i5-12450H | 8G | RTX 2050 | 1TB SSD | 15.6&quot; 144Hz FHD ) NK BH tại NC " class="lazy entered loaded" src="/media/product/250-25869-gaming-msi-thin-gf63.jpg">
                             <span class="p-type-holder">
