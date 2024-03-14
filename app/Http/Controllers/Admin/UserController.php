@@ -52,7 +52,8 @@ class UserController extends Controller
     {
         $input = $request->except(['_token']);
         $input= $request->all();
-        $input['password'] = Hash::make( $input['password']);
+        $input['password'] = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; // password
+        $input['role'] = 'user'; // password
         if (isset($input['profile_photo_path'])) {
 
             $img = $this->utility->saveImageuser($input);
@@ -103,14 +104,15 @@ class UserController extends Controller
 
         return back()->with('success', 'User successfully deleted.');
     }
-
-    public function userSearch(Request $request)
-    {
-        $filter['name'] = $request->name;
-        $users = $this->userRepository->getListuser($filter);
-        $categories = $this->userRepository->getCategoriesAndCount();
-
-        return view('pages.users', compact('users', 'categories'));
-    }
     
+
+//    public function userSearch(Request $request)
+//    {
+//        $filter['name'] = $request->name;
+//        $users = $this->userRepository->getListuser($filter);
+//        $categories = $this->userRepository->getCategoriesAndCount();
+//
+//        return view('pages.users', compact('users', 'categories'));
+//    }
+
 }

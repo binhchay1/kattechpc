@@ -10,17 +10,18 @@ class UserUpdateRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
+    
     public function rules(): array
     {
 //        $age = date("Y-m-d", time() + 86400);
         return [
             'name' => 'required|max:255',
-            'email' =>  ['required', Rule::unique('users')->ignore($this->user)],
+            'email' =>  'required|string|email|max:191|unique:users,email,' . $this->user()->id
+,
             'age' => 'required',
             'phone' => 'required',
             'address' => 'required',
             'profile_photo_path' => 'image|mimes:jpeg,png,jpg|max:2048',
-            'password' => 'required',
         ];
     }
     
@@ -37,7 +38,6 @@ class UserUpdateRequest extends FormRequest
             'profile_photo_path.image' => __('validation.image'),
             'profile_photo_path.mimes' => __('validation.mimes'),
             'profile_photo_path.max' => __('validation.max'),
-            'password.required' => __('validation.max'),
         ];
     }
 }
