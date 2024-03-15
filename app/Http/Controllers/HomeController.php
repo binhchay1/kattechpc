@@ -25,4 +25,10 @@ class HomeController extends Controller
     {
         return view('page.account');
     }
+    
+    public function viewPost()
+    {
+        return view('page.post');
+    }
+    
 }
