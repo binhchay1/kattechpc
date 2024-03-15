@@ -84,9 +84,9 @@
         <div class="d-flex align-items-center justify-content-between">
             <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
                 <i class="fa fa-bolt"></i>
-                <h2 class="flash-sale-title font-weight-800 ">Giá tốt mỗi ngày</h2>
-                <span class="text-time-deal-home color-white fz-16 font-weight-700">Kết thúc sau</span>
-                <div class="global-time-deal gap-6 d-flex align-items-center">
+                <h2 class="flash-sale-title">Flash sale</h2>
+                <span class="text-time-deal-home">Kết thúc sau</span>
+                <div class="global-time-dea d-flex align-items-center">
                     <p>01</p>
                     <span>:</span>
                     <p>10</p>
@@ -96,7 +96,6 @@
                     <p>03</p>
                 </div>
             </div>
-            <a href="/deal" class="button-deal color-white mb-10">Xem thêm khuyến mãi <i class="fa-solid fa-caret-right"></i></a>
         </div>
 
         <div class="swiper box-list-item-deal swiper-box-deal swiper-initialized swiper-horizontal swiper-pointer-events">
@@ -125,14 +124,6 @@
                                 <p class="js-line-deal-left" style="width: 28.5714%;"></p>
                                 <span>Còn 5/ 7 sản phẩm</span>
                             </div>
-
-                            <div class="product-offer line-clamp-2">
-                                <p>+ Tặng&nbsp;<a href="https://nguyencongpc.vn/chuot-motospeed-v400-rgb-backlight">Chuột Motospeed V400 RGB Backlight</a>&nbsp;: Trị giá 590.000đ&nbsp;</p>
-                                <p>+ Tặng Túi/Balo laptop NC trị giá: 390.000đ</p>
-                                <p>+ Tặng Bàn di chuột trị giá: 50.000đ</p>
-                                <p>+ Tặng Bộ vệ sinh Laptop trị giá: 40.000đ<br>+ Vệ sinh bảo dưỡng Laptop miễn phí trọn đời trị giá: 1 triệu đồng<br>+ Giảm 10% khi mua thêm RAM, HDD laptop<br>+ Giảm 5% khi mua kèm Gear, Đế tản nhiệt Laptop</p>
-                            </div>
-
                         </div>
                     </div>
                 </div>

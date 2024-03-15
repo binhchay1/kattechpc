@@ -546,21 +546,6 @@ body a {
     text-align: center;
 }
 
-.product-offer {
-    margin-top: 3px;
-    color: #6f6f6f;
-    height: 36px;
-    font-family: inherit !important;
-}
-
-.line-clamp-2 {
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    display: -webkit-box;
-    display: none;
-}
-
 .fa-bolt {
     font-size: 35px;
 }
