@@ -83,7 +83,7 @@
     <div class="flash-sale-area">
         <div class="d-flex align-items-center justify-content-between">
             <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
-                <i class="sprite sprite-icon-deal-home"></i>
+                <i class="fa fa-bolt"></i>
                 <h2 class="flash-sale-title font-weight-800 ">Giá tốt mỗi ngày</h2>
                 <span class="text-time-deal-home color-white fz-16 font-weight-700">Kết thúc sau</span>
                 <div class="global-time-deal gap-6 d-flex align-items-center">
@@ -104,9 +104,7 @@
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
-                            <img data-src="/media/product/250-25869-gaming-msi-thin-gf63.jpg" width="164" height="164" alt="Laptop Gaming MSI Thin GF63 (i5-12450H | 8G | RTX 2050 | 1TB SSD | 15.6&quot; 144Hz FHD ) NK BH tại NC " class="lazy entered loaded" src="/media/product/250-25869-gaming-msi-thin-gf63.jpg">
-                            <span class="p-type-holder">
-                            </span>
+                            <img data-src="/media/product/250-25869-gaming-msi-thin-gf63.jpg" width="164" height="164" alt="Laptop Gaming MSI Thin GF63 (i5-12450H | 8G | RTX 2050 | 1TB SSD | 15.6&quot; 144Hz FHD ) NK BH tại NC " class="lazy entered loaded" src="{{ asset('images/test_img/black-sale.jpg') }}">
                         </a>
                         <div class="product-info">
                             <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
@@ -135,83 +133,6 @@
                                 <p>+ Tặng Bộ vệ sinh Laptop trị giá: 40.000đ<br>+ Vệ sinh bảo dưỡng Laptop miễn phí trọn đời trị giá: 1 triệu đồng<br>+ Giảm 10% khi mua thêm RAM, HDD laptop<br>+ Giảm 5% khi mua kèm Gear, Đế tản nhiệt Laptop</p>
                             </div>
 
-                        </div>
-
-                        <!-- TOOLTIP -->
-                        <div class="tooltip p-tooltip tippy-box">
-                            <div class="tooltip-name">
-                                Laptop Gaming MSI Thin GF63 (i5-12450H | 8G | RTX 2050 | 1TB SSD | 15.6" 144Hz FHD ) NK BH tại NC
-                            </div>
-                            <div class="tooltip-descreption">
-                                <div class="tooltip-descreption-price">
-                                    <p>Giá niêm yết</p>
-                                    <p>Giá bán</p>
-                                    <p>Bảo hành</p>
-                                    <p>Tình trạng</p>
-                                </div>
-                                <div class="tooltip-descreption-info">
-                                    <div class="d-flex align-items-center">
-                                        <p class="card-price-origin color-black" style="position: relative;">
-                                            18.990.000₫
-                                            <span class="card-price-origin-line-through"></span>
-                                        </p>
-                                        <span class="color-red" style="margin-left: 4px;">-22%</span>
-                                    </div>
-                                    <p>
-                                        14.800.000đ
-                                    </p>
-                                    <p class="color-primary">
-                                        12 tháng
-                                    </p>
-                                    <p class="color-secondary">
-                                        Còn DEAL
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="tooltip-input">
-                                <i class="fa-solid fa-database icon-database"></i>
-                                <span>Thông số sản phẩm</span>
-                            </div>
-                            <div class="tooltip-list">
-                                <ul>
-                                    CPU: Intel 12th Generation Core i5 -12450H
-                                    RAM: 8GB DDR4
-                                    SSD: 1TB SSD
-                                    VGA: NVIDIA GeForce RTX 2050
-                                    Màn hình: 15,6 inch 1920 x 1080 (HD đầy đủ)
-                                    Màn hình cảm ứng: Không
-                                    Trọng lượng: 1.85Kg
-                                    Hệ điều hành: Windows 11
-                                    Tuổi thọ pin (tối đa): 51 giờ
-                                </ul>
-                            </div>
-
-                            <div class="box-tooltip-gift">
-                                <div class="tooltip-input tooltip-gift">
-                                    <p class="icon-gift">
-                                        <i class="fa-solid fa-gift"></i>
-                                        Khuyến mãi
-                                    </p>
-                                </div>
-
-                                <div class="tooltip-list tooltip-list-gift">
-                                    <ul>
-                                        <div class="item">
-                                            <p>+ Tặng&nbsp;<a href="https://nguyencongpc.vn/chuot-motospeed-v400-rgb-backlight">Chuột Motospeed V400 RGB Backlight</a>&nbsp;: Trị giá 590.000đ&nbsp;</p>
-                                        </div>
-                                        <div class="item">
-                                            <p>+ Tặng Túi/Balo laptop NC trị giá: 390.000đ</p>
-                                        </div>
-                                        <div class="item">
-                                            <p>+ Tặng Bàn di chuột trị giá: 50.000đ</p>
-                                        </div>
-                                        <div class="item">
-                                            <p>+ Tặng Bộ vệ sinh Laptop trị giá: 40.000đ<br>+ Vệ sinh bảo dưỡng Laptop miễn phí trọn đời trị giá: 1 triệu đồng<br>+ Giảm 10% khi mua thêm RAM, HDD laptop<br>+ Giảm 5% khi mua kèm Gear, Đế tản nhiệt Laptop</p>
-                                        </div>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -409,7 +409,7 @@ body a {
 .flash-sale-banner {
     width: var(--flex-width);
     margin: 0 auto;
-    background: linear-gradient(180deg, #0967E9 0%, #DCF6FD 100%);
+    background: linear-gradient(180deg, #141414 0%, #4a5052 100%);
     border-radius: 10px;
 }
 
@@ -478,8 +478,15 @@ body a {
     position: relative;
     display: block;
     margin-bottom: 6px;
-    padding-bottom: 100%;
     width: 100%;
+}
+
+.product-item .product-info .product-percent-price {
+    position: relative;
+    background: #be1f2d;
+    border-radius: 7px;
+    color: #fff;
+    padding: 1px 8px;
 }
 
 .product-item .product-info .product-price-main {
@@ -487,6 +494,7 @@ body a {
     font-size: 20px;
     line-height: 28px;
     color: #be1f2d;
+    font-weight: bold;
 }
 
 .product-item .product-info .product-market-price {
@@ -495,102 +503,26 @@ body a {
     margin-right: 6px;
 }
 
-.global-tooltip, .tippy-box {
-    display: none;
-    position: absolute;
-    -webkit-box-shadow: 0 1px 6px rgba(0,0,0,.25);
-    box-shadow: 0 1px 6px rgba(0,0,0,.25);
-    background-color: #fff;
-    color: #000;
-    border-radius: 10px;
-    width: 440px;
-    z-index: 999;
-    overflow: hidden;
-}
-
-.tooltip-name {
-    -webkit-box-shadow: 0 1px 6px rgba(0,0,0,.25);
-    box-shadow: 0 1px 6px rgba(0,0,0,.25);
-    border-radius: 10px 10px 0 0;
-    padding: 12px;
-    background: -webkit-gradient(linear, left bottom, left top, color-stop(10.84%, #0167d5), color-stop(104.56%, #0f5b99));
-    background: -o-linear-gradient(bottom, #0167d5 10.84%, #0f5b99 104.56%);
-    background: linear-gradient(0deg, #0167d5 10.84%, #0f5b99 104.56%);
-    color: #fff;
-    font-size: 18px;
-    line-height: 26px;
-    text-transform: uppercase;
-}
-
-.tooltip-descreption {
-    margin-top: 16px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    padding: 0 8px;
-}
-
-.tooltip-descreption-price {
-    padding: 0 12px;
-    padding-bottom: 6px;
-}
-
-.tooltip-descreption-price p {
-    font-weight: 600;
-    line-height: 24px;
-}
-
-.tooltip-descreption-info {
-    margin-left: 80px;
-    color: #105fbd;
-    font-weight: 600;
-    line-height: 24px;
-}
-
-.tooltip-input {
-    -webkit-box-shadow: 0 1px 6px rgba(0,0,0,.25);
-    box-shadow: 0 1px 6px rgba(0,0,0,.25);
-    margin-top: 12px;
-    background-color: var(--color-primary);
-    padding-left: 10px;
-    margin: 0 12px;
-    font-size: 18px;
-    color: #fff;
-    border-radius: 8px;
-}
-
-.tooltip-list {
-    padding: 12px;
-    padding: 20px;
-    white-space: pre-line;
-    margin: -47px 0 -28px;
-}
-
-.box-tooltip-gift {
-    border: 1px solid #0f5b99;
-    margin: 0 10px 10px;
-}
-
-.box-product-deal .p-quantity-sale {
+.p-quantity-sale {
     position: relative;
     height: 20px;
     margin: 10px 0 15px;
 }
 
-.box-product-deal .p-quantity-sale i {
+.p-quantity-sale i {
     position: absolute;
     left: -9px;
     bottom: 1px;
     z-index: 2;
 }
 
-.box-product-deal .p-quantity-sale .bg-gradient {
+.p-quantity-sale .bg-gradient {
     background-color: #ebebeb;
     border-radius: 14px;
     height: 100%;
 }
 
-.box-product-deal .p-quantity-sale p {
+.p-quantity-sale p {
     position: absolute;
     top: 0;
     left: 0;
@@ -600,7 +532,7 @@ body a {
     height: 100%;
 }
 
-.box-product-deal .p-quantity-sale span {
+.p-quantity-sale span {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -614,7 +546,7 @@ body a {
     text-align: center;
 }
 
-.product-item .product-info .product-offer {
+.product-offer {
     margin-top: 3px;
     color: #6f6f6f;
     height: 36px;
@@ -626,6 +558,21 @@ body a {
     -webkit-box-orient: vertical;
     overflow: hidden;
     display: -webkit-box;
+    display: none;
+}
+
+.fa-bolt {
+    font-size: 35px;
+}
+
+.p-quantity-sale p {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #ffb22f;
+    border-radius: 7px;
+    height: 100%;
+    margin: 0;
 }
 
 @media screen and (max-width: 992px) {
