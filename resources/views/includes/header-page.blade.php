@@ -56,7 +56,7 @@
                     </a>
                 </div>
                 <div class="cart-area ml-20px">
-                    <a href="/cart">
+                    <a href="{{route('page.cart.index')}}">
                         <i class="fa fa-shopping-cart"></i>
                         <span>{{ __('Giỏ hàng') }}</span>
                     </a>
