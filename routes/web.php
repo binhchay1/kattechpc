@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Page\CartController;
 use App\Http\Controllers\TailwickController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
@@ -115,5 +116,15 @@ Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
 Route::get('/promotion', [HomeController::class, 'viewRegister'])->name('promotion');
 Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');
 
+
+//cart
+Route::group(['prefix' => 'cart'], function () {
+    Route::get('/', [CartController::class, 'index'])->name('page.cart.index');
+    Route::post('cart', [CartController::class, 'addToCart'])->name('page.cart.store');
+    Route::post('update-cart', [CartController::class, 'updateCart'])->name('page.cart.update');
+    Route::post('remove', [CartController::class, 'removeCart'])->name('page.cart.remove');
+    Route::post('clear', [CartController::class, 'clearAllCart'])->name('page.cart.clear');
+
+});
 // Route::get('/register', [HomeController::class, 'viewRegister'])->name('register');
 // Route::get('/login', [HomeController::class, 'viewRegister'])->name('register');
