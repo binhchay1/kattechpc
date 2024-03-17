@@ -27,6 +27,17 @@ use Illuminate\Support\Facades\Route;
 //Admin
 Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
 
+//post
+Route::group(['prefix' => 'post'], function () {
+    Route::get('/', [PostController::class, 'index'])->name('admin.post.index');
+    Route::get('/detail/{id}', [PostController::class, 'showPost'])->name('admin.post.show');
+    Route::get('/add', [PostController::class, 'createPost'])->name('admin.post.create');
+    Route::post('/store', [PostController::class, 'storePost'])->name('admin.post.store');
+    Route::get('/update/{id}', [PostController::class, 'editPost'])->name('admin.post.edit');
+    Route::post('/update/{id}', [PostController::class, 'updatePost'])->name('admin.post.update');
+    Route::get('/delete/{id}', [PostController::class, 'deletePost'])->name('admin.post.delete');
+});
+
 //order
 Route::group(['prefix' => 'order'], function () {
     Route::get('/', [OrderController::class, 'index'])->name('admin.order.index');
@@ -37,18 +48,6 @@ Route::group(['prefix' => 'order'], function () {
     Route::post('/update/{id}', [OrderController::class, 'updateOrder'])->name('admin.order.update');
     Route::get('/delete/{id}', [OrderController::class, 'deleteOrder'])->name('admin.order.delete');
     Route::get('/export',[OrderController::class,'export'])->name('admin.order.export');
-    
-});
-
-//post
-Route::group(['prefix' => 'post'], function () {
-    Route::get('/', [PostController::class, 'index'])->name('admin.post.index');
-    Route::get('/detail/{id}', [PostController::class, 'showPost'])->name('admin.post.show');
-    Route::get('/add', [PostController::class, 'createPost'])->name('admin.post.create');
-    Route::post('/store', [PostController::class, 'storePost'])->name('admin.post.store');
-    Route::get('/update/{id}', [PostController::class, 'editPost'])->name('admin.post.edit');
-    Route::post('/update/{id}', [PostController::class, 'updatePost'])->name('admin.post.update');
-    Route::get('/delete/{id}', [PostController::class, 'deletePost'])->name('admin.post.delete');
 });
 
 //storage

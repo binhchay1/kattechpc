@@ -135,126 +135,152 @@
     </div>
 </section>
 
-<div class="box-product-category boder-radius-10">
-    <div class="d-flex align-items-center justify-content-between">
-        <div class="title">
-            <h2 class="title-box font-weight-600">LAPTOP - PHỤ KIỆN</h2>
+<section class="product-slide">
+    <div class="product-slide-main boder-radius-10">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="title">
+                <h2 class="title-box font-weight-600">LAPTOP - PHỤ KIỆN</h2>
+            </div>
+            <div class="list-category-child d-flex align-items-center justify-content-end flex-1">
+                <a href="/laptop-gaming" class="title-category">LAPTOP GAMING</a>
+                <a href="/chon-theo-nhu-cau" class="title-category">CHỌN THEO NHU CẦU</a>
+                <a href="/chon-theo-khoang-gia" class="title-category">CHỌN THEO KHOẢNG GIÁ</a>
+                <a href="/chon-theo-cpu" class="title-category">CHỌN THEO CPU</a>
+                <a href="/laptop" class="title-all-category">Xem tất cả <i class="fa-solid fa-caret-right"></i></a>
+            </div>
         </div>
-        <div class="list-category-child d-flex align-items-center justify-content-end flex-1">
-            <a href="/laptop-gaming" class="title-category">LAPTOP GAMING</a>
-            <a href="/chon-theo-nhu-cau" class="title-category">CHỌN THEO NHU CẦU</a>
-            <a href="/chon-theo-khoang-gia" class="title-category">CHỌN THEO KHOẢNG GIÁ</a>
-            <a href="/chon-theo-cpu" class="title-category">CHỌN THEO CPU</a>
-            <a href="/laptop" class="title-all-category">Xem tất cả <i class="fa-solid fa-caret-right"></i></a>
+        <div class="swiper box-list-item-category swiper-product-category swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide " style="width: 224.8px; margin-right: 12px;" role="group">
+                    <div class="product-item">
+                        <a href="/laptop-gaming-gigabyte-g5-mf-f2ph333sh-i5-12450h-8gb-ram-512gb-ssd-156-fhd-ips-144hz-rtx-4050-6gb-win-11h-black-2yrs" class="product-image position-relative">
+                            <img src="/media/product/250-25631-gaming-gigabyte-g5-mf-f2ph333sh.jpg" width="203" height="203" alt="Laptop Gaming Gigabyte G5 MF F2PH333SH (i5-12450H/ 8GB RAM/ 512GB SSD/ 15.6&quot; FHD IPS 144Hz/ RTX 4050 6GB/ Win 11H/ Black/ 2Yrs)">
+                            <i class="sprite sprite-icon-hot-deal icon-hot-deal" style="display:none;"></i>
+                            <span class="p-type-holder">
+                                <i class="p-icon-type p-icon-hot"></i>
+                            </span>
+                            <span class="p-type-holder p-type-holder-2">
+                                <i class="p-icon-type p-icon-best-sale"></i>
+                            </span>
+                        </a>
+                        <div class="product-info">
+                            <a href="/laptop-gaming-gigabyte-g5-mf-f2ph333sh-i5-12450h-8gb-ram-512gb-ssd-156-fhd-ips-144hz-rtx-4050-6gb-win-11h-black-2yrs">
+                                <h3 class="product-title line-clamp-3">Laptop Gaming Gigabyte G5 MF F2PH333SH (i5-12450H/ 8GB RAM/ 512GB SSD/ 15.6" FHD IPS 144Hz/ RTX 4050 6GB/ Win 11H/ Black/ 2Yrs)</h3>
+                            </a>
+                            <div class="product-martket-main d-flex align-items-center">
+                                <p class="product-market-price">
+                                    24.000.000<u>đ</u>
+                                </p>
+                                <div class="product-percent-price">-19%</div>
+                            </div>
+                            <div class="product-price-main font-weight-600">
+                                19.490.000đ
+
+                            </div>
+                            <div class="product-offer line-clamp-2">
+                                <p>+ Tặng Túi/Balo laptop NC trị giá: 390.000đ</p>
+                                <p>+ Tặng Chuột không dây trị giá: 150.000đ<br>+ Tặng Bàn di chuột trị giá: 50.000đ<br>+ Tặng Bộ vệ sinh Laptop trị giá: 40.000đ<br>+ Vệ sinh bảo dưỡng Laptop miễn phí trọn đời trị giá: 1 triệu đồng<br>+ Giảm 10% khi mua thêm RAM, HDD laptop<br>+ Giảm 5% khi mua kèm Gear, Đế tản nhiệt Laptop</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></div>
+            <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide"></div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
         </div>
     </div>
-    <div class="swiper box-list-item-category swiper-product-category swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
-        <div class="swiper-wrapper" id="js-product-407" aria-live="off" style="transition-duration: 0ms; transform: translate3d(-947.2px, 0px, 0px);">
-            <div class="swiper-slide" style="width: 224.8px; margin-right: 12px;" role="group" aria-label="NaN / 10">
-                <div class="product-item">
-                    <a href="/laptop-gaming-gigabyte-g5-mf-f2ph333sh-i5-12450h-8gb-ram-512gb-ssd-156-fhd-ips-144hz-rtx-4050-6gb-win-11h-black-2yrs" class="product-image position-relative">
-                        <img src="/media/product/250-25631-gaming-gigabyte-g5-mf-f2ph333sh.jpg" width="203" height="203" alt="Laptop Gaming Gigabyte G5 MF F2PH333SH (i5-12450H/ 8GB RAM/ 512GB SSD/ 15.6&quot; FHD IPS 144Hz/ RTX 4050 6GB/ Win 11H/ Black/ 2Yrs)">
-                        <i class="sprite sprite-icon-hot-deal icon-hot-deal" style="display:none;"></i>
-                        <span class="p-type-holder">
-                            <i class="p-icon-type p-icon-hot"></i>
-                        </span>
-                        <span class="p-type-holder p-type-holder-2">
-                            <i class="p-icon-type p-icon-best-sale"></i>
-                        </span>
+</section>
+
+<section class="content-news">
+    <div class="box-article-group boder-radius-10">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="title-box">
+                <h2 class="title-box font-weight-600">Tin tức công nghệ</h2>
+            </div>
+            <a href="/tin-cong-nghe" class="btn-article-group">Xem tất cả <i class="fa-solid fa-caret-right"></i></a>
+        </div>
+        <div class="list-article-group d-flex align-items-center gap-10" id="js-article-tech-homeapge">
+            <div class="item-article d-flex gap-12">
+                <a href="/canh-bao-tinh-trang-gia-mao-may-tinh-nguyen-cong-de-lua-dao-khach-hang" class="img-article boder-radius-10 position-relative">
+                    <img class="boder-radius-10" src="/media/news/2911-c---nh-b--o-1920x1080-1.jpg" alt="Cảnh báo tình trạng giả mạo Máy tính Nguyễn Công để lừa đảo khách hàng">
+                    <i class="sprite sprite-icon-play-video-detail icon-video-feature incon-play-youtube"></i>
+                    <i class="sprite sprite-play-youtube incon-play-youtube"></i>
+                </a>
+                <div class="content-article content-article-item d-flex flex-column flex-1">
+                    <a href="/canh-bao-tinh-trang-gia-mao-may-tinh-nguyen-cong-de-lua-dao-khach-hang" class="title-article">
+                        <h3 class="font-weight-400 line-clamp-2">Cảnh báo tình trạng giả mạo Máy tính Nguyễn Công để lừa đảo khách hàng</h3>
                     </a>
-                    <div class="product-info">
-                        <a href="/laptop-gaming-gigabyte-g5-mf-f2ph333sh-i5-12450h-8gb-ram-512gb-ssd-156-fhd-ips-144hz-rtx-4050-6gb-win-11h-black-2yrs">
-                            <h3 class="product-title line-clamp-3">Laptop Gaming Gigabyte G5 MF F2PH333SH (i5-12450H/ 8GB RAM/ 512GB SSD/ 15.6" FHD IPS 144Hz/ RTX 4050 6GB/ Win 11H/ Black/ 2Yrs)</h3>
-                        </a>
-                        <div class="product-martket-main d-flex align-items-center">
-                            <p class="product-market-price">
-                                24.000.000<u>đ</u>
-                            </p>
-                            <div class="product-percent-price">-19%</div>
-                        </div>
-                        <div class="product-price-main font-weight-600">
-                            19.490.000đ
+                    <p class="time-article d-flex align-items-center gap-4">
+                        <i class="sprite sprite-clock-item-article"></i>
+                        <span>11-03-2024, 2:23 pm</span>
+                    </p>
+                    <p class="descreption-article line-clamp-2"></p>
+                </div>
+            </div>
 
-                        </div>
-                        <div class="product-offer line-clamp-2">
-                            <p>+ Tặng Túi/Balo laptop NC trị giá: 390.000đ</p>
-                            <p>+ Tặng Chuột không dây trị giá: 150.000đ<br>+ Tặng Bàn di chuột trị giá: 50.000đ<br>+ Tặng Bộ vệ sinh Laptop trị giá: 40.000đ<br>+ Vệ sinh bảo dưỡng Laptop miễn phí trọn đời trị giá: 1 triệu đồng<br>+ Giảm 10% khi mua thêm RAM, HDD laptop<br>+ Giảm 5% khi mua kèm Gear, Đế tản nhiệt Laptop</p>
-                        </div>
-                    </div>
-                    <!-- TOOLTIP -->
-                    <div class="tooltip p-tooltip tippy-box">
-                        <div class="tooltip-name">
-                            Laptop Gaming Gigabyte G5 MF F2PH333SH (i5-12450H/ 8GB RAM/ 512GB SSD/ 15.6" FHD IPS 144Hz/ RTX 4050 6GB/ Win 11H/ Black/ 2Yrs)
-                        </div>
-                        <div class="tooltip-descreption">
-                            <div class="tooltip-descreption-price">
-                                <p>Giá niêm yết</p>
-                                <p>Giá bán</p>
-                                <p>Bảo hành</p>
-                                <p>Tình trạng</p>
-                            </div>
-                            <div class="tooltip-descreption-info">
-                                <div>
-                                    <div class="d-flex align-items-center">
-                                        <p class="card-price-origin color-black" style="position: relative;">24.000.000₫
-                                            <span class="card-price-origin-line-through"></span>
-                                        </p>
-                                        <span class="color-red" style="margin-left: 4px;">-19%</span>
-                                    </div>
-                                </div>
-                                <p>
-                                    19.490.000đ
-                                </p>
-                                <p>
-                                    <span class="color-red line-clamp">24 Tháng</span>
-                                </p>
-                                <p class="color-secondary">
-                                    Còn hàng
-                                </p>
-                            </div>
-                        </div>
-                        <div class="tooltip-input">
-                            <i class="fa-solid fa-database icon-database"></i>
-                            <span>Thông số sản phẩm</span>
-                        </div>
-                        <div class="tooltip-list">
-                            <ul>
-                                CPU: Intel Core i5-12450H 3.3GHz up to 4.4GHz, 8 Cores 12 Threads, 12MB Cache
-                                VGA: Nvidia Geforce RTX 4050 6GB GDDR6
-                                Ram: 8GB (1x8GB) DDR4-3200Mhz
-                                SSD: 512GB SSD M.2 PCIE G4X4
-                                Màn hình: 15.6 inch IPS 144Hz FHD
-                            </ul>
-                        </div>
-                        <div class="box-tooltip-gift">
-                            <div class="tooltip-input tooltip-gift">
-                                <p class="icon-gift">
-                                    <i class="fa-solid fa-gift"></i>
-                                    Khuyến mãi
-                                </p>
-                            </div>
-                            <div class="tooltip-list tooltip-list-gift">
-                                <ul>
-                                    <div class="item">
-                                        <p>+ Tặng Túi/Balo laptop NC trị giá: 390.000đ</p>
-                                    </div>
-                                    <div class="item">
-                                        <p>+ Tặng Chuột không dây trị giá: 150.000đ<br>+ Tặng Bàn di chuột trị giá: 50.000đ<br>+ Tặng Bộ vệ sinh Laptop trị giá: 40.000đ<br>+ Vệ sinh bảo dưỡng Laptop miễn phí trọn đời trị giá: 1 triệu đồng<br>+ Giảm 10% khi mua thêm RAM, HDD laptop<br>+ Giảm 5% khi mua kèm Gear, Đế tản nhiệt Laptop</p>
-                                    </div>
-                                </ul>
-                            </div>
-                        </div>
+            <div class="item-article d-flex gap-12">
+                <a href="/viettel-trung-dau-gia-bang-tan-de-chinh-thuc-trien-khai-5g-tai-viet-nam" class="img-article boder-radius-10 position-relative">
 
-                    </div>
+                    <img class="boder-radius-10" src="/media/news/2904-viettel-dau-gia-thanh-cong-bang-tan-5g-1.jpg" alt="Viettel trúng đấu giá băng tần để chính thức triển khai 5G tại Việt Nam">
 
+                    <i class="sprite sprite-icon-play-video-detail icon-video-feature incon-play-youtube"></i>
+                    <i class="sprite sprite-play-youtube incon-play-youtube"></i>
+                </a>
+                <div class="content-article content-article-item d-flex flex-column flex-1">
+                    <a href="/viettel-trung-dau-gia-bang-tan-de-chinh-thuc-trien-khai-5g-tai-viet-nam" class="title-article">
+                        <h3 class="font-weight-400 line-clamp-2">Viettel trúng đấu giá băng tần để chính thức triển khai 5G tại Việt Nam</h3>
+                    </a>
+                    <p class="time-article d-flex align-items-center gap-4">
+                        <i class="sprite sprite-clock-item-article"></i>
+                        <span>10-03-2024, 10:37 am</span>
+                    </p>
+                    <p class="descreption-article line-clamp-2">Vượt qua 2 nhà mạng khác là Vinaphone và Mobifone, Tập đoàn Công nghiệp - Viễn thông quân đội Viettel mới đây đã đấu giá thành công để triển khai 5G tại Việt Nam với băng tần 2.500 - 2.600 MHz.</p>
+                </div>
+            </div>
+
+            <div class="item-article d-flex gap-12">
+                <a href="/vong-tron-loading-tren-windows-11-khong-he-vo-tri-nhu-chung-ta-van-nghi" class="img-article boder-radius-10 position-relative">
+
+                    <img class="boder-radius-10" src="/media/news/2887-vong-tron-loading-win-11-1.jpg" alt="Vòng tròn loading trên Windows 11 không hề vô tri như chúng ta vẫn nghĩ">
+
+                    <i class="sprite sprite-icon-play-video-detail icon-video-feature incon-play-youtube"></i>
+                    <i class="sprite sprite-play-youtube incon-play-youtube"></i>
+                </a>
+                <div class="content-article content-article-item d-flex flex-column flex-1">
+                    <a href="/vong-tron-loading-tren-windows-11-khong-he-vo-tri-nhu-chung-ta-van-nghi" class="title-article">
+                        <h3 class="font-weight-400 line-clamp-2">Vòng tròn loading trên Windows 11 không hề vô tri như chúng ta vẫn nghĩ</h3>
+                    </a>
+                    <p class="time-article d-flex align-items-center gap-4">
+                        <i class="sprite sprite-clock-item-article"></i>
+                        <span>06-03-2024, 11:23 am</span>
+                    </p>
+                    <p class="descreption-article line-clamp-2">Hóa ra vòng tròn loading trên màn hình khởi động của Windows sử dụng một bộ font chữ riêng chứ không đơn thuần chỉ là những hình ảnh động vô tri như bấy lâu nay chúng ta vẫn nghĩ.</p>
+                </div>
+            </div>
+
+            <div class="item-article d-flex gap-12">
+                <a href="/facebook-va-instagram-sap-dien-rong-gay-thiet-hai-lon-cho-nen-kinh-te-the-gioi" class="img-article boder-radius-10 position-relative">
+
+                    <img class="boder-radius-10" src="/media/news/2886-facebook-sap-1.jpg" alt="Facebook và Instagram sập diện rộng gây thiệt hại lớn cho nền kinh tế thế giới">
+
+                    <i class="sprite sprite-icon-play-video-detail icon-video-feature incon-play-youtube"></i>
+                    <i class="sprite sprite-play-youtube incon-play-youtube"></i>
+                </a>
+                <div class="content-article content-article-item d-flex flex-column flex-1">
+                    <a href="/facebook-va-instagram-sap-dien-rong-gay-thiet-hai-lon-cho-nen-kinh-te-the-gioi" class="title-article">
+                        <h3 class="font-weight-400 line-clamp-2">Facebook và Instagram sập diện rộng gây thiệt hại lớn cho nền kinh tế thế giới</h3>
+                    </a>
+                    <p class="time-article d-flex align-items-center gap-4">
+                        <i class="sprite sprite-clock-item-article"></i>
+                        <span>06-03-2024, 9:08 am</span>
+                    </p>
+                    <p class="descreption-article line-clamp-2">Đêm ngày 5 tháng 3 vừa qua theo giờ Việt Nam, các nền tảng của Meta bao gồm Facebook và Instagram đã tạm ngừng hoạt động trong một khoảng thời gian, gây ra sự hỗn loạn trên toàn thế giới.</p>
                 </div>
             </div>
         </div>
-        <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-product-407"></div>
-        <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-product-407"></div>
-        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
     </div>
-</div>
+</section>
 @endsection
 
 @section('js')
