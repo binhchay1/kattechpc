@@ -20,6 +20,8 @@
 
     <body>
     <main>
+
+        @if (isset($dataCart))
         <div class="">
             <img class="image-cart" src="{{asset('images/cart.jpg')}}">
             <h2 class="text-center">{{__('Không có sản phẩm nào trong giỏ hàng')}}</h2>
@@ -28,8 +30,8 @@
                 <a href="#">
                     <button class="button-cart">{{__('Tiếp tục mua hàng')}}</button></a>
             </div>
-
         </div>
+        @else
         <div class="basket">
             <div class="basket-module">
                 <label for="promo-code">Enter a promotional code</label>
@@ -114,6 +116,7 @@
                 </div>
             </div>
         </aside>
+            @endif
     </main>
     </body>
 
