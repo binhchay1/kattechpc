@@ -151,10 +151,11 @@
         </div>
         <div class="swiper box-list-item-category swiper-product-category swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
             <div class="swiper-wrapper">
+                @foreach($dataProducts as $product)
                 <div class="swiper-slide " style="width: 224.8px; margin-right: 12px;" role="group">
                     <div class="product-item">
-                        <a href="/laptop-gaming-gigabyte-g5-mf-f2ph333sh-i5-12450h-8gb-ram-512gb-ssd-156-fhd-ips-144hz-rtx-4050-6gb-win-11h-black-2yrs" class="product-image position-relative">
-                            <img src="/media/product/250-25631-gaming-gigabyte-g5-mf-f2ph333sh.jpg" width="203" height="203" alt="Laptop Gaming Gigabyte G5 MF F2PH333SH (i5-12450H/ 8GB RAM/ 512GB SSD/ 15.6&quot; FHD IPS 144Hz/ RTX 4050 6GB/ Win 11H/ Black/ 2Yrs)">
+                        <a href="#" class="product-image position-relative">
+                            <img src="{{$product->images}}" width="203" height="203" alt=>
                             <i class="sprite sprite-icon-hot-deal icon-hot-deal" style="display:none;"></i>
                             <span class="p-type-holder">
                                 <i class="p-icon-type p-icon-hot"></i>
@@ -164,8 +165,8 @@
                             </span>
                         </a>
                         <div class="product-info">
-                            <a href="/laptop-gaming-gigabyte-g5-mf-f2ph333sh-i5-12450h-8gb-ram-512gb-ssd-156-fhd-ips-144hz-rtx-4050-6gb-win-11h-black-2yrs">
-                                <h3 class="product-title line-clamp-3">Laptop Gaming Gigabyte G5 MF F2PH333SH (i5-12450H/ 8GB RAM/ 512GB SSD/ 15.6" FHD IPS 144Hz/ RTX 4050 6GB/ Win 11H/ Black/ 2Yrs)</h3>
+                            <a href="{{route('productDetail', $product['name'])}}">
+                                <h3 class="product-title line-clamp-3">{{$product->name}}</h3>
                             </a>
                             <div class="product-martket-main d-flex align-items-center">
                                 <p class="product-market-price">
@@ -184,6 +185,7 @@
                         </div>
                     </div>
                 </div>
+                @endforeach
             </div>
             <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></div>
             <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide"></div>
