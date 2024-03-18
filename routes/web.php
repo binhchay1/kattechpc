@@ -111,11 +111,17 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');
-Route::get('/post', [HomeController::class, 'viewPost'])->name('post');
+Route::get('/page-post', [HomeController::class, 'viewPost'])->name('post');
 Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
 Route::get('/promotion', [HomeController::class, 'viewRegister'])->name('promotion');
 Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');
+Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');
 
+//Product
+Route::group(['prefix' => 'product'], function () {
+    Route::get('/detail', [\App\Http\Controllers\Page\ProductController::class, 'detail'])->name('page.product.detail');
+  
+});
 
 //cart
 Route::group(['prefix' => 'cart'], function () {

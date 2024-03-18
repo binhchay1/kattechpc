@@ -195,9 +195,6 @@
                             <div id="object4">dolor site amet</div>
                         </div>
                     </div>
-
-
-
                 </div>
             </div>
         </div>
