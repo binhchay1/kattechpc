@@ -1,10 +1,10 @@
 @extends('layouts.master-admin')
+
 @section('title')
     {{ __('Thêm sản phẩm') }}
 @endsection
-@section('content')
 
-    <!-- page title -->
+@section('content')
     <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5 mt-4">
         <div class="xl:col-span-12">
             <div class="card">
@@ -15,24 +15,24 @@
                         {{ csrf_field() }}
                         <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
                             <div class="xl:col-span-6">
-                                <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Tên sản phẩm')}}</label>
+                                <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{ __('Tên sản phẩm') }}</label>
                                 <input type="text" id="productNameInput" name="name" value="{{old('name')}}"
                                        class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                        placeholder="{{__('Tên sản phẩm')}}" >
                                 @if ($errors->has('name'))
                                     <span class="text-danger">{{ $errors->first('name') }}</span>
                                 @endif
-                            </div><!--end col-->
+                            </div>
 
                             <div class="xl:col-span-6">
-                                <label for="productCodeInput" class="inline-block mb-2 text-base font-medium"> {{__('Mã sản phẩm')}}</label>
+                                <label for="productCodeInput" class="inline-block mb-2 text-base font-medium"> {{ __('Mã sản phẩm') }}</label>
                                 <input type="text" id="productCodeInput" name="code" value="{{old('code')}}"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                        placeholder="{{__('Mã sản phẩm')}}">
                                 @if ($errors->has('code'))
                                     <span class="text-danger">{{ $errors->first('code') }}</span>
                                 @endif
-                            </div><!--end col-->
+                            </div>
 
                             <div class="xl:col-span-6">
                                 <div class="form-group">

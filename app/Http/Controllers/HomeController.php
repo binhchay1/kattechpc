@@ -7,26 +7,29 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    
-    private  $product;
-    
+    protected $productRepository;
+
     public function __construct(
         ProductRepository $productRepository
-    )
-    {
+    ) {
         $this->productRepository = $productRepository;
     }
-    
+
     public function viewHome()
     {
-        $dataProducts = $this->productRepository->index();
-        return view('page.homepage', compact('dataProducts'));
+        $listKeyboard = $this->productRepository->getListKeyboard();
+        $listLaptop = $this->productRepository->getListLaptop();
+        $listCase = $this->productRepository->getListCase();
+
+        return view('page.homepage', compact('listKeyboard', 'listLaptop', 'listCase'));
     }
-    
+
     public function productDetail($name)
     {
         $product = $this->productRepository->productDetail($name);
-        return view('page.product.product-detail', compact('product'));
+        $productRelated = $this->productRepository->getProductRelated($product->category, $product->id);
+
+        return view('page.product.product-detail', compact('product', 'productRelated'));
     }
 
     public function viewPolicy()

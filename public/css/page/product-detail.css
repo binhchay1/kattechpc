@@ -3,14 +3,14 @@
     margin: 0;
     padding: 0;
 }
-body {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 30px;
-}
 
 header {
     margin-bottom: 20px;
+}
+
+#content-page {
+    max-width: 1430px;
+    margin: 0 auto;
 }
 
 .product-container {
@@ -55,8 +55,9 @@ header {
 }
 
 .product-info{
-    width: 60%;
+    width: 100%;
 }
+
 .product-info h3 {
     font-size: 32px;
     font-family: Lato;
@@ -197,11 +198,13 @@ tr:nth-child(even) {
 #content {
     padding: 0.5rem;
     display: flex;
+    flex-wrap: wrap;
 }
 
 #left {
-    width: 20%;
+    width: 100%;
 }
+
 #right {
     width: 80%;
     padding: 0.5rem;
@@ -247,9 +250,17 @@ tr:nth-child(even) {
     border-radius: 4px;
 }
 
+#related-price {
+    font-size: 18px;
+    color: #ff4242;
+    font-weight: bold;
+    margin-top: 10px;
+}
 
-
-
+#related-name {
+    font-size: 18px;
+    font-weight: bold;
+}
 
 @media screen and (max-width: 576px) {
     .product-container{

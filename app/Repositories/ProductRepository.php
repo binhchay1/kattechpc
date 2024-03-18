@@ -31,18 +31,34 @@ class ProductRepository extends BaseRepository
     {
         return $this->model->where('id', $id)->update($input);
     }
-    
+
     public function destroy($id)
     {
         return $this->model->where('id', $id)->delete();
     }
-    
+
     public function productDetail($name)
     {
         return $this->model->where('name', $name)->first();
     }
 
+    public function getListKeyboard()
+    {
+        return $this->model->where('category', 'Bàn phím')->get();
+    }
+
+    public function getListLaptop()
+    {
+        return $this->model->where('category', 'Laptop')->get();
+    }
+
+    public function getListCase()
+    {
+        return $this->model->where('category', 'Case')->get();
+    }
+
+    public function getProductRelated($category, $id)
+    {
+        return $this->model->where('category', $category)->where('id', '!=', $id)->take(4)->get();
+    }
 }
-
-
-
