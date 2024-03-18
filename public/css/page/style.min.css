@@ -1,6 +1,6 @@
 :root {
     --flex-width: 1420px;
-    --color-primary: #4287f5;
+    --color-primary: #b42328;
 }
 
 body {
@@ -26,10 +26,16 @@ body a {
 }
 
 .header-top {
-    background: #f4f4f4;
+    background: #000000;
     margin-bottom: 20px;
     border-bottom: 1px solid #ccc;
     padding: 10px;
+    color: var(--color-primary);
+}
+
+.header-top a {
+    color: var(--color-primary);
+    ;
 }
 
 .header-top-container {
@@ -60,7 +66,7 @@ body a {
 }
 
 .hotline {
-    background: repeating-linear-gradient(to right, #7faffa 0, var(--color-primary) 50%, #186cf2 100%);
+    background: repeating-linear-gradient(to right, #fd7272 0, var(--color-primary) 50%, #f50c0c 100%);
     animation: 2s linear infinite forwards gradient;
     background-size: 200% auto;
     background-position: 0 100%;
@@ -399,6 +405,205 @@ body a {
 
 .news-main-left {
     max-width: 850px;
+}
+
+.flash-sale-banner {
+    width: var(--flex-width);
+    margin: 0 auto;
+    background: linear-gradient(180deg, #141414 0%, #4a5052 100%);
+    border-radius: 10px;
+}
+
+.flash-sale-area {
+    padding: 15px;
+}
+
+.flash-sale-title {
+    font-size: 32px;
+    line-height: 48px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+}
+
+.flash-sale-title-area {
+    margin-top: 10px;
+    gap: 16px;
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+    min-height: 300px;
+}
+
+.swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+}
+
+.swiper-slide {
+    width: 186px;
+    margin-right: 12px;
+    flex-shrink: 0;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+}
+
+.product-item {
+    padding: 12px 11px;
+    position: relative;
+    border-radius: 5px;
+    background: #fff;
+    -webkit-box-shadow: 0 -1px 9px 0 rgba(164, 164, 164, .25);
+    box-shadow: 0 -1px 9px 0 rgba(164, 164, 164, .25);
+    min-width: 0;
+}
+
+.product-image {
+    position: relative;
+    display: block;
+    margin-bottom: 6px;
+    width: 100%;
+}
+
+.product-item .product-info .product-percent-price {
+    position: relative;
+    background: #be1f2d;
+    border-radius: 7px;
+    color: #fff;
+    padding: 1px 8px;
+}
+
+.product-item .product-info .product-price-main {
+    margin-top: 6px;
+    font-size: 20px;
+    line-height: 28px;
+    color: #be1f2d;
+    font-weight: bold;
+}
+
+.product-item .product-info .product-market-price {
+    color: #575757;
+    text-decoration: line-through;
+    margin-right: 6px;
+}
+
+.p-quantity-sale {
+    position: relative;
+    height: 20px;
+    margin: 10px 0 15px;
+}
+
+.p-quantity-sale i {
+    position: absolute;
+    left: -9px;
+    bottom: 1px;
+    z-index: 2;
+}
+
+.p-quantity-sale .bg-gradient {
+    background-color: #ebebeb;
+    border-radius: 14px;
+    height: 100%;
+}
+
+.p-quantity-sale p {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #ffb22f;
+    border-radius: 7px;
+    height: 100%;
+}
+
+.p-quantity-sale span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: var(--black);
+    font-weight: 400;
+    font-size: 11px;
+    width: 100%;
+    text-align: center;
+}
+
+.fa-bolt {
+    font-size: 35px;
+}
+
+.p-quantity-sale p {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #ffb22f;
+    border-radius: 7px;
+    height: 100%;
+    margin: 0;
+}
+
+.product-slide-main {
+    margin-bottom: 20px;
+    padding: 14px 12px;
+    background: #fff;
+    width: var(--flex-width);
+    margin: 0 auto;
+}
+
+.product-slide-main .box-list-item-category {
+    padding: 2px;
+    min-height: 300px;
+}
+
+.content-news {
+    margin-bottom: 20px;
+    padding: 14px 12px;
+    background: #fff;
+    width: var(--flex-width);
+    margin: 0 auto;
+}
+
+.box-article-group {
+    margin-bottom: 30px;
+    padding: 14px 12px;
+    background: #fff;
+}
+
+.box-article-group .list-article-group .item-article {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 25%;
+    border: 1px solid #ebebeb;
+    border-radius: 10px;
+    padding: 8px 8px 10px;
+}
+
+.box-article-group .list-article-group .item-article .img-article {
+    display: block;
+    padding-bottom: 60%;
+    position: relative;
+    overflow: hidden;
 }
 
 @media screen and (max-width: 992px) {
