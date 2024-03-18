@@ -36,6 +36,11 @@ class ProductRepository extends BaseRepository
     {
         return $this->model->where('id', $id)->delete();
     }
+    
+    public function productDetail($name)
+    {
+        return $this->model->where('name', $name)->first();
+    }
 
 }
 
