@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Cart;
 class CartController extends Controller
 {
     /**
@@ -12,8 +12,10 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cartItems = \Cart::getContent();
-        return view('page.cart.index', compact('cartItems'));
+        $totalCart = Cart::getTotal();
+        $dataCart = Cart::getContent();
+       
+        return view('page.cart.index', compact('dataCart'));
     }
 
     /**

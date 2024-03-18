@@ -4,12 +4,43 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
     use HasFactory;
+    use Sluggable;
 
     protected $fillable = [
         'title', 'slug', 'content'
     ];
+    
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+    
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::creating(function ($product) {
+            $product->slug = Str::slug($product->title);
+            
+            // Ensure slug uniqueness
+            $originalSlug = $slug = $product->slug;
+            $count = 1;
+            
+            while (static::where('slug', $slug)->exists()) {
+                $slug = $originalSlug . '-' . $count++;
+            }
+            
+            $product->slug = $slug;
+        });
+    }
 }
