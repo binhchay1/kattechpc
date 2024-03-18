@@ -116,6 +116,8 @@ Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
 Route::get('/promotion', [HomeController::class, 'viewRegister'])->name('promotion');
 Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');
 Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');
+Route::get('/products/{name}', [HomeController::class, 'productDetail'])->name('productDetail');
+
 
 //Product
 Route::group(['prefix' => 'product'], function () {
@@ -126,7 +128,7 @@ Route::group(['prefix' => 'product'], function () {
 //cart
 Route::group(['prefix' => 'cart'], function () {
     Route::get('/', [CartController::class, 'index'])->name('page.cart.index');
-    Route::post('cart', [CartController::class, 'addToCart'])->name('page.cart.store');
+    Route::post('add-cart', [CartController::class, 'addToCart'])->name('page.cart.store');
     Route::post('update-cart', [CartController::class, 'updateCart'])->name('page.cart.update');
     Route::post('remove', [CartController::class, 'removeCart'])->name('page.cart.remove');
     Route::post('clear', [CartController::class, 'clearAllCart'])->name('page.cart.clear');

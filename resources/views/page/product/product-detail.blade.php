@@ -11,7 +11,7 @@
 
 @section('content')
     <body>
-  
+
     <!-- product section -->
     <section class="product-container">
         <!-- left side -->
@@ -27,15 +27,18 @@
         </div>
         <!-- Right side -->
         <div class="product-info">
-            <h3>LEVI'S® WOMEN'S XL TRUCKER JACKET</h3>
-            <h5>{{__('Giá ')}}: $140 <del>$170</del></h5>
+            <h3>{{$product->name}}</h3>
+            <h5>{{__('Giá ')}}: {{$product->price}} <del>$170</del></h5>
             <p><span style="font-size:18px">✔ {{__('Hỗ trợ đổi mới trong 7 ngày')}}.&nbsp;</span></p>
             <p><span style="font-size:18px">✔ {{__('Bảo hành: 24 Tháng. Bảo hành tại hãng. Bảo hành toàn cầu. Đổi mới 30 ngày')}}.&nbsp;</span></p>
             <p><span style="font-size:18px">✔ {{__(' Miễn phí giao hàng toàn quốc.')}}.&nbsp;</span></p>
 
             <div class="quantity mt-4">
+                <form action="{{ route('page.cart.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                 <h4><span style="font-size:18px">{{__('Số Lượng')}}&nbsp;<input type="number" value="1" min="1"></span></h4>
                 <button class="btn-buy">{{__('MUA NGAY')}}</button>
+                </form>
             </div>
 
             <div class="gift-product">

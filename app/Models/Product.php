@@ -27,4 +27,9 @@ class Product extends Model
             'id');
     }
     
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+    
 }
