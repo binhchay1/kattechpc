@@ -256,3 +256,10 @@
 .font-weight-800 {
     font-weight: 800;
 }
+
+.container-fluid {
+    max-width: 1430px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 10px;
+}

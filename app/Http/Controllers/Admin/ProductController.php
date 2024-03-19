@@ -9,7 +9,6 @@ use App\Http\Requests\ProductRequest;
 use App\Repositories\ProductRepository;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
-use function App\Http\Controllers\alert;
 
 class ProductController extends Controller
 {
@@ -61,7 +60,7 @@ class ProductController extends Controller
             }
         }
 
-        $product = $this->productRepository->store($input);
+        $this->productRepository->store($input);
 
         return redirect()->route('admin.product.index')->with('success', 'Product successfully added.');
     }
@@ -69,7 +68,6 @@ class ProductController extends Controller
 
     public function editProduct($id)
     {
-        
         $statusProduct = Product::STATUS;
         $listCategories = $this->categoryRepository->index();
         $product = $this->productRepository->show($id);
@@ -99,7 +97,7 @@ class ProductController extends Controller
     public function deleteProduct($id)
     {
         $this->productRepository->destroy($id);
-    
+
         return back()->with('success', 'Product successfully deleted.');
     }
 
@@ -111,5 +109,5 @@ class ProductController extends Controller
 
         return view('pages.products', compact('products', 'categories'));
     }
-    
+
 }
