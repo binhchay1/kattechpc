@@ -4,6 +4,12 @@
     padding: 0;
 }
 
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
 header {
     margin-bottom: 20px;
 }
@@ -19,9 +25,9 @@ header {
     align-items: start;
     gap: 40px;
     margin-top: 50px;
+    max-width: 1280px;
+
 }
-
-
 
 .img-card img {
     width: 100%;

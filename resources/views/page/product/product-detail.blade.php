@@ -11,6 +11,8 @@
 
 @section('content')
 
+<div class="container">
+
 <section class="product-container">
     <div class="img-card">
         <img src="{{ $product->image }}" alt="" id="featured-image">
@@ -59,18 +61,35 @@
 <section class="product-container">
     <div class="product-info">
         <h3>{{__('Thông tin sản phẩm')}}</h3>
+            <table>
+                <tr>
+                    <th col="300"></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>CPU</td>
+                    <td>Intel® Core™ i5-12450HX, 8C (4P + 4E) / 12T, P-core up to 4.4GHz, E-core up to 3.1GHz, 12MB</td>
+                </tr>
+                <tr>
+                    <td>RAM</td>
+                    <td>8GB (1 x 8GB) DDR5-4800 SO-DIMM (Còn trống 1 khe, tối đa 32GB)</td>
+                </tr>
+                <tr>
+                    <td>Ổ cứng</td>
+                    <td>512GB SSD M.2 2242 PCIe 4.0x4 NVMe (2 Slots: M.2 2242/M.2 2280 PCIe 4.0 x4)</td>
+                </tr>
+                <tr>
+                    <td>Card đồ họa</td>
+                    <td>NVIDIA® GeForce RTX™ 2050 4GB GDDR6, Boost Clock 1575MHz, TGP 65W</td>
+                </tr>
+                <tr>
+                    <td>Màn hình</td>
+                    <td>15.6" FHD (1920x1080) IPS 300nits Anti-glare, 100% sRGB, 144Hz, G-SYNC®</td>
+                </tr>
 
-        <table>
-            <tr>
-                <th width="200">Company</th>
-                <th>Country</th>
-            </tr>
-            <tr>
-                <td>Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-            </tr>
-        </table>
-    </div>
+            </table>
+        </div>
+   
     <div class="product-related">
         <h2 class="text"> {{ __('Sản phẩm liên quan') }}</h2>
         <div id="content">
@@ -102,6 +121,7 @@
         </div>
     </div>
 </section>
+
 @endsection
 
 @section('js')

@@ -14,7 +14,7 @@
             <div class="column1 ">
                 <div class="col">
                     <div class="position-relative mb-3">
-                        <img class="img-fluid w-100" src="{{asset('/images/cart.jpg')}}" style="object-fit: cover;">
+                        <img class="img-fluid w-100" style="object-fit: cover;" alt="Auto Chess phiên bản PC" src="//file.hstatic.net/200000722513/file/tai-auto-chess-pc-9_029caa4b583e452aa59804a2ba2fc1dd.jpg">
                         <div class="">
 
                             <a class="h4" href="">Est stet amet ipsum stet clita rebum duo</a>
@@ -24,7 +24,7 @@
                 </div>
                 <div class="col">
                     <div class="position-relative mb-3">
-                        <img class="img-fluid w-100" src="{{asset('/images/cart.jpg')}}" style="object-fit: cover;">
+                        <img class="img-fluid w-100" style="object-fit: cover;" alt="Auto Chess phiên bản PC" src="//file.hstatic.net/200000722513/file/tai-auto-chess-pc-9_029caa4b583e452aa59804a2ba2fc1dd.jpg">
                         <div class="">
                             <a class="h4" href="">Est stet amet ipsum stet clita rebum duo</a>
                             <p class="m-0">Rebum dolore duo et vero ipsum clita, est ea sed duo diam ipsum, clita at justo, lorem amet vero eos sed sit...</p>
@@ -35,19 +35,19 @@
                     <h1 class="text"> {{__('Tin công nghệ')}}</h1>
                     <div class="parent">
                         <div class="child">
-                            <img class="img-fluid w-100" src="{{asset('/images/cart.jpg')}}" style="object-fit: cover;">
+                            <img class="img-fluid w-100" src="//file.hstatic.net/200000722513/file/asus_your_voice_matter_a4653e90979c4c50bb3eee5539e96d42_grande.jpg" style="object-fit: cover;">
                             <div class="">
                                 <a  href="">Est stet amet ipsum stet clita rebum duo</a>
                             </div>
                         </div>
                         <div class="child">
-                            <img class="img-fluid w-100" src="{{asset('/images/cart.jpg')}}" style="object-fit: cover;">
+                            <img class="img-fluid w-100" src="//file.hstatic.net/200000722513/file/gearvn-cach-download-game-dragon-city-cuc-de-cho-pc-laptop-2_6947843f0b8740efa12fa22c7e010778.jpg" style="object-fit: cover;">
                             <div class="">
                                 <a  href="">Est stet amet ipsum stet clita rebum duo</a>
                             </div>
                         </div>
                         <div class="child">
-                            <img class="img-fluid w-100" src="{{asset('/images/cart.jpg')}}" style="object-fit: cover;">
+                            <img class="img-fluid w-100" src="//file.hstatic.net/200000722513/file/monica-ung-dung-ai-mien-phi-d112940-7_187087bd2ddb46c1acdd81b5c1defc89.jpg" style="object-fit: cover;">
                             <div class="">
                                 <a  href="">Est stet amet ipsum stet clita rebum duo</a>
                             </div>
