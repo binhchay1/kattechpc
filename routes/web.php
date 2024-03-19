@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Page\AccountController;
 use App\Http\Controllers\Page\CartController;
 use App\Http\Controllers\TailwickController;
 use App\Http\Controllers\Admin\UserController;
@@ -112,6 +113,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     });
 });
 
+
+//Page
+
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');
 Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
@@ -121,6 +125,9 @@ Route::get('/promotion', [HomeController::class, 'viewRegister'])->name('promoti
 Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');
 Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');
 Route::get('/products/{name}', [HomeController::class, 'productDetail'])->name('productDetail');
+
+
+Route::get('account-info', [AccountController::class, 'profile'])->name('profile');
 
 
 //Product
