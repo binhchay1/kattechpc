@@ -353,7 +353,7 @@ body a {
 }
 
 .list-submenu a {
-    color: var(--color-primary);
+    color: #fff;
 }
 
 .menu-main {
