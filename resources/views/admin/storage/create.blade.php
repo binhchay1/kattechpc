@@ -6,15 +6,13 @@
 
 @section('content')
 
-<!-- page title -->
-
 <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5 mt-4">
     <div class="xl:col-span-12">
         <div class="card">
             <div class="card-body">
                 <h6 class="mb-4 text-15">{{__('Thêm kho hàng')}}</h6>
 
-                <form method="POST" action="{{route('admin.storage.store')}}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.storage.store') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
                         <div class="xl:col-span-6">
@@ -23,7 +21,7 @@
                             @if ($errors->has('name'))
                             <span class="text-danger">{{ $errors->first('name') }}</span>
                             @endif
-                        </div><!--end col-->
+                        </div>
 
                         <div class="xl:col-span-6">
                             <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Địa chỉ kho hàng')}}
@@ -32,26 +30,23 @@
                             @if ($errors->has('address'))
                             <span class="text-danger">{{ $errors->first('address') }}</span>
                             @endif
-                        </div><!--end col-->
+                        </div>
 
-                    </div><!--end grid-->
+                    </div>
                     <div class="flex justify-end gap-2 mt-4">
                         <button type="reset" class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">{{__('Xóa toàn bộ')}}</button>
                         <button type="submit" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">{{__('Thêm kho hàng')}}</button>
                     </div>
                 </form>
             </div>
-        </div><!--end card-->
-    </div><!--end col-->
-</div><!--end grid-->
+        </div>
+    </div>
+</div>
 @endsection
+
 @push('scripts')
-<!-- dropzone -->
 <script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
-<!--product create init js-->
 <script src="{{ URL::asset('build/js/pages/apps-ecommerce-product-create.init.js') }}"></script>
-<!-- App css -->
 <link rel="stylesheet" href="{{ asset('css/admin/user.css') }}">
-<!-- App js -->
 <script src="{{ URL::asset('build/js/app.js') }}"></script>
 @endpush

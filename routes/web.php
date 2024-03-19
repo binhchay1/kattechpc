@@ -11,7 +11,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Page\CartController;
 use App\Http\Controllers\TailwickController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\Admin\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
 /*

@@ -32,7 +32,6 @@
     </div>
     @include('layouts.footer')
 </div>
-</div>
 @stack('modals')
 @include('layouts.customizer')
 @include('layouts.vendor-scripts')
