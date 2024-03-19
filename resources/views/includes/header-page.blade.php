@@ -1,3 +1,35 @@
+<style>
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        margin-top: 10px;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #ddd;}
+
+    .dropdown:hover .dropdown-content {display: block;}
+
+    .dropdown:hover .dropbtn {background-color: #3e8e41;}
+</style>
+
+
 <div class="header">
     <div class="header-top">
         <div class="header-top-container">
@@ -16,8 +48,13 @@
                 </div>
 
                 @if(Auth::check())
-                <div class="ml-15px">
-                    <a href="{{ route('account') }}" class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
+                <div class="ml-15px dropdown">
+                    <a href="" class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
+                    <div class="dropdown-content">
+                        <a href="#">{{__('Tài khoản')}}</a>
+                        <a href="#">{{__('Lịch sử mua hàng')}}</a>
+                        <a href="#">{{__('Đăng xuất')}}</a>
+                    </div>
                 </div>
                 @else
                 <div class="ml-15px">
