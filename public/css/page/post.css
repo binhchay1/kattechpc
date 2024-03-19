@@ -163,6 +163,24 @@
     width: 50%;
 }
 
+#content-right {
+    margin-top: 0;
+    margin-left: 20px;
+}
+
+h4 {
+    margin-top: 0;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.top2{
+    margin-top: 70px;
+}
+
+
 
 
 
