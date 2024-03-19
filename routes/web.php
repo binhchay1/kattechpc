@@ -28,7 +28,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
 
 //post
-    Route::group(['prefix' => 'posts'], function () {
+    Route::group(['prefix' => 'post  '], function () {
         Route::get('/', [PostController::class, 'index'])->name('admin.post.index');
         Route::get('/detail/{id}', [PostController::class, 'showPost'])->name('admin.post.show');
         Route::get('/add', [PostController::class, 'createPost'])->name('admin.post.create');
@@ -114,7 +114,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');
-Route::get('/page-post', [HomeController::class, 'viewPost'])->name('post');
+Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
+Route::get('/blog-detail', [HomeController::class, 'postDetail'])->name('post.detail');
 Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
 Route::get('/promotion', [HomeController::class, 'viewRegister'])->name('promotion');
 Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');

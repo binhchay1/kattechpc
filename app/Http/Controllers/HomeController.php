@@ -49,6 +49,11 @@ class HomeController extends Controller
 
     public function viewPost()
     {
-        return view('page.post');
+        return view('page.blog.posts');
+    }
+    
+    public function postDetail()
+    {
+        return view('page.blog.post-detail');
     }
 }
