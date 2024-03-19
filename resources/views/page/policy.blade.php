@@ -18,7 +18,7 @@
                 <h5>{{__('E-mail: cskh@hattech.com • Hotline: 1800.1234')}}</h5>
             </div>
             <div class="column">
-                <img src="{{asset('/images/baohanh.jpg')}}">
+                <img src="{{asset('/images/page/baohanh.jpg')}}">
             </div>
         </div>
         <div class="footer-container">
