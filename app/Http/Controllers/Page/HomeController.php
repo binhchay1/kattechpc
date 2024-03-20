@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Page;
 use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -31,11 +32,7 @@ class HomeController extends Controller
 
     public function viewHome()
     {
-        $listKeyboard = $this->productRepository->getListKeyboard();
-        $listLaptop = $this->productRepository->getListLaptop();
-        $listCase = $this->productRepository->getListCase();
-
-        return view('page.homepage', compact('listKeyboard', 'listLaptop', 'listCase'));
+        return view('page.homepage');
     }
 
     public function productDetail($slug)
@@ -65,16 +62,16 @@ class HomeController extends Controller
     {
         return view('page.blog.post-detail');
     }
-    
+
     public function viewPromotion ()
     {
         return view('page.promotion.index');
     }
-    
+
     public function promotionDetail()
     {
-    
+
     }
-    
-    
+
+
 }
