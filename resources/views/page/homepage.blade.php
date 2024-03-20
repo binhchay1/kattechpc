@@ -329,10 +329,10 @@
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="{{ asset('/images/test_img/slide-1.png') }}" width="850" height="403" alt="Image">
+                            <img src="{{ asset('/images/test_img/right-1.webp') }}" width="850" height="403" alt="Image">
                         </div>
                         <div class="carousel-item">
-                            <img src="{{ asset('/images/test_img/slide-2.png') }}" width="850" height="403" alt="Image">
+                            <img src="{{ asset('/images/test_img/right-2.webp') }}" width="850" height="403" alt="Image">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
