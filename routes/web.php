@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\AdminController;
@@ -29,6 +30,16 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
     Route::get('index/{locale}', [TailwickController::class, 'lang']);
+    
+    Route::group(['prefix' => 'promotion'], function () {
+        Route::get('/', [PromotionController::class, 'index'])->name('admin.promotion.index');
+        Route::get('/detail/{id}', [PromotionController::class, 'showPromotion'])->name('admin.promotion.show');
+        Route::get('/add', [PromotionController::class, 'createPromotion'])->name('admin.promotion.create');
+        Route::post('/store', [PromotionController::class, 'storePromotion'])->name('admin.promotion.store');
+        Route::get('/update/{id}', [PromotionController::class, 'editPromotion'])->name('admin.promotion.edit');
+        Route::post('/update/{id}', [PromotionController::class, 'updatePromotion'])->name('admin.promotion.update');
+        Route::get('/delete/{id}', [PromotionController::class, 'deletePromotion'])->name('admin.promotion.delete');
+    });
 
     Route::group(['prefix' => 'post'], function () {
         Route::get('/', [PostController::class, 'index'])->name('admin.post.index');

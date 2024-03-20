@@ -47,7 +47,7 @@ class PostController extends Controller
         $input['slug'] =  Str::slug($input['title']);
         $this->postRepository->create($input);
 
-        return redirect()->route('admin.post.index')->with('success', 'Post successfully added.');
+        return redirect()->route('admin.post.index')->with('success',  __('Bài viết được thêm thành công'));
     }
 
     /**
@@ -80,7 +80,7 @@ class PostController extends Controller
 
         $input = $this->postRepository->update($input, $id);
 
-        return redirect()->route('admin.post.index')->with('success', 'Post successfully updated.');
+        return redirect()->route('admin.post.index')->with('success',  __('Bài viết được thay đổi thành công'));
     }
 
     /**
@@ -89,6 +89,6 @@ class PostController extends Controller
     public function deletePost( $id)
     {
         $this->postRepository->destroy($id);
-        return back()->with('success', 'Post successfully updated.');
+        return back()->with('success', __('Bài quảng cáo được xóa đổi thành công'));
     }
 }
