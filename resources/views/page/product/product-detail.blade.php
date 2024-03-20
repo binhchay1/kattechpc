@@ -32,11 +32,11 @@
         <p><span style="font-size:18px">✔ {{ __(' Miễn phí giao hàng toàn quốc.') }}.&nbsp;</span></p>
 
         <div class="quantity mt-4">
-            <form action="{{ route('page.cart.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <h4><span style="font-size:18px">{{__('Số Lượng')}}&nbsp;<input type="number" value="1" min="1"></span></h4>
+            <a href="{{route('addCart', $product['slug'])}}">
                 <button class="btn-buy">{{__('MUA NGAY')}}</button>
-            </form>
+            </a>
+
+
         </div>
 
         <div class="gift-product">
@@ -89,7 +89,7 @@
 
             </table>
         </div>
-   
+
     <div class="product-related">
         <h2 class="text"> {{ __('Sản phẩm liên quan') }}</h2>
         <div id="content">

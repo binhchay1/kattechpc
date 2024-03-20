@@ -132,12 +132,10 @@ Route::get('account-info', [AccountController::class, 'profile'])->name('profile
 
 //cart
 Route::group(['prefix' => 'cart'], function () {
-    Route::get('/', [CartController::class, 'index'])->name('page.cart.index');
-    Route::post('add-cart', [CartController::class, 'addToCart'])->name('page.cart.store');
-    Route::post('update-cart', [CartController::class, 'updateCart'])->name('page.cart.update');
-    Route::post('remove', [CartController::class, 'removeCart'])->name('page.cart.remove');
-    Route::post('clear', [CartController::class, 'clearAllCart'])->name('page.cart.clear');
-
+    Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
+    Route::get('show-cart',  [CartController::class, 'showCart'])->name('showCart');
+    Route::get('delete-cart/{id}',  [CartController::class, 'deleteCart'])->name('deleteCart');
+    Route::get('update-cart',  [CartController::class, 'updateCart'])->name('updateCart');
 });
 // Route::get('/register', [HomeController::class, 'viewRegister'])->name('register');
 // Route::get('/login', [HomeController::class, 'viewRegister'])->name('register');
