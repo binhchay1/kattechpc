@@ -82,7 +82,7 @@ class ProfileController extends Controller
     
         $user = $this->userRepository->update($input, $id);
     
-        return back()->with('success', 'User successfully updated.');
+        return back()->with('success', __('Thông tin được thay đổi thành công'));
     }
 
     /**

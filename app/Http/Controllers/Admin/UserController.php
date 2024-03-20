@@ -64,7 +64,7 @@ class UserController extends Controller
         }
 
         $user = $this->userRepository->store($input);
-        return redirect()->route('admin.user.index')->with('success', 'User successfully added.');
+        return redirect()->route('admin.user.index')->with('success', __('Người dùng được thêm thành công'));
     }
 
 
@@ -93,7 +93,7 @@ class UserController extends Controller
 
         $user = $this->userRepository->update($input, $id);
 
-        return redirect()->route('admin.user.index')->with('success', 'User successfully updated.');
+        return redirect()->route('admin.user.index')->with('success',__('Thông tin người dùng được thay đổi thành công'));
     }
 
 
@@ -102,7 +102,7 @@ class UserController extends Controller
 
         $this->userRepository->destroy($id);
 
-        return back()->with('success', 'User successfully deleted.');
+        return back()->with('success',__('Thông tin người dùng được thành công'));
     }
     
 

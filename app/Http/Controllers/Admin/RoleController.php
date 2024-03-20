@@ -45,7 +45,7 @@ class RoleController extends Controller
         $input = $request->all();
         
         $this->roleRepository->store($input);
-        return redirect()->route('admin.role.index')->with('success', 'Role successfully added.');
+        return redirect()->route('admin.role.index')->with('success', __('QUyền người dùng được thêm thành công'));
     }
 
     /**
@@ -76,7 +76,7 @@ class RoleController extends Controller
         $input = $request->except(['_token']);
         $this->roleRepository->update($input, $id);
     
-        return redirect()->route('admin.role.index')->with('success', 'Role successfully updated.');
+        return redirect()->route('admin.role.index')->with('success', __('QUyền người dùng được thay đổi thành công'));
     }
 
     /**
@@ -87,6 +87,6 @@ class RoleController extends Controller
     
         $this->roleRepository->destroy($id);
     
-        return back()->with('success', 'Role successfully deleted.');
+        return back()->with('success', __('Quyền người dùng được xóa thành công'));
     }
 }
