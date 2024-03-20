@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductRequest extends FormRequest
+class ProductUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,10 +28,10 @@ class ProductRequest extends FormRequest
             'status' =>'required',
             'code' =>'required|max:255',
             'price' =>'required|max:255',
-            'image' =>'required|image|mimes:jpeg,png,jpg|max:2048'
+            'image' =>'image|mimes:jpeg,png,jpg|max:2048'
         ];
     }
-
+    
     public function messages()
     {
         return [
@@ -43,11 +43,9 @@ class ProductRequest extends FormRequest
             'code.required' => __('validation.required'),
             'price.required' => __('validation.required'),
             'code.max' => __('validation.max'),
-            'image.required' => __('validation.required'),
             'image.image' => __('validation.image'),
             'image.mimes' => __('validation.mimes'),
             'image.max' => __('validation.max'),
         ];
     }
-
 }

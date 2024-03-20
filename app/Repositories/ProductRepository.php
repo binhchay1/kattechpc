@@ -14,7 +14,7 @@ class ProductRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->orderBy('created_at', 'DESC')->paginate(10);
+        return $this->model->with('category')->orderBy('created_at', 'DESC')->paginate(10);
     }
 
     public function store($input)
@@ -37,9 +37,9 @@ class ProductRepository extends BaseRepository
         return $this->model->where('id', $id)->delete();
     }
 
-    public function productDetail($name)
+    public function productDetail($slug)
     {
-        return $this->model->where('name', $name)->first();
+        return $this->model->where('slug', $slug)->first();
     }
 
     public function getListKeyboard()

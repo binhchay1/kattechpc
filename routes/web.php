@@ -124,17 +124,11 @@ Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
 Route::get('/promotion', [HomeController::class, 'viewRegister'])->name('promotion');
 Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');
 Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');
-Route::get('/products/{name}', [HomeController::class, 'productDetail'])->name('productDetail');
+Route::get('/product/{slug}', [HomeController::class, 'productDetail'])->name('productDetail');
 
 
 Route::get('account-info', [AccountController::class, 'profile'])->name('profile');
 
-
-//Product
-Route::group(['prefix' => 'product'], function () {
-    Route::get('/detail', [\App\Http\Controllers\Page\ProductController::class, 'detail'])->name('page.product.detail');
-  
-});
 
 //cart
 Route::group(['prefix' => 'cart'], function () {

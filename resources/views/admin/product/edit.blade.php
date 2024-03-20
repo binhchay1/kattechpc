@@ -37,7 +37,7 @@
                                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
                                     <div class="">
                                         <div class="" style="display: inline-grid;">
-                                            <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
+                                            <input value="{{$product->image ?? asset('/images/product.png') }}" src="" type="file" class="border-0 bg-light pl-0" name="image" id="profile_photo_path" style="display: none">
                                             <div class=" choose-avatar">
                                                 <div id="btnimage">
                                                     <img id="showImage" class="show-avatar" src="{{$product->image ?? asset('/images/product.png') }}" alt="avatar" >
@@ -94,6 +94,7 @@
                                     @endforeach
                                 </select>
                             </div><!--end col-->
+                            <input type="hidden" name="slug" class="form-control" id="name" placeholder="Enter name" value="{{$product->slug}}">
 
                         </div><!--end grid-->
                         <div class="flex justify-end gap-2 mt-4">

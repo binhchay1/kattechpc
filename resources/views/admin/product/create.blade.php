@@ -60,9 +60,9 @@
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Thể loại')}}</label>
                                 <select
                                     class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                    data-choices data-choices-search-false  id="categorySelect" name="category" >
+                                    data-choices data-choices-search-false  id="categorySelect" name="category_id" >
                                     @foreach($listCategories as $category)
-                                    <option value="{{$category->name}}">{{$category->name}}</option>
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach
                                 </select>
                             </div><!--end col-->

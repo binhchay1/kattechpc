@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -17,6 +18,7 @@ class Product extends Model
         'code',
         'status',
         'price',
+        'slug'
     ];
     
     public function category()
@@ -27,9 +29,32 @@ class Product extends Model
             'id');
     }
     
-    public function getRouteKeyName()
+    public function sluggable(): array
     {
-        return 'slug';
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
+    
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::creating(function ($product) {
+            $product->slug = Str::slug($product->name);
+            
+            // Ensure slug uniqueness
+            $originalSlug = $slug = $product->slug;
+            $count = 1;
+            
+            while (static::where('slug', $slug)->exists()) {
+                $slug = $originalSlug . '-' . $count++;
+            }
+            
+            $product->slug = $slug;
+        });
     }
     
 }
