@@ -133,6 +133,8 @@ Route::get('/promotion', [HomeController::class, 'viewRegister'])->name('promoti
 Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');
 Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');
 Route::get('/product/{slug}', [HomeController::class, 'productDetail'])->name('productDetail');
+Route::get('/promotion', [HomeController::class, 'viewPromotion'])->name('promotion');
+Route::get('/promotion-detail', [HomeController::class, 'promotionDetail'])->name('post.promotion');
 
 
 Route::get('account-info', [AccountController::class, 'profile'])->name('profile');
