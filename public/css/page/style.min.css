@@ -932,7 +932,7 @@ body a {
 }
 
 .product-item .p-type-holder .p-icon-hot {
-    background-image: url(/images/ncpc-icon-pro-hot-01-2024.png);
+    background-image: url(/images/page/hot.png);
     height: 37px;
     width: 24px;
     margin-left: auto;
@@ -947,7 +947,7 @@ body a {
 }
 
 .product-item .p-type-holder .p-icon-best-sale {
-    background-image: url(/images/ncpc-icon-pro-bestsale-01-2024.png);
+    background-image: url(/images/page/bestsale.png);
     width: 69px;
     height: 24px;
     margin-top: 8px;

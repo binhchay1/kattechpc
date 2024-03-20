@@ -1,13 +1,12 @@
 @extends('layouts.master-admin')
+
 @section('title')
-    {{ __('Analytics') }}
+    {{ __('Thống kê') }}
 @endsection
+
 @section('content')
-    <!-- page title -->
     <x-page-title title="Analytics" pagetitle="Dashboards" />
-
     <div class="grid grid-cols-12 gap-x-5">
-
         <div class="order-6 col-span-12 2xl:order-1 card 2xl:col-span-5">
             <div class="card-body">
                 <div class="flex items-center gap-2">
@@ -1126,17 +1125,13 @@
                     </ul>
                 </div>
             </div>
-        </div><!--end col-->
+        </div>
     </div>
 @endsection
+
 @push('scripts')
-    <!--apexchart js-->
     <script src="{{ URL::asset('build/libs/apexcharts/apexcharts.min.js') }}"></script>
     <script src="https://apexcharts.com/samples/assets/stock-prices.js"></script>
-
-    <!--dashboard analytics init js-->
     <script src="{{ URL::asset('build/js/pages/dashboards-analytics.init.js') }}"></script>
-
-    <!-- App js -->
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
 @endpush
