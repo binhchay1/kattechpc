@@ -130,14 +130,13 @@ Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
 Route::get('/blog-detail', [HomeController::class, 'postDetail'])->name('post.detail');
 Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
 Route::get('/promotion', [HomeController::class, 'viewRegister'])->name('promotion');
-Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');
-Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');
 Route::get('/product/{slug}', [HomeController::class, 'productDetail'])->name('productDetail');
 Route::get('/promotion', [HomeController::class, 'viewPromotion'])->name('promotion');
 Route::get('/promotion-detail', [HomeController::class, 'promotionDetail'])->name('post.promotion');
 
 
-Route::get('account-info', [AccountController::class, 'profile'])->name('profile');
+Route::get('account-info', [AccountController::class, 'show'])->name('profile');
+Route::post('account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
 
 Route::group(['prefix' => 'product'], function () {
     Route::get('/detail', [\App\Http\Controllers\Page\ProductController::class, 'detail'])->name('page.product.detail');

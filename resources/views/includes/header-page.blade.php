@@ -57,7 +57,7 @@
                 <div class="ml-15px dropdown">
                     <a href="" class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
                     <div class="dropdown-content">
-                        <a href="#">{{__('Tài khoản')}}</a>
+                        <a href="{{route('profile')}}">{{__('Tài khoản')}}</a>
                         <a href="#">{{__('Lịch sử mua hàng')}}</a>
                         <a href="#">{{__('Đăng xuất')}}</a>
                     </div>
