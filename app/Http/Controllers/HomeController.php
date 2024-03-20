@@ -24,9 +24,9 @@ class HomeController extends Controller
         return view('page.homepage', compact('listKeyboard', 'listLaptop', 'listCase'));
     }
 
-    public function productDetail($name)
+    public function productDetail($slug)
     {
-        $product = $this->productRepository->productDetail($name);
+        $product = $this->productRepository->productDetail($slug);
         $productRelated = $this->productRepository->getProductRelated($product->category, $product->id);
 
         return view('page.product.product-detail', compact('product', 'productRelated'));
@@ -49,6 +49,11 @@ class HomeController extends Controller
 
     public function viewPost()
     {
-        return view('page.post');
+        return view('page.blog.posts');
+    }
+    
+    public function postDetail()
+    {
+        return view('page.blog.post-detail');
     }
 }

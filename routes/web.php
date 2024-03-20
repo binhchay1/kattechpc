@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Page\AccountController;
 use App\Http\Controllers\Page\CartController;
 use App\Http\Controllers\TailwickController;
 use App\Http\Controllers\Admin\UserController;
@@ -29,7 +30,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
     Route::get('index/{locale}', [TailwickController::class, 'lang']);
 
-    Route::group(['prefix' => 'posts'], function () {
+    Route::group(['prefix' => 'post'], function () {
         Route::get('/', [PostController::class, 'index'])->name('admin.post.index');
         Route::get('/detail/{id}', [PostController::class, 'showPost'])->name('admin.post.show');
         Route::get('/add', [PostController::class, 'createPost'])->name('admin.post.create');
@@ -114,12 +115,16 @@ Route::get('index/{locale}', [TailwickController::class, 'lang']);
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');
-Route::get('/page-post', [HomeController::class, 'viewPost'])->name('post');
+Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
+Route::get('/blog-detail', [HomeController::class, 'postDetail'])->name('post.detail');
 Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
 Route::get('/promotion', [HomeController::class, 'viewRegister'])->name('promotion');
 Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');
 Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');
-Route::get('/products/{name}', [HomeController::class, 'productDetail'])->name('productDetail');
+Route::get('/product/{slug}', [HomeController::class, 'productDetail'])->name('productDetail');
+
+
+Route::get('account-info', [AccountController::class, 'profile'])->name('profile');
 
 Route::group(['prefix' => 'product'], function () {
     Route::get('/detail', [\App\Http\Controllers\Page\ProductController::class, 'detail'])->name('page.product.detail');

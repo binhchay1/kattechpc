@@ -1,3 +1,41 @@
+<style>
+    .dropbtn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {background-color: #ddd;}
+
+    .dropdown:hover .dropdown-content {display: block;}
+
+    .dropdown:hover .dropbtn {background-color: #3e8e41;}
+</style>
+
+
 <div class="header">
     <div class="header-top">
         <div class="header-top-container">
@@ -16,8 +54,13 @@
                 </div>
 
                 @if(Auth::check())
-                <div class="ml-15px">
-                    <a href="{{ route('account') }}" class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
+                <div class="ml-15px dropdown">
+                    <a href="" class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
+                    <div class="dropdown-content">
+                        <a href="#">{{__('Tài khoản')}}</a>
+                        <a href="#">{{__('Lịch sử mua hàng')}}</a>
+                        <a href="#">{{__('Đăng xuất')}}</a>
+                    </div>
                 </div>
                 @else
                 <div class="ml-15px">
@@ -82,7 +125,7 @@
                     </a>
                 </li>
                 <li class="item-submenu sm-2">
-                    <a href="">
+                    <a href="{{route('post')}}">
                         <span class="icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M14.5 3.25H17.875C18.1734 3.25 18.4595 3.36853 18.6705 3.5795C18.8815 3.79048 19 4.07663 19 4.375V16.75C19 17.3467 18.7629 17.919 18.341 18.341C17.919 18.7629 17.3467 19 16.75 19M16.75 19C16.1533 19 15.581 18.7629 15.159 18.341C14.7371 17.919 14.5 17.3467 14.5 16.75V2.125C14.5 1.82663 14.3815 1.54048 14.1705 1.32951C13.9595 1.11853 13.6734 1 13.375 1H2.125C1.82663 1 1.54048 1.11853 1.32951 1.32951C1.11853 1.54048 1 1.82663 1 2.125V15.625C1 16.5201 1.35558 17.3786 1.98851 18.0115C2.62145 18.6444 3.47989 19 4.375 19H16.75Z" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round"></path>
                                 <path d="M4 11.5L11 11.5" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round"></path>

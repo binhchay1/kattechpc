@@ -65,7 +65,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $product->category }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $product->category->name ?? "" }}
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 email">{{ $product->description }}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 phone-number">{{ $product->price }}</td>

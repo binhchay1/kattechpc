@@ -338,7 +338,7 @@
                 @foreach($listLaptop as $product)
                 <div class="swiper-slide " style="width: 224.8px; margin-right: 12px;" role="group">
                     <div class="product-item">
-                        <a href="{{ route('productDetail', $product['name']) }}" class="product-image position-relative">
+                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
                             <img src="{{ $product->image }}" width="203" height="203" class="hover-for-tooltips">
                             <span class="p-type-holder">
                                 <i class="p-icon-type p-icon-hot"></i>
@@ -348,7 +348,7 @@
                             </span>
                         </a>
                         <div class="product-info">
-                            <a href="{{ route('productDetail', $product['name']) }}">
+                            <a href="{{ route('productDetail', $product['slug']) }}">
                                 <h3 class="product-title line-clamp-3">{{ $product->name }}</h3>
                             </a>
                             <div class="product-price-main font-weight-600">
