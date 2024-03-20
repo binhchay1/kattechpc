@@ -12,6 +12,7 @@ use App\Http\Controllers\Page\AccountController;
 use App\Http\Controllers\Page\CartController;
 use App\Http\Controllers\TailwickController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\LandingPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,11 +26,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
+    Route::get('index/{locale}', [TailwickController::class, 'lang']);
 
-//post
-    Route::group(['prefix' => 'post  '], function () {
+    Route::group(['prefix' => 'post'], function () {
         Route::get('/', [PostController::class, 'index'])->name('admin.post.index');
         Route::get('/detail/{id}', [PostController::class, 'showPost'])->name('admin.post.show');
         Route::get('/add', [PostController::class, 'createPost'])->name('admin.post.create');
@@ -39,7 +40,6 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/delete/{id}', [PostController::class, 'deletePost'])->name('admin.post.delete');
     });
 
-//order
     Route::group(['prefix' => 'orders'], function () {
         Route::get('/', [OrderController::class, 'index'])->name('admin.order.index');
         Route::get('/detail/{id}', [OrderController::class, 'showOrder'])->name('admin.order.show');
@@ -48,10 +48,9 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/update/{id}', [OrderController::class, 'editOrder'])->name('admin.order.edit');
         Route::post('/update/{id}', [OrderController::class, 'updateOrder'])->name('admin.order.update');
         Route::get('/delete/{id}', [OrderController::class, 'deleteOrder'])->name('admin.order.delete');
-        Route::get('/export',[OrderController::class,'export'])->name('admin.order.export');
+        Route::get('/export', [OrderController::class, 'export'])->name('admin.order.export');
     });
 
-//storage
     Route::group(['prefix' => 'storages'], function () {
         Route::get('/', [StorageController::class, 'index'])->name('admin.storage.index');
         Route::get('/detail/{id}', [StorageController::class, 'showStorage'])->name('admin.storage.show');
@@ -60,11 +59,10 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/update/{id}', [StorageController::class, 'editStorage'])->name('admin.storage.edit');
         Route::post('/update/{id}', [StorageController::class, 'updateStorage'])->name('admin.storage.update');
         Route::get('/delete/{id}', [StorageController::class, 'deleteStorage'])->name('admin.storage.delete');
-        Route::post('/import',[StorageController::class,'import'])->name('admin.storage.import');
-        Route::get('/export',[StorageController::class,'export'])->name('admin.storage.export');
+        Route::post('/import', [StorageController::class, 'import'])->name('admin.storage.import');
+        Route::get('/export', [StorageController::class, 'export'])->name('admin.storage.export');
     });
 
-//product
     Route::group(['prefix' => 'products'], function () {
         Route::get('/', [ProductController::class, 'index'])->name('admin.product.index');
         Route::get('/detail/{id}', [ProductController::class, 'show'])->name('admin.product.show');
@@ -75,7 +73,6 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/delete/{id}', [ProductController::class, 'deleteProduct'])->name('admin.product.delete');
     });
 
-//user
     Route::group(['prefix' => 'users'], function () {
         Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
         Route::get('/add', [UserController::class, 'createUser'])->name('admin.user.create');
@@ -85,7 +82,6 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/delete/{id}', [UserController::class, 'deleteUser'])->name('admin.user.delete');
     });
 
-//role
     Route::group(['prefix' => 'roles'], function () {
         Route::get('/', [RoleController::class, 'index'])->name('admin.role.index');
         Route::get('/add', [RoleController::class, 'createRole'])->name('admin.role.create');
@@ -93,28 +89,29 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/update/{role}', [RoleController::class, 'editRole'])->name('admin.role.edit');
         Route::post('/update/{role}', [RoleController::class, 'updateRole'])->name('admin.role.update');
         Route::get('/delete/{id}', [RoleController::class, 'deleteRole'])->name('admin.role.delete');
-        
     });
-    
+
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/update/{id}', [ProfileController::class, 'editProfile'])->name('admin.profile.edit');
         Route::post('/update/{id}', [ProfileController::class, 'updateProfile'])->name('admin.profile.update');
     });
-});
-//Admin
 
-
-Route::get('index/{locale}', [TailwickController::class, 'lang']);
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
-
-    Route::group(['prefix' => 'admin'], function () {
-        Route::group(['middleware' => ['permission.admin']], function () {
-        });
+    Route::group(['prefix' => 'landing'], function () {
+        Route::get('/', [LandingPageController::class, 'index'])->name('admin.landing.page.index');
+        Route::get('/add', [LandingPageController::class, 'createRole'])->name('admin.landing.page.create');
+        Route::post('/store', [LandingPageController::class, 'storeRole'])->name('admin.landing.page.store');
+        Route::get('/update/{role}', [LandingPageController::class, 'editRole'])->name('admin.landing.page.edit');
+        Route::post('/update/{role}', [LandingPageController::class, 'updateRole'])->name('admin.landing.page.update');
+        Route::get('/delete/{id}', [LandingPageController::class, 'deleteRole'])->name('admin.landing.page.delete');
     });
 });
 
 
-//Page
+Route::group(['middleware' => 'user'], function () {
+});
+
+
+Route::get('index/{locale}', [TailwickController::class, 'lang']);
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');
@@ -129,15 +126,14 @@ Route::get('/product/{slug}', [HomeController::class, 'productDetail'])->name('p
 
 Route::get('account-info', [AccountController::class, 'profile'])->name('profile');
 
+Route::group(['prefix' => 'product'], function () {
+    Route::get('/detail', [\App\Http\Controllers\Page\ProductController::class, 'detail'])->name('page.product.detail');
+});
 
-//cart
 Route::group(['prefix' => 'cart'], function () {
     Route::get('/', [CartController::class, 'index'])->name('page.cart.index');
     Route::post('add-cart', [CartController::class, 'addToCart'])->name('page.cart.store');
     Route::post('update-cart', [CartController::class, 'updateCart'])->name('page.cart.update');
     Route::post('remove', [CartController::class, 'removeCart'])->name('page.cart.remove');
     Route::post('clear', [CartController::class, 'clearAllCart'])->name('page.cart.clear');
-
 });
-// Route::get('/register', [HomeController::class, 'viewRegister'])->name('register');
-// Route::get('/login', [HomeController::class, 'viewRegister'])->name('register');

@@ -2,14 +2,14 @@
 
 namespace App\Repositories;
 
-use App\Models\Category;
+use App\Models\LandingPage;
 
-class CategoryRepository extends BaseRepository
+class LandingPageRepository extends BaseRepository
 
 {
     public function model()
     {
-        return Category::class;
+        return LandingPage::class;
     }
 
     public function index()
