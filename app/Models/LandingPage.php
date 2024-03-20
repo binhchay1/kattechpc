@@ -9,7 +9,7 @@ class LandingPage extends Model
 {
     use HasFactory;
 
-    protected $table = ['landing_page'];
+    protected $table = 'landing_page';
 
     protected $fillable = [
         'title', 'slug', 'content'

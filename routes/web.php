@@ -6,11 +6,10 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StorageController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Page\HomeController;
 use App\Http\Controllers\Page\AccountController;
 use App\Http\Controllers\Page\CartController;
-use App\Http\Controllers\TailwickController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LandingPageController;
 use Illuminate\Support\Facades\Route;
@@ -28,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 //
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
-    Route::get('index/{locale}', [TailwickController::class, 'lang']);
+    Route::get('{locale}', [AdminController::class, 'lang']);
 
     Route::group(['prefix' => 'post'], function () {
         Route::get('/', [PostController::class, 'index'])->name('admin.post.index');
@@ -111,7 +110,7 @@ Route::group(['middleware' => 'user'], function () {
 });
 
 
-Route::get('index/{locale}', [TailwickController::class, 'lang']);
+Route::get('{locale}', [HomeController::class, 'lang']);
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');
