@@ -6,9 +6,11 @@ use App\Enums\Utility;
 use App\Enums\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Repositories\ProductRepository;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -51,6 +53,7 @@ class ProductController extends Controller
         $input = $request->except(['_token']);
 
         $input= $request->all();
+        $input['slug'] =  Str::slug($input['name']);
         if (isset($input['image'])) {
 
             $img = $this->utility->saveImageProduct($input);
@@ -77,7 +80,7 @@ class ProductController extends Controller
         return view('admin.product.edit', compact('product', 'listCategories','statusProduct'));
     }
 
-    public function updateProduct(ProductRequest $request, $id)
+    public function updateProduct(ProductUpdateRequest $request, $id)
     {
         $input = $request->except(['_token']);
         if (isset($input['image'])) {
