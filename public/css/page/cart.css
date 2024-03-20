@@ -25,9 +25,7 @@ strong {
     font-weight: bold;
 }
 
-p {
-    margin: 0.75rem 0 0;
-}
+
 
 h1 {
     font-size: 0.75rem;
@@ -74,25 +72,17 @@ button,
     float: left;
 }
 
-.price:before,
-.subtotal:before,
-.subtotal-value:before,
-.total-value:before,
-.promo-value:before {
-    content: '£';
-}
-
 .hide {
     display: none;
 }
 
 main {
     clear: both;
-    font-size: 0.75rem;
+    font-size: 20px;
     margin: 0 auto;
     overflow: hidden;
     padding: 1rem 0;
-    width: 960px;
+    width: 1430px;
 }
 
 .basket,
@@ -106,10 +96,13 @@ aside {
 .basket {
     width: 70%;
     border: 1px solid #aaa;
+    margin-top: 30px;
+    border-radius: 5px;
 }
 
 .basket-module {
     color: #111;
+    margin-bottom: 30px;
 }
 
 label {
@@ -136,7 +129,6 @@ label {
 
 .promo-code-cta {
     border-radius: 4px;
-    font-size: 0.625rem;
     margin-left: 0.625rem;
     padding: 0.6875rem 1.25rem 0.625rem;
 }
@@ -159,10 +151,6 @@ li {
     padding: 0.625rem 0;
 }
 
-li.price:before,
-li.subtotal:before {
-    content: '';
-}
 
 .item {
     width: 55%;
@@ -231,9 +219,10 @@ li.subtotal:before {
     background-color: #ccc;
     border: 1px solid #aaa;
     border-radius: 4px;
-    font-size: 0.625rem;
+    font-size: 1rem;
     padding: 2px;
     width: 3.75rem;
+    height: 30px;
 }
 
 aside {
@@ -246,10 +235,12 @@ aside {
     background-color: #eee;
     border: 1px solid #aaa;
     padding: 1rem;
-    width: 250px;
+    width: 300px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    border-radius: 5px;
+    margin-top: 30px;
 }
 
 .summary-total-items {
@@ -319,11 +310,12 @@ aside {
 .checkout-cta {
     display: block;
     float: none;
-    font-size: 0.75rem;
+    font-size: 1rem;
     text-align: center;
     text-transform: uppercase;
     padding: 0.625rem 0;
     width: 100%;
+    border-radius: 5px;
 }
 
 .summary-delivery-selection {
@@ -391,4 +383,64 @@ aside {
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+}
+
+
+.col-25 {
+    float: left;
+    width: 25%;
+}
+
+.col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.row {
+    margin-top: 20px;
+}
+
+
+#fname {
+    width: 70%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+    font-weight: 700;
+}
+
+#submit {
+    background-color: #4267b2;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+.title-c-ct {
+    margin-top: 20px;
+}
+
+input {
+    border-radius: 5px;
+}
+
+.input-address {
+    color: #4281f8;
 }

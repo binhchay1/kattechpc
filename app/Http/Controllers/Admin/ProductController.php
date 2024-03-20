@@ -65,7 +65,7 @@ class ProductController extends Controller
 
         $this->productRepository->store($input);
 
-        return redirect()->route('admin.product.index')->with('success', 'Product successfully added.');
+        return redirect()->route('admin.product.index')->with('success',  __('Sản phẩm được thêm thành công'));
     }
 
 
@@ -93,7 +93,7 @@ class ProductController extends Controller
 
         $product = $this->productRepository->update($input, $id);
 
-        return redirect()->route('admin.product.index')->with('success', 'Product successfully updated.');
+        return redirect()->route('admin.product.index')->with('success', __('Sản phẩm được thay đổi thành công'));
     }
 
 
@@ -101,7 +101,7 @@ class ProductController extends Controller
     {
         $this->productRepository->destroy($id);
 
-        return back()->with('success', 'Product successfully deleted.');
+        return back()->with('success', __('Sản phẩm được xóa thành công'));
     }
 
     public function productSearch(Request $request)

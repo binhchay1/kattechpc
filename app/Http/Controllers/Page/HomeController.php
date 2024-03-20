@@ -51,11 +51,6 @@ class HomeController extends Controller
         return view('page.policy');
     }
 
-    public function viewPromotion()
-    {
-        return view('page.homepage');
-    }
-
     public function viewAccount()
     {
         return view('page.account');
@@ -70,4 +65,16 @@ class HomeController extends Controller
     {
         return view('page.blog.post-detail');
     }
+    
+    public function viewPromotion ()
+    {
+        return view('page.promotion.index');
+    }
+    
+    public function promotionDetail()
+    {
+    
+    }
+    
+    
 }

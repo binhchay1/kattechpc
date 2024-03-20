@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\Admin\AdminController;
@@ -27,7 +28,17 @@ use Illuminate\Support\Facades\Route;
 //
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
-    Route::get('{locale}', [AdminController::class, 'lang']);
+    Route::get('index/{locale}', [TailwickController::class, 'lang']);
+
+    Route::group(['prefix' => 'promotion'], function () {
+        Route::get('/', [PromotionController::class, 'index'])->name('admin.promotion.index');
+        Route::get('/detail/{id}', [PromotionController::class, 'showPromotion'])->name('admin.promotion.show');
+        Route::get('/add', [PromotionController::class, 'createPromotion'])->name('admin.promotion.create');
+        Route::post('/store', [PromotionController::class, 'storePromotion'])->name('admin.promotion.store');
+        Route::get('/update/{id}', [PromotionController::class, 'editPromotion'])->name('admin.promotion.edit');
+        Route::post('/update/{id}', [PromotionController::class, 'updatePromotion'])->name('admin.promotion.update');
+        Route::get('/delete/{id}', [PromotionController::class, 'deletePromotion'])->name('admin.promotion.delete');
+    });
 
     Route::group(['prefix' => 'post'], function () {
         Route::get('/', [PostController::class, 'index'])->name('admin.post.index');
@@ -118,21 +129,22 @@ Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
 Route::get('/blog-detail', [HomeController::class, 'postDetail'])->name('post.detail');
 Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
 Route::get('/promotion', [HomeController::class, 'viewRegister'])->name('promotion');
-Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');
-Route::get('/account', [HomeController::class, 'viewAccount'])->name('account');
 Route::get('/product/{slug}', [HomeController::class, 'productDetail'])->name('productDetail');
+Route::get('/promotion', [HomeController::class, 'viewPromotion'])->name('promotion');
+Route::get('/promotion-detail', [HomeController::class, 'promotionDetail'])->name('post.promotion');
 
 
-Route::get('account-info', [AccountController::class, 'profile'])->name('profile');
+Route::get('account-info', [AccountController::class, 'show'])->name('profile');
+Route::post('account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
 
 Route::group(['prefix' => 'product'], function () {
     Route::get('/detail', [\App\Http\Controllers\Page\ProductController::class, 'detail'])->name('page.product.detail');
 });
 
 Route::group(['prefix' => 'cart'], function () {
-    Route::get('/', [CartController::class, 'index'])->name('page.cart.index');
-    Route::post('add-cart', [CartController::class, 'addToCart'])->name('page.cart.store');
-    Route::post('update-cart', [CartController::class, 'updateCart'])->name('page.cart.update');
-    Route::post('remove', [CartController::class, 'removeCart'])->name('page.cart.remove');
-    Route::post('clear', [CartController::class, 'clearAllCart'])->name('page.cart.clear');
+
+    Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
+    Route::get('show-cart',  [CartController::class, 'showCart'])->name('showCart');
+    Route::get('delete-cart/{id}',  [CartController::class, 'deleteCart'])->name('deleteCart');
+    Route::get('update-cart',  [CartController::class, 'updateCart'])->name('updateCart');
 });

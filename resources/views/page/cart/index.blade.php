@@ -21,7 +21,7 @@
     <body>
     <main>
 
-        @if (isset($dataCart))
+        @if (empty($dataCart ))
         <div class="">
             <img class="image-cart" src="{{asset('images/cart.jpg')}}">
             <h2 class="text-center">{{__('Không có sản phẩm nào trong giỏ hàng')}}</h2>
@@ -32,6 +32,56 @@
             </div>
         </div>
         @else
+            <div class="title-c-ct"> Địa chỉ giao hàng</div>
+            <a href="#"> <div class="title-c-ct input-address">Nhập thông tin địa chỉ bạn muốn giao hàng?</div></a>
+            <div class="basket" id="info-user" hidden>
+                <div class="basket-module">
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Họ tên')}}</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="fname" name="firstname" placeholder="{{__('Họ và tên')}}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Số điện thoại')}}</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="fname" name="firstname" placeholder="{{__('Số điện thoại')}}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Tỉnh/Thành phố')}}</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="fname" name="firstname" placeholder="{{__('Tỉnh/thành phố')}}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Quận/huyện')}}</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="fname" name="firstname" placeholder="{{__('Quận huyện')}}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Địa chỉ')}}</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="fname" name="firstname" placeholder="{{__('Địa chỉ')}}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="submit" value="Submit" id="submit">
+                    </div>
+                </div>
+            </div>
+
         <div class="basket">
             <div class="basket-module">
                 <label for="promo-code">Enter a promotional code</label>
@@ -46,46 +96,26 @@
                     <li class="subtotal">Subtotal</li>
                 </ul>
             </div>
+            @foreach($dataCart as $product)
             <div class="basket-product">
                 <div class="item">
                     <div class="product-image">
-                        <img src="http://placehold.it/120x166" alt="Placholder Image 2" class="product-frame">
+                        <img src="{{asset($product->attributes->image)}}" alt="Placholder Image 2" class="product-frame">
                     </div>
                     <div class="product-details">
-                        <h1><strong><span class="item-quantity">4</span> x Eliza J</strong> Lace Sleeve Cuff Dress</h1>
-                        <p><strong>Navy, Size 18</strong></p>
-                        <p>Product Code - 232321939</p>
+                        <h1><strong><span class="item-quantity">1</span> {{$product->name}}</strong> </h1>
                     </div>
                 </div>
-                <div class="price">26.00</div>
+                <div class="price">{{number_format($product->price)}}đ</div>
                 <div class="quantity">
-                    <input type="number" value="4" min="1" class="quantity-field">
+                    <input type="number" value="{{$product->quantity}}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{$product->id}}')" >
                 </div>
-                <div class="subtotal">104.00</div>
+                <div class="subtotal">{{number_format($product['quantity'] * $product['price'])}}đ</div>
                 <div class="remove">
                     <button>Remove</button>
                 </div>
             </div>
-            <div class="basket-product">
-                <div class="item">
-                    <div class="product-image">
-                        <img src="http://placehold.it/120x166" alt="Placholder Image 2" class="product-frame">
-                    </div>
-                    <div class="product-details">
-                        <h1><strong><span class="item-quantity">1</span> x Whistles</strong> Amella Lace Midi Dress</h1>
-                        <p><strong>Navy, Size 10</strong></p>
-                        <p>Product Code - 232321939</p>
-                    </div>
-                </div>
-                <div class="price">26.00</div>
-                <div class="quantity">
-                    <input type="number" value="1" min="1" class="quantity-field">
-                </div>
-                <div class="subtotal">26.00</div>
-                <div class="remove">
-                    <button>Remove</button>
-                </div>
-            </div>
+                @endforeach
         </div>
         <aside>
             <div class="summary">
@@ -98,18 +128,10 @@
                         <div class="promo-value final-value" id="basket-promo"></div>
                     </div>
                 </div>
-                <div class="summary-delivery">
-                    <select name="delivery-collection" class="summary-delivery-selection">
-                        <option value="0" selected="selected">Select Collection or Delivery</option>
-                        <option value="collection">Collection</option>
-                        <option value="first-class">Royal Mail 1st Class</option>
-                        <option value="second-class">Royal Mail 2nd Class</option>
-                        <option value="signed-for">Royal Mail Special Delivery</option>
-                    </select>
-                </div>
+
                 <div class="summary-total">
                     <div class="total-title">Total</div>
-                    <div class="total-value final-value" id="basket-total">130.00</div>
+                    <div class="total-value final-value" id="basket-total">{{number_format($totalCart)}}đ</div>
                 </div>
                 <div class="summary-checkout">
                     <button class="checkout-cta">Go to Secure Checkout</button>
@@ -133,5 +155,26 @@
             autoplay: true,
             smartSpeed: 1000,
         });
+
+        $('.input-address').click(function(){
+            if ( $("#info-user").is(":visible") ) {
+                $("#info-user").hide();
+            } else if ( $("#info-user").is(":hidden") ) {
+                $("#info-user").show();
+            }
+        })
+    </script>
+
+    <script>
+        function updateCart(quantity, id)
+        {
+            $.get(
+                '{{asset('/cart/update-cart')}}',
+                {quantity:quantity, id:id},
+                function () {
+                    location.reload()
+                }
+            )
+        }
     </script>
 @endsection
