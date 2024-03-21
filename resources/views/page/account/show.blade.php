@@ -25,18 +25,18 @@
                         <h5>{{__('Quản lý đơn hàng')}}</h5>
                     </div>
                 </a>
-                <a href="#" >
+                <a href="{{route('change-password')}}" >
                     <div class="hover">
                         <h5>{{__('Thay đổi mật khẩu')}}</h5>
                     </div>
                 </a>
-                <a href="#">
-                    <div class="hover">
-                        <h5>{{__('Đăng xuất')}}</h5>
-                    </div>
-                </a>
-
-
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a onclick="this.closest('form').submit();return false;" >
+                        <div class="hover">
+                            <h5>{{__('Đăng xuất')}}</h5>
+                        </div></a>
+                </form>
             </div>
         </div>
         <div class="rightcolumn">

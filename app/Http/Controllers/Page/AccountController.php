@@ -9,6 +9,7 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
@@ -30,6 +31,9 @@ class AccountController extends Controller
     
     public function show()
     {
+        if (empty(Auth::user())) {
+            abort(404);
+        }
         $idUser = Auth::user()->id;
         $dataUser = $this->userRepository->show($idUser);
         $genderUser = User::SEX;
@@ -53,6 +57,29 @@ class AccountController extends Controller
         }
         $this->userRepository->update($input, $userIdHash);
         return back()->with('success', __('Thông tin đã được cập nhập thành công!'));
+    }
+    
+    public function changePassword()
+    {
+        return view('page.account.change-password');
+    }
+    
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required',
+            'new_password' => 'required|confirmed',
+        ]);
+        
+        if (!Hash::check($request->old_password, auth()->user()->password)) {
+            return back()->with("error", __("Mật khẩu không đúng!"));
+        }
+        
+        \App\Models\User::whereId(auth()->user()->id)->update([
+            'password' => Hash::make($request->new_password)
+        ]);
+        
+        return back()->with("success", __("Mật khẩu đã thay đổi thành công!"));
     }
     
 }
