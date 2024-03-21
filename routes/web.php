@@ -137,6 +137,8 @@ Route::get('/promotion-detail', [HomeController::class, 'promotionDetail'])->nam
 
 Route::get('account-info', [AccountController::class, 'show'])->name('profile');
 Route::post('account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
+Route::get('/change-password/', [AccountController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password/', [AccountController::class, 'updatePassword'])->name('update-password');
 
 Route::group(['prefix' => 'product'], function () {
     Route::get('/detail', [\App\Http\Controllers\Page\ProductController::class, 'detail'])->name('page.product.detail');
