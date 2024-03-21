@@ -132,10 +132,15 @@ Route::get('/promotion', [HomeController::class, 'viewRegister'])->name('promoti
 Route::get('/product/{slug}', [HomeController::class, 'productDetail'])->name('productDetail');
 Route::get('/promotion', [HomeController::class, 'viewPromotion'])->name('promotion');
 Route::get('/promotion-detail', [HomeController::class, 'promotionDetail'])->name('post.promotion');
+Route::get('/rules', [HomeController::class, 'rules'])->name('post.rules');
+Route::get('/complaint', [HomeController::class, 'complaint'])->name('post.complaint');
+Route::get('/product-policy', [HomeController::class, 'productPolicy'])->name('post.productPolicy');
 
 
 Route::get('account-info', [AccountController::class, 'show'])->name('profile');
 Route::post('account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
+Route::get('/change-password/', [AccountController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password/', [AccountController::class, 'updatePassword'])->name('update-password');
 
 Route::group(['prefix' => 'product'], function () {
     Route::get('/detail', [\App\Http\Controllers\Page\ProductController::class, 'detail'])->name('page.product.detail');

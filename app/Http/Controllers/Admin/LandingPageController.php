@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LandingPageRequest;
 use App\Repositories\LandingPageRepository;
+use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
 {

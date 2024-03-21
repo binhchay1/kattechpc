@@ -70,7 +70,22 @@ class HomeController extends Controller
 
     public function promotionDetail()
     {
+        return view('page.promotion.promotion-detail');
+    }
 
+    public function rules()
+    {
+        return view('page.rule');
+    }
+
+    public function complaint()
+    {
+        return view('page.complaint');
+    }
+
+    public function productPolicy()
+    {
+        return view('page.product-policy');
     }
 
 
