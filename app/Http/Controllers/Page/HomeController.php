@@ -6,16 +6,20 @@ use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
+use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     protected $productRepository;
+    protected $categoryRepository;
 
     public function __construct(
-        ProductRepository $productRepository
+        ProductRepository $productRepository,
+        CategoryRepository $categoryRepository
     ) {
         $this->productRepository = $productRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function lang($locale)
@@ -32,7 +36,9 @@ class HomeController extends Controller
 
     public function viewHome()
     {
-        return view('page.homepage');
+        $getCategory = $this->categoryRepository->getListCategory();
+
+        return view('page.homepage', compact('getCategory'));
     }
 
     public function productDetail($slug)
@@ -63,7 +69,7 @@ class HomeController extends Controller
         return view('page.blog.post-detail');
     }
 
-    public function viewPromotion ()
+    public function viewPromotion()
     {
         return view('page.promotion.index');
     }
@@ -87,6 +93,4 @@ class HomeController extends Controller
     {
         return view('page.product-policy');
     }
-
-
 }
