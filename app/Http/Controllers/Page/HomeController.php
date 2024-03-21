@@ -32,8 +32,7 @@ class HomeController extends Controller
 
     public function viewHome()
     {
-
-        return view('page.homepage', compact('listKeyboard', 'listLaptop', 'listCase'));
+        return view('page.homepage');
     }
 
     public function productDetail($slug)
@@ -47,11 +46,6 @@ class HomeController extends Controller
     public function viewPolicy()
     {
         return view('page.policy');
-    }
-
-    public function viewPromotion()
-    {
-        return view('page.homepage');
     }
 
     public function viewAccount()
@@ -68,4 +62,16 @@ class HomeController extends Controller
     {
         return view('page.blog.post-detail');
     }
+
+    public function viewPromotion ()
+    {
+        return view('page.promotion.index');
+    }
+
+    public function promotionDetail()
+    {
+
+    }
+
+
 }

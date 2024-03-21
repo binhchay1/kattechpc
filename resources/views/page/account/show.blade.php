@@ -14,22 +14,40 @@
     <div class="row">
         <div class="leftcolumn">
             <div class="card">
-                <h2>Tên user</h2>
-                <h5>Thông tin tài khoản</h5>
-                <h5>Quản lí đơn hàng</h5>
-                <h5>Đăng xuất</h5>
+                <h2>{{$dataUser->name}}</h2>
+                <a href="#" >
+                    <div class="hover">
+                        <h5>{{__('Thông tin tài khoản')}}</h5>
+                    </div>
+                </a>
+                <a href="#" >
+                    <div class="hover">
+                        <h5>{{__('Quản lý đơn hàng')}}</h5>
+                    </div>
+                </a>
+                <a href="#" >
+                    <div class="hover">
+                        <h5>{{__('Thay đổi mật khẩu')}}</h5>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="hover">
+                        <h5>{{__('Đăng xuất')}}</h5>
+                    </div>
+                </a>
+
 
             </div>
         </div>
         <div class="rightcolumn">
             <div class="card">
                 <h2>{{__('Thông tin tài khoản')}}</h2>
-                <form method="POST" action=""  enctype="multipart/form-data">
+                <form method="POST" action="{{route('updateProfile', $dataUser['id'])}}"  enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
                         <div class="xl:col-span-6 account">
                             <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Tên người dùng')}}</label>
-                            <input type="text" id="productNameInput" name="name" value=""
+                            <input type="text" id="productNameInput" name="name" value="{{$dataUser->name}}"
                                    class="form-input  "
                                    placeholder="{{__('Tên người dùng')}}" >
                             @if ($errors->has('name'))
@@ -40,7 +58,7 @@
                         <div class="xl:col-span-6 account">
                             <label for="productCodeInput" class="">{{__('Địa chỉ email')}}
                             </label>
-                            <input type="text" id="" name="email" value=""
+                            <input type="text" id="" name="email" value="{{$dataUser->email}}"
                                    class="form-input "
                                    placeholder="{{__('Địa chỉ email')}}">
                             @if ($errors->has('email'))
@@ -56,7 +74,7 @@
                                         <input value="" type="file" class="border-0 bg-light pl-0" name="profile_photo_path" id="image" hidden>
                                         <div class=" choose-avatar">
                                             <div id="btnimage">
-                                                <img id="showImage" class="show-avatar" src="{{asset('/images/user/avatar.jpg') }}" alt="avatar" >
+                                                <img id="showImage" class="show-avatar" src="{{asset( $dataUser->profile_photo_path ?? '/images/user/avatar.jpg') }}" alt="avatar" >
                                             </div>
                                             <div id="button">
                                                 <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
@@ -75,7 +93,7 @@
                             <div class="xl:col-span-4 mt-4">
                                 <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Địa chỉ')}}
                                 </label>
-                                <input type="text" id="productCodeInput" name="address" value=""
+                                <input type="text" id="productCodeInput" name="address" value="{{$dataUser->address}}"
                                        class="form-input "
                                        placeholder="{{__('Địa chỉ')}}">
                                 @if ($errors->has('address'))
@@ -87,7 +105,7 @@
                         <div class="xl:col-span-6 account">
                             <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Số điện thoại')}}
                             </label>
-                            <input type="text" id="productCodeInput" name="phone" value=""
+                            <input type="text" id="productCodeInput" name="phone" value="{{$dataUser->phone}}"
                                    class="form-input "
                                    placeholder="{{__('Số điện thoại')}}">
                             @if ($errors->has('phone'))
@@ -97,7 +115,7 @@
 
                         <div class="xl:col-span-6 account">
                             <label for="productPrice" class="inline-block mb-2 text-base font-medium">{{__('Ngày sinh')}}</label>
-                            <input type="date" id="productPrice" name="age" value=""
+                            <input type="date" id="productPrice" name="age" value="{{$dataUser->age}}"
                                    class="form-input "
                                    placeholder="Enter User Age" >
                             @if ($errors->has('age'))
@@ -110,6 +128,9 @@
                             <select
                                 class="form-input "
                                 data-choices data-choices-search-false  id="productStatus" name="sex">
+                                @foreach($genderUser as $gender => $value)
+                                    <option value="{{ $value }}" {{$value == $dataUser->sex ? 'selected' : ''}}>{{ $value }}</option>
+                                @endforeach
                             </select>
                         </div><!--end col-->
                     </div><!--end grid-->
@@ -137,5 +158,12 @@
             autoplay: true,
             smartSpeed: 1000,
         });
+    </script>
+
+
+    <script>
+        setTimeout(function() {
+            $('.alert-block').remove();
+        }, 5000);
     </script>
 @endsection

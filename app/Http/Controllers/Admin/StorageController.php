@@ -49,7 +49,7 @@ class StorageController extends Controller
         $input = $request->all();
         $this->storageRepository->create($input);
 
-        return redirect()->route('admin.storage.index')->with('success', 'storage successfully updated.');
+        return redirect()->route('admin.storage.index')->with('success', __('Kho hàng được thêm thành công'));
     }
 
     /**
@@ -80,7 +80,7 @@ class StorageController extends Controller
         $input = $request->except(['_token']);
         $input = $this->storageRepository->update($input, $id);
 
-        return redirect()->route('admin.storage.index')->with('success', 'storage successfully updated.');
+        return redirect()->route('admin.storage.index')->with('success', __('Kho hàng được thay đổi thành công'));
     }
 
     /**
@@ -89,7 +89,7 @@ class StorageController extends Controller
     public function deleteStorage( $id)
     {
         $this->storageRepository->destroy($id);
-        return back()->with('success', 'storage successfully updated.');
+        return back()->with('success', __('Kho hàng được xóa thành công'));
     }
     
     public function import(Request $request){

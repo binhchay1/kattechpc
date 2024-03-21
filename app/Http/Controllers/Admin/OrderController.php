@@ -47,7 +47,7 @@ class OrderController extends Controller
         $input = $request->all();
         $this->orderRepository->create($input);
 
-        return redirect()->route('admin.order.index')->with('success', 'Post successfully added.');
+        return redirect()->route('admin.order.index')->with('success',  __('Đơn hàng được thay đổi thành công'));
     }
 
     /**
