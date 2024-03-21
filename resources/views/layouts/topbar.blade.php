@@ -36,7 +36,7 @@
 
                     <div class="relative flex items-center h-header">
                         <label class="switch">
-                            <input type="checkbox" id="button-maintainer">
+                            <input type="checkbox" id="button-maintainer" title="{{ __('Maintenance mode') }}">
                             <span class="slider round"></span>
                         </label>
                     </div>

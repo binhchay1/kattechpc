@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\LandingPageRequest;
 use App\Repositories\LandingPageRepository;
-use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
 {
@@ -19,21 +20,21 @@ class LandingPageController extends Controller
     {
         $listLandingPage = $this->landingPageRepository->index();
 
-        return view('admin.landing.page.index', compact('listLandingPage'));
+        return view('admin.landing-page.index', compact('listLandingPage'));
     }
 
     public function createLandingPage()
     {
-        return view('admin.landing.page.create');
+        return view('admin.landing-page.create');
     }
 
-    public function storeLandingPage(OrderRequest $request)
+    public function storeLandingPage(LandingPageRequest $request)
     {
         $input = $request->except(['_token']);
         $input = $request->all();
         $this->landingPageRepository->create($input);
 
-        return redirect()->route('admin.landing.page.index')->with('success', __('Trang đích thêm thành công'));
+        return redirect()->route('admin.landing-page.index')->with('success', __('Trang đích thêm thành công'));
     }
 
     public function showLandingPage($id)
@@ -44,16 +45,16 @@ class LandingPageController extends Controller
     public function editLandingPage($id)
     {
         $landingPage = $this->landingPageRepository->show($id);
-        return view('admin.landing.page.edit', compact('landingPage'));
+        return view('admin.landing-page.edit', compact('landingPage'));
     }
 
-    public function updateLandingPage(OrderRequest $request,  $id)
+    public function updateLandingPage(LandingPageRequest $request,  $id)
     {
         $input = $request->except(['_token']);
 
         $input = $this->landingPageRepository->update($input, $id);
 
-        return redirect()->route('admin.landing.page.index')->with('success', __('Trang đích cập nhật thành công'));
+        return redirect()->route('admin.landing-page.index')->with('success', __('Trang đích cập nhật thành công'));
     }
 
     public function deleteLandingPage($id)

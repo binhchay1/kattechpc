@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-
+<link rel="stylesheet" href="{{ asset('css/admin/user.css') }}">
 <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5 mt-4">
     <div class="xl:col-span-12">
         <div class="card">
@@ -24,9 +24,19 @@
                         </div>
 
                         <div class="xl:col-span-6">
+                            <label for="slug" class="inline-block mb-2 text-base font-medium">{{ __('Liên kết') }}</label>
+                            <input type="text" id="slug" name="slug" value="{{ old('title') }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Liên kết') }}" disabled>
+                            @if ($errors->has('slug'))
+                            <span class="text-danger">{{ $errors->first('slug') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="xl:col-span-6">
                             <label for="content" class="inline-block mb-2 text-base font-medium">{{ __('Nội dung') }}
                             </label>
-                            <input type="text" id="content" name="content" value="{{ old('content') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Nội dung') }}">
+                            <div class="ckeditor-classic text-slate-800">
+                            </div>
+
                             @if ($errors->has('content'))
                             <span class="text-danger">{{ $errors->first('content') }}</span>
                             @endif
@@ -47,6 +57,7 @@
 @push('scripts')
 <script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
 <script src="{{ URL::asset('build/js/pages/apps-ecommerce-product-create.init.js') }}"></script>
-<link rel="stylesheet" href="{{ asset('css/admin/user.css') }}">
 <script src="{{ URL::asset('build/js/app.js') }}"></script>
+<script src="{{ URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
+<script src="{{ URL::asset('build/js/pages/form-editor-classic.init.js') }}"></script>
 @endpush
