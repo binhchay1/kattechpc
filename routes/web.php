@@ -7,11 +7,10 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StorageController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Page\HomeController;
 use App\Http\Controllers\Page\AccountController;
 use App\Http\Controllers\Page\CartController;
-use App\Http\Controllers\TailwickController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LandingPageController;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
     Route::get('index/{locale}', [TailwickController::class, 'lang']);
-    
+
     Route::group(['prefix' => 'promotion'], function () {
         Route::get('/', [PromotionController::class, 'index'])->name('admin.promotion.index');
         Route::get('/detail/{id}', [PromotionController::class, 'showPromotion'])->name('admin.promotion.show');
@@ -42,7 +41,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'post'], function () {
-        Route::get('/', [PostController::class, 'index'])->name('admin.post.index');
+        Route::get('/list', [PostController::class, 'index'])->name('admin.post.index');
         Route::get('/detail/{id}', [PostController::class, 'showPost'])->name('admin.post.show');
         Route::get('/add', [PostController::class, 'createPost'])->name('admin.post.create');
         Route::post('/store', [PostController::class, 'storePost'])->name('admin.post.store');
@@ -52,7 +51,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'orders'], function () {
-        Route::get('/', [OrderController::class, 'index'])->name('admin.order.index');
+        Route::get('/list', [OrderController::class, 'index'])->name('admin.order.index');
         Route::get('/detail/{id}', [OrderController::class, 'showOrder'])->name('admin.order.show');
         Route::get('/add', [OrderController::class, 'createOrder'])->name('admin.order.create');
         Route::post('/store', [OrderController::class, 'storeOrder'])->name('admin.order.store');
@@ -63,7 +62,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'storages'], function () {
-        Route::get('/', [StorageController::class, 'index'])->name('admin.storage.index');
+        Route::get('/list', [StorageController::class, 'index'])->name('admin.storage.index');
         Route::get('/detail/{id}', [StorageController::class, 'showStorage'])->name('admin.storage.show');
         Route::get('/add', [StorageController::class, 'createStorage'])->name('admin.storage.create');
         Route::post('/store', [StorageController::class, 'storeStorage'])->name('admin.storage.store');
@@ -75,7 +74,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'products'], function () {
-        Route::get('/', [ProductController::class, 'index'])->name('admin.product.index');
+        Route::get('/list', [ProductController::class, 'index'])->name('admin.product.index');
         Route::get('/detail/{id}', [ProductController::class, 'show'])->name('admin.product.show');
         Route::get('/add', [ProductController::class, 'createProduct'])->name('admin.product.create');
         Route::post('/store', [ProductController::class, 'storeProduct'])->name('admin.product.store');
@@ -85,7 +84,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'users'], function () {
-        Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
+        Route::get('/list', [UserController::class, 'index'])->name('admin.user.index');
         Route::get('/add', [UserController::class, 'createUser'])->name('admin.user.create');
         Route::post('/store', [UserController::class, 'storeUser'])->name('admin.user.store');
         Route::get('/update/{user}', [UserController::class, 'editUser'])->name('admin.user.edit');
@@ -94,7 +93,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'roles'], function () {
-        Route::get('/', [RoleController::class, 'index'])->name('admin.role.index');
+        Route::get('/list', [RoleController::class, 'index'])->name('admin.role.index');
         Route::get('/add', [RoleController::class, 'createRole'])->name('admin.role.create');
         Route::post('/store', [RoleController::class, 'storeRole'])->name('admin.role.store');
         Route::get('/update/{role}', [RoleController::class, 'editRole'])->name('admin.role.edit');
@@ -108,12 +107,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'landing'], function () {
-        Route::get('/', [LandingPageController::class, 'index'])->name('admin.landing.page.index');
-        Route::get('/add', [LandingPageController::class, 'createRole'])->name('admin.landing.page.create');
-        Route::post('/store', [LandingPageController::class, 'storeRole'])->name('admin.landing.page.store');
-        Route::get('/update/{role}', [LandingPageController::class, 'editRole'])->name('admin.landing.page.edit');
-        Route::post('/update/{role}', [LandingPageController::class, 'updateRole'])->name('admin.landing.page.update');
-        Route::get('/delete/{id}', [LandingPageController::class, 'deleteRole'])->name('admin.landing.page.delete');
+        Route::get('/list', [LandingPageController::class, 'index'])->name('admin.landing.page.index');
+        Route::get('/add', [LandingPageController::class, 'createLandingPage'])->name('admin.landing.page.create');
+        Route::post('/store', [LandingPageController::class, 'storeLandingPage'])->name('admin.landing.page.store');
+        Route::get('/update/{role}', [LandingPageController::class, 'editLandingPage'])->name('admin.landing.page.edit');
+        Route::post('/update/{role}', [LandingPageController::class, 'updateLandingPage'])->name('admin.landing.page.update');
+        Route::get('/delete/{id}', [LandingPageController::class, 'deleteLandingPage'])->name('admin.landing.page.delete');
     });
 });
 
@@ -122,7 +121,7 @@ Route::group(['middleware' => 'user'], function () {
 });
 
 
-Route::get('index/{locale}', [TailwickController::class, 'lang']);
+Route::get('{locale}', [HomeController::class, 'lang']);
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');

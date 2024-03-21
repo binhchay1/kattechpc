@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Repositories\OrderRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
@@ -73,7 +72,7 @@ class OrderController extends Controller
      */
     public function updateOrder(OrderRequest $request,  $id)
     {
-     
+
         $input = $request->except(['_token']);
 
         $input = $this->orderRepository->update($input, $id);
@@ -92,7 +91,7 @@ class OrderController extends Controller
         }
         return back()->with('success', 'Order successfully updated.');
     }
-    
+
     public function export(Request $request){
         return Excel::download(new ExportOrder(), 'order.xlsx');
     }

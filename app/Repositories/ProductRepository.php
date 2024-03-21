@@ -42,23 +42,8 @@ class ProductRepository extends BaseRepository
         return $this->model->where('slug', $slug)->first();
     }
 
-    public function getListKeyboard()
+    public function getProductRelated($category_id, $product_id)
     {
-        return $this->model->where('category_id', 'Bàn phím')->get();
-    }
-
-    public function getListLaptop()
-    {
-        return $this->model->where('category_id', 'Laptop')->get();
-    }
-
-    public function getListCase()
-    {
-        return $this->model->where('category_id', 'Case')->get();
-    }
-
-    public function getProductRelated($category, $id)
-    {
-        return $this->model->where('category_id', $category)->where('id', '!=', $id)->take(4)->get();
+        return $this->model->where('category_id', $category_id)->where('id', '!=', $product_id)->take(4)->get();
     }
 }

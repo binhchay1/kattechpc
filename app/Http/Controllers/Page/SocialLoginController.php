@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Enums\Role;
 use App\Enums\Title;
 use App\Repositories\RankingRepository;
+use App\Http\Controllers\Controller;
 use Exception;
 
 class SocialLoginController extends Controller
