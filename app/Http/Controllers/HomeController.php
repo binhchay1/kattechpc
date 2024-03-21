@@ -65,8 +65,13 @@ class HomeController extends Controller
     public function rules()
     {
         return view('page.rule');
-    
     }
+    
+    public function complaint()
+    {
+        return view('page.complaint');
+    }
+    
     
     
     
