@@ -135,6 +135,7 @@ Route::get('/promotion', [HomeController::class, 'viewPromotion'])->name('promot
 Route::get('/promotion-detail', [HomeController::class, 'promotionDetail'])->name('post.promotion');
 Route::get('/rules', [HomeController::class, 'rules'])->name('post.rules');
 Route::get('/complaint', [HomeController::class, 'complaint'])->name('post.complaint');
+Route::get('/product-policy', [HomeController::class, 'productPolicy'])->name('post.productPolicy');
 
 
 Route::get('account-info', [AccountController::class, 'show'])->name('profile');

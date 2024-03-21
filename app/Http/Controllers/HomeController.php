@@ -72,7 +72,10 @@ class HomeController extends Controller
         return view('page.complaint');
     }
     
-    
+    public function productPolicy()
+    {
+        return view('page.product-policy');
+    }
     
     
 }
