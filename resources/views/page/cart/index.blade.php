@@ -20,7 +20,6 @@
 
     <body>
     <main>
-
         @if (empty($dataCart ))
         <div class="">
             <img class="image-cart" src="{{asset('images/cart.jpg')}}">
@@ -32,9 +31,26 @@
             </div>
         </div>
         @else
-            <div class="title-c-ct"> Địa chỉ giao hàng</div>
-            <a href="#"> <div class="title-c-ct input-address">Nhập thông tin địa chỉ bạn muốn giao hàng?</div></a>
-            <div class="basket" id="info-user" hidden>
+            <aside>
+                <div class="summary1">
+                    <h3>{{__('Hình thức thanh toán')}}</h3>
+                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" checked>
+                    <label for="vehicle1">{{__('Thanh toán sau khi nhận hàng')}}</label><br>
+                </div>
+                <div class="summary">
+                    <div class="summary-total-items"><span class="total-items"></span>{{__('Tổng sản phẩm')}}</div>
+                    <div class="summary-total">
+                        <div class="total-title">{{__('Tổng')}}</div>
+                        <div class="total-value final-value get-total" id="basket-total">{{number_format($totalCart)}}đ</div>
+                    </div>
+                    <div class="summary-checkout">
+                        <button class="checkout-cta">{{__('Đặt hàng')}}</button>
+                    </div>
+                </div>
+            </aside>
+            <div class="title-c-ct"> {{__('Địa chỉ giao hàng')}}</div>
+            <a href="#"> <div class="title-c-ct input-address">{{__('Nhập thông tin địa chỉ bạn muốn giao hàng?')}}</div></a>
+            <div class="basket" id="info-user" >
                 <div class="basket-module">
                     <div class="row">
                         <div class="col-25">
@@ -76,69 +92,43 @@
                             <input type="text" id="fname" name="firstname" placeholder="{{__('Địa chỉ')}}">
                         </div>
                     </div>
-                    <div class="row">
-                        <input type="submit" value="Submit" id="submit">
-                    </div>
                 </div>
             </div>
 
-        <div class="basket">
-            <div class="basket-module">
-                <label for="promo-code">Enter a promotional code</label>
-                <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
-                <button class="promo-code-cta">Apply</button>
-            </div>
-            <div class="basket-labels">
-                <ul>
-                    <li class="item item-heading">Item</li>
-                    <li class="price">Price</li>
-                    <li class="quantity">Quantity</li>
-                    <li class="subtotal">Subtotal</li>
-                </ul>
-            </div>
-            @foreach($dataCart as $product)
-            <div class="basket-product">
-                <div class="item">
-                    <div class="product-image">
-                        <img src="{{asset($product->attributes->image)}}" alt="Placholder Image 2" class="product-frame">
+            <div class="basket">
+                <div class="basket-labels">
+                    <ul>
+                        <li class="item item-heading">{{__('Sản phẩm')}}</li>
+                        <li class="price">{{__('Giá')}}</li>
+                        <li class="quantity">{{__('Số lượng')}}</li>
+                        <li class="subtotal">{{__('Thành tiền')}}</li>
+                    </ul>
+                </div>
+                @foreach($dataCart as $product)
+                <div class="basket-product">
+                    <div class="item">
+                        <div class="product-image">
+                            <img src="{{asset($product->attributes->image)}}" alt="Placholder Image 2" class="product-frame">
+                        </div>
+                        <div class="product-details">
+                            <h1><strong><span class="item-quantity"></span> {{$product->name}}</strong> </h1>
+                        </div>
                     </div>
-                    <div class="product-details">
-                        <h1><strong><span class="item-quantity">1</span> {{$product->name}}</strong> </h1>
+                    <div class="price">{{number_format($product->price)}}đ</div>
+                    <div class="quantity">
+                        <input type="number" value="{{$product->quantity}}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{$product->id}}')" >
+                    </div>
+                    <div class="subtotal get-total" id="total">{{number_format($product['quantity'] * $product['price'])}}đ</div>
+                    <div class=" delete">
+                        <a href="{{route('deleteCart', $product['id'])}}">
+                            <button>{{__('Xóa')}}</button>
+                        </a>
+
                     </div>
                 </div>
-                <div class="price">{{number_format($product->price)}}đ</div>
-                <div class="quantity">
-                    <input type="number" value="{{$product->quantity}}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{$product->id}}')" >
-                </div>
-                <div class="subtotal">{{number_format($product['quantity'] * $product['price'])}}đ</div>
-                <div class="remove">
-                    <button>Remove</button>
-                </div>
-            </div>
                 @endforeach
-        </div>
-        <aside>
-            <div class="summary">
-                <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
-                <div class="summary-subtotal">
-                    <div class="subtotal-title">Subtotal</div>
-                    <div class="subtotal-value final-value" id="basket-subtotal">130.00</div>
-                    <div class="summary-promo hide">
-                        <div class="promo-title">Promotion</div>
-                        <div class="promo-value final-value" id="basket-promo"></div>
-                    </div>
-                </div>
-
-                <div class="summary-total">
-                    <div class="total-title">Total</div>
-                    <div class="total-value final-value" id="basket-total">{{number_format($totalCart)}}đ</div>
-                </div>
-                <div class="summary-checkout">
-                    <button class="checkout-cta">Go to Secure Checkout</button>
-                </div>
             </div>
-        </aside>
-            @endif
+        @endif
     </main>
     </body>
 
@@ -156,13 +146,6 @@
             smartSpeed: 1000,
         });
 
-        $('.input-address').click(function(){
-            if ( $("#info-user").is(":visible") ) {
-                $("#info-user").hide();
-            } else if ( $("#info-user").is(":hidden") ) {
-                $("#info-user").show();
-            }
-        })
     </script>
 
     <script>
