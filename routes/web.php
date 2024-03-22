@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
@@ -113,6 +114,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/update/{role}', [LandingPageController::class, 'editLandingPage'])->name('admin.landing.page.edit');
         Route::post('/update/{role}', [LandingPageController::class, 'updateLandingPage'])->name('admin.landing.page.update');
         Route::get('/delete/{id}', [LandingPageController::class, 'deleteLandingPage'])->name('admin.landing.page.delete');
+    });
+    
+    Route::group(['prefix' => 'category-product'], function () {
+        Route::get('/list', [CategoryProductController::class, 'index'])->name('admin.categoryProduct.index');
+        Route::get('/add', [CategoryProductController::class, 'createCategory'])->name('admin.categoryProduct.create');
+        Route::post('/store', [CategoryProductController::class, 'storeCategory'])->name('admin.categoryProduct.store');
+        Route::get('/update/{role}', [CategoryProductController::class, 'editCategory'])->name('admin.categoryProduct.edit');
+        Route::post('/update/{role}', [CategoryProductController::class, 'updateCategory'])->name('admin.categoryProduct.update');
+        Route::get('/delete/{id}', [CategoryProductController::class, 'deleteCategory'])->name('admin.categoryProduct.delete');
     });
 });
 

@@ -89,6 +89,6 @@ class PostController extends Controller
     public function deletePost( $id)
     {
         $this->postRepository->destroy($id);
-        return back()->with('success', __('Bài quảng cáo được xóa đổi thành công'));
+        return back()->with('success', __('Bài viết  được xóa đổi thành công'));
     }
 }
