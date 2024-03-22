@@ -47,7 +47,7 @@ class ProductController extends Controller
         return view('admin.product.create', compact('listCategories','statusProduct'));
     }
 
-    public function storeProduct(ProductRequest $request)
+    public function storeProduct(Request $request)
     {
 
         $input = $request->except(['_token']);
@@ -55,11 +55,31 @@ class ProductController extends Controller
         $input= $request->all();
         $input['slug'] =  Str::slug($input['name']);
         if (isset($input['image'])) {
-
             $img = $this->utility->saveImageProduct($input);
             if ($img) {
                 $path = '/images/upload/product/' . $input['image']->getClientOriginalName();
                 $input['image'] = $path;
+            }
+        }
+        if (isset($input[' image_1'])) {
+            $img = $this->utility->saveImageProduct($input);
+            if ($img) {
+                $path = '/images/upload/product/' . $input[' image_1']->getClientOriginalName();
+                $input['image_1'] = $path;
+            }
+        }
+        if (isset($input['image_2'])) {
+            $img = $this->utility->saveImageProduct($input);
+            if ($img) {
+                $path = '/images/upload/product/' . $input['image_2']->getClientOriginalName();
+                $input[' image_2'] = $path;
+            }
+        }
+        if (isset($input['image_3'])) {
+            $img = $this->utility->saveImageProduct($input);
+            if ($img) {
+                $path = '/images/upload/product/' . $input['image_3']->getClientOriginalName();
+                $input['image_3'] = $path;
             }
         }
 

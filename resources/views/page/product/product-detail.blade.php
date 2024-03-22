@@ -20,7 +20,6 @@
             <img src="{{ $product->image }}" alt="" class="small-Img">
             <img src="{{ $product->image }}" alt="" class="small-Img">
             <img src="{{ $product->image }}" alt="" class="small-Img">
-            <img src="{{ $product->image }}" alt="" class="small-Img">
         </div>
     </div>
 
@@ -35,8 +34,6 @@
             <a href="{{route('addCart', $product['slug'])}}">
                 <button class="btn-buy">{{__('MUA NGAY')}}</button>
             </a>
-
-
         </div>
 
         <div class="gift-product">
@@ -91,16 +88,17 @@
         </div>
 
     <div class="product-related">
-        <h2 class="text"> {{ __('Sản phẩm liên quan') }}</h2>
-        <div id="content">
-            @foreach($productRelated as $related)
-            <a href="{{ route('productDetail', $related->name) }}" style="margin: 20px">
-                <img src="{{ $related->image }}" alt="Image Alt" width="200" height="150"/>
-                <div id="related-name">{{ $related->name }}</div>
+        <h3 > {{ __('Sản phẩm liên quan') }}</h3>
+        @foreach($productRelated as $related)
+            <div> <a href="{{ route('productDetail', $related->name) }}" style="margin: 20px">
+                    <img src="{{ $related->image }}" alt="Image Alt" width="200" height="150"/>
+                </a>
+            </div>
+            <div>
+                <div id="related-name">{{ $related->name }}12121313131313</div>
                 <div id="related-price">{{ $related->price }}</div>
-            </a>
-            @endforeach
-        </div>
+            </div>
+        @endforeach
     </div>
 </section>
 

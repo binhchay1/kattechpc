@@ -13,6 +13,12 @@ final class Utility
     {
         if ($input) {
             $status = Storage::disk('public-image-product')->put($input['image']->getClientOriginalName(), $input['image']->get());
+
+            $status = Storage::disk('public-image-product')->put($input['image_1']->getClientOriginalName(), $input['image_1']->get());
+
+            $status= Storage::disk('public-image-product')->put($input['image_2']->getClientOriginalName(), $input['image_2 ']->get());
+         
+            $status = Storage::disk('public-image-product')->put($input['image_3']->getClientOriginalName(), $input['image_3']->get());
             return $status;
         }
     }
