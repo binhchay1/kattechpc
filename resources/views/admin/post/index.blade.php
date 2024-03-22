@@ -59,7 +59,7 @@
 
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->slug}}
                                     </td>
-                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->content}}
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{!! Str::limit(strip_tags(html_entity_decode($post->content)), 30)!!}
                                     </td>
                                     <td>
                                         <div class="relative dropdown">

@@ -57,4 +57,12 @@
     <link rel="stylesheet" href="{{ asset('css/admin/user.css') }}">
     <!-- App js -->
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.ckeditor').ckeditor();
+        });
+        CKEDITOR.replace( 'productDescription', {
+            height: 500,
+        } );
+    </script>
 @endpush
