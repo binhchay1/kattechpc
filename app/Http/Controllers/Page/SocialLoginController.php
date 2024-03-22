@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Page;
 
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;

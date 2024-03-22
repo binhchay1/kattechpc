@@ -37,7 +37,8 @@ class CategoryRepository extends BaseRepository
         return $this->model->where('id', $id)->delete();
     }
 
+    public function getListCategory()
+    {
+        return $this->model->with('products')->get();
+    }
 }
-
-
-
