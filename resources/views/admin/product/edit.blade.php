@@ -30,6 +30,9 @@
                                 <input type="text" id="productCodeInput" name="code" value="{{old('code', $product->name)}}"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                        placeholder="{{__('Mã sản phẩm')}}" value="TWT145015"  >
+                                @if ($errors->has('code'))
+                                    <span class="text-danger">{{ $errors->first('code') }}</span>
+                                @endif
                             </div><!--end col-->
 
                             <div class="xl:col-span-6">
@@ -58,14 +61,17 @@
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Thể loại')}}</label>
                                 <select
                                     class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                    data-choices data-choices-search-false  id="categorySelect" name="category" value="">
+                                    data-choices data-choices-search-false  id="categorySelect" name="category_id" value="">
                                     @foreach ($listCategories as $category)
-                                        <option value="{{ $category->name }}" @if($product->category == $category->name) selected @endif>
+                                        <option value="{{ $category->id }}" @if($dataProduct->category_id == $category->id) selected @endif>
                                             {{$category->name}}
                                         </option>
                                     @endforeach
 
                                 </select>
+                                @if ($errors->has('category_id'))
+                                    <span class="text-danger">{{ $errors->first('category_id') }}</span>
+                                @endif
                             </div><!--end col-->
 
                             <div class="lg:col-span-2 xl:col-span-12">
@@ -75,6 +81,9 @@
                                     <textarea
                                         class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                         id="productDescription" name="description" value="" placeholder="{{__('Miêu tả')}}" rows="5"> {{old('description', $product->description)}}</textarea>
+                                    @if ($errors->has('description'))
+                                        <span class="text-danger">{{ $errors->first('description') }}</span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="xl:col-span-4">
@@ -82,6 +91,9 @@
                                 <input type="number" id="productPrice" name="price" value="{{old('price', $product->price)}}"
                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                        placeholder="{{__('Giá')}}" >
+                                @if ($errors->has('price'))
+                                    <span class="text-danger">{{ $errors->first('price') }}</span>
+                                @endif
                             </div><!--end col-->
 
                             <div class="xl:col-span-4">
@@ -93,6 +105,9 @@
                                         <option id="type_of_league" value="{{ $value }}" {{$value == $product->status ? 'selected' : ''}}>{{ $value }}</option>
                                     @endforeach
                                 </select>
+                                @if ($errors->has('status'))
+                                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                                @endif
                             </div><!--end col-->
                             <input type="hidden" name="slug" class="form-control" id="name" placeholder="Enter name" value="{{$product->slug}}">
 
