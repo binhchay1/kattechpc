@@ -51,15 +51,15 @@
                                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
                                     <div class="">
                                         <div class="" style="display: inline-grid;">
-                                            <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
-                                            <div class=" choose-avatar">
-                                                <div id="btnimage">
-                                                    <img id="showImage" class="show-avatar" src="{{ asset('/images/product.png') }}" alt="avatar" >
-                                                </div>
-                                                <div id="button">
-                                                    <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
-                                                </div>
-                                            </div>
+                                            <input type="file" name="image[]" class="form-control @error('image.*') is-invalid @enderror" multiple>
+{{--                                            <div class=" choose-avatar">--}}
+{{--                                                <div id="btnimage">--}}
+{{--                                                    <img id="showImage" class="show-avatar" src="{{ asset('/images/product.png') }}" alt="avatar" >--}}
+{{--                                                </div>--}}
+{{--                                                <div id="button">--}}
+{{--                                                    <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>--}}
+{{--                                                </div>--}}
+{{--                                            </div>--}}
                                             @if ($errors->has('image'))
                                                 <span class="text-danger">{{ $errors->first('image') }}</span>
                                             @endif

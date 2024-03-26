@@ -14,7 +14,7 @@ class ProductRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->with('category')->orderBy('created_at', 'DESC')->paginate(10);
+        return $this->model->with('category', 'productImages')->orderBy('created_at', 'DESC')->paginate(10);
     }
 
     public function store($input)
@@ -24,7 +24,7 @@ class ProductRepository extends BaseRepository
 
     public function show($id)
     {
-        return $this->model->where('id', $id)->first();
+        return $this->model->with( 'productImages')->where('id', $id)->first();
     }
 
     public function update($input, $id)
@@ -39,7 +39,7 @@ class ProductRepository extends BaseRepository
 
     public function productDetail($slug)
     {
-        return $this->model->where('slug', $slug)->first();
+        return $this->model->with('productImages')->where('slug', $slug)->first();
     }
 
     public function getProductRelated($category_id, $product_id)

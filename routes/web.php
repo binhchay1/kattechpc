@@ -124,6 +124,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::post('/update/{role}', [CategoryProductController::class, 'updateCategory'])->name('admin.categoryProduct.update');
         Route::get('/delete/{id}', [CategoryProductController::class, 'deleteCategory'])->name('admin.categoryProduct.delete');
     });
+    
+    Route::get('products/{productId}/upload', [App\Http\Controllers\Admin\ProductImageController::class, 'index']);
+    Route::post('products/{productId}/upload', [App\Http\Controllers\Admin\ProductImageController::class, 'store']);
+    Route::get('product-image/{productImageId}/delete', [App\Http\Controllers\Admin\ProductImageController::class, 'destroy']);
 });
 
 

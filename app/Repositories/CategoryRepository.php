@@ -39,6 +39,6 @@ class CategoryRepository extends BaseRepository
 
     public function getListCategory()
     {
-        return $this->model->with('products')->get();
+        return $this->model->with('products','products.productImages')->get();
     }
 }
