@@ -31,8 +31,9 @@ class PostRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => __('validation.required'),
-            'content.required' => __('validation.required'),
+            'title.required' => __('Tiêu đề bài viết không được để trống'),
+            'title.max' => __('Tiêu đề bài viết không được vượt quá 255 kí tự'),
+            'content.required' => __('Nội dung bài viết không được để trống'),
         ];
     }
 }

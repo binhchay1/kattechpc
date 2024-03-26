@@ -30,7 +30,8 @@ class CategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('validation.required'),
+            'name.required' => __('Tên danh mục không được để trống'),
+            'name.max' => __('Tên danh mục không được vượt quá 255 kí tự'),
         ];
     }
 }
