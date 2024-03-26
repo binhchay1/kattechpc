@@ -35,6 +35,9 @@
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">
                                     {{__('Mã sản phẩm')}}
                                 </th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">
+                                    {{__('Ảnh sản phẩm')}}
+                                </th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="name">{{__('Tên sản phẩm')}}
                                 </th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">
@@ -54,17 +57,11 @@
 
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $product->code }}
                                 </td>
-
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center gap-2">
-                                        <div class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
-                                            <img src="{{$product->image}}" alt="" class="h-10 rounded-full">
-                                        </div>
-                                        <div class="grow">
-                                            <h6 class="mb-1"><a href="#!" class="name">{{$product->name}}</a></h6>
-                                        </div>
-                                    </div>
+                                    <a href="{{ url('admin/products/'.$product->id.'/upload') }}" style="">{{__("Thêm/Xem Ảnh")}}</a>
+
                                 </td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"> {{$product->name}}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $product->category->name ?? "" }}
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 email">{{ $product->description }}</td>
