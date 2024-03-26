@@ -29,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 //
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
-    Route::get('index/{locale}', [TailwickController::class, 'lang']);
+    // Route::get('index/{locale}', [TailwickController::class, 'lang']);
 
     Route::group(['prefix' => 'promotion'], function () {
         Route::get('/', [PromotionController::class, 'index'])->name('admin.promotion.index');
@@ -115,7 +115,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::post('/update/{role}', [LandingPageController::class, 'updateLandingPage'])->name('admin.landing.page.update');
         Route::get('/delete/{id}', [LandingPageController::class, 'deleteLandingPage'])->name('admin.landing.page.delete');
     });
-    
+
     Route::group(['prefix' => 'category-product'], function () {
         Route::get('/list', [CategoryProductController::class, 'index'])->name('admin.categoryProduct.index');
         Route::get('/add', [CategoryProductController::class, 'createCategory'])->name('admin.categoryProduct.create');
@@ -131,7 +131,8 @@ Route::group(['middleware' => 'user'], function () {
 });
 
 
-Route::get('{locale}', [HomeController::class, 'lang']);
+// Route::get('{locale}', [HomeController::class, 'lang']);
+
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');
