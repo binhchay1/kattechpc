@@ -44,6 +44,7 @@ class HomeController extends Controller
     public function productDetail($slug)
     {
         $product = $this->productRepository->productDetail($slug);
+     
         $productRelated = $this->productRepository->getProductRelated($product->category_id, $product->id);
 
         return view('page.product.product-detail', compact('product', 'productRelated'));

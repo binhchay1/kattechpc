@@ -17,9 +17,11 @@
     <div class="img-card">
         <img src="{{ $product->image }}" alt="" id="featured-image">
         <div class="small-Card">
-            <img src="{{ $product->image }}" alt="" class="small-Img">
-            <img src="{{ $product->image }}" alt="" class="small-Img">
-            <img src="{{ $product->image }}" alt="" class="small-Img">
+
+            @foreach ($product->productImages as $prodImg)
+                <img src="{{ asset($prodImg->image) }}" alt="" class="small-Img">
+             @endforeach
+
         </div>
     </div>
 
