@@ -32,7 +32,7 @@ class LandingPageController extends Controller
     public function storeLandingPage(LandingPageRequest $request)
     {
         $input = $request->except(['_token']);
-        $input = $request->all();
+        $input['content'] = html_entity_decode($input['content']);
         $this->landingPageRepository->create($input);
 
         return redirect()->route('admin.landing-page.index')->with('success', __('Trang đích thêm thành công'));
@@ -52,7 +52,7 @@ class LandingPageController extends Controller
     public function updateLandingPage(LandingPageRequest $request,  $id)
     {
         $input = $request->except(['_token']);
-
+        $input['content'] = html_entity_decode($input['content']);
         $input = $this->landingPageRepository->update($input, $id);
 
         return redirect()->route('admin.landing-page.index')->with('success', __('Trang đích cập nhật thành công'));

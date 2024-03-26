@@ -329,15 +329,16 @@
             <div class="swiper-wrapper loaded" style="display: flex;">
                 <div class="box-banner-collection">
                     <a href="/ad.php?id=317" class="banner-collection boder-radius-10">
-                        <img src="{{asset('images/top-sale.jpg')}}" width="365"  class="boder-radius-10 lazy-image entered loaded" alt="" data-was-processed="true" data-ll-status="loaded">
+                        <img src="{{asset('images/top-sale.jpg')}}" width="365" class="boder-radius-10 lazy-image entered loaded" alt="" data-was-processed="true" data-ll-status="loaded">
                     </a>
 
                 </div>
+
                 <!-- fake data -->
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
                         <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
-                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="164" height="164"  class="lazy entered loaded">
+                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="164" height="164" class="lazy entered loaded">
                         </a>
                         <div class="product-info">
                             <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
@@ -359,7 +360,7 @@
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
                         <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
-                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="164" height="164"  class="lazy entered loaded">
+                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="164" height="164" class="lazy entered loaded">
                         </a>
                         <div class="product-info">
                             <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
@@ -381,7 +382,7 @@
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
                         <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
-                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="164" height="164"  class="lazy entered loaded">
+                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="164" height="164" class="lazy entered loaded">
                         </a>
                         <div class="product-info">
                             <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
@@ -403,7 +404,7 @@
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
                         <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
-                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="164" height="164"  class="lazy entered loaded">
+                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="164" height="164" class="lazy entered loaded">
                         </a>
                         <div class="product-info">
                             <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
@@ -426,16 +427,16 @@
             </div>
         </div>
 
-                <!-- end fake data -->
-            </div>
-            <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
-            <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
-            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-        </div>
+        <!-- end fake data -->
+    </div>
+    <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
+    <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
+    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+    </div>
     </div>
 </section>
 
-<section class=" category">
+<section class="category">
     <div class="">
         <div class="d-flex align-items-center justify-content-between">
             <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
@@ -468,7 +469,6 @@
                 <span class="policy-title">{{ __('Linh kiện') }}</span>
             </div>
         </div>
-
 
         <!-- end fake data -->
     </div>
@@ -612,16 +612,14 @@
     <div class="box-article-group boder-radius-10">
         <div class="d-flex justify-content-between align-items-center">
             <div class="title-box">
-                <h2 class="title-box font-weight-600">Tin tức công nghệ</h2>
+                <h2 class="title-box font-weight-600">{{ __('Tin tức công nghệ') }}</h2>
             </div>
-            <a href="/tin-cong-nghe" class="btn-article-group">Xem tất cả <i class="fa fa-caret-right"></i></a>
+            <a href="/tin-cong-nghe" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
         <div class="list-article-group d-flex align-items-center gap-10">
             <div class="item-article d-flex gap-12">
                 <a href="/viettel-trung-dau-gia-bang-tan-de-chinh-thuc-trien-khai-5g-tai-viet-nam" class="img-article boder-radius-10 position-relative">
-
                     <img class="boder-radius-10" src="{{ asset('/images/test_post/2904-viettel-dau-gia-thanh-cong-bang-tan-5g-1.jpg') }}" alt="Viettel trúng đấu giá băng tần để chính thức triển khai 5G tại Việt Nam">
-
                     <i class="sprite sprite-icon-play-video-detail icon-video-feature "></i>
                     <i class="sprite sprite-play-youtube "></i>
                 </a>
@@ -634,46 +632,6 @@
                         <span>10-03-2024, 10:37 am</span>
                     </p>
                     <p class="descreption-article line-clamp-2">Vượt qua 2 nhà mạng khác là Vinaphone và Mobifone, Tập đoàn Công nghiệp - Viễn thông quân đội Viettel mới đây đã đấu giá thành công để triển khai 5G tại Việt Nam với băng tần 2.500 - 2.600 MHz.</p>
-                </div>
-            </div>
-
-            <div class="item-article d-flex gap-12">
-                <a href="/vong-tron-loading-tren-windows-11-khong-he-vo-tri-nhu-chung-ta-van-nghi" class="img-article boder-radius-10 position-relative">
-
-                    <img class="boder-radius-10" src="{{ asset('/images/test_post/2887-vong-tron-loading-win-11-1.jpg') }}" alt="Vòng tròn loading trên Windows 11 không hề vô tri như chúng ta vẫn nghĩ">
-
-                    <i class="sprite sprite-icon-play-video-detail icon-video-feature "></i>
-                    <i class="sprite sprite-play-youtube "></i>
-                </a>
-                <div class="content-article content-article-item d-flex flex-column flex-1">
-                    <a href="/vong-tron-loading-tren-windows-11-khong-he-vo-tri-nhu-chung-ta-van-nghi" class="title-article">
-                        <h3 class="font-weight-400 line-clamp-2">Vòng tròn loading trên Windows 11 không hề vô tri như chúng ta vẫn nghĩ</h3>
-                    </a>
-                    <p class="time-article d-flex align-items-center gap-4">
-                        <i class="sprite sprite-clock-item-article"></i>
-                        <span>06-03-2024, 11:23 am</span>
-                    </p>
-                    <p class="descreption-article line-clamp-2">Hóa ra vòng tròn loading trên màn hình khởi động của Windows sử dụng một bộ font chữ riêng chứ không đơn thuần chỉ là những hình ảnh động vô tri như bấy lâu nay chúng ta vẫn nghĩ.</p>
-                </div>
-            </div>
-
-            <div class="item-article d-flex gap-12">
-                <a href="/facebook-va-instagram-sap-dien-rong-gay-thiet-hai-lon-cho-nen-kinh-te-the-gioi" class="img-article boder-radius-10 position-relative">
-
-                    <img class="boder-radius-10" src="{{ asset('/images/test_post/2886-facebook-sap-1.jpg') }}" alt="Facebook và Instagram sập diện rộng gây thiệt hại lớn cho nền kinh tế thế giới">
-
-                    <i class="sprite sprite-icon-play-video-detail icon-video-feature "></i>
-                    <i class="sprite sprite-play-youtube "></i>
-                </a>
-                <div class="content-article content-article-item d-flex flex-column flex-1">
-                    <a href="/facebook-va-instagram-sap-dien-rong-gay-thiet-hai-lon-cho-nen-kinh-te-the-gioi" class="title-article">
-                        <h3 class="font-weight-400 line-clamp-2">Facebook và Instagram sập diện rộng gây thiệt hại lớn cho nền kinh tế thế giới</h3>
-                    </a>
-                    <p class="time-article d-flex align-items-center gap-4">
-                        <i class="sprite sprite-clock-item-article"></i>
-                        <span>06-03-2024, 9:08 am</span>
-                    </p>
-                    <p class="descreption-article line-clamp-2">Đêm ngày 5 tháng 3 vừa qua theo giờ Việt Nam, các nền tảng của Meta bao gồm Facebook và Instagram đã tạm ngừng hoạt động trong một khoảng thời gian, gây ra sự hỗn loạn trên toàn thế giới.</p>
                 </div>
             </div>
         </div>

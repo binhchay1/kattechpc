@@ -6,3 +6,7 @@
 .text-danger {
     color: red;
 }
+
+.item-detail {
+    display: flex;
+}

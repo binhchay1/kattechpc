@@ -36,6 +36,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="{{ asset('/js/page/main.js') }}}"></script>
     @yield('js')
 </body>
 
