@@ -42,10 +42,13 @@
                                     <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach
                                 </select>
+                                @if ($errors->has('category_id'))
+                                    <span class="text-danger">{{ $errors->first('category_id') }}</span>
+                                @endif
                             </div><!--end col-->
                             <div class="xl:col-span-3">
                                 <div class="form-group xl:col-span-3">
-                                    <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh 1')}}</label>
+                                    <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
                                     <div class="">
                                         <div class="" style="display: inline-grid;">
                                             <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
@@ -55,71 +58,6 @@
                                                 </div>
                                                 <div id="button">
                                                     <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
-                                                </div>
-                                            </div>
-                                            @if ($errors->has('image'))
-                                                <span class="text-danger">{{ $errors->first('image') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="xl:col-span-3">
-                                <div class="form-group xl:col-span-3">
-                                    <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh 2')}}</label>
-                                    <div class="">
-                                        <div class="" style="display: inline-grid;">
-                                            <input value="" type="file" class="border-0 bg-light pl-0" name="image_1" id="image1" hidden>
-                                            <div class=" choose-avatar">
-                                                <div id="btnimage">
-                                                    <img id="showImage1" class="show-avatar1" src="{{ asset('/images/product.png') }}" alt="avatar" >
-                                                </div>
-                                                <div id="button">
-                                                    <i id="btn_chooseImg1" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
-                                                </div>
-                                            </div>
-                                            @if ($errors->has('image'))
-                                                <span class="text-danger">{{ $errors->first('image') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="xl:col-span-3">
-                                <div class="form-group xl:col-span-3">
-                                    <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh 3')}}</label>
-                                    <div class="">
-                                        <div class="" style="display: inline-grid;">
-                                            <input value="" type="file" class="border-0 bg-light pl-0" name="image_2" id="image2" hidden>
-                                            <div class=" choose-avatar">
-                                                <div id="btnimage">
-                                                    <img id="showImage2" class="show-avatar" src="{{ asset('/images/product.png') }}" alt="avatar" >
-                                                </div>
-                                                <div id="button">
-                                                    <i id="btn_chooseImg2" class="fas fa-camera"> {{ __('Chọn hình ảnh ') }}</i>
-                                                </div>
-                                            </div>
-                                            @if ($errors->has('image'))
-                                                <span class="text-danger">{{ $errors->first('image') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="xl:col-span-3">
-                                <div class="form-group xl:col-span-3">
-                                    <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh 4')}}</label>
-                                    <div class="">
-                                        <div class="" style="display: inline-grid;">
-                                            <input value="" type="file" class="border-0 bg-light pl-0" name="image_3" id="image3" hidden>
-                                            <div class=" choose-avatar">
-                                                <div id="btnimage">
-                                                    <img id="showImage3" class="show-avatar" src="{{ asset('/images/product.png') }}" alt="avatar" >
-                                                </div>
-                                                <div id="button">
-                                                    <i id="btn_chooseImg3" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
                                                 </div>
                                             </div>
                                             @if ($errors->has('image'))
@@ -162,6 +100,9 @@
                                         <option value="{{$value}}">{{$value}}</option>
                                     @endforeach
                                 </select>
+                                @if ($errors->has('status'))
+                                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                                @endif
                             </div><!--end col-->
 
                         </div><!--end grid-->

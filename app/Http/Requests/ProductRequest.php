@@ -35,18 +35,17 @@ class ProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'category_id.required' => __('validation.required'),
-            'name.required' => __('validation.required'),
-            'name.max' => __('validation.max'),
-            'description.required' => __('validation.required'),
-            'status.required' => __('validation.required'),
-            'code.required' => __('validation.required'),
-            'price.required' => __('validation.required'),
-            'code.max' => __('validation.max'),
-            'image.required' => __('validation.required'),
-            'image.image' => __('validation.image'),
-            'image.mimes' => __('validation.mimes'),
-            'image.max' => __('validation.max'),
+            'category_id.required' => __('Danh mục không được để trống'),
+            'name.required' => __('Tên sản phẩm không được để trống'),
+            'name.max' => __('Tên sản phẩm không vượt quá 255 kí tự'),
+            'description.required' => __('Miêu tả sản phẩm không được để trống'),
+            'status.required' => __('Trạng thái sản phẩm không được để trống'),
+            'code.required' => __('Mã sản phẩm không được để trống'),
+            'price.required' => __('Giá sản phẩm không được để trống'),
+            'code.max' => __('Mã sản phẩm không vượt quá 255 kí tự'),
+            'image.required' => __('Hình ảnh sản phẩm không được để trống'),
+            'image.mine' => __('Hình ảnh sản phẩm không đúng định dạng: jpeg,png,jpg '),
+            'image.max' => __('Hình ảnh sản phẩm không vượt quá 2048'),
         ];
     }
 

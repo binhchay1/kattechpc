@@ -31,8 +31,9 @@ class PromotionRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => __('validation.required'),
-            'content.required' => __('validation.required'),
+            'title.required' => __('Tiêu đề quảng cáo không được để trống'),
+            'title.max' => __('Tiêu đề quảng cáo không được vượt quá 255 kí tự'),
+            'content.required' => __('Nội dung quảng cáo không được để trống'),
         ];
     }
 }

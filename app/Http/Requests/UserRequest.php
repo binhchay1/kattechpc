@@ -36,18 +36,18 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('validation.required'),
-            'name.max' => __('validation.max'),
-            'email.required' => __('validation.required'),
-            'email.email' => __('validation.email'),
-            'email.unique' => __('validation.unique'),
-            'age.required|' => __('validation.required'),
-            'address.required' => __('validation.required'),
-            'phone.required' => __('validation.required'),
-            'profile_photo_path.image' => __('validation.image'),
-            'profile_photo_path.mimes' => __('validation.mimes'),
-            'profile_photo_path.max' => __('validation.max'),
-            'password.required' => __('validation.required'),
+            'name.required' => __('Tên người dùng không được để trống'),
+            'name.max' => __('Tên người dùng không vượt quá 255 kí tự'),
+            'email.required' => __('Địa chỉ email không được để trống'),
+            'email.email' => __('Địa chỉ email không đúng định dạng'),
+            'email.unique' => __('Địa chỉ email phải là duy nhất'),
+            'age.required|' => __('Ngày sinh không được để trống'),
+            'address.required' => __('Địa chỉ không được để trống'),
+            'phone.required' => __('Số điện thoại không được để trống'),
+            'profile_photo_path.image' => __('Ảnh đại diện không được để trống'),
+            'profile_photo_path.mimes' => __('Ảnh đại diện không đúng định dạng'),
+            'profile_photo_path.max' => __('Ảnh đại diện không được vượt quá 2048'),
+            'password.required' => __('Mật khẩu không được để trống'),
         ];
     }
 }

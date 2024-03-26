@@ -24,8 +24,7 @@ class StorageRequest extends FormRequest
 //        $age = date("Y-m-d", time() + 86400);
         return [
             'name' => 'required|max:255',
-
-            'address' => 'required',
+            'address' => 'required|max:255',
 
         ];
     }
@@ -33,8 +32,10 @@ class StorageRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('validation.required'),
-            'address.required' => __('validation.required'),
+            'name.required' => __('Tên kho không được để trống'),
+            'name.max' => __('Tên kho không vượt quá 255 kí tự'),
+            'address.required' => __('Địa chỉ kho không được để trống'),
+            'address.max' => __('Địa chỉ kho không vượt quá 255 kí tự'),
         ];
     }
 }
