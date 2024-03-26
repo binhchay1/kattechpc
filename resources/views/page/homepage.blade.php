@@ -317,6 +317,164 @@
     </div>
 </section>
 
+<section class="flash-sale-banner top-sale">
+    <div class="flash-sale-area">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
+                <h2 class="flash-sale-title">{{__('Sản phẩm bán chạy')}}</h2>
+            </div>
+        </div>
+
+        <div class="swiper box-list-item-deal swiper-box-deal swiper-initialized swiper-horizontal swiper-pointer-events">
+            <div class="swiper-wrapper loaded" style="display: flex;">
+                <div class="box-banner-collection">
+                    <a href="/ad.php?id=317" class="banner-collection boder-radius-10">
+                        <img src="{{asset('images/top-sale.jpg')}}" width="365"  class="boder-radius-10 lazy-image entered loaded" alt="" data-was-processed="true" data-ll-status="loaded">
+                    </a>
+
+                </div>
+                <!-- fake data -->
+                <div class="swiper-slide1" role="group">
+                    <div class="product-item">
+                        <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
+                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="164" height="164"  class="lazy entered loaded">
+                        </a>
+                        <div class="product-info">
+                            <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
+                                <h3 class="product-title line-clamp-3">Bộ PC GAMING 2024 : CORE I5 12400F/ RAM 8G RGB/ VGA 4G </h3>
+                            </a>
+
+                            <div class="product-martket-main d-flex align-items-center">
+                                <p class="product-market-price">18.990.000 ₫</p>
+                                <div class="product-percent-price">-22%</div>
+                            </div>
+
+                            <div class="product-price-main font-weight-600">
+                                14.800.000đ
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide1" role="group">
+                    <div class="product-item">
+                        <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
+                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="164" height="164"  class="lazy entered loaded">
+                        </a>
+                        <div class="product-info">
+                            <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
+                                <h3 class="product-title line-clamp-3">Bộ PC GAMING 2024 : CORE I5 12400F/ RAM 8G RGB/ VGA 4G </h3>
+                            </a>
+
+                            <div class="product-martket-main d-flex align-items-center">
+                                <p class="product-market-price">18.990.000 ₫</p>
+                                <div class="product-percent-price">-22%</div>
+                            </div>
+
+                            <div class="product-price-main font-weight-600">
+                                14.800.000đ
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide1" role="group">
+                    <div class="product-item">
+                        <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
+                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="164" height="164"  class="lazy entered loaded">
+                        </a>
+                        <div class="product-info">
+                            <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
+                                <h3 class="product-title line-clamp-3">Bộ PC GAMING 2024 : CORE I5 12400F/ RAM 8G RGB/ VGA 4G </h3>
+                            </a>
+
+                            <div class="product-martket-main d-flex align-items-center">
+                                <p class="product-market-price">18.990.000 ₫</p>
+                                <div class="product-percent-price">-22%</div>
+                            </div>
+
+                            <div class="product-price-main font-weight-600">
+                                14.800.000đ
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide1" role="group">
+                    <div class="product-item">
+                        <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
+                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="164" height="164"  class="lazy entered loaded">
+                        </a>
+                        <div class="product-info">
+                            <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
+                                <h3 class="product-title line-clamp-3">Bộ PC GAMING 2024 : CORE I5 12400F/ RAM 8G RGB/ VGA 4G </h3>
+                            </a>
+
+                            <div class="product-martket-main d-flex align-items-center">
+                                <p class="product-market-price">18.990.000 ₫</p>
+                                <div class="product-percent-price">-22%</div>
+                            </div>
+
+                            <div class="product-price-main font-weight-600">
+                                14.800.000đ
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+                <!-- end fake data -->
+            </div>
+            <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
+            <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+        </div>
+    </div>
+</section>
+
+<section class=" category">
+    <div class="">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
+                <h2 class="flash-sale-title">{{__('Danh mục nổi bật')}}</h2>
+            </div>
+        </div>
+        <div class="flex-container">
+            <div>
+                <img src="https://file.hstatic.net/200000722513/file/laptop_1f3300ec0cf1455ca3b5199859d9cfd7.jpg" class="item-hot">
+                <span class="policy-title">{{ __('Laptop') }}</span>
+            </div>
+            <div class="child1">
+                <img src="https://file.hstatic.net/200000722513/file/pc_db4c030d7ae1452987001ec502eae18d.jpg" class="item-hot">
+                <span class="policy-title">{{ __('PC') }}</span>
+            </div>
+            <div class="child1">
+                <img src="https://file.hstatic.net/200000722513/file/man-hinh_2c8cde62363045ed8c46944b1a732458.jpg" class="item-hot">
+                <span class="policy-title">{{ __('Màn hình') }}</span>
+            </div>
+            <div class="child1">
+                <img src="https://file.hstatic.net/200000722513/file/chuot_c2b601fad5b640898d1666b20bc50b34.jpg" class="item-hot">
+                <span class="policy-title">{{ __('Chuột') }}</span>
+            </div>
+            <div class="child1">
+                <img src="https://file.hstatic.net/200000722513/file/ban_phim_7442ed8375924db8816fcbd97a5180ce.jpg" class="item-hot">
+                <span class="policy-title">{{ __('Bàn phím') }}</span>
+            </div>
+            <div class="child1">
+                <img src="https://file.hstatic.net/200000722513/file/linh_kien_pc_23daa86cd21c44b6bc25bb4bab722cf0.jpg" class="item-hot">
+                <span class="policy-title">{{ __('Linh kiện') }}</span>
+            </div>
+        </div>
+
+
+        <!-- end fake data -->
+    </div>
+
+</section>
+
 @foreach($getCategory as $category)
 <section class="product-slide">
     <div class="product-slide-main boder-radius-10">
