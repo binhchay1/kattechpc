@@ -26,9 +26,41 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-//
+
+Route::get('/', [HomeController::class, 'viewHome'])->name('home');
+Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');
+Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
+Route::get('/blog-detail', [HomeController::class, 'postDetail'])->name('post.detail');
+Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
+Route::get('/promotion', [HomeController::class, 'viewRegister'])->name('promotion');
+Route::get('/product/{slug}', [HomeController::class, 'productDetail'])->name('productDetail');
+Route::get('/promotion', [HomeController::class, 'viewPromotion'])->name('promotion');
+Route::get('/promotion-detail', [HomeController::class, 'promotionDetail'])->name('post.promotion');
+Route::get('/rules', [HomeController::class, 'rules'])->name('post.rules');
+Route::get('/complaint', [HomeController::class, 'complaint'])->name('post.complaint');
+Route::get('/product-policy', [HomeController::class, 'productPolicy'])->name('post.productPolicy');
+Route::get('/landing/{slug}', [HomeController::class, 'viewLandingPage'])->name('landing.page');
+Route::get('/custom-contact', [HomeController::class, 'storeCustomContact'])->name('custom.contact');
+
+Route::get('account-info', [AccountController::class, 'show'])->name('profile');
+Route::post('account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
+Route::get('/change-password/', [AccountController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password/', [AccountController::class, 'updatePassword'])->name('update-password');
+
+Route::group(['prefix' => 'product'], function () {
+    Route::get('/detail', [\App\Http\Controllers\Page\ProductController::class, 'detail'])->name('page.product.detail');
+});
+
+Route::group(['prefix' => 'cart'], function () {
+    Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
+    Route::get('show-cart',  [CartController::class, 'showCart'])->name('showCart');
+    Route::get('delete-cart/{id}',  [CartController::class, 'deleteCart'])->name('deleteCart');
+    Route::get('update-cart',  [CartController::class, 'updateCart'])->name('updateCart');
+});
+
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
+    Route::get('/custom-contact', [AdminController::class, 'storeCustomContact'])->name('admin.custom.contact');
     // Route::get('index/{locale}', [TailwickController::class, 'lang']);
 
     Route::group(['prefix' => 'promotion'], function () {
@@ -124,47 +156,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::post('/update/{role}', [CategoryProductController::class, 'updateCategory'])->name('admin.categoryProduct.update');
         Route::get('/delete/{id}', [CategoryProductController::class, 'deleteCategory'])->name('admin.categoryProduct.delete');
     });
-    
+
     Route::get('products/{productId}/upload', [App\Http\Controllers\Admin\ProductImageController::class, 'index']);
     Route::post('products/{productId}/upload', [App\Http\Controllers\Admin\ProductImageController::class, 'store']);
     Route::get('product-image/{productImageId}/delete', [App\Http\Controllers\Admin\ProductImageController::class, 'destroy']);
 });
 
-
 Route::group(['middleware' => 'user'], function () {
-});
-
-
-// Route::get('{locale}', [HomeController::class, 'lang']);
-
-
-Route::get('/', [HomeController::class, 'viewHome'])->name('home');
-Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');
-Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
-Route::get('/blog-detail', [HomeController::class, 'postDetail'])->name('post.detail');
-Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
-Route::get('/promotion', [HomeController::class, 'viewRegister'])->name('promotion');
-Route::get('/product/{slug}', [HomeController::class, 'productDetail'])->name('productDetail');
-Route::get('/promotion', [HomeController::class, 'viewPromotion'])->name('promotion');
-Route::get('/promotion-detail', [HomeController::class, 'promotionDetail'])->name('post.promotion');
-Route::get('/rules', [HomeController::class, 'rules'])->name('post.rules');
-Route::get('/complaint', [HomeController::class, 'complaint'])->name('post.complaint');
-Route::get('/product-policy', [HomeController::class, 'productPolicy'])->name('post.productPolicy');
-
-
-Route::get('account-info', [AccountController::class, 'show'])->name('profile');
-Route::post('account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
-Route::get('/change-password/', [AccountController::class, 'changePassword'])->name('change-password');
-Route::post('/change-password/', [AccountController::class, 'updatePassword'])->name('update-password');
-
-Route::group(['prefix' => 'product'], function () {
-    Route::get('/detail', [\App\Http\Controllers\Page\ProductController::class, 'detail'])->name('page.product.detail');
-});
-
-Route::group(['prefix' => 'cart'], function () {
-
-    Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
-    Route::get('show-cart',  [CartController::class, 'showCart'])->name('showCart');
-    Route::get('delete-cart/{id}',  [CartController::class, 'deleteCart'])->name('deleteCart');
-    Route::get('update-cart',  [CartController::class, 'updateCart'])->name('updateCart');
 });

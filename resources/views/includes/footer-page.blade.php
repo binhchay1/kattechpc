@@ -5,7 +5,7 @@
         </div>
         <div class="newsletter-form">
             <input type="text" name="" id="email_newsletter" placeholder="Nhập email hoặc số điện thoại của bạn">
-            <a class="footer-subscribe-button">{{ __('Gửi') }}</a>
+            <a class="footer-subscribe-button" id="news-button-summit">{{ __('Gửi') }}</a>
         </div>
     </div>
 </div>
@@ -95,3 +95,5 @@
         </div>
     </div>
 </div>
+
+@include('includes.modal-submit-get-news')

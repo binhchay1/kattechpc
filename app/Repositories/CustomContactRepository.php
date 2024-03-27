@@ -2,14 +2,14 @@
 
 namespace App\Repositories;
 
-use App\Models\LandingPage;
+use App\Models\CustomContact;
 
-class LandingPageRepository extends BaseRepository
+class CustomContactRepository extends BaseRepository
 
 {
     public function model()
     {
-        return LandingPage::class;
+        return CustomContact::class;
     }
 
     public function index()
@@ -37,8 +37,8 @@ class LandingPageRepository extends BaseRepository
         return $this->model->where('id', $id)->delete();
     }
 
-    public function getBySlug($slug)
+    public function getListCategory()
     {
-        return $this->model->where('slug', $slug)->first();
+        return $this->model->with('products','products.productImages')->get();
     }
 }

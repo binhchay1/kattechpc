@@ -14,6 +14,7 @@
     <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 
     @include('layouts.head-css')
+    @yield('css')
     @livewireStyles
 </head>
 
