@@ -67,7 +67,7 @@
                                                      alt="" class="h-10 rounded-full">
                                             </div>
                                             <div class="grow">
-                                                <h6 class="mb-1"><a href="#!" class="name">{{$user->name}}</a></h6>
+                                                <h6 class="mb-1">{{$user->name}}</h6>
                                             </div>
                                         </div>
                                     </td>

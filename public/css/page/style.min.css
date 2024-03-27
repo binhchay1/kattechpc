@@ -1032,3 +1032,7 @@ body a {
         flex-direction: column;
     }
 }
+
+ a {
+     color: hotpink;
+ }
