@@ -55,11 +55,9 @@ class ProductController extends Controller
         $input= $request->all();
         $input['slug'] =  Str::slug($input['name']);
         if (isset($input['image'])) {
-            $img = $this->utility->saveImageProduct($input);
-            if ($img) {
-                $path = '/images/upload/product/' . $input['image']->getClientOriginalName();
-                $input['image'] = $path;
-            }
+            $this->utility->saveImageProduct($input);
+            $path = '/images/upload/product/' . $input['image']->getClientOriginalName();
+            $input['image'] = $path;
         }
 
         $this->productRepository->store($input);
@@ -83,11 +81,9 @@ class ProductController extends Controller
     {
         $input = $request->except(['_token']);
         if (isset($input['image'])) {
-            $img = $this->utility->saveImageProduct($input);
-            if ($img) {
-                $path = '/images/upload/product/' . $input['image']->getClientOriginalName();
-                $input['image'] = $path;
-            }
+           $this->utility->saveImageProduct($input);
+            $path = '/images/upload/product/' . $input['image']->getClientOriginalName();
+            $input['image'] = $path;
         }
 
         $product = $this->productRepository->update($input, $id);
