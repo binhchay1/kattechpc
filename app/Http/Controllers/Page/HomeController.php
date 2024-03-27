@@ -104,6 +104,11 @@ class HomeController extends Controller
         return view('page.product-policy');
     }
     
+    public function businessPolicy()
+    {
+        return view('page.business-policy');
+    }
+    
    
     public function viewLandingPage($slug)
     {
