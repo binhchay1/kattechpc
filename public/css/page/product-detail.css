@@ -69,6 +69,9 @@ header {
     adding: 0.5rem;
     display: flex;
     flex-wrap: wrap;
+    float: left;
+    width: 40%;
+    padding: 10px;
 
 }
 
@@ -209,16 +212,6 @@ tr:nth-child(even) {
 }
 
 
-#content {
-    padding: 0.5rem;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-#left {
-    width: 100%;
-}
-
 #right {
     width: 80%;
     padding: 0.5rem;
@@ -275,6 +268,19 @@ tr:nth-child(even) {
     font-size: 18px;
     font-weight: bold;
 }
+
+#content {
+    padding: 0.5rem;
+    display: flex;
+}
+
+
+#content-right {
+    margin-top: 0;
+    margin-left: 20px;
+}
+
+
 
 @media screen and (max-width: 576px) {
     .product-container{
