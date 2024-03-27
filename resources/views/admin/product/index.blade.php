@@ -73,7 +73,7 @@
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"> {{$product->name}}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $product->category->name ?? "" }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 email">{{ $product->description }}</td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 email">{!! Str::limit(strip_tags(html_entity_decode($product->content)), 100)!!}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 phone-number">{{ $product->price }}</td>
                                 <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500 status">
                                     <span class="status px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-orange-100 border-transparent text-orange-500 dark:bg-orange-500/20 dark:border-transparent">{{$product->status}}</span>
