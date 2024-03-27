@@ -333,7 +333,6 @@
                     </a>
 
                 </div>
-
                 <!-- fake data -->
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
