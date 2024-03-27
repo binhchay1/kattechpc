@@ -55,9 +55,6 @@
 @endsection
 
 @push('scripts')
-<script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
-<script src="{{ URL::asset('build/js/pages/apps-ecommerce-product-create.init.js') }}"></script>
-<script src="{{ URL::asset('build/js/app.js') }}"></script>
 <script src="{{ URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
 <script src="{{ URL::asset('build/js/pages/form-editor-classic.init.js') }}"></script>
 @endpush

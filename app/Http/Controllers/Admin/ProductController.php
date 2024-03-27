@@ -60,7 +60,6 @@ class ProductController extends Controller
         return redirect()->route('admin.product.index')->with('success',  __('Sản phẩm được thêm thành công'));
     }
 
-
     public function editProduct($id)
     {
         $statusProduct = Product::STATUS;
