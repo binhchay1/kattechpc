@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
@@ -46,6 +47,7 @@ Route::get('account-info', [AccountController::class, 'show'])->name('profile');
 Route::post('account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
 Route::get('/change-password/', [AccountController::class, 'changePassword'])->name('change-password');
 Route::post('/change-password/', [AccountController::class, 'updatePassword'])->name('update-password');
+Route::get('/order-history', [AccountController::class, 'orderHistory'])->name('orderHistory');
 
 Route::group(['prefix' => 'product'], function () {
     Route::get('/detail', [\App\Http\Controllers\Page\ProductController::class, 'detail'])->name('page.product.detail');
@@ -155,6 +157,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/update/{role}', [CategoryProductController::class, 'editCategory'])->name('admin.categoryProduct.edit');
         Route::post('/update/{role}', [CategoryProductController::class, 'updateCategory'])->name('admin.categoryProduct.update');
         Route::get('/delete/{id}', [CategoryProductController::class, 'deleteCategory'])->name('admin.categoryProduct.delete');
+    });
+    
+    Route::group(['prefix' => 'category-post'], function () {
+        Route::get('/list', [CategoryPostController::class, 'index'])->name('admin.categoryPost.index');
+        Route::get('/add', [CategoryPostController::class, 'createCategory'])->name('admin.categoryPost.create');
+        Route::post('/store', [CategoryPostController::class, 'storeCategory'])->name('admin.categoryPost.store');
+        Route::get('/update/{role}', [CategoryPostController::class, 'editCategory'])->name('admin.categoryPost.edit');
+        Route::post('/update/{role}', [CategoryPostController::class, 'updateCategory'])->name('admin.categoryPost.update');
+        Route::get('/delete/{id}', [CategoryPostController::class, 'deleteCategory'])->name('admin.categoryPost.delete');
     });
 
     Route::get('products/{productId}/upload', [App\Http\Controllers\Admin\ProductImageController::class, 'index']);

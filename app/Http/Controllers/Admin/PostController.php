@@ -4,17 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
+use App\Repositories\CategoryPostRepository;
 use App\Repositories\PostRepository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
     private $postRepository;
+    private $categoryPostRepository;
 
     public function __construct(
+        CategoryPostRepository $categoryPostRepository,
         PostRepository $postRepository
     )
     {
+        $this->categoryPostRepository = $categoryPostRepository;
         $this->postRepository = $postRepository;
     }
 
@@ -34,7 +39,8 @@ class PostController extends Controller
      */
     public function createPost()
     {
-        return view('admin.post.create');
+        $listCategories = $this->categoryPostRepository->index();
+        return view('admin.post.create', compact('listCategories'));
     }
 
     /**
@@ -45,6 +51,8 @@ class PostController extends Controller
         $input = $request->except(['_token']);
         $input = $request->all();
         $input['slug'] =  Str::slug($input['title']);
+        $input['author'] = Auth::user()->id;
+        
         $this->postRepository->create($input);
 
         return redirect()->route('admin.post.index')->with('success',  __('Bài viết được thêm thành công'));
@@ -63,11 +71,12 @@ class PostController extends Controller
      */
     public function editPost( $id)
     {
+        $listCategories = $this->categoryPostRepository->index();
         $post = $this->postRepository->show($id);
         if (empty($post)) {
             abort(404);
         }
-        return view('admin.post.edit', compact('post'));
+        return view('admin.post.edit', compact('post','listCategories'));
     }
 
     /**

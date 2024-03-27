@@ -133,7 +133,7 @@
     <link rel="stylesheet" href="{{ asset('css/admin/product.css') }}">
     <!-- App js -->
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
-    <script src="{{ URL::asset('js/eventImage.js') }}"></script>
+    <script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('.ckeditor').ckeditor();
