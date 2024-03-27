@@ -2,55 +2,51 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Support\Str;
 
-class Post extends Model
+class CategoryPost extends Model
 {
     use HasFactory;
     use Sluggable;
-
+    
+    
     protected $fillable = [
-        'title', 'slug', 'content','author','category_id'
+        'name', 'slug',
     ];
     
     public function sluggable(): array
     {
         return [
             'slug' => [
-                'source' => 'title'
+                'source' => 'name'
             ]
         ];
-    }
-    
-    public function category()
-    {
-        return $this->belongsTo('App\Models\CategoryPost');
-    }
-    
-    public function user()
-    {
-        return $this->belongsTo('App\Models\User', 'author' ,'id' );
     }
     
     protected static function boot()
     {
         parent::boot();
         
-        static::creating(function ($product) {
-            $product->slug = Str::slug($product->title);
+        static::creating(function ($category) {
+            $category->slug = Str::slug($category->name);
             
             // Ensure slug uniqueness
-            $originalSlug = $slug = $product->slug;
+            $originalSlug = $slug = $category->slug;
             $count = 1;
             
             while (static::where('slug', $slug)->exists()) {
                 $slug = $originalSlug . '-' . $count++;
             }
             
-            $product->slug = $slug;
+            $category->slug = $slug;
         });
+    }
+    
+    public function products()
+    {
+        return $this->hasMany('App\Models\Post', 'category_id', 'id');
     }
 }
