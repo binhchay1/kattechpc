@@ -8,19 +8,16 @@ use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\Role;
 use App\Enums\Title;
-use App\Repositories\RankingRepository;
 use App\Http\Controllers\Controller;
 use Exception;
 
 class SocialLoginController extends Controller
 {
     private $userRepository;
-    private $rankingRepository;
 
-    public function __construct(UserRepository $userRepository, RankingRepository $rankingRepository)
+    public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
-        $this->rankingRepository = $rankingRepository;
     }
 
     public function redirectToGoogle()

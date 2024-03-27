@@ -35,11 +35,6 @@ class ProductController extends Controller
         return view('admin.product.index', compact('listProducts'));
     }
 
-    public function show($id)
-    {
-        $product = $this->productRepository->show($id);
-    }
-
     public function createProduct()
     {
         $statusProduct = Product::STATUS;

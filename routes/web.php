@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Page\HomeController;
 use App\Http\Controllers\Page\AccountController;
 use App\Http\Controllers\Page\CartController;
+use App\Http\Controllers\Page\SocialLoginController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LandingPageController;
 use Illuminate\Support\Facades\Route;
@@ -42,12 +43,15 @@ Route::get('/complaint', [HomeController::class, 'complaint'])->name('post.compl
 Route::get('/product-policy', [HomeController::class, 'productPolicy'])->name('post.productPolicy');
 Route::get('/landing/{slug}', [HomeController::class, 'viewLandingPage'])->name('landing.page');
 Route::get('/custom-contact', [HomeController::class, 'storeCustomContact'])->name('custom.contact');
-
 Route::get('account-info', [AccountController::class, 'show'])->name('profile');
 Route::post('account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
 Route::get('/change-password/', [AccountController::class, 'changePassword'])->name('change-password');
 Route::post('/change-password/', [AccountController::class, 'updatePassword'])->name('update-password');
 Route::get('/order-history', [AccountController::class, 'orderHistory'])->name('orderHistory');
+Route::get('/auth/google/', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback/', [SocialLoginController::class, 'handleGoogleCallback']);
+Route::get('/auth/facebook/', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
+Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFacebookCallback']);
 
 Route::group(['prefix' => 'product'], function () {
     Route::get('/detail', [\App\Http\Controllers\Page\ProductController::class, 'detail'])->name('page.product.detail');
@@ -158,7 +162,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::post('/update/{role}', [CategoryProductController::class, 'updateCategory'])->name('admin.categoryProduct.update');
         Route::get('/delete/{id}', [CategoryProductController::class, 'deleteCategory'])->name('admin.categoryProduct.delete');
     });
-    
+
     Route::group(['prefix' => 'category-post'], function () {
         Route::get('/list', [CategoryPostController::class, 'index'])->name('admin.categoryPost.index');
         Route::get('/add', [CategoryPostController::class, 'createCategory'])->name('admin.categoryPost.create');

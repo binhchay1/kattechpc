@@ -81,24 +81,24 @@
                             @endif
                         </div>
 
-                        
+
                         <div class="xl:col-span-6">
-                                <div class="form-group">
-                                    <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
-                                    <div class="">
-                                        <div class="" style="display: inline-grid;">
-                                            <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
-                                            <div class=" choose-avatar">
-                                                <div id="btnimage">
-                                                    <img id="showImage" class="show-avatar" src="{{ asset('/images/product.png') }}" alt="avatar" >
-                                                </div>
-                                                <div id="button">
-                                                    <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
-                                                </div>
+                            <div class="form-group">
+                                <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
+                                <div class="">
+                                    <div class="" style="display: inline-grid;">
+                                        <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
+                                        <div class=" choose-avatar">
+                                            <div id="btnimage">
+                                                <img id="showImage" class="show-avatar" src="{{ asset('/images/product.png') }}" alt="avatar">
                                             </div>
-                                            @if ($errors->has('image'))
-                                                <span class="text-danger">{{ $errors->first('image') }}</span>
-                                            @endif
+                                            <div id="button">
+                                                <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
+                                            </div>
+                                        </div>
+                                        @if ($errors->has('image'))
+                                        <span class="text-danger">{{ $errors->first('image') }}</span>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -147,14 +147,15 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ URL::asset('js/eventImage.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('.ckeditor').ckeditor();
-        });
-        CKEDITOR.replace( 'productDescription', {
-            height: 500,
-        } );
-    </script>
+<script src="{{ URL::asset('js/eventImage.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.ckeditor').ckeditor();
+    });
+
+    CKEDITOR.replace('productDescription', {
+        height: 500,
+    });
+</script>
 <script src="{{ URL::asset('js/admin/product.js') }}"></script>
 @endpush
