@@ -147,13 +147,9 @@
 @endsection
 
 @push('scripts')
-    <!-- dropzone -->
     <script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
-    <!--product create init js-->
     <script src="{{ URL::asset('build/js/pages/apps-ecommerce-product-create.init.js') }}"></script>
-    <!-- App css -->
     <link rel="stylesheet" href="{{ asset('css/admin/product.css') }}">
-    <!-- App js -->
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
     <script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
     <script type="text/javascript">
@@ -164,4 +160,5 @@
             height: 500,
         } );
     </script>
+    <script src="{{ URL::asset('js/admin/product.js') }}"></script>
 @endpush

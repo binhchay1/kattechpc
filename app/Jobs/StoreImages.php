@@ -15,9 +15,14 @@ class StoreImages implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct()
+
+    protected $disk;
+    protected $data;
+
+    public function __construct($disk, $data)
     {
-        //
+        $this->disk = $disk;
+        $this->data = $data;
     }
 
     /**
@@ -25,6 +30,12 @@ class StoreImages implements ShouldQueue
      */
     public function handle(): void
     {
-        //
+        switch ($this->disk) {
+            case 'public-image-user':
+                Storage::disk($this->disk)->put($input['profile_photo_path']->getClientOriginalName(), $input['profile_photo_path']->get());
+                break;
+            default:
+                Storage::disk($this->disk)->put($input['image']->getClientOriginalName(), $input['image']->get());
+        }
     }
 }

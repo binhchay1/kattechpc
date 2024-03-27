@@ -10,8 +10,6 @@ use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use function App\Http\Controllers\alert;
 
 class UserController extends Controller
 {
@@ -102,7 +100,7 @@ class UserController extends Controller
 
         return back()->with('success',__('Thông tin người dùng được thành công'));
     }
-    
+
 
 //    public function userSearch(Request $request)
 //    {
