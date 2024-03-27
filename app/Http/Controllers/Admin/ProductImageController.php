@@ -17,11 +17,8 @@ class ProductImageController extends Controller
     }
     
     
-    public function store(Request $request, int $productId)
+    public function store(ProductImageRequest $request, int $productId)
     {
-        $request->validate([
-            'images.*' => 'required|image|mimes:png,jpg,jpeg,webp'
-        ]);
         
         $product = Product::findOrFail($productId);
         

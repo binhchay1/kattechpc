@@ -40,10 +40,10 @@
                                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
                                     <div class="">
                                         <div class="" style="display: inline-grid;">
-                                            <input value="{{$product->image ?? asset('/images/product.png') }}" src="" type="file" class="border-0 bg-light pl-0" name="image" id="profile_photo_path" style="display: none">
+                                            <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                                             <div class=" choose-avatar">
                                                 <div id="btnimage">
-                                                    <img id="showImage" class="show-avatar" src="{{$product->image ?? asset('/images/product.png') }}" alt="avatar" >
+                                                    <img id="showImage" class="show-avatar" src="{{ asset($product->image ??  '/images/product.png') }}" alt="avatar" >
                                                 </div>
                                                 <div id="button">
                                                     <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
@@ -63,7 +63,7 @@
                                     class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                     data-choices data-choices-search-false  id="categorySelect" name="category_id" value="">
                                     @foreach ($listCategories as $category)
-                                        <option value="{{ $category->id }}" @if($dataProduct->category_id == $category->id) selected @endif>
+                                        <option value="{{ $category->id }}" @if($category->category_id == $category->id) selected @endif>
                                             {{$category->name}}
                                         </option>
                                     @endforeach
@@ -79,7 +79,7 @@
                                     <label for="productDescription"
                                            class="inline-block mb-2 text-base font-medium">{{__('Miêu tả')}}</label>
                                     <textarea
-                                        class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                        class="ckeditor form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
                                         id="productDescription" name="description" value="" placeholder="{{__('Miêu tả')}}" rows="5"> {{old('description', $product->description)}}</textarea>
                                     @if ($errors->has('description'))
                                         <span class="text-danger">{{ $errors->first('description') }}</span>
@@ -134,4 +134,12 @@
     <!-- App js -->
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
     <script src="{{ URL::asset('js/eventImage.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.ckeditor').ckeditor();
+        });
+        CKEDITOR.replace( 'productDescription', {
+            height: 500,
+        } );
+    </script>
 @endpush

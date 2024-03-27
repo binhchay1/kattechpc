@@ -106,7 +106,7 @@
                 <hr class="hr">
             </div>
 
-            <div class="column2">
+            <div class="column2" >
                 <div class="row top1">
                     <h2 class="text"> {{__('Chủ đề hót')}}</h2>
                     <div class="parent1">
