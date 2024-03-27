@@ -56,11 +56,9 @@ class UserController extends Controller
         $input['role'] = 'user'; // password
         if (isset($input['profile_photo_path'])) {
 
-            $img = $this->utility->saveImageuser($input);
-            if ($img) {
-                $path = '/images/upload/user/' . $input['profile_photo_path']->getClientOriginalName();
-                $input['profile_photo_path'] = $path;
-            }
+            $this->utility->saveImageuser($input);
+            $path = '/images/upload/user/' . $input['profile_photo_path']->getClientOriginalName();
+            $input['profile_photo_path'] = $path;
         }
 
         $user = $this->userRepository->store($input);
@@ -84,11 +82,11 @@ class UserController extends Controller
     {
         $input = $request->except(['_token']);
         if (isset($input['profile_photo_path'])) {
-            $img = $this->utility->saveImageUser($input);
-            if ($img) {
-                $path = '/images/upload/user/' . $input['profile_photo_path']->getClientOriginalName();
-                $input['profile_photo_path'] = $path;
-            }
+           $this->utility->saveImageUser($input);
+           
+            $path = '/images/upload/user/' . $input['profile_photo_path']->getClientOriginalName();
+            $input['profile_photo_path'] = $path;
+        
         }
 
         $user = $this->userRepository->update($input, $id);

@@ -25,9 +25,7 @@ class ProductImageController extends Controller
         
         $imageData = [];
         if($files = $request->file('images')){
-            
             foreach($files as $key => $file){
-                
                 $extension = $file->getClientOriginalExtension();
                 $filename = $key.'-'.time(). '.' .$extension;
                 
