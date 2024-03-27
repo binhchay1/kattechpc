@@ -23,7 +23,7 @@ class HomeController extends Controller
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository,
         LandingPageRepository $landingPageRepository,
-        CustomContactRepository $customContactRepository,
+        CustomContactRepository $customContactRepository
     ) {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
@@ -103,7 +103,8 @@ class HomeController extends Controller
     {
         return view('page.product-policy');
     }
-
+    
+   
     public function viewLandingPage($slug)
     {
         $getLandingPage = $this->landingPageRepository->getBySlug($slug);
