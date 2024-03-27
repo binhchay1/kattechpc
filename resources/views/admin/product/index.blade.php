@@ -31,52 +31,40 @@
                     <table class="w-full border-separate table-custom border-spacing-y-1 whitespace-nowrap">
                         <thead class="text-left">
                             <tr class="relative rounded-md bg-slate-100 dark:bg-zink-600 after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
-
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">
-                                    {{__('Mã sản phẩm')}}
-                                </th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">
-                                    {{__('Ảnh sản phẩm')}}
-                                </th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="name">{{__('Tên sản phẩm')}}
-                                </th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">
-                                    {{__('Thể loại')}}
-                                </th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="phone-number">{{__('Miêu tả')}}</th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="joining-date">{{__('Giá')}}</th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="status">
-                                    {{__('Trạng thái')}}
-                                </th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="name">{{__('Tên sản phẩm')}}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="code">{{__('Mã sản phẩm')}}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">{{__('Ảnh sản phẩm')}}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="category">{{__('Thể loại')}}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="description">{{__('Mô tả')}}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="price">{{__('Giá')}}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="detail">{{__('Chi tiết')}}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="status">{{__('Trạng thái')}}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">{{__('Hành động')}}</th>
                             </tr>
                         </thead>
                         <tbody class="list">
                             @foreach($listProducts as $product)
                             <tr class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
-
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $product->code }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 name"> {{$product->name}}</td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 code">{{ $product->code }}
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
                                     <div class="flex items-center gap-2">
-                                        <div
-                                            class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
-                                            <img src="{{$product->image}}"
-                                                 alt="" class="h-10 rounded-full">
+                                        <div class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
+                                            <img src="{{$product->image}}" alt="" class="h-10 rounded-full">
                                         </div>
                                         <div class="grow">
                                             <h6 class="mb-1"> <a href="{{ url('admin/products/'.$product->id.'/upload') }}" style="color: #1267ea">{{__("Thêm/Xem Ảnh")}}</a></h6>
                                         </div>
                                     </div>
                                 </td>
-
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"> {{$product->name}}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $product->category->name ?? "" }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 email">{!! Str::limit(strip_tags(html_entity_decode($product->content)), 100)!!}</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 phone-number">{{ $product->price }}</td>
-                                <td class="px-3.5 py-2.5 border-y border-slate-200 dark:border-zink-500 status">
-                                    <span class="status px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-orange-100 border-transparent text-orange-500 dark:bg-orange-500/20 dark:border-transparent">{{$product->status}}</span>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 description">{!! Str::limit(strip_tags(html_entity_decode($product->content)), 100)!!}</td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 price">{{ $product->price }}</td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 detail">{{ $product->detail }}</td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 status">
+                                    <span class="status px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-orange-100 border-transparent text-orange-500 dark:bg-orange-500/20 dark:border-transparent">{{ $product->status }}</span>
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
                                     <div class="relative dropdown">
@@ -105,8 +93,7 @@
                                             <div class="flex justify-center gap-2 mt-6">
                                                 <button type="reset" data-modal-close="deleteModal" class="bg-white text-slate-500 btn hover:text-slate-500 hover:bg-slate-100 focus:text-slate-500 focus:bg-slate-100 active:text-slate-500 active:bg-slate-100 dark:bg-zink-600 dark:hover:bg-slate-500/10 dark:focus:bg-slate-500/10 dark:active:bg-slate-500/10">{{__('Hủy')}}</button>
                                                 <a href="{{route('admin.product.delete',$product['id'])}}">
-                                                    <button class="text-white bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-custom-400/20">{{__('Xóa sản phẩm
-                                                      !')}}</button></a>
+                                                    <button class="text-white bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-custom-400/20">{{__('Xóa sản phẩm!')}}</button></a>
                                             </div>
                                         </div>
                                     </div>
@@ -118,22 +105,16 @@
                     {!! $listProducts->links() !!}
                 </div>
             </div>
-        </div><!--end card-->
-    </div><!--end col-->
-</div><!--end grid-->
+        </div>
+    </div>
+</div>
 
 
 @endsection
 @push('scripts')
-<!-- list js-->
 <script src="{{ URL::asset('build/libs/list.js/list.min.js') }}"></script>
 <script src="{{ URL::asset('build/libs/list.pagination.js/list.pagination.min.js') }}"></script>
-
-<!-- User list init js -->
 <script src="{{ URL::asset('build/js/pages/apps-user-list.init.js') }}"></script>
-
-<!-- App js -->
-<script src="{{ URL::asset('build/js/app.js') }}"></script>
 
 <script>
     setTimeout(function() {

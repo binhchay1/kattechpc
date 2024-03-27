@@ -6,20 +6,21 @@ use App\Jobs\StoreImages;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Storage;
 
 final class Utility
 {
     public function saveImageProduct($input)
     {
         if ($input) {
-            StoreImages::dispatch('public-image-product', $input)->onQueue('store-image');
+            Storage::disk('public-image-product')->put($input['image']->getClientOriginalName(), $input['image']->get());
         }
     }
 
     public function saveImageUser($input)
     {
         if ($input) {
-            StoreImages::dispatch('public-image-user', $input)->onQueue('store-image');
+            Storage::disk('public-image-user')->put($input['profile_photo_path']->getClientOriginalName(), $input['profile_photo_path']->get());
         }
     }
 
