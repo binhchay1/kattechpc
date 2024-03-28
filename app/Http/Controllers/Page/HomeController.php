@@ -6,10 +6,10 @@ use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
-use App\Models\LandingPage;
 use App\Repositories\CategoryRepository;
 use App\Repositories\CustomContactRepository;
 use App\Repositories\LandingPageRepository;
+use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,17 +18,20 @@ class HomeController extends Controller
     protected $categoryRepository;
     protected $landingPageRepository;
     protected $customContactRepository;
+    protected $postRepository;
 
     public function __construct(
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository,
         LandingPageRepository $landingPageRepository,
-        CustomContactRepository $customContactRepository
+        CustomContactRepository $customContactRepository,
+        PostRepository $postRepository
     ) {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
         $this->landingPageRepository = $landingPageRepository;
         $this->customContactRepository = $customContactRepository;
+        $this->postRepository = $postRepository;
     }
 
     public function lang($locale)
@@ -45,9 +48,10 @@ class HomeController extends Controller
 
     public function viewHome()
     {
-        $getCategory = $this->categoryRepository->getListCategory();
+        $listCategory = $this->categoryRepository->getListCategory();
+        $listNews = $this->postRepository->getListNewsInHomepage();
 
-        return view('page.homepage', compact('getCategory'));
+        return view('page.homepage', compact('listCategory', 'listNews'));
     }
 
     public function productDetail($slug)
@@ -103,27 +107,26 @@ class HomeController extends Controller
     {
         return view('page.product-policy');
     }
-    
+
     public function businessPolicy()
     {
         return view('page.business-policy');
     }
-    
+
     public function electronicBill()
     {
         return view('page.electronic-bill');
     }
-    
+
     public function securityCustomer()
     {
         return view('page.security-customer');
     }
-    
-   
+
     public function viewLandingPage($slug)
     {
         $getLandingPage = $this->landingPageRepository->getBySlug($slug);
-        if (!$getCategory) {
+        if (!$getLandingPage) {
             abort(404);
         }
         $content = $getLandingPage->content;

@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-body">
                 <h6 class="mb-4 text-15">{{__('Sửa sản phẩm')}}</h6>
-                <form method="POST" action="{{route('admin.product.store')}}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.product.update', $product->id) }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
                         <div class="xl:col-span-4">
@@ -84,8 +84,8 @@
                         <div class="xl:col-span-6">
                             <div class="form-group">
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Hình ảnh') }}</label>
-                                <div class="">
-                                    <div class="" style="display: inline-grid;">
+                                <div>
+                                    <div style="display: inline-grid;">
                                         <input type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                                         <div class=" choose-avatar">
                                             <div id="btnimage">
@@ -126,6 +126,14 @@
                             </div>
 
                             <ul class="space-y-5 rounded-md" id="area-detail">
+                                @if($product->detail)
+                                @foreach($product->detail as $key => $value)
+                                <li class="item-detail">
+                                    <input name="detail_key[]" class="form-input" value="{{ $key }}" placeholder="Nhập tên trường" />
+                                    <input name="detail_value[]" class="form-input ml-3" value="{{ $value }}" placeholder="Nhập tên giá trị" />
+                                </li>
+                                @endforeach
+                                @endif
                             </ul>
 
                             @if ($errors->has('detail'))

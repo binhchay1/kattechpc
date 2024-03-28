@@ -28,7 +28,6 @@ class ProductUpdateRequest extends FormRequest
             'status' =>'required',
             'code' =>'required|max:255',
             'price' =>'required|max:255',
-            // 'image' =>'image|mimes:jpeg,png,jpg|max:2048'
         ];
     }
 
@@ -43,8 +42,6 @@ class ProductUpdateRequest extends FormRequest
             'code.required' => __('Mã sản phẩm không được để trống'),
             'price.required' => __('Giá sản phẩm không được để trống'),
             'code.max' => __('Mã sản phẩm không vượt quá 255 kí tự'),
-            // 'image.mine' => __('Hình ảnh sản phẩm không đúng định dạng: jpeg,png,jpg '),
-            // 'image.max' => __('Hình ảnh sản phẩm không vượt quá 2048'),
         ];
     }
 }
