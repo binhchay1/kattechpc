@@ -47,6 +47,11 @@ class CategoryPost extends Model
     
     public function products()
     {
+        return $this->hasMany('App\Models\Products', 'category_id', 'id');
+    }
+    
+    public function posts()
+    {
         return $this->hasMany('App\Models\Post', 'category_id', 'id');
     }
 }
