@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\Utility;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Repositories\CategoryPostRepository;
 use App\Repositories\PostRepository;
 use Illuminate\Support\Facades\Auth;
@@ -12,15 +14,18 @@ use Illuminate\Support\Str;
 class PostController extends Controller
 {
     private $postRepository;
+    private $utility;
     private $categoryPostRepository;
 
     public function __construct(
         CategoryPostRepository $categoryPostRepository,
-        PostRepository $postRepository
+        PostRepository $postRepository,
+        Utility $utility
     )
     {
         $this->categoryPostRepository = $categoryPostRepository;
         $this->postRepository = $postRepository;
+        $this->utility = $utility;
     }
 
     /**
@@ -51,7 +56,11 @@ class PostController extends Controller
         $input = $request->all();
         $input['slug'] =  Str::slug($input['title']);
         $input['author'] = Auth::user()->id;
-        
+        if (isset($input['thumbnail'])) {
+            $this->utility->saveImagePost($input);
+            $path = '/images/upload/post/' . $input['thumbnail']->getClientOriginalName();
+            $input['thumbnail'] = $path;
+        }
         $this->postRepository->create($input);
 
         return redirect()->route('admin.post.index')->with('success',  __('Bài viết được thêm thành công'));
@@ -81,11 +90,15 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function updatePost(PostRequest $request,  $id)
+    public function updatePost(UpdatePostRequest $request,  $id)
     {
         $input = $request->except(['_token']);
         $input['slug'] =  Str::slug($input['title']);
-
+        if (isset($input['thumbnail'])) {
+            $this->utility->saveImagePost($input);
+            $path = '/images/upload/post/' . $input['thumbnail']->getClientOriginalName();
+            $input['thumbnail'] = $path;
+        }
         $input = $this->postRepository->update($input, $id);
 
         return redirect()->route('admin.post.index')->with('success',  __('Bài viết được thay đổi thành công'));

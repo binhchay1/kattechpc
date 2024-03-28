@@ -14,7 +14,7 @@
                     <form method="POST" action="{{route('admin.post.update', $post['id'])}}"  enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
-                            <div class="xl:col-span-6">
+                            <div class="xl:col-span-4">
                                 <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Tiêu đề bài viết')}}</label>
                                 <input type="text" id="productNameInput" name="title" value="{{old('title',$post->title)}}"
                                        class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
@@ -23,7 +23,7 @@
                                     <span class="text-danger">{{ $errors->first('title') }}</span>
                                 @endif
                             </div><!--end col-->
-                            <div class="xl:col-span-6">
+                            <div class="xl:col-span-4">
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Thể loại') }}</label>
                                 <select style="width: 50%" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false id="categorySelect" name="category_id">
                                     @foreach($listCategories as $category)
@@ -35,6 +35,34 @@
                                 @if ($errors->has('category_id'))
                                     <span class="text-danger">{{ $errors->first('category_id') }}</span>
                                 @endif
+                            </div>
+                            <div class="xl:col-span-4">
+                                <label for="productShortDescription" class="inline-block mb-2 text-base font-medium"> {{ __('Mô tả ngắn') }}</label>
+                                <input type="text" id="productShortDescription" name="short_description" value="{{ old('short_description', $post->short_description) }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Mô tả ngắn') }}">
+                                @if ($errors->has('short_description'))
+                                    <span class="text-danger">{{ $errors->first('short_description') }}</span>
+                                @endif
+                            </div>
+                            <div class="xl:col-span-6">
+                                <div class="form-group">
+                                    <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
+                                    <div class="">
+                                        <div class="" style="display: inline-grid;">
+                                            <input value="" type="file" class="border-0 bg-light pl-0" name="thumbnail" id="image" hidden>
+                                            <div class=" choose-avatar">
+                                                <div id="btnimage">
+                                                    <img id="showImage" class="show-avatar" src="{{ asset($post->thumbnail ?? '/images/product.png') }}" alt="avatar">
+                                                </div>
+                                                <div id="button">
+                                                    <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
+                                                </div>
+                                            </div>
+                                            @if ($errors->has('image'))
+                                                <span class="text-danger">{{ $errors->first('image') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="xl:col-span-6">
                                 <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Nội dung bài viết')}}
@@ -65,6 +93,7 @@
     </div><!--end grid-->
 @endsection
 @push('scripts')
+    <script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
     <!-- dropzone -->
     <script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
     <!--product create init js-->
