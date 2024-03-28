@@ -65,7 +65,7 @@
                 <p><a href="#">Hướng dẫn thanh toán</a></p>
                 <p><a href="#">Hướng dẫn mua hàng trả góp</a>
                 </p>
-                <p><a href="#">In hóa đơn điện tử</a>
+                <p><a href="{{route('electronicBill')}}">In hóa đơn điện tử</a>
                 </p>
                 <p><a href="{{route('complaint')}}">Góp ý, Khiếu Nại</a></p>
             </div>
@@ -75,8 +75,7 @@
                 <p><a href="{{route('policy')}}">Chính sách bảo hành</a></p>
                 <p><a href="{{route('businessPolicy')}}">Chính sách cho doanh nghiệp</a></p>
                 <p><a href="{{route('productPolicy')}}">Chính sách hàng chính hãng</a></p>
-                <p><a href="#">Bảo mật thông tin khách hàng</a></p>
-                <p><a href="#">Chính sách nhập lại tính phí</a></p>
+                <p><a href="{{route('securityCustomer')}}">Bảo mật thông tin khách hàng</a></p>
             </div>
             <div class="footer-middle-item">
                 <span class="footer-middle-title">THÔNG TIN KHUYẾN MẠI</span>
