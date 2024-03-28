@@ -27,7 +27,7 @@ class Post extends Model
     
     public function category()
     {
-        return $this->belongsTo('App\Models\CategoryPost');
+        return $this->belongsTo('App\Models\CategoryPost','category_id' ,'id' );
     }
     
     public function user()

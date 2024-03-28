@@ -109,6 +109,16 @@ class HomeController extends Controller
         return view('page.business-policy');
     }
     
+    public function electronicBill()
+    {
+        return view('page.electronic-bill');
+    }
+    
+    public function securityCustomer()
+    {
+        return view('page.security-customer');
+    }
+    
    
     public function viewLandingPage($slug)
     {

@@ -15,7 +15,7 @@
                 <h1>{{__('CHÍNH SÁCH BẢO HÀNH')}}</h1>
                 <h2>{{__('DÀNH CHO KHÁCH HÀNG KATTECH')}}</h2>
                 <p class="policy-title">{{__('Nếu Quý Khách gặp khó khăn trong việc liên hệ Trung Tâm Bảo Hành, Quý Khách vui lòng liên hệ với bộ phận chăm sóc khách hàng của KATTECH theo thông tin sau để được hỗ trợ:')}}</p>
-                <h5>{{__('E-mail: cskh@hattech.com • Hotline: 1800.1234')}}</h5>
+                <h5>{{__('E-mail: info@kattechpc.com • Hotline: 1800.1234')}}</h5>
             </div>
             <div class="column">
                 <img src="{{asset('/images/page/baohanh.jpg')}}">
