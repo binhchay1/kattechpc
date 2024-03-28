@@ -89,14 +89,14 @@
                                         <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                                         <div class=" choose-avatar">
                                             <div id="btnimage">
-                                                <img id="showImage" class="show-avatar" src="{{ asset( '/images/product.png') }}" alt="avatar" >
+                                                <img id="showImage" class="show-avatar" src="{{ asset( '/images/product.png') }}" alt="avatar">
                                             </div>
                                             <div id="button">
                                                 <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
                                             </div>
                                         </div>
                                         @if ($errors->has('image'))
-                                            <span class="text-danger">{{ $errors->first('image') }}</span>
+                                        <span class="text-danger">{{ $errors->first('image') }}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -146,11 +146,11 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
-    <script type="text/javascript">
-        CKEDITOR.replace( 'productDescription', {
-            height: 500,
-        } );
-    </script>
-    <script src="{{ URL::asset('js/admin/product.js') }}"></script>
+<script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
+<script type="text/javascript">
+    CKEDITOR.replace('productDescription', {
+        height: 500,
+    });
+</script>
+<script src="{{ URL::asset('js/admin/product.js') }}"></script>
 @endpush

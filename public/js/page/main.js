@@ -30,7 +30,7 @@ $(document).ready(function () {
         $('.global-tooltip').css('top', e.clientY + 1200);
     }, function () {
         $('.global-tooltip').css('display', 'none');
-    })
+    });
 
     let trans = 0;
     setInterval(function () {
