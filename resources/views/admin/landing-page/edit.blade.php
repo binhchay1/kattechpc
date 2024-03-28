@@ -44,17 +44,7 @@
                         </div>
                     </form>
                 </div>
-            </div><!--end card-->
-        </div><!--end col-->
-    </div><!--end grid-->
+            </div>
+        </div>
+    </div>
 @endsection
-@push('scripts')
-    <!-- dropzone -->
-    <script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
-    <!--product create init js-->
-    <script src="{{ URL::asset('build/js/pages/apps-ecommerce-product-create.init.js') }}"></script>
-    <!-- App css -->
-    <link rel="stylesheet" href="{{ asset('css/admin/user.css') }}">
-    <!-- App js -->
-    <script src="{{ URL::asset('build/js/app.js') }}"></script>
-@endpush

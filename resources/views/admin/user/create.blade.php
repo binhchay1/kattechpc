@@ -2,10 +2,12 @@
 @section('title')
     {{ __('Thêm người dùng') }}
 @endsection
+
+@push('css')
+<link rel="stylesheet" href="{{ asset('css/admin/user.css') }}">
+@endpush
+
 @section('content')
-
-    <!-- page title -->
-
     <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5 mt-4">
         <div class="xl:col-span-12">
             <div class="card">
@@ -23,7 +25,7 @@
                                 @if ($errors->has('name'))
                                     <span class="text-danger">{{ $errors->first('name') }}</span>
                                 @endif
-                            </div><!--end col-->
+                            </div>
 
                             <div class="xl:col-span-6">
                                 <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Địa chỉ email')}}
@@ -34,7 +36,7 @@
                                 @if ($errors->has('email'))
                                     <span class="text-danger">{{ $errors->first('email') }}</span>
                                 @endif
-                            </div><!--end col-->
+                            </div>
 
                             <div class="xl:col-span-6">
                                 <div class="form-group">
@@ -88,7 +90,7 @@
                                 @if ($errors->has('phone'))
                                     <span class="text-danger">{{ $errors->first('phone') }}</span>
                                 @endif
-                            </div><!--end col-->
+                            </div>
                             <div class="xl:col-span-4">
                                 <label for="productPrice" class="inline-block mb-2 text-base font-medium">{{__('Ngày sinh')}}</label>
                                 <input type="date" id="productPrice" name="age" value="{{old('age')}}"
@@ -97,7 +99,7 @@
                                 @if ($errors->has('age'))
                                     <span class="text-danger">{{ $errors->first('age') }}</span>
                                 @endif
-                            </div><!--end col-->
+                            </div>
 
                             <div class="xl:col-span-4">
                                 <label for="productStatus" class="inline-block mb-2 text-base font-medium">{{__('Giới tính')}}</label>
@@ -108,9 +110,9 @@
                                         <option value="{{$value}}">{{$value}}</option>
                                     @endforeach
                                 </select>
-                            </div><!--end col-->
+                            </div>
 
-                        </div><!--end grid-->
+                        </div>
                         <input type="hidden" name="password" class="form-control" id="name" placeholder="Enter name" value="1234">
                         @if ($errors->has('password'))
                             <span class="text-danger">{{ $errors->first('password') }}</span>
@@ -123,18 +125,11 @@
                         </div>
                     </form>
                 </div>
-            </div><!--end card-->
-        </div><!--end col-->
-    </div><!--end grid-->
+            </div>
+        </div>
+    </div>
 @endsection
+
 @push('scripts')
-    <!-- dropzone -->
-    <script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
-    <!--product create init js-->
-    <script src="{{ URL::asset('build/js/pages/apps-ecommerce-product-create.init.js') }}"></script>
-    <!-- App css -->
-    <link rel="stylesheet" href="{{ asset('css/admin/user.css') }}">
-    <!-- App js -->
-    <script src="{{ URL::asset('build/js/app.js') }}"></script>
-    <script src="{{ URL::asset('js/eventImage.js') }}"></script>
+    <script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
 @endpush

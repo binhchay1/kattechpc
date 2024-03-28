@@ -26,7 +26,7 @@ return new class extends Migration
             $table->text('hot_sale_list_thumbnail')->nullable();
             $table->text('big_banner_thumbnail')->nullable();
             $table->text('small_banner_thumbnail_1')->nullable();
-            $table->text('small_banner_thumbnail_1')->nullable();
+            $table->text('small_banner_thumbnail_2')->nullable();
             $table->timestamps();
         });
     }

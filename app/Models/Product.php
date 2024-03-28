@@ -22,14 +22,17 @@ class Product extends Model
         'image_1',
         'image_2',
         'image_3',
-       
+        'short_description',
+        'new_price',
+        'sale_detail',
+        'detail',
     ];
 
     public function category()
     {
         return $this->belongsTo('App\Models\Category', 'category_id', 'id');
     }
-    
+
     public function productImages()
     {
         return $this->hasMany('App\Models\ProductImage', 'product_id', 'id');
