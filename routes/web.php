@@ -10,12 +10,14 @@ use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CollectionController;
 use App\Http\Controllers\Page\HomeController;
 use App\Http\Controllers\Page\AccountController;
 use App\Http\Controllers\Page\CartController;
 use App\Http\Controllers\Page\SocialLoginController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LandingPageController;
+use App\Http\Controllers\Admin\LayoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -69,7 +71,8 @@ Route::group(['prefix' => 'cart'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
     Route::get('/custom-contact', [AdminController::class, 'listCustomContact'])->name('admin.custom.contact');
-    Route::get('/custom-layout', [AdminController::class, 'viewCustomLayout'])->name('admin.custom.layout');
+    Route::get('/layout', [LayoutController::class, 'viewCustomLayout'])->name('admin.custom.layout');
+    Route::get('/collection', [CollectionController::class, 'viewCollection'])->name('admin.collection');
     // Route::get('index/{locale}', [TailwickController::class, 'lang']);
 
     Route::group(['prefix' => 'promotion'], function () {

@@ -32,6 +32,10 @@ class ProductController extends Controller
     public function index()
     {
         $listProducts = $this->productRepository->index();
+        foreach ($listProducts as $product) {
+            $product->detail = json_decode($product->detail, true);
+        }
+
         return view('admin.product.index', compact('listProducts'));
     }
 
@@ -69,9 +73,12 @@ class ProductController extends Controller
         $statusProduct = Product::STATUS;
         $listCategories = $this->categoryRepository->index();
         $product = $this->productRepository->show($id);
+        $product->detail = json_decode($product->detail, true);
+
         if (empty($product)) {
             abort(404);
         }
+
         return view('admin.product.edit', compact('product', 'listCategories', 'statusProduct'));
     }
 
@@ -83,6 +90,9 @@ class ProductController extends Controller
         for ($i = 0; $i < count($input['detail_key']); $i++) {
             $detail[$input['detail_key'][$i]] = $input['detail_value'][$i];
         }
+
+        unset($input['detail_key']);
+        unset($input['detail_value']);
 
         $input['detail'] = json_encode($detail);
         if (isset($input['image'])) {

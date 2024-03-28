@@ -17,6 +17,13 @@ final class Utility
         }
     }
 
+    public function saveImagePost($input)
+    {
+        if ($input) {
+            Storage::disk('public-image-post')->put($input['thumbnail']->getClientOriginalName(), $input['thumbnail']->get());
+        }
+    }
+
     public function saveImageUser($input)
     {
         if ($input) {

@@ -64,6 +64,13 @@ return [
             'throw' => false,
         ],
 
+        'public-image-post' => [
+            'driver' => 'local',
+            'root' => public_path() . '/images/upload/post/',
+            'url' => env('APP_URL') . '/images/upload/post/',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
         'public-image-user' => [
             'driver' => 'local',
             'root' => public_path() . '/images/upload/user/',

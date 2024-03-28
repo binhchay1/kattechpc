@@ -9,9 +9,6 @@
 @endsection
 
 @section('content')
-
-@include('includes.tooltips')
-
 <section class="slider-banner">
     <div class="slider-banner-main">
         <div class="menu-main">
@@ -101,7 +98,7 @@
         <div class="d-flex align-items-center justify-content-between">
             <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
                 <i class="fa fa-bolt"></i>
-                <h2 class="flash-sale-title">Flash sale</h2>
+                <h2 class="flash-sale-title">{{ __('Flash sale') }}</h2>
                 <span class="text-time-deal-home">{{ __('Kết thúc sau') }}</span>
                 <div class="global-time-dea d-flex align-items-center">
                     <p>01</p>
@@ -165,97 +162,8 @@
                 <a href="/ad.php?id=317" class="banner-collection boder-radius-10">
                     <img src="{{asset('images/top-sale.jpg')}}" width="365" class="boder-radius-10 lazy-image entered loaded" alt="" data-was-processed="true" data-ll-status="loaded">
                 </a>
-
             </div>
             <div class="swiper-wrapper swiper-top-sale" style="left: 48%;">
-                <div class="swiper-slide1" role="group">
-                    <div class="product-item">
-                        <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
-                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="210" height="164" class="lazy entered loaded">
-                        </a>
-                        <div class="product-info">
-                            <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
-                                <h3 class="product-title line-clamp-3">Bộ PC GAMING 2024 : CORE I5 12400F/ RAM 8G RGB/ VGA 4G </h3>
-                            </a>
-
-                            <div class="product-martket-main d-flex align-items-center">
-                                <p class="product-market-price">18.990.000 ₫</p>
-                                <div class="product-percent-price">-22%</div>
-                            </div>
-
-                            <div class="product-price-main font-weight-600">
-                                14.800.000đ
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide1" role="group">
-                    <div class="product-item">
-                        <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
-                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="210" height="164" class="lazy entered loaded">
-                        </a>
-                        <div class="product-info">
-                            <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
-                                <h3 class="product-title line-clamp-3">Bộ PC GAMING 2024 : CORE I5 12400F/ RAM 8G RGB/ VGA 4G </h3>
-                            </a>
-
-                            <div class="product-martket-main d-flex align-items-center">
-                                <p class="product-market-price">18.990.000 ₫</p>
-                                <div class="product-percent-price">-22%</div>
-                            </div>
-
-                            <div class="product-price-main font-weight-600">
-                                14.800.000đ
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide1" role="group">
-                    <div class="product-item">
-                        <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
-                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="210" height="164" class="lazy entered loaded">
-                        </a>
-                        <div class="product-info">
-                            <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
-                                <h3 class="product-title line-clamp-3">Bộ PC GAMING 2024 : CORE I5 12400F/ RAM 8G RGB/ VGA 4G </h3>
-                            </a>
-
-                            <div class="product-martket-main d-flex align-items-center">
-                                <p class="product-market-price">18.990.000 ₫</p>
-                                <div class="product-percent-price">-22%</div>
-                            </div>
-
-                            <div class="product-price-main font-weight-600">
-                                14.800.000đ
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide1" role="group">
-                    <div class="product-item">
-                        <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
-                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="210" height="164" class="lazy entered loaded">
-                        </a>
-                        <div class="product-info">
-                            <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
-                                <h3 class="product-title line-clamp-3">Bộ PC GAMING 2024 : CORE I5 12400F/ RAM 8G RGB/ VGA 4G </h3>
-                            </a>
-
-                            <div class="product-martket-main d-flex align-items-center">
-                                <p class="product-market-price">18.990.000 ₫</p>
-                                <div class="product-percent-price">-22%</div>
-                            </div>
-
-                            <div class="product-price-main font-weight-600">
-                                14.800.000đ
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
                         <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
@@ -364,8 +272,7 @@
                                 {{ $product->price }} đ
                             </div>
                             <div class="product-offer line-clamp-2">
-                                <p>+ Tặng Túi/Balo laptop NC trị giá: 390.000đ</p>
-                                <p>+ Tặng Chuột không dây trị giá: 150.000đ<br>+ Tặng Bàn di chuột trị giá: 50.000đ<br>+ Tặng Bộ vệ sinh Laptop trị giá: 40.000đ<br>+ Vệ sinh bảo dưỡng Laptop miễn phí trọn đời trị giá: 1 triệu đồng<br>+ Giảm 10% khi mua thêm RAM, HDD laptop<br>+ Giảm 5% khi mua kèm Gear, Đế tản nhiệt Laptop</p>
+                                <p>{{ $product->sale_detail }}</p>
                             </div>
                         </div>
                     </div>
@@ -467,23 +374,23 @@
             <a href="/tin-cong-nghe" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
         <div class="list-article-group d-flex align-items-center gap-10">
+            @foreach($listNews as $news)
             <div class="item-article d-flex gap-12">
                 <a href="/viettel-trung-dau-gia-bang-tan-de-chinh-thuc-trien-khai-5g-tai-viet-nam" class="img-article boder-radius-10 position-relative">
                     <img class="boder-radius-10" src="{{ asset('/images/test_post/2904-viettel-dau-gia-thanh-cong-bang-tan-5g-1.jpg') }}" alt="Viettel trúng đấu giá băng tần để chính thức triển khai 5G tại Việt Nam">
-                    <i class="sprite sprite-icon-play-video-detail icon-video-feature "></i>
-                    <i class="sprite sprite-play-youtube "></i>
                 </a>
                 <div class="content-article content-article-item d-flex flex-column flex-1">
                     <a href="/viettel-trung-dau-gia-bang-tan-de-chinh-thuc-trien-khai-5g-tai-viet-nam" class="title-article">
-                        <h3 class="font-weight-400 line-clamp-2">Viettel trúng đấu giá băng tần để chính thức triển khai 5G tại Việt Nam</h3>
+                        <h3 class="font-weight-400 line-clamp-2">{{ $post->content }}</h3>
                     </a>
                     <p class="time-article d-flex align-items-center gap-4">
                         <i class="sprite sprite-clock-item-article"></i>
-                        <span>10-03-2024, 10:37 am</span>
+                        <span>{{ date_format($post->created_at, "F j, Y, g:i a") }}</span>
                     </p>
-                    <p class="descreption-article line-clamp-2">Vượt qua 2 nhà mạng khác là Vinaphone và Mobifone, Tập đoàn Công nghiệp - Viễn thông quân đội Viettel mới đây đã đấu giá thành công để triển khai 5G tại Việt Nam với băng tần 2.500 - 2.600 MHz.</p>
+                    <p class="descreption-article line-clamp-2">{{ $post->short_description }}</p>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -545,6 +452,8 @@
         </div>
     </div>
 </section>
+
+@include('includes.tooltips')
 @endsection
 
 @section('js')

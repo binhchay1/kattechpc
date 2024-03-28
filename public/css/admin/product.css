@@ -10,3 +10,7 @@
 .item-detail {
     display: flex;
 }
+
+#area-detail {
+    margin-top: 20px;
+}
