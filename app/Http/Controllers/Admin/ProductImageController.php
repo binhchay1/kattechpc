@@ -18,9 +18,17 @@ class ProductImageController extends Controller
     }
     
     
-    public function store(ProductImageRequest $request, int $productId)
+    public function store(Request $request, int $productId)
     {
-        
+        $request->validate([
+            'images.*' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048'
+        ],
+            [
+                'images.*.required' => 'Hình ảnh không được để trống!',
+                'images.*.mimes' => 'Hình ảnh không đúng định dạng!',
+                'images.*.image' => 'Hình ảnh không phải là mội ảnh!',
+                'images.*.max' => 'Hình ảnh có kích thước quá lớn!',
+            ]);
         $product = Product::findOrFail($productId);
         
         $imageData = [];
