@@ -4,8 +4,12 @@
 {{ __('Thêm trang đích') }}
 @endsection
 
-@section('content')
+@push('css')
 <link rel="stylesheet" href="{{ asset('css/admin/user.css') }}">
+@endpush
+
+@section('content')
+
 <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5 mt-4">
     <div class="xl:col-span-12">
         <div class="card">

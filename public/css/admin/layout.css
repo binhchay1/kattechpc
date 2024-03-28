@@ -1,0 +1,11 @@
+:root {
+    --primary-color: #3b82f6;
+}
+
+.group.active {
+    border-bottom: 0.5px solid var(--primary-color);
+}
+
+.group.active a {
+    color: var(--primary-color);
+}
