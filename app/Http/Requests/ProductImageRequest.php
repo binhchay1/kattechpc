@@ -23,16 +23,16 @@ class ProductImageRequest extends FormRequest
     {
         return [
           
-            'image.*' =>'required|mimes:jpeg,png,jpg|max:2048'
+            'images.*' =>'required|mimes:jpeg,png,jpg|max:2048'
         ];
     }
     
     public function messages()
     {
         return [
-            'image.required' => __('Hình ảnh sản phẩm không được để trống'),
-            'image.mine' => __('Hình ảnh sản phẩm không đúng định dạng: jpeg,png,jpg '),
-            'image.max' => __('Hình ảnh sản phẩm không vượt quá 2048'),
+            'images.*.required' => __('Hình ảnh sản phẩm không được để trống'),
+            'images.*.mines' => __('Hình ảnh sản phẩm không đúng định dạng: jpeg,png,jpg '),
+            'images.*.max' => __('Hình ảnh sản phẩm không vượt quá 2048'),
         ];
     }
 }
