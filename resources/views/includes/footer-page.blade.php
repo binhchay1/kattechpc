@@ -51,7 +51,7 @@
                 <p><a href="">{{ __('Giới thiệu công ty') }}</a></p>
                 <p><a href="" target="_blank">{{ __('Liên hệ hợp tác kinh doanh') }}</a></p>
                 <p><a href="" target="_blank">{{ __('Thông tin tuyển dụng') }}</a></p>
-                <p><a href="" target="_blank">{{ __('Tin công nghệ') }}</a></p>
+                <p><a href="{{route('post')}}" target="_blank">{{ __('Tin công nghệ') }}</a></p>
                 <span class="footer-middle-social">
                     <a href="" target="_blank"><i class="fab fa-facebook-f"></i></a>
                     <a href="" target="_blank"><i class="fab fa-youtube"></i></a>
@@ -67,20 +67,20 @@
                 </p>
                 <p><a href="#">In hóa đơn điện tử</a>
                 </p>
-                <p><a href="#">Góp ý, Khiếu Nại</a></p>
+                <p><a href="{{route('complaint')}}">Góp ý, Khiếu Nại</a></p>
             </div>
             <div class="footer-middle-item">
                 <span class="footer-middle-title">CHÍNH SÁCH CHUNG</span>
-                <p><a href="#">Chính sách, quy định chung</a></p>
-                <p><a href="#">Chính sách bảo hành</a></p>
-                <p><a href="#">Chính sách cho doanh nghiệp</a></p>
-                <p><a href="#">Chính sách hàng chính hãng</a></p>
+                <p><a href="{{route('rules')}}">Chính sách, quy định chung</a></p>
+                <p><a href="{{route('policy')}}">Chính sách bảo hành</a></p>
+                <p><a href="{{route('businessPolicy')}}">Chính sách cho doanh nghiệp</a></p>
+                <p><a href="{{route('productPolicy')}}">Chính sách hàng chính hãng</a></p>
                 <p><a href="#">Bảo mật thông tin khách hàng</a></p>
                 <p><a href="#">Chính sách nhập lại tính phí</a></p>
             </div>
             <div class="footer-middle-item">
                 <span class="footer-middle-title">THÔNG TIN KHUYẾN MẠI</span>
-                <p><a href="#" target="_blank">Thông tin khuyến mại</a></p>
+                <p><a href="{{route('promotion')}}" target="_blank">Thông tin khuyến mại</a></p>
                 </p>
             </div>
         </div>

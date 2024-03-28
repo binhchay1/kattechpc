@@ -16,7 +16,7 @@
         display: none;
         position: absolute;
         background-color: #f1f1f1;
-        min-width: 160px;
+        min-width: 200px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 1;
     }
@@ -46,10 +46,16 @@
                 <div>
                     <a href="{{ route('policy') }}" class="sep-item-link" target="_blank"><i class="fa fa-pen"></i> {{ __('Chính sách bảo hành') }}</a>
                 </div>
-                <div class="ml-15px">
-                    <a href="{{ route('support') }}" class="sep-item-link" target="_blank"><i class="fa fa-wrench"></i> {{ __('Hỗ trợ') }}</a>
+                <div class="ml-15px dropdown">
+                    <a href="{{ route('support') }}" class="sep-item-link" target="_blank"><i class="fa fa-wrench"></i> {{ __('Chính sách hỗ trợ') }}</a>
+                    <div class="dropdown-content" >
+                        <a href="{{ route('rules') }}">{{__('Quy định chung của công ty')}}</a>
+                        <a href="{{route('businessPolicy')}}">{{__('Chính sách doanh nghiệp')}}</a>
+                        <a href="{{route('productPolicy')}}">{{__('Chính sách hàng chính hãng')}}</a>
+                        <a href="{{route('complaint')}}">{{__('Khiếu nại')}}</a>
+                    </div>
                 </div>
-                <div class="ml-15px">
+                <div class="ml-15px ">
                     <a href="{{ route('promotion') }}" class="sep-item-link" target="_blank"><i class="fa fa-tag"></i> {{ __('Khuyến mại') }}</a>
                 </div>
 
@@ -58,7 +64,7 @@
                     <a href="" class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
                     <div class="dropdown-content" >
                         <a href="{{route('profile')}}">{{__('Tài khoản')}}</a>
-                        <a href="#">{{__('Lịch sử mua hàng')}}</a>
+                        <a href="{{route('orderHistory')}}">{{__('Lịch sử mua hàng')}}</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a onclick="this.closest('form').submit();return false;" >

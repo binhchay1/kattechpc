@@ -72,29 +72,67 @@
 
         <div class=" top">
             <h3>{{__('Liên hệ')}}</h3>
-            <h4>{{__('Bộ phận doanh nghiệp')}}</h4>
+            <h4>{{__('Bộ phận doanh nghiệp công ty ')}}</h4>
         </div>
 
         <div class=" top1">
             <div class="parent">
                 <div class="child1">
-                    <span class="policy-title">{{ __('Công ty uy tín') }}</span>
+                    <span class="policy-title">Tên: {{ __('Nguyễn Văn A') }}</span>
+                    <br>
+                    <span class="policy-title">Email: {{ __('nguyenvana@gmail.com') }}</span>
+                    <br>
+                    <span class="policy-title">Liên hệ: {{ __('0945333422/0355545643') }}</span>
+                    <br>
+                    <button class="btn btn-button">Phụ trách</button>
                 </div>
                 <div class="child1">
-                    <span class="policy-title">{{ __('Hàng hóa đa dạng, chính hãng') }}</span>
+                    <span class="policy-title">Tên: {{ __('Nguyễn Văn A') }}</span>
+                    <br>
+                    <span class="policy-title">Email: {{ __('nguyenvana@gmail.com') }}</span>
+                    <br>
+                    <span class="policy-title">Liên hệ: {{ __('0945333422/0355545643') }}</span>
+                    <br>
+                    <button class="btn btn-button">Phụ trách</button>
                 </div>
                 <div class="child1">
-                    <span class="policy-title">{{ __('Miễn phí vận chuyển và lắp đặt') }}</span>
+                    <span class="policy-title">Tên: {{ __('Nguyễn Văn A') }}</span>
+                    <br>
+                    <span class="policy-title">Email: {{ __('nguyenvana@gmail.com') }}</span>
+                    <br>
+                    <span class="policy-title">Liên hệ: {{ __('0945333422/0355545643') }}</span>
+                    <br>
+                    <button class="btn btn-button">Phụ trách</button>
                 </div>
                 <div class="child1">
-                    <span class="policy-title">{{ __('Giai hàng nhanh chóng') }}</span>
+                    <span class="policy-title">Tên: {{ __('Nguyễn Văn A') }}</span>
+                    <br>
+                    <span class="policy-title">Email: {{ __('nguyenvana@gmail.com') }}</span>
+                    <br>
+                    <span class="policy-title">Liên hệ: {{ __('0945333422/0355545643') }}</span>
+                    <br>
+                    <button class="btn btn-button">Phụ trách</button>
                 </div>
                 <div class="child1">
-                    <span class="policy-title">{{ __('Chăm sóc khách hàng 24/7') }}</span>
+                    <span class="policy-title">Tên: {{ __('Nguyễn Văn A') }}</span>
+                    <br>
+                    <span class="policy-title">Email: {{ __('nguyenvana@gmail.com') }}</span>
+                    <br>
+                    <span class="policy-title">Liên hệ: {{ __('0945333422/0355545643') }}</span>
+                    <br>
+                    <button class="btn btn-button">Phụ trách</button>
                 </div>
                 <div class="child1">
-                    <p class="policy-title">{{ __('Thanh toán thuận tiện, an toàn') }}</p>
+                    <span class="policy-title">Tên: {{ __('Nguyễn Văn A') }}</span>
+                    <br>
+                    <span class="policy-title">Email: {{ __('nguyenvana@gmail.com') }}</span>
+                    <br>
+                    <span class="policy-title">Liên hệ: {{ __('0945333422/0355545643') }}</span>
+                    <br>
+                    <button class="btn btn-button">Phụ trách</button>
                 </div>
+
+
 
             </div>
         </div>

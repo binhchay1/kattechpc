@@ -39,6 +39,7 @@
 @include('layouts.customizer')
 @include('layouts.vendor-scripts')
 
+<script src="{{ URL::asset('build/js/app.js') }}"></script>
 </body>
 
 </html>

@@ -23,6 +23,11 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
+    public function viewCustomLayout()
+    {
+        return view('admin.custom-layout.index');
+    }
+
     public function lang($locale)
     {
         if ($locale) {

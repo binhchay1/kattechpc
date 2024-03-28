@@ -37,9 +37,11 @@ Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
 Route::get('/promotion', [HomeController::class, 'viewRegister'])->name('promotion');
 Route::get('/product/{slug}', [HomeController::class, 'productDetail'])->name('productDetail');
 Route::get('/promotion', [HomeController::class, 'viewPromotion'])->name('promotion');
-Route::get('/promotion-detail', [HomeController::class, 'promotionDetail'])->name('post.promotion');
-Route::get('/rules', [HomeController::class, 'rules'])->name('post.rules');
-Route::get('/complaint', [HomeController::class, 'complaint'])->name('post.complaint');
+Route::get('/promotion-detail', [HomeController::class, 'promotionDetail'])->name('promotion');
+Route::get('/rules', [HomeController::class, 'rules'])->name('rules');
+Route::get('/electronic-bill', [HomeController::class, 'electronicBill'])->name('electronicBill');
+Route::get('/security-customer', [HomeController::class, 'securityCustomer'])->name('securityCustomer');
+Route::get('/complaint', [HomeController::class, 'complaint'])->name('complaint');
 Route::get('/product-policy', [HomeController::class, 'productPolicy'])->name('productPolicy');
 Route::get('/business-policy', [HomeController::class, 'businessPolicy'])->name('businessPolicy');
 Route::get('/landing/{slug}', [HomeController::class, 'viewLandingPage'])->name('landing.page');
@@ -68,6 +70,7 @@ Route::group(['prefix' => 'cart'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
     Route::get('/custom-contact', [AdminController::class, 'listCustomContact'])->name('admin.custom.contact');
+    Route::get('/custom-layout', [AdminController::class, 'viewCustomLayout'])->name('admin.custom.layout');
     // Route::get('index/{locale}', [TailwickController::class, 'lang']);
 
     Route::group(['prefix' => 'promotion'], function () {

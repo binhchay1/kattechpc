@@ -470,7 +470,7 @@ body a {
 }
 
 .swiper-slide1 {
-    width: 186px;
+    width: 235px;
     margin-right: 12px;
     flex-shrink: 0;
     height: 100%;
@@ -554,6 +554,11 @@ body a {
     transition-property: transform;
     box-sizing: content-box;
     transition-duration: 1000ms;
+}
+
+.swiper-product .swiper-slide {
+    width: 228px;
+    margin-right: 12px;
 }
 
 .swiper-slide {
@@ -1180,6 +1185,7 @@ body a {
     align-items: center;
     justify-content: center;
     background-color: var(--color-primary);
+    opacity: 0.1;
 }
 
 .swiper-button-next::after,
@@ -1205,6 +1211,10 @@ body a {
     position: absolute;
     z-index: 1000;
     width: 47%;
+}
+
+.swiper-flash-sale .swiper-slide {
+    width: 187px;
 }
 
 @media only screen and (max-width: 767px) {

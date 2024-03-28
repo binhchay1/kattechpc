@@ -58,9 +58,9 @@
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->title}}
                                     </td>
 
-                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->user->name}}
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->user->name ?? ""}}
                                     </td>
-                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->category->name}}
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->category->name ?? ""}}
                                     </td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{!! Str::limit(strip_tags(html_entity_decode($post->content)), 30)!!}
                                     </td>
