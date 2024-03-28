@@ -102,7 +102,7 @@
             <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
                 <i class="fa fa-bolt"></i>
                 <h2 class="flash-sale-title">Flash sale</h2>
-                <span class="text-time-deal-home">Kết thúc sau</span>
+                <span class="text-time-deal-home">{{ __('Kết thúc sau') }}</span>
                 <div class="global-time-dea d-flex align-items-center">
                     <p>01</p>
                     <span>:</span>
@@ -116,7 +116,7 @@
         </div>
 
         <div class="swiper box-list-item-deal swiper-box-deal swiper-initialized swiper-horizontal swiper-pointer-events">
-            <div class="swiper-wrapper loaded d-flex" style="margin-left: 10px;">
+            <div class="swiper-wrapper d-flex swiper-flash-sale" style="margin-left: 10px;">
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
@@ -308,6 +308,33 @@
                         </div>
                     </div>
                 </div>
+                <div class="swiper-slide" role="group">
+                    <div class="product-item">
+                        <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
+                            <img src="{{ asset('/images/test_flash_sale/250-26134-47192_e_dra_ek375_beta__2.png') }}" width="164" height="164" alt="Laptop Gaming MSI Thin GF63 (i5-12450H | 8G | RTX 2050 | 1TB SSD | 15.6&quot; 144Hz FHD ) NK BH tại NC " class="lazy entered loaded">
+                        </a>
+                        <div class="product-info">
+                            <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
+                                <h3 class="product-title line-clamp-3">Chuột Motospeed V400 RGB Backlight</h3>
+                            </a>
+
+                            <div class="product-martket-main d-flex align-items-center">
+                                <p class="product-market-price">18.990.000 ₫</p>
+                                <div class="product-percent-price">-22%</div>
+                            </div>
+
+                            <div class="product-price-main font-weight-600">
+                                14.800.000đ
+                            </div>
+                            <div class="p-quantity-sale" data-quantity-left="5" data-quantity-sale-total="7">
+                                <i class="sprite sprite-fire-deal"></i>
+                                <div class="bg-gradient"></div>
+                                <p class="js-line-deal-left" style="width: 70%;"></p>
+                                <span>Còn 5/ 7 sản phẩm</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- end fake data -->
             </div>
             <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
@@ -317,11 +344,11 @@
     </div>
 </section>
 
-<section class="flash-sale-banner top-sale">
+<section class="top-sale">
     <div class="flash-sale-area">
         <div class="d-flex align-items-center justify-content-between">
             <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
-                <h2 class="flash-sale-title">{{__('Sản phẩm bán chạy')}}</h2>
+                <h2 class="flash-sale-title">{{ __('Sản phẩm bán chạy') }}</h2>
             </div>
         </div>
 
@@ -332,12 +359,11 @@
                 </a>
 
             </div>
-            <div class="swiper-wrapper loaded" style="left: 45%;">
-                <!-- fake data -->
+            <div class="swiper-wrapper swiper-top-sale" style="left: 48%;">
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
                         <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
-                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="164" height="164" class="lazy entered loaded">
+                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="210" height="164" class="lazy entered loaded">
                         </a>
                         <div class="product-info">
                             <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
@@ -352,14 +378,14 @@
                             <div class="product-price-main font-weight-600">
                                 14.800.000đ
                             </div>
-
                         </div>
                     </div>
                 </div>
+
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
                         <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
-                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="164" height="164" class="lazy entered loaded">
+                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="210" height="164" class="lazy entered loaded">
                         </a>
                         <div class="product-info">
                             <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
@@ -374,14 +400,14 @@
                             <div class="product-price-main font-weight-600">
                                 14.800.000đ
                             </div>
-
                         </div>
                     </div>
                 </div>
+
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
                         <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
-                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="164" height="164" class="lazy entered loaded">
+                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="210" height="164" class="lazy entered loaded">
                         </a>
                         <div class="product-info">
                             <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
@@ -396,14 +422,36 @@
                             <div class="product-price-main font-weight-600">
                                 14.800.000đ
                             </div>
-
                         </div>
                     </div>
                 </div>
+
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
                         <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
-                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="164" height="164" class="lazy entered loaded">
+                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="210" height="164" class="lazy entered loaded">
+                        </a>
+                        <div class="product-info">
+                            <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
+                                <h3 class="product-title line-clamp-3">Bộ PC GAMING 2024 : CORE I5 12400F/ RAM 8G RGB/ VGA 4G </h3>
+                            </a>
+
+                            <div class="product-martket-main d-flex align-items-center">
+                                <p class="product-market-price">18.990.000 ₫</p>
+                                <div class="product-percent-price">-22%</div>
+                            </div>
+
+                            <div class="product-price-main font-weight-600">
+                                14.800.000đ
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide1" role="group">
+                    <div class="product-item">
+                        <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
+                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="210" height="164" class="lazy entered loaded">
                         </a>
                         <div class="product-info">
                             <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
@@ -423,12 +471,9 @@
                 </div>
             </div>
         </div>
-
-        <!-- end fake data -->
-    </div>
-    <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
-    <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
-    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+        <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
+        <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
     </div>
     </div>
 </section>
@@ -490,9 +535,9 @@
             </div>
         </div>
         <div class="swiper box-list-item-category swiper-product-category swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper swiper-product">
                 @foreach($category->products as $product)
-                <div class="swiper-slide " style="width: 224.8px; margin-right: 12px;" role="group">
+                <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
                             <img src="{{ $product->image }}" width="203" height="203" class="hover-for-tooltips">
