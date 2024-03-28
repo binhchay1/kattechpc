@@ -116,7 +116,7 @@
         </div>
 
         <div class="swiper box-list-item-deal swiper-box-deal swiper-initialized swiper-horizontal swiper-pointer-events">
-            <div class="swiper-wrapper loaded" style="display: flex;">
+            <div class="swiper-wrapper loaded d-flex" style="margin-left: 10px;">
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
@@ -325,14 +325,14 @@
             </div>
         </div>
 
-        <div class="swiper box-list-item-deal swiper-box-deal swiper-initialized swiper-horizontal swiper-pointer-events">
-            <div class="swiper-wrapper loaded" style="display: flex;">
-                <div class="box-banner-collection">
-                    <a href="/ad.php?id=317" class="banner-collection boder-radius-10">
-                        <img src="{{asset('images/top-sale.jpg')}}" width="365" class="boder-radius-10 lazy-image entered loaded" alt="" data-was-processed="true" data-ll-status="loaded">
-                    </a>
+        <div class="swiper d-flex">
+            <div class="box-banner-collection">
+                <a href="/ad.php?id=317" class="banner-collection boder-radius-10">
+                    <img src="{{asset('images/top-sale.jpg')}}" width="365" class="boder-radius-10 lazy-image entered loaded" alt="" data-was-processed="true" data-ll-status="loaded">
+                </a>
 
-                </div>
+            </div>
+            <div class="swiper-wrapper loaded" style="left: 45%;">
                 <!-- fake data -->
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
@@ -418,11 +418,9 @@
                             <div class="product-price-main font-weight-600">
                                 14.800.000đ
                             </div>
-
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -569,9 +567,9 @@
     <div class="box-article-group boder-radius-10">
         <div class="d-flex justify-content-between align-items-center">
             <div class="title-box">
-                <h2 class="title-box font-weight-600">Khuyến mại</h2>
+                <h2 class="title-box font-weight-600">{{ __('Khuyến mại') }}</h2>
             </div>
-            <a href="/tin-cong-nghe" class="btn-article-group">Xem tất cả <i class="fa fa-caret-right"></i></a>
+            <a href="/tin-cong-nghe" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
         <div class="list-article-group d-flex align-items-center gap-10">
             <div class="item-article d-flex gap-12">
@@ -699,20 +697,5 @@
 @section('js')
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
-<script>
-    $('.vendor-carousel').owlCarousel({
-        loop: true,
-        nav: false,
-        autoplay: true,
-        smartSpeed: 1000,
-    });
-
-    $('.hover-for-tooltips').hover(function(e) {
-        $('.global-tooltip').css('display', 'block');
-        $('.global-tooltip').css('left', e.clientX + 100);
-        $('.global-tooltip').css('top', e.clientY + 1200);
-    }, function() {
-        $('.global-tooltip').css('display', 'none');
-    })
-</script>
+<script src="{{ asset('/js/page/main.js') }}"></script>
 @endsection
