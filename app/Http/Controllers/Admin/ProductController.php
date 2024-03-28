@@ -69,9 +69,11 @@ class ProductController extends Controller
         $statusProduct = Product::STATUS;
         $listCategories = $this->categoryRepository->index();
         $product = $this->productRepository->show($id);
+        // dd($product);
         if (empty($product)) {
             abort(404);
         }
+
         return view('admin.product.edit', compact('product', 'listCategories', 'statusProduct'));
     }
 

@@ -83,13 +83,13 @@
 
                         <div class="xl:col-span-6">
                             <div class="form-group">
-                                <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
+                                <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Hình ảnh') }}</label>
                                 <div class="">
                                     <div class="" style="display: inline-grid;">
-                                        <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
+                                        <input type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                                         <div class=" choose-avatar">
                                             <div id="btnimage">
-                                                <img id="showImage" class="show-avatar" src="{{ asset( '/images/product.png') }}" alt="avatar">
+                                                <img id="showImage" class="show-avatar" src="{{ URL::asset($product->image) }}" alt="avatar">
                                             </div>
                                             <div id="button">
                                                 <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
@@ -126,7 +126,6 @@
                             </div>
 
                             <ul class="space-y-5 rounded-md" id="area-detail">
-
                             </ul>
 
                             @if ($errors->has('detail'))
@@ -137,7 +136,7 @@
                     <div class="flex justify-end gap-2 mt-4">
                         <button type="reset" class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">{{__('Xóa toàn bộ')}}</button>
                         <button type="submit" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">
-                            {{ __('Thêm sản phẩm') }}
+                            {{ __('Sửa sản phẩm') }}
                         </button>
                     </div>
                 </form>
