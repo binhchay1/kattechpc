@@ -464,7 +464,7 @@ body a {
 }
 
 .lazy-image {
-    width: 98%;
+    width: 100%;
     height: 100%;
     border-radius: 5px;
 }
@@ -553,6 +553,7 @@ body a {
     display: flex;
     transition-property: transform;
     box-sizing: content-box;
+    transition-duration: 1000ms;
 }
 
 .swiper-slide {
@@ -807,7 +808,6 @@ body a {
     position: relative;
     border-radius: 10px;
     padding: 17px 22px 34px 12px;
-    border: 1px solid var(--12, #ebebeb);
 }
 
 .box-review-from-customer .item-review-customer-hompage::before {
@@ -1149,6 +1149,64 @@ body a {
     text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
 }
 
+.swiper-button-next,
+.swiper-button-prev {
+    width: 28px !important;
+    height: 44px !important;
+    background: #d9d9d9;
+    opacity: .5;
+}
+
+.swiper-button-prev,
+.swiper-rtl .swiper-button-next {
+    left: 0px;
+    right: auto;
+}
+
+.swiper-button-next,
+.swiper-rtl .swiper-button-prev {
+    right: 0px;
+    left: auto;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    position: absolute;
+    top: 50%;
+    margin-top: calc(0px - (44px / 2));
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    font-size: 18px !important;
+    color: white;
+    font-family: swiper-icons;
+    text-transform: none !important;
+    letter-spacing: 0;
+    font-variant: initial;
+    line-height: 1;
+}
+
+.swiper-button-next::after {
+    content: '>';
+}
+
+.swiper-button-prev::after {
+    content: '<';
+}
+
+.box-banner-collection {
+    position: absolute;
+    z-index: 1000;
+    width: 47%;
+}
+
 @media only screen and (max-width: 767px) {
     .modal-box .modal-dialog {
         width: 95% !important;
@@ -1170,6 +1228,6 @@ body a {
     }
 }
 
- a {
-     color: hotpink;
- }
+a {
+    color: hotpink;
+}

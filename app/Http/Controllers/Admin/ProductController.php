@@ -14,8 +14,8 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    private $productRepository ;
-    private $categoryRepository ;
+    private $productRepository;
+    private $categoryRepository;
     private $utility;
 
     public function __construct(
@@ -39,15 +39,19 @@ class ProductController extends Controller
     {
         $statusProduct = Product::STATUS;
         $listCategories = $this->categoryRepository->index();
-        return view('admin.product.create', compact('listCategories','statusProduct'));
+        return view('admin.product.create', compact('listCategories', 'statusProduct'));
     }
 
     public function storeProduct(ProductRequest $request)
     {
-
         $input = $request->except(['_token']);
+        $detail = [];
 
-        $input= $request->all();
+        for ($i = 0; $i < count($input['detail_key']); $i++) {
+            $detail[$input['detail_key'][$i]] = $input['detail_value'][$i];
+        }
+
+        $input['detail'] = json_encode($detail);
         $input['slug'] =  Str::slug($input['name']);
         if (isset($input['image'])) {
             $this->utility->saveImageProduct($input);
@@ -60,7 +64,6 @@ class ProductController extends Controller
         return redirect()->route('admin.product.index')->with('success',  __('Sản phẩm được thêm thành công'));
     }
 
-
     public function editProduct($id)
     {
         $statusProduct = Product::STATUS;
@@ -69,19 +72,26 @@ class ProductController extends Controller
         if (empty($product)) {
             abort(404);
         }
-        return view('admin.product.edit', compact('product', 'listCategories','statusProduct'));
+        return view('admin.product.edit', compact('product', 'listCategories', 'statusProduct'));
     }
 
     public function updateProduct(ProductUpdateRequest $request, $id)
     {
         $input = $request->except(['_token']);
+        $detail = [];
+
+        for ($i = 0; $i < count($input['detail_key']); $i++) {
+            $detail[$input['detail_key'][$i]] = $input['detail_value'][$i];
+        }
+
+        $input['detail'] = json_encode($detail);
         if (isset($input['image'])) {
-           $this->utility->saveImageProduct($input);
+            $this->utility->saveImageProduct($input);
             $path = '/images/upload/product/' . $input['image']->getClientOriginalName();
             $input['image'] = $path;
         }
 
-        $product = $this->productRepository->update($input, $id);
+        $this->productRepository->update($input, $id);
 
         return redirect()->route('admin.product.index')->with('success', __('Sản phẩm được thay đổi thành công'));
     }
@@ -102,5 +112,4 @@ class ProductController extends Controller
 
         return view('pages.products', compact('products', 'categories'));
     }
-
 }

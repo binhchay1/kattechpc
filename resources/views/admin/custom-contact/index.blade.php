@@ -1,7 +1,7 @@
 @extends('layouts.master-admin')
 
 @section('title')
-{{ __('Danh sách trang đích') }}
+{{ __('Danh sách thông tin liên hệ') }}
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
         <div class="card" id="usersTable">
             <div class="card-body">
                 <div class="flex items-center">
-                    <h6 class="text-15 grow">{{ __('Danh sách trang đích') }}</h6>
+                    <h6 class="text-15 grow">{{ __('Thông tin liên hệ') }}</h6>
                     <div class="lg:col-span-2 ltr:lg:text-right rtl:lg:text-left xl:col-span-2 xl:col-start-11 button-add">
                         <a href="{{route('admin.landing.page.create')}}" type="button" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20"><i data-lucide="plus" class="inline-block size-4"></i> <span class="align-middle">{{ __('Thêm trang đích') }}</span></a>
                     </div>
@@ -32,28 +32,21 @@
                         <thead class="text-left">
                             <tr class="relative rounded-md bg-slate-100 dark:bg-zink-600 after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
 
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="title">
-                                    {{ __('Tiêu đề') }}
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="email">
+                                    {{ __('Email') }}
                                 </th>
-
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="content">{{ __('Nội dung') }}
-                                </th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="slug">{{ __('Liên kết') }}
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="phone">{{ __('Số điện thoại') }}
                                 </th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">{{ __('Hành động') }}</th>
                             </tr>
                         </thead>
                         <tbody class="list">
-                            @foreach($listLandingPage as $landing)
+                            @foreach($listCustomContact as $contact)
                             <tr class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
-
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $landing->title }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $contact->email }}
                                 </td>
 
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $landing->slug }}
-                                </td>
-
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $landing->content }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $contact->phone }}
                                 </td>
 
                                 <td>
@@ -70,6 +63,7 @@
                                     </div>
                                 </td>
                             </tr>
+
                             <div id="deleteModal" modal-center class="fixed flex flex-col hidden transition-all duration-300 ease-in-out left-2/4 z-drawer -translate-x-2/4 -translate-y-2/4 show">
                                 <div class="w-screen md:w-[25rem] bg-white shadow rounded-md dark:bg-zink-600">
                                     <div class="max-h-[calc(theme('height.screen')_-_180px)] overflow-y-auto px-6 py-8">
@@ -94,7 +88,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $listLandingPage->links() !!}
+                    {!! $listCustomContact->links() !!}
                 </div>
             </div>
         </div>

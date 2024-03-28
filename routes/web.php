@@ -67,7 +67,7 @@ Route::group(['prefix' => 'cart'], function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
-    Route::get('/custom-contact', [AdminController::class, 'storeCustomContact'])->name('admin.custom.contact');
+    Route::get('/custom-contact', [AdminController::class, 'listCustomContact'])->name('admin.custom.contact');
     // Route::get('index/{locale}', [TailwickController::class, 'lang']);
 
     Route::group(['prefix' => 'promotion'], function () {

@@ -30,10 +30,7 @@
                         <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
                             <div class="xl:col-span-6">
                                 <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Chọn ảnh')}}</label>
-                                <input type="file" name="images[]" multiple class="form-control" />
-                                @if ($errors->has('images'))
-                                    <span class="text-danger">{{ $errors->first('images') }}</span>
-                                @endif
+                                <input type="file" name="images[]" multiple class="form-control" required  oninvalid="this.setCustomValidity('Chọn một hoặc nhiều ảnh')"/>
                             </div><!--end col-->
                         </div><!--end grid-->
                         <div class="flex gap-2 mt-4">
