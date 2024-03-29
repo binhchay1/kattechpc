@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PostRequest extends FormRequest
+class UpdatePostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,7 @@ class PostRequest extends FormRequest
             'author' =>'required',
             'category_id' =>'required',
             'short_description' =>'required',
-            'thumbnail' =>'required|mimes:jpeg,png,jpg|max:2048'
+            'thumbnail' =>'mimes:jpeg,png,jpg|max:2048'
 
         ];
     }
@@ -40,7 +40,6 @@ class PostRequest extends FormRequest
             'author.required' => __('Tác giả bài viết không được để trống'),
             'category_id.required' => __('Danh mục bài viết không được để trống'),
             'short_description.required' => __('Miêu tả bài viết không được để trống'),
-            'thumbnail.required' => __('Hình ảnh sản phẩm không được để trống'),
             'thumbnail.mine' => __('Hình ảnh sản phẩm không đúng định dạng: jpeg,png,jpg '),
             'thumbnail.max' => __('Hình ảnh sản phẩm không vượt quá 2048'),
         ];

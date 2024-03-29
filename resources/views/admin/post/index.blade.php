@@ -45,6 +45,8 @@
                                 </th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{__('Thể loại')}}
                                 </th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{__('Miêu tả ngắn gọn')}}
+                                </th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{__('Nội dung')}}
                                 </th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">{{__('Hành động')}}</th>
@@ -55,12 +57,24 @@
                                 <tr
                                     class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
 
-                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->title}}
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
+                                        <div class="flex items-center gap-2">
+                                            <div
+                                                class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
+                                                <img src="{{asset($post->thumbnail)}}"
+                                                     alt="" class="h-10 rounded-full">
+                                            </div>
+                                            <div class="grow">
+                                                <h6 class="mb-1">{{$post->title}}</h6>
+                                            </div>
+                                        </div>
                                     </td>
 
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->user->name ?? ""}}
                                     </td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->category->name ?? ""}}
+                                    </td>
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->short_description}}
                                     </td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{!! Str::limit(strip_tags(html_entity_decode($post->content)), 30)!!}
                                     </td>
