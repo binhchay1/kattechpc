@@ -39,6 +39,11 @@ class CategoryRepository extends BaseRepository
 
     public function getListCategory()
     {
-        return $this->model->with('products','products.productImages')->get();
+        return $this->model->with('products', 'products.productImages')->get();
+    }
+
+    public function getListCategoryExcludeId($id)
+    {
+        return $this->model->where('id', '!=', $id)->get();
     }
 }
