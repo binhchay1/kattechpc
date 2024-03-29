@@ -43,7 +43,7 @@
                                     <span class="text-danger">{{ $errors->first('short_description') }}</span>
                                 @endif
                             </div>
-                            <div class="xl:col-span-6">
+                            <div class="xl:col-span-12">
                                 <div class="form-group">
                                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
                                     <div class="">
@@ -57,14 +57,14 @@
                                                     <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
                                                 </div>
                                             </div>
-                                            @if ($errors->has('image'))
-                                                <span class="text-danger">{{ $errors->first('image') }}</span>
+                                            @if ($errors->has('thumbnail'))
+                                                <span class="text-danger">{{ $errors->first('thumbnail') }}</span>
                                             @endif
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="xl:col-span-6">
+                            <div class="xl:col-span-12">
                                 <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Nội dung bài viết')}}
                                 </label>
                                 <textarea
@@ -77,6 +77,7 @@
                             </div><!--end col-->
 
                             <input type="hidden" name="slug" class="form-control" id="name" placeholder="Enter name" value="{{$post->slug}}">
+                            <input type="hidden" name="author" class="form-control" id="name" placeholder="Enter name" value="{{$post->author}}">
 
 
                         </div><!--end grid-->
