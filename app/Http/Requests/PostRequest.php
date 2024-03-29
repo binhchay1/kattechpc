@@ -24,7 +24,6 @@ class PostRequest extends FormRequest
         return [
             'title' =>'required|max:255',
             'content' =>'required',
-            'author' =>'required',
             'category_id' =>'required',
             'short_description' =>'required',
             'thumbnail' =>'required|mimes:jpeg,png,jpg|max:2048'
@@ -37,7 +36,6 @@ class PostRequest extends FormRequest
         return [
             'title.required' => __('Tiêu đề bài viết không được để trống'),
             'title.max' => __('Tiêu đề bài viết không được vượt quá 255 kí tự'),
-            'author.required' => __('Tác giả bài viết không được để trống'),
             'category_id.required' => __('Danh mục bài viết không được để trống'),
             'short_description.required' => __('Miêu tả bài viết không được để trống'),
             'thumbnail.required' => __('Hình ảnh sản phẩm không được để trống'),

@@ -12,11 +12,16 @@
 <div class="row">
     <div class="leftcolumn">
         <div class="card">
-            <h2>TITLE HEADING</h2>
-            <h5>Title description, Dec 7, 2017</h5>
-            <div class="fakeimg" style="height:200px;">Image</div>
-            <p>Some text..</p>
-            <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+            <h2>{{$post->title}}</h2>
+            <h5>{{ date_format($post->created_at, "F j, Y, g:i a") }}</h5>
+            <div class="" >
+                <img class="boder-radius-10" src="{{$post->thumbnail ?? asset('/images/test_post/2904-viettel-dau-gia-thanh-cong-bang-tan-5g-1.jpg') }}" alt="Viettel trúng đấu giá băng tần để chính thức triển khai 5G tại Việt Nam">
+            </div>
+            <p>{{$post->short_description}}</p>
+            <div class="row">
+                <p class="">{!!$post->content!!}</p>
+
+            </div>
         </div>
     </div>
     <div class="rightcolumn">

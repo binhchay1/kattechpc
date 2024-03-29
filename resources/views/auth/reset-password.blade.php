@@ -12,9 +12,8 @@
 
                     <div class="my-auto">
                         <div class="text-center">
-                            <h4 class="mb-2 text-custom-500 dark:text-custom-500">Set a New Password</h4>
-                            <p class="mb-8 text-slate-500 dark:text-zink-200">Your new password should be distinct from any
-                                of your prior passwords.</p>
+                            <h4 class="mb-2 text-custom-500 dark:text-custom-500">{{__('Tạp mật khẩu mới')}}</h4>
+                            <p class="mb-8 text-slate-500 dark:text-zink-200">{{__("Mật khẩu mới phải khác so với mật khẩu cũ")}}</p>
                         </div>
 
                         <form method="POST" action="{{ route('password.update') }}">
@@ -45,8 +44,8 @@
                                     Password</button>
                             </div>
                             <div class="mt-4 text-center">
-                                <p class="mb-0">Hold on, I've got my password... <a href="{{ route('login') }}"
-                                        class="underline fw-medium text-custom-500"> Click here </a> </p>
+                                <p class="mb-0">{{__('Đợi đã, tôi nhớ mật khẩu của mình...')}} <a href="{{ route('login') }}"
+                                        class="underline fw-medium text-custom-500"> {{__('Bấm vào đây')}}</a> </p>
                             </div>
                         </form>
                     </div>
