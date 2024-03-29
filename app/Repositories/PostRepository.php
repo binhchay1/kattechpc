@@ -37,4 +37,8 @@ class PostRepository extends BaseRepository
         return $this->model->where('id', $id)->delete();
     }
 
+    public function getListNewsInHomepage()
+    {
+        return $this->model->orderBy('created_at', 'DESC')->limit(4);
+    }
 }

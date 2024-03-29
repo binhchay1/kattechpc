@@ -233,7 +233,7 @@
 
 </section>
 
-@foreach($getCategory as $category)
+@foreach($listCategory as $category)
 <section class="product-slide">
     <div class="product-slide-main boder-radius-10">
         <div class="d-flex align-items-center justify-content-between">
