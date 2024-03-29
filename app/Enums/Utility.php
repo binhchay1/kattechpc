@@ -13,21 +13,21 @@ final class Utility
     public function saveImageProduct($input)
     {
         if ($input) {
-            Storage::disk('public-image-product')->put($input['image']->getClientOriginalName(), $input['image']->get());
+            Storage::disk('r2')->put($input['image']->getClientOriginalName(), $input['image']->get());
         }
     }
 
     public function saveImagePost($input)
     {
         if ($input) {
-            Storage::disk('public-image-post')->put($input['thumbnail']->getClientOriginalName(), $input['thumbnail']->get());
+            Storage::disk('r2')->put($input['thumbnail']->getClientOriginalName(), $input['thumbnail']->get());
         }
     }
 
     public function saveImageUser($input)
     {
         if ($input) {
-            Storage::disk('public-image-user')->put($input['profile_photo_path']->getClientOriginalName(), $input['profile_photo_path']->get());
+            Storage::disk('r2')->put($input['profile_photo_path']->getClientOriginalName(), $input['profile_photo_path']->get());
         }
     }
 
