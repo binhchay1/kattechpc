@@ -3,7 +3,15 @@
     {{ __('Sửa bài viết') }}
 @endsection
 @section('content')
+    <style>
+        .ck-editor__editable_inline {
+            min-height: 300px;
+        }
+        #cke_editor1 {
+            top: 0px !important;
+        }
 
+    </style>
     <!-- page title -->
     <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5 mt-4">
         <div class="xl:col-span-12">
@@ -36,7 +44,7 @@
                                     <span class="text-danger">{{ $errors->first('category_id') }}</span>
                                 @endif
                             </div>
-                            <div class="xl:col-span-4">
+                            <div class="xl:col-span-12">
                                 <label for="productShortDescription" class="inline-block mb-2 text-base font-medium"> {{ __('Mô tả ngắn') }}</label>
                                 <input type="text" id="productShortDescription" name="short_description" value="{{ old('short_description', $post->short_description) }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Mô tả ngắn') }}">
                                 @if ($errors->has('short_description'))
@@ -68,9 +76,8 @@
                                 <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Nội dung bài viết')}}
                                 </label>
                                 <textarea
-                                    class="ckeditor form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                    id="productDescription" name="content" placeholder="{{__('Nội dung bài viết')}}" rows="5">{!! html_entity_decode($post->content)!!}
-                                </textarea>
+                                    class="  form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
+                                    id="editor" name="content" placeholder="{{__('Nội dung bài viết')}}" rows="5">{!!$post->content!!}</textarea>
                                 @if ($errors->has('content'))
                                     <span class="text-danger">{{ $errors->first('content') }}</span>
                                 @endif
@@ -103,12 +110,19 @@
     <link rel="stylesheet" href="{{ asset('css/admin/user.css') }}">
     <!-- App js -->
     <script src="{{ URL::asset('build/js/app.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('.ckeditor').ckeditor();
-        });
-        CKEDITOR.replace( 'productDescription', {
-            height: 500,
-        } );
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ),{
+                height:500,
+                ckfinder: {
+
+                    uploadUrl: '{{route('admin.post.uploadMedia').'?_token='.csrf_token()}}',
+                }
+            })
+            .catch( error => {
+                console.error( error );
+            } );
     </script>
 @endpush

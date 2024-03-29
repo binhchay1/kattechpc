@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');
 Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
-Route::get('/blog-detail', [HomeController::class, 'postDetail'])->name('post.detail');
+Route::get('/blog-detail/{slug}', [HomeController::class, 'postDetail'])->name('post.detail');
 Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
 Route::get('/product/{slug}', [HomeController::class, 'productDetail'])->name('productDetail');
 Route::get('/promotion', [HomeController::class, 'viewPromotion'])->name('promotion');
@@ -93,6 +93,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/update/{id}', [PostController::class, 'editPost'])->name('admin.post.edit');
         Route::post('/update/{id}', [PostController::class, 'updatePost'])->name('admin.post.update');
         Route::get('/delete/{id}', [PostController::class, 'deletePost'])->name('admin.post.delete');
+        Route::post('post/img', [PostController::class, 'uploadMedia'])->name('admin.post.uploadMedia');
     });
 
     Route::group(['prefix' => 'orders'], function () {

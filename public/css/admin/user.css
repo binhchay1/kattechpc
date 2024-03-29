@@ -1,6 +1,7 @@
 .show-avatar {
-    width: 300px;
-    height: 300px;
+    height: 50%;
+    width: 50%;
+    object-fit: contain
 }
 
 .text-danger {

@@ -74,9 +74,9 @@
                                     </td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->category->name ?? ""}}
                                     </td>
-                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$post->short_description}}
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{Str::limit($post->short_description, 50)}}
                                     </td>
-                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{!! Str::limit(strip_tags(html_entity_decode($post->content)), 30)!!}
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{!! Str::limit(strip_tags(html_entity_decode($post->content)), 50)!!}
                                     </td>
                                     <td>
                                         <div class="relative dropdown">

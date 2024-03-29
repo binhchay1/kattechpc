@@ -78,9 +78,11 @@ class HomeController extends Controller
         return view('page.blog.posts');
     }
 
-    public function postDetail()
+    public function postDetail($slug)
     {
-        return view('page.blog.post-detail');
+        $post = $this->postRepository->detail($slug);
+    
+        return view('page.blog.post-detail', compact('post'));
     }
 
     public function viewPromotion()
