@@ -164,7 +164,7 @@
         .create(document.querySelector('.editor'), {
             height: 500,
             ckfinder: {
-                uploadUrl: '{{ route(`admin.post.uploadMedia`) }}' + '?_token=' + csrf_token()
+                uploadUrl: '<?php echo route(`admin.post.uploadMedia`) ?>' + '?_token=' + csrf_token()
             }
         })
         .catch(error => {
