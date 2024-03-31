@@ -12,13 +12,13 @@
 
                     <div class="my-auto">
                         <div class="text-center">
-                            <h4 class="mb-2 text-custom-500 dark:text-custom-500">Forgot Password?</h4>
-                            <p class="mb-8 text-slate-500 dark:text-zink-200">Reset your Tailwick password</p>
+                            <h4 class="mb-2 text-custom-500 dark:text-custom-500">{{__('Quên mật khẩu?')}}</h4>
+                            <p class="mb-8 text-slate-500 dark:text-zink-200">{{__('Đặt lại mật khẩu')}}</p>
                         </div>
 
                         <div
                             class="px-4 py-3 mb-6 text-sm text-yellow-500 border border-transparent rounded-md bg-yellow-50 dark:bg-yellow-400/20">
-                            Provide your email address, and instructions will be sent to you
+                            {{__('Cung cấp địa chỉ email của bạn và hướng dẫn sẽ được gửi cho bạn')}}
                         </div>
 
                         @if (session('status'))
@@ -40,8 +40,8 @@
                                     Reset Link</button>
                             </div>
                             <div class="mt-4 text-center">
-                                <p class="mb-0">Wait, I remember my password... <a href="{{ route('login') }}"
-                                        class="underline fw-medium text-custom-500"> Click here </a> </p>
+                                <p class="mb-0">{{__('Đợi đã, tôi nhớ mật khẩu của mình...')}} <a href="{{ route('login') }}"
+                                        class="underline fw-medium text-custom-500"> {{__('Bấm vào đây')}} </a> </p>
                             </div>
                         </form>
                     </div>

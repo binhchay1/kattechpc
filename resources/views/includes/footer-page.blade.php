@@ -59,27 +59,27 @@
                 </span>
             </div>
             <div class="footer-middle-item">
-                <span class="footer-middle-title">HỖ TRỢ KHÁCH HÀNG</span>
+                <span class="footer-middle-title">{{__('HỖ TRỢ KHÁCH HÀNG')}}</span>
                 <p><a href="#">{{ __('Hướng dẫn mua hàng trực tuyến') }}</a>
                 </p>
-                <p><a href="#">Hướng dẫn thanh toán</a></p>
-                <p><a href="#">Hướng dẫn mua hàng trả góp</a>
+                <p><a href="#">{{__('Hướng dẫn thanh toán')}}</a></p>
+                <p><a href="#">{{__('Hướng dẫn mua hàng trả góp')}}</a>
                 </p>
-                <p><a href="{{route('electronicBill')}}">In hóa đơn điện tử</a>
+                <p><a href="{{route('electronicBill')}}">{{__('In hóa đơn điện tử')}}</a>
                 </p>
-                <p><a href="{{route('complaint')}}">Góp ý, Khiếu Nại</a></p>
+                <p><a href="{{route('complaint')}}">{{__('Góp ý, Khiếu Nại')}}</a></p>
             </div>
             <div class="footer-middle-item">
-                <span class="footer-middle-title">CHÍNH SÁCH CHUNG</span>
-                <p><a href="{{route('rules')}}">Chính sách, quy định chung</a></p>
-                <p><a href="{{route('policy')}}">Chính sách bảo hành</a></p>
-                <p><a href="{{route('businessPolicy')}}">Chính sách cho doanh nghiệp</a></p>
-                <p><a href="{{route('productPolicy')}}">Chính sách hàng chính hãng</a></p>
-                <p><a href="{{route('securityCustomer')}}">Bảo mật thông tin khách hàng</a></p>
+                <span class="footer-middle-title">{{__('CHÍNH SÁCH CHUNG')}}</span>
+                <p><a href="{{route('rules')}}">{{__('Chính sách, quy định chung')}}</a></p>
+                <p><a href="{{route('policy')}}">{{__('Chính sách bảo hành')}}</a></p>
+                <p><a href="{{route('businessPolicy')}}">{{__('Chính sách cho doanh nghiệp')}}</a></p>
+                <p><a href="{{route('productPolicy')}}">{{__('Chính sách hàng chính hãng')}}</a></p>
+                <p><a href="{{route('securityCustomer')}}">{{__('Bảo mật thông tin khách hàng')}}</a></p>
             </div>
             <div class="footer-middle-item">
-                <span class="footer-middle-title">THÔNG TIN KHUYẾN MẠI</span>
-                <p><a href="{{route('promotion')}}" target="_blank">Thông tin khuyến mại</a></p>
+                <span class="footer-middle-title">{{__('THÔNG TIN KHUYẾN MẠI')}}</span>
+                <p><a href="{{route('promotion')}}" target="_blank">{{__('Thông tin khuyến mại')}}</a></p>
                 </p>
             </div>
         </div>
@@ -87,9 +87,9 @@
 
     <div class="footer-bottom">
         <div class="footer-bottom-content">
-            <p>© 2021 Công ty Cổ phần đầu tư công nghệ Kattech PC</p>
-            <p>Địa chỉ: Tòa nhà Vicom </p>
-            <p>GPĐKKD số 0101142131 do Sở KHĐT Tp.Hà Nội cấp ngày 12/9/2023</p>
+            <p>{{__('© 2021 Công ty Cổ phần đầu tư công nghệ Kattech PC')}}</p>
+            <p>{{__('Địa chỉ: Tòa nhà Vicom')}} </p>
+            <p>{{__('GPĐKKD số 0101142131 do Sở KHĐT Tp.Hà Nội cấp ngày 12/9/2023')}}</p>
             <p>Email: <a class="color-primary" href="mailto:info@kattechpc.com">info@kattechpc.com</a>. {{ __('Điện thoại') }}: <a class="color-primary" href="tel:1900 1903">1900 1903</a></p>
         </div>
     </div>

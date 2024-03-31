@@ -376,18 +376,18 @@
         <div class="list-article-group d-flex align-items-center gap-10">
             @foreach($listNews as $news)
             <div class="item-article d-flex gap-12">
-                <a href="/viettel-trung-dau-gia-bang-tan-de-chinh-thuc-trien-khai-5g-tai-viet-nam" class="img-article boder-radius-10 position-relative">
-                    <img class="boder-radius-10" src="{{ asset('/images/test_post/2904-viettel-dau-gia-thanh-cong-bang-tan-5g-1.jpg') }}" alt="Viettel trúng đấu giá băng tần để chính thức triển khai 5G tại Việt Nam">
+                <a href="{{route('post.detail', $news['slug'])}}" class="img-article boder-radius-10 position-relative">
+                    <img class="boder-radius-10" src="{{$news->thumbnail ?? asset('/images/test_post/2904-viettel-dau-gia-thanh-cong-bang-tan-5g-1.jpg') }}" alt="Viettel trúng đấu giá băng tần để chính thức triển khai 5G tại Việt Nam">
                 </a>
                 <div class="content-article content-article-item d-flex flex-column flex-1">
-                    <a href="/viettel-trung-dau-gia-bang-tan-de-chinh-thuc-trien-khai-5g-tai-viet-nam" class="title-article">
-                        <h3 class="font-weight-400 line-clamp-2">{{ $post->content }}</h3>
+                    <a href="{{route('post.detail', $news['slug'])}}" class="title-article">
+                        <h3 class="font-weight-400 line-clamp-2">{{Str::limit($news->short_description, 30)}}</h3>
                     </a>
                     <p class="time-article d-flex align-items-center gap-4">
                         <i class="sprite sprite-clock-item-article"></i>
-                        <span>{{ date_format($post->created_at, "F j, Y, g:i a") }}</span>
+                        <span>{{ date_format($news->created_at, "F j, Y, g:i a") }}</span>
                     </p>
-                    <p class="descreption-article line-clamp-2">{{ $post->short_description }}</p>
+                    <p class="descreption-article line-clamp-2">{!! Str::limit(strip_tags(html_entity_decode($news->content)), 50)!!}</p>
                 </div>
             </div>
             @endforeach

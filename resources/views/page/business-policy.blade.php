@@ -71,65 +71,65 @@
         </div>
 
         <div class=" top">
-            <h3>{{__('Liên hệ')}}</h3>
+            <h3>{{__('')}}</h3>
             <h4>{{__('Bộ phận doanh nghiệp công ty ')}}</h4>
         </div>
 
         <div class=" top1">
             <div class="parent">
                 <div class="child1">
-                    <span class="policy-title">Tên: {{ __('Nguyễn Văn A') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('Nguyễn Văn A') }}</span>
                     <br>
-                    <span class="policy-title">Email: {{ __('nguyenvana@gmail.com') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('nguyenvana@gmail.com') }}</span>
                     <br>
-                    <span class="policy-title">Liên hệ: {{ __('0945333422/0355545643') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('0945333422/0355545643') }}</span>
                     <br>
-                    <button class="btn btn-button">Phụ trách</button>
+                    <button class="btn btn-button">{{__('Tên')}}</button>
                 </div>
                 <div class="child1">
-                    <span class="policy-title">Tên: {{ __('Nguyễn Văn A') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('Nguyễn Văn A') }}</span>
                     <br>
-                    <span class="policy-title">Email: {{ __('nguyenvana@gmail.com') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('nguyenvana@gmail.com') }}</span>
                     <br>
-                    <span class="policy-title">Liên hệ: {{ __('0945333422/0355545643') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('0945333422/0355545643') }}</span>
                     <br>
-                    <button class="btn btn-button">Phụ trách</button>
+                    <button class="btn btn-button">{{__('Tên')}}</button>
                 </div>
                 <div class="child1">
-                    <span class="policy-title">Tên: {{ __('Nguyễn Văn A') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('Nguyễn Văn A') }}</span>
                     <br>
-                    <span class="policy-title">Email: {{ __('nguyenvana@gmail.com') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('nguyenvana@gmail.com') }}</span>
                     <br>
-                    <span class="policy-title">Liên hệ: {{ __('0945333422/0355545643') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('0945333422/0355545643') }}</span>
                     <br>
-                    <button class="btn btn-button">Phụ trách</button>
+                    <button class="btn btn-button">{{__('Tên')}}</button>
                 </div>
                 <div class="child1">
-                    <span class="policy-title">Tên: {{ __('Nguyễn Văn A') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('Nguyễn Văn A') }}</span>
                     <br>
-                    <span class="policy-title">Email: {{ __('nguyenvana@gmail.com') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('nguyenvana@gmail.com') }}</span>
                     <br>
-                    <span class="policy-title">Liên hệ: {{ __('0945333422/0355545643') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('0945333422/0355545643') }}</span>
                     <br>
-                    <button class="btn btn-button">Phụ trách</button>
+                    <button class="btn btn-button">{{__('Tên')}}</button>
                 </div>
                 <div class="child1">
-                    <span class="policy-title">Tên: {{ __('Nguyễn Văn A') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('Nguyễn Văn A') }}</span>
                     <br>
-                    <span class="policy-title">Email: {{ __('nguyenvana@gmail.com') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('nguyenvana@gmail.com') }}</span>
                     <br>
-                    <span class="policy-title">Liên hệ: {{ __('0945333422/0355545643') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('0945333422/0355545643') }}</span>
                     <br>
-                    <button class="btn btn-button">Phụ trách</button>
+                    <button class="btn btn-button">{{__('Tên')}}</button>
                 </div>
                 <div class="child1">
-                    <span class="policy-title">Tên: {{ __('Nguyễn Văn A') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('Nguyễn Văn A') }}</span>
                     <br>
-                    <span class="policy-title">Email: {{ __('nguyenvana@gmail.com') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('nguyenvana@gmail.com') }}</span>
                     <br>
-                    <span class="policy-title">Liên hệ: {{ __('0945333422/0355545643') }}</span>
+                    <span class="policy-title">{{__('Tên')}}: {{ __('0945333422/0355545643') }}</span>
                     <br>
-                    <button class="btn btn-button">Phụ trách</button>
+                    <button class="btn btn-button">{{__('Tên')}}</button>
                 </div>
 
 

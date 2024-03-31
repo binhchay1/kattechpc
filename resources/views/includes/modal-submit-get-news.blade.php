@@ -8,9 +8,9 @@
                 <div class="modal-icon">
                     <i class="fa fa-smile"></i>
                 </div>
-                <h3 class="title">yasss!</h3>
-                <p class="description">You made it!!!<br> Your request was successful.</p>
-                <button class="btn">continue</button>
+                <h3 class="title">{{__('Ôi trời')}}!</h3>
+                <p class="description">{{__('Bạn đã làm được rồi!!!')}}<br> {{__('Yêu cầu của bạn được gửi đi thành công')}}</p>
+                <button class="btn">{{__('Tiếp tục')}}</button>
             </div>
         </div>
     </div>

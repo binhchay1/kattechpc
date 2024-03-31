@@ -11,8 +11,8 @@
                 <div class="!px-12 !py-12 card-body">
 
                     <div class="text-center">
-                        <h4 class="mb-2 text-purple-500 dark:text-purple-500">Verify Email !</h4>
-                        <p class="text-slate-500 dark:text-zink-200">If you didn't receive the email, we will gladly send you another..</p>
+                        <h4 class="mb-2 text-purple-500 dark:text-purple-500">{{__('Xác nhận Email!')}}</h4>
+                        <p class="text-slate-500 dark:text-zink-200">{{__('Nếu bạn không nhận được email, chúng tôi sẽ sẵn lòng gửi cho bạn một email khác..')}}</p>
                     </div>
 
                     @if (session('status') == 'verification-link-sent')
