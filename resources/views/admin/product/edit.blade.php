@@ -13,7 +13,7 @@
     <div class="xl:col-span-12">
         <div class="card">
             <div class="card-body">
-                <h6 class="mb-4 text-15">{{__('Sửa sản phẩm')}}</h6>
+                <h6 class="mb-4 text-15">{{ __('Sửa sản phẩm') }}</h6>
                 <form method="POST" action="{{ route('admin.product.update', $product->id) }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
@@ -131,6 +131,7 @@
                                 <li class="item-detail">
                                     <input name="detail_key[]" class="form-input" value="{{ $key }}" placeholder="Nhập tên trường" />
                                     <input name="detail_value[]" class="form-input ml-3" value="{{ $value }}" placeholder="Nhập tên giá trị" />
+                                    <span><i class="fa fa-xmas"></i></span>
                                 </li>
                                 @endforeach
                                 @endif
