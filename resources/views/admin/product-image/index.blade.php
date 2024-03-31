@@ -7,8 +7,8 @@
         <div class="xl:col-span-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="mb-4 text-15">{{ __('Thêm ảnh sản phẩm') }}</h6>
-                    <h5>Product Name: {{ $product->name }}</h5>
+                    <h6 class="mb-4 text-15">{{__('Thêm ảnh sản phẩm')}}</h6>
+                    <h5>{{__('Sản phẩm')}}: {{ $product->name }}</h5>
                     @if ($errors->any())
                         <ul class="alert alert-warning" style="color: red">
                             @foreach ($errors->all() as $error)

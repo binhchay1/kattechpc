@@ -1,6 +1,7 @@
 .show-avatar {
-    width: 450px;
-    height: 450px;
+    height: 50%;
+    width: 50%;
+    object-fit: contain
 }
 
 .text-danger {
@@ -24,4 +25,13 @@
     justify-content: center;
     margin-left: 20px;
     cursor: pointer;
+
+}
+
+.ck-editor__editable_inline {
+    min-height: 300px;
+}
+
+#cke_editor1 {
+    top: 0px !important;
 }

@@ -105,7 +105,7 @@
 
                         <div class="lg:col-span-2 xl:col-span-12">
                             <label for="productDescription" class="inline-block mb-2 text-base font-medium">{{ __('Mô tả') }}</label>
-                            <textarea class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="productDescription" name="description" placeholder="{{ __('Mô tả') }}" rows="5">{{ old('description') }}</textarea>
+                            <textarea id="editor"  class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="productDescription" name="description" placeholder="{{ __('Mô tả') }}" rows="5">{{ old('description') }}</textarea>
                             @if ($errors->has('description'))
                             <span class="text-danger">{{ $errors->first('description') }}</span>
                             @endif
@@ -113,7 +113,7 @@
 
                         <div class="lg:col-span-2 xl:col-span-12">
                             <label for="productSaleDescription" class="inline-block mb-2 text-base font-medium">{{ __('Qùa tặng kèm') }}</label>
-                            <textarea class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="productSaleDescription" name="sale_detail" placeholder="{{ __('Qùa tặng kèm') }}" rows="5">{{ old('sale_detail') }}</textarea>
+                            <textarea id="editor" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="productSaleDescription" name="sale_detail" placeholder="{{ __('Qùa tặng kèm') }}" rows="5">{{ old('sale_detail') }}</textarea>
                             @if ($errors->has('sale_detail'))
                             <span class="text-danger">{{ $errors->first('sale_detail') }}</span>
                             @endif
@@ -147,10 +147,20 @@
 
 @push('scripts')
 <script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
-<script type="text/javascript">
-    CKEDITOR.replace('productDescription', {
-        height: 500,
-    });
+
+<script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ),{
+            height:500,
+            ckfinder: {
+
+                uploadUrl: '{{route('admin.post.uploadMedia').'?_token='.csrf_token()}}',
+            }
+        })
+        .catch( error => {
+            console.error( error );
+        } );
 </script>
 <script src="{{ URL::asset('js/admin/product.js') }}"></script>
 @endpush

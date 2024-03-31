@@ -1,6 +1,6 @@
 @extends('layouts.master-admin')
 @section('title')
-    {{ __('Thêm bài viết') }}
+    {{ __('Thêm bài viết quảng cáo') }}
 @endsection
 @section('content')
 
@@ -9,7 +9,7 @@
         <div class="xl:col-span-12">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="mb-4 text-15">{{__('Thêm bài viết')}}</h6>
+                    <h6 class="mb-4 text-15">{{__('Thêm bài viết quảng cáo')}}</h6>
 
                     <form method="POST" action="{{route('admin.promotion.store')}}"  enctype="multipart/form-data">
                         {{ csrf_field() }}
