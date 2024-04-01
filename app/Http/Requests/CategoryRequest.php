@@ -22,7 +22,7 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' =>'required|max:255',
+            'name' =>'required|max:191',
         
         ];
     }
@@ -31,7 +31,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name.required' => __('Tên danh mục không được để trống'),
-            'name.max' => __('Tên danh mục không được vượt quá 255 kí tự'),
+            'name.max' => __('Tên danh mục không được vượt quá 191 kí tự'),
         ];
     }
 }

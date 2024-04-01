@@ -23,7 +23,7 @@ class UserRequest extends FormRequest
     {
 //        $age = date("Y-m-d", time() + 86400);
         return [
-            'name' => 'required|max:255',
+            'name' => 'required|max:191',
             'email' => 'required|email|unique:users,email',
             'age' => 'required',
             'phone' => 'required',
@@ -37,7 +37,7 @@ class UserRequest extends FormRequest
     {
         return [
             'name.required' => __('Tên người dùng không được để trống'),
-            'name.max' => __('Tên người dùng không vượt quá 255 kí tự'),
+            'name.max' => __('Tên người dùng không vượt quá 191 kí tự'),
             'email.required' => __('Địa chỉ email không được để trống'),
             'email.email' => __('Địa chỉ email không đúng định dạng'),
             'email.unique' => __('Địa chỉ email phải là duy nhất'),
