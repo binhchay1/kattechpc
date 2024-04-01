@@ -26,30 +26,19 @@
     </div>
     <div class="rightcolumn">
         <div class="card">
-            <h2>TITLE HEADING</h2>
-            <div>
-                <div class="fakeimg">Image</div>
-                <p>Some text..</p>
-            </div>
-            <div>
-                <div class="fakeimg">Image</div>
-                <p>Some text..</p>
-            </div>
-            <div>
-                <div class="fakeimg">Image</div>
-                <p>Some text..</p>
-            </div>
-            <div>
-                <div class="fakeimg">Image</div>
-                <p>Some text..</p>
-            </div>
 
-            <br>
+
+        <h2>{{__("Bài viết liên quan")}}</h2>
+        @foreach($listPost as $post)
+        <div>
+            <div>
+                <img class="image-post" src="{{asset($post->thumbnail)}}">
+            </div>
+            <a href="{{route('post.detail', $post['slug'])}}">  <p>{{$post->title}}</p></a>
 
         </div>
-        <div class="card">
-            <h3>Follow Me</h3>
-            <p>Some text..</p>
+        <br>
+            @endforeach
         </div>
     </div>
 </div>

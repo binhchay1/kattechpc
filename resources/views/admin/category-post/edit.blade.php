@@ -1,53 +1,46 @@
 @extends('layouts.master-admin')
+
 @section('title')
-    {{ __('Sửa danh mục sản phẩm') }}
+{{ __('Sửa danh mục sản phẩm') }}
 @endsection
+
 @section('content')
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5 mt-4">
+    <div class="xl:col-span-12">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="mb-4 text-15">{{__('Sửa danh mục sản phẩm')}}</h6>
 
-    <!-- page title -->
-    <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5 mt-4">
-        <div class="xl:col-span-12">
-            <div class="card">
-                <div class="card-body">
-                    <h6 class="mb-4 text-15">{{__('Sửa danh mục sản phẩm')}}</h6>
-
-                    <form method="POST" action="{{route('admin.categoryPost.update', $categoryPost['id'])}}"  enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                        <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
-                            <div class="xl:col-span-6">
-                                <label for="postNameInput" class="inline-block mb-2 text-base font-medium">{{__('Tên danh mục')}}</label>
-                                <input type="text" id="postNameInput" name="name" value="{{old('title',$categoryPost->name)}}"
-                                       class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"
-                                       placeholder="{{__('Tên danh mục')}}" >
-                                @if ($errors->has('name'))
-                                    <span class="text-danger">{{ $errors->first('name') }}</span>
-                                @endif
-                            </div><!--end col-->
-
-                            <input type="hidden" name="slug" class="form-control" id="name" placeholder="Enter name" value="{{$categoryPost->slug}}">
-
-
-                        </div><!--end grid-->
-                        <div class="flex justify-end gap-2 mt-4">
-                            <button type="reset"
-                                    class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">{{__('Xóa toàn bộ')}}</button>
-                            <button type="submit"
-                                    class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">{{__('Sửa danh mục')}}</button>
+                <form method="POST" action="{{route('admin.categoryPost.update', $categoryPost['id'])}}" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
+                        <div class="xl:col-span-6">
+                            <label for="postNameInput" class="inline-block mb-2 text-base font-medium">{{__('Tên danh mục')}}</label>
+                            <input type="text" id="postNameInput" name="name" value="{{old('title',$categoryPost->name)}}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Tên danh mục')}}">
+                            @if ($errors->has('name'))
+                            <span class="text-danger">{{ $errors->first('name') }}</span>
+                            @endif
                         </div>
-                    </form>
-                </div>
-            </div><!--end card-->
-        </div><!--end col-->
-    </div><!--end grid-->
-@endsection
-@push('scripts')
-    <!-- dropzone -->
-    <script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
-    <!--post create init js-->
-    <script src="{{ URL::asset('build/js/pages/apps-ecommerce-post-create.init.js') }}"></script>
-    <!-- App css -->
-    <link rel="stylesheet" href="{{ asset('css/admin/user.css') }}">
-    <!-- App js -->
-    <script src="{{ URL::asset('build/js/app.js') }}"></script>
 
-@endpush
+                        <div class="xl:col-span-6">
+                            <label for="categoryParentInput" class="inline-block mb-2 text-base font-medium">{{ __('Danh mục cha') }}</label>
+                            <select id="categoryParentInput" class="form-select border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200">
+                                <option value="0">{{ __('Không') }}</option>
+                                @foreach($listCategory as $category)
+                                <option value="{{ $category->id }}" {{ $category->id == $categoryProduct->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <input type="hidden" name="slug" class="form-control" id="name" placeholder="Enter name" value="{{$categoryPost->slug}}">
+                    </div>
+                    <div class="flex justify-end gap-2 mt-4">
+                        <button type="reset" class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">{{__('Xóa toàn bộ')}}</button>
+                        <button type="submit" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">{{__('Sửa danh mục')}}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

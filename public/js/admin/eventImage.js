@@ -1,6 +1,7 @@
 $(function () {
     loadImage();
 });
+
 function loadImage() {
     $(document).on('click', '#btn_chooseImg', function () {
         $('#image').click();

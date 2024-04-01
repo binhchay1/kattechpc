@@ -13,9 +13,7 @@ class OrderController extends Controller
 {
     private $orderRepository;
 
-    public function __construct(
-        OrderRepository $orderRepository
-    )
+    public function __construct(OrderRepository $orderRepository)
     {
         $this->orderRepository = $orderRepository;
     }
@@ -26,8 +24,7 @@ class OrderController extends Controller
     public function index()
     {
         $listOrders = $this->orderRepository->index();
-        return view('admin.order.index',compact('listOrders'));
-
+        return view('admin.order.index', compact('listOrders'));
     }
 
     /**
@@ -53,7 +50,7 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function showOrder( $id)
+    public function showOrder($id)
     {
         $this->orderRepository->show($id);
     }
@@ -61,7 +58,7 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function editOrder( $id)
+    public function editOrder($id)
     {
         $order = $this->orderRepository->show($id);
         return view('admin.order.edit', compact('order'));
@@ -83,7 +80,7 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function deleteOrder( $id)
+    public function deleteOrder($id)
     {
         $order = $this->orderRepository->destroy($id);
         if (empty($order)) {
@@ -92,7 +89,8 @@ class OrderController extends Controller
         return back()->with('success', 'Order successfully updated.');
     }
 
-    public function export(Request $request){
+    public function export(Request $request)
+    {
         return Excel::download(new ExportOrder(), 'order.xlsx');
     }
 }

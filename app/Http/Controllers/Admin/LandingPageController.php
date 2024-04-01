@@ -38,11 +38,6 @@ class LandingPageController extends Controller
         return redirect()->route('admin.landing-page.index')->with('success', __('Trang đích thêm thành công'));
     }
 
-    public function showLandingPage($id)
-    {
-        $this->landingPageRepository->show($id);
-    }
-
     public function editLandingPage($id)
     {
         $landingPage = $this->landingPageRepository->show($id);
@@ -64,6 +59,7 @@ class LandingPageController extends Controller
         if (empty($landingPage)) {
             abort(404);
         }
+
         return back()->with('success', __('Trang đích xóa thành công'));
     }
 }

@@ -75,14 +75,18 @@ class HomeController extends Controller
 
     public function viewPost()
     {
-        return view('page.blog.posts');
+        $listPost = $this->postRepository->index();
+        $listPostRandom = $this->postRepository->listPostRandom();
+        $listPostDESC = $this->postRepository->listPostDESC();
+        $listPostASC = $this->postRepository->listPostASC();
+        return view('page.blog.posts', compact('listPost','listPostRandom','listPostDESC','listPostASC'));
     }
 
     public function postDetail($slug)
     {
+        $listPost = $this->postRepository->index();
         $post = $this->postRepository->detail($slug);
-    
-        return view('page.blog.post-detail', compact('post'));
+        return view('page.blog.post-detail', compact('post', 'listPost'));
     }
 
     public function viewPromotion()

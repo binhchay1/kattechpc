@@ -13,7 +13,7 @@
     <div class="xl:col-span-12">
         <div class="card">
             <div class="card-body">
-                <h6 class="mb-4 text-15">{{__('Sửa sản phẩm')}}</h6>
+                <h6 class="mb-4 text-15">{{ __('Sửa sản phẩm') }}</h6>
                 <form method="POST" action="{{ route('admin.product.update', $product->id) }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
@@ -105,7 +105,7 @@
 
                         <div class="lg:col-span-2 xl:col-span-12">
                             <label for="productDescription" class="inline-block mb-2 text-base font-medium">{{ __('Mô tả') }}</label>
-                            <textarea id="editor-description"  class="editor form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="productDescription" name="description" placeholder="{{ __('Mô tả') }}" rows="5">{{ old('description' , $product->description) }}</textarea>
+                            <textarea id="editor-description" class="editor form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="productDescription" name="description" placeholder="{{ __('Mô tả') }}" rows="5">{{ old('description' , $product->description) }}</textarea>
                             @if ($errors->has('description'))
                             <span class="text-danger">{{ $errors->first('description') }}</span>
                             @endif
@@ -113,7 +113,7 @@
 
                         <div class="lg:col-span-2 xl:col-span-12">
                             <label for="productSaleDescription" class="inline-block mb-2 text-base font-medium">{{ __('Qùa tặng kèm') }}</label>
-                            <textarea id="editor-sale_detail"  class="editor form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="productSaleDescription" name="sale_detail" placeholder="{{ __('Qùa tặng kèm') }}" rows="5">{{ old('sale_detail', $product->sale_detail) }}</textarea>
+                            <textarea id="editor-sale_detail" class="editor form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="productSaleDescription" name="sale_detail" placeholder="{{ __('Qùa tặng kèm') }}" rows="5">{{ old('sale_detail', $product->sale_detail) }}</textarea>
                             @if ($errors->has('sale_detail'))
                             <span class="text-danger">{{ $errors->first('sale_detail') }}</span>
                             @endif
@@ -131,6 +131,7 @@
                                 <li class="item-detail">
                                     <input name="detail_key[]" class="form-input" value="{{ $key }}" placeholder="Nhập tên trường" />
                                     <input name="detail_value[]" class="form-input ml-3" value="{{ $value }}" placeholder="Nhập tên giá trị" />
+                                    <span><i class="fa fa-xmas"></i></span>
                                 </li>
                                 @endforeach
                                 @endif
@@ -160,18 +161,15 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
 <script>
     ClassicEditor
-        .create( document.querySelector( '.editor' ),{
-            height:500,
+        .create(document.querySelector('.editor'), {
+            height: 500,
             ckfinder: {
-
-                uploadUrl: '{{route('admin.post.uploadMedia').'?_token='.csrf_token()}}',
+                uploadUrl: '<?php echo route(`admin.post.uploadMedia`) ?>' + '?_token=' + csrf_token()
             }
-        },
-        )
-        .catch( error => {
-            console.error( error );
-        } );
-
+        })
+        .catch(error => {
+            console.error(error);
+        });
 </script>
 <script src="{{ URL::asset('js/admin/product.js') }}"></script>
 @endpush

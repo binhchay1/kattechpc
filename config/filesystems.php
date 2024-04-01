@@ -39,7 +39,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -56,30 +56,18 @@ return [
             'throw' => false,
         ],
 
-        'public-image-product' => [
-            'driver' => 'local',
-            'root' => public_path() . '/images/upload/product/',
-            'url' => env('APP_URL') . '/images/upload/product/',
-            'visibility' => 'public',
+        'r2' => [
+            'driver' => 's3',
+            'key' => env('CLOUDFLARE_R2_ACCESS_KEY_ID'),
+            'secret' => env('CLOUDFLARE_R2_SECRET_ACCESS_KEY'),
+            'region' => 'us-east-1',
+            'bucket' => env('CLOUDFLARE_R2_BUCKET'),
+            'url' => env('CLOUDFLARE_R2_URL'),
+            'visibility' => 'private',
+            'endpoint' => env('CLOUDFLARE_R2_ENDPOINT'),
+            'use_path_style_endpoint' => env('CLOUDFLARE_R2_USE_PATH_STYLE_ENDPOINT', false),
             'throw' => false,
         ],
-
-        'public-image-post' => [
-            'driver' => 'local',
-            'root' => public_path() . '/images/upload/post/',
-            'url' => env('APP_URL') . '/images/upload/post/',
-            'visibility' => 'public',
-            'throw' => false,
-        ],
-        'public-image-user' => [
-            'driver' => 'local',
-            'root' => public_path() . '/images/upload/user/',
-            'url' => env('APP_URL') . '/images/upload/user/',
-            'visibility' => 'public',
-            'throw' => false,
-        ],
-
-
     ],
 
     /*
