@@ -313,3 +313,10 @@ tr:nth-child(even) {
     width: 30%;
     float: left;
 }
+
+@media screen and (max-width: 800px) {
+    .product-related, .product-info {
+        width: 100%;
+        padding: 0;
+    }
+}
