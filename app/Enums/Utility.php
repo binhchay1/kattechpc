@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Storage;
 
 final class Utility
 {
-    public function saveImageProduct($input)
+    public function saveImageProduct($file)
     {
-        if ($input) {
-            Storage::disk('r2')->put($input['image']->getClientOriginalName(), $input['image']->get());
+        if ($file) {
+            $data = Storage::disk('r2')->put($file->getClientOriginalName(), $file->get());
         }
     }
 

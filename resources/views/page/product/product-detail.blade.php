@@ -20,7 +20,6 @@
             @foreach ($product->productImages as $prodImg)
                 <img src="{{ asset($prodImg->image) }}" alt="" class="small-Img">
              @endforeach
-
         </div>
     </div>
 
