@@ -117,9 +117,8 @@
         </div>
     </div>
 </div>
-
-
 @endsection
+
 @push('scripts')
 <script src="{{ URL::asset('build/libs/list.js/list.min.js') }}"></script>
 <script src="{{ URL::asset('build/libs/list.pagination.js/list.pagination.min.js') }}"></script>

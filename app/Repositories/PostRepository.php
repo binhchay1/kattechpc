@@ -36,20 +36,15 @@ class PostRepository extends BaseRepository
     {
         return $this->model->where('id', $id)->delete();
     }
-    
-    
+
+
     public function getListNewsInHomepage()
     {
         return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->paginate(10);
     }
-    
+
     public function detail($slug)
     {
         return $this->model->where('slug', $slug)->first();
-    }
-
-    public function getListNewsInHomepage()
-    {
-        return $this->model->orderBy('created_at', 'DESC')->limit(4);
     }
 }

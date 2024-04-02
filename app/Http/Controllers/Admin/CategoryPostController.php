@@ -46,7 +46,7 @@ class CategoryPostController extends Controller
     public function editCategory( $id)
     {
         $categoryPost = $this->categoryPostRepository->show($id);
-        $listCategory = $this->categoryRepository->getListCategoryExcludeId($id);
+        $listCategory = $this->categoryPostRepository->getListCategoryExcludeId($id);
         if (empty($categoryPost)) {
             abort(404);
         }
