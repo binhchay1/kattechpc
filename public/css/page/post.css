@@ -56,8 +56,8 @@
 }
 
 .img-fluid1 {
-    width: 200px;
-    height: 200px;
+    width: 250px;
+    height: 150px;
 }
 
 .img-fluid2 {
@@ -190,7 +190,6 @@ h2 {
     margin-top: 70px;
 }
 
-
-
-
-
+img {
+    border-radius: 5px;
+}

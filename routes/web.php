@@ -70,6 +70,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
     Route::get('/custom-contact', [AdminController::class, 'listCustomContact'])->name('admin.custom.contact');
     Route::get('/layout', [LayoutController::class, 'viewCustomLayout'])->name('admin.custom.layout');
+    Route::post('/store-layout', [LayoutController::class, 'storeLayout'])->name('admin.store.layout');
     Route::get('/collection', [CollectionController::class, 'viewCollection'])->name('admin.collection');
 
     Route::group(['prefix' => 'promotion'], function () {

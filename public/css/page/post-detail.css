@@ -62,10 +62,14 @@
     }
 }
 
-
 .image-post
 {
     width: 200px;
     height: 100px;
+}
+
+
+img {
+    border-radius: 5px;
 }
 
