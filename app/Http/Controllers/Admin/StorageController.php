@@ -65,12 +65,12 @@ class StorageController extends Controller
         return back()->with('success', __('Kho hàng được xóa thành công'));
     }
 
-    public function import(Request $request)
+    public function import($id)
     {
 
     }
 
-    public function export(Request $request)
+    public function export($id)
     {
 
     }

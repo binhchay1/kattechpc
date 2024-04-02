@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\CategoryRepository;
 use App\Repositories\CustomContactRepository;
 use App\Repositories\LandingPageRepository;
+use App\Repositories\LayoutRepository;
 use App\Repositories\PostRepository;
 use Illuminate\Http\Request;
 
@@ -19,19 +20,22 @@ class HomeController extends Controller
     protected $landingPageRepository;
     protected $customContactRepository;
     protected $postRepository;
+    protected $layoutRepository;
 
     public function __construct(
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository,
         LandingPageRepository $landingPageRepository,
         CustomContactRepository $customContactRepository,
-        PostRepository $postRepository
+        PostRepository $postRepository,
+        LayoutRepository $layoutRepository
     ) {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
         $this->landingPageRepository = $landingPageRepository;
         $this->customContactRepository = $customContactRepository;
         $this->postRepository = $postRepository;
+        $this->layoutRepository = $layoutRepository;
     }
 
     public function lang($locale)
@@ -56,8 +60,9 @@ class HomeController extends Controller
         }
         $listCategory = $this->categoryRepository->getListCategory();
         $listNews = $this->postRepository->getListNewsInHomepage();
+        $listLayout = $this->layoutRepository->getListLayout();
 
-        return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale'));
+        return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale', 'listLayout'));
     }
 
     public function viewPolicy()
@@ -76,7 +81,7 @@ class HomeController extends Controller
         $listPostRandom = $this->postRepository->listPostRandom();
         $listPostDESC = $this->postRepository->listPostDESC();
         $listPostASC = $this->postRepository->listPostASC();
-        return view('page.blog.posts', compact('listPost','listPostRandom','listPostDESC','listPostASC'));
+        return view('page.blog.posts', compact('listPost', 'listPostRandom', 'listPostDESC', 'listPostASC'));
     }
 
     public function postDetail($slug)

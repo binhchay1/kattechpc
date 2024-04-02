@@ -2,7 +2,6 @@
 
 namespace App\Enums;
 
-use App\Jobs\StoreImages;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -13,7 +12,7 @@ final class Utility
     public function saveImageProduct($file)
     {
         if ($file) {
-            $data = Storage::disk('r2')->put($file->getClientOriginalName(), $file->get());
+            Storage::disk('r2')->put($file->getClientOriginalName(), $file->get());
         }
     }
 
@@ -23,7 +22,7 @@ final class Utility
             Storage::disk('r2')->put($input['thumbnail']->getClientOriginalName(), $input['thumbnail']->get());
         }
     }
-    
+
     public function saveImageLayout($input)
     {
         if (isset($input['big_thumbnail'])) {
@@ -56,7 +55,7 @@ final class Utility
         if (isset($input['small_banner_thumbnail_2'])) {
             Storage::disk('r2')->put($input['small_banner_thumbnail_2']->getClientOriginalName(), $input['small_banner_thumbnail_2']->get());
         }
-        
+
     }
 
     public function saveImageUser($input)

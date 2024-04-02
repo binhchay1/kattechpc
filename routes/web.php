@@ -114,8 +114,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::post('/update/{id}', [StorageController::class, 'updateStorage'])->name('admin.storage.update');
         Route::get('/delete/{id}', [StorageController::class, 'deleteStorage'])->name('admin.storage.delete');
         Route::get('/export-excel', [StorageController::class, 'exportExcel'])->name('admin.storage.export.excel');
-        Route::get('/import', [StorageController::class, 'import'])->name('admin.storage.import');
-        Route::get('/export', [StorageController::class, 'export'])->name('admin.storage.export');
+        Route::get('/import/{id}', [StorageController::class, 'import'])->name('admin.storage.import');
+        Route::get('/export/{id}', [StorageController::class, 'export'])->name('admin.storage.export');
     });
 
     Route::group(['prefix' => 'products'], function () {

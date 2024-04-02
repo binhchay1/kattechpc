@@ -23,7 +23,6 @@
 
                     <div class="mt-5 tab-content">
                         @include('admin.layout.home')
-
                     </div>
                 </div>
             </div>
