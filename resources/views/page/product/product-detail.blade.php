@@ -10,7 +10,6 @@
 @endsection
 
 @section('content')
-
 <div class="container">
     <section class="product-container">
         <div class="img-card">

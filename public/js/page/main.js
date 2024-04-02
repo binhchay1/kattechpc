@@ -24,7 +24,7 @@ $(document).ready(function () {
         smartSpeed: 1000,
     });
 
-    $('.hover-for-tooltips').hover(function (e) {
+    $('.hover-for-tooltips').hover(function () {
         $('.global-tooltip').css('display', 'block');
         $('.global-tooltip').css('left', $(this).offset().left + 225);
         $('.global-tooltip').css('top', $(this).offset().top - 50);

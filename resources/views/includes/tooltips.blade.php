@@ -14,19 +14,19 @@
         <div class="tooltip-descreption-info">
             <div>
                 <div class="d-flex align-items-center">
-                    <p class="card-price-origin color-black" style="position: relative;">65.990.000₫
+                    <p class="card-price-origin color-black" style="position: relative;" id="tooltips-price">65.990.000₫
                         <span class="card-price-origin-line-through"></span>
                     </p>
                     <span class="color-red" style="margin-left: 4px;">-5%</span>
                 </div>
             </div>
-            <p style="margin: 0;">
+            <p style="margin: 0;" id="tooltips-new-price">
                 62.550.000đ
             </p>
             <p>
                 <span class="color-red line-clamp">Bảo hành theo theo từng linh kiện</span>
             </p>
-            <p class="color-secondary">
+            <p class="color-secondary" id="tooltips-status-storage">
                 Còn hàng
             </p>
         </div>

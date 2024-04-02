@@ -160,7 +160,7 @@
         <div class="swiper d-flex">
             <div class="box-banner-collection">
                 <a href="/ad.php?id=317" class="banner-collection boder-radius-10">
-                    <img src="{{asset('images/top-sale.jpg')}}" width="365" class="boder-radius-10 lazy-image entered loaded" alt="" data-was-processed="true" data-ll-status="loaded">
+                    <img src="{{ asset('images/top-sale.jpg') }}" width="365" class="boder-radius-10 lazy-image entered loaded" alt="" data-was-processed="true" data-ll-status="loaded">
                 </a>
             </div>
             <div class="swiper-wrapper swiper-top-sale" style="left: 48%;">
@@ -169,7 +169,7 @@
                     <div class="product-item">
                         <a href="" class="product-image position-relative">
                             @if(isset($product->image))
-                            <img src="{{ asset($product->image[0])}}" width="210" height="164" class="lazy entered loaded">
+                            <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy entered loaded">
                             @endif
                         </a>
                         <div class="product-info">
@@ -231,8 +231,6 @@
                 <span class="policy-title">{{ __('Linh kiện') }}</span>
             </div>
         </div>
-
-        <!-- end fake data -->
     </div>
 
 </section>

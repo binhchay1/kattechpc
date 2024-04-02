@@ -19,6 +19,7 @@ use App\Http\Controllers\Page\SocialLoginController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LandingPageController;
 use App\Http\Controllers\Admin\LayoutController;
+use App\Http\Controllers\Admin\ProductImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -70,7 +71,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/custom-contact', [AdminController::class, 'listCustomContact'])->name('admin.custom.contact');
     Route::get('/layout', [LayoutController::class, 'viewCustomLayout'])->name('admin.custom.layout');
     Route::get('/collection', [CollectionController::class, 'viewCollection'])->name('admin.collection');
-    // Route::get('index/{locale}', [TailwickController::class, 'lang']);
 
     Route::group(['prefix' => 'promotion'], function () {
         Route::get('/', [PromotionController::class, 'index'])->name('admin.promotion.index');
@@ -112,7 +112,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/update/{id}', [StorageController::class, 'editStorage'])->name('admin.storage.edit');
         Route::post('/update/{id}', [StorageController::class, 'updateStorage'])->name('admin.storage.update');
         Route::get('/delete/{id}', [StorageController::class, 'deleteStorage'])->name('admin.storage.delete');
-        Route::post('/import', [StorageController::class, 'import'])->name('admin.storage.import');
+        Route::get('/export-excel', [StorageController::class, 'exportExcel'])->name('admin.storage.export.excel');
+        Route::get('/import', [StorageController::class, 'import'])->name('admin.storage.import');
         Route::get('/export', [StorageController::class, 'export'])->name('admin.storage.export');
     });
 
@@ -176,9 +177,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/delete/{id}', [CategoryPostController::class, 'deleteCategory'])->name('admin.categoryPost.delete');
     });
 
-    Route::get('products/{productId}/upload', [App\Http\Controllers\Admin\ProductImageController::class, 'index']);
-    Route::post('products/{productId}/upload', [App\Http\Controllers\Admin\ProductImageController::class, 'store']);
-    Route::get('product-image/{productImageId}/delete', [App\Http\Controllers\Admin\ProductImageController::class, 'destroy']);
+    Route::get('products/{productId}/upload', [ProductImageController::class, 'index']);
+    Route::post('products/{productId}/upload', [ProductImageController::class, 'store']);
+    Route::get('product-image/{productImageId}/delete', [ProductImageController::class, 'destroy']);
 });
 
 Route::group(['middleware' => 'user'], function () {
