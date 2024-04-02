@@ -10,7 +10,6 @@ use App\Http\Requests\ProductUpdateRequest;
 use App\Repositories\ProductRepository;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -64,10 +63,8 @@ class ProductController extends Controller
 
         if ($request->hasfile('image')) {
             foreach ($request->file('image') as $file) {
-                $this->utility->saveImageProduct($file);
-                $saveImage = Storage::disk('r2')->url($file->getClientOriginalName());
-                $file->move(public_path('images'), $saveImage);
-                $imgData[] = $saveImage;
+                $file->move(public_path('images/upload/product/'), $file->getClientOriginalName());
+                $imgData[] = $file->getClientOriginalName();
             }
             $input['image'] = json_encode($imgData);
         }
@@ -110,10 +107,8 @@ class ProductController extends Controller
 
         if ($request->hasfile('image')) {
             foreach ($request->file('image') as $file) {
-                $this->utility->saveImageProduct($file);
-                $saveImage = Storage::disk('r2')->url($file->getClientOriginalName());
-                $file->move(public_path('images'), $saveImage);
-                $imgData[] = $saveImage;
+                $file->move(public_path('images'), $file->getClientOriginalName());
+                $imgData[] = $file->getClientOriginalName();
             }
             $input['image'] = json_encode($imgData);
         }

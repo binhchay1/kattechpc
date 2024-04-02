@@ -22,8 +22,13 @@ class LayoutRepository extends BaseRepository
         return $this->model->create($input);
     }
 
+    public function update($id, $input)
+    {
+        return $this->model->where('id', $id)->update($input);
+    }
+
     public function getListLayout()
     {
-        return $this->model->get();
+        return $this->model->first();
     }
 }

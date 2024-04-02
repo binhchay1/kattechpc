@@ -121,8 +121,8 @@
                                 @if($product->detail)
                                 @foreach($product->detail as $key => $value)
                                 <li class="item-detail">
-                                    <input name="detail_key[]" class="form-input" value="{{ $key }}" placeholder="Nhập tên trường" />
-                                    <input name="detail_value[]" class="form-input ml-3" value="{{ $value }}" placeholder="Nhập tên giá trị" />
+                                    <input name="detail_key[]" class="form-input" value="{{ $key }}" placeholder="{{ __('Nhập tên trường') }}" />
+                                    <input name="detail_value[]" class="form-input ml-3" value="{{ $value }}" placeholder="{{ __('Nhập tên giá trị') }}" />
                                     <span><i class="fa fa-xmas"></i></span>
                                 </li>
                                 @endforeach

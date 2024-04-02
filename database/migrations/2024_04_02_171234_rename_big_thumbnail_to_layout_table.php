@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('storage', function (Blueprint $table) {
-            $table->dropColumn('product_id');
-            $table->dropColumn('quantity');
+        Schema::table('layout', function (Blueprint $table) {
+            $table->renameColumn('big_thumbnail', 'slide_thumbnail');
         });
     }
 
@@ -22,9 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('storage', function (Blueprint $table) {
-            $table->bigInteger('product_id');
-            $table->integer('quantity');
+        Schema::table('layout', function (Blueprint $table) {
+            $table->renameColumn('slide_thumbnail', 'big_thumbnail');
         });
     }
 };

@@ -69,26 +69,50 @@
             </div>
             <div class="news-main-right">
                 <div class="news-main-right-1">
-                    <img src="{{ asset('/images/test_img/right-1.webp') }}" width="400">
+                    @if(isset($layout->small_thumbnail_1))
+                    <a href="{{ isset($layout->permarklink_small_thumbnail_1) ? $layout->permarklink_small_thumbnail_1 : '#' }}">
+                        <img src="{{ asset($layout->small_thumbnail_1) }}" width="400">
+                    </a>
+                    @endif
                 </div>
                 <div class="news-main-right-2">
-                    <img src="{{ asset('/images/test_img/right-2.webp') }}" width="400">
+                    @if(isset($layout->small_thumbnail_2))
+                    <a href="{{ isset($layout->permarklink_small_thumbnail_2) ? $layout->permarklink_small_thumbnail_2 : '#' }}">
+                        <img src="{{ asset($layout->small_thumbnail_2) }}" width="400">
+                    </a>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
     <div class="news-main-under">
         <div class="news-main-right-1">
-            <img src="{{ asset('/images/test_img/right-1.webp') }}" width="350">
+            @if(isset($layout->small_thumbnail_3))
+            <a href="{{ isset($layout->permarklink_small_thumbnail_3) ? $layout->permarklink_small_thumbnail_3 : '#' }}">
+                <img src="{{ asset($layout->small_thumbnail_3) }}" width="350">
+            </a>
+            @endif
         </div>
         <div class="news-main-right-2" style="margin-left: 10px;">
-            <img src="{{ asset('/images/test_img/right-2.webp') }}" width="350">
+            @if(isset($layout->small_thumbnail_4))
+            <a href="{{ isset($layout->permarklink_small_thumbnail_4) ? $layout->permarklink_small_thumbnail_4 : '#' }}">
+                <img src="{{ asset($layout->small_thumbnail_4) }}" width="350">
+            </a>
+            @endif
         </div>
         <div class="news-main-right-2" style="margin-left: 10px;">
-            <img src="{{ asset('/images/test_img/right-1.webp') }}" width="350">
+            @if(isset($layout->small_thumbnail_5))
+            <a href="{{ isset($layout->permarklink_small_thumbnail_5) ? $layout->permarklink_small_thumbnail_5 : '#' }}">
+                <img src="{{ asset($layout->small_thumbnail_5) }}" width="350">
+            </a>
+            @endif
         </div>
         <div class="news-main-right-2" style="margin-left: 10px;">
-            <img src="{{ asset('/images/test_img/right-2.webp') }}" width="350">
+            @if(isset($layout->small_thumbnail_6))
+            <a href="{{ isset($layout->permarklink_small_thumbnail_6) ? $layout->permarklink_small_thumbnail_6 : '#' }}">
+                <img src="{{ asset($layout->small_thumbnail_6) }}" width="350">
+            </a>
+            @endif
         </div>
     </div>
 </section>
