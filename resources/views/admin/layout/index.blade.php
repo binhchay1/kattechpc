@@ -19,18 +19,11 @@
                         <li class="group active">
                             <a href="javascript:void(0);" data-tab-toggle data-target="home" class="inline-block px-4 py-2 text-base transition-all duration-300 ease-linear rounded-t-md text-slate-500 dark:text-zink-200 border border-transparent group-[.active]:text-custom-500 group-[.active]:border-slate-200 dark:group-[.active]:border-zink-500 group-[.active]:border-b-white dark:group-[.active]:border-b-zink-700 hover:text-custom-500 active:text-custom-500 dark:hover:text-custom-500 dark:active:text-custom-500 dark:group-[.active]:hover:text-white -mb-[1px]">{{ __('Trang chủ') }}</a>
                         </li>
-                        <li class="group">
-                            <a href="javascript:void(0);" data-tab-toggle data-target="flash-sale" class="inline-block px-4 py-2 text-base transition-all duration-300 ease-linear rounded-t-md text-slate-500 dark:text-zink-200 border border-transparent group-[.active]:text-custom-500 group-[.active]:border-slate-200 dark:group-[.active]:border-zink-500 group-[.active]:border-b-white dark:group-[.active]:border-b-zink-700 hover:text-custom-500 active:text-custom-500 dark:hover:text-custom-500 dark:active:text-custom-500 dark:group-[.active]:hover:text-white -mb-[1px]">{{ __('Flash sale') }}</a>
-                        </li>
-                        <li class="group">
-                            <a href="javascript:void(0);" data-tab-toggle data-target="top-sale" class="inline-block px-4 py-2 text-base transition-all duration-300 ease-linear rounded-t-md text-slate-500 dark:text-zink-200 border border-transparent group-[.active]:text-custom-500 group-[.active]:border-slate-200 dark:group-[.active]:border-zink-500 group-[.active]:border-b-white dark:group-[.active]:border-b-zink-700 hover:text-custom-500 active:text-custom-500 dark:hover:text-custom-500 dark:active:text-custom-500 dark:group-[.active]:hover:text-white -mb-[1px]">{{ __('Top sale') }}</a>
-                        </li>
                     </ul>
 
                     <div class="mt-5 tab-content">
                         @include('admin.layout.home')
-                        @include('admin.layout.flash-sale')
-                        @include('admin.layout.top-sale')
+
                     </div>
                 </div>
             </div>
