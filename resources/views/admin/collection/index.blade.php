@@ -14,7 +14,7 @@
         <div class="card" id="usersTable">
             <div class="card-body">
                 <div class="flex items-center">
-                    <h6 class="text-15 grow">{{__('Danh sách sản phẩm')}}</h6>
+                    <h6 class="text-15 grow">{{ __('Bộ sưu tập') }}</h6>
                     <div class="lg:col-span-2 ltr:lg:text-right rtl:lg:text-left xl:col-span-2 xl:col-start-11">
                         <a href="{{route('admin.product.create')}}" type="button" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20"><i data-lucide="plus" class="inline-block size-4"></i> <span class="align-middle">{{__('Thêm sản phẩm')}}</span></a>
                     </div>
@@ -47,37 +47,12 @@
                             </tr>
                         </thead>
                         <tbody class="list">
-                            @foreach($listProducts as $product)
+                            @foreach($listCollection as $collection)
                             <tr class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 name"> {{ $product->name }}</td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 name"> {{ $collection->title }}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 code">{{ $product->code }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="flex items-center gap-2">
-                                        <div class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
-                                            <img src="{{$product->image}}" alt="" class="h-10 rounded-full">
-                                        </div>
-                                        <div class="grow">
-                                            <h6 class="mb-1"> <a href="{{ url('admin/products/'.$product->id.'/upload') }}" style="color: #1267ea">{{__("Thêm/Xem Ảnh")}}</a></h6>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $product->category->name ?? "" }}
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 description">{!! Str::limit(strip_tags(html_entity_decode($product->description)), 100)!!}</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 price">{{ $product->price }}</td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 detail">
-                                    <ul class="space-y-5 list-disc list-inside rounded-md marker:text-red-500">
-                                        @if($product->detail)
-                                        @foreach($product->detail as $key => $value)
-                                        <li>{{ $key }}: {{ $value }}</li>
-                                        @endforeach
-                                        @endif
-                                    </ul>
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 status">
-                                    <span class="status px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-orange-100 border-transparent text-orange-500 dark:bg-orange-500/20 dark:border-transparent">{{ $product->status }}</span>
-                                </td>
+
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
                                     <div class="relative dropdown">
                                         <button class="flex items-center justify-center size-[30px] dropdown-toggle p-0 text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20" id="usersAction1" data-bs-toggle="dropdown"><i data-lucide="more-horizontal" class="size-3"></i></button>

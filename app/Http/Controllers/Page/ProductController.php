@@ -3,67 +3,27 @@
 namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Repositories\ProductRepository;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
+    protected $productRepository;
+
+    public function __construct(
+        ProductRepository $productRepository,
+    ) {
+        $this->productRepository = $productRepository;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function productDetail($slug)
     {
-        //
-    }
+        $product = $this->productRepository->productDetail($slug);
+        if (isset($product->detail)) {
+            $product->detail = json_decode($product->detail, true);
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        $productRelated = $this->productRepository->getProductRelated($product->category_id, $product->id);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
-    
-    public function detail()
-    {
-        return view('page.product.product-detail');
+        return view('page.product.product-detail', compact('product', 'productRelated'));
     }
 }

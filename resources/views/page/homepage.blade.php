@@ -168,25 +168,27 @@
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
                         <a href="" class="product-image position-relative">
-                                <img src="{{asset($product->image[0] )}}" width="210" height="164" class="lazy entered loaded">
+                            @if(isset($product->image))
+                            <img src="{{ asset($product->image[0])}}" width="210" height="164" class="lazy entered loaded">
+                            @endif
                         </a>
                         <div class="product-info">
                             <a href="">
-                                <h3 class="product-title line-clamp-3">{{$product->name}} </h3>
+                                <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
                             </a>
 
                             <div class="product-martket-main d-flex align-items-center">
-                                <p class="product-market-price">{{$product->price}} ₫</p>
+                                <p class="product-market-price">{{ $product->price }} ₫</p>
                                 <div class="product-percent-price">-22%</div>
                             </div>
 
                             <div class="product-price-main font-weight-600">
-                                14.800.000đ
+                                {{ $product->new_price }} đ
                             </div>
                         </div>
                     </div>
                 </div>
-                    @endforeach
+                @endforeach
             </div>
         </div>
         <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
@@ -200,7 +202,7 @@
     <div class="">
         <div class="d-flex align-items-center justify-content-between">
             <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
-                <h2 class="flash-sale-title">{{__('Danh mục nổi bật')}}</h2>
+                <h2 class="flash-sale-title">{{ __('Danh mục nổi bật') }}</h2>
             </div>
         </div>
         <div class="flex-container">
@@ -383,7 +385,7 @@
                 </a>
                 <div class="content-article content-article-item d-flex flex-column flex-1">
                     <a href="{{route('post.detail', $news['slug'])}}" class="title-article">
-                        <h3 class="font-weight-400 line-clamp-2">{{Str::limit($news->short_description, 30)}}</h3>
+                        <h3 class="font-weight-400 line-clamp-2">{{ Str::limit($news->short_description, 30) }}</h3>
                     </a>
                     <p class="time-article d-flex align-items-center gap-4">
                         <i class="sprite sprite-clock-item-article"></i>

@@ -51,13 +51,14 @@
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
                                     <div class="items-center gap-2">
                                         <div class="flex items-center justify-center size-10 font-medium rounded-full shrink-0  text-slate-800 dark:text-zink-50 dark:bg-zink-600">
+                                            @if(is_array($product->image))
                                             @foreach($product->image as $value)
-                                            <img src="{{asset('/images/' .$value)}}"  class="h-10 rounded-full">
+                                            <img src="{{ asset('/images/' .$value) }}" class="h-10 rounded-full">
                                             @endforeach
+                                            @else
+                                            <img src="{{ asset('/images/') }}" class="h-10 rounded-full">
+                                            @endif
                                         </div>
-{{--                                        <div class="grow">--}}
-{{--                                            <h6 class="mb-1"> <a href="{{ url('admin/products/'.$product->id.'/upload') }}" style="color: #1267ea">{{__("Thêm/Xem Ảnh")}}</a></h6>--}}
-{{--                                        </div>--}}
                                     </div>
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $product->category->name ?? "" }}

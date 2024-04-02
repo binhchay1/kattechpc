@@ -48,7 +48,7 @@ class HomeController extends Controller
 
     public function viewHome()
     {
-        
+
         $listProductSale = $this->productRepository->listProductSale();
         foreach ($listProductSale as $product) {
             $product->detail = json_decode($product->detail, true);
@@ -58,15 +58,6 @@ class HomeController extends Controller
         $listNews = $this->postRepository->getListNewsInHomepage();
 
         return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale'));
-    }
-
-    public function productDetail($slug)
-    {
-        $product = $this->productRepository->productDetail($slug);
-
-        $productRelated = $this->productRepository->getProductRelated($product->category_id, $product->id);
-
-        return view('page.product.product-detail', compact('product', 'productRelated'));
     }
 
     public function viewPolicy()

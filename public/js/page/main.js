@@ -26,8 +26,8 @@ $(document).ready(function () {
 
     $('.hover-for-tooltips').hover(function (e) {
         $('.global-tooltip').css('display', 'block');
-        $('.global-tooltip').css('left', e.clientX + 100);
-        $('.global-tooltip').css('top', e.clientY + 1200);
+        $('.global-tooltip').css('left', $(this).offset().left + 225);
+        $('.global-tooltip').css('top', $(this).offset().top - 50);
     }, function () {
         $('.global-tooltip').css('display', 'none');
     });

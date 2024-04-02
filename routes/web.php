@@ -3,7 +3,8 @@
 use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductController as ProductAdmin;
+use App\Http\Controllers\Page\ProductController as ProductPage;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PromotionController;
@@ -36,7 +37,7 @@ Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');
 Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
 Route::get('/blog-detail/{slug}', [HomeController::class, 'postDetail'])->name('post.detail');
 Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
-Route::get('/product/{slug}', [HomeController::class, 'productDetail'])->name('productDetail');
+Route::get('/product/{slug}', [ProductPage::class, 'productDetail'])->name('productDetail');
 Route::get('/promotion', [HomeController::class, 'viewPromotion'])->name('promotion');
 Route::get('/promotion-detail', [HomeController::class, 'promotionDetail'])->name('promotionDetail');
 Route::get('/rules', [HomeController::class, 'rules'])->name('rules');
@@ -56,10 +57,6 @@ Route::get('/auth/google/', [SocialLoginController::class, 'redirectToGoogle'])-
 Route::get('/auth/google/callback/', [SocialLoginController::class, 'handleGoogleCallback']);
 Route::get('/auth/facebook/', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
 Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFacebookCallback']);
-
-Route::group(['prefix' => 'product'], function () {
-    Route::get('/detail', [\App\Http\Controllers\Page\ProductController::class, 'detail'])->name('page.product.detail');
-});
 
 Route::group(['prefix' => 'cart'], function () {
     Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
@@ -120,13 +117,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'products'], function () {
-        Route::get('/list', [ProductController::class, 'index'])->name('admin.product.index');
-        Route::get('/detail/{id}', [ProductController::class, 'show'])->name('admin.product.show');
-        Route::get('/add', [ProductController::class, 'createProduct'])->name('admin.product.create');
-        Route::post('/store', [ProductController::class, 'storeProduct'])->name('admin.product.store');
-        Route::get('/update/{id}', [ProductController::class, 'editProduct'])->name('admin.product.edit');
-        Route::post('/update/{id}', [ProductController::class, 'updateProduct'])->name('admin.product.update');
-        Route::get('/delete/{id}', [ProductController::class, 'deleteProduct'])->name('admin.product.delete');
+        Route::get('/list', [ProductAdmin::class, 'index'])->name('admin.product.index');
+        Route::get('/detail/{id}', [ProductAdmin::class, 'show'])->name('admin.product.show');
+        Route::get('/add', [ProductAdmin::class, 'createProduct'])->name('admin.product.create');
+        Route::post('/store', [ProductAdmin::class, 'storeProduct'])->name('admin.product.store');
+        Route::get('/update/{id}', [ProductAdmin::class, 'editProduct'])->name('admin.product.edit');
+        Route::post('/update/{id}', [ProductAdmin::class, 'updateProduct'])->name('admin.product.update');
+        Route::get('/delete/{id}', [ProductAdmin::class, 'deleteProduct'])->name('admin.product.delete');
     });
 
     Route::group(['prefix' => 'users'], function () {

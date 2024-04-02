@@ -6,10 +6,10 @@
     </div>
     <div class="tooltip-descreption">
         <div class="tooltip-descreption-price">
-            <p>Giá niêm yết</p>
-            <p>Giá bán</p>
-            <p>Bảo hành</p>
-            <p>Tình trạng</p>
+            <p>{{ __('Giá niêm yết') }}</p>
+            <p>{{ __('Giá bán') }}</p>
+            <p>{{ __('Bảo hành') }}</p>
+            <p>{{ __('Tình trạng') }}</p>
         </div>
         <div class="tooltip-descreption-info">
             <div>

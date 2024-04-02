@@ -53,14 +53,16 @@ class ProductController extends Controller
         $input = $request->except(['_token']);
         $detail = [];
 
-        for ($i = 0; $i < count($input['detail_key']); $i++) {
-            $detail[$input['detail_key'][$i]] = $input['detail_value'][$i];
+        if (in_array('detail_key', $input)) {
+            for ($i = 0; $i < count($input['detail_key']); $i++) {
+                $detail[$input['detail_key'][$i]] = $input['detail_value'][$i];
+            }
+            $input['detail'] = json_encode($detail);
         }
 
-        $input['detail'] = json_encode($detail);
         $input['slug'] =  Str::slug($input['name']);
-    
-        if($request->hasfile('image')) {
+
+        if ($request->hasfile('image')) {
             foreach ($request->file('image') as $file) {
                 $this->utility->saveImageProduct($file);
                 $saveImage = Storage::disk('r2')->url($file->getClientOriginalName());
@@ -69,7 +71,7 @@ class ProductController extends Controller
             }
             $input['image'] = json_encode($imgData);
         }
-            $this->productRepository->store($input);
+        $this->productRepository->store($input);
 
         return redirect()->route('admin.product.index')->with('success',  __('Sản phẩm được thêm thành công'));
     }
@@ -94,15 +96,19 @@ class ProductController extends Controller
         $input = $request->except(['_token']);
         $detail = [];
 
-        for ($i = 0; $i < count($input['detail_key']); $i++) {
-            $detail[$input['detail_key'][$i]] = $input['detail_value'][$i];
+
+        if (in_array('detail_key', $input)) {
+            for ($i = 0; $i < count($input['detail_key']); $i++) {
+                $detail[$input['detail_key'][$i]] = $input['detail_value'][$i];
+            }
+
+            unset($input['detail_key']);
+            unset($input['detail_value']);
+
+            $input['detail'] = json_encode($detail);
         }
 
-        unset($input['detail_key']);
-        unset($input['detail_value']);
-
-        $input['detail'] = json_encode($detail);
-        if($request->hasfile('image')) {
+        if ($request->hasfile('image')) {
             foreach ($request->file('image') as $file) {
                 $this->utility->saveImageProduct($file);
                 $saveImage = Storage::disk('r2')->url($file->getClientOriginalName());
