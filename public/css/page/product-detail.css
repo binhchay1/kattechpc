@@ -23,6 +23,10 @@ header {
 
 }
 
+.img-card {
+    float: left;
+}
+
 .img-card img {
     width: 100%;
     flex-shrink: 0;
@@ -55,7 +59,8 @@ header {
 }
 
 .product-info{
-    width: 100%;
+    width: 60%;
+    float: right;
 }
 
 .product-info h3 {
@@ -69,9 +74,10 @@ header {
     adding: 0.5rem;
     display: flex;
     flex-wrap: wrap;
-    float: left;
+    float: right;
     width: 40%;
     padding: 10px;
+    float: right;
 
 }
 
@@ -300,5 +306,17 @@ tr:nth-child(even) {
 
     hr{
         width: 100%;
+    }
+}
+
+#left {
+    width: 30%;
+    float: left;
+}
+
+@media screen and (max-width: 800px) {
+    .product-related, .product-info {
+        width: 100%;
+        padding: 0;
     }
 }

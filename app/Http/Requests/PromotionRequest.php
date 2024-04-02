@@ -22,7 +22,7 @@ class PromotionRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' =>'required|max:255',
+            'title' =>'required|max:191',
             'content' =>'required',
         
         ];
@@ -32,7 +32,7 @@ class PromotionRequest extends FormRequest
     {
         return [
             'title.required' => __('Tiêu đề quảng cáo không được để trống'),
-            'title.max' => __('Tiêu đề quảng cáo không được vượt quá 255 kí tự'),
+            'title.max' => __('Tiêu đề quảng cáo không được vượt quá 191 kí tự'),
             'content.required' => __('Nội dung quảng cáo không được để trống'),
         ];
     }

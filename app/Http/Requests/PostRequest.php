@@ -22,7 +22,7 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' =>'required|max:255',
+            'title' =>'required|max:191',
             'content' =>'required',
             'category_id' =>'required',
             'short_description' =>'required',
@@ -35,7 +35,7 @@ class PostRequest extends FormRequest
     {
         return [
             'title.required' => __('Tiêu đề bài viết không được để trống'),
-            'title.max' => __('Tiêu đề bài viết không được vượt quá 255 kí tự'),
+            'title.max' => __('Tiêu đề bài viết không được vượt quá 191 kí tự'),
             'category_id.required' => __('Danh mục bài viết không được để trống'),
             'short_description.required' => __('Miêu tả bài viết không được để trống'),
             'thumbnail.required' => __('Hình ảnh sản phẩm không được để trống'),

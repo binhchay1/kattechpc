@@ -16,6 +16,21 @@ class PostRepository extends BaseRepository
     {
         return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->paginate(10);
     }
+    
+    public function listPostRandom()
+    {
+        return $this->model->with('user', 'category')->get()->random(2);
+    }
+    
+    public function listPostDESC()
+    {
+        return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->get()->take(3);
+    }
+    
+    public function listPostASC()
+    {
+        return $this->model->with('user', 'category')->orderBy('created_at', 'ASC')->get()->take(2);
+    }
 
     public function create($input)
     {
@@ -36,7 +51,6 @@ class PostRepository extends BaseRepository
     {
         return $this->model->where('id', $id)->delete();
     }
-
 
     public function getListNewsInHomepage()
     {

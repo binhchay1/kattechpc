@@ -164,18 +164,19 @@
                 </a>
             </div>
             <div class="swiper-wrapper swiper-top-sale" style="left: 48%;">
+                @foreach($listProductSale as $product)
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
-                        <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
-                            <img src="{{ asset('/images/test_flash_sale/250-26232-b----pc-gaming.jpg') }}" width="210" height="164" class="lazy entered loaded">
+                        <a href="" class="product-image position-relative">
+                                <img src="{{asset($product->image[0] )}}" width="210" height="164" class="lazy entered loaded">
                         </a>
                         <div class="product-info">
-                            <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
-                                <h3 class="product-title line-clamp-3">Bộ PC GAMING 2024 : CORE I5 12400F/ RAM 8G RGB/ VGA 4G </h3>
+                            <a href="">
+                                <h3 class="product-title line-clamp-3">{{$product->name}} </h3>
                             </a>
 
                             <div class="product-martket-main d-flex align-items-center">
-                                <p class="product-market-price">18.990.000 ₫</p>
+                                <p class="product-market-price">{{$product->price}} ₫</p>
                                 <div class="product-percent-price">-22%</div>
                             </div>
 
@@ -185,6 +186,7 @@
                         </div>
                     </div>
                 </div>
+                    @endforeach
             </div>
         </div>
         <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>

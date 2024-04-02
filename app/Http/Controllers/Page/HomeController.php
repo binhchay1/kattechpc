@@ -48,10 +48,16 @@ class HomeController extends Controller
 
     public function viewHome()
     {
+        
+        $listProductSale = $this->productRepository->listProductSale();
+        foreach ($listProductSale as $product) {
+            $product->detail = json_decode($product->detail, true);
+            $product->image = json_decode($product->image, true);
+        }
         $listCategory = $this->categoryRepository->getListCategory();
         $listNews = $this->postRepository->getListNewsInHomepage();
 
-        return view('page.homepage', compact('listCategory', 'listNews'));
+        return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale'));
     }
 
     public function productDetail($slug)
@@ -75,14 +81,18 @@ class HomeController extends Controller
 
     public function viewPost()
     {
-        return view('page.blog.posts');
+        $listPost = $this->postRepository->index();
+        $listPostRandom = $this->postRepository->listPostRandom();
+        $listPostDESC = $this->postRepository->listPostDESC();
+        $listPostASC = $this->postRepository->listPostASC();
+        return view('page.blog.posts', compact('listPost','listPostRandom','listPostDESC','listPostASC'));
     }
 
     public function postDetail($slug)
     {
+        $listPost = $this->postRepository->index();
         $post = $this->postRepository->detail($slug);
-    
-        return view('page.blog.post-detail', compact('post'));
+        return view('page.blog.post-detail', compact('post', 'listPost'));
     }
 
     public function viewPromotion()

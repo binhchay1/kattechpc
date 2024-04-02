@@ -80,32 +80,24 @@
                             <span class="text-danger">{{ $errors->first('status') }}</span>
                             @endif
                         </div>
-
                         <div class="xl:col-span-6">
                             <div class="form-group">
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Hình ảnh') }}</label>
-                                <div>
-                                    <div style="display: inline-grid;">
-                                        <input type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
-                                        <div class=" choose-avatar">
-                                            <div id="btnimage">
-                                                <img id="showImage" class="show-avatar" src="{{ asset($product->image ?? '/images/product.png') }}" alt="avatar">
-                                            </div>
-                                            <div id="button">
-                                                <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
-                                            </div>
-                                        </div>
-                                        @if ($errors->has('image'))
-                                        <span class="text-danger">{{ $errors->first('image') }}</span>
-                                        @endif
-                                    </div>
+                                <div class="flex  gap-2 mt-4">
+                                    @foreach ($product->image as $value)
+                                        <img src="{{asset('/images/' .$value)}}" class="border p-2 m-3" style="width: 100px; height: 100px;" alt="Img" />
+                                        <a href="" >{{ __('Xóa ảnh') }}</a>
+                                    @endforeach
+                                </div>
+                                <div class="flex  gap-2 mt-4">
+                                    <input type="file" name="image[]" multiple class="form-control"/>
                                 </div>
                             </div>
                         </div>
 
                         <div class="lg:col-span-2 xl:col-span-12">
                             <label for="productDescription" class="inline-block mb-2 text-base font-medium">{{ __('Mô tả') }}</label>
-                            <textarea id="editor-description" class="editor form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="productDescription" name="description" placeholder="{{ __('Mô tả') }}" rows="5">{{ old('description' , $product->description) }}</textarea>
+                            <textarea id="editor" class="editor form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="productDescription" name="description" placeholder="{{ __('Mô tả') }}" rows="5">{{ old('description' , $product->description) }}</textarea>
                             @if ($errors->has('description'))
                             <span class="text-danger">{{ $errors->first('description') }}</span>
                             @endif
@@ -156,20 +148,21 @@
 @endsection
 
 @push('scripts')
-<script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
+    <script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
 
-<script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
-<script>
-    ClassicEditor
-        .create(document.querySelector('.editor'), {
-            height: 500,
-            ckfinder: {
-                uploadUrl: '<?php echo route(`admin.post.uploadMedia`) ?>' + '?_token=' + csrf_token()
-            }
-        })
-        .catch(error => {
-            console.error(error);
-        });
-</script>
-<script src="{{ URL::asset('js/admin/product.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ),{
+                height:500,
+                ckfinder: {
+
+                    uploadUrl: '{{route('admin.post.uploadMedia').'?_token='.csrf_token()}}',
+                }
+            })
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+    <script src="{{ URL::asset('js/admin/product.js') }}"></script>
 @endpush

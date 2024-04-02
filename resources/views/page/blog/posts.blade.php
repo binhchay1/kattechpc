@@ -12,98 +12,45 @@
     <div class="container">
         <div class="row">
             <div class="column1 ">
+                @foreach($listPostRandom as $random)
                 <div class="col">
                     <div class="position-relative mb-3">
-                        <img class="img-fluid w-100" style="object-fit: cover;" alt="Auto Chess phiên bản PC" src="//file.hstatic.net/200000722513/file/tai-auto-chess-pc-9_029caa4b583e452aa59804a2ba2fc1dd.jpg">
+                        <img class="img-fluid w-100" style="object-fit: cover;" alt="Auto Chess phiên bản PC" src="{{asset($random->thumbnail)}}">
                         <div class="">
-
-                            <h2><a class="h4" href="">Est stet amet ipsum stet clita rebum duo</a></h2>
-                            <p class="m-0">Rebum dolore duo et vero ipsum clita, est ea sed duo diam ipsum, clita at justo, lorem amet vero eos sed sit...</p>
+                            <h2><a href="{{route('post.detail', $random['slug'])}}" class="h4" href="">{{$random->title}}</a></h2>
+                            <p class="m-0">{{$random->short_description}}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="position-relative mb-3">
-                        <img class="img-fluid w-100" style="object-fit: cover;" alt="Auto Chess phiên bản PC" src="//file.hstatic.net/200000722513/file/tai-auto-chess-pc-9_029caa4b583e452aa59804a2ba2fc1dd.jpg">
-                        <div class="">
-                            <h2><a class="h4" href="">Est stet amet ipsum stet clita rebum duo</a></h2>
-                            <p class="m-0">Rebum dolore duo et vero ipsum clita, est ea sed duo diam ipsum, clita at justo, lorem amet vero eos sed sit...</p>
-                        </div>
-                    </div>
-                </div>
+             @endforeach
                 <div class="row top1">
                     <h1 class="text"> {{__('Tin công nghệ')}}</h1>
                     <div class="parent">
+                        @foreach($listPostDESC as $postDESC)
                         <div class="child">
-                            <img class="img-fluid w-100" src="//file.hstatic.net/200000722513/file/asus_your_voice_matter_a4653e90979c4c50bb3eee5539e96d42_grande.jpg" style="object-fit: cover;">
+                            <img class="img-fluid w-100" src="{{asset($postDESC->thumbnail)}}" style="object-fit: cover;">
                             <div class="">
-                                <h2><a class="h4" href="">Est stet amet ipsum stet clita rebum duo</a></h2>
+                                <h2><a class="h4" href="">{{$postDESC->title}}</a></h2>
                             </div>
                         </div>
-                        <div class="child">
-                            <img class="img-fluid w-100" src="//file.hstatic.net/200000722513/file/gearvn-cach-download-game-dragon-city-cuc-de-cho-pc-laptop-2_6947843f0b8740efa12fa22c7e010778.jpg" style="object-fit: cover;">
-                            <div class="">
-                                <h2><a class="h4" href="">Est stet amet ipsum stet clita rebum duo</a></h2>
-                            </div>
-                        </div>
-                        <div class="child">
-                            <img class="img-fluid w-100" src="//file.hstatic.net/200000722513/file/monica-ung-dung-ai-mien-phi-d112940-7_187087bd2ddb46c1acdd81b5c1defc89.jpg" style="object-fit: cover;">
-                            <div class="">
-                                <h2><a class="h4" href="">Est stet amet ipsum stet clita rebum duo</a></h2>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <hr class="hr">
+                    @foreach($listPostASC as $postASC)
                 <div id="content">
                     <div id="left">
-                        <img  src="https://hanoicomputercdn.com/media/news/2492_msi_monitor_oled_32_inch_gaming_hero.jpg" alt="Image Alt" class="img-fluid" />
+                        <img  src="{{asset($postASC->thumbnail)}}" alt="Image Alt" class="img-fluid1" />
                     </div>
                     <div id="content-right">
                         <div id="object3">
-                            <h2>  MSI đối đầu với ASUS trong cuộc chiến giá cả bằng màn hình OLED mới</h2>
+                            <h2> {{$postASC->title}}</h2>
                         </div>
-                        <div id="object4">dolor site amet dolor site ame dolor site ame dolor site ame dolor site ame</div>
+                        <div id="object4">{{$postASC->short_description}}</div>
                     </div>
                 </div>
                 <hr class="hr">
-                <div id="content">
-                    <div id="left">
-                        <img  src="https://hanoicomputercdn.com/media/news/2467_aorus_co49dq_gaming_monitor_01.png" alt="Image Alt" class="img-fluid" />
-                    </div>
-                    <div id="content-right">
-                        <div id="object3">
-                            <h2>  GIGABYTE hâm nóng thị trường màn OLED siêu rộng nhờ cái tên Aorus CO49DQ</h2>
-                        </div>
-                        <div id="object4">dolor site amet dolor site ame dolor site ame dolor site ame dolor site ame</div>
-                    </div>
-                </div>
-                <hr class="hr">
-                <div id="content">
-                    <div id="left">
-                        <img  src="https://hanoicomputercdn.com/media/news/2463_acer_predator_z57_hero_1200x624.jpg" alt="Image Alt" class="img-fluid" />
-                    </div>
-                    <div id="content-right" >
-                        <div id="object3">
-                            <h2>Đánh Giá Màn hình Mini-LED Acer Predator Z57 với độ phân giải Dual-4K 120Hz
-                            </h2>
-                        </div>
-                        <div id="object4">dolor site amet dolor site ame dolor site ame dolor site ame dolor site ame</div>
-                    </div>
-                </div>
-                <hr class="hr">
-                <div id="content">
-                    <div id="left">
-                        <img  src="https://hanoicomputercdn.com/media/news/2187_adobe_premiere_pro_la_gi.jpg" alt="Image Alt" class="img-fluid" />
-                    </div>
-                    <div id="content-right">
-                        <div id="object3">
-                            <h2>  Cấu hình tối ưu cho phần mềm Adobe Premiere Pro</h2>
-                        </div>
-                        <div id="object4">dolor site amet dolor site ame dolor site ame dolor site ame dolor site ame</div>
-                    </div>
-                </div>
-                <hr class="hr">
+                @endforeach
             </div>
 
             <div class="column2" >
@@ -139,36 +86,16 @@
 
                 <div class="row top2">
                     <h2 class="text"> {{__('Xem nhanh')}}</h2>
+                    @foreach($listPost as $post)
                     <div id="content">
                         <div id="left">
-                            <img  src="//file.hstatic.net/200000722513/article/qs52fmcytlbgvuxz3qg4qz_cc949470e374424b905374e3b47cdd1a_grande.jpg" alt="Image Alt" class="img-fluid" />
+                            <img  src="{{asset($post->thumbnail)}}" alt="Image Alt" class="img-fluid2" />
                         </div>
                         <div id="content-right">
-                            <h4>  Cấu hình tối ưu cho phần mềm Adobe Premiere Pro</h4>
+                            <h4>{{$post->title}}</h4>
                         </div>
                     </div>
-                    <div id="content">
-                        <div id="left">
-                            <img  src="//file.hstatic.net/200000722513/article/fakfunzqqhzxpbxsak8rgu_f58ad986fbe740a9bb59185f9f0de0e4_grande.jpg" alt="Image Alt" class="img-fluid" />
-                        </div>
-                        <div id="content-right">
-                            <h4>  Cấu hình tối ưu cho phần mềm Adobe Premiere Pro</h4>
-                        </div>
-                    </div>
-                    <div id="content">
-                        <div id="left">
-                            <img  src="https://source.unsplash.com/87kYkk3oHTM/395x225" alt="Image Alt" class="img-fluid" />
-                        </div>
-                        <div id="content-right">
-                            <h4>  Cấu hình tối ưu cho phần mềm Adobe Premiere Pro</h4>
-                        </div>
-                    </div>  <div id="content">
-                        <div id="left">
-                            <img  src="//file.hstatic.net/200000722513/article/csm_intel_laptop_cpu__6_09f6777123_0b42cabfa18b4e348bdd77064de48bed_grande.png" alt="Image Alt" class="img-fluid" />
-                        </div>
-                        <div id="content-right">
-                            <h4>  Cấu hình tối ưu cho phần mềm Adobe Premiere Pro</h4>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

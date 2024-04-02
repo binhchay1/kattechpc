@@ -35,3 +35,13 @@
 #cke_editor1 {
     top: 0px !important;
 }
+
+.imgPreview {
+    display: flex;
+}
+
+.imgPreview img {
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+}

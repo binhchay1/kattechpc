@@ -10,6 +10,7 @@ use App\Http\Requests\ProductUpdateRequest;
 use App\Repositories\ProductRepository;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -34,6 +35,7 @@ class ProductController extends Controller
         $listProducts = $this->productRepository->index();
         foreach ($listProducts as $product) {
             $product->detail = json_decode($product->detail, true);
+            $product->image = json_decode($product->image, true);
         }
 
         return view('admin.product.index', compact('listProducts'));
@@ -57,13 +59,17 @@ class ProductController extends Controller
 
         $input['detail'] = json_encode($detail);
         $input['slug'] =  Str::slug($input['name']);
-        if (isset($input['image'])) {
-            $this->utility->saveImageProduct($input);
-            $path = '/images/upload/product/' . $input['image']->getClientOriginalName();
-            $input['image'] = $path;
+    
+        if($request->hasfile('image')) {
+            foreach ($request->file('image') as $file) {
+                $this->utility->saveImageProduct($file);
+                $saveImage = Storage::disk('r2')->url($file->getClientOriginalName());
+                $file->move(public_path('images'), $saveImage);
+                $imgData[] = $saveImage;
+            }
+            $input['image'] = json_encode($imgData);
         }
-
-        $this->productRepository->store($input);
+            $this->productRepository->store($input);
 
         return redirect()->route('admin.product.index')->with('success',  __('Sản phẩm được thêm thành công'));
     }
@@ -74,6 +80,7 @@ class ProductController extends Controller
         $listCategories = $this->categoryRepository->index();
         $product = $this->productRepository->show($id);
         $product->detail = json_decode($product->detail, true);
+        $product->image = json_decode($product->image, true);
 
         if (empty($product)) {
             abort(404);
@@ -95,12 +102,15 @@ class ProductController extends Controller
         unset($input['detail_value']);
 
         $input['detail'] = json_encode($detail);
-        if (isset($input['image'])) {
-            $this->utility->saveImageProduct($input);
-            $path = '/images/upload/product/' . $input['image']->getClientOriginalName();
-            $input['image'] = $path;
+        if($request->hasfile('image')) {
+            foreach ($request->file('image') as $file) {
+                $this->utility->saveImageProduct($file);
+                $saveImage = Storage::disk('r2')->url($file->getClientOriginalName());
+                $file->move(public_path('images'), $saveImage);
+                $imgData[] = $saveImage;
+            }
+            $input['image'] = json_encode($imgData);
         }
-
         $this->productRepository->update($input, $id);
 
         return redirect()->route('admin.product.index')->with('success', __('Sản phẩm được thay đổi thành công'));
