@@ -24,7 +24,11 @@
 
         <div class="product-info">
             <h3>{{ $product->name }}</h3>
-            <h5>{{ __('Giá ') }}: {{ $product->price }} <del>$1700000 đ</del></h5>
+            @if($product->new_price != null)
+            <h5>{{ __('Giá ') }}: {{ $product->new_price }} <del>{{ $product->price }} đ</del></h5>
+            @else
+            <h5>{{ __('Giá ') }}: {{ $product->price }} đ</h5>
+            @endif
             <div>
                 {{ html_entity_decode($product->description) }}
             </div>
@@ -32,7 +36,7 @@
             <div class="quantity mt-4">
                 <a href="{{route('addCart', $product['slug'])}}">
                     <button class="btn-buy">{{ __('Mua ngay') }}</button>
-                    <button class="btn-buy">{{ __('Thêm vào giỏ hàng') }}</button>
+                    <button class="btn-add-cart">{{ __('Thêm vào giỏ hàng') }}</button>
                 </a>
             </div>
 
@@ -104,18 +108,18 @@
             </div>
         </div>
     </section>
+</div>
+@endsection
 
-    @endsection
-
-    @section('js')
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
-    <script>
-        $('.vendor-carousel').owlCarousel({
-            loop: true,
-            nav: false,
-            autoplay: true,
-            smartSpeed: 1000,
-        });
-    </script>
-    @endsection
+@section('js')
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
+<script>
+    $('.vendor-carousel').owlCarousel({
+        loop: true,
+        nav: false,
+        autoplay: true,
+        smartSpeed: 1000,
+    });
+</script>
+@endsection
