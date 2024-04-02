@@ -15,10 +15,10 @@ return new class extends Migration
             $table->text('description')->change();
         });
     }
-    
+
     public function down()
     {
-        Schema::table('sandbox', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
             $table->string('description')->change();
         });
     }
