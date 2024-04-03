@@ -108,5 +108,15 @@ class LayoutController extends Controller
         return back()->with('success', __('Ảnh được thêm thành công'));
     }
 
+    public function storeSlide()
+    {
+    }
 
+    public function deleteSlide()
+    {
+    }
+
+    public function editSlide()
+    {
+    }
 }

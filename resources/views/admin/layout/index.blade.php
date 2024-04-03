@@ -34,6 +34,7 @@
                         @include('admin.layout.home')
                         @include('admin.layout.flash-sale')
                         @include('admin.layout.hot-deal')
+                        @include('admin.layout.slide')
                     </div>
                 </div>
             </div>

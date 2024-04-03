@@ -69,12 +69,17 @@ Route::group(['prefix' => 'cart'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
     Route::get('/custom-contact', [AdminController::class, 'listCustomContact'])->name('admin.custom.contact');
-    Route::get('/layout', [LayoutController::class, 'viewCustomLayout'])->name('admin.custom.layout');
-    Route::post('/store-layout', [LayoutController::class, 'storeLayout'])->name('admin.store.layout');
-    Route::post('/store-flash-sale', [LayoutController::class, 'storeFlashSale'])->name('admin.store.flash.sale');
-    Route::post('/store-hot-deal', [LayoutController::class, 'storeHotDeal'])->name('admin.store.hot.deal');
-    Route::post('/store-slide', [LayoutController::class, 'storeSlide'])->name('admin.store.slide');
     Route::get('/collection', [CollectionController::class, 'viewCollection'])->name('admin.collection');
+
+    Route::group(['prefix' => 'layout'], function () {
+        Route::get('/', [LayoutController::class, 'viewCustomLayout'])->name('admin.custom.layout');
+        Route::post('/store-layout', [LayoutController::class, 'storeLayout'])->name('admin.store.layout');
+        Route::post('/store-flash-sale', [LayoutController::class, 'storeFlashSale'])->name('admin.store.flash.sale');
+        Route::post('/store-hot-deal', [LayoutController::class, 'storeHotDeal'])->name('admin.store.hot.deal');
+        Route::post('/store-slide', [LayoutController::class, 'storeSlide'])->name('admin.store.slide');
+        Route::post('/edit-slide', [LayoutController::class, 'editSlide'])->name('admin.edit.slide');
+        Route::post('/delete-slide', [LayoutController::class, 'deleteSlide'])->name('admin.delete.slide');
+    });
 
     Route::group(['prefix' => 'promotion'], function () {
         Route::get('/', [PromotionController::class, 'index'])->name('admin.promotion.index');
