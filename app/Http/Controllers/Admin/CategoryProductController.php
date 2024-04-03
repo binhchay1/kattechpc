@@ -34,7 +34,6 @@ class CategoryProductController extends Controller
     public function storeCategory(CategoryRequest $request)
     {
         $input = $request->except(['_token']);
-        $input = $request->all();
         $input['slug'] = Str::slug($input['name']);
         $this->categoryRepository->create($input);
 
