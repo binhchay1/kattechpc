@@ -150,4 +150,12 @@ class HomeController extends Controller
 
         $this->customContactRepository->store($request);
     }
+    
+    public function showDataCategory ($slug)
+    {
+        $dataCategory = $this->categoryRepository->productByCategory($slug);
+        
+        return view ('page.product.productCategory', compact('dataCategory'));
+    }
+    
 }
