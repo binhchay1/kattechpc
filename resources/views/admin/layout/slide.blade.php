@@ -8,9 +8,7 @@
                         {{ __('Ảnh') }}
                     </th>
 
-                    <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="url">{{ __('Đường dẫn') }}
-                    </th>
-                    </th>
+                    <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="url">{{ __('Đường dẫn') }}</th>
                     <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">{{ __('Hành động') }}</th>
                 </tr>
             </thead>
@@ -54,7 +52,6 @@
                 @endforeach
             </tbody>
         </table>
-        {!! $listCategory->links() !!}
     </div>
     @include('includes.modal-add-image-slide')
 </div>
