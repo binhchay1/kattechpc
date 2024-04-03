@@ -143,6 +143,8 @@
 
 @push('scripts')
 <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
 <script>
     ClassicEditor
         .create(document.querySelector('#editor'), {
@@ -155,7 +157,6 @@
             console.error(error);
         });
 </script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
 <script src="{{ URL::asset('js/admin/product.js') }}"></script>
 @endpush

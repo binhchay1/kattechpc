@@ -98,12 +98,11 @@ class ProductController extends Controller
             for ($i = 0; $i < count($input['detail_key']); $i++) {
                 $detail[$input['detail_key'][$i]] = $input['detail_value'][$i];
             }
-
-            unset($input['detail_key']);
-            unset($input['detail_value']);
-
+     
             $input['detail'] = json_encode($detail);
         }
+        unset($input['detail_key']);
+        unset($input['detail_value']);
 
         if ($request->hasfile('image')) {
             foreach ($request->file('image') as $file) {
