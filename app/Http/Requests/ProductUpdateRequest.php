@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ProductUpdateRequest extends FormRequest
 {
@@ -26,7 +28,7 @@ class ProductUpdateRequest extends FormRequest
             'name' =>'required|max:191',
             'description' =>'required',
             'status' =>'required',
-            'code' =>'required|max:255',
+            'code' =>'required|max:50|unique:products,code,' .$this->id,
             'price' =>'required|max:255',
         ];
     }
@@ -41,7 +43,8 @@ class ProductUpdateRequest extends FormRequest
             'status.required' => __('Trạng thái sản phẩm không được để trống'),
             'code.required' => __('Mã sản phẩm không được để trống'),
             'price.required' => __('Giá sản phẩm không được để trống'),
-            'code.max' => __('Mã sản phẩm không vượt quá 255 kí tự'),
+            'code.max' => __('Mã sản phẩm không vượt quá 50 kí tự'),
+            'code.unique' => __('Mã sản phẩm phải là duy nhất'),
         ];
     }
 }

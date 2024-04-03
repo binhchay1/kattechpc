@@ -25,7 +25,6 @@
     justify-content: center;
     margin-left: 20px;
     cursor: pointer;
-
 }
 
 .ck-editor__editable_inline {
@@ -44,4 +43,8 @@
     width: 200px;
     height: 200px;
     padding: 10px;
+}
+
+.font-medium {
+    margin-top: 30px;
 }

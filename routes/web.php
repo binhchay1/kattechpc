@@ -3,7 +3,8 @@
 use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductController as ProductAdmin;
+use App\Http\Controllers\Page\ProductController as ProductPage;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PromotionController;
@@ -18,6 +19,7 @@ use App\Http\Controllers\Page\SocialLoginController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LandingPageController;
 use App\Http\Controllers\Admin\LayoutController;
+use App\Http\Controllers\Admin\ProductImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,7 +38,7 @@ Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');
 Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
 Route::get('/blog-detail/{slug}', [HomeController::class, 'postDetail'])->name('post.detail');
 Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
-Route::get('/product/{slug}', [HomeController::class, 'productDetail'])->name('productDetail');
+Route::get('/product/{slug}', [ProductPage::class, 'productDetail'])->name('productDetail');
 Route::get('/promotion', [HomeController::class, 'viewPromotion'])->name('promotion');
 Route::get('/promotion-detail', [HomeController::class, 'promotionDetail'])->name('promotionDetail');
 Route::get('/rules', [HomeController::class, 'rules'])->name('rules');
@@ -57,10 +59,6 @@ Route::get('/auth/google/callback/', [SocialLoginController::class, 'handleGoogl
 Route::get('/auth/facebook/', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
 Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFacebookCallback']);
 
-Route::group(['prefix' => 'product'], function () {
-    Route::get('/detail', [\App\Http\Controllers\Page\ProductController::class, 'detail'])->name('page.product.detail');
-});
-
 Route::group(['prefix' => 'cart'], function () {
     Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
     Route::get('show-cart',  [CartController::class, 'showCart'])->name('showCart');
@@ -73,8 +71,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/custom-contact', [AdminController::class, 'listCustomContact'])->name('admin.custom.contact');
     Route::get('/layout', [LayoutController::class, 'viewCustomLayout'])->name('admin.custom.layout');
     Route::post('/store-layout', [LayoutController::class, 'storeLayout'])->name('admin.store.layout');
+    Route::post('/store-flash-sale', [LayoutController::class, 'storeFlashSale'])->name('admin.store.flash.sale');
+    Route::post('/store-hot-deal', [LayoutController::class, 'storeHotDeal'])->name('admin.store.hot.deal');
+    Route::post('/store-slide', [LayoutController::class, 'storeSlide'])->name('admin.store.slide');
     Route::get('/collection', [CollectionController::class, 'viewCollection'])->name('admin.collection');
-    // Route::get('index/{locale}', [TailwickController::class, 'lang']);
 
     Route::group(['prefix' => 'promotion'], function () {
         Route::get('/', [PromotionController::class, 'index'])->name('admin.promotion.index');
@@ -116,18 +116,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/update/{id}', [StorageController::class, 'editStorage'])->name('admin.storage.edit');
         Route::post('/update/{id}', [StorageController::class, 'updateStorage'])->name('admin.storage.update');
         Route::get('/delete/{id}', [StorageController::class, 'deleteStorage'])->name('admin.storage.delete');
-        Route::post('/import', [StorageController::class, 'import'])->name('admin.storage.import');
-        Route::get('/export', [StorageController::class, 'export'])->name('admin.storage.export');
+        Route::get('/export-excel', [StorageController::class, 'exportExcel'])->name('admin.storage.export.excel');
+        Route::get('/import/{id}', [StorageController::class, 'import'])->name('admin.storage.import');
+        Route::get('/export/{id}', [StorageController::class, 'export'])->name('admin.storage.export');
     });
 
     Route::group(['prefix' => 'products'], function () {
-        Route::get('/list', [ProductController::class, 'index'])->name('admin.product.index');
-        Route::get('/detail/{id}', [ProductController::class, 'show'])->name('admin.product.show');
-        Route::get('/add', [ProductController::class, 'createProduct'])->name('admin.product.create');
-        Route::post('/store', [ProductController::class, 'storeProduct'])->name('admin.product.store');
-        Route::get('/update/{id}', [ProductController::class, 'editProduct'])->name('admin.product.edit');
-        Route::post('/update/{id}', [ProductController::class, 'updateProduct'])->name('admin.product.update');
-        Route::get('/delete/{id}', [ProductController::class, 'deleteProduct'])->name('admin.product.delete');
+        Route::get('/list', [ProductAdmin::class, 'index'])->name('admin.product.index');
+        Route::get('/detail/{id}', [ProductAdmin::class, 'show'])->name('admin.product.show');
+        Route::get('/add', [ProductAdmin::class, 'createProduct'])->name('admin.product.create');
+        Route::post('/store', [ProductAdmin::class, 'storeProduct'])->name('admin.product.store');
+        Route::get('/update/{id}', [ProductAdmin::class, 'editProduct'])->name('admin.product.edit');
+        Route::post('/update/{id}', [ProductAdmin::class, 'updateProduct'])->name('admin.product.update');
+        Route::get('/delete/{id}', [ProductAdmin::class, 'deleteProduct'])->name('admin.product.delete');
     });
 
     Route::group(['prefix' => 'users'], function () {
@@ -180,9 +181,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/delete/{id}', [CategoryPostController::class, 'deleteCategory'])->name('admin.categoryPost.delete');
     });
 
-    Route::get('products/{productId}/upload', [App\Http\Controllers\Admin\ProductImageController::class, 'index']);
-    Route::post('products/{productId}/upload', [App\Http\Controllers\Admin\ProductImageController::class, 'store']);
-    Route::get('product-image/{productImageId}/delete', [App\Http\Controllers\Admin\ProductImageController::class, 'destroy']);
+    Route::get('products/{productId}/upload', [ProductImageController::class, 'index']);
+    Route::post('products/{productId}/upload', [ProductImageController::class, 'store']);
+    Route::get('product-image/{productImageId}/delete', [ProductImageController::class, 'destroy']);
 });
 
 Route::group(['middleware' => 'user'], function () {

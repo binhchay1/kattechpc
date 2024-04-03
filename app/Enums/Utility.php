@@ -2,7 +2,6 @@
 
 namespace App\Enums;
 
-use App\Jobs\StoreImages;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -13,7 +12,7 @@ final class Utility
     public function saveImageProduct($file)
     {
         if ($file) {
-            $data = Storage::disk('r2')->put($file->getClientOriginalName(), $file->get());
+            Storage::disk('r2')->put($file->getClientOriginalName(), $file->get());
         }
     }
 
@@ -23,40 +22,20 @@ final class Utility
             Storage::disk('r2')->put($input['thumbnail']->getClientOriginalName(), $input['thumbnail']->get());
         }
     }
-    
+
     public function saveImageLayout($input)
     {
-        if (isset($input['big_thumbnail'])) {
-            Storage::disk('r2')->put($input['big_thumbnail']->getClientOriginalName(), $input['big_thumbnail']->get());
+        if ($input) {
+            foreach ($input as $key => $thumbnail) {
+                if($key == 'slide_thumbnail') {
+                    foreach($thumbnail as $item) {
+                        Storage::disk('r2')->put($item->getClientOriginalName(), $item->get());
+                    }
+                } else {
+                    Storage::disk('r2')->put($thumbnail->getClientOriginalName(), $thumbnail->get());
+                }
+            }
         }
-        if (isset($input['big_banner_thumbnail'])) {
-            Storage::disk('r2')->put($input['big_banner_thumbnail']->getClientOriginalName(), $input['big_banner_thumbnail']->get());
-        }
-        if (isset($input['small_thumbnail_1'])) {
-            Storage::disk('r2')->put($input['small_thumbnail_1']->getClientOriginalName(), $input['small_thumbnail_1']->get());
-        }
-        if (isset($input['small_thumbnail_2'])) {
-            Storage::disk('r2')->put($input['small_thumbnail_2']->getClientOriginalName(), $input['small_thumbnail_2']->get());
-        }
-        if (isset($input['small_thumbnail_3'])) {
-            Storage::disk('r2')->put($input['small_thumbnail_3']->getClientOriginalName(), $input['small_thumbnail_3']->get());
-        }
-        if (isset($input['small_thumbnail_4'])) {
-            Storage::disk('r2')->put($input['small_thumbnail_4']->getClientOriginalName(), $input['small_thumbnail_4']->get());
-        }
-        if (isset($input['small_thumbnail_5'])) {
-            Storage::disk('r2')->put($input['small_thumbnail_5']->getClientOriginalName(), $input['small_thumbnail_5']->get());
-        }
-        if (isset($input['small_thumbnail_6'])) {
-            Storage::disk('r2')->put($input['small_thumbnail_6']->getClientOriginalName(), $input['small_thumbnail_6']->get());
-        }
-        if (isset($input['small_banner_thumbnail_1'])) {
-            Storage::disk('r2')->put($input['small_banner_thumbnail_1']->getClientOriginalName(), $input['small_banner_thumbnail_1']->get());
-        }
-        if (isset($input['small_banner_thumbnail_2'])) {
-            Storage::disk('r2')->put($input['small_banner_thumbnail_2']->getClientOriginalName(), $input['small_banner_thumbnail_2']->get());
-        }
-        
     }
 
     public function saveImageUser($input)

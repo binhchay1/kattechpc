@@ -67,17 +67,6 @@ class PostController extends Controller
         return redirect()->route('admin.post.index')->with('success',  __('Bài viết được thêm thành công'));
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function showPost( $id)
-    {
-        $this->postRepository->show($id);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function editPost( $id)
     {
         $listCategories = $this->categoryPostRepository->index();
@@ -88,15 +77,12 @@ class PostController extends Controller
         return view('admin.post.edit', compact('post','listCategories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function updatePost(UpdatePostRequest $request,  $id)
     {
         $input = $request->except(['_token']);
         $input['slug'] =  Str::slug($input['title']);
         if (isset($input['thumbnail'])) {
-            $this->utility->saveImagePost($input);
+            // $this->utility->saveImagePost($input);
             $path = '/images/upload/post/' . $input['thumbnail']->getClientOriginalName();
             $input['thumbnail'] = $path;
         }
@@ -105,28 +91,26 @@ class PostController extends Controller
         return redirect()->route('admin.post.index')->with('success',  __('Bài viết được thay đổi thành công'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function deletePost( $id)
     {
         $this->postRepository->destroy($id);
         return back()->with('success', __('Bài viết  được xóa đổi thành công'));
     }
-    
+
     public function uploadMedia(Request $request)
     {
-        
+
         if ($request->hasFile('upload')) {
             $originName = $request->file('upload')->getClientOriginalName();
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
             $extension = $request->file('upload')->getClientOriginalExtension();
             $fileName = $fileName . '_' . time() . '.' . $extension;
-        
+
             $request->file('upload')->move(public_path('media'), $fileName);
-        
+
             $url = asset('media/' . $fileName);
-        
+
             return response()->json(['fileName' => $fileName, 'uploaded'=> 1, 'url' => $url]);
         }
     }

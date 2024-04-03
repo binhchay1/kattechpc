@@ -69,26 +69,50 @@
             </div>
             <div class="news-main-right">
                 <div class="news-main-right-1">
-                    <img src="{{ asset('/images/test_img/right-1.webp') }}" width="400">
+                    @if(isset($layout->small_thumbnail_1))
+                    <a href="{{ isset($layout->permarklink_small_thumbnail_1) ? $layout->permarklink_small_thumbnail_1 : '#' }}">
+                        <img src="{{ asset($layout->small_thumbnail_1) }}" width="400">
+                    </a>
+                    @endif
                 </div>
                 <div class="news-main-right-2">
-                    <img src="{{ asset('/images/test_img/right-2.webp') }}" width="400">
+                    @if(isset($layout->small_thumbnail_2))
+                    <a href="{{ isset($layout->permarklink_small_thumbnail_2) ? $layout->permarklink_small_thumbnail_2 : '#' }}">
+                        <img src="{{ asset($layout->small_thumbnail_2) }}" width="400">
+                    </a>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
     <div class="news-main-under">
         <div class="news-main-right-1">
-            <img src="{{ asset('/images/test_img/right-1.webp') }}" width="350">
+            @if(isset($layout->small_thumbnail_3))
+            <a href="{{ isset($layout->permarklink_small_thumbnail_3) ? $layout->permarklink_small_thumbnail_3 : '#' }}">
+                <img src="{{ asset($layout->small_thumbnail_3) }}" width="350">
+            </a>
+            @endif
         </div>
         <div class="news-main-right-2" style="margin-left: 10px;">
-            <img src="{{ asset('/images/test_img/right-2.webp') }}" width="350">
+            @if(isset($layout->small_thumbnail_4))
+            <a href="{{ isset($layout->permarklink_small_thumbnail_4) ? $layout->permarklink_small_thumbnail_4 : '#' }}">
+                <img src="{{ asset($layout->small_thumbnail_4) }}" width="350">
+            </a>
+            @endif
         </div>
         <div class="news-main-right-2" style="margin-left: 10px;">
-            <img src="{{ asset('/images/test_img/right-1.webp') }}" width="350">
+            @if(isset($layout->small_thumbnail_5))
+            <a href="{{ isset($layout->permarklink_small_thumbnail_5) ? $layout->permarklink_small_thumbnail_5 : '#' }}">
+                <img src="{{ asset($layout->small_thumbnail_5) }}" width="350">
+            </a>
+            @endif
         </div>
         <div class="news-main-right-2" style="margin-left: 10px;">
-            <img src="{{ asset('/images/test_img/right-2.webp') }}" width="350">
+            @if(isset($layout->small_thumbnail_6))
+            <a href="{{ isset($layout->permarklink_small_thumbnail_6) ? $layout->permarklink_small_thumbnail_6 : '#' }}">
+                <img src="{{ asset($layout->small_thumbnail_6) }}" width="350">
+            </a>
+            @endif
         </div>
     </div>
 </section>
@@ -160,7 +184,7 @@
         <div class="swiper d-flex">
             <div class="box-banner-collection">
                 <a href="/ad.php?id=317" class="banner-collection boder-radius-10">
-                    <img src="{{asset('images/top-sale.jpg')}}" width="365" class="boder-radius-10 lazy-image entered loaded" alt="" data-was-processed="true" data-ll-status="loaded">
+                    <img src="{{ asset('images/top-sale.jpg') }}" width="365" class="boder-radius-10 lazy-image entered loaded" alt="" data-was-processed="true" data-ll-status="loaded">
                 </a>
             </div>
             <div class="swiper-wrapper swiper-top-sale" style="left: 48%;">
@@ -168,25 +192,27 @@
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
                         <a href="" class="product-image position-relative">
-                                <img src="{{asset($product->image[0] )}}" width="210" height="164" class="lazy entered loaded">
+                            @if(isset($product->image))
+                            <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy entered loaded">
+                            @endif
                         </a>
                         <div class="product-info">
                             <a href="">
-                                <h3 class="product-title line-clamp-3">{{$product->name}} </h3>
+                                <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
                             </a>
 
                             <div class="product-martket-main d-flex align-items-center">
-                                <p class="product-market-price">{{$product->price}} ₫</p>
+                                <p class="product-market-price">{{ $product->price }} ₫</p>
                                 <div class="product-percent-price">-22%</div>
                             </div>
 
                             <div class="product-price-main font-weight-600">
-                                14.800.000đ
+                                {{ $product->new_price }} đ
                             </div>
                         </div>
                     </div>
                 </div>
-                    @endforeach
+                @endforeach
             </div>
         </div>
         <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
@@ -200,7 +226,7 @@
     <div class="">
         <div class="d-flex align-items-center justify-content-between">
             <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
-                <h2 class="flash-sale-title">{{__('Danh mục nổi bật')}}</h2>
+                <h2 class="flash-sale-title">{{ __('Danh mục nổi bật') }}</h2>
             </div>
         </div>
         <div class="flex-container">
@@ -229,8 +255,6 @@
                 <span class="policy-title">{{ __('Linh kiện') }}</span>
             </div>
         </div>
-
-        <!-- end fake data -->
     </div>
 
 </section>
@@ -383,7 +407,7 @@
                 </a>
                 <div class="content-article content-article-item d-flex flex-column flex-1">
                     <a href="{{route('post.detail', $news['slug'])}}" class="title-article">
-                        <h3 class="font-weight-400 line-clamp-2">{{Str::limit($news->short_description, 30)}}</h3>
+                        <h3 class="font-weight-400 line-clamp-2">{{ Str::limit($news->short_description, 30) }}</h3>
                     </a>
                     <p class="time-article d-flex align-items-center gap-4">
                         <i class="sprite sprite-clock-item-article"></i>

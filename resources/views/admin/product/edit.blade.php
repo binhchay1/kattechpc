@@ -80,20 +80,32 @@
                             <span class="text-danger">{{ $errors->first('status') }}</span>
                             @endif
                         </div>
-                        <div class="xl:col-span-6">
-                            <div class="form-group">
-                                <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Hình ảnh') }}</label>
-                                <div class="flex  gap-2 mt-4">
-                                    @foreach ($product->image as $value)
-                                        <img src="{{asset('/images/' .$value)}}" class="border p-2 m-3" style="width: 100px; height: 100px;" alt="Img" />
-                                        <a href="" >{{ __('Xóa ảnh') }}</a>
-                                    @endforeach
-                                </div>
-                                <div class="flex  gap-2 mt-4">
-                                    <input type="file" name="image[]" multiple class="form-control"/>
+                    <div class="xl:col-span-6">
+
+                        <div style="display: inline-grid; " class="lg:col-span-2 xl:col-span-12">
+                            <div class="flex  gap-2 mt-4">
+                                @foreach ($product->image as $value)
+                                    <img src="{{asset('/images/' .$value)}}" class="border p-2 m-3" style="width: 100px; height: 100px;" alt="Img" />
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
+                            <div>
+                                <div style="display: inline-grid;">
+                                    <input type="file" name="image[]" class="custom-file-input" id="images" multiple="multiple">
+                                    @if ($errors->has('image'))
+                                        <span class="text-danger">{{ $errors->first('image') }}</span>
+                                    @endif
                                 </div>
                             </div>
                         </div>
+                        <label for="categorySelect" class="inline-block mb-2 text-base font-medium ">{{__('Hình ảnh thay đổi')}}</label>
+                        <div class="user-image mb-3 text-center">
+                            <div class="imgPreview">
+                            </div>
+                        </div>
+                    </div>
 
                         <div class="lg:col-span-2 xl:col-span-12">
                             <label for="productDescription" class="inline-block mb-2 text-base font-medium">{{ __('Mô tả') }}</label>
@@ -121,8 +133,8 @@
                                 @if($product->detail)
                                 @foreach($product->detail as $key => $value)
                                 <li class="item-detail">
-                                    <input name="detail_key[]" class="form-input" value="{{ $key }}" placeholder="Nhập tên trường" />
-                                    <input name="detail_value[]" class="form-input ml-3" value="{{ $value }}" placeholder="Nhập tên giá trị" />
+                                    <input name="detail_key[]" class="form-input" value="{{ $key }}" placeholder="{{ __('Nhập tên trường') }}" />
+                                    <input name="detail_value[]" class="form-input ml-3" value="{{ $value }}" placeholder="{{ __('Nhập tên giá trị') }}" />
                                     <span><i class="fa fa-xmas"></i></span>
                                 </li>
                                 @endforeach
@@ -148,8 +160,7 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
     <script>
         ClassicEditor
@@ -157,12 +168,13 @@
                 height:500,
                 ckfinder: {
 
-                    uploadUrl: '{{route('admin.post.uploadMedia').'?_token='.csrf_token()}}',
+                    uploadUrl: '<?php {{ route("admin.post.uploadMedia") . '?_token=' . csrf_token(); }} ?>',
                 }
             })
             .catch( error => {
                 console.error( error );
             } );
     </script>
+    <script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
     <script src="{{ URL::asset('js/admin/product.js') }}"></script>
 @endpush

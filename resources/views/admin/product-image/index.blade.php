@@ -1,7 +1,9 @@
 @extends('layouts.master-admin')
+
 @section('title')
     {{ __('Thêm danh mục sản phẩm') }}
 @endsection
+
 @section('content')
     <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5 mt-4">
         <div class="xl:col-span-12">

@@ -1,5 +1,5 @@
-<div class="tab-pane hidden" id="flash-sale">
-    <form method="POST" action="{{ route('admin.store.flash.sale') }}" enctype="multipart/form-data">
+<div class="tab-pane hidden" id="hot-deal">
+    <form method="POST" action="{{ route('admin.store.hot.deal') }}" enctype="multipart/form-data">
         @csrf
         <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
             <div class="xl:col-span-12 grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">

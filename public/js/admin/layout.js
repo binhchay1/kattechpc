@@ -11,6 +11,30 @@ $(document).ready(function () {
     $('input').change(function () {
         readURL(this, id);
     });
+
+    $("#add-product-flash-sale").click(function () {
+        let detail_item = '<li class="item-product-flash-sale"><input name="product_id[]" class="form-input" value="" placeholder="Nhập mã sản phẩm"/><input name="quantity[]" class="form-input ml-3" value="" placeholder="Nhập số lượng"/><span class="btn-x">X</span></li><script>$(`.btn-x`).click(function () {$(this).parent().remove();});</script>';
+        $("#area-product-flash-sale").append(detail_item);
+    });
+
+    $(`.btn-x`).click(function () { $(this).parent().remove(); });
+
+    var multiImgPreview = function (input, imgPreviewPlaceholder) {
+        if (input.files) {
+            var filesAmount = input.files.length;
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+                reader.onload = function (event) {
+                    $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
+                }
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
+    };
+
+    $('#images').on('change', function () {
+        multiImgPreview(this, 'div.imgPreview');
+    });
 });
 
 function readURL(input, id) {

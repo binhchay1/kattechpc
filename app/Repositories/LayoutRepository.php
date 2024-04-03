@@ -16,9 +16,19 @@ class LayoutRepository extends BaseRepository
     {
         return $this->model->orderBy('created_at', 'DESC')->paginate(10);
     }
-    
+
     public function store($input)
     {
         return $this->model->create($input);
+    }
+
+    public function update($id, $input)
+    {
+        return $this->model->where('id', $id)->update($input);
+    }
+
+    public function getListLayout()
+    {
+        return $this->model->first();
     }
 }

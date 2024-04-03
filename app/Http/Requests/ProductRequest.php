@@ -26,7 +26,7 @@ class ProductRequest extends FormRequest
             'name' =>'required|max:191',
             'description' =>'required',
             'status' =>'required',
-            'code' =>'required|max:255',
+            'code' =>'required|max:255|unique:products,code',
             'price' =>'required|max:255',
             'image.*' =>'required|mimes:jpeg,png,jpg|max:2048'
         ];
@@ -41,6 +41,7 @@ class ProductRequest extends FormRequest
             'description.required' => __('Miêu tả sản phẩm không được để trống'),
             'status.required' => __('Trạng thái sản phẩm không được để trống'),
             'code.required' => __('Mã sản phẩm không được để trống'),
+            'code.unique' => __('Mã sản phẩm phải là duy nhất'),
             'price.required' => __('Giá sản phẩm không được để trống'),
             'code.max' => __('Mã sản phẩm không vượt quá 255 kí tự'),
             'image.*.required' => __('Hình ảnh sản phẩm không được để trống'),
