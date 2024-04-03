@@ -1,0 +1,33 @@
+.container {
+    max-width: 1430px;
+    margin: 0 auto;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Create four equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 20%;
+    padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+    background-color:red;
+}
+.product-item {
+    padding: 12px 28px;
+    position: relative;
+    border-radius: 5px;
+    background: #fff;
+    -webkit-box-shadow: 0 -1px 9px 0 rgba(164, 164, 164, .25);
+    box-shadow: 0 -1px 9px 0 rgba(164, 164, 164, .25);
+    min-width: 0;
+    min-height: 402.406px;
+}

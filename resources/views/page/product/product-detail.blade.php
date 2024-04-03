@@ -29,7 +29,7 @@
             <h5>{{ __('Giá ') }}: {{ $product->price }} đ</h5>
             @endif
             <div>
-                {{ html_entity_decode($product->description) }}
+                {!! html_entity_decode($product->description)  !!}
             </div>
 
             <div class="quantity mt-4">
