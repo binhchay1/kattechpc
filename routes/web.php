@@ -77,10 +77,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/', [LayoutController::class, 'viewCustomLayout'])->name('admin.custom.layout');
         Route::post('/store-layout', [LayoutController::class, 'storeLayout'])->name('admin.store.layout');
         Route::post('/store-flash-sale', [LayoutController::class, 'storeFlashSale'])->name('admin.store.flash.sale');
-        Route::post('/store-hot-deal', [LayoutController::class, 'storeHotDeal'])->name('admin.store.hot.deal');
+        Route::post('/store-hot-sale', [LayoutController::class, 'storeHotSale'])->name('admin.store.hot.sale');
         Route::post('/store-slide', [LayoutController::class, 'storeSlide'])->name('admin.store.slide');
-        Route::post('/edit-slide', [LayoutController::class, 'editSlide'])->name('admin.edit.slide');
-        Route::post('/delete-slide', [LayoutController::class, 'deleteSlide'])->name('admin.delete.slide');
+        Route::post('/delete-slide/{index}', [LayoutController::class, 'deleteSlide'])->name('admin.delete.slide');
     });
 
     Route::group(['prefix' => 'promotion'], function () {
@@ -191,7 +190,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('products/{productId}/upload', [ProductImageController::class, 'index']);
     Route::post('products/{productId}/upload', [ProductImageController::class, 'store']);
     Route::get('product-image/{productImageId}/delete', [ProductImageController::class, 'destroy']);
-});
-
-Route::group(['middleware' => 'user'], function () {
 });

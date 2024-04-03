@@ -7,16 +7,16 @@
                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Ảnh quảng cáo 1') }}</label>
                     <div class="">
                         <div class="" style="display: inline-grid;">
-                            <input type="file" class="border-0 bg-light pl-0" name="small_thumbnail_1" id="image2" hidden>
+                            <input type="file" class="border-0 bg-light pl-0" name="small_thumbnail_1" id="image1" hidden>
                             <div class=" choose-avatar">
                                 <div id="btnimage">
                                     @if(isset($layout->small_thumbnail_1))
-                                    <img id="showImage7" class="show-avatar" src="{{ asset($layout->small_thumbnail_1) }}" alt="avatar">
+                                    <img id="showImage1" class="show-avatar" src="{{ asset($layout->small_thumbnail_1) }}" alt="avatar">
                                     @else
-                                    <img id="showImage3" class="show-avatar" src="{{ asset('/images/layout/400x200.png') }}" alt="avatar">
+                                    <img id="showImage1" class="show-avatar" src="{{ asset('/images/layout/400x200.png') }}" alt="avatar">
                                     @endif
                                 </div>
-                                <div id="button-2">
+                                <div id="button-1">
                                     <i class="fas fa-camera btn_chooseImg"> {{ __('Chọn hình ảnh') }}</i>
                                 </div>
                             </div>
@@ -36,16 +36,16 @@
                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Ảnh quảng cáo 2') }}</label>
                     <div>
                         <div style="display: inline-grid;">
-                            <input type="file" class="border-0 bg-light pl-0" name="small_thumbnail_2" id="image3" hidden>
+                            <input type="file" class="border-0 bg-light pl-0" name="small_thumbnail_2" id="image2" hidden>
                             <div class=" choose-avatar">
                                 <div id="btnimage">
                                     @if(isset($layout->small_thumbnail_2))
-                                    <img id="showImage7" class="show-avatar" src="{{ asset($layout->small_thumbnail_2) }}" alt="avatar">
+                                    <img id="showImage2" class="show-avatar" src="{{ asset($layout->small_thumbnail_2) }}" alt="avatar">
                                     @else
-                                    <img id="showImage3" class="show-avatar" src="{{ asset('/images/layout/400x200.png') }}" alt="avatar">
+                                    <img id="showImage2" class="show-avatar" src="{{ asset('/images/layout/400x200.png') }}" alt="avatar">
                                     @endif
                                 </div>
-                                <div id="button-3">
+                                <div id="button-2">
                                     <i class="fas fa-camera btn_chooseImg"> {{ __('Chọn hình ảnh') }}</i>
                                 </div>
                             </div>
@@ -65,16 +65,16 @@
                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Ảnh quảng cáo 3') }}</label>
                     <div class="">
                         <div class="" style="display: inline-grid;">
-                            <input type="file" class="border-0 bg-light pl-0" name="small_thumbnail_3" id="image4" hidden>
+                            <input type="file" class="border-0 bg-light pl-0" name="small_thumbnail_3" id="image3" hidden>
                             <div class=" choose-avatar">
                                 <div id="btnimage">
                                     @if(isset($layout->small_thumbnail_3))
-                                    <img id="showImage7" class="show-avatar" src="{{ asset($layout->small_thumbnail_3) }}" alt="avatar">
+                                    <img id="showImage3" class="show-avatar" src="{{ asset($layout->small_thumbnail_3) }}" alt="avatar">
                                     @else
-                                    <img id="showImage7" class="show-avatar" src="{{ asset('/images/layout/350x200.png') }}" alt="avatar">
+                                    <img id="showImage3" class="show-avatar" src="{{ asset('/images/layout/350x200.png') }}" alt="avatar">
                                     @endif
                                 </div>
-                                <div id="button-4">
+                                <div id="button-3">
                                     <i class="fas fa-camera btn_chooseImg"> {{ __('Chọn hình ảnh') }}</i>
                                 </div>
                             </div>
@@ -94,16 +94,16 @@
                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Ảnh quảng cáo 4') }}</label>
                     <div class="">
                         <div class="" style="display: inline-grid;">
-                            <input type="file" class="border-0 bg-light pl-0" name="small_thumbnail_4" id="image5" hidden>
+                            <input type="file" class="border-0 bg-light pl-0" name="small_thumbnail_4" id="image4" hidden>
                             <div class=" choose-avatar">
                                 <div id="btnimage">
                                     @if(isset($layout->small_thumbnail_4))
-                                    <img id="showImage7" class="show-avatar" src="{{ asset($layout->small_thumbnail_4) }}" alt="avatar">
+                                    <img id="showImage4" class="show-avatar" src="{{ asset($layout->small_thumbnail_4) }}" alt="avatar">
                                     @else
-                                    <img id="showImage7" class="show-avatar" src="{{ asset('/images/layout/350x200.png') }}" alt="avatar">
+                                    <img id="showImage4" class="show-avatar" src="{{ asset('/images/layout/350x200.png') }}" alt="avatar">
                                     @endif
                                 </div>
-                                <div id="button-5">
+                                <div id="button-4">
                                     <i class="fas fa-camera btn_chooseImg"> {{ __('Chọn hình ảnh') }}</i>
                                 </div>
                             </div>
@@ -123,16 +123,16 @@
                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Ảnh quảng cáo 5') }}</label>
                     <div class="">
                         <div class="" style="display: inline-grid;">
-                            <input type="file" class="border-0 bg-light pl-0" name="small_thumbnail_5" id="image6" hidden>
+                            <input type="file" class="border-0 bg-light pl-0" name="small_thumbnail_5" id="image5" hidden>
                             <div class=" choose-avatar">
                                 <div id="btnimage">
                                     @if(isset($layout->small_thumbnail_5))
-                                    <img id="showImage7" class="show-avatar" src="{{ asset($layout->small_thumbnail_5) }}" alt="avatar">
+                                    <img id="showImage5" class="show-avatar" src="{{ asset($layout->small_thumbnail_5) }}" alt="avatar">
                                     @else
-                                    <img id="showImage7" class="show-avatar" src="{{ asset('/images/layout/350x200.png') }}" alt="avatar">
+                                    <img id="showImage5" class="show-avatar" src="{{ asset('/images/layout/350x200.png') }}" alt="avatar">
                                     @endif
                                 </div>
-                                <div id="button-6">
+                                <div id="button-5">
                                     <i class="fas fa-camera btn_chooseImg"> {{ __('Chọn hình ảnh') }}</i>
                                 </div>
                             </div>
@@ -152,16 +152,16 @@
                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Ảnh quảng cáo 6') }}</label>
                     <div class="">
                         <div class="" style="display: inline-grid;">
-                            <input type="file" class="border-0 bg-light pl-0" name="small_thumbnail_6" id="image7" hidden>
+                            <input type="file" class="border-0 bg-light pl-0" name="small_thumbnail_6" id="image6" hidden>
                             <div class=" choose-avatar">
                                 <div id="btnimage">
                                     @if(isset($layout->small_thumbnail_6))
-                                    <img id="showImage7" class="show-avatar" src="{{ asset($layout->small_thumbnail_6) }}" alt="avatar">
+                                    <img id="showImage6" class="show-avatar" src="{{ asset($layout->small_thumbnail_6) }}" alt="avatar">
                                     @else
-                                    <img id="showImage7" class="show-avatar" src="{{ asset('/images/layout/350x200.png') }}" alt="avatar">
+                                    <img id="showImage6" class="show-avatar" src="{{ asset('/images/layout/350x200.png') }}" alt="avatar">
                                     @endif
                                 </div>
-                                <div id="button-7">
+                                <div id="button-6">
                                     <i class="fas fa-camera btn_chooseImg"> {{ __('Chọn hình ảnh') }}</i>
                                 </div>
                             </div>
@@ -181,12 +181,16 @@
                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Ảnh biểu ngữ trái') }}</label>
                     <div class="">
                         <div class="" style="display: inline-grid;">
-                            <input type="file" class="border-0 bg-light pl-0" name="small_banner_thumbnail_left" id="image8" hidden>
+                            <input type="file" class="border-0 bg-light pl-0" name="small_banner_thumbnail_left" id="image7" hidden>
                             <div class=" choose-avatar">
                                 <div id="btnimage">
-                                    <img id="showImage8" class="show-avatar" src="{{ asset('/images/layout/200x400.png') }}" alt="avatar">
+                                    @if(isset($layout->small_banner_thumbnail_left))
+                                    <img id="showImage7" class="show-avatar" src="{{ asset($layout->small_banner_thumbnail_left) }}" alt="avatar">
+                                    @else
+                                    <img id="showImage7" class="show-avatar" src="{{ asset('/images/layout/200x400.png') }}" alt="avatar">
+                                    @endif
                                 </div>
-                                <div id="button-8">
+                                <div id="button-7">
                                     <i class="fas fa-camera btn_chooseImg"> {{ __('Chọn hình ảnh') }}</i>
                                 </div>
                             </div>
@@ -206,12 +210,16 @@
                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Ảnh biểu ngữ phải') }}</label>
                     <div class="">
                         <div class="" style="display: inline-grid;">
-                            <input type="file" class="border-0 bg-light pl-0" name="small_banner_thumbnail_right" id="image9" hidden>
+                            <input type="file" class="border-0 bg-light pl-0" name="small_banner_thumbnail_right" id="image8" hidden>
                             <div class=" choose-avatar">
                                 <div id="btnimage">
-                                    <img id="showImage9" class="show-avatar" src="{{ asset('/images/layout/200x400.png') }}" alt="avatar">
+                                    @if(isset($layout->small_banner_thumbnail_right))
+                                    <img id="showImage8" class="show-avatar" src="{{ asset($layout->small_banner_thumbnail_right) }}" alt="avatar">
+                                    @else
+                                    <img id="showImage8" class="show-avatar" src="{{ asset('/images/layout/200x400.png') }}" alt="avatar">
+                                    @endif
                                 </div>
-                                <div id="button-9">
+                                <div id="button-8">
                                     <i class="fas fa-camera btn_chooseImg"> {{ __('Chọn hình ảnh') }}</i>
                                 </div>
                             </div>

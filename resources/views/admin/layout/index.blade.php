@@ -23,7 +23,7 @@
                             <a href="javascript:void(0);" style="font-size: 14px;" data-tab-toggle data-target="flash-sale" class="inline-block px-4 py-2 text-base transition-all duration-300 ease-linear rounded-t-md text-slate-500 dark:text-zink-200 border border-transparent group-[.active]:text-custom-500 group-[.active]:border-slate-200 dark:group-[.active]:border-zink-500 group-[.active]:border-b-white dark:group-[.active]:border-b-zink-700 hover:text-custom-500 active:text-custom-500 dark:hover:text-custom-500 dark:active:text-custom-500 dark:group-[.active]:hover:text-white -mb-[1px]">{{ __('Flash sale') }}</a>
                         </li>
                         <li class="group">
-                            <a href="javascript:void(0);" style="font-size: 14px;" data-tab-toggle data-target="hot-deal" class="inline-block px-4 py-2 text-base transition-all duration-300 ease-linear rounded-t-md text-slate-500 dark:text-zink-200 border border-transparent group-[.active]:text-custom-500 group-[.active]:border-slate-200 dark:group-[.active]:border-zink-500 group-[.active]:border-b-white dark:group-[.active]:border-b-zink-700 hover:text-custom-500 active:text-custom-500 dark:hover:text-custom-500 dark:active:text-custom-500 dark:group-[.active]:hover:text-white -mb-[1px]">{{ __('Hot deal') }}</a>
+                            <a href="javascript:void(0);" style="font-size: 14px;" data-tab-toggle data-target="hot-sale" class="inline-block px-4 py-2 text-base transition-all duration-300 ease-linear rounded-t-md text-slate-500 dark:text-zink-200 border border-transparent group-[.active]:text-custom-500 group-[.active]:border-slate-200 dark:group-[.active]:border-zink-500 group-[.active]:border-b-white dark:group-[.active]:border-b-zink-700 hover:text-custom-500 active:text-custom-500 dark:hover:text-custom-500 dark:active:text-custom-500 dark:group-[.active]:hover:text-white -mb-[1px]">{{ __('Hot deal') }}</a>
                         </li>
                         <li class="group">
                             <a href="javascript:void(0);" style="font-size: 14px;" data-tab-toggle data-target="slide" class="inline-block px-4 py-2 text-base transition-all duration-300 ease-linear rounded-t-md text-slate-500 dark:text-zink-200 border border-transparent group-[.active]:text-custom-500 group-[.active]:border-slate-200 dark:group-[.active]:border-zink-500 group-[.active]:border-b-white dark:group-[.active]:border-b-zink-700 hover:text-custom-500 active:text-custom-500 dark:hover:text-custom-500 dark:active:text-custom-500 dark:group-[.active]:hover:text-white -mb-[1px]">{{ __('Slide') }}</a>
@@ -33,7 +33,7 @@
                     <div class="mt-5 tab-content">
                         @include('admin.layout.home')
                         @include('admin.layout.flash-sale')
-                        @include('admin.layout.hot-deal')
+                        @include('admin.layout.hot-sale')
                         @include('admin.layout.slide')
                     </div>
                 </div>
