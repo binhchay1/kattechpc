@@ -46,4 +46,9 @@ class CategoryRepository extends BaseRepository
     {
         return $this->model->where('id', '!=', $id)->get();
     }
+    
+    public function productByCategory($slug)
+    {
+        return $this->model->with('products')->where('slug', $slug)->first();
+    }
 }

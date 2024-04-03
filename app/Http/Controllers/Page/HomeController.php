@@ -144,12 +144,18 @@ class HomeController extends Controller
 
     public function storeCustomContact(Request $request)
     {
-        if (is_numeric($request)) {
-        }
-
-        if (!filter_var($request, FILTER_VALIDATE_EMAIL)) {
+        if (is_numeric($request) || !filter_var($request, FILTER_VALIDATE_EMAIL)) {
+            abort(404);
         }
 
         $this->customContactRepository->store($request);
     }
+    
+    public function showDataCategory ($slug)
+    {
+        $dataCategory = $this->categoryRepository->productByCategory($slug);
+        
+        return view ('page.product.productCategory', compact('dataCategory'));
+    }
+    
 }

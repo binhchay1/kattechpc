@@ -116,7 +116,6 @@
         </div>
     </div>
 </section>
-
 <section class="flash-sale-banner">
     <div class="flash-sale-area">
         <div class="d-flex align-items-center justify-content-between">
@@ -264,16 +263,16 @@
     <div class="product-slide-main boder-radius-10">
         <div class="d-flex align-items-center justify-content-between">
             <div class="title">
-                <h2 class="title-box font-weight-600">{{ $category->name }}</h2>
+                <a href="{{route('showDataCategory', $category['slug'])}}"> <h2 class="title-box font-weight-600">{{ $category->name }}</h2></a>
                 <i class="fa fa-truck"></i>
                 <p>{{ __('Miễn phí giao hàng') }}</p>
             </div>
+
             <div class="list-category-child d-flex align-items-center justify-content-end flex-1">
-                <a href="/edit-render-video-4k-8k" class="title-category">Laptop - Editor</a>
-                <a href="/edit-render-video-4k-8k" class="title-category">Laptop - Gaming</a>
-                <a href="/edit-render-video-4k-8k" class="title-category">Laptop - Phổ thông</a>
-                <a href="/edit-render-video-4k-8k" class="title-category">Laptop - Asus</a>
-                <a href="/laptop" class="title-all-category">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
+                @foreach($category->products->take(5) as $product)
+                <a href="" class="title-category">{{$product->name}}</a>
+                @endforeach
+                <a href="{{route('showDataCategory', $category['slug'])}}" class="title-all-category">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
             </div>
         </div>
         <div class="swiper box-list-item-category swiper-product-category swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
@@ -387,6 +386,7 @@
                     </picture>
                 </a>
             </div>
+
         </div>
     </div>
 </section>

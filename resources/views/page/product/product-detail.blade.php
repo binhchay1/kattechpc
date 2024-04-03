@@ -29,7 +29,7 @@
             <h5>{{ __('Giá ') }}: {{ $product->price }} đ</h5>
             @endif
             <div>
-                {{ html_entity_decode($product->description) }}
+                {!! html_entity_decode($product->description)  !!}
             </div>
 
             <div class="quantity mt-4">
@@ -61,12 +61,14 @@
                     <th col="300"></th>
                     <th></th>
                 </tr>
+                @if(isset($product->detail))
                 @foreach($product->detail as $key => $value)
                 <tr>
                     <td>{{ $key }}</td>
                     <td>{{ $value }}</td>
                 </tr>
                 @endforeach
+                @endif
             </table>
         </div>
 
