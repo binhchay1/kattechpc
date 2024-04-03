@@ -67,12 +67,12 @@ class StorageController extends Controller
 
     public function import($id)
     {
-
+        return view('admin.storage.import');
     }
 
     public function export($id)
     {
-
+        return view('admin.storage.import');
     }
 
     public function exportExcel(Request $request)
