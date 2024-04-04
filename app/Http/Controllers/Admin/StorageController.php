@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Exports\ExportStorage;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorageProductRequest;
 use App\Http\Requests\StorageRequest;
+use App\Repositories\ProductRepository;
+use App\Repositories\StorageProductRepository;
 use App\Repositories\StorageRepository;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -12,11 +15,17 @@ use Maatwebsite\Excel\Facades\Excel;
 class StorageController extends Controller
 {
     private $storageRepository;
+    private $productRepository;
+    private $productStorageRepository;
 
     public function __construct(
-        StorageRepository $storageRepository
+        StorageRepository $storageRepository,
+        ProductRepository $productRepository,
+        StorageProductRepository $productStorageRepository
     ) {
         $this->storageRepository = $storageRepository;
+        $this->productRepository = $productRepository;
+        $this->productStorageRepository = $productStorageRepository;
     }
 
     public function index()
@@ -67,7 +76,24 @@ class StorageController extends Controller
 
     public function import($id)
     {
-        return view('admin.storage.import');
+        $storage = $this->storageRepository->show($id);
+        $listProducts = $this->productRepository->index();
+        return view('admin.storage.import', compact('storage', 'listProducts'));
+    }
+    
+    public function storeImportProduct(StorageProductRequest $request)
+    {
+        $input = $request->except(['_token']);
+        $this->productStorageRepository->create($input);
+        
+        return redirect()->route('admin.storage.index')->with('success', __('Kho hàng được thay đổi thành công'));
+        
+    }
+    
+    public function listProduct()
+    {
+        $listProducts = $this->productRepository->index();
+        return view('admin.storage.listProduct', compact('listProducts'));
     }
 
     public function export($id)
