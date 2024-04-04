@@ -31,4 +31,9 @@ class LayoutRepository extends BaseRepository
     {
         return $this->model->first();
     }
+
+    public function getSlide()
+    {
+        return $this->model->select('slide_thumbnail')->first();
+    }
 }

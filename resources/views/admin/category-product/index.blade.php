@@ -27,8 +27,8 @@
                                        placeholder="{{__('Tìm kiếm')}}" autocomplete="off">
                                 <i data-lucide="search"
                                    class="inline-block size-4 absolute ltr:left-2.5 rtl:right-2.5 top-2.5 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-600"></i>
-                            </div><!--end col-->
-                        </div><!--end grid-->
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="card-body">
@@ -116,22 +116,15 @@
                         {!! $listCategory->links() !!}
                     </div>
                 </div>
-            </div><!--end card-->
-        </div><!--end col-->
-    </div><!--end grid-->
+            </div>
+        </div>
+    </div>
 
 @endsection
 @push('scripts')
-    <!-- list js-->
     <script src="{{ URL::asset('build/libs/list.js/list.min.js') }}"></script>
     <script src="{{ URL::asset('build/libs/list.pagination.js/list.pagination.min.js') }}"></script>
-
-    <!-- User list init js -->
     <script src="{{ URL::asset('build/js/pages/apps-user-list.init.js') }}"></script>
-
-    <!-- App js -->
-    <script src="{{ URL::asset('build/js/app.js') }}"></script>
-
     <script>
         setTimeout(function() {
             $('.alert-block').remove();

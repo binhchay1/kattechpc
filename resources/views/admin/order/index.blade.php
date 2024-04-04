@@ -8,7 +8,7 @@
         <div class="card" id="usersTable">
             <div class="card-body">
                 <div class="flex items-center">
-                    <h6 class="text-15 grow">{{__('Danh sách đặt hàng')}}</h6>
+                    <h6 class="text-15 grow">{{ __('Danh sách đặt hàng') }}</h6>
                     <div class="lg:col-span-2 ltr:lg:text-right rtl:lg:text-left xl:col-span-2 xl:col-start-11 button-export">
                         <a class="btn btn-warning float-end" style="background: green; color: white" href="{{route('admin.order.export')}}">{{__('Xuất kho')}}</a>
                     </div>
@@ -30,32 +30,41 @@
                         <thead class="text-left">
                             <tr class="relative rounded-md bg-slate-100 dark:bg-zink-600 after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
 
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">
-                                    {{__('Mã đơn hàng')}}
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="code">
+                                    {{ __('Mã đơn hàng') }}
                                 </th>
 
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{__('Người đặt hàng')}}
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user">{{ __('Người đặt hàng') }}
                                 </th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{__('Ngày đặt hàng')}}
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{__('Số lượng')}}
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{__('Trạng thái')}}
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="date">{{ __('Ngày đặt hàng') }}
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="quantity">{{ __('Số lượng') }}
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="address">{{ __('Địa chỉ') }}
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="phone">{{ __('Số lượng') }}
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="note">{{ __('Số lượng') }}
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{ __('Trạng thái') }}
                                 </th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">{{__('Hành động')}}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">{{ __('Hành động') }}</th>
                             </tr>
                         </thead>
                         <tbody class="list">
                             @foreach($listOrders as $order)
                             <tr class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
 
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$order->id}}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->id }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$order->user_id}}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->user_id }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$order->total_amount}}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->total_amount }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$order->order_date}}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->order_date }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$order->status}}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->address }}
+                                </td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->phone }}
+                                </td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->note }}
+                                </td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->status }}
                                 </td>
                                 <td>
                                     <div class="relative dropdown">

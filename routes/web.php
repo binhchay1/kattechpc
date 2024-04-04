@@ -71,12 +71,16 @@ Route::group(['prefix' => 'cart'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
     Route::get('/custom-contact', [AdminController::class, 'listCustomContact'])->name('admin.custom.contact');
-    Route::get('/layout', [LayoutController::class, 'viewCustomLayout'])->name('admin.custom.layout');
-    Route::post('/store-layout', [LayoutController::class, 'storeLayout'])->name('admin.store.layout');
-    Route::post('/store-flash-sale', [LayoutController::class, 'storeFlashSale'])->name('admin.store.flash.sale');
-    Route::post('/store-hot-deal', [LayoutController::class, 'storeHotDeal'])->name('admin.store.hot.deal');
-    Route::post('/store-slide', [LayoutController::class, 'storeSlide'])->name('admin.store.slide');
     Route::get('/collection', [CollectionController::class, 'viewCollection'])->name('admin.collection');
+
+    Route::group(['prefix' => 'layout'], function () {
+        Route::get('/', [LayoutController::class, 'viewCustomLayout'])->name('admin.custom.layout');
+        Route::post('/store-layout', [LayoutController::class, 'storeLayout'])->name('admin.store.layout');
+        Route::post('/store-flash-sale', [LayoutController::class, 'storeFlashSale'])->name('admin.store.flash.sale');
+        Route::post('/store-hot-sale', [LayoutController::class, 'storeHotSale'])->name('admin.store.hot.sale');
+        Route::post('/store-slide', [LayoutController::class, 'storeSlide'])->name('admin.store.slide');
+        Route::post('/delete-slide/{index}', [LayoutController::class, 'deleteSlide'])->name('admin.delete.slide');
+    });
 
     Route::group(['prefix' => 'promotion'], function () {
         Route::get('/', [PromotionController::class, 'index'])->name('admin.promotion.index');
@@ -120,6 +124,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/delete/{id}', [StorageController::class, 'deleteStorage'])->name('admin.storage.delete');
         Route::get('/export-excel', [StorageController::class, 'exportExcel'])->name('admin.storage.export.excel');
         Route::get('/import/{id}', [StorageController::class, 'import'])->name('admin.storage.import');
+        Route::get('/storage-product', [StorageController::class, 'listProduct'])->name('admin.storage.listProduct');
+        Route::post('/store-import', [StorageController::class, 'storeImportProduct'])->name('admin.storage.store-product');
         Route::get('/export/{id}', [StorageController::class, 'export'])->name('admin.storage.export');
     });
 
@@ -186,7 +192,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('products/{productId}/upload', [ProductImageController::class, 'index']);
     Route::post('products/{productId}/upload', [ProductImageController::class, 'store']);
     Route::get('product-image/{productImageId}/delete', [ProductImageController::class, 'destroy']);
-});
-
-Route::group(['middleware' => 'user'], function () {
 });

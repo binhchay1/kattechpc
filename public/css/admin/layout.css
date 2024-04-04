@@ -18,6 +18,14 @@
     margin-top: 20px;
 }
 
+.item-product-hot-sale {
+    display: flex;
+}
+
+#area-product-hot-sale {
+    margin-top: 20px;
+}
+
 .btn-x {
     color: red;
     font-size: 20px;
