@@ -90,7 +90,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
+                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Hình ảnh') }}</label>
                             <div>
                                 <div style="display: inline-grid;">
                                     <input type="file" name="image[]" class="custom-file-input" id="images" multiple="multiple">
