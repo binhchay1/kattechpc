@@ -7,7 +7,6 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use App\Enums\Role;
-use App\Enums\Title;
 use App\Http\Controllers\Controller;
 use Exception;
 

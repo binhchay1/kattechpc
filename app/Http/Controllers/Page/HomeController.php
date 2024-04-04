@@ -52,17 +52,48 @@ class HomeController extends Controller
 
     public function viewHome()
     {
-
         $listProductSale = $this->productRepository->listProductSale();
         foreach ($listProductSale as $product) {
             $product->detail = json_decode($product->detail, true);
             $product->image = json_decode($product->image, true);
         }
+
         $listCategory = $this->categoryRepository->getListCategory();
         $listNews = $this->postRepository->getListNewsInHomepage();
         $listLayout = $this->layoutRepository->getListLayout();
+        $getSlide = $this->layoutRepository->getSlide();
+        $getFlashSale = $this->layoutRepository->getFlashSale();
+        $listFlashSale = [];
 
-        return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale', 'listLayout'));
+        if (empty($getSlide)) {
+            $listSlide = [];
+        } else {
+            $listSlide = json_decode($getSlide->slide_thumbnail, true);
+        }
+
+        if (empty($getFlashSale)) {
+            $listFlashSale = [];
+        } else {
+            $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
+            foreach ($listProductFlashSale as $key => $value) {
+                $arrCodeProduct[] = $key;
+            }
+
+            $getProductFlashSale = $this->productRepository->getProductFlashSaleByCode($arrCodeProduct);
+            foreach ($getProductFlashSale as $product) {
+                $product->new_price = $listProductFlashSale[$product->code]['new_price'];
+                $product->sale_quantity = $listProductFlashSale[$product->code]['quantity'];
+            }
+
+            if (count($getProductFlashSale) > 0) {
+                $listFlashSale = [
+                    'flash_sale_timer' => $getFlashSale->flash_sale_timer,
+                    'flash_sale_list_product_id' => $getProductFlashSale
+                ];
+            }
+        }
+
+        return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale', 'listLayout', 'listSlide', 'listFlashSale'));
     }
 
     public function viewPolicy()
@@ -150,12 +181,11 @@ class HomeController extends Controller
 
         $this->customContactRepository->store($request);
     }
-    
-    public function showDataCategory ($slug)
+
+    public function showDataCategory($slug)
     {
         $dataCategory = $this->categoryRepository->productByCategory($slug);
-        
-        return view ('page.product.productCategory', compact('dataCategory'));
+
+        return view('page.product.productCategory', compact('dataCategory'));
     }
-    
 }
