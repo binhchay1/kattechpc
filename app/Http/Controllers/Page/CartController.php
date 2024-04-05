@@ -98,7 +98,12 @@ class CartController extends Controller
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-        return redirect()->route('home')->with('success',  __('Đặt hàng thành công'));;
+        return redirect()->route('thank');
+    }
+    
+    public function thank()
+    {
+        return view('page.cart.thank');
     }
     
 }

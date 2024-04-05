@@ -489,10 +489,6 @@
 <script src="{{ asset('/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('/js/page/main.js') }}"></script>
 <script>
-    setTimeout(function() {
-        $('.alert-block').remove();
-    }, 5000);
-
     <?php if (isset($listFlashSale['flash_sale_timer'])) { ?>
         let countTimeSale = `<?php echo $listFlashSale['flash_sale_timer'] ?>`;
 
