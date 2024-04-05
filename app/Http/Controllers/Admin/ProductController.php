@@ -52,8 +52,6 @@ class ProductController extends Controller
         $input = $request->except(['_token']);
         $detail = [];
 
-        dd($input);
-
         if (isset($input['detail_key'])) {
             for ($i = 0; $i < count($input['detail_key']); $i++) {
                 $detail[$input['detail_key'][$i]] = $input['detail_value'][$i];
@@ -97,15 +95,18 @@ class ProductController extends Controller
         $input['slug'] =  Str::slug($input['name']);
 
         if ($request->hasfile('image')) {
-            if(isset($input['image_preview'])) {
-
+            if (isset($input['image_preview'])) {
+                foreach ($input['image_preview'] as $preview)
+                    foreach ($request->file('image') as $file) {
+                        if ($file->getClientOriginalName() == $preview) {
+                            $file->move(public_path('images/upload/product/'), $file->getClientOriginalName());
+                            $imgData[] = 'images/upload/product/' . $file->getClientOriginalName();
+                        }
+                    }
+                $input['image'] = json_encode($imgData);
             }
-            foreach ($request->file('image') as $file) {
-                $file->move(public_path('images/upload/product/'), $file->getClientOriginalName());
-                $imgData[] = 'images/upload/product/' . $file->getClientOriginalName();
-            }
-            $input['image'] = json_encode($imgData);
         }
+
         $this->productRepository->store($input);
 
         return redirect()->route('admin.product.index')->with('success',  __('Sản phẩm được thêm thành công'));

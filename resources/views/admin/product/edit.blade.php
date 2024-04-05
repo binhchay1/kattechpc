@@ -109,7 +109,7 @@
                             <div class="user-image mb-3 text-center">
                                 <div class="imgPreview">
                                     @foreach ($product->image as $value)
-                                    <img src="{{ asset('/image/upload/product/' . $value) }}" class="border p-2 m-3" style="width: 100px; height: 100px;" alt="Img" />
+                                    <img src="{{ asset($value) }}" class="p-2 m-3" style="width: 200px; height: 200px;" alt="Img" />
                                     @endforeach
                                 </div>
                             </div>
