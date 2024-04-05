@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\OrderRequest;
+use App\Models\OrderDetail;
+use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use Cart;
@@ -10,12 +13,15 @@ class CartController extends Controller
 {
     
     private $productRepository;
+    private $orderRepository;
     
     public function __construct(
-        ProductRepository $productRepository
+        ProductRepository $productRepository,
+        OrderRepository $orderRepository
     )
     {
         $this->productRepository = $productRepository;
+        $this->orderRepository = $orderRepository;
     }
     
     /**
@@ -50,7 +56,7 @@ class CartController extends Controller
         if($id){
             Cart::remove($id);
         }
-        return back();
+        return success("Delete success");
     }
     
     public function updateCart(Request $request)
@@ -66,4 +72,33 @@ class CartController extends Controller
         ]);
         return back();
     }
+    
+    public function checkout(OrderRequest $request)
+    {
+        $cartInfor =  Cart::getContent();
+    
+        try {
+            // save
+            $input = $request->all();
+            $order = $this->orderRepository->create($input);
+        
+            if (count($cartInfor) >0) {
+                foreach ($cartInfor as $key => $item) {
+                    $orderDetail = new OrderDetail();
+                    $orderDetail->order_id = $order->id;
+                    $orderDetail->product_id = $item->id;
+                    $orderDetail->quantity = $item->quantity;
+                    $orderDetail->price = $item->price;
+                    $orderDetail->save();
+                }
+                Cart::clear();
+            }
+            // del
+           
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        return redirect()->route('home')->with('success',  __('Đặt hàng thành công'));;
+    }
+    
 }

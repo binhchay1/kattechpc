@@ -20,7 +20,7 @@
                         <h5>{{__('Thông tin tài khoản')}}</h5>
                     </div>
                 </a>
-                <a href="#" >
+                <a href="{{route('orderHistory')}}" >
                     <div class="hover">
                         <h5>{{__('Quản lý đơn hàng')}}</h5>
                     </div>
