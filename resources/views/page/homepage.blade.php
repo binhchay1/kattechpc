@@ -486,4 +486,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('/js/page/main.js') }}"></script>
+<script>
+    setTimeout(function() {
+        $('.alert-block').remove();
+    }, 5000);
+</script>
 @endsection

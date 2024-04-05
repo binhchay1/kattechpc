@@ -11,7 +11,7 @@ class OrderRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -19,10 +19,32 @@ class OrderRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            //
+            'order_date' =>'required',
+            'phone' =>'required',
+            'address' =>'required|max:100',
+            'name' =>'required|max:100',
+            'province' =>'required|max:100',
+            'district' =>'required|max:100',
+        
+        ];
+    }
+    
+    public function messages()
+    {
+        return [
+            'order_date.required' => __('Ngày đặt hàng không được để trống'),
+            'phone.required' => __('Số điện thoại không được để trống'),
+            'address.required' => __('Địa chỉ không được để trống'),
+            'address.max' => __('Địa chỉ không được vượt quá 100 kí tự'),
+            'name.required' => __('Tên không được để trống'),
+            'name.max' => __('Tên được vượt quá 100 kí tự'),
+            'province.required' => __('Tỉnh/Thành phố không được để trống'),
+            'province.max' => __('Tỉnh/Thành phố không được vượt quá 100 kí tự'),
+            'district.required' => __('Quận/Huyện không được để trống'),
+            'district.max' => __('Quận/Huyện không được vượt quá 100 kí tự'),
         ];
     }
 }

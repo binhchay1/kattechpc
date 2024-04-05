@@ -20,17 +20,20 @@
 
     <body>
     <main>
-        @if (empty($dataCart ))
+        @if ($totalCart == 0)
         <div class="">
             <img class="image-cart" src="{{asset('images/cart.jpg')}}">
             <h2 class="text-center">{{__('Không có sản phẩm nào trong giỏ hàng')}}</h2>
 
             <div class="button-css-cart">
-                <a href="#">
+                <a href="{{route('home')}}">
                     <button class="button-cart">{{__('Tiếp tục mua hàng')}}</button></a>
             </div>
         </div>
         @else
+            <form action="{{route('checkout')}}" method="post" enctype="multipart/form-data">
+                {{ csrf_field() }}
+
             <aside>
                 <div class="summary1">
                     <h3>{{__('Hình thức thanh toán')}}</h3>
@@ -50,51 +53,135 @@
             </aside>
             <div class="title-c-ct"> {{__('Địa chỉ giao hàng')}}</div>
             <a href="#"> <div class="title-c-ct input-address">{{__('Nhập thông tin địa chỉ bạn muốn giao hàng?')}}</div></a>
-            <div class="basket" id="info-user" >
-                <div class="basket-module">
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="fname" class="label">{{__('Họ tên')}}</label>
+
+                @if(Auth::user())
+                <div class="basket" id="info-user" >
+                    <div class="basket-module">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="fname" class="label">{{__('Họ tên')}}</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" id="fname" name="name" value="{{Auth::user()->name}}" placeholder="{{__('Họ và tên')}}">
+                            </div>
+                            @if ($errors->has('name'))
+                                <span class="text-danger">{{ $errors->first('name') }}</span>
+                            @endif
                         </div>
-                        <div class="col-75">
-                            <input type="text" id="fname" name="firstname" placeholder="{{__('Họ và tên')}}">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="fname" class="label">{{__('Số điện thoại')}}</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" id="fname" name="phone"  value="{{Auth::user()->phone}}" placeholder="{{__('Số điện thoại')}}">
+                            </div>
+                            @if ($errors->has('phone'))
+                                <span class="text-danger">{{ $errors->first('phone') }}</span>
+                            @endif
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="fname" class="label">{{__('Số điện thoại')}}</label>
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="fname" class="label">{{__('Tỉnh/Thành phố')}}</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" id="fname" name="province"  value="{{Auth::user()->province}}" placeholder="{{__('Tỉnh/thành phố')}}">
+                            </div>
+                            @if ($errors->has('province'))
+                                <span class="text-danger">{{ $errors->first('province') }}</span>
+                            @endif
                         </div>
-                        <div class="col-75">
-                            <input type="text" id="fname" name="firstname" placeholder="{{__('Số điện thoại')}}">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="fname" class="label">{{__('Quận/huyện')}}</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" id="fname" name="district"  value="{{Auth::user()->district}}" placeholder="{{__('Quận huyện')}}">
+                            </div>
+                            @if ($errors->has('district'))
+                                <span class="text-danger">{{ $errors->first('district') }}</span>
+                            @endif
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="fname" class="label">{{__('Tỉnh/Thành phố')}}</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="text" id="fname" name="firstname" placeholder="{{__('Tỉnh/thành phố')}}">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="fname" class="label">{{__('Quận/huyện')}}</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="text" id="fname" name="firstname" placeholder="{{__('Quận huyện')}}">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-25">
-                            <label for="fname" class="label">{{__('Địa chỉ')}}</label>
-                        </div>
-                        <div class="col-75">
-                            <input type="text" id="fname" name="firstname" placeholder="{{__('Địa chỉ')}}">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="fname" class="label">{{__('Địa chỉ')}}</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" id="fname" name="address"  value="{{Auth::user()->address}}" placeholder="{{__('Địa chỉ')}}">
+                            </div>
+                            @if ($errors->has('address'))
+                                <span class="text-danger">{{ $errors->first('address') }}</span>
+                            @endif
+                            <?php $date = date('Y-m-d H:i:s');?>
+                            <input type="hidden" id="fname" name="user_id"  value="{{Auth::user()->id}}" placeholder="{{__('Địa chỉ')}}">
+                            <input type="hidden" id="fname" name="order_date"  value="{{$date}}" placeholder="{{__('Địa chỉ')}}">
+                            <input type="hidden" id="fname" name="status" value="0" placeholder="{{__('Địa chỉ')}}">
                         </div>
                     </div>
                 </div>
-            </div>
-
+                @else
+                <div class="basket" id="info-user" >
+                    <div class="basket-module">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="fname" class="label">{{__('Họ tên')}}</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" id="fname" name="name" placeholder="{{__('Họ và tên')}}">
+                            </div>
+                            @if ($errors->has('name'))
+                                <span class="text-danger">{{ $errors->first('name') }}</span>
+                            @endif
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="fname" class="label">{{__('Số điện thoại')}}</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" id="fname" name="phone" placeholder="{{__('Số điện thoại')}}">
+                            </div>
+                            @if ($errors->has('phone'))
+                                <span class="text-danger">{{ $errors->first('phone') }}</span>
+                            @endif
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="fname" class="label">{{__('Tỉnh/Thành phố')}}</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" id="fname" name="province" placeholder="{{__('Tỉnh/thành phố')}}">
+                            </div>
+                            @if ($errors->has('province'))
+                                <span class="text-danger">{{ $errors->first('province') }}</span>
+                            @endif
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="fname" class="label">{{__('Quận/huyện')}}</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" id="fname" name="district" placeholder="{{__('Quận huyện')}}">
+                            </div>
+                            @if ($errors->has('district'))
+                                <span class="text-danger">{{ $errors->first('district') }}</span>
+                            @endif
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="fname" class="label">{{__('Địa chỉ')}}</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" id="fname" name="address" placeholder="{{__('Địa chỉ')}}">
+                            </div>
+                            @if ($errors->has('address'))
+                                <span class="text-danger">{{ $errors->first('address') }}</span>
+                            @endif
+                            <?php $date = date('Y-m-d H:i:s');?>
+                            <input type="hidden" id="fname" name="order_date"  value="{{$date}}" placeholder="{{__('Địa chỉ')}}">
+                            <input type="hidden" id="fname" name="status" value="0" placeholder="{{__('Địa chỉ')}}">
+                        </div>
+                    </div>
+                </div>
+                @endif
             <div class="basket">
                 <div class="basket-labels">
                     <ul>
@@ -120,14 +207,14 @@
                     </div>
                     <div class="subtotal get-total" id="total">{{number_format($product['quantity'] * $product['price'])}}đ</div>
                     <div class=" delete">
-                        <a href="{{route('deleteCart', $product['id'])}}">
-                            <button>{{__('Xóa')}}</button>
+                        <a href="">
+                            <button type="button" onclick="deleteSales('{{route('deleteCart', $product['id'])}}')">{{__('Xóa')}}</button>
                         </a>
-
                     </div>
                 </div>
                 @endforeach
             </div>
+            </form>
         @endif
     </main>
     </body>
@@ -158,6 +245,18 @@
                     location.reload()
                 }
             )
+        }
+    </script>
+    <script>
+        function deleteSales(url) {
+            if(confirm('Are you sure?')) {
+                $.ajax({
+                    type: "get",
+                    url: url,
+                    success: function(result) {
+                    }
+                });
+            }
         }
     </script>
 @endsection
