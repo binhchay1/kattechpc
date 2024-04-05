@@ -29,9 +29,6 @@ return [
         'Tai nghe, Loa' => [
             'icon' => 'fa fa-volume-up'
         ],
-        'Ghế bàn' => [
-
-        ],
         'Mạng' => [
             'icon' => 'fa fa-ethernet'
         ],
