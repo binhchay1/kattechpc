@@ -64,6 +64,7 @@ class HomeController extends Controller
         $getSlide = $this->layoutRepository->getSlide();
         $getFlashSale = $this->layoutRepository->getFlashSale();
         $listFlashSale = [];
+        $listMenuBar = config('menu.list');
 
         if (empty($getSlide)) {
             $listSlide = [];
@@ -71,29 +72,29 @@ class HomeController extends Controller
             $listSlide = json_decode($getSlide->slide_thumbnail, true);
         }
 
-        if (empty($getFlashSale)) {
-            $listFlashSale = [];
-        } else {
-            $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
-            foreach ($listProductFlashSale as $key => $value) {
-                $arrCodeProduct[] = $key;
-            }
+        if (!empty($getFlashSale)) {
+            if (isset($getFlashSale->flash_sale_list_product_id)) {
+                $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
+                foreach ($listProductFlashSale as $key => $value) {
+                    $arrCodeProduct[] = $key;
+                }
 
-            $getProductFlashSale = $this->productRepository->getProductFlashSaleByCode($arrCodeProduct);
-            foreach ($getProductFlashSale as $product) {
-                $product->new_price = $listProductFlashSale[$product->code]['new_price'];
-                $product->sale_quantity = $listProductFlashSale[$product->code]['quantity'];
-            }
+                $getProductFlashSale = $this->productRepository->getProductFlashSaleByCode($arrCodeProduct);
+                foreach ($getProductFlashSale as $product) {
+                    $product->new_price = $listProductFlashSale[$product->code]['new_price'];
+                    $product->sale_quantity = $listProductFlashSale[$product->code]['quantity'];
+                }
 
-            if (count($getProductFlashSale) > 0) {
-                $listFlashSale = [
-                    'flash_sale_timer' => $getFlashSale->flash_sale_timer,
-                    'flash_sale_list_product_id' => $getProductFlashSale
-                ];
+                if (count($getProductFlashSale) > 0) {
+                    $listFlashSale = [
+                        'flash_sale_timer' => $getFlashSale->flash_sale_timer,
+                        'flash_sale_list_product_id' => $getProductFlashSale
+                    ];
+                }
             }
         }
 
-        return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale', 'listLayout', 'listSlide', 'listFlashSale'));
+        return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale', 'listLayout', 'listSlide', 'listFlashSale', 'listMenuBar'));
     }
 
     public function viewPolicy()
