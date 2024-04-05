@@ -107,11 +107,11 @@
                         </div>
                         <div class="xl:col-span-6">
                             <div class="user-image mb-3 text-center">
-                                <div class="imgPreview">
+                                <ul class="imgPreview" id="imgPreview">
                                     @foreach ($product->image as $value)
                                     <img src="{{ asset($value) }}" class="p-2 m-3" style="width: 200px; height: 200px;" alt="Img" />
                                     @endforeach
-                                </div>
+                                </ul>
                             </div>
                             <div class="form-group">
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Hình ảnh') }}</label>
@@ -211,6 +211,5 @@
             console.error(error);
         });
 </script>
-<script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
 <script src="{{ URL::asset('js/admin/product.js') }}"></script>
 @endpush

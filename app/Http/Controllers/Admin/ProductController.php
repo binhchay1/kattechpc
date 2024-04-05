@@ -177,16 +177,24 @@ class ProductController extends Controller
             $input['detail'] = json_encode($detail);
         }
 
+        $getProduct = $this->productRepository->getById($id);
+        if ($request->hasfile('image')) {
+            if (isset($input['image_preview'])) {
+                foreach ($input['image_preview'] as $preview)
+                    foreach ($request->file('image') as $file) {
+                        if ($file->getClientOriginalName() == $preview) {
+                            $file->move(public_path('images/upload/product/'), $file->getClientOriginalName());
+                            $imgData[] = 'images/upload/product/' . $file->getClientOriginalName();
+                        }
+                    }
+                $input['image'] = json_encode($imgData);
+            }
+        }
+
         unset($input['detail_key']);
         unset($input['detail_value']);
+        unset($input['image_preview']);
 
-        if ($request->hasfile('image')) {
-            foreach ($request->file('image') as $file) {
-                $file->move(public_path('images/upload/product/'), $file->getClientOriginalName());
-                $imgData[] = 'images/upload/product/' . $file->getClientOriginalName();
-            }
-            $input['image'] = json_encode($imgData);
-        }
         $this->productRepository->update($input, $id);
 
         return redirect()->route('admin.product.index')->with('success', __('Sản phẩm được thay đổi thành công'));
