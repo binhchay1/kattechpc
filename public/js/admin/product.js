@@ -6,14 +6,14 @@ $(document).ready(function () {
 
     $(`.btn-x`).click(function () { $(this).parent().remove(); });
 
-    var multiImgPreview = function (input, imgPreviewPlaceholder) {
+    var multiImgPreview = function (input) {
         if (input.files) {
-            console.log(input.files);
+
             var filesAmount = input.files.length;
-            for (i = 0; i < filesAmount; i++) {
+            for (let i = 0; i < filesAmount; i++) {
                 var reader = new FileReader();
                 reader.onload = function (event) {
-                    $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
+                    $('#imgPreview').append('<li><img src="' + event.target.result + '"><input type="text" name="image_preview[]" value="' + input.files[i].name + '" hidden></li>');
                 }
                 reader.readAsDataURL(input.files[i]);
             }
@@ -21,6 +21,8 @@ $(document).ready(function () {
     };
 
     $('#images').on('change', function () {
-        multiImgPreview(this, 'div.imgPreview');
+        multiImgPreview(this);
     });
+
+    $('#imgPreview').sortable();
 });

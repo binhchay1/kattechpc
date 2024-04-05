@@ -6,6 +6,7 @@
 
 @push('css')
 <link rel="stylesheet" href="{{ asset('css/admin/product.css') }}">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 @endpush
 
 @section('content')
@@ -111,8 +112,8 @@
 
                         <div class="xl:col-span-6">
                             <div class="user-image mb-3 text-center">
-                                <div class="imgPreview">
-                                </div>
+                                <ul class="imgPreview" id="imgPreview">
+                                </ul>
                             </div>
                             <div class="form-group">
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
@@ -171,7 +172,8 @@
 
 @push('scripts')
 <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
     ClassicEditor
         .create(document.querySelector('#editor'), {
