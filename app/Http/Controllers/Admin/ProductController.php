@@ -59,6 +59,39 @@ class ProductController extends Controller
             $input['detail'] = json_encode($detail);
         }
 
+        if (isset($input['hot_status'])) {
+            $input['hot_status'] = 1;
+        }
+
+        if (isset($input['hot_sale_status'])) {
+            $input['hot_sale_status'] = 1;
+        }
+
+        if (empty($input['title'])) {
+            $input['title'] = $input['name'];
+        }
+
+        if (empty($input['short_description'])) {
+            $strip_tags = strip_tags($input['description']);
+            $explode = explode(' ', $strip_tags);
+            $count = 0;
+            $preText = '';
+            foreach ($explode as $text) {
+                if ($count == 160) {
+                    break;
+                }
+
+                if($count == 0) {
+                    $preText .= $text;
+                } else {
+                    $preText .= ' ' . $text;
+                }
+
+                $count++;
+            }
+            $input['short_description'] = $preText;
+        }
+
         $input['slug'] =  Str::slug($input['name']);
 
         if ($request->hasfile('image')) {
@@ -92,6 +125,43 @@ class ProductController extends Controller
     {
         $input = $request->except(['_token']);
         $detail = [];
+
+        if (isset($input['hot_status'])) {
+            $input['hot_status'] = 1;
+        } else {
+            $input['hot_status'] = 0;
+        }
+
+        if (isset($input['hot_sale_status'])) {
+            $input['hot_sale_status'] = 1;
+        } else {
+            $input['hot_sale_status'] = 0;
+        }
+
+        if (empty($input['title'])) {
+            $input['title'] = $input['name'];
+        }
+
+        if (empty($input['short_description'])) {
+            $strip_tags = strip_tags($input['description']);
+            $explode = explode(' ', $strip_tags);
+            $count = 0;
+            $preText = '';
+            foreach ($explode as $text) {
+                if ($count == 160) {
+                    break;
+                }
+
+                if($count == 0) {
+                    $preText .= $text;
+                } else {
+                    $preText .= ' ' . $text;
+                }
+
+                $count++;
+            }
+            $input['short_description'] = $preText;
+        }
 
         if (in_array('detail_key', $input)) {
             for ($i = 0; $i < count($input['detail_key']); $i++) {

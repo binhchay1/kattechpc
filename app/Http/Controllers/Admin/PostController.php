@@ -107,9 +107,9 @@ class PostController extends Controller
             $extension = $request->file('upload')->getClientOriginalExtension();
             $fileName = $fileName . '_' . time() . '.' . $extension;
 
-            $request->file('upload')->move(public_path('media'), $fileName);
+            $request->file('upload')->move(public_path('image/upload/media/'), $fileName);
 
-            $url = asset('media/' . $fileName);
+            $url = asset('image/upload/media/' . $fileName);
 
             return response()->json(['fileName' => $fileName, 'uploaded'=> 1, 'url' => $url]);
         }

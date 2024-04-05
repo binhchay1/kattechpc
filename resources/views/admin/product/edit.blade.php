@@ -17,11 +17,36 @@
                 <form method="POST" action="{{ route('admin.product.update', $product->id) }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
+                        <div class="xl:col-span-12">
+                            <div class="xl:col-span-4">
+                                <input name="hot_status" id="checkboxDefault1" class="size-4 border rounded-sm appearance-none cursor-pointer bg-slate-100 border-slate-200 dark:bg-zink-600 dark:border-zink-500 checked:bg-custom-500 checked:border-custom-500 dark:checked:bg-custom-500 dark:checked:border-custom-500 checked:disabled:bg-custom-400 checked:disabled:border-custom-400" type="checkbox" {{ $product->hot_status == 1 ? 'checked=""' : '' }}>
+                                <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{ __('Hot') }}</label><br>
+                                <input name="hot_sale_status" id="checkboxDefault1" class="size-4 border rounded-sm appearance-none cursor-pointer bg-slate-100 border-slate-200 dark:bg-zink-600 dark:border-zink-500 checked:bg-custom-500 checked:border-custom-500 dark:checked:bg-custom-500 dark:checked:border-custom-500 checked:disabled:bg-custom-400 checked:disabled:border-custom-400" type="checkbox" {{ $product->hot_sale_status == 1 ? 'checked=""' : '' }}>
+                                <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{ __('Bán chạy') }}</label>
+                            </div>
+                        </div>
+
                         <div class="xl:col-span-4">
                             <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{ __('Tên sản phẩm') }}</label>
                             <input type="text" id="productNameInput" name="name" value="{{ old('name', $product->name) }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Tên sản phẩm') }}">
                             @if ($errors->has('name'))
                             <span class="text-danger">{{ $errors->first('name') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="xl:col-span-4">
+                            <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{ __('Tiêu đề') }}</label>
+                            <input type="text" id="productNameInput" name="title" value="{{ old('title', $product->title) }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Tiêu đề') }}">
+                            @if ($errors->has('title'))
+                            <span class="text-danger">{{ $errors->first('title') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="xl:col-span-4">
+                            <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{ __('Từ khóa') }}</label>
+                            <input type="text" id="productNameInput" name="key_word" value="{{ old('key_word', $product->key_word) }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Từ khóa') }}">
+                            @if ($errors->has('key_word'))
+                            <span class="text-danger">{{ $errors->first('key_word') }}</span>
                             @endif
                         </div>
 
@@ -53,7 +78,7 @@
                             @endif
                         </div>
 
-                        <div class="xl:col-span-3">
+                        <div class="xl:col-span-4">
                             <label for="productPrice" class="inline-block mb-2 text-base font-medium">{{ __('Giá') }}</label>
                             <input type="number" id="productPrice" name="price" value="{{ old('price', $product->price) }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Giá') }}">
                             @if ($errors->has('price'))
@@ -61,7 +86,7 @@
                             @endif
                         </div>
 
-                        <div class="xl:col-span-3">
+                        <div class="xl:col-span-4">
                             <label for="productNewPrice" class="inline-block mb-2 text-base font-medium">{{ __('Giá mới') }}</label>
                             <input type="number" id="productNewPrice" name="new_price" value="{{ old('new_price', $product->new_price) }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Giá mới') }}">
                             @if ($errors->has('new_price'))
@@ -69,7 +94,7 @@
                             @endif
                         </div>
 
-                        <div class="xl:col-span-3">
+                        <div class="xl:col-span-4">
                             <label for="productStatus" class="inline-block mb-2 text-base font-medium">{{ __('Trạng thái') }}</label>
                             <select class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false id="productStatus" name="status">
                                 @foreach($statusProduct as $status => $value)
@@ -80,32 +105,31 @@
                             <span class="text-danger">{{ $errors->first('status') }}</span>
                             @endif
                         </div>
-                    <div class="xl:col-span-6">
-
-                        <div style="display: inline-grid; " class="lg:col-span-2 xl:col-span-12">
-                            <div class="flex  gap-2 mt-4">
-                                @foreach ($product->image as $value)
-                                    <img src="{{asset('/images/' .$value)}}" class="border p-2 m-3" style="width: 100px; height: 100px;" alt="Img" />
-                                @endforeach
+                        <div class="xl:col-span-6">
+                            <div class="user-image mb-3 text-center">
+                                <div class="imgPreview">
+                                    @foreach ($product->image as $value)
+                                    <img src="{{ asset('/image/upload/product/' . $value) }}" class="border p-2 m-3" style="width: 100px; height: 100px;" alt="Img" />
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Hình ảnh') }}</label>
-                            <div>
-                                <div style="display: inline-grid;">
-                                    <input type="file" name="image[]" class="custom-file-input" id="images" multiple="multiple">
-                                    @if ($errors->has('image'))
+                            <div class="form-group">
+                                <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Hình ảnh') }}</label>
+                                <div>
+                                    <div style="display: inline-grid;">
+                                        <input type="file" name="image[]" class="custom-file-input" id="images" multiple="multiple">
+                                        @if ($errors->has('image'))
                                         <span class="text-danger">{{ $errors->first('image') }}</span>
-                                    @endif
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium ">{{__('Hình ảnh thay đổi')}}</label>
+                            <div class="user-image mb-3 text-center">
+                                <div class="imgPreview">
                                 </div>
                             </div>
                         </div>
-                        <label for="categorySelect" class="inline-block mb-2 text-base font-medium ">{{__('Hình ảnh thay đổi')}}</label>
-                        <div class="user-image mb-3 text-center">
-                            <div class="imgPreview">
-                            </div>
-                        </div>
-                    </div>
 
                         <div class="lg:col-span-2 xl:col-span-12">
                             <label for="productDescription" class="inline-block mb-2 text-base font-medium">{{ __('Mô tả') }}</label>
@@ -117,7 +141,7 @@
 
                         <div class="lg:col-span-2 xl:col-span-12">
                             <label for="productSaleDescription" class="inline-block mb-2 text-base font-medium">{{ __('Qùa tặng kèm') }}</label>
-                            <textarea id="editor-sale_detail" class="editor form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="productSaleDescription" name="sale_detail" placeholder="{{ __('Qùa tặng kèm') }}" rows="5">{{ old('sale_detail', $product->sale_detail) }}</textarea>
+                            <textarea id="editor-gift" class="editor form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="productSaleDescription" name="sale_detail" placeholder="{{ __('Qùa tặng kèm') }}" rows="5">{{ old('sale_detail', $product->sale_detail) }}</textarea>
                             @if ($errors->has('sale_detail'))
                             <span class="text-danger">{{ $errors->first('sale_detail') }}</span>
                             @endif
@@ -160,21 +184,33 @@
 @endsection
 
 @push('scripts')
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
-    <script>
-        ClassicEditor
-            .create( document.querySelector( '#editor' ),{
-                height:500,
-                ckfinder: {
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'), {
+            height: 500,
+            ckfinder: {
 
-                    uploadUrl: '<?php {{ route("admin.post.uploadMedia") . '?_token=' . csrf_token(); }} ?>',
-                }
-            })
-            .catch( error => {
-                console.error( error );
-            } );
-    </script>
-    <script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
-    <script src="{{ URL::asset('js/admin/product.js') }}"></script>
+                uploadUrl: '<?php {{ route("admin.post.uploadMedia") . '?_token=' . csrf_token(); }} ?>',
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+
+    ClassicEditor
+        .create(document.querySelector('#editor-gift'), {
+            height: 500,
+            ckfinder: {
+
+                uploadUrl: '<?php {{ route("admin.post.uploadMedia") . '?_token=' . csrf_token(); }} ?>',
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+<script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
+<script src="{{ URL::asset('js/admin/product.js') }}"></script>
 @endpush

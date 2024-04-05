@@ -280,7 +280,7 @@
             </div>
         </div>
         <div class="swiper box-list-item-category swiper-product-category swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
-            <div class="swiper-wrapper swiper-product">
+            <div class="swiper-wrapper swiper-product-{{ $category->slug }}">
                 @foreach($category->products as $product)
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
