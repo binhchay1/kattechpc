@@ -8,6 +8,7 @@ $(document).ready(function () {
 
     var multiImgPreview = function (input, imgPreviewPlaceholder) {
         if (input.files) {
+            console.log(input.files);
             var filesAmount = input.files.length;
             for (i = 0; i < filesAmount; i++) {
                 var reader = new FileReader();
