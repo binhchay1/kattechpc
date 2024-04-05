@@ -17,6 +17,22 @@
                 <form method="POST" action="{{route('admin.product.store')}}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
+                        <div class="flex items-center justify-center border rounded-md cursor-pointer bg-slate-100 dropzone border-slate-200 dark:bg-zink-600 dark:border-zink-500 dz-clickable">
+                            <div class="w-full py-5 text-lg text-center dz-message needsclick">
+                                <div class="mb-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="upload-cloud" class="lucide lucide-upload-cloud block size-12 mx-auto text-slate-500 fill-slate-200 dark:text-zink-200 dark:fill-zink-500">
+                                        <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
+                                        <path d="M12 12v9"></path>
+                                        <path d="m16 16-4-4-4 4"></path>
+                                    </svg>
+                                </div>
+
+                                <h5 class="mb-0 font-normal text-slate-500 text-15">Drag and drop your files or <a href="#!">browse</a> your files</h5>
+                            </div>
+                        </div>
+                        <ul class="mb-0" id="dropzone-preview-list">
+
+                        </ul>
                         <div class="xl:col-span-12">
                             <div class="xl:col-span-4">
                                 <input name="hot_status" id="checkboxDefault1" class="size-4 border rounded-sm appearance-none cursor-pointer bg-slate-100 border-slate-200 dark:bg-zink-600 dark:border-zink-500 checked:bg-custom-500 checked:border-custom-500 dark:checked:bg-custom-500 dark:checked:border-custom-500 checked:disabled:bg-custom-400 checked:disabled:border-custom-400" type="checkbox">
@@ -172,7 +188,8 @@
 @push('scripts')
 <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-
+<script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
+<script src="{{ URL::asset('build/js/pages/form-file-upload.init.js') }}"></script>
 <script>
     ClassicEditor
         .create(document.querySelector('#editor'), {

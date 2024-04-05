@@ -114,11 +114,10 @@ class HomeController extends Controller
         $getSlide = $this->layoutRepository->getSlide();
         $getFlashSale = $this->layoutRepository->getFlashSale();
         $listFlashSale = [];
+        $listSlide = [];
         $listMenuBar = config('menu.list');
 
-        if (empty($getSlide)) {
-            $listSlide = [];
-        } else {
+        if (isset($getSlide->slide_thumbnail)) {
             $listSlide = json_decode($getSlide->slide_thumbnail, true);
         }
 
