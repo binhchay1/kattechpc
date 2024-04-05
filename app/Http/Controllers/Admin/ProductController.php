@@ -52,7 +52,7 @@ class ProductController extends Controller
         $input = $request->except(['_token']);
         $detail = [];
 
-        if (in_array('detail_key', $input)) {
+        if (isset($input['detail_key'])) {
             for ($i = 0; $i < count($input['detail_key']); $i++) {
                 $detail[$input['detail_key'][$i]] = $input['detail_value'][$i];
             }
@@ -81,7 +81,7 @@ class ProductController extends Controller
                     break;
                 }
 
-                if($count == 0) {
+                if ($count == 0) {
                     $preText .= $text;
                 } else {
                     $preText .= ' ' . $text;
@@ -97,7 +97,7 @@ class ProductController extends Controller
         if ($request->hasfile('image')) {
             foreach ($request->file('image') as $file) {
                 $file->move(public_path('images/upload/product/'), $file->getClientOriginalName());
-                $imgData[] = $file->getClientOriginalName();
+                $imgData[] = 'images/upload/product/' . $file->getClientOriginalName();
             }
             $input['image'] = json_encode($imgData);
         }
@@ -152,7 +152,7 @@ class ProductController extends Controller
                     break;
                 }
 
-                if($count == 0) {
+                if ($count == 0) {
                     $preText .= $text;
                 } else {
                     $preText .= ' ' . $text;
@@ -163,20 +163,21 @@ class ProductController extends Controller
             $input['short_description'] = $preText;
         }
 
-        if (in_array('detail_key', $input)) {
+        if (isset($input['detail_key'])) {
             for ($i = 0; $i < count($input['detail_key']); $i++) {
                 $detail[$input['detail_key'][$i]] = $input['detail_value'][$i];
             }
 
             $input['detail'] = json_encode($detail);
         }
+
         unset($input['detail_key']);
         unset($input['detail_value']);
 
         if ($request->hasfile('image')) {
             foreach ($request->file('image') as $file) {
                 $file->move(public_path('images/upload/product/'), $file->getClientOriginalName());
-                $imgData[] = $file->getClientOriginalName();
+                $imgData[] = 'images/upload/product/' . $file->getClientOriginalName();
             }
             $input['image'] = json_encode($imgData);
         }

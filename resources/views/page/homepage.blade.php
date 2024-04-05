@@ -213,9 +213,6 @@
                 @endforeach
             </div>
         </div>
-        <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
-        <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
-        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
     </div>
     </div>
 </section>
@@ -276,19 +273,23 @@
                 <a href="{{route('showDataCategory', $category['slug'])}}" class="title-all-category">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
             </div>
         </div>
-        <div class="swiper box-list-item-category swiper-product-category swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+        <div class="swiper">
             <div class="swiper-wrapper swiper-product-{{ $category->slug }}">
                 @foreach($category->products as $product)
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
-                            <img src="{{ $product->image }}" width="203" height="203" class="hover-for-tooltips">
+                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="163" height="163" class="hover-for-tooltips">
+                            @if($product->hot_status == 1)
                             <span class="p-type-holder">
                                 <i class="p-icon-type p-icon-hot"></i>
                             </span>
+                            @endif
+                            @if($product->hot_sale_status == 1)
                             <span class="p-type-holder p-type-holder-2">
                                 <i class="p-icon-type p-icon-best-sale"></i>
                             </span>
+                            @endif
                         </a>
                         <div class="product-info">
                             <a href="{{ route('productDetail', $product['slug']) }}">
@@ -298,7 +299,7 @@
                                 {{ $product->price }} đ
                             </div>
                             <div class="product-offer line-clamp-2">
-                                <p>{!! $product->sale_detail !!}</p>
+                                <p>{{ $product->short_description }}</p>
                             </div>
                         </div>
                     </div>

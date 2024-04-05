@@ -50,6 +50,56 @@ class HomeController extends Controller
         }
     }
 
+    public function viewPolicy()
+    {
+        return view('page.policy');
+    }
+
+    public function viewAccount()
+    {
+        return view('page.account');
+    }
+
+    public function viewPromotion()
+    {
+        return view('page.promotion.index');
+    }
+
+    public function promotionDetail()
+    {
+        return view('page.promotion.promotion-detail');
+    }
+
+    public function rules()
+    {
+        return view('page.rule');
+    }
+
+    public function complaint()
+    {
+        return view('page.complaint');
+    }
+
+    public function productPolicy()
+    {
+        return view('page.product-policy');
+    }
+
+    public function businessPolicy()
+    {
+        return view('page.business-policy');
+    }
+
+    public function electronicBill()
+    {
+        return view('page.electronic-bill');
+    }
+
+    public function securityCustomer()
+    {
+        return view('page.security-customer');
+    }
+
     public function viewHome()
     {
         $listProductSale = $this->productRepository->listProductSale();
@@ -97,16 +147,6 @@ class HomeController extends Controller
         return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale', 'listLayout', 'listSlide', 'listFlashSale', 'listMenuBar'));
     }
 
-    public function viewPolicy()
-    {
-        return view('page.policy');
-    }
-
-    public function viewAccount()
-    {
-        return view('page.account');
-    }
-
     public function viewPost()
     {
         $listPost = $this->postRepository->index();
@@ -121,46 +161,6 @@ class HomeController extends Controller
         $listPost = $this->postRepository->index();
         $post = $this->postRepository->detail($slug);
         return view('page.blog.post-detail', compact('post', 'listPost'));
-    }
-
-    public function viewPromotion()
-    {
-        return view('page.promotion.index');
-    }
-
-    public function promotionDetail()
-    {
-        return view('page.promotion.promotion-detail');
-    }
-
-    public function rules()
-    {
-        return view('page.rule');
-    }
-
-    public function complaint()
-    {
-        return view('page.complaint');
-    }
-
-    public function productPolicy()
-    {
-        return view('page.product-policy');
-    }
-
-    public function businessPolicy()
-    {
-        return view('page.business-policy');
-    }
-
-    public function electronicBill()
-    {
-        return view('page.electronic-bill');
-    }
-
-    public function securityCustomer()
-    {
-        return view('page.security-customer');
     }
 
     public function viewLandingPage($slug)

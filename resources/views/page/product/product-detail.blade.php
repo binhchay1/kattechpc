@@ -13,11 +13,20 @@
 <div class="container">
     <section class="product-container">
         <div class="img-card">
-            <img src="{{ $product->image }}" alt="" id="featured-image">
+            <img src="{{ asset($product->image[0]) }}" alt="" id="featured-image">
             <div class="small-Card">
-                @foreach ($product->productImages as $prodImg)
-                <img src="{{ asset($prodImg->image) }}" alt="" class="small-Img">
-                @endforeach
+                <div class="swiper d-flex align-items-center">
+                    <div class="swiper-wrapper swiper-image">
+                        @foreach ($product->image as $image)
+                        <div class="swiper-slide-image" role="group">
+                            <img src="{{ asset($image) }}" alt="" class="small-Img">
+                        </div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></div>
+                    <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide"></div>
+                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                </div>
             </div>
         </div>
 
@@ -29,13 +38,16 @@
             <h5>{{ __('Giá ') }}: {{ $product->price }} đ</h5>
             @endif
             <div>
-                {!! html_entity_decode($product->description)  !!}
+                {!! html_entity_decode($product->description) !!}
             </div>
 
-            <div class="quantity mt-4">
-                <a href="{{route('addCart', $product['slug'])}}">
+            <div class="quantity mt-4 d-flex">
+                <a href="{{ route('addCart', $product['slug']) }}">
                     <button class="btn-buy">{{ __('Mua ngay') }}</button>
-                    <button class="btn-add-cart">{{ __('Thêm vào giỏ hàng') }}</button>
+                </a>
+
+                <a href="{{ route('addCart', $product['slug']) }}">
+                    <button class="btn-add-to-cart">{{ __('Thêm vào giỏ hàng') }}</button>
                 </a>
             </div>
 
@@ -46,7 +58,7 @@
                 <div class="gift-promotion">
                     <hr>
                     <div>
-                        {{ $product->sale_detail }}
+                        {!! $product->sale_detail !!}
                     </div>
                 </div>
             </div>
