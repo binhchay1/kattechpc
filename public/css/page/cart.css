@@ -464,3 +464,7 @@ input {
     margin-top: 10px;
     float: right;
 }
+
+.text-danger {
+    color: red;
+}

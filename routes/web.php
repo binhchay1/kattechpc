@@ -66,6 +66,7 @@ Route::group(['prefix' => 'cart'], function () {
     Route::get('show-cart',  [CartController::class, 'showCart'])->name('showCart');
     Route::get('delete-cart/{id}',  [CartController::class, 'deleteCart'])->name('deleteCart');
     Route::get('update-cart',  [CartController::class, 'updateCart'])->name('updateCart');
+    Route::post('checkout',  [CartController::class, 'checkout'])->name('checkout');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {

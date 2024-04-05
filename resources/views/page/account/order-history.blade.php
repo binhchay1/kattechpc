@@ -52,13 +52,12 @@
                             <li class="subtotal">{{__('Thành tiền')}}</li>
                         </ul>
                     </div>
+                    @foreach($dataUser->orders as $orderHistory)
                         <div class="basket-product">
                             <div class="item">
+                                <div class="price">11111đ</div>
                                 <div class="product-image">
                                     <img src="" alt="Placholder Image 2" class="product-frame">
-                                </div>
-                                <div class="product-details">
-                                    <h1><strong><span class="item-quantity"></span> </strong> </h1>
                                 </div>
                             </div>
                             <div class="price">11111đ</div>
@@ -66,8 +65,8 @@
                                 <input type="number" value="1" min="1" class="quantity-field "  disabled>
                             </div>
                             <div class="subtotal get-total" id="total">111111đ</div>
-
                         </div>
+                    @endforeach
                 </div>
 
             </div>
