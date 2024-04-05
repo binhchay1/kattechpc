@@ -71,7 +71,7 @@ header {
 }
 
 .product-related{
-    adding: 0.5rem;
+    padding: 0.5rem;
     display: flex;
     flex-wrap: wrap;
     float: right;
@@ -126,7 +126,7 @@ header {
 }
 
 .btn-buy {
-    background: #ff4242;
+    background: #1b9400;
     border-radius: 4px;
     padding: 10px 37px;
     border: none;
@@ -135,6 +135,21 @@ header {
     width: 100%;
     height: 60px;
     font-size: 20px;
+    cursor: pointer;
+}
+
+.btn-add-to-cart {
+    background: #332de8;
+    border-radius: 4px;
+    padding: 10px 37px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    width: 100%;
+    height: 60px;
+    font-size: 20px;
+    margin-left: 20px;
+    cursor: pointer;
 }
 
 button:hover {

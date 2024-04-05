@@ -458,7 +458,7 @@ body a {
 
 .flash-sale-banner {
     width: var(--flex-width);
-    margin: 0 auto;
+    margin: 10px auto;
     background: linear-gradient(180deg, #141414 0%, #4a5052 100%);
     border-radius: 10px;
 }
@@ -563,6 +563,15 @@ body a {
 
 .swiper-slide {
     width: 186px;
+    margin-right: 12px;
+    flex-shrink: 0;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+}
+
+.swiper-slide-image {
+    width: 104px;
     margin-right: 12px;
     flex-shrink: 0;
     height: 100%;
@@ -767,6 +776,7 @@ body a {
 
 .product-item {
     min-height: 402.406px;
+    max-height: 410.406px;
 }
 
 .flash-sale-area .product-title {

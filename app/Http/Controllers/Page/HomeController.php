@@ -50,52 +50,6 @@ class HomeController extends Controller
         }
     }
 
-    public function viewHome()
-    {
-        $listProductSale = $this->productRepository->listProductSale();
-        foreach ($listProductSale as $product) {
-            $product->detail = json_decode($product->detail, true);
-            $product->image = json_decode($product->image, true);
-        }
-
-        $listCategory = $this->categoryRepository->getListCategory();
-        $listNews = $this->postRepository->getListNewsInHomepage();
-        $listLayout = $this->layoutRepository->getListLayout();
-        $getSlide = $this->layoutRepository->getSlide();
-        $getFlashSale = $this->layoutRepository->getFlashSale();
-        $listFlashSale = [];
-
-        if (empty($getSlide)) {
-            $listSlide = [];
-        } else {
-            $listSlide = json_decode($getSlide->slide_thumbnail, true);
-        }
-
-        if (empty($getFlashSale)) {
-            $listFlashSale = [];
-        } else {
-            $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
-            foreach ($listProductFlashSale as $key => $value) {
-                $arrCodeProduct[] = $key;
-            }
-
-            $getProductFlashSale = $this->productRepository->getProductFlashSaleByCode($arrCodeProduct);
-            foreach ($getProductFlashSale as $product) {
-                $product->new_price = $listProductFlashSale[$product->code]['new_price'];
-                $product->sale_quantity = $listProductFlashSale[$product->code]['quantity'];
-            }
-
-            if (count($getProductFlashSale) > 0) {
-                $listFlashSale = [
-                    'flash_sale_timer' => $getFlashSale->flash_sale_timer,
-                    'flash_sale_list_product_id' => $getProductFlashSale
-                ];
-            }
-        }
-
-        return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale', 'listLayout', 'listSlide', 'listFlashSale'));
-    }
-
     public function viewPolicy()
     {
         return view('page.policy');
@@ -104,22 +58,6 @@ class HomeController extends Controller
     public function viewAccount()
     {
         return view('page.account');
-    }
-
-    public function viewPost()
-    {
-        $listPost = $this->postRepository->index();
-        $listPostRandom = $this->postRepository->listPostRandom();
-        $listPostDESC = $this->postRepository->listPostDESC();
-        $listPostASC = $this->postRepository->listPostASC();
-        return view('page.blog.posts', compact('listPost', 'listPostRandom', 'listPostDESC', 'listPostASC'));
-    }
-
-    public function postDetail($slug)
-    {
-        $listPost = $this->postRepository->index();
-        $post = $this->postRepository->detail($slug);
-        return view('page.blog.post-detail', compact('post', 'listPost'));
     }
 
     public function viewPromotion()
@@ -160,6 +98,68 @@ class HomeController extends Controller
     public function securityCustomer()
     {
         return view('page.security-customer');
+    }
+
+    public function viewHome()
+    {
+        $listProductSale = $this->productRepository->listProductSale();
+        foreach ($listProductSale as $product) {
+            $product->detail = json_decode($product->detail, true);
+            $product->image = json_decode($product->image, true);
+        }
+
+        $listCategory = $this->categoryRepository->getListCategory();
+        $listNews = $this->postRepository->getListNewsInHomepage();
+        $listLayout = $this->layoutRepository->getListLayout();
+        $getSlide = $this->layoutRepository->getSlide();
+        $getFlashSale = $this->layoutRepository->getFlashSale();
+        $listFlashSale = [];
+        $listSlide = [];
+        $listMenuBar = config('menu.list');
+
+        if (isset($getSlide->slide_thumbnail)) {
+            $listSlide = json_decode($getSlide->slide_thumbnail, true);
+        }
+
+        if (!empty($getFlashSale)) {
+            if (isset($getFlashSale->flash_sale_list_product_id)) {
+                $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
+                foreach ($listProductFlashSale as $key => $value) {
+                    $arrCodeProduct[] = $key;
+                }
+
+                $getProductFlashSale = $this->productRepository->getProductFlashSaleByCode($arrCodeProduct);
+                foreach ($getProductFlashSale as $product) {
+                    $product->new_price = $listProductFlashSale[$product->code]['new_price'];
+                    $product->sale_quantity = $listProductFlashSale[$product->code]['quantity'];
+                }
+
+                if (count($getProductFlashSale) > 0) {
+                    $listFlashSale = [
+                        'flash_sale_timer' => $getFlashSale->flash_sale_timer,
+                        'flash_sale_list_product_id' => $getProductFlashSale
+                    ];
+                }
+            }
+        }
+
+        return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale', 'listLayout', 'listSlide', 'listFlashSale', 'listMenuBar'));
+    }
+
+    public function viewPost()
+    {
+        $listPost = $this->postRepository->index();
+        $listPostRandom = $this->postRepository->listPostRandom();
+        $listPostDESC = $this->postRepository->listPostDESC();
+        $listPostASC = $this->postRepository->listPostASC();
+        return view('page.blog.posts', compact('listPost', 'listPostRandom', 'listPostDESC', 'listPostASC'));
+    }
+
+    public function postDetail($slug)
+    {
+        $listPost = $this->postRepository->index();
+        $post = $this->postRepository->detail($slug);
+        return view('page.blog.post-detail', compact('post', 'listPost'));
     }
 
     public function viewLandingPage($slug)

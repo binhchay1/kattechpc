@@ -14,16 +14,13 @@
         <div class="menu-main">
             <nav class="menu-nav">
                 <ul class="menu-nav-main">
+                    @foreach($listMenuBar as $menu => $item)
                     <li class="menu-nav-item">
                         <a class="menu-nav-link">
-                            <span class="menu-nav-icon" data-hover="laptop"><svg width="20" height="13" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <mask id="path-1-inside-1_5068_8551" fill="currentcolor">
-                                        <path d="M4.00002 1C3.44774 1 3.00002 1.44772 3.00002 2V8.5C3.00002 9.05229 3.44774 9.5 4.00002 9.5H16C16.5523 9.5 17 9.05229 17 8.5V2C17 1.44772 16.5523 1 16 1H4.00002ZM3.70002 0H10H16.3C16.7774 0 17.2353 0.184374 17.5728 0.512563C17.9104 0.840752 18.1 1.28587 18.1 1.75V8.75C18.1 9.21413 17.9104 9.65925 17.5728 9.98744C17.2353 10.3156 16.7774 10.5 16.3 10.5H3.70002C3.22263 10.5 2.7648 10.3156 2.42723 9.98744C2.08967 9.65925 1.90002 9.21413 1.90002 8.75V1.75C1.90002 1.28587 2.08967 0.840752 2.42723 0.512563C2.7648 0.184374 3.22263 0 3.70002 0Z"></path>
-                                    </mask>
-                                    <path d="M4.00002 1C3.44774 1 3.00002 1.44772 3.00002 2V8.5C3.00002 9.05229 3.44774 9.5 4.00002 9.5H16C16.5523 9.5 17 9.05229 17 8.5V2C17 1.44772 16.5523 1 16 1H4.00002ZM3.70002 0H10H16.3C16.7774 0 17.2353 0.184374 17.5728 0.512563C17.9104 0.840752 18.1 1.28587 18.1 1.75V8.75C18.1 9.21413 17.9104 9.65925 17.5728 9.98744C17.2353 10.3156 16.7774 10.5 16.3 10.5H3.70002C3.22263 10.5 2.7648 10.3156 2.42723 9.98744C2.08967 9.65925 1.90002 9.21413 1.90002 8.75V1.75C1.90002 1.28587 2.08967 0.840752 2.42723 0.512563C2.7648 0.184374 3.22263 0 3.70002 0Z" fill="currentcolor"></path>
-                                    <path d="M1 12L19 12" stroke="currentcolor" stroke-linecap="round"></path>
-                                </svg></span>
-                            <span class="menu-nav-name">Laptop</span>
+                            <span class="menu-nav-icon" data-hover="{{ $menu }}">
+                                <i class="{{ $item['icon'] }}"></i>
+                            </span>
+                            <span class="menu-nav-name">{{ $menu }}</span>
                             <span class="menu-nav-arrow">
                                 <svg viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1.5 1.5L4.5 4L1.5 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -39,7 +36,7 @@
                             </div>
                         </div>
                     </li>
-
+                    @endforeach
                 </ul>
             </nav>
         </div>
@@ -216,9 +213,6 @@
                 @endforeach
             </div>
         </div>
-        <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
-        <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
-        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
     </div>
     </div>
 </section>
@@ -279,19 +273,23 @@
                 <a href="{{route('showDataCategory', $category['slug'])}}" class="title-all-category">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
             </div>
         </div>
-        <div class="swiper box-list-item-category swiper-product-category swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+        <div class="swiper">
             <div class="swiper-wrapper swiper-product-{{ $category->slug }}">
                 @foreach($category->products as $product)
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
-                            <img src="{{ $product->image }}" width="203" height="203" class="hover-for-tooltips">
+                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="163" height="163" class="hover-for-tooltips">
+                            @if($product->hot_status == 1)
                             <span class="p-type-holder">
                                 <i class="p-icon-type p-icon-hot"></i>
                             </span>
+                            @endif
+                            @if($product->hot_sale_status == 1)
                             <span class="p-type-holder p-type-holder-2">
                                 <i class="p-icon-type p-icon-best-sale"></i>
                             </span>
+                            @endif
                         </a>
                         <div class="product-info">
                             <a href="{{ route('productDetail', $product['slug']) }}">
@@ -301,7 +299,7 @@
                                 {{ $product->price }} đ
                             </div>
                             <div class="product-offer line-clamp-2">
-                                <p>{{ $product->sale_detail }}</p>
+                                <p>{{ $product->short_description }}</p>
                             </div>
                         </div>
                     </div>
@@ -491,10 +489,6 @@
 <script src="{{ asset('/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('/js/page/main.js') }}"></script>
 <script>
-    setTimeout(function() {
-        $('.alert-block').remove();
-    }, 5000);
-
     <?php if (isset($listFlashSale['flash_sale_timer'])) { ?>
         let countTimeSale = `<?php echo $listFlashSale['flash_sale_timer'] ?>`;
 
