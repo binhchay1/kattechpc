@@ -15,7 +15,7 @@
             <nav class="menu-nav">
                 <ul class="menu-nav-main">
                     <li class="menu-nav-item">
-                        <a class="menu-nav-link" href="/pages/laptop-van-phong">
+                        <a class="menu-nav-link">
                             <span class="menu-nav-icon" data-hover="laptop"><svg width="20" height="13" viewBox="0 0 20 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <mask id="path-1-inside-1_5068_8551" fill="currentcolor">
                                         <path d="M4.00002 1C3.44774 1 3.00002 1.44772 3.00002 2V8.5C3.00002 9.05229 3.44774 9.5 4.00002 9.5H16C16.5523 9.5 17 9.05229 17 8.5V2C17 1.44772 16.5523 1 16 1H4.00002ZM3.70002 0H10H16.3C16.7774 0 17.2353 0.184374 17.5728 0.512563C17.9104 0.840752 18.1 1.28587 18.1 1.75V8.75C18.1 9.21413 17.9104 9.65925 17.5728 9.98744C17.2353 10.3156 16.7774 10.5 16.3 10.5H3.70002C3.22263 10.5 2.7648 10.3156 2.42723 9.98744C2.08967 9.65925 1.90002 9.21413 1.90002 8.75V1.75C1.90002 1.28587 2.08967 0.840752 2.42723 0.512563C2.7648 0.184374 3.22263 0 3.70002 0Z"></path>
@@ -33,8 +33,8 @@
                         <div class="menu-nav-content" style="display: none;">
                             <div class="column xlab_column_5_5">
                                 <div class="sub-menu-nav-item smg-1">
-                                    <a class="sub-menu-nav-item-name" href="/pages/laptop-van-phong">Thương hiệu</a>
-                                    <a class="sub-menu-nav-item-filter" href="/collections/laptop-asus-hoc-tap-va-lam-viec">ASUS</a>
+                                    <a class="sub-menu-nav-item-name" href="">Thương hiệu</a>
+                                    <a class="sub-menu-nav-item-filter" href="">ASUS</a>
                                 </div>
                             </div>
                         </div>
@@ -48,13 +48,15 @@
             <div class="news-main-left">
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
+                        @foreach($listSlide as $slide)
                         <div class="carousel-item active">
-                            <img src="{{ asset('/images/test_img/slide-1.png') }}" width="850" height="403" alt="Image">
+                            <a href="{{ $slide['url'] }}">
+                                <img src="{{ asset($slide['image']) }}" width="850" height="403" alt="Image">
+                            </a>
                         </div>
-                        <div class="carousel-item">
-                            <img src="{{ asset('/images/test_img/slide-2.png') }}" width="850" height="403" alt="Image">
-                        </div>
+                        @endforeach
                     </div>
+                    @if(!empty($listSlide))
                     <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
                         <div class="btn btn-dark" style="width: 45px; height: 45px;">
                             <span class="carousel-control-prev-icon mb-n2"></span>
@@ -65,6 +67,7 @@
                             <span class="carousel-control-next-icon mb-n2"></span>
                         </div>
                     </a>
+                    @endif
                 </div>
             </div>
             <div class="news-main-right">
@@ -116,6 +119,7 @@
         </div>
     </div>
 </section>
+
 <section class="flash-sale-banner">
     <div class="flash-sale-area">
         <div class="d-flex align-items-center justify-content-between">
@@ -123,47 +127,45 @@
                 <i class="fa fa-bolt"></i>
                 <h2 class="flash-sale-title">{{ __('Flash sale') }}</h2>
                 <span class="text-time-deal-home">{{ __('Kết thúc sau') }}</span>
-                <div class="global-time-dea d-flex align-items-center">
-                    <p>01</p>
-                    <span>:</span>
-                    <p>10</p>
-                    <span>:</span>
-                    <p>10</p>
-                    <span>:</span>
-                    <p>03</p>
+                <div class="global-time-dea d-flex align-items-center" id="timer-flashsale">
+
                 </div>
             </div>
         </div>
 
         <div class="swiper box-list-item-deal swiper-box-deal swiper-initialized swiper-horizontal swiper-pointer-events">
             <div class="swiper-wrapper d-flex swiper-flash-sale" style="margin-left: 10px;">
+                @if(isset($listFlashSale['flash_sale_list_product_id']))
+                @foreach($listFlashSale['flash_sale_list_product_id'] as $product)
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
-                            <img data-src="/media/product/250-25869-gaming-msi-thin-gf63.jpg" width="164" height="164" alt="Laptop Gaming MSI Thin GF63 (i5-12450H | 8G | RTX 2050 | 1TB SSD | 15.6&quot; 144Hz FHD ) NK BH tại NC " class="lazy entered loaded" src="{{ asset('images/test_img/black-sale.jpg') }}">
+                            <img width="164" height="164" alt="{{ $product->name }}" class="lazy entered loaded" src="{{ asset($product->image) }}">
                         </a>
                         <div class="product-info">
                             <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
-                                <h3 class="product-title line-clamp-3">Laptop Gaming MSI Thin GF63 (i5-12450H | 8G | RTX 2050 | 1TB SSD | 15.6" 144Hz FHD ) NK BH tại NC </h3>
+                                <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
                             </a>
 
                             <div class="product-martket-main d-flex align-items-center">
-                                <p class="product-market-price">18.990.000 ₫</p>
-                                <div class="product-percent-price">-22%</div>
+                                <p class="product-market-price">{{ $product->price }} ₫</p>
+                                <div class="product-percent-price">-{{ 100 - (((int) $product->new_price / (int) $product->price) * 100) }}%</div>
                             </div>
 
                             <div class="product-price-main font-weight-600">
-                                14.800.000đ
+                                {{ $product->new_price }} đ
                             </div>
                             <div class="p-quantity-sale" data-quantity-left="5" data-quantity-sale-total="7">
                                 <i class="sprite sprite-fire-deal"></i>
                                 <div class="bg-gradient"></div>
                                 <p class="js-line-deal-left" style="width: 28.5714%;"></p>
-                                <span>Còn 5/ 7 sản phẩm</span>
+                                <span>{{ __('Còn') }} 5 / {{ $product->sale_quantity }} {{ __('sản phẩm') }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
+                @endforeach
+                @endif
             </div>
             <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
             <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
@@ -202,7 +204,7 @@
 
                             <div class="product-martket-main d-flex align-items-center">
                                 <p class="product-market-price">{{ $product->price }} ₫</p>
-                                <div class="product-percent-price">-22%</div>
+                                <div class="product-percent-price">-{{ 100 - (((int) $product->new_price / (int) $product->price) * 100) }}%</div>
                             </div>
 
                             <div class="product-price-main font-weight-600">
@@ -263,20 +265,22 @@
     <div class="product-slide-main boder-radius-10">
         <div class="d-flex align-items-center justify-content-between">
             <div class="title">
-                <a href="{{route('showDataCategory', $category['slug'])}}"> <h2 class="title-box font-weight-600">{{ $category->name }}</h2></a>
+                <a href="{{route('showDataCategory', $category['slug'])}}">
+                    <h2 class="title-box font-weight-600">{{ $category->name }}</h2>
+                </a>
                 <i class="fa fa-truck"></i>
                 <p>{{ __('Miễn phí giao hàng') }}</p>
             </div>
 
             <div class="list-category-child d-flex align-items-center justify-content-end flex-1">
                 @foreach($category->products->take(5) as $product)
-                <a href="" class="title-category">{{$product->name}}</a>
+                <a href="" class="title-category">{{ $product->name }}</a>
                 @endforeach
                 <a href="{{route('showDataCategory', $category['slug'])}}" class="title-all-category">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
             </div>
         </div>
         <div class="swiper box-list-item-category swiper-product-category swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
-            <div class="swiper-wrapper swiper-product">
+            <div class="swiper-wrapper swiper-product-{{ $category->slug }}">
                 @foreach($category->products as $product)
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
@@ -490,5 +494,28 @@
     setTimeout(function() {
         $('.alert-block').remove();
     }, 5000);
+
+    <?php if (isset($listFlashSale['flash_sale_timer'])) { ?>
+        let countTimeSale = `<?php echo $listFlashSale['flash_sale_timer'] ?>`;
+
+        var countDownDate = new Date(countTimeSale).getTime();
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            $('#timer-flashsale').empty();
+            $('#timer-flashsale').append('<p>' + days + '</p><span>:</span><p>' + hours + '</p><span>:</span><p>' + minutes + '</p><span>:</span><p>' + seconds + '</p>');
+
+            if (distance < 0) {
+                clearInterval(x);
+                $('#timer-flashsale').empty();
+                $('#timer-flashsale').append('<p>EXPIRED</p>');
+            }
+        }, 1000);
+    <?php } ?>
 </script>
 @endsection

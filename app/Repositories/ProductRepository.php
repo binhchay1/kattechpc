@@ -16,7 +16,7 @@ class ProductRepository extends BaseRepository
     {
         return $this->model->with('category', 'productImages')->orderBy('created_at', 'DESC')->paginate(10);
     }
-    
+
     public function listProductSale()
     {
         return $this->model->with('category', 'productImages')->orderBy('created_at', 'DESC')->get()->take(3);
@@ -29,7 +29,7 @@ class ProductRepository extends BaseRepository
 
     public function show($id)
     {
-        return $this->model->with( 'productImages')->where('id', $id)->first();
+        return $this->model->with('productImages')->where('id', $id)->first();
     }
 
     public function update($input, $id)
@@ -50,5 +50,10 @@ class ProductRepository extends BaseRepository
     public function getProductRelated($category_id, $product_id)
     {
         return $this->model->where('category_id', $category_id)->where('id', '!=', $product_id)->take(4)->get();
+    }
+
+    public function getProductFlashSaleByCode($arrayCode)
+    {
+        return $this->model->whereIn('code', $arrayCode)->get();
     }
 }

@@ -132,6 +132,7 @@ class LayoutController extends Controller
             $data = [
                 'slide_thumbnail' => json_encode($arrSlide)
             ];
+
             $getLayout = $this->layoutRepository->getListLayout();
             if (!empty($getLayout)) {
                 $this->layoutRepository->update($getLayout->id, $data);

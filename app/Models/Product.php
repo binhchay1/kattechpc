@@ -23,6 +23,10 @@ class Product extends Model
         'new_price',
         'sale_detail',
         'detail',
+        'hot_status',
+        'hot_sale_status',
+        'key_word',
+        'title'
     ];
 
     public function category()
@@ -51,7 +55,6 @@ class Product extends Model
         static::creating(function ($product) {
             $product->slug = Str::slug($product->name);
 
-            // Ensure slug uniqueness
             $originalSlug = $slug = $product->slug;
             $count = 1;
 
@@ -62,5 +65,4 @@ class Product extends Model
             $product->slug = $slug;
         });
     }
-
 }

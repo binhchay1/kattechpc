@@ -36,4 +36,9 @@ class LayoutRepository extends BaseRepository
     {
         return $this->model->select('slide_thumbnail')->first();
     }
+
+    public function getFlashSale()
+    {
+        return $this->model->select('flash_sale_timer', 'flash_sale_list_product_id')->first();
+    }
 }

@@ -10,7 +10,7 @@
         <div class="card" id="usersTable">
             <div class="card-body">
                 <div class="flex items-center">
-                    <h6 class="text-15 grow">{{__('Danh sách sản phẩm')}}</h6>
+                    <h6 class="text-15 grow">{{ __('Danh sách sản phẩm') }}</h6>
                     <div class="lg:col-span-2 ltr:lg:text-right rtl:lg:text-left xl:col-span-2 xl:col-start-11">
                         <a href="{{route('admin.product.create')}}" type="button" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20"><i data-lucide="plus" class="inline-block size-4"></i> <span class="align-middle">{{__('Thêm sản phẩm')}}</span></a>
                     </div>
@@ -63,13 +63,13 @@
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $product->category->name ?? "" }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 description">{!! Str::limit(strip_tags(html_entity_decode($product->description)), 100)!!}</td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 description">{!! Str::limit(strip_tags(html_entity_decode($product->description)), 100) !!}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 price">{{ $product->price }}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 detail">
                                     <ul class="space-y-5 list-disc list-inside rounded-md marker:text-red-500">
                                         @if($product->detail)
                                         @foreach($product->detail as $key => $value)
-                                        <li>{{ $key }}: {{ $value }}</li>
+                                        <li>{{ $key }} : {{ $value }}</li>
                                         @endforeach
                                         @endif
                                     </ul>
@@ -99,8 +99,8 @@
                                         </div>
                                         <img src="{{ URL::asset('build/images/delete.png') }}" alt="" class="block h-12 mx-auto">
                                         <div class="mt-5 text-center">
-                                            <h5 class="mb-1">{{__('Bạn có chắc không?')}}</h5>
-                                            <p class="text-slate-500 dark:text-zink-200">{{__('Bạn có muốn xóa sản phẩm này không?')}}</p>
+                                            <h5 class="mb-1">{{ __('Bạn có chắc không?') }}</h5>
+                                            <p class="text-slate-500 dark:text-zink-200">{{ __('Bạn có muốn xóa sản phẩm này không?') }}</p>
                                             <div class="flex justify-center gap-2 mt-6">
                                                 <button type="reset" data-modal-close="deleteModal" class="bg-white text-slate-500 btn hover:text-slate-500 hover:bg-slate-100 focus:text-slate-500 focus:bg-slate-100 active:text-slate-500 active:bg-slate-100 dark:bg-zink-600 dark:hover:bg-slate-500/10 dark:focus:bg-slate-500/10 dark:active:bg-slate-500/10">{{__('Hủy')}}</button>
                                                 <a href="{{route('admin.product.delete',$product['id'])}}">
