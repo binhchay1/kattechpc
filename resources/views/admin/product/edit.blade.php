@@ -109,8 +109,10 @@
                             <label for="categorySelect" class="inline-block mb-2 text-base font-medium ">{{__('Hình ảnh thay đổi')}}</label>
                             <div class="user-image mb-3 text-center">
                                 <ul class="imgPreview" id="imgPreview">
-                                    @foreach ($product->image as $value)
-                                    <img src="{{ asset($value) }}" class="p-2 m-3" style="width: 200px; height: 200px;" alt="Img" />
+                                    @foreach ($product->image as $key => $value)
+                                    <img id="img-review-{{ $key + 1 }}" src="{{ asset($value) }}" class="p-2 m-3" style="width: 200px; height: 200px;" alt="Img" />
+                                    <input id="input-review-{{ $key + 1 }}" type="text" name="image_preview[]" value="' + input.files[i].name + '" hidden>
+                                    <button id="button-review-{{ $key + 1 }}" type="button" class="btn-delete-image" onclick="deleteImagePreview(this)" />Delete</button>
                                     @endforeach
                                 </ul>
                             </div>
@@ -206,6 +208,8 @@
         .catch(error => {
             console.error(error);
         });
+
+    const status_product = 'edit';
 </script>
 <script src="{{ URL::asset('js/admin/product.js') }}"></script>
 @endpush

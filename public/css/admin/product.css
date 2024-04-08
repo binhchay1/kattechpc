@@ -67,3 +67,10 @@ ol.example li.placeholder {
 ol.example li.placeholder:before {
     position: absolute;
 }
+
+.btn-delete-image {
+    color: white;
+    background-color: red !important;
+    padding: 5px 10px;
+    border-radius: 10px;
+}

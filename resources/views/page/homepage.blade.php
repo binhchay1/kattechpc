@@ -513,6 +513,5 @@
     <?php } ?>
 
     const listCategory = <?php echo json_encode($listCategory) ?>;
-    console.log(listCategory);
 </script>
 @endsection

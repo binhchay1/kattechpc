@@ -22,7 +22,6 @@ class ProductController extends Controller
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository,
         Utility $utility
-
     ) {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;

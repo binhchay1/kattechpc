@@ -74,7 +74,7 @@
                             dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:
                             border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false id="categorySelect" name="category_id">
                                 @foreach($listCategories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('category_id'))
@@ -198,6 +198,8 @@
         .catch(error => {
             console.error(error);
         });
+
+    const status_product = 'create';
 </script>
 <script src="{{ URL::asset('js/admin/product.js') }}"></script>
 @endpush
