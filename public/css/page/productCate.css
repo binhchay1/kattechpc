@@ -31,3 +31,43 @@
     min-width: 0;
     min-height: 402.406px;
 }
+
+.row {
+    background: #f8f8f8;
+    margin-top: 30px;
+    border-radius: 5px;
+}
+.row1 {
+    background: #f8f8f8;
+    margin-top: 3px;
+    border-radius: 5px;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex > div {
+    margin: 10px;
+    padding: 10px;
+}
+
+button {
+    height: 30px;
+    width: auto;
+}
+
+select {
+    height: 30px;
+    background: #eee;
+    border-radius: 3px;
+}
+
+.flex {
+    padding: 10px;
+}
+
+h2 {
+    margin-top: 22px;
+    width: 200px;
+}
