@@ -711,6 +711,10 @@ body a {
     padding: 8px 8px 10px;
 }
 
+.item-article {
+    margin:5px;
+}
+
 .box-article-group .list-article-group .item-article .img-article {
     display: block;
     padding-bottom: 60%;

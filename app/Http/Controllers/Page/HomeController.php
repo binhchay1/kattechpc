@@ -182,9 +182,12 @@ class HomeController extends Controller
         $this->customContactRepository->store($request);
     }
 
-    public function showDataCategory($slug)
+    public function showDataCategory(Request $request, $slug)
     {
-        $dataCategory = $this->categoryRepository->productByCategory($slug);
+        $getPrice = $request->get('price');
+        $getSortBy = $request->get('sort');
+        
+        $dataCategory = $this->categoryRepository->productByCategory($slug, $getPrice, $getSortBy);
 
         return view('page.product.productCategory', compact('dataCategory'));
     }
