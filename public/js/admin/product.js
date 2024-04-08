@@ -7,7 +7,7 @@ $(document).ready(function () {
     $(`.btn-x`).click(function () { $(this).parent().remove(); });
 
     if (status_product == 'edit') {
-        var lengthPreview = $('#imgPreview').length;
+        var lengthPreview = $('#imgPreview li').length;
     }
 
     var multiImgPreview = function (input) {
@@ -18,12 +18,11 @@ $(document).ready(function () {
                 var reader = new FileReader();
                 reader.onload = function (event) {
                     if (status_product == 'create') {
-                        $('#imgPreview').append('<li><img id="img-review-' + (i + 1) + '" src="' + event.target.result + '"><input id="input-review-' + (i + 1) + '" type="text" name="image_preview[]" value="' + input.files[i].name + '" hidden><button id="button-review-' + (i + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this, `' + input.files[i].name + '`)"/>Delete</button></li>');
+                        $('#imgPreview').append('<li><img id="img-review-' + (i + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><input id="input-review-' + (i + 1) + '" type="text" name="image_preview[]" value="' + input.files[i].name + '" hidden><button id="button-review-' + (i + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this, `' + input.files[i].name + '`)"/>Delete</button></li>');
                     } else {
-                        $('#imgPreview').append('<li><img id="img-review-' + (lengthPreview + 1) + '" src="' + event.target.result + '"><input id="input-review-' + (lengthPreview + 1) + '" type="text" name="image_preview[]" value="' + input.files[i].name + '" hidden><button id="button-review-' + (lengthPreview + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this)"/>Delete</button></li>');
+                        $('#imgPreview').append('<li><img id="img-review-' + (lengthPreview + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><input id="input-review-' + (lengthPreview + 1) + '" type="text" name="image_preview[]" value="' + input.files[i].name + '" hidden><button id="button-review-' + (lengthPreview + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this)"/>Delete</button></li>');
                         lengthPreview++;
                     }
-
                 }
                 reader.readAsDataURL(input.files[i]);
             }
@@ -58,6 +57,4 @@ function deleteImagePreview(button, imgName) {
     }
 
     images[0].files = dt.files;
-
-    console.log(images[0].files);
 }

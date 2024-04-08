@@ -110,9 +110,11 @@
                             <div class="user-image mb-3 text-center">
                                 <ul class="imgPreview" id="imgPreview">
                                     @foreach ($product->image as $key => $value)
-                                    <img id="img-review-{{ $key + 1 }}" src="{{ asset($value) }}" class="p-2 m-3" style="width: 200px; height: 200px;" alt="Img" />
-                                    <input id="input-review-{{ $key + 1 }}" type="text" name="image_preview[]" value="' + input.files[i].name + '" hidden>
-                                    <button id="button-review-{{ $key + 1 }}" type="button" class="btn-delete-image" onclick="deleteImagePreview(this)" />Delete</button>
+                                    <li>
+                                        <img id="img-review-{{ $key + 1 }}" src="{{ asset($value) }}" class="p-2 m-3" />
+                                        <input id="input-review-{{ $key + 1 }}" type="text" name="image_preview[]" value="' + input.files[i].name + '" hidden>
+                                        <button id="button-review-{{ $key + 1 }}" type="button" class="btn-delete-image" onclick="deleteImagePreview(this)" />Delete</button>
+                                    </li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -182,15 +184,15 @@
 @endsection
 
 @push('scripts')
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
     ClassicEditor
         .create(document.querySelector('#editor'), {
             height: 500,
             ckfinder: {
-
-                uploadUrl: '<?php {{ route("admin.post.uploadMedia") . '?_token=' . csrf_token(); }} ?>',
+                uploadUrl: '<?php route("admin.post.uploadMedia") . '?_token=' . csrf_token(); ?>',
             }
         })
         .catch(error => {
@@ -201,8 +203,7 @@
         .create(document.querySelector('#editor-gift'), {
             height: 500,
             ckfinder: {
-
-                uploadUrl: '<?php {{ route("admin.post.uploadMedia") . '?_token=' . csrf_token(); }} ?>',
+                uploadUrl: '<?php route("admin.post.uploadMedia") . '?_token=' . csrf_token(); ?>',
             }
         })
         .catch(error => {
