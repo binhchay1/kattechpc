@@ -13,18 +13,18 @@
 <div class="container">
     <section class="product-container">
         <div class="img-card">
-            <img src="{{ asset($product->image[0]) }}" alt="" id="featured-image">
+            <img src="{{ asset($product->image[0]) }}" id="featured-image">
             <div class="small-Card">
                 <div class="swiper d-flex align-items-center">
                     <div class="swiper-wrapper swiper-image">
-                        @foreach ($product->image as $image)
+                        @foreach ($product->image as $key => $image)
                         <div class="swiper-slide-image" role="group">
-                            <img src="{{ asset($image) }}" alt="" class="small-Img">
+                            <img src="{{ asset($image) }}" data-index="{{ $key }}" class="small-Img" onclick="getImageCenter(this)">
                         </div>
                         @endforeach
                     </div>
-                    <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></div>
-                    <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide"></div>
+                    <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" onclick="handleSlideImage('next')"></div>
+                    <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" onclick="handleSlideImage('prev')"></div>
                     <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                 </div>
             </div>
@@ -108,7 +108,7 @@
         <div class="gift-product">
             <div class="gift-promotion">
                 <div class="">
-                    <textarea id="comment" placeholder="Mời bạn để lại bình luận..." onfocus="$('.js-actions-comment-2020').show();" name="user_post[content]"></textarea>
+                    <textarea id="comment" placeholder="{{ __('Mời bạn để lại bình luận...') }}" onfocus="$('.js-actions-comment-2020').show();" name="user_post[content]"></textarea>
                     <div class="actions-comment-2020 js-actions-comment-2020 ">
                         <div class="actions-comment-wrap">
                             <div class="cmt_right float-right">
@@ -128,11 +128,24 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
 <script>
+    var indexImage = 0;
     $('.vendor-carousel').owlCarousel({
         loop: true,
         nav: false,
         autoplay: true,
         smartSpeed: 1000,
     });
+
+    function getImageCenter(image) {
+        let src = image.src;
+        indexImage = image.getAttribute('data-index');
+        $('#featured-image').attr('src', src);
+    }
+
+    // function handleSlideImage(status) {
+    //     if() {
+
+    //     }
+    // }
 </script>
 @endsection

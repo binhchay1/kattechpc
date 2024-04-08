@@ -259,7 +259,7 @@
     <div class="product-slide-main boder-radius-10">
         <div class="d-flex align-items-center justify-content-between">
             <div class="title">
-                <a href="{{route('showDataCategory', $category['slug'])}}">
+                <a href="{{ route('showDataCategory', $category['slug']) }}">
                     <h2 class="title-box font-weight-600">{{ $category->name }}</h2>
                 </a>
                 <i class="fa fa-truck"></i>
@@ -268,9 +268,9 @@
 
             <div class="list-category-child d-flex align-items-center justify-content-end flex-1">
                 @foreach($category->children as $children)
-                <a href="{{ $children->slug }}" class="title-category">{{ $children->name }}</a>
+                <a href="{{ route('showDataCategory', $category['slug']) }}" class="title-category">{{ $children->name }}</a>
                 @endforeach
-                <a href="{{route('showDataCategory', $category['slug'])}}" class="title-all-category">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
+                <a href="" class="title-all-category">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
             </div>
         </div>
         <div class="swiper">
