@@ -113,9 +113,12 @@ class HomeController extends Controller
         $listLayout = $this->layoutRepository->getListLayout();
         $getSlide = $this->layoutRepository->getSlide();
         $getFlashSale = $this->layoutRepository->getFlashSale();
+        $getListChildren = $this->categoryRepository->getListProductByChildren();
         $listFlashSale = [];
         $listSlide = [];
         $listMenuBar = config('menu.list');
+
+        dd($getListChildren);
 
         if (isset($getSlide->slide_thumbnail)) {
             $listSlide = json_decode($getSlide->slide_thumbnail, true);

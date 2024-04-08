@@ -267,8 +267,8 @@
             </div>
 
             <div class="list-category-child d-flex align-items-center justify-content-end flex-1">
-                @foreach($category->products->take(5) as $product)
-                <a href="" class="title-category">{{ $product->name }}</a>
+                @foreach($category->children as $children)
+                <a href="{{ $children->slug }}" class="title-category">{{ $children->name }}</a>
                 @endforeach
                 <a href="{{route('showDataCategory', $category['slug'])}}" class="title-all-category">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
             </div>
@@ -511,5 +511,8 @@
             }
         }, 1000);
     <?php } ?>
+
+    const listCategory = <?php echo json_encode($listCategory) ?>;
+    console.log(listCategory);
 </script>
 @endsection

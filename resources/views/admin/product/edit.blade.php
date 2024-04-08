@@ -105,7 +105,8 @@
                             <span class="text-danger">{{ $errors->first('status') }}</span>
                             @endif
                         </div>
-                        <div class="xl:col-span-6">
+                        <div class="xl:col-span-12">
+                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium ">{{__('Hình ảnh thay đổi')}}</label>
                             <div class="user-image mb-3 text-center">
                                 <ul class="imgPreview" id="imgPreview">
                                     @foreach ($product->image as $value)
@@ -122,11 +123,6 @@
                                         <span class="text-danger">{{ $errors->first('image') }}</span>
                                         @endif
                                     </div>
-                                </div>
-                            </div>
-                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium ">{{__('Hình ảnh thay đổi')}}</label>
-                            <div class="user-image mb-3 text-center">
-                                <div class="imgPreview">
                                 </div>
                             </div>
                         </div>

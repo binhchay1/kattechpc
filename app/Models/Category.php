@@ -33,8 +33,6 @@ class Category extends Model
 
         static::creating(function ($category) {
             $category->slug = Str::slug($category->name);
-
-            // Ensure slug uniqueness
             $originalSlug = $slug = $category->slug;
             $count = 1;
 
@@ -46,8 +44,29 @@ class Category extends Model
         });
     }
 
+    public function all_products()
+    {
+        $products = [];
+        $categories = [$this];
+        while (count($categories) > 0) {
+            $nextCategories = [];
+            foreach ($categories as $category) {
+                $products = array_merge($products, $category->products->all());
+                $nextCategories = array_merge($nextCategories, $category->children->all());
+            }
+            $categories = $nextCategories;
+        }
+
+        return new Collection($products);
+    }
+
     public function products()
     {
         return $this->hasMany('App\Models\Product', 'category_id', 'id');
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent', 'id')->with('children');
     }
 }

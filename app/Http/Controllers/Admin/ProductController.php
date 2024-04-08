@@ -178,6 +178,7 @@ class ProductController extends Controller
         }
 
         $getProduct = $this->productRepository->getById($id);
+        $arrOldImage = json_decode($getProduct->image, true);
         if ($request->hasfile('image')) {
             if (isset($input['image_preview'])) {
                 foreach ($input['image_preview'] as $preview)
@@ -187,7 +188,8 @@ class ProductController extends Controller
                             $imgData[] = 'images/upload/product/' . $file->getClientOriginalName();
                         }
                     }
-                $input['image'] = json_encode($imgData);
+                $arrMerger = array_merge($arrOldImage, $imgData);
+                $input['image'] = json_encode($arrMerger);
             }
         }
 
