@@ -1,7 +1,7 @@
 .show-avatar {
     height: 50%;
     width: 50%;
-    object-fit: contain
+    object-fit: contain;
 }
 
 .text-danger {
@@ -47,4 +47,30 @@
 
 .font-medium {
     margin-top: 30px;
+}
+
+body.dragging,
+body.dragging * {
+    cursor: move !important;
+}
+
+.dragged {
+    position: absolute;
+    opacity: 0.5;
+    z-index: 2000;
+}
+
+ol.example li.placeholder {
+    position: relative;
+}
+
+ol.example li.placeholder:before {
+    position: absolute;
+}
+
+.btn-delete-image {
+    color: white;
+    background-color: red !important;
+    padding: 5px 10px;
+    border-radius: 10px;
 }

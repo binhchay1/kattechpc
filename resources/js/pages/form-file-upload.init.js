@@ -7,7 +7,7 @@ File: Form file upload Js File
 */
 
 // Dropzone
-var dropzonePreviewNode = document.querySelector("#dropzone-preview-list");
+var dropzonePreviewNode = document.querySelector("#dropzone-preview");
 dropzonePreviewNode.id = "";
 if (dropzonePreviewNode) {
     var previewTemplate = dropzonePreviewNode.parentNode.innerHTML;
@@ -21,7 +21,7 @@ if (dropzonePreviewNode) {
 }
 
 // Dropzone
-var dropzonePreviewNode = document.querySelector("#dropzone-preview-list2");
+var dropzonePreviewNode = document.querySelector("#dropzone-preview");
 dropzonePreviewNode.id = "";
 if (dropzonePreviewNode) {
     var previewTemplate = dropzonePreviewNode.parentNode.innerHTML;

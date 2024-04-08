@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Category;
+use Illuminate\Support\Collection;
 
 class CategoryRepository extends BaseRepository
 
@@ -39,15 +40,16 @@ class CategoryRepository extends BaseRepository
 
     public function getListCategory()
     {
-        return $this->model->with('products', 'products.productImages')->get();
+        return $this->model->with('children', 'products', 'products.productImages')->where('parent', 0)->get();
     }
 
     public function getListCategoryExcludeId($id)
     {
         return $this->model->where('id', '!=', $id)->get();
     }
-    
+
     public function productByCategory($slug, $getPrice = null, $getSortBy = null)
+
     {
     
         $query = $this->model->with('products')->where('slug', $slug);

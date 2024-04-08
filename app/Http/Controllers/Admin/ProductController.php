@@ -22,7 +22,6 @@ class ProductController extends Controller
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository,
         Utility $utility
-
     ) {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
@@ -95,12 +94,18 @@ class ProductController extends Controller
         $input['slug'] =  Str::slug($input['name']);
 
         if ($request->hasfile('image')) {
-            foreach ($request->file('image') as $file) {
-                $file->move(public_path('images/upload/product/'), $file->getClientOriginalName());
-                $imgData[] = 'images/upload/product/' . $file->getClientOriginalName();
+            if (isset($input['image_preview'])) {
+                foreach ($input['image_preview'] as $preview)
+                    foreach ($request->file('image') as $file) {
+                        if ($file->getClientOriginalName() == $preview) {
+                            $file->move(public_path('images/upload/product/'), $file->getClientOriginalName());
+                            $imgData[] = 'images/upload/product/' . $file->getClientOriginalName();
+                        }
+                    }
+                $input['image'] = json_encode($imgData);
             }
-            $input['image'] = json_encode($imgData);
         }
+
         $this->productRepository->store($input);
 
         return redirect()->route('admin.product.index')->with('success',  __('Sản phẩm được thêm thành công'));
@@ -171,16 +176,26 @@ class ProductController extends Controller
             $input['detail'] = json_encode($detail);
         }
 
+        $getProduct = $this->productRepository->getById($id);
+        $arrOldImage = json_decode($getProduct->image, true);
+        if ($request->hasfile('image')) {
+            if (isset($input['image_preview'])) {
+                foreach ($input['image_preview'] as $preview)
+                    foreach ($request->file('image') as $file) {
+                        if ($file->getClientOriginalName() == $preview) {
+                            $file->move(public_path('images/upload/product/'), $file->getClientOriginalName());
+                            $imgData[] = 'images/upload/product/' . $file->getClientOriginalName();
+                        }
+                    }
+                $arrMerger = array_merge($arrOldImage, $imgData);
+                $input['image'] = json_encode($arrMerger);
+            }
+        }
+
         unset($input['detail_key']);
         unset($input['detail_value']);
+        unset($input['image_preview']);
 
-        if ($request->hasfile('image')) {
-            foreach ($request->file('image') as $file) {
-                $file->move(public_path('images/upload/product/'), $file->getClientOriginalName());
-                $imgData[] = 'images/upload/product/' . $file->getClientOriginalName();
-            }
-            $input['image'] = json_encode($imgData);
-        }
         $this->productRepository->update($input, $id);
 
         return redirect()->route('admin.product.index')->with('success', __('Sản phẩm được thay đổi thành công'));

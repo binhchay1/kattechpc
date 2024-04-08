@@ -105,13 +105,18 @@
                             <span class="text-danger">{{ $errors->first('status') }}</span>
                             @endif
                         </div>
-                        <div class="xl:col-span-6">
+                        <div class="xl:col-span-12">
+                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium ">{{__('Hình ảnh thay đổi')}}</label>
                             <div class="user-image mb-3 text-center">
-                                <div class="imgPreview">
-                                    @foreach ($product->image as $value)
-                                    <img src="{{ asset('/image/upload/product/' . $value) }}" class="border p-2 m-3" style="width: 100px; height: 100px;" alt="Img" />
+                                <ul class="imgPreview" id="imgPreview">
+                                    @foreach ($product->image as $key => $value)
+                                    <li>
+                                        <img id="img-review-{{ $key + 1 }}" src="{{ asset($value) }}" class="p-2 m-3" />
+                                        <input id="input-review-{{ $key + 1 }}" type="text" name="image_preview[]" value="' + input.files[i].name + '" hidden>
+                                        <button id="button-review-{{ $key + 1 }}" type="button" class="btn-delete-image" onclick="deleteImagePreview(this)" />Delete</button>
+                                    </li>
                                     @endforeach
-                                </div>
+                                </ul>
                             </div>
                             <div class="form-group">
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Hình ảnh') }}</label>
@@ -122,11 +127,6 @@
                                         <span class="text-danger">{{ $errors->first('image') }}</span>
                                         @endif
                                     </div>
-                                </div>
-                            </div>
-                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium ">{{__('Hình ảnh thay đổi')}}</label>
-                            <div class="user-image mb-3 text-center">
-                                <div class="imgPreview">
                                 </div>
                             </div>
                         </div>
@@ -184,15 +184,15 @@
 @endsection
 
 @push('scripts')
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
     ClassicEditor
         .create(document.querySelector('#editor'), {
             height: 500,
             ckfinder: {
-
-                uploadUrl: '<?php {{ route("admin.post.uploadMedia") . '?_token=' . csrf_token(); }} ?>',
+                uploadUrl: '<?php route("admin.post.uploadMedia") . '?_token=' . csrf_token(); ?>',
             }
         })
         .catch(error => {
@@ -203,14 +203,14 @@
         .create(document.querySelector('#editor-gift'), {
             height: 500,
             ckfinder: {
-
-                uploadUrl: '<?php {{ route("admin.post.uploadMedia") . '?_token=' . csrf_token(); }} ?>',
+                uploadUrl: '<?php route("admin.post.uploadMedia") . '?_token=' . csrf_token(); ?>',
             }
         })
         .catch(error => {
             console.error(error);
         });
+
+    const status_product = 'edit';
 </script>
-<script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
 <script src="{{ URL::asset('js/admin/product.js') }}"></script>
 @endpush
