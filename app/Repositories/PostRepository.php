@@ -54,7 +54,7 @@ class PostRepository extends BaseRepository
 
     public function getListNewsInHomepage()
     {
-        return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->paginate(10);
+        return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->get()->take(5);
     }
 
     public function detail($slug)

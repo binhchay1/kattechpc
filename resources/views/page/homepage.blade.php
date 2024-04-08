@@ -356,7 +356,7 @@
             <div class="title-box">
                 <h2 class="title-box font-weight-600">{{ __('Khuyến mại') }}</h2>
             </div>
-            <a href="/tin-cong-nghe" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
+            <a href="{{route('promotion')}}" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
         <div class="list-article-group d-flex align-items-center gap-10">
             <div class="item-article d-flex gap-12">
@@ -399,7 +399,7 @@
             <div class="title-box">
                 <h2 class="title-box font-weight-600">{{ __('Tin tức công nghệ') }}</h2>
             </div>
-            <a href="/tin-cong-nghe" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
+            <a href="{{route('post')}}" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
         <div class="list-article-group d-flex align-items-center gap-10">
             @foreach($listNews as $news)
