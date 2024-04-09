@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Page;
 
+use App\Enums\Utility;
 use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -21,8 +22,10 @@ class HomeController extends Controller
     protected $customContactRepository;
     protected $postRepository;
     protected $layoutRepository;
+    protected $utility;
 
     public function __construct(
+        Utility $utility,
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository,
         LandingPageRepository $landingPageRepository,
@@ -30,6 +33,7 @@ class HomeController extends Controller
         PostRepository $postRepository,
         LayoutRepository $layoutRepository
     ) {
+        $this->utility = $utility;
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
         $this->landingPageRepository = $landingPageRepository;
@@ -188,7 +192,9 @@ class HomeController extends Controller
         $getSortBy = $request->get('sort');
         
         $dataCategory = $this->categoryRepository->productByCategory($slug, $getPrice, $getSortBy);
+        $dataProducts = $this->categoryRepository->productSale($slug);
+        $dataCategories = $this->utility->paginate($dataCategory->products, 2);
 
-        return view('page.product.productCategory', compact('dataCategory'));
+        return view('page.product.productCategory', compact('dataCategories', 'dataProducts'));
     }
 }
