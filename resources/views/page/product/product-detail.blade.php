@@ -32,9 +32,9 @@
         <div class="product-info">
             <h3>{{ $product->name }}</h3>
             @if($product->new_price != null)
-            <h5>{{ __('Giá ') }}: {{ $product->new_price }} <del>{{ $product->price }} đ</del></h5>
+            <h5>{{ __('Giá ') }}: {{ number_format($product->new_price); }} đ <del>{{ number_format($product->price) }} đ</del></h5>
             @else
-            <h5>{{ __('Giá ') }}: {{ $product->price }} đ</h5>
+            <h5>{{ __('Giá ') }}: {{ number_format($product->price) }} đ</h5>
             @endif
             <div>
                 {!! html_entity_decode($product->description) !!}

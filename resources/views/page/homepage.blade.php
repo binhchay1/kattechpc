@@ -145,14 +145,14 @@
                             </a>
 
                             <div class="product-martket-main d-flex align-items-center">
-                                <p class="product-market-price">{{ $product->price }} ₫</p>
+                                <p class="product-market-price">{{ number_format($product->price) }} ₫</p>
                                 <div class="product-percent-price">-{{ 100 - (((int) $product->new_price / (int) $product->price) * 100) }}%</div>
                             </div>
 
                             <div class="product-price-main font-weight-600">
-                                {{ $product->new_price }} đ
+                                {{ number_format($product->new_price) }} đ
                             </div>
-                            <div class="p-quantity-sale" data-quantity-left="5" data-quantity-sale-total="7">
+                            <div class="p-quantity-sale">
                                 <i class="sprite sprite-fire-deal"></i>
                                 <div class="bg-gradient"></div>
                                 <p class="js-line-deal-left" style="width: 28.5714%;"></p>
@@ -200,12 +200,12 @@
                             </a>
 
                             <div class="product-martket-main d-flex align-items-center">
-                                <p class="product-market-price">{{ $product->price }} ₫</p>
+                                <p class="product-market-price">{{ number_format($product->price) }} ₫</p>
                                 <div class="product-percent-price">-{{ 100 - (((int) $product->new_price / (int) $product->price) * 100) }}%</div>
                             </div>
 
                             <div class="product-price-main font-weight-600">
-                                {{ $product->new_price }} đ
+                                {{ number_format($product->new_price) }} đ
                             </div>
                         </div>
                     </div>
@@ -296,7 +296,7 @@
                                 <h3 class="product-title line-clamp-3">{{ $product->name }}</h3>
                             </a>
                             <div class="product-price-main font-weight-600">
-                                {{ $product->price }} đ
+                                {{ number_format($product->price) }} đ
                             </div>
                             <div class="product-offer line-clamp-2">
                                 <p>{{ $product->short_description }}</p>
