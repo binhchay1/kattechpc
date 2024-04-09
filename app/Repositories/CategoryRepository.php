@@ -51,7 +51,6 @@ class CategoryRepository extends BaseRepository
     public function productByCategory($slug, $getPrice = null, $getSortBy = null)
 
     {
-    
         $query = $this->model->with('products')->where('slug', $slug);
         if($getPrice == 'duoi-10trieu')
         {
@@ -117,5 +116,10 @@ class CategoryRepository extends BaseRepository
             }]);
         }
         return $query->first();
+    }
+    
+    public function productSale($slug)
+    {
+        return $this->model->with('products')->where('slug', $slug)->first();
     }
 }
