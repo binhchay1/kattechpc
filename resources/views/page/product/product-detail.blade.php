@@ -1,11 +1,10 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ __('Trang chủ') }} | Kattech PC</title>
+<title>{{ __('Sản phẩm') }} | Kattech PC</title>
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('/plugins/owlcarousel/owl.theme.default.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('/css/page/product-detail.css') }}" />
 @endsection
 
@@ -15,7 +14,7 @@
         <div class="img-card">
             <img src="{{ asset($product->image[0]) }}" id="featured-image">
             <div class="small-Card">
-                <div class="swiper d-flex align-items-center">
+                <div class="swiper d-flex align-items-center" style="min-height: auto;">
                     <div class="swiper-wrapper swiper-image">
                         @foreach ($product->image as $key => $image)
                         <div class="swiper-slide-image" role="group">
@@ -142,10 +141,20 @@
         $('#featured-image').attr('src', src);
     }
 
-    // function handleSlideImage(status) {
-    //     if() {
+    function handleSlideImage(status) {
+        if (status == 'next') {
+            let maxIndex = $('.swiper-slide-image').length;
+            if (indexImage < maxIndex) {
+                let nextIndex = parseInt(indexImage) + 1;
+                $("[data-index=" + nextIndex + "]").click();
+            }
 
-    //     }
-    // }
+        } else {
+            if (parseInt(indexImage) > 0) {
+                let prevIndex = parseInt(indexImage) - 1;
+                $("[data-index=" + prevIndex + "]").click();
+            }
+        }
+    }
 </script>
 @endsection

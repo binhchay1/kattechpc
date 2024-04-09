@@ -190,11 +190,11 @@ class HomeController extends Controller
     {
         $getPrice = $request->get('price');
         $getSortBy = $request->get('sort');
-        
+
         $dataCategory = $this->categoryRepository->productByCategory($slug, $getPrice, $getSortBy);
         $dataProducts = $this->categoryRepository->productSale($slug);
         $dataCategories = $this->utility->paginate($dataCategory->products, 2);
 
-        return view('page.product.productCategory', compact('dataCategories', 'dataProducts'));
+        return view('page.product.product-category', compact('dataCategories', 'dataProducts'));
     }
 }
