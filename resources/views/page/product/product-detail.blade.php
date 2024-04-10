@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-<div class="container">
+<hr class="container">
     <section class="product-container">
         <div class="img-card">
             <img src="{{ asset($product->image[0]) }}" id="featured-image">
@@ -104,22 +104,31 @@
     </section>
 
     <section class="comment">
-        <div class="gift-product">
-            <div class="gift-promotion">
-                <div class="">
-                    <textarea id="comment" placeholder="{{ __('Mời bạn để lại bình luận...') }}" onfocus="$('.js-actions-comment-2020').show();" name="user_post[content]"></textarea>
-                    <div class="actions-comment-2020 js-actions-comment-2020 ">
-                        <div class="actions-comment-wrap">
-                            <div class="cmt_right float-right">
-                                <button class="btn btn-primary btn-comment">{{ __('Bình luận') }}</button>
+        <form action="{{route('storeComment')}}" method="post"  enctype="multipart/form-data">
+            {{ csrf_field() }}
+            <div class="gift-product">
+                <div class="gift-promotion">
+                    <div class="">
+                        <textarea id="comment" name="content" placeholder="{{ __('Mời bạn để lại bình luận...') }}" onfocus="$('.js-actions-comment-2020').show();" name="user_post[content]"></textarea>
+                        <input type="hidden" value="{{$product->id}}" name="product_id">
+                        <div class="actions-comment-2020 js-actions-comment-2020 ">
+                            <div class="actions-comment-wrap">
+                                <div class="cmt_right float-right">
+                                    <button type="submit" class="btn btn-primary btn-comment">{{ __('Viết bình luận') }}</button>
+                                </div>
+                                <div class="js-preview-upload" id="js-preview-file-upload-comment"></div>
                             </div>
-                            <div class="js-preview-upload" id="js-preview-file-upload-comment"></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+            @if(Session::has('message'))
+                <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+            @endif
+        </form>
     </section>
+    <hr class="hr-row">
+@include('page.product.comment-display', ['comments' => $product->comments, 'product_id' => $product->id]);
 </div>
 @endsection
 
