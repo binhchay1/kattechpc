@@ -11,41 +11,6 @@
 
 @section('content')
     <div class="container">
-        <section class="sale-body">
-            <div class="d-flex">
-                <div class="sale-body-left">
-                    <div class="banner-box fade-box" data-banner-page="Homepage" data-banner-loc="Bot_Promotion Banner_Big">
-                        <a class="aspect-ratio" href="" aria-label="Màn hình khuyến mãi tháng 03" title="Màn hình khuyến mãi tháng 03" style="--height-img:504; --width-img:900;">
-                            <picture>
-                                <source media="(max-width: 991px)" data-srcset="https://file.hstatic.net/200000722513/file/1580x510_man_hinh_thang_03_435810e7223043ec866bd0ed8dc1cf09.png" srcset="https://file.hstatic.net/200000722513/file/1580x510_man_hinh_thang_03_435810e7223043ec866bd0ed8dc1cf09.png">
-                                <source media="(min-width: 992px)" data-srcset="https://file.hstatic.net/200000722513/file/1580x510_man_hinh_thang_03_435810e7223043ec866bd0ed8dc1cf09.png" srcset="https://file.hstatic.net/200000722513/file/1580x510_man_hinh_thang_03_435810e7223043ec866bd0ed8dc1cf09.png">
-                                <img style="width: 955px;" ata-sizes="auto" class=" ls-is-cached lazyloaded" data-src="https://file.hstatic.net/200000722513/file/1580x510_man_hinh_thang_03_435810e7223043ec866bd0ed8dc1cf09.png" src="https://file.hstatic.net/200000722513/file/1580x510_man_hinh_thang_03_435810e7223043ec866bd0ed8dc1cf09.png" alt="Màn hình khuyến mãi tháng 03">
-                            </picture>
-                        </a>
-                    </div>
-                </div>
-                <div class="sale-body-right">
-                    <div class="banner-box fade-box" data-banner-page="Homepage" data-banner-loc="Bot_Promotion Banner_Small_2">
-                        <a class="aspect-ratio" href="" aria-label="Tai nghe" title="Tai nghe" style="--height-img:246; --width-img:796;">
-                            <picture>
-                                <source media="(max-width: 991px)" srcset="https://file.hstatic.net/200000722513/file/banner_790x250_tai_nghe_6f6dcb17d3a54fcc88b3de96762d2d41.jpg" data-srcset="https://file.hstatic.net/200000722513/file/banner_790x250_tai_nghe_6f6dcb17d3a54fcc88b3de96762d2d41.jpg" sizes="389px">
-                                <source media="(min-width: 992px)" srcset="https://file.hstatic.net/200000722513/file/banner_790x250_tai_nghe_6f6dcb17d3a54fcc88b3de96762d2d41.jpg" data-srcset="https://file.hstatic.net/200000722513/file/banner_790x250_tai_nghe_6f6dcb17d3a54fcc88b3de96762d2d41.jpg" sizes="389px">
-                                <img style="width: 480px;" data-sizes="auto" class="lazyautosizes ls-is-cached lazyloaded" src="https://file.hstatic.net/200000722513/file/banner_790x250_tai_nghe_6f6dcb17d3a54fcc88b3de96762d2d41.jpg" data-src="https://file.hstatic.net/200000722513/file/banner_790x250_tai_nghe_6f6dcb17d3a54fcc88b3de96762d2d41.jpg" alt="Tai nghe" sizes="389px">
-                            </picture>
-                        </a>
-                    </div>
-                    <div class="banner-box fade-box" data-banner-page="Homepage" data-banner-loc="Bot_Promotion Banner_Small_3">
-                        <a class="aspect-ratio" href="" aria-label="Banner" title="Banner" style="--height-img:246; --width-img:796;">
-                            <picture>
-                                <source media="(max-width: 991px)" srcset="https://file.hstatic.net/200000722513/file/bot_promotion_banner_small_2_2ad55c2345c64fbfb87dab4957b33914.png" data-srcset="https://file.hstatic.net/200000722513/file/bot_promotion_banner_small_2_2ad55c2345c64fbfb87dab4957b33914.png" sizes="389px">
-                                <source media="(min-width: 992px)" srcset="https://file.hstatic.net/200000722513/file/bot_promotion_banner_small_2_2ad55c2345c64fbfb87dab4957b33914.png" data-srcset="https://file.hstatic.net/200000722513/file/bot_promotion_banner_small_2_2ad55c2345c64fbfb87dab4957b33914.png" sizes="389px">
-                                <img style="width: 480px;" data-sizes="auto" class="lazyautosizes ls-is-cached lazyloaded" src="https://file.hstatic.net/200000722513/file/bot_promotion_banner_small_2_2ad55c2345c64fbfb87dab4957b33914.png" data-src="https://file.hstatic.net/200000722513/file/bot_promotion_banner_small_2_2ad55c2345c64fbfb87dab4957b33914.png" alt="Banner" sizes="389px">
-                            </picture>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
         <section class="top-sale">
             <div class="flash-sale-area">
                 <div class="d-flex align-items-center justify-content-between">
@@ -92,25 +57,25 @@
             <div class="flex" id="select-price">
                 <h2>Lọc theo giá:</h2>
 
-                <div data-id="duoi-10trieu">
+                <div data-id="duoi-10trieu" class="section">
                     <button>Dưới 10 triệu</button>
                 </div>
-                <div data-id="tu-10trieu-15trieu">
+                <div data-id="tu-10trieu-15trieu" class="section">
                     <button>10 triệu - 15 triệu</button>
                 </div>
-                <div data-id="tu-15trieu-20trieu">
+                <div data-id="tu-15trieu-20trieu" class="section">
                     <button>15 triệu - 20 triệu</button>
                 </div>
-                <div data-id="tu-20trieu-30trieu">
+                <div data-id="tu-20trieu-30trieu" class="section">
                     <button>20 triệu - 30 triệu</button>
                 </div>
-                <div data-id="tu-30trieu-50trieu">
+                <div data-id="tu-30trieu-50trieu" class="section">
                     <button>30 triệu - 50 triệu</button>
                 </div>
-                <div data-id="tu-50trieu-100trieu">
+                <div data-id="tu-50trieu-100trieu" class="section">
                     <button>50 triệu - 100 triệu</button>
                 </div>
-                <div data-id="tren-100trieu">
+                <div data-id="tren-100trieu" class="section">
                     <button>Trên 100 triệu</button>
                 </div>
             </div>
@@ -118,19 +83,6 @@
           <div class="row1">
             <div class="flex sort" id="sort">
                 <h2>Lọc theo tiêu chí:</h2>
-
-                <div data-id="new">
-                    <button>Hàng mới về</button>
-                </div>
-                <div data-id="price-asc">
-                    <button>Giá tăng dần</button>
-                </div>
-                <div data-id ="price-desc">
-                    <button>Giá giảm dần</button>
-                </div>
-                <div data-id ="name">
-                    <button>Tên từ A->Z</button>
-                </div>
                 <div>
                     <select name="cars" id="cars">
                         <option value="volvo">Thương hiệu</option>
@@ -166,9 +118,23 @@
 
             </div>
         </div>
-        <div class="row">
+        <div class="row2">
+            <div class="flex " id="select-price">
+                <div data-id="new" class="select">
+                    <button >Hàng mới về  </button>
+                </div>
+                <div data-id="price-asc" class="select">
+                    <button>Giá tăng dần</button>
+                </div>
+                <div data-id ="price-desc" class="select">
+                    <button>Giá giảm dần</button>
+                </div>
+                <div data-id ="name" class="select">
+                    <button>Tên từ A->Z</button>
+                </div>
+            </div>
             @foreach($dataCategories as $product)
-            <div class="column"  >
+            <div class="column">
                 <div class="" role="group">
                     <div class="product-item">
                         <a href="" class="product-image position-relative">
@@ -210,7 +176,7 @@
 @section('js')
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('/js/page/main.js') }}"></script>
+    <script src="{{ asset('/js/page/product.js') }}"></script>
     <script>
         $('.vendor-carousel').owlCarousel({
             loop: true,
@@ -221,16 +187,17 @@
     </script>
     <script>
         $(document).ready(function(){
-            $('#select-price div').click(function() {
+            $('#select-price div').click(function(event) {
+                event.preventDefault();
                 let url  = '?price='
                     + $(this).data('id');
                 window.location.href = url;
             });
 
-            $('#sort div').click(function() {
+            $('#sort div').click(function(event) {
+                event.preventDefault();
                 let url  = '?sort='
                     + $(this).data('id');
-                window.location.href = url;
             });
         });
     </script>
