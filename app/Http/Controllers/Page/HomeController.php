@@ -193,7 +193,7 @@ class HomeController extends Controller
 
         $dataCategory = $this->categoryRepository->productByCategory($slug, $getPrice, $getSortBy);
         $dataProducts = $this->categoryRepository->productSale($slug);
-        $dataCategories = $this->utility->paginate($dataCategory->products, 2);
+        $dataCategories = $this->utility->paginate($dataCategory->products, 20);
 
         return view('page.product.product-category', compact('dataCategories', 'dataProducts'));
     }

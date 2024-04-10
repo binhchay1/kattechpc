@@ -29,7 +29,7 @@ class PostRepository extends BaseRepository
     
     public function listPostASC()
     {
-        return $this->model->with('user', 'category')->orderBy('created_at', 'ASC')->get()->take(2);
+        return $this->model->with('user', 'category')->orderBy('created_at', 'ASC')->get()->take(10);
     }
 
     public function create($input)
