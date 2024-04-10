@@ -39,6 +39,7 @@ Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
 Route::get('/blog-detail/{slug}', [HomeController::class, 'postDetail'])->name('post.detail');
 Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
 Route::get('/product/{slug}', [ProductPage::class, 'productDetail'])->name('productDetail');
+Route::post('/comment', [ProductPage::class, 'storeComment'])->name('storeComment');
 Route::get('/promotion', [HomeController::class, 'viewPromotion'])->name('promotion');
 Route::get('/promotion-detail', [HomeController::class, 'promotionDetail'])->name('promotionDetail');
 Route::get('/rules', [HomeController::class, 'rules'])->name('rules');

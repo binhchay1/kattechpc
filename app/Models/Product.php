@@ -38,6 +38,11 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\ProductImage', 'product_id', 'id');
     }
+    
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
 
     public function sluggable(): array
     {

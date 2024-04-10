@@ -25,9 +25,6 @@
             @include('includes.header-page')
         </div>
         <div id="content-page">
-            <div id="message">
-                @include('layouts.flash-message')
-            </div>
             @yield('content')
         </div>
         <div id="footer-page">
