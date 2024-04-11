@@ -9,7 +9,7 @@
 @endsection
 
 @section('content')
-<hr class="container">
+<div class="container">
     <section class="product-container">
         <div class="img-card">
             <img src="{{ asset($product->image[0]) }}" id="featured-image">
@@ -32,13 +32,10 @@
         <div class="product-info">
             <h3>{{ $product->name }}</h3>
             @if($product->new_price != null)
-            <h5>{{ __('Giá ') }}: {{ number_format($product->new_price); }} đ <del>{{ number_format($product->price) }} đ</del></h5>
+            <h5>{{ __('Giá ') }}: {{ number_format($product->new_price) }} đ <del class="old-price">{{ number_format($product->price) }} đ</del> </h5>
             @else
             <h5>{{ __('Giá ') }}: {{ number_format($product->price) }} đ</h5>
             @endif
-            <div>
-                {!! html_entity_decode($product->description) !!}
-            </div>
 
             <div class="quantity mt-4 d-flex">
                 <a href="{{ route('addCart', $product['slug']) }}">
@@ -49,7 +46,9 @@
                     <button class="btn-add-to-cart">{{ __('Thêm vào giỏ hàng') }}</button>
                 </a>
             </div>
-
+            <div class="product-detail">
+                {!! html_entity_decode($product->description) !!}
+            </div>
             <div class="gift-product">
                 <div class="gift" style="background: #ddd;">
                     <h2 style="margin-left: 10px;">{{ __('Quà tặng và ưu đãi') }}</h2>
@@ -89,13 +88,21 @@
             <div id="content">
                 <div id="left">
                     <a href="{{ route('productDetail', $related->name) }}">
-                        <img src="{{ $related->image }}" alt="Image Alt" class="img-fluid" />
+                        <img src="{{$product->image[0]}}" alt="Image Alt" class="img-fluid" />
 
                     </a>
                 </div>
                 <div id="content-right">
                     <h4>{{ $related->name }}</h4>
-                    <div>{{ $related->price }}</div>
+                    <div class="product-martket-main d-flex align-items-center">
+                        <del class="product-market-price">{{ number_format($product->price) }} ₫</del>
+                        <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
+                        <div class="product-percent-price">-{{ $new_price }}%</div>
+                    </div>
+
+                    <div class="product-price-main font-weight-600">
+                        {{ number_format($product->new_price) }} đ
+                    </div>
                 </div>
             </div>
 

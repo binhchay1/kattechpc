@@ -53,36 +53,39 @@
 }
 
 .product-info h3 {
-    font-size: 30px;
-    font-family: Lato;
+    font-size: 25px;
     font-weight: 600;
     line-height: 130%;
 }
 
 .product-related{
-    padding: 0.5rem;
-    display: flex;
     flex-wrap: wrap;
     float: right;
     width: 40%;
-    padding: 10px;
     float: right;
+}
 
+.old-price {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.product-detail {
+    margin-top: 20px;
+    font-size: 18px;
 }
 
 .product-related h3 {
-    font-size: 30px;
-    font-family: Lato;
+    font-size: 25px;
     font-weight: 600;
     line-height: 130%;
 }
 
 .product-info h5 {
-    font-size: 24px;
-    font-weight: 500;
-    line-height: 130%;
-    color: #ff4242;
-    margin: 6px 0;
+    font-size: 32px;
+    line-height: 10px;
+    font-weight: 600;
+    color: #E30019;
 }
 
 .product-info del {
@@ -93,6 +96,7 @@
     color: #424551;
     margin: 15px 0;
     width: 100%;
+    font-size: 18px;
 }
 
 .sizes p {
@@ -128,7 +132,7 @@
 }
 
 .btn-add-to-cart {
-    background: #332de8;
+    background: #0a76e4;
     border-radius: 4px;
     padding: 10px 37px;
     border: none;
@@ -153,7 +157,6 @@ button:hover {
     width: 100%;
     color: #787a80;
     font-size: 12px;
-    font-family: Lato;
     line-height: 150%;
     letter-spacing: 1px;
 }
@@ -178,7 +181,6 @@ hr {
 
 .gift h2 {
     background: #ddd;
-    color: red;
     height: 50px;
     line-height: 50px;
     text-align: left;
@@ -283,7 +285,7 @@ tr:nth-child(even) {
 }
 
 #content {
-    padding: 0.5rem;
+    padding: 15px;
     display: flex;
 }
 
@@ -293,7 +295,11 @@ tr:nth-child(even) {
     margin-left: 20px;
 }
 
-
+#content-right h4 {
+    margin: 0;
+    line-height: 20px;
+    font-size: 18px;
+}
 
 @media screen and (max-width: 576px) {
     .product-container{
@@ -352,8 +358,31 @@ tr:nth-child(even) {
     width: 100%;
 }
 
-p {
+.product-market-price{
+    margin-top: 10px;
     font-size: 15px;
-    color: black;
-    -webkit-line-clamp: 10;
+    font-weight: 550;
+    color: gray;
+}
+
+
+.product-percent-price {
+    background: #FFEDED;
+    border: 1px solid red;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding: 2px;
+    margin-top: 10px;
+}
+
+.product-price-main  {
+    margin-top: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 20px;
+    color: #E30019;
+}
+
+.align-items-center {
+    margin-top: 10px;
 }
