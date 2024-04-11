@@ -12,17 +12,17 @@
     <div class="container">
         <div class="row">
             <div class="column">
-                <h1>{{__('CHÍNH SÁCH CHO DOANH NGHIỆP')}}</h1>
-                <h2>{{__('CAM KẾT GIÁ TỐT NHẤT THỊ TRƯỜNG')}}</h2>
+                <h1>{{ __('CHÍNH SÁCH CHO DOANH NGHIỆP') }}</h1>
+                <h2>{{ __('CAM KẾT GIÁ TỐT NHẤT THỊ TRƯỜNG') }}</h2>
             </div>
             <div class="column">
-                <img class="image-pc" src="{{asset('/images/page/pc-setup.jpg')}}">
+                <img class="image-pc" src="{{ asset('/images/page/pc-setup.jpg') }}">
             </div>
         </div>
 
         <div class=" top">
             <div class=" ml-200px">
-                <h3>{{__('10 LÝ DO DOANH NGHIỆP CHỌN KATTECH')}}</h3>
+                <h3>{{ __('10 LÝ DO DOANH NGHIỆP CHỌN KATTECH') }}</h3>
             </div>
         </div>
 
@@ -67,7 +67,7 @@
         </div>
 
         <div class=" top">
-           <img class="top-image" style="" src="https://hoabinhcomputer.com/mediacenter/media/images/2209/news/ava/best-laptop-brand-1698568664.jpg">
+           <img class="top-image" src="https://hoabinhcomputer.com/mediacenter/media/images/2209/news/ava/best-laptop-brand-1698568664.jpg">
         </div>
 
         <div class=" top">

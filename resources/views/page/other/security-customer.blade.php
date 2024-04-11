@@ -79,7 +79,7 @@ Việc đăng nhập có thể thực hiện trên máy tính, điện thoại, 
                {{__('6. Cơ chế tiếp nhận và giải quyết khiếu nại liên quan đến việc thông tin cá nhân khách hàng')}}
             </span>
             <p>
-                {{__('Thành viên có quyền gửi khiếu nại về việc bị lộ thông tin cá nhân cho bên thứ 3 đến Kattech qua Hotline của chúng tôi: Miến Bắc: 0927 884 885 Miền Nam: 0915 373 527 hoặc qua email: contact@kattech.com.vn')}}
+                {{__('Thành viên có quyền gửi khiếu nại về việc bị lộ thông tin cá nhân cho bên thứ 3 đến Kattech qua Hotline của chúng tôi: Miền Bắc: 0927 884 885 Miền Nam: 0915 373 527 hoặc qua email: contact@kattech.com.vn')}}
             </p>
             <p>
                 {{__('Công ty có trách nhiệm thực hiện các biện pháp kỹ thuật, nghiệp vụ để xác minh các nội dung được phản ánh.')}}
