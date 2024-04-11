@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-
     private $userRepository ;
     private $utility;
 

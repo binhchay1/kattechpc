@@ -106,11 +106,11 @@
                 @foreach($listFlashSale['flash_sale_list_product_id'] as $product)
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
-                        <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
+                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
                             <img width="164" height="164" alt="{{ $product->name }}" class="lazy entered loaded" src="{{ asset($product->image) }}">
                         </a>
                         <div class="product-info">
-                            <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
+                            <a href="{{ route('productDetail', $product['slug']) }}">
                                 <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
                             </a>
 
@@ -161,20 +161,20 @@
                 @foreach($listProductSale as $product)
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
-                        <a href="" class="product-image position-relative">
+                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
                             @if(isset($product->image))
                             <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy entered loaded">
                             @endif
                         </a>
                         <div class="product-info">
-                            <a href="">
+                            <a href="{{ route('productDetail', $product['slug']) }}">
                                 <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
                             </a>
 
                             <div class="product-martket-main d-flex align-items-center">
                                 <p class="product-market-price">{{ number_format($product->price) }} ₫</p>
                                 <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                                <div class="product-percent-price">-{{ $new_price }}%</div>
+                                <div class="product-percent-price">-{{ $new_price }} %</div>
                             </div>
 
                             <div class="product-price-main font-weight-600">
@@ -271,7 +271,7 @@
                             <div class="product-martket-main d-flex align-items-center">
                                 <p class="product-market-price">{{ number_format($product->price) }} ₫</p>
                                 <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                                <div class="product-percent-price">-{{ $new_price }}%</div>
+                                <div class="product-percent-price">-{{ $new_price }} %</div>
                             </div>
 
                             <div class="product-price-main font-weight-600">
