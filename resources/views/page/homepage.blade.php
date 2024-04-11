@@ -173,7 +173,8 @@
 
                             <div class="product-martket-main d-flex align-items-center">
                                 <p class="product-market-price">{{ number_format($product->price) }} ₫</p>
-                                <div class="product-percent-price">-{{ 100 - (((int) $product->new_price / (int) $product->price) * 100) }}%</div>
+                                <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
+                                <div class="product-percent-price">-{{ $new_price }}%</div>
                             </div>
 
                             <div class="product-price-main font-weight-600">
@@ -251,7 +252,7 @@
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
-                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="163" height="163" class="hover-for-tooltips">
+                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips">
                             @if($product->hot_status == 1)
                             <span class="p-type-holder">
                                 <i class="p-icon-type p-icon-hot"></i>
@@ -267,8 +268,14 @@
                             <a href="{{ route('productDetail', $product['slug']) }}">
                                 <h3 class="product-title line-clamp-3">{{ $product->name }}</h3>
                             </a>
+                            <div class="product-martket-main d-flex align-items-center">
+                                <p class="product-market-price">{{ number_format($product->price) }} ₫</p>
+                                <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
+                                <div class="product-percent-price">-{{ $new_price }}%</div>
+                            </div>
+
                             <div class="product-price-main font-weight-600">
-                                {{ number_format($product->price) }} đ
+                                {{ number_format($product->new_price) }} đ
                             </div>
                             <div class="product-offer line-clamp-2">
                                 <p>{{ $product->short_description }}</p>
