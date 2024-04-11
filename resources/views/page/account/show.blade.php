@@ -53,7 +53,7 @@
                             @if ($errors->has('name'))
                                 <span class="text-danger">{{ $errors->first('name') }}</span>
                             @endif
-                        </div><!--end col-->
+                        </div>
 
                         <div class="xl:col-span-6 account">
                             <label for="productCodeInput" class="">{{__('Địa chỉ email')}}
@@ -64,11 +64,11 @@
                             @if ($errors->has('email'))
                                 <span class="text-danger">{{ $errors->first('email') }}</span>
                             @endif
-                        </div><!--end col-->
+                        </div>
 
                         <div class="xl:col-span-6 account">
                             <div class="form-group">
-                                <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
+                                <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Hình ảnh') }}</label>
                                 <div class="">
                                     <div class="" style="display: inline-grid;">
                                         <input value="" type="file" class="border-0 bg-light pl-0" name="profile_photo_path" id="image" hidden>
