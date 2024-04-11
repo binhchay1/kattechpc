@@ -39,13 +39,13 @@ $(document).ready(function () {
         cursor: '-webkit-grabbing',
         scrollSensitivity: 40,
 
-        stop: function (event, ui) {
-            ui.item.removeAttr('style');
+        stop: function () {
+            let sort = new Array();
+            const container = jQuery(this);
 
-            let sort = new Array()
-            const container = jQuery(this)
+            console.log(container);
 
-            container.find('li').each(function (index) {
+            container.find('li').each(function () {
                 sort.push(jQuery(this).attr('data-id'));
             });
 
