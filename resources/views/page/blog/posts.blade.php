@@ -28,7 +28,7 @@
                     @endforeach
                 </div>
                 <div class=" top1">
-                    <h1 class="text content-tech" > {{__('Tin công nghệ')}}</h1>
+                    <h1 class="content-tech " > {{__('Tin công nghệ')}}</h1>
                     <hr class="hr">
 
                     <div class="parent">
@@ -62,7 +62,7 @@
                                 </div>
 
                                 <div id="object4">
-                                    <p>{{$postASC->short_description}}</p>
+                                    <p class="m-0">{{$postASC->short_description}}</p>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
 
             <div class="column2" >
                 <div class="row top1">
-                    <h2 class="text"> {{__('Chủ đề hót')}}</h2>
+                    <h2 class="text-title"> {{__('Chủ đề hót')}}</h2>
                     <div class="parent1">
                         <div class="child1">
                             <img src="https://file.hstatic.net/200000722513/file/laptop_1f3300ec0cf1455ca3b5199859d9cfd7.jpg" class="item-hot">
@@ -103,7 +103,7 @@
                 </div>
 
                 <div class="row top2">
-                    <h2 class="text"> {{__('Xem nhanh')}}</h2>
+                    <h2 class="text-title"> {{__('Xem nhanh')}}</h2>
                     @foreach($listPost as $post)
                     <div id="content">
                         <div id="left">
