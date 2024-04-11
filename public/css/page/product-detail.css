@@ -244,7 +244,6 @@ tr:nth-child(even) {
     border-left: 0;
     border-top: 0;
     border-radius: 0 4px 4px 0;
-    padding: 10px;
     font-size: 14px;
     color: #333e48;
     outline: 0;
@@ -254,6 +253,10 @@ tr:nth-child(even) {
 
 .comment {
     margin-bottom: 100px;
+}
+
+.rep-comment {
+    margin-bottom: 50px;
 }
 
 .btn-comment {
@@ -323,4 +326,34 @@ tr:nth-child(even) {
         width: 100%;
         padding: 0;
     }
+}
+
+
+.alert-info  {
+    color: red;
+    font-size: 15px;
+}
+
+.content-comment {
+    background: #e5e5e3;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.text-right {
+    text-align: right;
+    font-weight: 600;
+    color: #3b6ed4;
+    font-size: 20px;
+}
+
+.hr-row {
+    width: 100%;
+}
+
+p {
+    font-size: 15px;
+    color: black;
+    -webkit-line-clamp: 10;
 }
