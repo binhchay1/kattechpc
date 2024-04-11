@@ -1,10 +1,10 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ __('Trang chủ') }} | Kattech PC</title>
+<title>{{ __('Thanh toán online') }} | Kattech PC</title>
 @endsection
+
 @section('css')
-<link rel="stylesheet" href="{{ asset('/plugins/owlcarousel/owl.theme.default.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/page/policy.css') }}" />
 @endsection
 
@@ -119,13 +119,4 @@
 
 @section('js')
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
-<script>
-    $('.vendor-carousel').owlCarousel({
-        loop: true,
-        nav: false,
-        autoplay: true,
-        smartSpeed: 1000,
-    });
-</script>
 @endsection

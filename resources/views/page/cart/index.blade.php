@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ __('Trang chủ') }} | Kattech PC</title>
+<title>{{ __('Giỏ hàng') }} | Kattech PC</title>
 @endsection
 
 @section('css')
