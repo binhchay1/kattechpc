@@ -12,8 +12,8 @@
 <div class="row">
     <div class="leftcolumn">
         <div class="card">
-            <h2>{{$post->title}}</h2>
-            <h5>{{ date_format($post->created_at, "F j, Y, g:i a") }}</h5>
+            <h1>{{$post->title}}</h1>
+            <p>{{ date_format($post->created_at, "F j, Y, g:i a") }}</p>
             <div class="" >
                 <img class="boder-radius-10" src="{{$post->thumbnail ?? asset('/images/test_post/2904-viettel-dau-gia-thanh-cong-bang-tan-5g-1.jpg') }}" alt="Viettel trúng đấu giá băng tần để chính thức triển khai 5G tại Việt Nam">
             </div>

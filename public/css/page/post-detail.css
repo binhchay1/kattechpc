@@ -68,6 +68,12 @@
     height: 100px;
 }
 
+p {
+    font-weight: 600;
+    font-size: 15px;
+    color: black;
+    -webkit-line-clamp: 10;
+}
 
 img {
     border-radius: 5px;
