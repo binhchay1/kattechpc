@@ -26,7 +26,7 @@
         <img class="image-cart" src="{{asset('images/cart.jpg')}}">
         <div class="button-css-cart">
 
-            <a href="{{route('home')}}">
+            <a href="{{ route('home') }}">
                 <button class="button-cart">{{__('Tiếp tục mua hàng')}}</button></a>
         </div>
     </div>
