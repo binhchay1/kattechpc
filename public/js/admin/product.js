@@ -31,9 +31,27 @@ $(document).ready(function () {
 
     $('#images').on('change', function () {
         multiImgPreview(this);
+        jQuery('#imgPreview').sortable('refresh');
     });
 
-    $('#imgPreview').sortable();
+    $('#imgPreview').sortable({
+        items: 'li',
+        cursor: '-webkit-grabbing',
+        scrollSensitivity: 40,
+
+        stop: function (event, ui) {
+            ui.item.removeAttr('style');
+
+            let sort = new Array()
+            const container = jQuery(this)
+
+            container.find('li').each(function (index) {
+                sort.push(jQuery(this).attr('data-id'));
+            });
+
+            $('#images').val(sort.join());
+        }
+    });
 });
 
 function deleteImagePreview(button, imgName) {
@@ -57,4 +75,6 @@ function deleteImagePreview(button, imgName) {
     }
 
     images[0].files = dt.files;
+
+    jQuery('#imgPreview').sortable('refresh');
 }

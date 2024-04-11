@@ -16,20 +16,18 @@
 </head>
 
 <body>
-    <div>
-        <div id="page-banner">
-            @include('includes.item-banner')
-        </div>
+    <div id="page-banner">
+        @include('includes.item-banner')
+    </div>
 
-        <div id="header-page">
-            @include('includes.header-page')
-        </div>
-        <div id="content-page">
-            @yield('content')
-        </div>
-        <div id="footer-page">
-            @include('includes.footer-page')
-        </div>
+    <div id="header-page">
+        @include('includes.header-page')
+    </div>
+    <div id="content-page">
+        @yield('content')
+    </div>
+    <div id="footer-page">
+        @include('includes.footer-page')
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

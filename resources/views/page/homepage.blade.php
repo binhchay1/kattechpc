@@ -11,36 +11,6 @@
 @section('content')
 <section class="slider-banner">
     <div class="slider-banner-main">
-        <div class="menu-main">
-            <nav class="menu-nav">
-                <ul class="menu-nav-main">
-                    @foreach($listMenuBar as $menu => $item)
-                    <li class="menu-nav-item">
-                        <a class="menu-nav-link">
-                            <span class="menu-nav-icon" data-hover="{{ $menu }}">
-                                <i class="{{ $item['icon'] }}"></i>
-                            </span>
-                            <span class="menu-nav-name">{{ $menu }}</span>
-                            <span class="menu-nav-arrow">
-                                <svg viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1.5 1.5L4.5 4L1.5 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>
-                            </span>
-                        </a>
-                        <div class="menu-nav-content" style="display: none;">
-                            <div class="column xlab_column_5_5">
-                                <div class="sub-menu-nav-item smg-1">
-                                    <a class="sub-menu-nav-item-name" href="">Thương hiệu</a>
-                                    <a class="sub-menu-nav-item-filter" href="">ASUS</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    @endforeach
-                </ul>
-            </nav>
-        </div>
-
         <div class="news-main">
             <div class="news-main-left">
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
@@ -149,9 +119,11 @@
                                 <div class="product-percent-price">-{{ 100 - (((int) $product->new_price / (int) $product->price) * 100) }}%</div>
                             </div>
 
+                            @if(is_float($product->new_price))
                             <div class="product-price-main font-weight-600">
                                 {{ number_format($product->new_price) }} đ
                             </div>
+                            @endif
                             <div class="p-quantity-sale">
                                 <i class="sprite sprite-fire-deal"></i>
                                 <div class="bg-gradient"></div>
