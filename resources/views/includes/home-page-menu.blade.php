@@ -1,10 +1,11 @@
 <div class="global-menu-container">
     <p class="group-title"><i class="fa fa-bars"></i> Danh mục sản phẩm</p>
     <div class="global-menu-holder">
+        @foreach($listCategory as $category)
         <div class="item">
-            <a href="/laptop" class="cat-1">
-                <img class="lazy icon-menu entered loaded" alt="LAPTOP - PHỤ KIỆN" width="1" height="1" src="/media/category/cat_icon_407_1697165601.png">
-                <span class="cat-title line-clamp-1">LAPTOP - PHỤ KIỆN</span>
+            <a href="{{ $category->slug }}" class="cat-1">
+                <img class="lazy icon-menu entered loaded" alt="{{ $category->name }}" width="1" height="1" src="{{ asset($category->image) }}">
+                <span class="cat-title line-clamp-1">{{ $category->name }}</span>
             </a>
 
             <div class="sub-menu-list">
@@ -29,7 +30,6 @@
                     <a href="/30-trieu-50-trieu">30 Triệu - 50 Triệu </a>
                     <a href="/50-trieu-100-trieu">50 Triệu - 100 Triệu </a>
                     <a href="/tren-100-trieu">Trên 100 Triệu </a>
-
                 </div>
 
                 <div class="sub-cat-2">
@@ -69,5 +69,6 @@
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
 </div>

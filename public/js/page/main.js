@@ -116,4 +116,6 @@ $(document).ready(function () {
         let element = $(this).next();
         element.css('display', 'none');
     });
+
+    $('.lazy').Lazy();
 });

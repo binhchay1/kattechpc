@@ -18,7 +18,7 @@
                         @foreach($listSlide as $slide)
                         <div class="carousel-item active">
                             <a href="{{ $slide['url'] }}">
-                                <img src="{{ asset($slide['image']) }}" width="850" height="403" alt="Image">
+                                <img src="{{ asset($slide['image']) }}" width="850" height="403" alt="Image" class="lazy">
                             </a>
                         </div>
                         @endforeach
@@ -41,14 +41,14 @@
                 <div class="news-main-right-1">
                     @if(isset($layout->small_thumbnail_1))
                     <a href="{{ isset($layout->permarklink_small_thumbnail_1) ? $layout->permarklink_small_thumbnail_1 : '#' }}">
-                        <img src="{{ asset($layout->small_thumbnail_1) }}" width="400">
+                        <img src="{{ asset($layout->small_thumbnail_1) }}" width="400" class="lazy">
                     </a>
                     @endif
                 </div>
                 <div class="news-main-right-2">
                     @if(isset($layout->small_thumbnail_2))
                     <a href="{{ isset($layout->permarklink_small_thumbnail_2) ? $layout->permarklink_small_thumbnail_2 : '#' }}">
-                        <img src="{{ asset($layout->small_thumbnail_2) }}" width="400">
+                        <img src="{{ asset($layout->small_thumbnail_2) }}" width="400" class="lazy">
                     </a>
                     @endif
                 </div>
@@ -59,28 +59,28 @@
         <div class="news-main-right-1">
             @if(isset($layout->small_thumbnail_3))
             <a href="{{ isset($layout->permarklink_small_thumbnail_3) ? $layout->permarklink_small_thumbnail_3 : '#' }}">
-                <img src="{{ asset($layout->small_thumbnail_3) }}" width="350">
+                <img src="{{ asset($layout->small_thumbnail_3) }}" width="350" class="lazy">
             </a>
             @endif
         </div>
         <div class="news-main-right-2" style="margin-left: 10px;">
             @if(isset($layout->small_thumbnail_4))
             <a href="{{ isset($layout->permarklink_small_thumbnail_4) ? $layout->permarklink_small_thumbnail_4 : '#' }}">
-                <img src="{{ asset($layout->small_thumbnail_4) }}" width="350">
+                <img src="{{ asset($layout->small_thumbnail_4) }}" width="350" class="lazy">
             </a>
             @endif
         </div>
         <div class="news-main-right-2" style="margin-left: 10px;">
             @if(isset($layout->small_thumbnail_5))
             <a href="{{ isset($layout->permarklink_small_thumbnail_5) ? $layout->permarklink_small_thumbnail_5 : '#' }}">
-                <img src="{{ asset($layout->small_thumbnail_5) }}" width="350">
+                <img src="{{ asset($layout->small_thumbnail_5) }}" width="350" class="lazy">
             </a>
             @endif
         </div>
         <div class="news-main-right-2" style="margin-left: 10px;">
             @if(isset($layout->small_thumbnail_6))
             <a href="{{ isset($layout->permarklink_small_thumbnail_6) ? $layout->permarklink_small_thumbnail_6 : '#' }}">
-                <img src="{{ asset($layout->small_thumbnail_6) }}" width="350">
+                <img src="{{ asset($layout->small_thumbnail_6) }}" width="350" class="lazy">
             </a>
             @endif
         </div>
@@ -107,7 +107,7 @@
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
-                            <img width="164" height="164" alt="{{ $product->name }}" class="lazy entered loaded" src="{{ asset($product->image) }}">
+                            <img width="164" height="164" alt="{{ $product->name }}" class="lazy" src="{{ asset($product->image) }}">
                         </a>
                         <div class="product-info">
                             <a href="{{ route('productDetail', $product['slug']) }}">
@@ -155,7 +155,7 @@
             <div class="box-banner-collection">
                 @if(isset($layout->hot_sale_big_thumbnail))
                 <a href="{{ isset($layout->permarklink_hot_sale_big_thumbnail) ? $layout->permarklink_hot_sale_big_thumbnail : '#' }}" class="banner-collection boder-radius-10">
-                    <img src="{{ asset($layout->hot_sale_big_thumbnail) }}" width="365" class="boder-radius-10 lazy-image entered loaded" alt="" data-was-processed="true" data-ll-status="loaded">
+                    <img src="{{ asset($layout->hot_sale_big_thumbnail) }}" width="365" class="boder-radius-10 lazy" alt="" data-was-processed="true" data-ll-status="loaded">
                 </a>
                 @endif
             </div>
@@ -165,7 +165,7 @@
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
                             @if(isset($product->image))
-                            <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy entered loaded">
+                            <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy">
                             @endif
                         </a>
                         <div class="product-info">
@@ -202,7 +202,7 @@
         <div class="flex-container">
             @foreach($listCategory as $category)
             <a href="{{ route('showDataCategory', $category->slug) }}">
-                <img src="{{ asset($category->image) }}" class="item-hot">
+                <img src="{{ asset($category->image) }}" class="item-hot lazy">
                 <span class="policy-title">{{ $category->name }}</span>
             </a>
             @endforeach
@@ -236,7 +236,7 @@
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
-                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips">
+                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy">
                             @if($product->hot_status == 1)
                             <span class="p-type-holder">
                                 <i class="p-icon-type p-icon-hot"></i>
