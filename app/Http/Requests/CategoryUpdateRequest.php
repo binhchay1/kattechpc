@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends FormRequest
+class CategoryUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class CategoryRequest extends FormRequest
     {
         return true;
     }
-
+    
     /**
      * Get the validation rules that apply to the request.
      *
@@ -23,7 +23,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name' =>'required|max:191',
-            'image' =>'required|mimes:jpeg,png,jpg|max:2048'
+            'image' =>'mimes:jpeg,png,jpg|max:2048'
         
         ];
     }
@@ -33,7 +33,6 @@ class CategoryRequest extends FormRequest
         return [
             'name.required' => __('Tên danh mục không được để trống'),
             'name.max' => __('Tên danh mục không được vượt quá 191 kí tự'),
-            'image.required' => __('Hình ảnh không được để trống'),
             'image.mine' => __('Hình ảnh không đúng định dạng: jpeg,png,jpg '),
             'image.max' => __('Hình ảnh không vượt quá 2048'),
         ];

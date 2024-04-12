@@ -40,6 +40,8 @@
 
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">
                                     {{__('Tiêu đề')}}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">
+                                    {{__('Hành động')}}</th>
 
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{__('Tên miền')}}
                                 </th>
@@ -54,7 +56,13 @@
 
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$category->name}}
                                     </td>
-
+                                    <td>
+                                        <div
+                                            class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
+                                            <img src="{{$category->image}}"
+                                                 alt="" class="h-10 rounded-full">
+                                        </div>
+                                    </td>
 
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$category->slug}}
                                     </td>
