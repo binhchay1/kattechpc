@@ -2,19 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\Utility;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 use App\Repositories\CategoryRepository;
 use Illuminate\Support\Str;
 
 class CategoryProductController extends Controller
 {
     private $categoryRepository;
+    private $utility;
 
     public function __construct(
-        CategoryRepository $categoryRepository
+        CategoryRepository $categoryRepository,
+        Utility $utility
     ) {
         $this->categoryRepository = $categoryRepository;
+        $this->utility = $utility;
     }
 
     public function index()
@@ -35,6 +40,12 @@ class CategoryProductController extends Controller
     {
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($input['name']);
+        if (isset($input['image'])) {
+        
+            $this->utility->saveImageCategory($input);
+            $path = '/images/upload/category/' . $input['image']->getClientOriginalName();
+            $input['image'] = $path;
+        }
         $this->categoryRepository->create($input);
 
         return redirect()->route('admin.categoryProduct.index')->with('success',  __('Danh mục sản phẩm được thêm thành công'));
@@ -51,11 +62,18 @@ class CategoryProductController extends Controller
         return view('admin.category-product.edit', compact('categoryProduct', 'listCategory'));
     }
 
-    public function updateCategory(CategoryRequest $request,  $id)
+    public function updateCategory(CategoryUpdateRequest $request,  $id)
     {
         $input = $request->except(['_token']);
         $input['slug'] =  Str::slug($input['name']);
+        if (isset($input['image'])) {
+        
+            $this->utility->saveImageCategory($input);
+            $path = '/images/upload/category/' . $input['image']->getClientOriginalName();
+            $input['image'] = $path;
+        }
         $input = $this->categoryRepository->update($input, $id);
+        
 
         return redirect()->route('admin.categoryProduct.index')->with('success',  __('Danh mục sản phẩm được thay đổi thành công'));
     }

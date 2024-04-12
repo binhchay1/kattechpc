@@ -1,3 +1,18 @@
+<style>
+    .badge:after{
+        content:attr(value);
+        font-size:15px;
+        background: red;
+        border-radius:50%;
+        padding:3px;
+        position:relative;
+        left:-8px;
+        top:-10px;
+        opacity:0.9;
+        color: white;
+    }
+</style>
+
 <div class="header">
     <div class="header-top">
         <div class="header-top-container">
@@ -74,7 +89,7 @@
                 </div>
                 <div class="cart-area ml-20px">
                     <a href="{{route('showCart')}}">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>{{__('Giỏ hàng')}} <span class="badge badge-pill badge-danger" style="background: red;padding: 6px;color: white;border-radius: 16px;">{{ count(Cart::getContent()) }}</span>
+                        <i class="fa badge" style="font-size:24px" value={{ count(Cart::getContent()) }}>&#xf07a;</i> {{__('Giỏ hàng')}}
                     </a>
                 </div>
             </div>

@@ -210,8 +210,8 @@
     </div>
 
 </section>
-
 @foreach($listCategory as $category)
+    @if($category->parent == 0)
 <section class="product-slide">
     <div class="product-slide-main boder-radius-10">
         <div class="d-flex align-items-center justify-content-between">
@@ -275,6 +275,7 @@
         </div>
     </div>
 </section>
+@endif
 @endforeach
 
 <section class="content-sale">

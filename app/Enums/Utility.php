@@ -44,6 +44,13 @@ final class Utility
             Storage::disk('r2')->put($input['profile_photo_path']->getClientOriginalName(), $input['profile_photo_path']->get());
         }
     }
+    
+    public function saveImageCategory($input)
+    {
+        if ($input) {
+            Storage::disk('r2')->put($input['image']->getClientOriginalName(), $input['image']->get());
+        }
+    }
 
     public function paginate($items, $perPage = 15, $path = null, $pageName = 'page', $page = null, $options = [])
     {
