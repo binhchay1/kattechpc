@@ -1,6 +1,6 @@
 <div class="tab-pane hidden" id="slide">
     <button data-modal-target="addImageModal" type="button" class="text-white transition-all duration-200 ease-linear btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:focus:ring-custom-400/20">{{ __('Thêm ảnh') }}</button>
-    <div class="-mx-5 -mb-5 overflow-x-auto">
+    <div class="-mx-5 -mb-5 overflow-x-auto" style="margin-top: 10px;">
         <table class="w-full border-separate table-custom border-spacing-y-1 whitespace-nowrap">
             <thead class="text-left">
                 <tr class="relative rounded-md bg-slate-100 dark:bg-zink-600 after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">

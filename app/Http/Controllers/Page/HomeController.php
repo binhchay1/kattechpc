@@ -53,7 +53,7 @@ class HomeController extends Controller
             return redirect()->back();
         }
     }
-    
+
     public function viewSearch(Request $request)
     {
         $search = $request->get('q');
@@ -67,7 +67,7 @@ class HomeController extends Controller
         }
         return view('page.search', compact('listProducts', 'search', 'isList'));
     }
-    
+
 
     public function viewPolicy()
     {
@@ -129,7 +129,7 @@ class HomeController extends Controller
 
         $listCategory = $this->categoryRepository->getListCategory();
         $listNews = $this->postRepository->getListNewsInHomepage();
-        $listLayout = $this->layoutRepository->getListLayout();
+        $layout = $this->layoutRepository->getListLayout();
         $getSlide = $this->layoutRepository->getSlide();
         $getFlashSale = $this->layoutRepository->getFlashSale();
         $listFlashSale = [];
@@ -162,7 +162,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale', 'listLayout', 'listSlide', 'listFlashSale', 'listMenuBar'));
+        return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale', 'layout', 'listSlide', 'listFlashSale', 'listMenuBar'));
     }
 
     public function viewPost()

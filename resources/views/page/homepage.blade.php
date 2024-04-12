@@ -153,9 +153,11 @@
 
         <div class="swiper d-flex">
             <div class="box-banner-collection">
+                @if(isset($layout->hot_sale_big_thumbnail))
                 <a href="{{ isset($layout->permarklink_hot_sale_big_thumbnail) ? $layout->permarklink_hot_sale_big_thumbnail : '#' }}" class="banner-collection boder-radius-10">
                     <img src="{{ asset($layout->hot_sale_big_thumbnail) }}" width="365" class="boder-radius-10 lazy-image entered loaded" alt="" data-was-processed="true" data-ll-status="loaded">
                 </a>
+                @endif
             </div>
             <div class="swiper-wrapper swiper-top-sale" style="left: 48%;">
                 @foreach($listProductSale as $product)
@@ -253,7 +255,7 @@
                             <div class="product-martket-main d-flex align-items-center">
                                 <p class="product-market-price">{{ number_format($product->price) }} ₫</p>
                                 <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                                <div class="product-percent-price">-{{ $new_price }} %</div>
+                                <div class="product-percent-price">- {{ number_format($new_price) }} %</div>
                             </div>
 
                             <div class="product-price-main font-weight-600">
@@ -324,7 +326,7 @@
             <div class="title-box">
                 <h2 class="title-box font-weight-600">{{ __('Tin tức công nghệ') }}</h2>
             </div>
-            <a href="{{route('post')}}" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
+            <a href="{{ route('post') }}" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
         <div class="list-article-group d-flex align-items-center gap-10">
             @foreach($listNews as $news)

@@ -490,7 +490,6 @@ body a {
 
 .flex-container {
     display: flex;
-    justify-content: space-between;
     background-color: #eee;
     border-radius: 5px;
 }
@@ -780,7 +779,7 @@ body a {
 }
 
 .flash-sale-area .product-title {
-    min-height: 85px;
+    max-height: 85px;
 }
 
 .title {

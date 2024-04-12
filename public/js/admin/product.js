@@ -23,7 +23,6 @@ $(document).ready(function () {
                 reader.onload = function (event) {
                     if (status_product == 'create') {
                         $('#imgPreview').append('<li data-id="' + input.files[i].name + '"><img id="img-review-' + (i + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><button id="button-review-' + (i + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this, `' + input.files[i].name + '`)"/>Delete</button></li>');
-                        list.push(input.files[i].name);
                     } else {
                         $('#imgPreview').append('<li data-id="' + input.files[i].name + '"><img id="img-review-' + (lengthPreview + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><button id="button-review-' + (lengthPreview + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this)"/>Delete</button></li>');
                         lengthPreview++;
@@ -38,6 +37,7 @@ $(document).ready(function () {
             }
 
             images[0].files = storeFile.files;
+            $('#imgPreview').sortable('refresh');
         }
     };
 
