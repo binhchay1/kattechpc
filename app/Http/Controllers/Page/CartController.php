@@ -106,4 +106,18 @@ class CartController extends Controller
         return view('page.cart.thank');
     }
     
+    public function addToCart($id)
+    {
+        $dataProduct = $this->productRepository->productDetail($id);
+        Cart::add(
+            $dataProduct->id,
+            $dataProduct->name,
+            $dataProduct->price,
+            1,
+            ['image' => $dataProduct->image]
+        );
+    
+        return redirect()->back()->with('success', 'Product add to cart successfully!');
+    }
+    
 }

@@ -1,47 +1,3 @@
-<style>
-    .dropbtn {
-        background-color: #04AA6D;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-    }
-
-    .dropdown {
-        position: relative;
-        display: inline-block;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f1f1f1;
-        min-width: 200px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-    }
-
-    .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-    }
-
-    .dropdown-content a:hover {
-        background-color: #ddd;
-    }
-
-    .dropdown:hover .dropdown-content {
-        display: block;
-    }
-
-    .dropdown:hover .dropbtn {
-        background-color: #3e8e41;
-    }
-</style>
-
-
 <div class="header">
     <div class="header-top">
         <div class="header-top-container">
@@ -55,10 +11,10 @@
                 <div class="ml-15px dropdown">
                     <a href="{{ route('support') }}" class="sep-item-link" target="_blank"><i class="fa fa-wrench"></i> {{ __('Chính sách hỗ trợ') }}</a>
                     <div class="dropdown-content">
-                        <a href="{{ route('rules') }}">{{__('Quy định chung của công ty')}}</a>
-                        <a href="{{ route('businessPolicy') }}">{{__('Chính sách doanh nghiệp')}}</a>
-                        <a href="{{ route('productPolicy') }}">{{__('Chính sách hàng chính hãng')}}</a>
-                        <a href="{{ route('complaint') }}">{{__('Khiếu nại')}}</a>
+                        <a href="{{ route('rules') }}">{{ __('Quy định chung của công ty') }}</a>
+                        <a href="{{ route('businessPolicy') }}">{{ __('Chính sách doanh nghiệp') }}</a>
+                        <a href="{{ route('productPolicy') }}">{{ __('Chính sách hàng chính hãng') }}</a>
+                        <a href="{{ route('complaint') }}">{{ __('Khiếu nại') }}</a>
                     </div>
                 </div>
                 <div class="ml-15px ">
@@ -69,8 +25,8 @@
                 <div class="ml-15px dropdown">
                     <a href="" class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
                     <div class="dropdown-content">
-                        <a href="{{route('profile')}}">{{__('Tài khoản')}}</a>
-                        <a href="{{route('orderHistory')}}">{{__('Lịch sử mua hàng')}}</a>
+                        <a href="{{route('profile')}}">{{ __('Tài khoản') }}</a>
+                        <a href="{{route('orderHistory')}}">{{ __('Lịch sử mua hàng') }}</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a onclick="this.closest('form').submit();return false;">
@@ -118,8 +74,7 @@
                 </div>
                 <div class="cart-area ml-20px">
                     <a href="{{route('showCart')}}">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span>{{ __('Giỏ hàng') }}</span>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>{{__('Giỏ hàng')}} <span class="badge badge-pill badge-danger" style="background: red;padding: 6px;color: white;border-radius: 16px;">{{ count(Cart::getContent()) }}</span>
                     </a>
                 </div>
             </div>
@@ -132,15 +87,7 @@
         <div class="d-lg-block d-xl-block d-none">
             <ul class="list-submenu list-submenu--desktop">
                 <li class="item-submenu sm-1">
-                    <a href="">
-                        <span class="icon"><svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect x="3.95453" y="3.95454" width="2.27273" height="2.27273" rx="1.13636" stroke="currentcolor"></rect>
-                                <path d="M9.18179 11.6364L12.4545 14.9091" stroke="currentcolor" stroke-linecap="round"></path>
-                                <path d="M10 7.54546L14.9091 12.4545" stroke="currentcolor" stroke-linecap="round"></path>
-                                <path d="M10.2227 17.6407L1.61378 9.3629C1.22163 8.98583 1 8.46527 1 7.92124V4.28297C1 3.75254 1.21071 3.24383 1.58579 2.86876L2.86876 1.58579C3.24383 1.21071 3.75254 1 4.28297 1H7.92124C8.46527 1 8.98583 1.22163 9.3629 1.61378L13.8864 6.31818L17.6407 10.2227C18.3957 11.0079 18.3835 12.2529 17.6132 13.0231L13.0231 17.6132C12.2529 18.3835 11.0079 18.3957 10.2227 17.6407Z" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg></span>
-                        <span class="text">{{__('Săn Mã khuyến mại')}}</span>
-                    </a>
+                    @include('includes.home-page-menu')
                 </li>
                 <li class="item-submenu sm-2">
                     <a href="{{ route('post') }}">

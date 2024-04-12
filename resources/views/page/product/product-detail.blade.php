@@ -9,6 +9,9 @@
 @endsection
 
 @section('content')
+    @if(Session::has('success'))
+        <p class="alert-add {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('success') }}</p>
+    @endif
 <div class="container">
     <section class="product-container">
         <div class="img-card">
@@ -42,7 +45,7 @@
                     <button class="btn-buy">{{ __('Mua ngay') }}</button>
                 </a>
 
-                <a href="{{ route('addCart', $product['slug']) }}">
+                <a href="{{ route('add_to_cart', $product['slug']) }}">
                     <button class="btn-add-to-cart">{{ __('Thêm vào giỏ hàng') }}</button>
                 </a>
             </div>
@@ -172,5 +175,10 @@
             }
         }
     }
+</script>
+<script>
+    setTimeout(function() {
+        $('.alert-add').remove();
+    }, 5000);
 </script>
 @endsection

@@ -1,29 +1,29 @@
 @extends('layouts.page')
 
 @section('title')
-    <title>{{ __('Trang chủ') }} | Kattech PC</title>
+<title>{{ __('Bảo mật thông tin khách hàng') }} | Kattech PC</title>
 @endsection
+
 @section('css')
-    <link rel="stylesheet" href="{{ asset('/plugins/owlcarousel/owl.theme.default.min.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('css/page/security-customer.css') }}"/>
+<link rel="stylesheet" href="{{ asset('css/page/security-customer.css') }}" />
 @endsection
 
 @section('content')
-    <div class="container">
-        <div class="footer-container">
-            <div class="">
-                <div class="policy-step ">
-                    <div class=" ml-100px">
-                        <h1>{{__('CHÍNH SÁCH')}}</h1>
-                        <h1>{{__('BẢO MẬT THÔNG TIN KHÁCH HÀNG')}}</h1>
-                    </div>
+<div class="container">
+    <div class="footer-container">
+        <div class="">
+            <div class="policy-step ">
+                <div class=" ml-100px">
+                    <h1>{{__('CHÍNH SÁCH')}}</h1>
+                    <h1>{{__('BẢO MẬT THÔNG TIN KHÁCH HÀNG')}}</h1>
                 </div>
             </div>
         </div>
-        <div class="row top">
-            <div class="" id="bill">
-                <h2>{{__('CHÍNH SÁCH BẢO MẬT')}}</h2>
-                <p>{{__(' Khi sử dụng các sản phẩm và dịch vụ của Kattech, Quý khách đã cung cấp thông tin cho chúng tôi và hãy tin rằng chúng tôi luôn hết mình và định ra nguyên tắc bảo mật thông tin riêng tư, nghiêm ngặt. Quý khách vui lòng đọc bản “Chính sách bảo mật thông tin” dưới đây để hiểu hơn những cam kết mà chúng tôi thực hiện, nhằm tôn trọng và bảo vệ quyền lợi của người dùng. ')}}</p>
+    </div>
+    <div class="row top">
+        <div class="" id="bill">
+            <h2>{{__('CHÍNH SÁCH BẢO MẬT')}}</h2>
+            <p>{{__(' Khi sử dụng các sản phẩm và dịch vụ của Kattech, Quý khách đã cung cấp thông tin cho chúng tôi và hãy tin rằng chúng tôi luôn hết mình và định ra nguyên tắc bảo mật thông tin riêng tư, nghiêm ngặt. Quý khách vui lòng đọc bản “Chính sách bảo mật thông tin” dưới đây để hiểu hơn những cam kết mà chúng tôi thực hiện, nhằm tôn trọng và bảo vệ quyền lợi của người dùng. ')}}</p>
             <span>
                 {{__('1. Mục đích và phạm vi thu thập')}}
             </span>
@@ -55,15 +55,15 @@
                 {{__('4. Phương tiện và công cụ để người dùng tiếp cận và chỉnh sửa dữ liệu cá nhân của mình.')}}
             </span>
             <p>
-            {{__('Người dùng có thể tiếp cận và chỉnh sửa trực tiếp dữ liệu cá nhân của mình thông qua website bằng cách đăng nhập vào tài khoản mà mình đã đăng ký và sửa lại các thông tin, dữ liệu cá nhân của mình.
+                {{__('Người dùng có thể tiếp cận và chỉnh sửa trực tiếp dữ liệu cá nhân của mình thông qua website bằng cách đăng nhập vào tài khoản mà mình đã đăng ký và sửa lại các thông tin, dữ liệu cá nhân của mình.
 
 Việc đăng nhập có thể thực hiện trên máy tính, điện thoại, hay các công cụ khác có tính năng truy cập vào website.')}}
             </p>
             <span>
-            {{__('5. Cam kết bảo mật thông tin cá nhân Khách hàng')}}
+                {{__('5. Cam kết bảo mật thông tin cá nhân Khách hàng')}}
             </span>
             <p>
-            {{__('Chúng tôi chỉ tập hợp lại các thông tin cá nhân trong phạm vi phù hợp và cần thiết cho mục đích thương mại đúng đắn của chúng tôi. Và chúng tôi duy trì các biện pháp thích hợp nhằm đảm bảo tính an toàn, nguyên vẹn, độ chính xác, và tính bảo mật của những thông tin mà người sử dụng đã cung cấp. Ngoài ra, chúng tôi cũng có những biện pháp thích hợp để đảm bảo rằng bên thứ ba cũng sẽ đảm bảo an toàn cho các thông tin mà chúng tôi cung cấp cho họ.')}}
+                {{__('Chúng tôi chỉ tập hợp lại các thông tin cá nhân trong phạm vi phù hợp và cần thiết cho mục đích thương mại đúng đắn của chúng tôi. Và chúng tôi duy trì các biện pháp thích hợp nhằm đảm bảo tính an toàn, nguyên vẹn, độ chính xác, và tính bảo mật của những thông tin mà người sử dụng đã cung cấp. Ngoài ra, chúng tôi cũng có những biện pháp thích hợp để đảm bảo rằng bên thứ ba cũng sẽ đảm bảo an toàn cho các thông tin mà chúng tôi cung cấp cho họ.')}}
             </p>
             <p>
                 {{__('Thông tin cá nhân, thông tin riêng của người sử dụng được thu thập, lưu trữ và bảo vệ một cách nghiêm túc, chính xác và bảo mật.')}}
@@ -76,10 +76,10 @@ Việc đăng nhập có thể thực hiện trên máy tính, điện thoại, 
             </p>
 
             <span>
-               {{__('6. Cơ chế tiếp nhận và giải quyết khiếu nại liên quan đến việc thông tin cá nhân khách hàng')}}
+                {{__('6. Cơ chế tiếp nhận và giải quyết khiếu nại liên quan đến việc thông tin cá nhân khách hàng')}}
             </span>
             <p>
-                {{__('Thành viên có quyền gửi khiếu nại về việc bị lộ thông tin cá nhân cho bên thứ 3 đến Kattech qua Hotline của chúng tôi: Miến Bắc: 0927 884 885 Miền Nam: 0915 373 527 hoặc qua email: contact@kattech.com.vn')}}
+                {{__('Thành viên có quyền gửi khiếu nại về việc bị lộ thông tin cá nhân cho bên thứ 3 đến Kattech qua Hotline của chúng tôi: Miền Bắc: 0927 884 885 Miền Nam: 0915 373 527 hoặc qua email: contact@kattech.com.vn')}}
             </p>
             <p>
                 {{__('Công ty có trách nhiệm thực hiện các biện pháp kỹ thuật, nghiệp vụ để xác minh các nội dung được phản ánh.')}}
@@ -89,21 +89,12 @@ Việc đăng nhập có thể thực hiện trên máy tính, điện thoại, 
             </p>
 
 
-            </div>
         </div>
     </div>
+</div>
 
 @endsection
 
 @section('js')
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
-    <script>
-        $('.vendor-carousel').owlCarousel({
-            loop: true,
-            nav: false,
-            autoplay: true,
-            smartSpeed: 1000,
-        });
-    </script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 @endsection

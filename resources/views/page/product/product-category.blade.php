@@ -58,13 +58,13 @@
                 <h2>Lọc theo giá:</h2>
 
                 <div data-id="duoi-10trieu" class="section">
-                    <button>Dưới 10 triệu</button>
+                    <button>{{ __('Dưới 10 triệu') }}</button>
                 </div>
                 <div data-id="tu-10trieu-15trieu" class="section">
-                    <button>10 triệu - 15 triệu</button>
+                    <button>{{ __('10 triệu - 15 triệu') }}</button>
                 </div>
                 <div data-id="tu-15trieu-20trieu" class="section">
-                    <button>15 triệu - 20 triệu</button>
+                    <button>{{ __('15 triệu - 20 triệu') }}</button>
                 </div>
                 <div data-id="tu-20trieu-30trieu" class="section">
                     <button>20 triệu - 30 triệu</button>
@@ -82,10 +82,10 @@
         </div>
           <div class="row1">
             <div class="flex sort" id="sort">
-                <h2>Lọc theo tiêu chí:</h2>
+                <h2>{{ __('Lọc theo tiêu chí:') }}</h2>
                 <div>
                     <select name="cars" id="cars">
-                        <option value="volvo">Thương hiệu</option>
+                        <option value="volvo">{{ __('Thương hiệu') }}</option>
                         <option value="saab"></option>
                         <option value="opel">Opel</option>
                         <option value="audi">Audi</option>
@@ -121,16 +121,16 @@
         <div class="row2">
             <div class="flex " id="select-price">
                 <div data-id="new" class="select">
-                    <button >Hàng mới về  </button>
+                    <button>{{ __('Hàng mới về') }}</button>
                 </div>
                 <div data-id="price-asc" class="select">
-                    <button>Giá tăng dần</button>
+                    <button>{{ __('Giá tăng dần') }}</button>
                 </div>
                 <div data-id ="price-desc" class="select">
-                    <button>Giá giảm dần</button>
+                    <button>{{ __('Giá giảm dần') }}</button>
                 </div>
                 <div data-id ="name" class="select">
-                    <button>Tên từ A->Z</button>
+                    <button>{{ __('Tên từ A->Z') }}</button>
                 </div>
             </div>
             @foreach($dataCategories as $product)

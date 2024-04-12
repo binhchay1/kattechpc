@@ -56,7 +56,7 @@ class HomeController extends Controller
 
     public function viewPolicy()
     {
-        return view('page.policy');
+        return view('page.other.policy');
     }
 
     public function viewAccount()
@@ -76,32 +76,32 @@ class HomeController extends Controller
 
     public function rules()
     {
-        return view('page.rule');
+        return view('page.other.rule');
     }
 
     public function complaint()
     {
-        return view('page.complaint');
+        return view('page.other.complaint');
     }
 
     public function productPolicy()
     {
-        return view('page.product-policy');
+        return view('page.other.product-policy');
     }
 
     public function businessPolicy()
     {
-        return view('page.business-policy');
+        return view('page.other.business-policy');
     }
 
     public function electronicBill()
     {
-        return view('page.electronic-bill');
+        return view('page.other.electronic-bill');
     }
 
     public function securityCustomer()
     {
-        return view('page.security-customer');
+        return view('page.other.security-customer');
     }
 
     public function viewHome()

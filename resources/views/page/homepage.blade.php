@@ -11,36 +11,6 @@
 @section('content')
 <section class="slider-banner">
     <div class="slider-banner-main">
-        <div class="menu-main">
-            <nav class="menu-nav">
-                <ul class="menu-nav-main">
-                    @foreach($listMenuBar as $menu => $item)
-                    <li class="menu-nav-item">
-                        <a class="menu-nav-link">
-                            <span class="menu-nav-icon" data-hover="{{ $menu }}">
-                                <i class="{{ $item['icon'] }}"></i>
-                            </span>
-                            <span class="menu-nav-name">{{ $menu }}</span>
-                            <span class="menu-nav-arrow">
-                                <svg viewBox="0 0 6 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1.5 1.5L4.5 4L1.5 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>
-                            </span>
-                        </a>
-                        <div class="menu-nav-content" style="display: none;">
-                            <div class="column xlab_column_5_5">
-                                <div class="sub-menu-nav-item smg-1">
-                                    <a class="sub-menu-nav-item-name" href="">Thương hiệu</a>
-                                    <a class="sub-menu-nav-item-filter" href="">ASUS</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    @endforeach
-                </ul>
-            </nav>
-        </div>
-
         <div class="news-main">
             <div class="news-main-left">
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
@@ -136,11 +106,11 @@
                 @foreach($listFlashSale['flash_sale_list_product_id'] as $product)
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
-                        <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc" class="product-image position-relative">
+                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
                             <img width="164" height="164" alt="{{ $product->name }}" class="lazy entered loaded" src="{{ asset($product->image) }}">
                         </a>
                         <div class="product-info">
-                            <a href="/laptop-gaming-msi-thin-gf63-i5-12450h-8g-rtx-2050-1tb-ssd-156-144hz-fhd-nk-bh-tai-nc">
+                            <a href="{{ route('productDetail', $product['slug']) }}">
                                 <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
                             </a>
 
@@ -149,9 +119,11 @@
                                 <div class="product-percent-price">-{{ 100 - (((int) $product->new_price / (int) $product->price) * 100) }}%</div>
                             </div>
 
+                            @if(is_float($product->new_price))
                             <div class="product-price-main font-weight-600">
                                 {{ number_format($product->new_price) }} đ
                             </div>
+                            @endif
                             <div class="p-quantity-sale">
                                 <i class="sprite sprite-fire-deal"></i>
                                 <div class="bg-gradient"></div>
@@ -189,20 +161,20 @@
                 @foreach($listProductSale as $product)
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
-                        <a href="" class="product-image position-relative">
+                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
                             @if(isset($product->image))
                             <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy entered loaded">
                             @endif
                         </a>
                         <div class="product-info">
-                            <a href="">
+                            <a href="{{ route('productDetail', $product['slug']) }}">
                                 <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
                             </a>
 
                             <div class="product-martket-main d-flex align-items-center">
                                 <p class="product-market-price">{{ number_format($product->price) }} ₫</p>
                                 <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                                <div class="product-percent-price">-{{ $new_price }}%</div>
+                                <div class="product-percent-price">-{{ $new_price }} %</div>
                             </div>
 
                             <div class="product-price-main font-weight-600">
@@ -299,7 +271,7 @@
                             <div class="product-martket-main d-flex align-items-center">
                                 <p class="product-market-price">{{ number_format($product->price) }} ₫</p>
                                 <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                                <div class="product-percent-price">-{{ $new_price }}%</div>
+                                <div class="product-percent-price">-{{ $new_price }} %</div>
                             </div>
 
                             <div class="product-price-main font-weight-600">

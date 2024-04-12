@@ -1,7 +1,9 @@
 @extends('layouts.master-admin')
+
 @section('title')
 {{ __('Danh sách đơn hàng') }}
 @endsection
+
 @section('content')
 <div class="grid grid-cols-1 gap-x-5 xl:grid-cols-12 mt-4">
     <div class="xl:col-span-12">
@@ -39,8 +41,8 @@
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="date">{{ __('Ngày đặt hàng') }}
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="quantity">{{ __('Số lượng') }}
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="address">{{ __('Địa chỉ') }}
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="phone">{{ __('Số lượng') }}
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="note">{{ __('Số lượng') }}
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="phone">{{ __('Số điện thoại') }}
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="note">{{ __('Ghi chú') }}
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{ __('Trạng thái') }}
                                 </th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">{{ __('Hành động') }}</th>
@@ -88,8 +90,8 @@
                                         </div>
                                         <img src="{{ URL::asset('build/images/delete.png') }}" alt="" class="block h-12 mx-auto">
                                         <div class="mt-5 text-center">
-                                            <h5 class="mb-1">{{__('Bạn có chắc không?')}}</h5>
-                                            <p class="text-slate-500 dark:text-zink-200">{{__('Bạn có muốn xóa đơn hàng này không?')}}</p>
+                                            <h5 class="mb-1">{{ __('Bạn có chắc không?') }}</h5>
+                                            <p class="text-slate-500 dark:text-zink-200">{{ __('Bạn có muốn xóa đơn hàng này không?') }}</p>
                                             <div class="flex justify-center gap-2 mt-6">
                                                 <button type="reset" data-modal-close="deleteModal" class="bg-white text-slate-500 btn hover:text-slate-500 hover:bg-slate-100 focus:text-slate-500 focus:bg-slate-100 active:text-slate-500 active:bg-slate-100 dark:bg-zink-600 dark:hover:bg-slate-500/10 dark:focus:bg-slate-500/10 dark:active:bg-slate-500/10">{{__('Hủy')}}</button>
                                                 <a href="{{route('admin.order.delete',$order['id'])}}">
