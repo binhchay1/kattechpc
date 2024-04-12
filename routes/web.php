@@ -62,8 +62,10 @@ Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFac
 
 Route::get('collection/{slug}', [HomeController::class, 'showDataCategory'])->name('showDataCategory');
 
+//cart
 Route::group(['prefix' => 'cart'], function () {
     Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
+    Route::get('add-to-cart/{slug}', [CartController::class, 'addToCart'])->name('add_to_cart');
     Route::get('show-cart',  [CartController::class, 'showCart'])->name('showCart');
     Route::get('delete-cart/{id}',  [CartController::class, 'deleteCart'])->name('deleteCart');
     Route::get('update-cart',  [CartController::class, 'updateCart'])->name('updateCart');

@@ -74,8 +74,7 @@
                 </div>
                 <div class="cart-area ml-20px">
                     <a href="{{route('showCart')}}">
-                        <i class="fa fa-shopping-cart"></i>
-                        <span>{{ __('Giỏ hàng') }}</span>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>{{__('Giỏ hàng')}} <span class="badge badge-pill badge-danger" style="background: red;padding: 6px;color: white;border-radius: 16px;">{{ count(Cart::getContent()) }}</span>
                     </a>
                 </div>
             </div>
