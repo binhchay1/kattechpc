@@ -200,7 +200,7 @@
                 <div class="subtotal get-total" id="total">{{ number_format($product['quantity'] * $product['price']) }} đ</div>
                 <div class=" delete">
                     <a href="">
-                        <button type="button" onclick="deleteSales('{{ route(`deleteCart`, $product[`id`]) }}')">{{__('Xóa')}}</button>
+                        <button type="button" onclick="deleteSales('{{ route("deleteCart", $product["id"]) }}')">{{__('Xóa')}}</button>
                     </a>
                 </div>
             </div>
@@ -218,7 +218,7 @@
 <script>
     function updateCart(quantity, id) {
         $.get(
-            '{{ asset(`/cart/update-cart`) }}', {
+            '{{ asset("/cart/update-cart") }}', {
                 quantity: quantity,
                 id: id
             },
