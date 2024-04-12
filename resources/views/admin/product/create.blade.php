@@ -111,7 +111,7 @@
                         </div>
 
                         <div class="xl:col-span-12">
-                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium ">{{__('Hình ảnh thay đổi')}}</label>
+                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium ">{{ __('Hình ảnh thay đổi') }}</label>
                             <div class="user-image mb-3 text-center">
 
                                 <ul class="imgPreview" id="imgPreview">
@@ -119,7 +119,7 @@
                                 <input id="input-review" type="text" name="image_preview" hidden>
                             </div>
                             <div class="form-group">
-                                <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
+                                <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Hình ảnh') }}</label>
                                 <div>
                                     <div style="display: inline-grid;">
                                         <input type="file" name="image[]" class="custom-file-input" id="images" multiple="multiple">

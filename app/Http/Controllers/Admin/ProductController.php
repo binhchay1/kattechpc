@@ -97,7 +97,8 @@ class ProductController extends Controller
 
         if ($request->hasfile('image')) {
             if (isset($input['image_preview'])) {
-                foreach ($input['image_preview'] as $preview)
+                $explode = explode(',', $input['image_preview']);
+                foreach ($explode as $preview)
                     foreach ($request->file('image') as $file) {
                         if ($file->getClientOriginalName() == $preview) {
                             $file->move(public_path('images/upload/product/'), $file->getClientOriginalName());

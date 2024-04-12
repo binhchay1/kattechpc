@@ -1,3 +1,6 @@
+var storeName = new Array();
+var storeFile = new DataTransfer();
+
 $(document).ready(function () {
     $("#add-detail").click(function () {
         let detail_item = '<li class="item-detail"><input name="detail_key[]" class="form-input" value="" placeholder="Nhập tên trường"/><input name="detail_value[]" class="form-input ml-3" value="" placeholder="Nhập tên giá trị"/><span class="btn-x">X</span></li><script>$(`.btn-x`).click(function () {$(this).parent().remove();});</script>';
@@ -13,32 +16,35 @@ $(document).ready(function () {
     var multiImgPreview = function (input) {
         if (input.files) {
 
-            var filesAmount = input.files.length;
-            var storeArr = new Array();
-            for (let i = 0; i < filesAmount; i++) {
+            let images = $('#images');
+            for (let i = 0; i < input.files.length; i++) {
                 var reader = new FileReader();
                 reader.onload = function (event) {
                     if (status_product == 'create') {
-                        $('#imgPreview').append('<li><img id="img-review-' + (i + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><button id="button-review-' + (i + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this, `' + input.files[i].name + '`)"/>Delete</button></li>');
+                        $('#imgPreview').append('<li data-id="' + input.files[i].name + '"><img id="img-review-' + (i + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><button id="button-review-' + (i + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this, `' + input.files[i].name + '`)"/>Delete</button></li>');
                     } else {
-                        $('#imgPreview').append('<li><img id="img-review-' + (lengthPreview + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><button id="button-review-' + (lengthPreview + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this)"/>Delete</button></li>');
+                        $('#imgPreview').append('<li data-id="' + input.files[i].name + '"><img id="img-review-' + (lengthPreview + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><button id="button-review-' + (lengthPreview + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this)"/>Delete</button></li>');
                         lengthPreview++;
                     }
                 }
                 reader.readAsDataURL(input.files[i]);
 
                 if (status_product == 'create') {
-                    storeArr.push(input.files[i].name);
+                    storeFile.items.add(input.files[i]);
                 }
             }
 
-            $('#input-review').val(storeArr.join());
+            images[0].files = storeFile.files;
         }
     };
 
     $('#images').on('change', function () {
         multiImgPreview(this);
-        jQuery('#imgPreview').sortable('refresh');
+
+        $('#imgPreview').sortable('refresh');
+        $('#input-review').val(storeName.join());
+
+        detect();
     });
 
     $('#imgPreview').sortable({
@@ -48,18 +54,22 @@ $(document).ready(function () {
 
         stop: function () {
             let sort = new Array();
-            const container = jQuery(this);
-
-            console.log(container);
+            let container = $(this);
 
             container.find('li').each(function () {
-                sort.push(jQuery(this).attr('data-id'));
+                sort.push($(this).attr('data-id'));
             });
+            storeName = sort;
 
-            $('#images').val(sort.join());
+            $('#input-review').val(storeName.join());
         }
     });
 });
+
+function detect() {
+    let a = $('#imgPreview');
+    console.log(a);
+}
 
 function deleteImagePreview(button, imgName) {
     let idButton = $(button).attr('id');
@@ -69,19 +79,25 @@ function deleteImagePreview(button, imgName) {
     let idInputReview = '#input-review-' + id;
     let idButtonReview = '#button-review-' + id;
     let images = $('#images');
-    const dt = new DataTransfer()
+    let imgPreview = new Array();
+
     $(idImageReview).remove();
     $(idInputReview).remove();
     $(idButtonReview).remove();
+    storeFile = new DataTransfer();
 
     for (let i = 0; i < images[0].files.length; i++) {
-
         if (images[0].files[i].name != imgName) {
-            dt.items.add(images[0].files[i])
+            storeFile.items.add(images[0].files[i]);
+            imgPreview.push(images[0].files[i].name);
+        } else {
+            imgName = '';
         }
     }
 
-    images[0].files = dt.files;
+    storeName = imgPreview;
+    images[0].files = storeFile.files;
 
-    jQuery('#imgPreview').sortable('refresh');
+    $('#input-review').val(storeName.join());
+    $('#imgPreview').sortable('refresh');
 }
