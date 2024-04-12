@@ -93,6 +93,8 @@ class ProductController extends Controller
 
         $input['slug'] =  Str::slug($input['name']);
 
+        dd($input);
+
         if ($request->hasfile('image')) {
             if (isset($input['image_preview'])) {
                 $explode = explode(',', $input['image_preview']);

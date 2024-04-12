@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-    <title>{{ __('Sản phẩm') }} | Kattech PC</title>
+    <title>{{ __('Kết quả tìm kiếm') }} | Kattech PC</title>
 @endsection
 
 @section('css')
@@ -11,48 +11,48 @@
 
 @section('content')
     <div class="container">
-        <section class="top-sale">
-            <div class="flash-sale-area">
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
-                        <h1 class="flash-sale-title">{{ __('Sản phẩm bán chạy') }}</h1>
-                    </div>
-                </div>
+{{--        <section class="top-sale">--}}
+{{--            <div class="flash-sale-area">--}}
+{{--                <div class="d-flex align-items-center justify-content-between">--}}
+{{--                    <div class="flash-sale-title-area d-flex align-items-center justify-content-center">--}}
+{{--                        <h1 class="flash-sale-title">{{ __('Sản phẩm bán chạy') }}</h1>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
-                <div class="swiper d-flex">
-                    <div class="swiper-wrapper swiper-top-sale">
-                        @foreach($dataProducts->products as $product)
-                            <div class="swiper-slide1" role="group">
-                                <div class="product-item">
-                                    <a href="" class="product-image position-relative">
-                                        @if(isset($product->image))
-                                            <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy entered loaded product-image">
-                                        @endif
-                                    </a>
-                                    <div class="product-info">
-                                        <a href="">
-                                            <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
-                                        </a>
+{{--                <div class="swiper d-flex">--}}
+{{--                    <div class="swiper-wrapper swiper-top-sale">--}}
+{{--                        @foreach($dataProducts->products as $product)--}}
+{{--                            <div class="swiper-slide1" role="group">--}}
+{{--                                <div class="product-item">--}}
+{{--                                    <a href="" class="product-image position-relative">--}}
+{{--                                        @if(isset($product->image))--}}
+{{--                                            <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy entered loaded product-image">--}}
+{{--                                        @endif--}}
+{{--                                    </a>--}}
+{{--                                    <div class="product-info">--}}
+{{--                                        <a href="">--}}
+{{--                                            <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>--}}
+{{--                                        </a>--}}
 
-                                        <div class="product-martket-main d-flex align-items-center">
-                                            <?php $price = number_format($product->price) ?>
-                                                <p class="product-market-price">{{ $price }} ₫</p>
-                                            <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                                            <div class="product-percent-price">-{{ $new_price }}%</div>
-                                        </div>
+{{--                                        <div class="product-martket-main d-flex align-items-center">--}}
+{{--                                            <?php $price = number_format($product->price) ?>--}}
+{{--                                            <p class="product-market-price">{{ $price }} ₫</p>--}}
+{{--                                            <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>--}}
+{{--                                            <div class="product-percent-price">-{{ $new_price }}%</div>--}}
+{{--                                        </div>--}}
 
-                                        <div class="product-price-main font-weight-600">
-                                            {{ $product->new_price }} đ
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </section>
-        <h1>Chọn theo nhu cầu</h1>
+{{--                                        <div class="product-price-main font-weight-600">--}}
+{{--                                            {{ $product->new_price }} đ--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        @endforeach--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </section>--}}
+        <h1>{{__('Tìm kiếm')}}</h1>
         <div class="row">
             <div class="flex" id="select-price">
                 <h2>Lọc theo giá:</h2>
@@ -80,7 +80,7 @@
                 </div>
             </div>
         </div>
-          <div class="row1">
+        <div class="row1">
             <div class="flex sort" id="sort">
                 <h2>{{ __('Lọc theo tiêu chí:') }}</h2>
                 <div>
@@ -133,39 +133,39 @@
                     <button>{{ __('Tên từ A->Z') }}</button>
                 </div>
             </div>
-            @foreach($dataCategories as $product)
-            <div class="column">
-                <div class="" role="group">
-                    <div class="product-item">
-                        <a href="" class="product-image position-relative">
-                            @if(isset($product->image))
-                                <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy entered loaded hover-for-tooltips">
-                            @endif
-                        </a>
-                        <div class="product-info">
-                            <a href="{{ route('productDetail', $product['slug']) }}">
-                                <h3 class="product-title line-clamp-3"> {{ $product->name }}</h3>
+            @foreach($listProducts as $product)
+                <div class="column">
+                    <div class="" role="group">
+                        <div class="product-item">
+                            <a href="" class="product-image position-relative">
+                                @if(isset($product->image))
+                                    <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy entered loaded hover-for-tooltips">
+                                @endif
                             </a>
+                            <div class="product-info">
+                                <a href="{{ route('productDetail', $product['slug']) }}">
+                                    <h3 class="product-title line-clamp-3"> {{ $product->name }}</h3>
+                                </a>
 
-                            <div class="product-martket-main d-flex align-items-center">
-                                <p class="product-market-price">{{ $product->price }} ₫</p>
-                                <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                                <div class="product-percent-price">-{{ $new_price }}%</div>
-                            </div>
+                                <div class="product-martket-main d-flex align-items-center">
+                                    <p class="product-market-price">{{ $product->price }} ₫</p>
+                                    <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
+                                    <div class="product-percent-price">-{{ $new_price }}%</div>
+                                </div>
 
-                            <div class="product-price-main font-weight-600">
-                                {{ $product->new_price }}   đ
+                                <div class="product-price-main font-weight-600">
+                                    {{ $product->new_price }}   đ
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
             @endforeach
         </div>
         <div class="center">
             <div class="pagination">
-                {{$dataCategories->links('page.paginate.default')}}
-
+                <a href="{{ $listProducts->previousPageUrl() }}">&laquo;</a>
+                <a href="{{ $listProducts->nextPageUrl() }}">&raquo;</a>
             </div>
         </div>
 

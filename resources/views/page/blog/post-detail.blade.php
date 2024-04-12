@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-    <title>{{ __('Trang chủ') }} | Kattech PC</title>
+    <title>{{ __('Trang tin tức') }} | Kattech PC</title>
 @endsection
 @section('css')
     <link rel="stylesheet" href="{{ asset('/plugins/owlcarousel/owl.theme.default.min.css') }}"/>

@@ -53,6 +53,21 @@ class HomeController extends Controller
             return redirect()->back();
         }
     }
+    
+    public function viewSearch(Request $request)
+    {
+        $search = $request->get('q');
+        $isList = false;
+        $listProducts = [];
+        if ($search) {
+            $listProducts = $this->productRepository->getProductBySearch($search);
+            if (count($listProducts) > 0) {
+                $isList = true;
+            }
+        }
+        return view('page.search', compact('listProducts', 'search', 'isList'));
+    }
+    
 
     public function viewPolicy()
     {
