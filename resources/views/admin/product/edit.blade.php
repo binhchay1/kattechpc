@@ -112,11 +112,11 @@
                                     @foreach ($product->image as $key => $value)
                                     <li>
                                         <img id="img-review-{{ $key + 1 }}" src="{{ asset($value) }}" class="p-2 m-3" />
-                                        <input id="input-review-{{ $key + 1 }}" type="text" name="image_preview[]" value="' + input.files[i].name + '" hidden>
                                         <button id="button-review-{{ $key + 1 }}" type="button" class="btn-delete-image" onclick="deleteImagePreview(this)" />Delete</button>
                                     </li>
                                     @endforeach
                                 </ul>
+                                <input id="input-review-{{ $key + 1 }}" type="text" name="image_preview" value="" hidden>
                             </div>
                             <div class="form-group">
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Hình ảnh') }}</label>

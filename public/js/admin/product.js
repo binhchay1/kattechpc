@@ -14,18 +14,25 @@ $(document).ready(function () {
         if (input.files) {
 
             var filesAmount = input.files.length;
+            var storeArr = new Array();
             for (let i = 0; i < filesAmount; i++) {
                 var reader = new FileReader();
                 reader.onload = function (event) {
                     if (status_product == 'create') {
-                        $('#imgPreview').append('<li><img id="img-review-' + (i + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><input id="input-review-' + (i + 1) + '" type="text" name="image_preview[]" value="' + input.files[i].name + '" hidden><button id="button-review-' + (i + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this, `' + input.files[i].name + '`)"/>Delete</button></li>');
+                        $('#imgPreview').append('<li><img id="img-review-' + (i + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><button id="button-review-' + (i + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this, `' + input.files[i].name + '`)"/>Delete</button></li>');
                     } else {
-                        $('#imgPreview').append('<li><img id="img-review-' + (lengthPreview + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><input id="input-review-' + (lengthPreview + 1) + '" type="text" name="image_preview[]" value="' + input.files[i].name + '" hidden><button id="button-review-' + (lengthPreview + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this)"/>Delete</button></li>');
+                        $('#imgPreview').append('<li><img id="img-review-' + (lengthPreview + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><button id="button-review-' + (lengthPreview + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this)"/>Delete</button></li>');
                         lengthPreview++;
                     }
                 }
                 reader.readAsDataURL(input.files[i]);
+
+                if (status_product == 'create') {
+                    storeArr.push(input.files[i].name);
+                }
             }
+
+            $('#input-review').val(storeArr.join());
         }
     };
 

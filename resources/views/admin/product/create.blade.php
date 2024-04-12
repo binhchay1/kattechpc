@@ -116,6 +116,7 @@
 
                                 <ul class="imgPreview" id="imgPreview">
                                 </ul>
+                                <input id="input-review" type="text" name="image_preview" hidden>
                             </div>
                             <div class="form-group">
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>

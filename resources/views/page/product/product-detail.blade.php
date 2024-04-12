@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ __('Sản phẩm') }} | Kattech PC</title>
+<title>{{ __('Chi tiết sản phẩm') }} | Kattech PC</title>
 @endsection
 
 @section('css')
@@ -144,16 +144,7 @@
 
 @section('js')
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
 <script>
-    var indexImage = 0;
-    $('.vendor-carousel').owlCarousel({
-        loop: true,
-        nav: false,
-        autoplay: true,
-        smartSpeed: 1000,
-    });
-
     function getImageCenter(image) {
         let src = image.src;
         indexImage = image.getAttribute('data-index');
