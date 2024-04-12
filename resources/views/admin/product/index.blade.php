@@ -49,8 +49,8 @@
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 code">{{ $product->code }}
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                    <div class="items-center gap-2">
-                                        <div class="flex items-center justify-center size-10 font-medium rounded-full shrink-0  text-slate-800 dark:text-zink-50 dark:bg-zink-600">
+                                    <div class="items-center gap-2" style="overflow: hidden;">
+                                        <div class="flex items-center size-10 font-medium rounded-full shrink-0  text-slate-800 dark:text-zink-50 dark:bg-zink-600">
                                             @if(is_array($product->image))
                                             @foreach($product->image as $value)
                                             <img src="{{ asset($value) }}" class="h-10 rounded-full">

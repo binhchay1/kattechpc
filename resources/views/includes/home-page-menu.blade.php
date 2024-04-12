@@ -3,7 +3,7 @@
     <div class="global-menu-holder">
         <div class="item">
             <a href="/laptop" class="cat-1">
-                <img data-src="/media/category/cat_icon_407_1697165601.png" class="lazy icon-menu entered loaded" alt="LAPTOP - PHỤ KIỆN" width="1" height="1" src="/media/category/cat_icon_407_1697165601.png" data-was-processed="true" data-ll-status="loaded">
+                <img class="lazy icon-menu entered loaded" alt="LAPTOP - PHỤ KIỆN" width="1" height="1" src="/media/category/cat_icon_407_1697165601.png">
                 <span class="cat-title line-clamp-1">LAPTOP - PHỤ KIỆN</span>
             </a>
 

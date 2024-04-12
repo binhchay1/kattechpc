@@ -81,7 +81,6 @@ $(document).ready(function () {
         }
     }
 
-
     let transTopSale = 0;
     let defaultTopSale = 3;
     let perTransTopSale = 249;
@@ -103,4 +102,18 @@ $(document).ready(function () {
 
         }, 3000);
     }
+
+    $('.global-menu-container').hover(function () {
+        $('.global-menu-holder').css('opacity', 1);
+    }, function () {
+        $('.global-menu-holder').css('opacity', 0);
+    });
+
+    $('.global-menu-holder .item a').hover(function () {
+        let element = $(this).next();
+        element.css('display', 'flex');
+    }, function () {
+        let element = $(this).next();
+        element.css('display', 'none');
+    });
 });

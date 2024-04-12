@@ -109,14 +109,21 @@
                             <label for="categorySelect" class="inline-block mb-2 text-base font-medium ">{{__('Hình ảnh thay đổi')}}</label>
                             <div class="user-image mb-3 text-center">
                                 <ul class="imgPreview" id="imgPreview">
+                                    @php
+                                    $listNameImage = [];
+                                    @endphp
                                     @foreach ($product->image as $key => $value)
-                                    <li>
+                                    @php
+                                    $nameImage = explode('/', $value);
+                                    $listNameImage[] = $nameImage[3];
+                                    @endphp
+                                    <li data-id="{{ $nameImage[3] }}">
                                         <img id="img-review-{{ $key + 1 }}" src="{{ asset($value) }}" class="p-2 m-3" />
                                         <button id="button-review-{{ $key + 1 }}" type="button" class="btn-delete-image" onclick="deleteImagePreview(this)" />Delete</button>
                                     </li>
                                     @endforeach
                                 </ul>
-                                <input id="input-review-{{ $key + 1 }}" type="text" name="image_preview" value="" hidden>
+                                <input id="input-review" type="text" name="image_preview" value="{{ implode(',', $listNameImage) }}" hidden>
                             </div>
                             <div class="form-group">
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Hình ảnh') }}</label>

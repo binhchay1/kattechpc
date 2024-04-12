@@ -153,9 +153,11 @@
 
         <div class="swiper d-flex">
             <div class="box-banner-collection">
-                <a href="/ad.php?id=317" class="banner-collection boder-radius-10">
-                    <img src="{{ asset('images/top-sale.jpg') }}" width="365" class="boder-radius-10 lazy-image entered loaded" alt="" data-was-processed="true" data-ll-status="loaded">
+                @if(isset($layout->hot_sale_big_thumbnail))
+                <a href="{{ isset($layout->permarklink_hot_sale_big_thumbnail) ? $layout->permarklink_hot_sale_big_thumbnail : '#' }}" class="banner-collection boder-radius-10">
+                    <img src="{{ asset($layout->hot_sale_big_thumbnail) }}" width="365" class="boder-radius-10 lazy-image entered loaded" alt="" data-was-processed="true" data-ll-status="loaded">
                 </a>
+                @endif
             </div>
             <div class="swiper-wrapper swiper-top-sale" style="left: 48%;">
                 @foreach($listProductSale as $product)
@@ -198,30 +200,12 @@
             </div>
         </div>
         <div class="flex-container">
-            <div>
-                <img src="https://file.hstatic.net/200000722513/file/laptop_1f3300ec0cf1455ca3b5199859d9cfd7.jpg" class="item-hot">
-                <span class="policy-title">{{ __('Laptop') }}</span>
-            </div>
-            <div class="child1">
-                <img src="https://file.hstatic.net/200000722513/file/pc_db4c030d7ae1452987001ec502eae18d.jpg" class="item-hot">
-                <span class="policy-title">{{ __('PC') }}</span>
-            </div>
-            <div class="child1">
-                <img src="https://file.hstatic.net/200000722513/file/man-hinh_2c8cde62363045ed8c46944b1a732458.jpg" class="item-hot">
-                <span class="policy-title">{{ __('Màn hình') }}</span>
-            </div>
-            <div class="child1">
-                <img src="https://file.hstatic.net/200000722513/file/chuot_c2b601fad5b640898d1666b20bc50b34.jpg" class="item-hot">
-                <span class="policy-title">{{ __('Chuột') }}</span>
-            </div>
-            <div class="child1">
-                <img src="https://file.hstatic.net/200000722513/file/ban_phim_7442ed8375924db8816fcbd97a5180ce.jpg" class="item-hot">
-                <span class="policy-title">{{ __('Bàn phím') }}</span>
-            </div>
-            <div class="child1">
-                <img src="https://file.hstatic.net/200000722513/file/linh_kien_pc_23daa86cd21c44b6bc25bb4bab722cf0.jpg" class="item-hot">
-                <span class="policy-title">{{ __('Linh kiện') }}</span>
-            </div>
+            @foreach($listCategory as $category)
+            <a href="{{ route('showDataCategory', $category->slug) }}">
+                <img src="{{ asset($category->image) }}" class="item-hot">
+                <span class="policy-title">{{ $category->name }}</span>
+            </a>
+            @endforeach
         </div>
     </div>
 
@@ -271,7 +255,7 @@
                             <div class="product-martket-main d-flex align-items-center">
                                 <p class="product-market-price">{{ number_format($product->price) }} ₫</p>
                                 <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                                <div class="product-percent-price">-{{ $new_price }} %</div>
+                                <div class="product-percent-price">- {{ number_format($new_price) }} %</div>
                             </div>
 
                             <div class="product-price-main font-weight-600">
@@ -293,42 +277,6 @@
 </section>
 @endif
 @endforeach
-
-<section class="sale-body">
-    <div class="d-flex">
-        <div class="sale-body-left">
-            <div class="banner-box fade-box" data-banner-page="Homepage" data-banner-loc="Bot_Promotion Banner_Big">
-                <a class="aspect-ratio" href="/pages/man-hinh" aria-label="Màn hình khuyến mãi tháng 03" title="Màn hình khuyến mãi tháng 03" style="--height-img:504; --width-img:900;">
-                    <picture>
-                        <source media="(max-width: 991px)" data-srcset="https://file.hstatic.net/200000722513/file/1580x510_man_hinh_thang_03_435810e7223043ec866bd0ed8dc1cf09.png" srcset="https://file.hstatic.net/200000722513/file/1580x510_man_hinh_thang_03_435810e7223043ec866bd0ed8dc1cf09.png">
-                        <source media="(min-width: 992px)" data-srcset="https://file.hstatic.net/200000722513/file/1580x510_man_hinh_thang_03_435810e7223043ec866bd0ed8dc1cf09.png" srcset="https://file.hstatic.net/200000722513/file/1580x510_man_hinh_thang_03_435810e7223043ec866bd0ed8dc1cf09.png">
-                        <img style="width: 955px;" ata-sizes="auto" class=" ls-is-cached lazyloaded" data-src="https://file.hstatic.net/200000722513/file/1580x510_man_hinh_thang_03_435810e7223043ec866bd0ed8dc1cf09.png" src="https://file.hstatic.net/200000722513/file/1580x510_man_hinh_thang_03_435810e7223043ec866bd0ed8dc1cf09.png" alt="Màn hình khuyến mãi tháng 03">
-                    </picture>
-                </a>
-            </div>
-        </div>
-        <div class="sale-body-right">
-            <div class="banner-box fade-box" data-banner-page="Homepage" data-banner-loc="Bot_Promotion Banner_Small_2">
-                <a class="aspect-ratio" href="/collections/tai-nghe-may-tinh" aria-label="Tai nghe" title="Tai nghe" style="--height-img:246; --width-img:796;">
-                    <picture>
-                        <source media="(max-width: 991px)" srcset="https://file.hstatic.net/200000722513/file/banner_790x250_tai_nghe_6f6dcb17d3a54fcc88b3de96762d2d41.jpg" data-srcset="https://file.hstatic.net/200000722513/file/banner_790x250_tai_nghe_6f6dcb17d3a54fcc88b3de96762d2d41.jpg" sizes="389px">
-                        <source media="(min-width: 992px)" srcset="https://file.hstatic.net/200000722513/file/banner_790x250_tai_nghe_6f6dcb17d3a54fcc88b3de96762d2d41.jpg" data-srcset="https://file.hstatic.net/200000722513/file/banner_790x250_tai_nghe_6f6dcb17d3a54fcc88b3de96762d2d41.jpg" sizes="389px">
-                        <img style="width: 480px;" data-sizes="auto" class="lazyautosizes ls-is-cached lazyloaded" src="https://file.hstatic.net/200000722513/file/banner_790x250_tai_nghe_6f6dcb17d3a54fcc88b3de96762d2d41.jpg" data-src="https://file.hstatic.net/200000722513/file/banner_790x250_tai_nghe_6f6dcb17d3a54fcc88b3de96762d2d41.jpg" alt="Tai nghe" sizes="389px">
-                    </picture>
-                </a>
-            </div>
-            <div class="banner-box fade-box" data-banner-page="Homepage" data-banner-loc="Bot_Promotion Banner_Small_3">
-                <a class="aspect-ratio" href="/pages/pc-custom-nuoc" aria-label="Banner" title="Banner" style="--height-img:246; --width-img:796;">
-                    <picture>
-                        <source media="(max-width: 991px)" srcset="https://file.hstatic.net/200000722513/file/bot_promotion_banner_small_2_2ad55c2345c64fbfb87dab4957b33914.png" data-srcset="https://file.hstatic.net/200000722513/file/bot_promotion_banner_small_2_2ad55c2345c64fbfb87dab4957b33914.png" sizes="389px">
-                        <source media="(min-width: 992px)" srcset="https://file.hstatic.net/200000722513/file/bot_promotion_banner_small_2_2ad55c2345c64fbfb87dab4957b33914.png" data-srcset="https://file.hstatic.net/200000722513/file/bot_promotion_banner_small_2_2ad55c2345c64fbfb87dab4957b33914.png" sizes="389px">
-                        <img style="width: 480px;" data-sizes="auto" class="lazyautosizes ls-is-cached lazyloaded" src="https://file.hstatic.net/200000722513/file/bot_promotion_banner_small_2_2ad55c2345c64fbfb87dab4957b33914.png" data-src="https://file.hstatic.net/200000722513/file/bot_promotion_banner_small_2_2ad55c2345c64fbfb87dab4957b33914.png" alt="Banner" sizes="389px">
-                    </picture>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
 
 <section class="content-sale">
     <div class="box-article-group boder-radius-10">
@@ -379,7 +327,7 @@
             <div class="title-box">
                 <h2 class="title-box font-weight-600">{{ __('Tin tức công nghệ') }}</h2>
             </div>
-            <a href="{{route('post')}}" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
+            <a href="{{ route('post') }}" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
         <div class="list-article-group d-flex align-items-center gap-10">
             @foreach($listNews as $news)

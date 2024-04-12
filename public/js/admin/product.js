@@ -19,6 +19,7 @@ $(document).ready(function () {
             let images = $('#images');
             for (let i = 0; i < input.files.length; i++) {
                 var reader = new FileReader();
+
                 reader.onload = function (event) {
                     if (status_product == 'create') {
                         $('#imgPreview').append('<li data-id="' + input.files[i].name + '"><img id="img-review-' + (i + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><button id="button-review-' + (i + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this, `' + input.files[i].name + '`)"/>Delete</button></li>');
@@ -30,11 +31,13 @@ $(document).ready(function () {
                 reader.readAsDataURL(input.files[i]);
 
                 if (status_product == 'create') {
+                    storeName.push(input.files[i].name);
                     storeFile.items.add(input.files[i]);
                 }
             }
 
             images[0].files = storeFile.files;
+            $('#imgPreview').sortable('refresh');
         }
     };
 
@@ -43,8 +46,6 @@ $(document).ready(function () {
 
         $('#imgPreview').sortable('refresh');
         $('#input-review').val(storeName.join());
-
-        detect();
     });
 
     $('#imgPreview').sortable({
@@ -65,11 +66,6 @@ $(document).ready(function () {
         }
     });
 });
-
-function detect() {
-    let a = $('#imgPreview');
-    console.log(a);
-}
 
 function deleteImagePreview(button, imgName) {
     let idButton = $(button).attr('id');

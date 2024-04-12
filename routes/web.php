@@ -11,7 +11,6 @@ use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\StorageController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\CollectionController;
 use App\Http\Controllers\Page\HomeController;
 use App\Http\Controllers\Page\AccountController;
 use App\Http\Controllers\Page\CartController;
@@ -63,7 +62,6 @@ Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFac
 
 Route::get('collection/{slug}', [HomeController::class, 'showDataCategory'])->name('showDataCategory');
 
-//cart
 Route::group(['prefix' => 'cart'], function () {
     Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
     Route::get('add-to-cart/{slug}', [CartController::class, 'addToCart'])->name('add_to_cart');
@@ -77,7 +75,6 @@ Route::group(['prefix' => 'cart'], function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
     Route::get('/custom-contact', [AdminController::class, 'listCustomContact'])->name('admin.custom.contact');
-    Route::get('/collection', [CollectionController::class, 'viewCollection'])->name('admin.collection');
 
     Route::group(['prefix' => 'layout'], function () {
         Route::get('/', [LayoutController::class, 'viewCustomLayout'])->name('admin.custom.layout');

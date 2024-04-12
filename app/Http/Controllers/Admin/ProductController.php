@@ -93,8 +93,6 @@ class ProductController extends Controller
 
         $input['slug'] =  Str::slug($input['name']);
 
-        dd($input);
-
         if ($request->hasfile('image')) {
             if (isset($input['image_preview'])) {
                 $explode = explode(',', $input['image_preview']);
@@ -178,6 +176,8 @@ class ProductController extends Controller
 
             $input['detail'] = json_encode($detail);
         }
+
+        dd($input);
 
         $getProduct = $this->productRepository->getById($id);
         $arrOldImage = json_decode($getProduct->image, true);

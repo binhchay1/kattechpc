@@ -95,7 +95,7 @@ class CategoryRepository extends BaseRepository
                 $query->orderBy('created_at', 'desc');
             }]);
         }
-        
+
        if ($getSortBy == 'price-desc')
         {
             $query = $query->with(['products' => function ($query) {
@@ -108,7 +108,7 @@ class CategoryRepository extends BaseRepository
                 $query->orderBy('products.new_price', 'asc');
             }]);
         }
-    
+
         if ($getSortBy == 'name')
         {
             $query = $query->with(['products' => function ($query) {
@@ -117,7 +117,7 @@ class CategoryRepository extends BaseRepository
         }
         return $query->first();
     }
-    
+
     public function productSale($slug)
     {
         return $this->model->with('products')->where('slug', $slug)->first();
