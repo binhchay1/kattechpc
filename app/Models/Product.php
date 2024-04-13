@@ -26,7 +26,8 @@ class Product extends Model
         'hot_status',
         'hot_sale_status',
         'key_word',
-        'title'
+        'title',
+        'brand_id'
     ];
 
     public function category()
@@ -38,7 +39,7 @@ class Product extends Model
     {
         return $this->hasMany('App\Models\ProductImage', 'product_id', 'id');
     }
-    
+
     public function comments()
     {
         return $this->hasMany(Comment::class)->whereNull('parent_id');

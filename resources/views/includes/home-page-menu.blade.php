@@ -10,15 +10,10 @@
 
             <div class="sub-menu-list">
                 <div class="sub-cat-2">
-                    <a href="/laptop-gaming" class="cat-2">LAPTOP GAMING</a>
-                </div>
-
-                <div class="sub-cat-2">
-                    <a href="/chon-theo-nhu-cau" class="cat-2">CHỌN THEO NHU CẦU</a>
-                    <a href="/laptop-gaming-1">Laptop Gaming </a>
-                    <a href="/laptop-do-hoa-kien-truc">Laptop Đồ Họa - Kiến Trúc </a>
-                    <a href="/laptop-van-phong">Laptop Văn Phòng </a>
-                    <a href="/laptop-mong-nhe">Laptop Mỏng Nhẹ </a>
+                    <p href="/chon-theo-nhu-cau" class="cat-2">CHỌN THEO NHU CẦU</p>
+                    @foreach($category->children as $children)
+                    <a href="{{ route('showDataCategory', $category['slug']) }}">{{ $children->name }}</a>
+                    @endforeach
                 </div>
 
                 <div class="sub-cat-2">
@@ -61,9 +56,6 @@
                     <a href="/laptop-microsoft-surface">Laptop Microsoft Surface </a>
                 </div>
 
-                <div class="sub-cat-2">
-                    <a href="/linh-kien-laptop" class="cat-2">LINH KIỆN LAPTOP</a>
-                </div>
                 <div class="sub-cat-2">
                     <a href="/phu-kien-laptop" class="cat-2">PHỤ KIỆN LAPTOP</a>
                 </div>

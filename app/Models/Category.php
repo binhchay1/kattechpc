@@ -44,22 +44,6 @@ class Category extends Model
         });
     }
 
-    public function all_products()
-    {
-        $products = [];
-        $categories = [$this];
-        while (count($categories) > 0) {
-            $nextCategories = [];
-            foreach ($categories as $category) {
-                $products = array_merge($products, $category->products->all());
-                $nextCategories = array_merge($nextCategories, $category->children->all());
-            }
-            $categories = $nextCategories;
-        }
-
-        return new Collection($products);
-    }
-
     public function products()
     {
         return $this->hasMany('App\Models\Product', 'category_id', 'id');

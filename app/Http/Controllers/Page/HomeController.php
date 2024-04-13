@@ -59,64 +59,78 @@ class HomeController extends Controller
         $search = $request->get('q');
         $isList = false;
         $listProducts = [];
+        $listCategory = $this->categoryRepository->getListCategory();
         if ($search) {
             $listProducts = $this->productRepository->getProductBySearch($search);
             if (count($listProducts) > 0) {
                 $isList = true;
             }
         }
-        return view('page.search', compact('listProducts', 'search', 'isList'));
+        return view('page.search', compact('listProducts', 'search', 'isList', 'listCategory'));
     }
 
 
     public function viewPolicy()
     {
-        return view('page.other.policy');
-    }
+        $listCategory = $this->categoryRepository->getListCategory();
 
-    public function viewAccount()
-    {
-        return view('page.account');
+        return view('page.other.policy', compact('listCategory'));
     }
 
     public function viewPromotion()
     {
-        return view('page.promotion.index');
+        $listCategory = $this->categoryRepository->getListCategory();
+
+        return view('page.promotion.index', compact('listCategory'));
     }
 
     public function promotionDetail()
     {
-        return view('page.promotion.promotion-detail');
+        $listCategory = $this->categoryRepository->getListCategory();
+
+        return view('page.promotion.promotion-detail', compact('listCategory'));
     }
 
     public function rules()
     {
-        return view('page.other.rule');
+        $listCategory = $this->categoryRepository->getListCategory();
+
+        return view('page.other.rule', compact('listCategory'));
     }
 
     public function complaint()
     {
-        return view('page.other.complaint');
+        $listCategory = $this->categoryRepository->getListCategory();
+
+        return view('page.other.complaint', compact('listCategory'));
     }
 
     public function productPolicy()
     {
-        return view('page.other.product-policy');
+        $listCategory = $this->categoryRepository->getListCategory();
+
+        return view('page.other.product-policy', compact('listCategory'));
     }
 
     public function businessPolicy()
     {
-        return view('page.other.business-policy');
+        $listCategory = $this->categoryRepository->getListCategory();
+
+        return view('page.other.business-policy', compact('listCategory'));
     }
 
     public function electronicBill()
     {
-        return view('page.other.electronic-bill');
+        $listCategory = $this->categoryRepository->getListCategory();
+
+        return view('page.other.electronic-bill', compact('listCategory'));
     }
 
     public function securityCustomer()
     {
-        return view('page.other.security-customer');
+        $listCategory = $this->categoryRepository->getListCategory();
+
+        return view('page.other.security-customer', compact('listCategory'));
     }
 
     public function viewHome()
@@ -171,14 +185,18 @@ class HomeController extends Controller
         $listPostRandom = $this->postRepository->listPostRandom();
         $listPostDESC = $this->postRepository->listPostDESC();
         $listPostASC = $this->postRepository->listPostASC();
-        return view('page.blog.posts', compact('listPost', 'listPostRandom', 'listPostDESC', 'listPostASC'));
+        $listCategory = $this->categoryRepository->getListCategory();
+
+        return view('page.blog.posts', compact('listPost', 'listPostRandom', 'listPostDESC', 'listPostASC', 'listCategory'));
     }
 
     public function postDetail($slug)
     {
         $listPost = $this->postRepository->index();
         $post = $this->postRepository->detail($slug);
-        return view('page.blog.post-detail', compact('post', 'listPost'));
+        $listCategory = $this->categoryRepository->getListCategory();
+
+        return view('page.blog.post-detail', compact('post', 'listPost', 'listCategory'));
     }
 
     public function viewLandingPage($slug)
@@ -209,7 +227,8 @@ class HomeController extends Controller
         $dataCategory = $this->categoryRepository->productByCategory($slug, $getPrice, $getSortBy);
         $dataProducts = $this->categoryRepository->productSale($slug);
         $dataCategories = $this->utility->paginate($dataCategory->products, 20);
+        $listCategory = $this->categoryRepository->getListCategory();
 
-        return view('page.product.product-category', compact('dataCategories', 'dataProducts'));
+        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory'));
     }
 }
