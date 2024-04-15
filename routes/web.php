@@ -62,6 +62,7 @@ Route::get('/auth/facebook/', [SocialLoginController::class, 'redirectToFacebook
 Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFacebookCallback']);
 
 Route::get('collection/{slug}', [HomeController::class, 'showDataCategory'])->name('showDataCategory');
+Route::get('/promotion/{slug}', [HomeController::class, 'showPromotionDetail'])->name('showPromotionDetail');
 
 Route::group(['prefix' => 'cart'], function () {
     Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
