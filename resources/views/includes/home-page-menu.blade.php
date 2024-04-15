@@ -44,16 +44,6 @@
 
                 <div class="sub-cat-2">
                     <a href="/laptop-chon-theo-hang" class="cat-2">CHỌN THEO HÃNG</a>
-                    <a href="/laptop-dell">Laptop Dell </a>
-                    <a href="/laptop-hp">Laptop HP </a>
-                    <a href="/laptop-lenovo">Laptop Lenovo </a>
-                    <a href="/laptop-lg">Laptop LG </a>
-                    <a href="/laptop-asus">Laptop Asus </a>
-                    <a href="/laptop-gigabyte">Laptop Gigabyte </a>
-                    <a href="/laptop-msi">Laptop MSI </a>
-                    <a href="/laptop-acer">Laptop Acer </a>
-                    <a href="/laptop-apple-macbook">Laptop Apple Macbook </a>
-                    <a href="/laptop-microsoft-surface">Laptop Microsoft Surface </a>
                 </div>
 
                 <div class="sub-cat-2">

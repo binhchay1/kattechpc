@@ -1,14 +1,14 @@
 <style>
-    .badge:after{
-        content:attr(value);
-        font-size:15px;
+    .badge:after {
+        content: attr(value);
+        font-size: 15px;
         background: red;
-        border-radius:50%;
-        padding:3px;
-        position:relative;
-        left:-8px;
-        top:-10px;
-        opacity:0.9;
+        border-radius: 50%;
+        padding: 3px;
+        position: relative;
+        left: -8px;
+        top: -10px;
+        opacity: 0.9;
         color: white;
     }
 </style>
@@ -73,7 +73,7 @@
 
             <div class="search-area ml-40px">
                 <div class="input-search">
-                    <form name="search" method="get" action="{{route("search")}}">
+                    <form name="search" method="get" action="{{ route('search') }}">
                         <div class="input-text"><input type="text" name="q" class="inline-search" placeholder="Nhập tên sản phẩm, từ khóa cần tìm" autocomplete="off" field_signature="1012080445"></div>
                         <button type="submit" class="button-search"><i class="fa fa-search"></i></button>
                     </form>
@@ -88,8 +88,8 @@
                     </a>
                 </div>
                 <div class="cart-area ml-20px">
-                    <a href="{{route('showCart')}}">
-                        <i class="fa badge" style="font-size:24px" value={{ count(Cart::getContent()) }}>&#xf07a;</i> {{__('Giỏ hàng')}}
+                    <a href="{{ route('showCart') }}">
+                        <i class="fa badge" style="font-size:24px" value={{ count(Cart::getContent()) }}>&#xf07a;</i> {{ __('Giỏ hàng') }}
                     </a>
                 </div>
             </div>

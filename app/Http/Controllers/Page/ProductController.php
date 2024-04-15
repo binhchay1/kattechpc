@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\CategoryRepository;
 use App\Repositories\CommentRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
@@ -12,13 +13,16 @@ class ProductController extends Controller
 {
     protected $productRepository;
     protected $commentRepository;
+    protected $categoryRepository;
 
     public function __construct(
         ProductRepository $productRepository,
-        CommentRepository $commentRepository
+        CommentRepository $commentRepository,
+        CategoryRepository $categoryRepository
     ) {
         $this->productRepository = $productRepository;
         $this->commentRepository = $commentRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function productDetail($slug)
@@ -32,11 +36,12 @@ class ProductController extends Controller
             $product->image = json_decode($product->image, true);
         }
         $listComment = $this->commentRepository->index();
+        $listCategory = $this->categoryRepository->getListCategory();
         $productRelated = $this->productRepository->getProductRelated($product->category_id, $product->id);
 
-        return view('page.product.product-detail', compact('product', 'productRelated', 'listComment'));
+        return view('page.product.product-detail', compact('product', 'productRelated', 'listComment', 'listCategory'));
     }
-    
+
     public function storeComment(Request $request)
     {
         if (!Auth::check()) {
@@ -46,10 +51,10 @@ class ProductController extends Controller
         $input = $request->all();
         $input['user_id'] = Auth::user()->id;
         $this->commentRepository->store($input);
-        
+
         return back();
     }
-    
-    
-    
+
+
+
 }
