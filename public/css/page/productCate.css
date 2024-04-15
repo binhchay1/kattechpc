@@ -152,8 +152,9 @@ h1 {
 }
 
 .pagination {
-    display: inline-block;
+    display: flex;
     font-size: 20px;
+    justify-content: center;
 }
 
 .pagination a {
@@ -161,6 +162,9 @@ h1 {
     float: left;
     padding: 8px 16px;
     text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
 }
 
 .pagination a.active {
@@ -184,4 +188,30 @@ h1 {
     height: 100%;
     position: relative;
     transition-property: transform;
+}
+
+
+ul pagination {
+    display: flex;
+    list-style: none;
+}
+
+.page-item {
+    list-style: none;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+    color: black; // use your own color here
+}
+
+.pagination > .active > a,
+.pagination > .active > a:focus,
+.pagination > .active > a:hover,
+.pagination > .active > span,
+.pagination > .active > span:focus,
+.pagination > .active > span:hover {
+    background-color: #4267b2;
+    border-color: #4267b2;
+    color: white;
 }
