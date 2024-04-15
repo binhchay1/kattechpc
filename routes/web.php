@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
-Route::get('/search/', [HomeController::class, 'viewSearch'])->name('search');
+Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
 Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');
 Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
 Route::get('/blog-detail/{slug}', [HomeController::class, 'postDetail'])->name('post.detail');
@@ -53,8 +53,8 @@ Route::get('/landing/{slug}', [HomeController::class, 'viewLandingPage'])->name(
 Route::get('/custom-contact', [HomeController::class, 'storeCustomContact'])->name('custom.contact');
 Route::get('account-info', [AccountController::class, 'show'])->name('profile');
 Route::post('account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
-Route::get('/change-password/', [AccountController::class, 'changePassword'])->name('change-password');
-Route::post('/change-password/', [AccountController::class, 'updatePassword'])->name('update-password');
+Route::get('/change-password', [AccountController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password', [AccountController::class, 'updatePassword'])->name('update-password');
 Route::get('/order-history', [AccountController::class, 'orderHistory'])->name('orderHistory');
 Route::get('/auth/google/', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('/auth/google/callback/', [SocialLoginController::class, 'handleGoogleCallback']);

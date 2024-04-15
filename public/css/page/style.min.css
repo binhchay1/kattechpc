@@ -1245,27 +1245,6 @@ body a {
     width: 187px;
 }
 
-@media only screen and (max-width: 767px) {
-    .modal-box .modal-dialog {
-        width: 95% !important;
-    }
-}
-
-@media screen and (max-width: 992px) {
-    body {
-        min-width: inherit;
-    }
-
-    #page-banner {
-        display: none;
-    }
-
-    .policy-area {
-        display: flex;
-        flex-direction: column;
-    }
-}
-
 a {
     color: hotpink;
 }
@@ -1442,5 +1421,48 @@ a {
 
     .global-menu-container {
         display: none;
+    }
+
+    .flash-sale-banner {
+        width: 100%;
+    }
+
+    .top-sale {
+        width: 100%;
+    }
+
+    .category {
+        width: 100%;
+    }
+
+    .product-slide-main {
+        width: 100%;
+    }
+
+    .content-sale {
+        width: 100%;
+    }
+
+    .content-news {
+        width: 100%;
+    }
+
+    .review {
+        width: 100%;
+    }
+
+    #page-banner {
+        display: none;
+    }
+
+    .policy-area {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .modal-box .modal-dialog {
+        width: 95% !important;
     }
 }
