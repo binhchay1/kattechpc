@@ -37,11 +37,12 @@ class ProductController extends Controller
             $product->image = json_decode($product->image, true);
         }
         $listComment = $this->commentRepository->index();
+        $listCategory = $this->categoryRepository->getListCategory();
         $productRelated = $this->productRepository->getProductRelated($product->category_id, $product->id);
 
         return view('page.product.product-detail', compact('product', 'productRelated', 'listComment', 'listCategory'));
     }
-    
+
     public function storeComment(Request $request)
     {
         if (!Auth::check()) {
@@ -51,10 +52,10 @@ class ProductController extends Controller
         $input = $request->all();
         $input['user_id'] = Auth::user()->id;
         $this->commentRepository->store($input);
-        
+
         return back();
     }
-    
-    
-    
+
+
+
 }

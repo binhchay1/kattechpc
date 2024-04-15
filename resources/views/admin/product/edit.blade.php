@@ -131,13 +131,20 @@
                                     @php
                                     $nameImage = explode('/', $value);
                                     if(!empty($nameImage)) {
-                                    $listNameImage[] = $nameImage[3];
+                                    foreach($nameImage as $itemInList) {
+                                    if($itemInList == 'images' or $itemInList == 'upload' or $itemInList == 'product') {
+                                    continue;
+                                    }
+                                    $getNameImage = $itemInList;
+                                    }
                                     }
                                     @endphp
-                                    <li data-id="{{ $nameImage[3] }}">
-                                        <img id="img-review-{{ $key + 1 }}" src="{{ asset($value) }}" class="p-2 m-3" />
+                                    @if(isset($getNameImage))
+                                    <li data-id="{{ $getNameImage }}">
+                                        <img id="img-review-{{ $key + 1 }}" src="{{ asset($value) }}" class="p-2" />
                                         <button id="button-review-{{ $key + 1 }}" type="button" class="btn-delete-image" onclick="deleteImagePreview(this)" />Delete</button>
                                     </li>
+                                    @endif
                                     @endforeach
                                 </ul>
                                 @if(!empty($listNameImage))

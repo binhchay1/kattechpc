@@ -226,9 +226,9 @@
 
             <div class="list-category-child d-flex align-items-center justify-content-end flex-1">
                 @foreach($category->children as $children)
-                <a href="{{ route('showDataCategory', $category['slug']) }}" class="title-category">{{ $children->name }}</a>
+                <a href="{{ route('showDataCategory', $children['slug']) }}" class="title-category">{{ $children->name }}</a>
                 @endforeach
-                <a href="" class="title-all-category">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
+                <a href="{{ route('showDataCategory', $category['slug']) }}" class="title-all-category">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
             </div>
         </div>
         <div class="swiper">
@@ -237,7 +237,13 @@
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
-                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy">
+                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy"
+                            data-title="{{ $product->title }}"
+                            data-price="{{ $product->price }}"
+                            data-new-price="{{ $product->new_price }}"
+                            data-sale-detail="{{ $product->sale_detail }}"
+                            data-status-guarantee="{{ $product->status_guarantee }}"
+                            data-status="{{ $product->status }}">
                             @if($product->hot_status == 1)
                             <span class="p-type-holder">
                                 <i class="p-icon-type p-icon-hot"></i>
@@ -285,39 +291,16 @@
             <div class="title-box">
                 <h2 class="title-box font-weight-600">{{ __('Khuyến mại') }}</h2>
             </div>
-            <a href="{{route('promotion')}}" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
+            <a href="{{ route('promotion') }}" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
         <div class="list-article-group d-flex align-items-center gap-10">
+            @foreach($listPromotion as $promotion)
             <div class="item-article d-flex gap-12">
-                <a href="/viettel-trung-dau-gia-bang-tan-de-chinh-thuc-trien-khai-5g-tai-viet-nam" class="img-article boder-radius-10 position-relative">
-                    <picture>
-                        <source media="(max-width: 991px)" srcset="https://file.hstatic.net/200000722513/file/mua_kem_pc_1_30c838c753424ea3a9e1abb9d54c4ac2.png" data-srcset="https://file.hstatic.net/200000722513/file/mua_kem_pc_1_30c838c753424ea3a9e1abb9d54c4ac2.png" sizes="276px">
-                        <source media="(min-width: 992px)" srcset="https://file.hstatic.net/200000722513/file/mua_kem_pc_1_30c838c753424ea3a9e1abb9d54c4ac2.png" data-srcset="https://file.hstatic.net/200000722513/file/mua_kem_pc_1_30c838c753424ea3a9e1abb9d54c4ac2.png" sizes="276px">
-                        <img data-sizes="auto" class="lazyautosizes ls-is-cached lazyloaded" src="https://file.hstatic.net/200000722513/file/mua_kem_pc_1_30c838c753424ea3a9e1abb9d54c4ac2.png" data-src="https://file.hstatic.net/200000722513/file/mua_kem_pc_1_30c838c753424ea3a9e1abb9d54c4ac2.png" alt="Banner" sizes="276px">
-                    </picture>
+                <a href="{{ route('showPromotionDetail', $promotion->slug) }}" class="img-article boder-radius-10 position-relative">
+                    <img class="lazy" src="https://file.hstatic.net/200000722513/file/mua_kem_pc_1_30c838c753424ea3a9e1abb9d54c4ac2.png" alt="Banner" width="276px">
                 </a>
             </div>
-
-            <div class="item-article d-flex gap-12">
-                <a href="/vong-tron-loading-tren-windows-11-khong-he-vo-tri-nhu-chung-ta-van-nghi" class="img-article boder-radius-10 position-relative">
-                    <picture>
-                        <source media="(max-width: 991px)" srcset="https://file.hstatic.net/200000722513/file/banner_slide_4_b4d3c996f3e64796b83e224fd13f0479.png" data-srcset="https://file.hstatic.net/200000722513/file/banner_slide_4_b4d3c996f3e64796b83e224fd13f0479.png" sizes="276px">
-                        <source media="(min-width: 992px)" srcset="https://file.hstatic.net/200000722513/file/banner_slide_4_b4d3c996f3e64796b83e224fd13f0479.png" data-srcset="https://file.hstatic.net/200000722513/file/banner_slide_4_b4d3c996f3e64796b83e224fd13f0479.png" sizes="276px">
-                        <img data-sizes="auto" class="lazyautosizes ls-is-cached lazyloaded" src="https://file.hstatic.net/200000722513/file/banner_slide_4_b4d3c996f3e64796b83e224fd13f0479.png" data-src="https://file.hstatic.net/200000722513/file/banner_slide_4_b4d3c996f3e64796b83e224fd13f0479.png" alt="Màn hình" sizes="276px">
-                    </picture>
-                </a>
-            </div>
-
-            <div class="item-article d-flex gap-12">
-                <a href="/facebook-va-instagram-sap-dien-rong-gay-thiet-hai-lon-cho-nen-kinh-te-the-gioi" class="img-article boder-radius-10 position-relative">
-                    <picture>
-                        <source media="(max-width: 991px)" srcset="https://file.hstatic.net/200000722513/file/b14_4b8b256e809146f2b10d7ab3f4e679c9.png" data-srcset="https://file.hstatic.net/200000722513/file/b14_4b8b256e809146f2b10d7ab3f4e679c9.png" sizes="276px">
-                        <source media="(min-width: 992px)" srcset="https://file.hstatic.net/200000722513/file/b14_4b8b256e809146f2b10d7ab3f4e679c9.png" data-srcset="https://file.hstatic.net/200000722513/file/b14_4b8b256e809146f2b10d7ab3f4e679c9.png" sizes="276px">
-                        <img data-sizes="auto" class="lazyautosizes ls-is-cached lazyloaded" src="https://file.hstatic.net/200000722513/file/b14_4b8b256e809146f2b10d7ab3f4e679c9.png" data-src="https://file.hstatic.net/200000722513/file/b14_4b8b256e809146f2b10d7ab3f4e679c9.png" alt="Laptop B14" sizes="276px">
-                    </picture>
-                </a>
-            </div>
-
+            @endforeach
         </div>
     </div>
 </section>
@@ -333,8 +316,8 @@
         <div class="list-article-group d-flex align-items-center gap-10">
             @foreach($listNews as $news)
             <div class="item-article d-flex gap-12">
-                <a href="{{route('post.detail', $news['slug'])}}" class="img-article boder-radius-10 position-relative">
-                    <img class="boder-radius-10" src="{{$news->thumbnail ?? asset('/images/test_post/2904-viettel-dau-gia-thanh-cong-bang-tan-5g-1.jpg') }}" alt="Viettel trúng đấu giá băng tần để chính thức triển khai 5G tại Việt Nam">
+                <a href="{{ route('post.detail', $news['slug']) }}" class="img-article boder-radius-10 position-relative">
+                    <img class="boder-radius-10" src="{{ $news->thumbnail ?? asset('/images/test_post/2904-viettel-dau-gia-thanh-cong-bang-tan-5g-1.jpg') }}" alt="Viettel trúng đấu giá băng tần để chính thức triển khai 5G tại Việt Nam">
                 </a>
                 <div class="content-article content-article-item d-flex flex-column flex-1">
                     <a href="{{route('post.detail', $news['slug'])}}" class="title-article">

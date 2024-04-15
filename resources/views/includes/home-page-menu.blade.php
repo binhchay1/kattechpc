@@ -10,14 +10,14 @@
 
             <div class="sub-menu-list">
                 <div class="sub-cat-2">
-                    <p href="/chon-theo-nhu-cau" class="cat-2">CHỌN THEO NHU CẦU</p>
+                    <p href="/chon-theo-nhu-cau" class="cat-2">{{ __('CHỌN THEO NHU CẦU') }}</p>
                     @foreach($category->children as $children)
                     <a href="{{ route('showDataCategory', $category['slug']) }}">{{ $children->name }}</a>
                     @endforeach
                 </div>
 
                 <div class="sub-cat-2">
-                    <a href="/chon-theo-khoang-gia" class="cat-2">CHỌN THEO KHOẢNG GIÁ</a>
+                    <a href="/chon-theo-khoang-gia" class="cat-2">{{ __('CHỌN THEO KHOẢNG GIÁ') }}</a>
                     <a href="/duoi-10-trieu">Dưới 10 Triệu </a>
                     <a href="/10-trieu-15-trieu">10 Triệu - 15 Triệu </a>
                     <a href="/15-trieu-20-trieu">15 Triệu - 20 Triệu </a>
@@ -43,21 +43,11 @@
                 </div>
 
                 <div class="sub-cat-2">
-                    <a href="/laptop-chon-theo-hang" class="cat-2">CHỌN THEO HÃNG</a>
-                    <a href="/laptop-dell">Laptop Dell </a>
-                    <a href="/laptop-hp">Laptop HP </a>
-                    <a href="/laptop-lenovo">Laptop Lenovo </a>
-                    <a href="/laptop-lg">Laptop LG </a>
-                    <a href="/laptop-asus">Laptop Asus </a>
-                    <a href="/laptop-gigabyte">Laptop Gigabyte </a>
-                    <a href="/laptop-msi">Laptop MSI </a>
-                    <a href="/laptop-acer">Laptop Acer </a>
-                    <a href="/laptop-apple-macbook">Laptop Apple Macbook </a>
-                    <a href="/laptop-microsoft-surface">Laptop Microsoft Surface </a>
+                    <a href="/laptop-chon-theo-hang" class="cat-2">{{ __('CHỌN THEO HÃNG') }}</a>
                 </div>
 
                 <div class="sub-cat-2">
-                    <a href="/phu-kien-laptop" class="cat-2">PHỤ KIỆN LAPTOP</a>
+                    <a href="/phu-kien-laptop" class="cat-2">PHỤ KIỆN {{ strtoupper($category) }}</a>
                 </div>
             </div>
         </div>

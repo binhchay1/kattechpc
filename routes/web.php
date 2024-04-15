@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
-Route::get('/search/', [HomeController::class, 'viewSearch'])->name('search');
+Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
 Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');
 Route::get('/online-shopping', [HomeController::class, 'onlineShopping'])->name('onlineShopping');
 Route::get('/payment', [HomeController::class, 'payment'])->name('payment');
@@ -55,8 +55,8 @@ Route::get('/landing/{slug}', [HomeController::class, 'viewLandingPage'])->name(
 Route::get('/custom-contact', [HomeController::class, 'storeCustomContact'])->name('custom.contact');
 Route::get('account-info', [AccountController::class, 'show'])->name('profile');
 Route::post('account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
-Route::get('/change-password/', [AccountController::class, 'changePassword'])->name('change-password');
-Route::post('/change-password/', [AccountController::class, 'updatePassword'])->name('update-password');
+Route::get('/change-password', [AccountController::class, 'changePassword'])->name('change-password');
+Route::post('/change-password', [AccountController::class, 'updatePassword'])->name('update-password');
 Route::get('/order-history', [AccountController::class, 'orderHistory'])->name('orderHistory');
 Route::get('/auth/google/', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('/auth/google/callback/', [SocialLoginController::class, 'handleGoogleCallback']);
@@ -64,6 +64,7 @@ Route::get('/auth/facebook/', [SocialLoginController::class, 'redirectToFacebook
 Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFacebookCallback']);
 
 Route::get('collection/{slug}', [HomeController::class, 'showDataCategory'])->name('showDataCategory');
+Route::get('/promotion/{slug}', [HomeController::class, 'showPromotionDetail'])->name('showPromotionDetail');
 
 Route::group(['prefix' => 'cart'], function () {
     Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
