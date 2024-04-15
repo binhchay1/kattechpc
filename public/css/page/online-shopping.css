@@ -7,7 +7,10 @@
 }
 
 p {
-    font-size: 15px;
+    margin: 12px 0;
+    line-height: 22px !important;
+    font-size: 13pt;
+    color: #464646;
 }
 
 
@@ -40,9 +43,18 @@ p {
 }
 
 .column h1{
-    font-size: 40px;
+    font-size: 30px;
     margin-bottom: -10px;
     color: #e11414;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 600;
+    padding: 16px 70px 16px 16px;
+    background: #03304b;
+    color: #fff;
+    display: inline-block;
+    border-radius: 16px 16px 0 0;
+    position: relative;
 }
 
 .column p{
@@ -58,7 +70,6 @@ p {
     width: 100%;
     margin-top: 30px;
     display: flex;
-    background: #e2e2e2;
     padding: 15px;
     border-radius: 10px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
@@ -77,7 +88,7 @@ p {
 }
 
 #condition2 {
-  float: right;
+    float: right;
     width: 45%;
     padding: 10px;
     border:1px solid;
@@ -87,6 +98,7 @@ p {
 .title-top1 {
     text-align: center;
     color: #e11414;
+    font-size: 35px;
 }
 
 .top {
@@ -117,4 +129,10 @@ p {
 .row {
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
 }

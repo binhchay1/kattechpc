@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\LandingPageController;
 use App\Http\Controllers\Admin\LayoutController;
 use App\Http\Controllers\Admin\ProductImageController;
+use App\Http\Controllers\Admin\BrandController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/search/', [HomeController::class, 'viewSearch'])->name('search');
 Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');
+Route::get('/online-shopping', [HomeController::class, 'onlineShopping'])->name('onlineShopping');
+Route::get('/payment', [HomeController::class, 'payment'])->name('payment');
 Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
 Route::get('/blog-detail/{slug}', [HomeController::class, 'postDetail'])->name('post.detail');
 Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
@@ -87,7 +90,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     Route::group(['prefix' => 'promotion'], function () {
         Route::get('/', [PromotionController::class, 'index'])->name('admin.promotion.index');
-        Route::get('/detail/{id}', [PromotionController::class, 'showPromotion'])->name('admin.promotion.show');
         Route::get('/add', [PromotionController::class, 'createPromotion'])->name('admin.promotion.create');
         Route::post('/store', [PromotionController::class, 'storePromotion'])->name('admin.promotion.store');
         Route::get('/update/{id}', [PromotionController::class, 'editPromotion'])->name('admin.promotion.edit');
@@ -97,7 +99,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     Route::group(['prefix' => 'post'], function () {
         Route::get('/list', [PostController::class, 'index'])->name('admin.post.index');
-        Route::get('/detail/{id}', [PostController::class, 'showPost'])->name('admin.post.show');
         Route::get('/add', [PostController::class, 'createPost'])->name('admin.post.create');
         Route::post('/store', [PostController::class, 'storePost'])->name('admin.post.store');
         Route::get('/update/{id}', [PostController::class, 'editPost'])->name('admin.post.edit');
@@ -108,7 +109,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     Route::group(['prefix' => 'orders'], function () {
         Route::get('/list', [OrderController::class, 'index'])->name('admin.order.index');
-        Route::get('/detail/{id}', [OrderController::class, 'showOrder'])->name('admin.order.show');
         Route::get('/add', [OrderController::class, 'createOrder'])->name('admin.order.create');
         Route::post('/store', [OrderController::class, 'storeOrder'])->name('admin.order.store');
         Route::get('/update/{id}', [OrderController::class, 'editOrder'])->name('admin.order.edit');
@@ -119,7 +119,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     Route::group(['prefix' => 'storages'], function () {
         Route::get('/list', [StorageController::class, 'index'])->name('admin.storage.index');
-        Route::get('/detail/{id}', [StorageController::class, 'showStorage'])->name('admin.storage.show');
         Route::get('/add', [StorageController::class, 'createStorage'])->name('admin.storage.create');
         Route::post('/store', [StorageController::class, 'storeStorage'])->name('admin.storage.store');
         Route::get('/update/{id}', [StorageController::class, 'editStorage'])->name('admin.storage.edit');
@@ -134,12 +133,20 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 
     Route::group(['prefix' => 'products'], function () {
         Route::get('/list', [ProductAdmin::class, 'index'])->name('admin.product.index');
-        Route::get('/detail/{id}', [ProductAdmin::class, 'show'])->name('admin.product.show');
         Route::get('/add', [ProductAdmin::class, 'createProduct'])->name('admin.product.create');
         Route::post('/store', [ProductAdmin::class, 'storeProduct'])->name('admin.product.store');
         Route::get('/update/{id}', [ProductAdmin::class, 'editProduct'])->name('admin.product.edit');
         Route::post('/update/{id}', [ProductAdmin::class, 'updateProduct'])->name('admin.product.update');
         Route::get('/delete/{id}', [ProductAdmin::class, 'deleteProduct'])->name('admin.product.delete');
+    });
+
+    Route::group(['prefix' => 'brands'], function () {
+        Route::get('/list', [BrandController::class, 'index'])->name('admin.brand.index');
+        Route::get('/add', [BrandController::class, 'createBrand'])->name('admin.brand.create');
+        Route::post('/store', [BrandController::class, 'storeBrand'])->name('admin.brand.store');
+        Route::get('/update/{id}', [BrandController::class, 'editBrand'])->name('admin.brand.edit');
+        Route::post('/update/{id}', [BrandController::class, 'updateBrand'])->name('admin.brand.update');
+        Route::get('/delete/{id}', [BrandController::class, 'deleteBrand'])->name('admin.brand.delete');
     });
 
     Route::group(['prefix' => 'users'], function () {

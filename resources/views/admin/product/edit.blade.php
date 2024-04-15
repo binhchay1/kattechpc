@@ -79,8 +79,23 @@
                         </div>
 
                         <div class="xl:col-span-4">
+                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Thương hiệu') }}</label>
+                            <select style="width: 50%" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500
+                            disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500
+                            dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:
+                            border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false id="brandSelect" name="brand_id">
+                                @foreach($listBrands as $brand)
+                                <option value="{{ $brand->id }}" {{ $brand->id == $product->brand_id ? 'selected' : '' }}>{{ $brand->name }}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('brand_id'))
+                            <span class="text-danger">{{ $errors->first('brand_id') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="xl:col-span-4">
                             <label for="productPrice" class="inline-block mb-2 text-base font-medium">{{ __('Giá') }}</label>
-                            <input type="number" id="productPrice" name="price" value="{{ old('price', $product->price) }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Giá') }}">
+                            <input type="text" id="productPrice" name="price" value="{{ old('price', $product->price) }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Giá') }}" onkeyup="onlyNumberAmount(this)">
                             @if ($errors->has('price'))
                             <span class="text-danger">{{ $errors->first('price') }}</span>
                             @endif
@@ -88,7 +103,7 @@
 
                         <div class="xl:col-span-4">
                             <label for="productNewPrice" class="inline-block mb-2 text-base font-medium">{{ __('Giá mới') }}</label>
-                            <input type="number" id="productNewPrice" name="new_price" value="{{ old('new_price', $product->new_price) }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Giá mới') }}">
+                            <input type="text" id="productNewPrice" name="new_price" value="{{ old('new_price', $product->new_price) }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Giá mới') }}" onkeyup="onlyNumberAmount(this)">
                             @if ($errors->has('new_price'))
                             <span class="text-danger">{{ $errors->first('new_price') }}</span>
                             @endif
@@ -106,7 +121,7 @@
                             @endif
                         </div>
                         <div class="xl:col-span-12">
-                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium ">{{__('Hình ảnh thay đổi')}}</label>
+                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium ">{{ __('Hình ảnh thay đổi') }}</label>
                             <div class="user-image mb-3 text-center">
                                 <ul class="imgPreview" id="imgPreview">
                                     @php
@@ -115,7 +130,9 @@
                                     @foreach ($product->image as $key => $value)
                                     @php
                                     $nameImage = explode('/', $value);
+                                    if(!empty($nameImage)) {
                                     $listNameImage[] = $nameImage[3];
+                                    }
                                     @endphp
                                     <li data-id="{{ $nameImage[3] }}">
                                         <img id="img-review-{{ $key + 1 }}" src="{{ asset($value) }}" class="p-2 m-3" />
@@ -123,7 +140,11 @@
                                     </li>
                                     @endforeach
                                 </ul>
+                                @if(!empty($listNameImage))
                                 <input id="input-review" type="text" name="image_preview" value="{{ implode(',', $listNameImage) }}" hidden>
+                                @else
+                                <input id="input-review" type="text" name="image_preview" value="" hidden>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Hình ảnh') }}</label>

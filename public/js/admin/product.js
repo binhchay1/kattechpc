@@ -16,33 +16,41 @@ $(document).ready(function () {
     var multiImgPreview = function (input) {
         if (input.files) {
 
-            let images = $('#images');
             for (let i = 0; i < input.files.length; i++) {
                 var reader = new FileReader();
 
-                reader.onload = function (event) {
-                    if (status_product == 'create') {
+                if (status_product == 'create') {
+                    reader.onload = function (event) {
                         $('#imgPreview').append('<li data-id="' + input.files[i].name + '"><img id="img-review-' + (i + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><button id="button-review-' + (i + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this, `' + input.files[i].name + '`)"/>Delete</button></li>');
-                    } else {
+                    }
+                    reader.readAsDataURL(input.files[i]);
+                } else {
+                    reader.progress = function (event) {
                         $('#imgPreview').append('<li data-id="' + input.files[i].name + '"><img id="img-review-' + (lengthPreview + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><button id="button-review-' + (lengthPreview + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this, `' + input.files[i].name + '`)"/>Delete</button></li>');
                         lengthPreview++;
                     }
+                    reader.readAsDataURL(input.files[i]);
                 }
-                reader.readAsDataURL(input.files[i]);
 
                 if (status_product == 'create') {
                     storeName.push(input.files[i].name);
-                    storeFile.items.add(input.files[i]);
                 }
             }
 
-            images[0].files = storeFile.files;
+            storeFile.items.add(input.files[i]);
+            input.files = storeFile.files;
             $('#imgPreview').sortable('refresh');
         }
     };
 
     $('#images').on('change', function () {
-        multiImgPreview(this);
+
+        if (status_product == 'create') {
+            multiImgPreview(this);
+        } else {
+            let images = $('#images');
+            multiImgPreview(images[0]);
+        }
 
         $('#imgPreview').sortable('refresh');
         $('#input-review').val(storeName.join());
@@ -65,6 +73,18 @@ $(document).ready(function () {
             $('#input-review').val(storeName.join());
         }
     });
+
+    if ($('#productPrice').val() != null || $('#productPrice').val() != '') {
+        let input = document.getElementById('productPrice');
+        let v = input.value.replace(/\D+/g, '');
+        input.value = v.replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.');
+    }
+
+    if ($('#productNewPrice').val() != null || $('#productNewPrice').val() != '') {
+        let input = document.getElementById('productNewPrice');
+        let v = input.value.replace(/\D+/g, '');
+        input.value = v.replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.');
+    }
 });
 
 function deleteImagePreview(button, imgName) {
@@ -96,4 +116,9 @@ function deleteImagePreview(button, imgName) {
 
     $('#input-review').val(storeName.join());
     $('#imgPreview').sortable('refresh');
+}
+
+function onlyNumberAmount(input) {
+    let v = input.value.replace(/\D+/g, '');
+    input.value = v.replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.');
 }
