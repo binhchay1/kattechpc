@@ -12,6 +12,7 @@ use App\Repositories\CustomContactRepository;
 use App\Repositories\LandingPageRepository;
 use App\Repositories\LayoutRepository;
 use App\Repositories\PostRepository;
+use App\Repositories\PromotionRepository;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -22,6 +23,7 @@ class HomeController extends Controller
     protected $customContactRepository;
     protected $postRepository;
     protected $layoutRepository;
+    protected $promotionRepository;
     protected $utility;
 
     public function __construct(
@@ -31,7 +33,8 @@ class HomeController extends Controller
         LandingPageRepository $landingPageRepository,
         CustomContactRepository $customContactRepository,
         PostRepository $postRepository,
-        LayoutRepository $layoutRepository
+        LayoutRepository $layoutRepository,
+        PromotionRepository $promotionRepository
     ) {
         $this->utility = $utility;
         $this->productRepository = $productRepository;
@@ -40,6 +43,7 @@ class HomeController extends Controller
         $this->customContactRepository = $customContactRepository;
         $this->postRepository = $postRepository;
         $this->layoutRepository = $layoutRepository;
+        $this->promotionRepository = $promotionRepository;
     }
 
     public function lang($locale)
@@ -143,6 +147,7 @@ class HomeController extends Controller
 
         $listCategory = $this->categoryRepository->getListCategory();
         $listNews = $this->postRepository->getListNewsInHomepage();
+        $listPromotion = $this->promotionRepository->getListPromotionHomePage();
         $layout = $this->layoutRepository->getListLayout();
         $getSlide = $this->layoutRepository->getSlide();
         $getFlashSale = $this->layoutRepository->getFlashSale();
@@ -176,7 +181,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale', 'layout', 'listSlide', 'listFlashSale', 'listMenuBar'));
+        return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale', 'layout', 'listSlide', 'listFlashSale', 'listMenuBar', 'listPromotion'));
     }
 
     public function viewPost()
