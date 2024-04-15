@@ -76,6 +76,20 @@ class HomeController extends Controller
 
         return view('page.other.policy', compact('listCategory'));
     }
+    
+    public function onlineShopping()
+    {
+        $listCategory = $this->categoryRepository->getListCategory();
+    
+        return view('page.other.online-shopping', compact('listCategory'));
+    }
+    
+    public function payment()
+    {
+        $listCategory = $this->categoryRepository->getListCategory();
+    
+        return view('page.other.payment', compact('listCategory'));
+    }
 
     public function viewPromotion()
     {
@@ -140,7 +154,6 @@ class HomeController extends Controller
             $product->detail = json_decode($product->detail, true);
             $product->image = json_decode($product->image, true);
         }
-
         $listCategory = $this->categoryRepository->getListCategory();
         $listNews = $this->postRepository->getListNewsInHomepage();
         $layout = $this->layoutRepository->getListLayout();

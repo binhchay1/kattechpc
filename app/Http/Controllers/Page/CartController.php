@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Page;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Models\OrderDetail;
+use App\Repositories\CategoryRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
@@ -14,14 +15,17 @@ class CartController extends Controller
     
     private $productRepository;
     private $orderRepository;
+    private $categoryRepository;
     
     public function __construct(
         ProductRepository $productRepository,
+        CategoryRepository $categoryRepository,
         OrderRepository $orderRepository
     )
     {
         $this->productRepository = $productRepository;
         $this->orderRepository = $orderRepository;
+        $this->categoryRepository = $categoryRepository;
     }
     
     /**
@@ -45,9 +49,11 @@ class CartController extends Controller
     {
         $totalCart = Cart::getTotal();
         $dataCart = Cart::getContent();
+        $listCategory = $this->categoryRepository->getListCategory();
         return view('page.cart.index',[
             'dataCart'=> $dataCart,
-            'totalCart'=> $totalCart
+            'totalCart'=> $totalCart,
+            'listCategory'=> $listCategory,
         ]);
     }
     
