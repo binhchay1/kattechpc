@@ -36,6 +36,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'viewHome'])->name('home');
 Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
 Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');
+Route::get('/online-shopping', [HomeController::class, 'onlineShopping'])->name('onlineShopping');
+Route::get('/payment', [HomeController::class, 'payment'])->name('payment');
 Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
 Route::get('/blog-detail/{slug}', [HomeController::class, 'postDetail'])->name('post.detail');
 Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');

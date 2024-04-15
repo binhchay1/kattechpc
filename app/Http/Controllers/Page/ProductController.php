@@ -28,6 +28,7 @@ class ProductController extends Controller
     public function productDetail($slug)
     {
         $product = $this->productRepository->productDetail($slug);
+        $listCategory = $this->categoryRepository->getListCategory();
         if (isset($product->detail)) {
             $product->detail = json_decode($product->detail, true);
         }
