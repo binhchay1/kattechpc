@@ -1,23 +1,19 @@
 <div class="global-menu-container">
     <p class="group-title"><i class="fa fa-bars"></i> Danh mục sản phẩm</p>
     <div class="global-menu-holder">
+        @foreach($listCategory as $category)
         <div class="item">
-            <a href="/laptop" class="cat-1">
-                <img class="lazy icon-menu entered loaded" alt="LAPTOP - PHỤ KIỆN" width="1" height="1" src="/media/category/cat_icon_407_1697165601.png">
-                <span class="cat-title line-clamp-1">LAPTOP - PHỤ KIỆN</span>
+            <a href="{{ $category->slug }}" class="cat-1">
+                <img class="lazy icon-menu entered loaded" alt="{{ $category->name }}" width="1" height="1" src="{{ asset($category->image) }}">
+                <span class="cat-title line-clamp-1">{{ $category->name }}</span>
             </a>
 
             <div class="sub-menu-list">
                 <div class="sub-cat-2">
-                    <a href="/laptop-gaming" class="cat-2">LAPTOP GAMING</a>
-                </div>
-
-                <div class="sub-cat-2">
-                    <a href="/chon-theo-nhu-cau" class="cat-2">CHỌN THEO NHU CẦU</a>
-                    <a href="/laptop-gaming-1">Laptop Gaming </a>
-                    <a href="/laptop-do-hoa-kien-truc">Laptop Đồ Họa - Kiến Trúc </a>
-                    <a href="/laptop-van-phong">Laptop Văn Phòng </a>
-                    <a href="/laptop-mong-nhe">Laptop Mỏng Nhẹ </a>
+                    <p href="/chon-theo-nhu-cau" class="cat-2">CHỌN THEO NHU CẦU</p>
+                    @foreach($category->children as $children)
+                    <a href="{{ route('showDataCategory', $category['slug']) }}">{{ $children->name }}</a>
+                    @endforeach
                 </div>
 
                 <div class="sub-cat-2">
@@ -29,7 +25,6 @@
                     <a href="/30-trieu-50-trieu">30 Triệu - 50 Triệu </a>
                     <a href="/50-trieu-100-trieu">50 Triệu - 100 Triệu </a>
                     <a href="/tren-100-trieu">Trên 100 Triệu </a>
-
                 </div>
 
                 <div class="sub-cat-2">
@@ -62,12 +57,10 @@
                 </div>
 
                 <div class="sub-cat-2">
-                    <a href="/linh-kien-laptop" class="cat-2">LINH KIỆN LAPTOP</a>
-                </div>
-                <div class="sub-cat-2">
                     <a href="/phu-kien-laptop" class="cat-2">PHỤ KIỆN LAPTOP</a>
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
 </div>

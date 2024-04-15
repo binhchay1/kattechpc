@@ -177,8 +177,6 @@ class ProductController extends Controller
             $input['detail'] = json_encode($detail);
         }
 
-        dd($input);
-
         $getProduct = $this->productRepository->getById($id);
         $arrOldImage = json_decode($getProduct->image, true);
         if ($request->hasfile('image')) {
