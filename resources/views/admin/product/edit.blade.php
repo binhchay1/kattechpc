@@ -106,7 +106,7 @@
                             @endif
                         </div>
                         <div class="xl:col-span-12">
-                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium ">{{__('Hình ảnh thay đổi')}}</label>
+                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium ">{{ __('Hình ảnh thay đổi') }}</label>
                             <div class="user-image mb-3 text-center">
                                 <ul class="imgPreview" id="imgPreview">
                                     @php
@@ -115,7 +115,9 @@
                                     @foreach ($product->image as $key => $value)
                                     @php
                                     $nameImage = explode('/', $value);
-                                    $listNameImage[] = $nameImage[3];
+                                    if(!empty($nameImage)) {
+                                        $listNameImage[] = $nameImage[3];
+                                    }
                                     @endphp
                                     <li data-id="{{ $nameImage[3] }}">
                                         <img id="img-review-{{ $key + 1 }}" src="{{ asset($value) }}" class="p-2 m-3" />
@@ -123,7 +125,11 @@
                                     </li>
                                     @endforeach
                                 </ul>
+                                @if(!empty($listNameImage))
                                 <input id="input-review" type="text" name="image_preview" value="{{ implode(',', $listNameImage) }}" hidden>
+                                @else
+                                <input id="input-review" type="text" name="image_preview" value="" hidden>
+                                @endif
                             </div>
                             <div class="form-group">
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Hình ảnh') }}</label>
