@@ -65,6 +65,18 @@ $(document).ready(function () {
             $('#input-review').val(storeName.join());
         }
     });
+
+    if ($('#productPrice').val() != null || $('#productPrice').val() != '') {
+        let input = document.getElementById('productPrice');
+        let v = input.value.replace(/\D+/g, '');
+        input.value = v.replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.');
+    }
+
+    if ($('#productNewPrice').val() != null || $('#productNewPrice').val() != '') {
+        let input = document.getElementById('productNewPrice');
+        let v = input.value.replace(/\D+/g, '');
+        input.value = v.replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.');
+    }
 });
 
 function deleteImagePreview(button, imgName) {
@@ -96,4 +108,9 @@ function deleteImagePreview(button, imgName) {
 
     $('#input-review').val(storeName.join());
     $('#imgPreview').sortable('refresh');
+}
+
+function onlyNumberAmount(input) {
+    let v = input.value.replace(/\D+/g, '');
+    input.value = v.replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.');
 }
