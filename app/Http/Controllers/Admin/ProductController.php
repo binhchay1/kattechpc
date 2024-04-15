@@ -7,6 +7,7 @@ use App\Enums\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\ProductUpdateRequest;
+use App\Repositories\BrandRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
@@ -16,21 +17,25 @@ class ProductController extends Controller
 {
     private $productRepository;
     private $categoryRepository;
+    private $brandRepository;
     private $utility;
 
     public function __construct(
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository,
+        BrandRepository $brandRepository,
         Utility $utility
     ) {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->brandRepository = $brandRepository;
         $this->utility = $utility;
     }
 
     public function index()
     {
         $listProducts = $this->productRepository->index();
+
         foreach ($listProducts as $product) {
             $product->detail = json_decode($product->detail, true);
             $product->image = json_decode($product->image, true);
@@ -43,7 +48,9 @@ class ProductController extends Controller
     {
         $statusProduct = Product::STATUS;
         $listCategories = $this->categoryRepository->index();
-        return view('admin.product.create', compact('listCategories', 'statusProduct'));
+        $listBrands = $this->brandRepository->index();
+
+        return view('admin.product.create', compact('listCategories', 'statusProduct', 'listBrands'));
     }
 
     public function storeProduct(ProductRequest $request)
@@ -116,6 +123,7 @@ class ProductController extends Controller
     {
         $statusProduct = Product::STATUS;
         $listCategories = $this->categoryRepository->index();
+        $listBrands = $this->brandRepository->index();
         $product = $this->productRepository->show($id);
         $product->detail = json_decode($product->detail, true);
         $product->image = json_decode($product->image, true);
@@ -124,7 +132,7 @@ class ProductController extends Controller
             abort(404);
         }
 
-        return view('admin.product.edit', compact('product', 'listCategories', 'statusProduct'));
+        return view('admin.product.edit', compact('product', 'listCategories', 'statusProduct', 'listBrands'));
     }
 
     public function updateProduct(ProductUpdateRequest $request, $id)
