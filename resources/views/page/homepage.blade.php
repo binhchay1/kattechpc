@@ -237,7 +237,13 @@
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
-                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy">
+                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy"
+                            data-title="{{ $product->title }}"
+                            data-price="{{ $product->price }}"
+                            data-new-price="{{ $product->new_price }}"
+                            data-sale-detail="{{ $product->sale_detail }}"
+                            data-status-guarantee="{{ $product->status_guarantee }}"
+                            data-status="{{ $product->status }}">
                             @if($product->hot_status == 1)
                             <span class="p-type-holder">
                                 <i class="p-icon-type p-icon-hot"></i>

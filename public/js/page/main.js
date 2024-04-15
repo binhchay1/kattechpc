@@ -25,6 +25,20 @@ $(document).ready(function () {
     });
 
     $('.hover-for-tooltips').hover(function () {
+        let title = $(this).attr('data-title');
+        let price = $(this).attr('data-price');
+        let new_price = $(this).attr('data-new-price');
+        let sale_detail = $(this).attr('data-sale-detail');
+        let status_guarantee = $(this).attr('data-status-guarantee');
+        let status = $(this).attr('data-status');
+
+        $('.global-tooltip .tooltip-name').html(title);
+        $('#tooltips-price').html(price);
+        $('#tooltips-new-price').html(new_price);
+        $('#tooltips-status-guarantee').html(status_guarantee);
+        $('#tooltips-status-storage').html(status);
+        $('.tooltip-list-gift').html(sale_detail);
+
         $('.global-tooltip').css('display', 'block');
         $('.global-tooltip').css('left', $(this).offset().left + 225);
         $('.global-tooltip').css('top', $(this).offset().top - 50);
