@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="row top">
-            <h1 class="text"> {{__('Điều kiện bảo hành sản phẩm')}}</h1>
+            <h1 class="title-top1"> {{__('Điều kiện bảo hành sản phẩm')}}</h1>
             <div class="column" id="condition">
                 <h2>{{__('NHỮNG SẢN PHẨM ĐỦ ĐIỀU KIỆN BẢO HÀNH')}}</h2>
                 <p class="policy-title">{{__('Sản phẩm nếu có tem niêm phong (seal) trên sản phẩm thì tem niêm phong phải còn nguyên vẹn.')}}</p>
@@ -70,7 +70,7 @@
         </div>
 
         <div class="row top1">
-            <h1 class="text"> {{__('Chính sách bảo hành chung')}}</h1>
+            <h1 class="title-top1"> {{__('Chính sách bảo hành chung')}}</h1>
             <div class="column ">
                 <h2 class="color-primary">{{__('Sản phẩm đổi mới 100%')}}</h2>
                 <p class="policy-title">{{__('Trong 15 ngày đầu khi phát sinh lỗi từ nhà sản xuất')}}</p>
@@ -83,8 +83,8 @@
             </div>
         </div>
 
-        <div class="row top1">
-            <h1 class="text"> {{__('Chính sách bảo hành chung')}}</h1>
+        <div class="row row-top1">
+            <h1 class="title-top1"> {{__('Thưong hiệu uy tín')}}</h1>
             <div class="parent">
                 <div class="child">
                     <span class="policy-title">{{ __('DELL') }}</span>
