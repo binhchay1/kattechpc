@@ -237,13 +237,7 @@
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
-                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy"
-                            data-title="{{ $product->title }}"
-                            data-price="{{ $product->price }}"
-                            data-new-price="{{ $product->new_price }}"
-                            data-sale-detail="{{ $product->sale_detail }}"
-                            data-status-guarantee="{{ $product->status_guarantee }}"
-                            data-status="{{ $product->status }}">
+                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                             @if($product->hot_status == 1)
                             <span class="p-type-holder">
                                 <i class="p-icon-type p-icon-hot"></i>
@@ -293,7 +287,7 @@
             </div>
             <a href="{{ route('promotion') }}" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
-        <div class="list-article-group d-flex align-items-center gap-10">
+        <div class="list-article-group d-flex align-items-center">
             @foreach($listPromotion as $promotion)
             <div class="item-article d-flex gap-12">
                 <a href="{{ route('showPromotionDetail', $promotion->slug) }}" class="img-article boder-radius-10 position-relative">
@@ -313,21 +307,21 @@
             </div>
             <a href="{{ route('post') }}" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
-        <div class="list-article-group d-flex align-items-center gap-10">
+        <div class="list-article-group d-flex">
             @foreach($listNews as $news)
             <div class="item-article d-flex gap-12">
                 <a href="{{ route('post.detail', $news['slug']) }}" class="img-article boder-radius-10 position-relative">
-                    <img class="boder-radius-10" src="{{ $news->thumbnail ?? asset('/images/test_post/2904-viettel-dau-gia-thanh-cong-bang-tan-5g-1.jpg') }}" alt="Viettel trúng đấu giá băng tần để chính thức triển khai 5G tại Việt Nam">
+                    <img class="boder-radius-10" src="{{ asset($news->thumbnail) ?? asset('/images/test_post/2904-viettel-dau-gia-thanh-cong-bang-tan-5g-1.jpg') }}" alt="Viettel trúng đấu giá băng tần để chính thức triển khai 5G tại Việt Nam">
                 </a>
                 <div class="content-article content-article-item d-flex flex-column flex-1">
-                    <a href="{{route('post.detail', $news['slug'])}}" class="title-article">
-                        <h3 class="font-weight-400 line-clamp-2">{{ Str::limit($news->short_description, 30) }}</h3>
+                    <a href="{{ route('post.detail', $news['slug']) }}" class="title-article">
+                        <h3 class="font-weight-400 line-clamp-2">{{ Str::limit(($news->title), 50) }}</h3>
                     </a>
                     <p class="time-article d-flex align-items-center gap-4">
                         <i class="sprite sprite-clock-item-article"></i>
                         <span>{{ date_format($news->created_at, "F j, Y, g:i a") }}</span>
                     </p>
-                    <p class="descreption-article line-clamp-2">{!! Str::limit(strip_tags(html_entity_decode($news->content)), 50)!!}</p>
+                    <p class="descreption-article line-clamp-2">{!! Str::limit(($news->short_description), 150)!!}</p>
                 </div>
             </div>
             @endforeach

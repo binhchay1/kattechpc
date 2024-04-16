@@ -13,6 +13,10 @@
     #cke_editor1 {
         top: 0px !important;
     }
+
+    .show-avatar {
+        width: 300px;
+    }
 </style>
 
 <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5 mt-4">
@@ -30,7 +34,7 @@
                             @if ($errors->has('title'))
                             <span class="text-danger">{{ $errors->first('title') }}</span>
                             @endif
-                        </div><!--end col-->
+                        </div>
                         <div class="xl:col-span-4">
                             <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Thể loại') }}</label>
                             <select style="width: 50%" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false id="categorySelect" name="category_id">
@@ -98,7 +102,6 @@
 @endsection
 @push('scripts')
 <script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
-<script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
 <script src="{{ URL::asset('build/js/pages/apps-ecommerce-product-create.init.js') }}"></script>
 
 <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
@@ -107,7 +110,7 @@
         .create(document.querySelector('#editor'), {
             height: 500,
             ckfinder: {
-                uploadUrl: '<?php route('admin.post.uploadMedia ') . ' ? _token = ' . csrf_token() ?>',
+                uploadUrl: '<?php route('admin.post.uploadMedia') . ' ? _token = ' . csrf_token() ?>',
             }
         })
         .catch(error => {

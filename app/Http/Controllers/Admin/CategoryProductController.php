@@ -43,8 +43,8 @@ class CategoryProductController extends Controller
         if (isset($input['image'])) {
 
             // $this->utility->saveImageCategory($input);
-            $file->move(public_path('images/upload/category/'), $file->getClientOriginalName());
-            $path = '/images/upload/category/' . $input['image']->getClientOriginalName();
+            $file->move(public_path('images/upload/category-product/'), $file->getClientOriginalName());
+            $path = '/images/upload/category-product/' . $input['image']->getClientOriginalName();
             $input['image'] = $path;
         }
         $this->categoryRepository->create($input);
@@ -70,8 +70,8 @@ class CategoryProductController extends Controller
         if (isset($input['image'])) {
 
             // $this->utility->saveImageCategory($input);
-            $input['image']->move(public_path('images/upload/category/'), $input['image']->getClientOriginalName());
-            $path = '/images/upload/category/' . $input['image']->getClientOriginalName();
+            $input['image']->move(public_path('images/upload/category-product/'), $input['image']->getClientOriginalName());
+            $path = '/images/upload/category-product/' . $input['image']->getClientOriginalName();
             $input['image'] = $path;
         }
         $input = $this->categoryRepository->update($input, $id);

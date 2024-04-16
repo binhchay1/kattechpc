@@ -14,19 +14,19 @@
         <div class="">
             <div class="policy-step ">
                 <div class=" ml-100px">
-                    <h1>{{__('HƯỚNG DẪN')}}</h1>
-                    <h1>{{__('TRA CỨU VÀ NHẬN HOÁ ĐƠN ĐIỆN TỬ')}}</h1>
+                    <h1>{{ __('HƯỚNG DẪN') }}</h1>
+                    <h1>{{ __('TRA CỨU VÀ NHẬN HOÁ ĐƠN ĐIỆN TỬ') }}</h1>
                 </div>
             </div>
         </div>
         <div class=" ml-100px">
-            <h2>{{__('CÁCH TRA CỨU HOÁ ĐƠN ĐIỆN TỬ')}}</h2>
+            <h2>{{ __('CÁCH TRA CỨU HOÁ ĐƠN ĐIỆN TỬ') }}</h2>
         </div>
     </div>
     <div class="row top">
         <div class="" id="bill">
-            <h2>{{__('Bước 1:')}}</h2>
-            <span>{{__(' Truy cập trang web Tra cứu hóa đơn điện tử:')}}</span>
+            <h2>{{ __('Bước 1:') }}</h2>
+            <span>{{ __(' Truy cập trang web Tra cứu hóa đơn điện tử:') }}</span>
         </div>
     </div>
     <div class=" ml-100px">
@@ -38,8 +38,8 @@
     <img class="images" src="{{ asset('/images/page/electric-bill.png') }}">
     <div class="row top">
         <div class="" id="bill">
-            <h2>{{__('Bước 2:')}}</h2>
-            <span>{{__(' Nhập mã số :')}}</span>
+            <h2>{{ __('Bước 2:') }}</h2>
+            <span>{{ __(' Nhập mã số :') }}</span>
         </div>
     </div>
     <div class=" ml-100px">
@@ -55,12 +55,5 @@
             <h3>{{ __('1900 1903') }}</h3>
         </div>
     </div>
-
-
 </div>
-
-@endsection
-
-@section('js')
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 @endsection

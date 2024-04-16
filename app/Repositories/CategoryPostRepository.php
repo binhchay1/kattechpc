@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories;
 
 use App\Models\CategoryPost;
@@ -38,5 +39,10 @@ class CategoryPostRepository extends BaseRepository
     public function getListCategoryExcludeId($id)
     {
         return $this->model->where('id', '!=', $id)->get();
+    }
+
+    public function getListCategoryPost()
+    {
+        return $this->model->orderBy('created_at', 'desc')->get();
     }
 }

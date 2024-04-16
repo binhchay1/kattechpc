@@ -710,17 +710,17 @@ body a {
 .box-article-group {
     margin-bottom: 30px;
     padding: 14px 12px;
-    background:#f8f8f8 ;
     border-radius: 5px;
 }
 
 .item-article {
     margin: 5px;
+    flex-direction: column;
 }
 
 .img-article img {
     display: block;
-    width: 100%;
+    height: 300px;
     object-fit: cover;
     transition: 0.5s all;
 }
@@ -1257,7 +1257,6 @@ a {
     -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
     width: 200px;
-    height: 464px;
     -webkit-transition: 0.3s all;
     -o-transition: 0.3s all;
     transition: 0.3s all;
@@ -1388,6 +1387,17 @@ a {
 .category-home-page .policy-title {
     margin-top: 10px;
     margin-left: 10px;
+}
+
+.global-menu-holder .cat-title {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.global-menu-holder .sub-menu-list .sub-cat-2 a {
+    color: black;
+    font-size: 18px;
 }
 
 @media screen and (max-width: 992px) {
