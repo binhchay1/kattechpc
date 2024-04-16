@@ -12,8 +12,8 @@
                 <div class="sub-cat-2">
                     <p class="cat-2">{{ __('CHỌN THEO NHU CẦU') }}</p>
                     <div class="sub-cat-2-link">
-                        @foreach($category->children as $children)
-                        <a href="{{ route('showDataCategory', $category['slug']) }}">{{ $children->name }}</a>
+                        @foreach($category->children as $categoryChild)
+                        <a href="{{ route('showDataCategory', $categoryChild['slug']) }}">{{ $categoryChild->name }}</a>
                         @endforeach
                     </div>
                 </div>
@@ -34,23 +34,9 @@
                 <div class="sub-cat-2">
                     <p class="cat-2">{{ __('CHỌN THEO HÃNG') }}</p>
                     <div class="sub-cat-2-link">
-                    </div>
-                </div>
-
-                <div class="sub-cat-2">
-                    <p href="/chon-theo-cpu" class="cat-2">CHỌN THEO CPU</p>
-                    <div class="sub-cat-2-link">
-                        <a href="/laptop-intel-core-i3">Intel Core i3 </a>
-                        <a href="/intel-celeronpentium">Intel Celeron/Pentium </a>
-                        <a href="/intel-core-i5">Intel Core i5 </a>
-                        <a href="/intel-core-i7">Intel Core i7 </a>
-                        <a href="/intel-core-i9">Intel Core i9 </a>
-                        <a href="/amd-ryzen-3">AMD Ryzen 3 </a>
-                        <a href="/amd-ryzen-5">AMD Ryzen 5 </a>
-                        <a href="/amd-ryzen-7">AMD Ryzen 7 </a>
-                        <a href="/amd-ryzen-9">AMD Ryzen 9 </a>
-                        <a href="/apple-m1">Apple M1 </a>
-                        <a href="/apple-m2">Apple M2 </a>
+                        @foreach($category->products as $categoryChild)
+                        <a href="{{ route('showDataCategory', $categoryChild->slug) }}">{{ $categoryChild->name }}</a>
+                        @endforeach
                     </div>
                 </div>
 

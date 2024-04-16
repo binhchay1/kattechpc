@@ -49,7 +49,6 @@ class ProductImageController extends Controller
         ProductImage::insert($imageData);
 
         return redirect()->back()->with('success',  __('Ảnh sản phẩm được thêm thành công'));
-
     }
 
     public function destroy(int $productImageId)
