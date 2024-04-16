@@ -67,16 +67,16 @@
                     <button>{{ __('15 triệu - 20 triệu') }}</button>
                 </div>
                 <div data-id="tu-20trieu-30trieu" class="section">
-                    <button>20 triệu - 30 triệu</button>
+                    <button>{{__('20 triệu - 30 triệu')}}</button>
                 </div>
                 <div data-id="tu-30trieu-50trieu" class="section">
-                    <button>30 triệu - 50 triệu</button>
+                    <button>{{__('30 triệu - 50 triệu')}}</button>
                 </div>
                 <div data-id="tu-50trieu-100trieu" class="section">
-                    <button>50 triệu - 100 triệu</button>
+                    <button>{{__('50 triệu - 100 triệu')}}</button>
                 </div>
                 <div data-id="tren-100trieu" class="section">
-                    <button>Trên 100 triệu</button>
+                    <button>{{__('Trên 100 triệu')}}</button>
                 </div>
             </div>
         </div>
