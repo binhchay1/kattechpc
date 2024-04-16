@@ -10,25 +10,25 @@
 
             <div class="sub-menu-list">
                 <div class="sub-cat-2">
-                    <p href="/chon-theo-nhu-cau" class="cat-2">{{ __('CHỌN THEO NHU CẦU') }}</p>
+                    <p class="cat-2">{{ __('CHỌN THEO NHU CẦU') }}</p>
                     @foreach($category->children as $children)
                     <a href="{{ route('showDataCategory', $category['slug']) }}">{{ $children->name }}</a>
                     @endforeach
                 </div>
 
                 <div class="sub-cat-2">
-                    <a href="/chon-theo-khoang-gia" class="cat-2">{{ __('CHỌN THEO KHOẢNG GIÁ') }}</a>
-                    <a href="/duoi-10-trieu">Dưới 10 Triệu </a>
-                    <a href="/10-trieu-15-trieu">10 Triệu - 15 Triệu </a>
-                    <a href="/15-trieu-20-trieu">15 Triệu - 20 Triệu </a>
-                    <a href="/20-trieu-30-trieu">20 Triệu - 30 Triệu </a>
-                    <a href="/30-trieu-50-trieu">30 Triệu - 50 Triệu </a>
-                    <a href="/50-trieu-100-trieu">50 Triệu - 100 Triệu </a>
-                    <a href="/tren-100-trieu">Trên 100 Triệu </a>
+                    <p class="cat-2">{{ __('CHỌN THEO KHOẢNG GIÁ') }}</p>
+                    <a href="/duoi-10-trieu">{{ __('Dưới 10 Triệu') }}</a>
+                    <a href="/10-trieu-15-trieu">{{ __('10 Triệu - 15 Triệu') }}</a>
+                    <a href="/15-trieu-20-trieu">{{ __('15 Triệu - 20 Triệu') }}</a>
+                    <a href="/20-trieu-30-trieu">{{ __('20 Triệu - 30 Triệu') }}</a>
+                    <a href="/30-trieu-50-trieu">{{ __('30 Triệu - 50 Triệu') }}</a>
+                    <a href="/50-trieu-100-trieu">{{ __('50 Triệu - 100 Triệu') }}</a>
+                    <a href="/tren-100-trieu">{{ __('Trên 100 Triệu') }}</a>
                 </div>
 
                 <div class="sub-cat-2">
-                    <a href="/chon-theo-cpu" class="cat-2">CHỌN THEO CPU</a>
+                    <p href="/chon-theo-cpu" class="cat-2">CHỌN THEO CPU</p>
                     <a href="/laptop-intel-core-i3">Intel Core i3 </a>
                     <a href="/intel-celeronpentium">Intel Celeron/Pentium </a>
                     <a href="/intel-core-i5">Intel Core i5 </a>
@@ -43,11 +43,11 @@
                 </div>
 
                 <div class="sub-cat-2">
-                    <a href="/laptop-chon-theo-hang" class="cat-2">{{ __('CHỌN THEO HÃNG') }}</a>
+                    <p class="cat-2">{{ __('CHỌN THEO HÃNG') }}</p>
                 </div>
 
                 <div class="sub-cat-2">
-                    <a href="/phu-kien-laptop" class="cat-2">PHỤ KIỆN {{ strtoupper($category) }}</a>
+                    <p class="cat-2">PHỤ KIỆN {{ strtoupper($category->name) }}</p>
                 </div>
             </div>
         </div>

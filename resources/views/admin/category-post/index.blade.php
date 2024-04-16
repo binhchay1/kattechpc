@@ -1,10 +1,10 @@
 @extends('layouts.master-admin')
+
 @section('title')
 {{ __('Danh sách danh mục sản phẩm') }}
 @endsection
-@section('content')
-<!-- page title -->
 
+@section('content')
 <div class="grid grid-cols-1 gap-x-5 xl:grid-cols-12 mt-4">
     <div class="xl:col-span-12">
         <div class="card" id="usersTable">
@@ -100,21 +100,15 @@
                     {!! $listCategory->links() !!}
                 </div>
             </div>
-        </div><!--end card-->
-    </div><!--end col-->
-</div><!--end grid-->
-
+        </div><
+    </div>
+</div>
 @endsection
+
 @push('scripts')
-<!-- list js-->
 <script src="{{ URL::asset('build/libs/list.js/list.min.js') }}"></script>
 <script src="{{ URL::asset('build/libs/list.pagination.js/list.pagination.min.js') }}"></script>
-
-<!-- User list init js -->
 <script src="{{ URL::asset('build/js/pages/apps-user-list.init.js') }}"></script>
-
-<!-- App js -->
-<script src="{{ URL::asset('build/js/app.js') }}"></script>
 
 <script>
     setTimeout(function() {

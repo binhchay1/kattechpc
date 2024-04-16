@@ -32,8 +32,7 @@ $(document).ready(function () {
         let status_guarantee = $(this).attr('data-status-guarantee');
         let status = $(this).attr('data-status');
 
-        console.log(sale_detail);
-        if(new_price == '' || new_price == null) {
+        if (new_price == '' || new_price == null) {
             $('#title-new-price').hide();
             $('#tooltips-new-price').hide();
             $('#tooltips-sale-price').hide();
@@ -43,7 +42,7 @@ $(document).ready(function () {
             $('#tooltips-sale-price').show();
         }
 
-        if(sale_detail == '' || sale_detail == null) {
+        if (sale_detail == '' || sale_detail == null) {
             $('.tooltip-list-gift').hide();
         } else {
             $('.tooltip-list-gift').show();
@@ -140,12 +139,25 @@ $(document).ready(function () {
         $('.global-menu-holder').css('opacity', 0);
     });
 
-    $('.global-menu-holder .item a').hover(function () {
-        let element = $(this).next();
-        element.css('display', 'flex');
+    $('.global-menu-holder .item .cat-1').hover(function () {
+        $(this).css('background-color', '#b42328');
+        $(this).css('color', '#ffffff');
+        $(this).next().css('display', 'flex');
     }, function () {
-        let element = $(this).next();
-        element.css('display', 'none');
+        $(this).css('background-color', '#ffffff');
+        $(this).css('color', 'black');
+        $(this).next().css('display', 'none');
+    });
+
+    $('.sub-menu-list').hover(function () {
+        $('.global-menu-holder').css('opacity', 1);
+        $(this).prev().css('background-color', '#b42328');
+        $(this).prev().css('color', '#ffffff');
+        $(this).css('display', 'flex');
+    }, function () {
+        $(this).prev().css('background-color', '#ffffff');
+        $(this).prev().css('color', 'black');
+        $(this).css('display', 'none');
     });
 
     $('.lazy').Lazy();

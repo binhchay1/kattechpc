@@ -162,7 +162,7 @@ class HomeController extends Controller
             $product->detail = json_decode($product->detail, true);
             $product->image = json_decode($product->image, true);
         }
-        $listCategory = $this->categoryRepository->getListCategory();
+        $listCategory = $this->categoryRepository->getListCategoryHome();
         $listNews = $this->postRepository->getListNewsInHomepage();
         $listPromotion = $this->promotionRepository->getListPromotionHomePage();
         $layout = $this->layoutRepository->getListLayout();

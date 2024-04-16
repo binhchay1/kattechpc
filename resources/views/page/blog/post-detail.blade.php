@@ -1,11 +1,10 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ __('Trang tin tức') }} | Kattech PC</title>
+<title>{{ $post->title }} | Kattech PC</title>
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('/plugins/owlcarousel/owl.theme.default.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/page/post-detail.css') }}" />
 @endsection
 
@@ -45,8 +44,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-@section('js')
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 @endsection
