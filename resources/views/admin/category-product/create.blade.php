@@ -39,14 +39,14 @@
                                         <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                                         <div class=" choose-avatar">
                                             <div id="btnimage">
-                                                <img id="showImage" class="show-avatar" src="{{ asset('/images/no-image.jpg') }}" alt="avatar"  style="width: 50%; height: auto">
+                                                <img id="showImage" class="show-avatar" src="{{ asset('/images/no-image.jpg') }}" alt="avatar" style="width: 50%; height: auto">
                                             </div>
                                             <div id="button">
                                                 <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
                                             </div>
                                         </div>
                                         @if ($errors->has('image'))
-                                            <span class="text-danger"style="color: red">{{ $errors->first('image') }}</span>
+                                        <span class="text-danger" style="color: red">{{ $errors->first('image') }}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -64,6 +64,7 @@
     </div>
 </div>
 @endsection
+
 @push('scripts')
-    <script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
+<script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
 @endpush

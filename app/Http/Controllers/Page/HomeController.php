@@ -7,6 +7,7 @@ use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
+use App\Repositories\CategoryPostRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\CustomContactRepository;
 use App\Repositories\LandingPageRepository;
@@ -24,6 +25,7 @@ class HomeController extends Controller
     protected $postRepository;
     protected $layoutRepository;
     protected $promotionRepository;
+    protected $categoryPostRepository;
     protected $utility;
 
     public function __construct(
@@ -34,7 +36,8 @@ class HomeController extends Controller
         CustomContactRepository $customContactRepository,
         PostRepository $postRepository,
         LayoutRepository $layoutRepository,
-        PromotionRepository $promotionRepository
+        PromotionRepository $promotionRepository,
+        CategoryPostRepository $categoryPostRepository
     ) {
         $this->utility = $utility;
         $this->productRepository = $productRepository;
@@ -44,6 +47,7 @@ class HomeController extends Controller
         $this->postRepository = $postRepository;
         $this->layoutRepository = $layoutRepository;
         $this->promotionRepository = $promotionRepository;
+        $this->categoryPostRepository = $categoryPostRepository;
     }
 
     public function lang($locale)
@@ -203,8 +207,9 @@ class HomeController extends Controller
         $listPostDESC = $this->postRepository->listPostDESC();
         $listPostASC = $this->postRepository->listPostASC();
         $listCategory = $this->categoryRepository->getListCategory();
+        $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
 
-        return view('page.blog.posts', compact('listPost', 'listPostRandom', 'listPostDESC', 'listPostASC', 'listCategory'));
+        return view('page.blog.posts', compact('listPost', 'listPostRandom', 'listPostDESC', 'listPostASC', 'listCategory', 'listCategoryPost'));
     }
 
     public function postDetail($slug)

@@ -1,7 +1,7 @@
 @extends('layouts.master-admin')
 
 @section('title')
-{{ __('Sửa danh mục sản phẩm') }}
+{{ __('Sửa danh mục bài viết') }}
 @endsection
 
 @section('content')
@@ -9,14 +9,14 @@
     <div class="xl:col-span-12">
         <div class="card">
             <div class="card-body">
-                <h6 class="mb-4 text-15">{{__('Sửa danh mục sản phẩm')}}</h6>
+                <h6 class="mb-4 text-15">{{__('Sửa danh mục bài viết')}}</h6>
 
                 <form method="POST" action="{{route('admin.categoryPost.update', $categoryPost['id'])}}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
                         <div class="xl:col-span-6">
-                            <label for="postNameInput" class="inline-block mb-2 text-base font-medium">{{__('Tên danh mục')}}</label>
-                            <input type="text" id="postNameInput" name="name" value="{{old('title',$categoryPost->name)}}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Tên danh mục')}}">
+                            <label for="postNameInput" class="inline-block mb-2 text-base font-medium">{{ __('Tên danh mục') }}</label>
+                            <input type="text" id="postNameInput" name="name" value="{{ old('name',$categoryPost->name) }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Tên danh mục') }}">
                             @if ($errors->has('name'))
                             <span class="text-danger">{{ $errors->first('name') }}</span>
                             @endif
@@ -27,9 +27,31 @@
                             <select id="categoryParentInput" class="form-select border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200">
                                 <option value="0">{{ __('Không') }}</option>
                                 @foreach($listCategory as $category)
-                                <option value="{{ $category->id }}" {{ $category->id == $categoryProduct->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                <option value="{{ $category->id }}" {{ $category->id == $categoryPost->id ? 'selected' : '' }}>{{ $category->name }}</option>
                                 @endforeach
                             </select>
+                        </div>
+
+                        <div class="xl:col-span-6">
+                            <div class="form-group">
+                                <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Hình ảnh') }}</label>
+                                <div class="">
+                                    <div class="" style="display: inline-grid;">
+                                        <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
+                                        <div class=" choose-avatar">
+                                            <div id="btnimage">
+                                                <img id="showImage" class="show-avatar" src="{{ asset($categoryPost->image ?? '/images/no-image.jpg') }}" alt="avatar" style="width: 50%; height: auto">
+                                            </div>
+                                            <div id="button">
+                                                <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
+                                            </div>
+                                        </div>
+                                        @if ($errors->has('image'))
+                                        <span class="text-danger">{{ $errors->first('image') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <input type="hidden" name="slug" class="form-control" id="name" placeholder="Enter name" value="{{$categoryPost->slug}}">
@@ -44,3 +66,7 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
+@endpush

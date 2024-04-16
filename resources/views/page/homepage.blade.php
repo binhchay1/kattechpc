@@ -237,13 +237,7 @@
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
-                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy"
-                            data-title="{{ $product->title }}"
-                            data-price="{{ $product->price }}"
-                            data-new-price="{{ $product->new_price }}"
-                            data-sale-detail="{{ $product->sale_detail }}"
-                            data-status-guarantee="{{ $product->status_guarantee }}"
-                            data-status="{{ $product->status }}">
+                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                             @if($product->hot_status == 1)
                             <span class="p-type-holder">
                                 <i class="p-icon-type p-icon-hot"></i>
@@ -321,13 +315,13 @@
                 </a>
                 <div class="content-article content-article-item d-flex flex-column flex-1">
                     <a href="{{ route('post.detail', $news['slug']) }}" class="title-article">
-                        <h3 class="font-weight-400 line-clamp-2">{{ Str::limit($news->short_description, 30) }}</h3>
+                        <h3 class="font-weight-400 line-clamp-2">{{ $news->title }}</h3>
                     </a>
                     <p class="time-article d-flex align-items-center gap-4">
                         <i class="sprite sprite-clock-item-article"></i>
                         <span>{{ date_format($news->created_at, "F j, Y, g:i a") }}</span>
                     </p>
-                    <p class="descreption-article line-clamp-2">{!! Str::limit(strip_tags(html_entity_decode($news->content)), 50)!!}</p>
+                    <p class="descreption-article line-clamp-2">{!! Str::limit(($news->short_description), 150)!!}</p>
                 </div>
             </div>
             @endforeach

@@ -14,7 +14,7 @@ class CategoryPost extends Model
 
 
     protected $fillable = [
-        'name', 'slug', 'parent'
+        'name', 'slug', 'parent', 'image'
     ];
 
     public function sluggable(): array
@@ -33,7 +33,6 @@ class CategoryPost extends Model
         static::creating(function ($category) {
             $category->slug = Str::slug($category->name);
 
-            // Ensure slug uniqueness
             $originalSlug = $slug = $category->slug;
             $count = 1;
 
