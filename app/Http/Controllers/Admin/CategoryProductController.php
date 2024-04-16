@@ -41,8 +41,9 @@ class CategoryProductController extends Controller
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($input['name']);
         if (isset($input['image'])) {
-        
-            $this->utility->saveImageCategory($input);
+
+            // $this->utility->saveImageCategory($input);
+            $file->move(public_path('images/upload/category/'), $file->getClientOriginalName());
             $path = '/images/upload/category/' . $input['image']->getClientOriginalName();
             $input['image'] = $path;
         }
@@ -67,13 +68,14 @@ class CategoryProductController extends Controller
         $input = $request->except(['_token']);
         $input['slug'] =  Str::slug($input['name']);
         if (isset($input['image'])) {
-        
-            $this->utility->saveImageCategory($input);
+
+            // $this->utility->saveImageCategory($input);
+            $input['image']->move(public_path('images/upload/category/'), $input['image']->getClientOriginalName());
             $path = '/images/upload/category/' . $input['image']->getClientOriginalName();
             $input['image'] = $path;
         }
         $input = $this->categoryRepository->update($input, $id);
-        
+
 
         return redirect()->route('admin.categoryProduct.index')->with('success',  __('Danh mục sản phẩm được thay đổi thành công'));
     }
