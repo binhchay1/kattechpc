@@ -13,7 +13,7 @@
         <p class="alert-add {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('success') }}</p>
     @endif
 <div class="container">
-    <section class="product-container">
+    <section class="product-container set-background">
         <div class="img-card">
             <img src="{{ asset($product->image[0]) }}" id="featured-image">
             <div class="small-Card">
@@ -66,7 +66,7 @@
         </div>
     </section>
 
-    <section class="product-container">
+    <section class="product-container set-background1">
         <div class="product-info">
             <h3>{{ __('Thông tin sản phẩm') }}</h3>
             <table>

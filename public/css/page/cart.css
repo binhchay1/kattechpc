@@ -70,7 +70,6 @@ button,
 .basket-product,
 .product-image,
 .product-details {
-    float: left;
 }
 
 .hide {
@@ -84,6 +83,7 @@ main {
     overflow: hidden;
     padding: 1rem 0;
     width: 1430px;
+    padding: 15px;
 }
 
 .basket,
@@ -95,10 +95,13 @@ aside {
 }
 
 .basket {
-    width: 70%;
     border: 1px solid #aaa;
     margin-top: 30px;
     border-radius: 5px;
+}
+
+.info-product {
+
 }
 
 .basket-module {
@@ -154,7 +157,7 @@ li {
 
 
 .item {
-    width: 55%;
+    width: 50%;
 }
 
 .price,
@@ -192,6 +195,7 @@ li {
 }
 
 .basket-product {
+    display: flex;
     border-bottom: 1px solid #ccc;
     padding: 1rem 0;
     position: relative;
@@ -233,8 +237,6 @@ aside {
 }
 
 .summary {
-    background-color: #eee;
-    border: 1px solid #aaa;
     padding: 1rem;
     width: 100%;
     -webkit-box-sizing: border-box;
@@ -245,21 +247,15 @@ aside {
 
 }
 .summary1 {
-    border: 1px solid #aaa;
     padding: 1rem;
     width: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     border-radius: 5px;
-    margin-top: 110px;
 }
 
-.summary-total-items {
-    color: #4267b2;
-    font-size: 0.875rem;
-    text-align: center;
-}
+
 
 .summary-subtotal,
 .summary-total {
@@ -276,8 +272,7 @@ aside {
 .promo-title,
 .promo-value {
     color: #111;
-    float: left;
-    width: 50%;
+
 }
 
 .summary-promo {
@@ -305,7 +300,6 @@ aside {
 
 .subtotal-value,
 .total-value {
-    text-align: right;
 }
 
 .total-title {
@@ -324,7 +318,7 @@ aside {
     text-align: center;
     text-transform: uppercase;
     padding: 0.625rem 0;
-    width: 100%;
+    width: 30%;
     border-radius: 5px;
 }
 
@@ -461,8 +455,8 @@ input {
 }
 
 .delete  {
-    margin-top: 10px;
     float: right;
+    margin-left: 10px;
 }
 
 .text-danger {

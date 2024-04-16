@@ -710,7 +710,8 @@ body a {
 .box-article-group {
     margin-bottom: 30px;
     padding: 14px 12px;
-    background: #fff;
+    background:#f8f8f8 ;
+    border-radius: 5px;
 }
 
 .item-article {
@@ -1460,4 +1461,13 @@ a {
     .modal-box .modal-dialog {
         width: 95% !important;
     }
+}
+
+.product-slide {
+    margin: 20px;
+}
+
+.product-slide-main {
+    background:#f8f8f8 ;
+    border-radius: 5px;
 }

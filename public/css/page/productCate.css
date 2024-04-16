@@ -3,9 +3,6 @@
     margin: 0 auto;
 }
 
-* {
-    box-sizing: border-box;
-}
 
 .column {
     float: left;

@@ -55,7 +55,6 @@
     <div class="row">
         <div class="flex" id="select-price">
             <h2>Lọc theo giá:</h2>
-
             <div data-id="duoi-10trieu" class="section">
                 <button>{{ __('Dưới 10 triệu') }}</button>
             </div>
