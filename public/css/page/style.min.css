@@ -508,6 +508,8 @@ body a {
     background-color: #eee;
     border-radius: 5px;
     justify-content: space-around;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .flex-container > div {

@@ -57,7 +57,7 @@ $(document).ready(function () {
 
         $('.global-tooltip').css('display', 'block');
         $('.global-tooltip').css('left', $(this).offset().left + 225);
-        $('.global-tooltip').css('top', $(this).offset().top - 50);
+        $('.global-tooltip').css('top', $(this).offset().top - 10);
     }, function () {
         $('.global-tooltip').css('display', 'none');
     });

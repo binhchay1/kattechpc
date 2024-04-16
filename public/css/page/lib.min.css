@@ -39,7 +39,7 @@
 }
 
 .d-flex {
-    display: flex;
+    display: flex !important;
 }
 
 .align-items-center {
@@ -266,4 +266,8 @@
 
 .text-center {
     text-align: center;
+}
+
+.height-auto {
+    height: auto !important;
 }

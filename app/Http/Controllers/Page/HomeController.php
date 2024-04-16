@@ -80,18 +80,18 @@ class HomeController extends Controller
 
         return view('page.other.policy', compact('listCategory'));
     }
-    
-    public function onlineShopping()
+
+    public function paymentOnline()
     {
         $listCategory = $this->categoryRepository->getListCategory();
-    
-        return view('page.other.online-shopping', compact('listCategory'));
+
+        return view('page.other.payment-online', compact('listCategory'));
     }
-    
+
     public function payment()
     {
         $listCategory = $this->categoryRepository->getListCategory();
-    
+
         return view('page.other.payment', compact('listCategory'));
     }
 

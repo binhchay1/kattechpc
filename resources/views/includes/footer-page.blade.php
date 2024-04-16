@@ -58,25 +58,25 @@
                 </span>
             </div>
             <div class="footer-middle-item">
-                <span class="footer-middle-title">{{__('HỖ TRỢ KHÁCH HÀNG')}}</span>
-                <p><a href="#">{{ __('Hướng dẫn mua hàng trực tuyến') }}</a>
+                <span class="footer-middle-title">{{ __('HỖ TRỢ KHÁCH HÀNG') }}</span>
+                <p><a href="{{ route('paymentOnline') }}">{{ __('Hướng dẫn mua hàng trực tuyến') }}</a>
                 </p>
-                <p><a href="#">{{__('Hướng dẫn thanh toán')}}</a></p>
-                <p><a href="{{ route('electronicBill') }}">{{__('In hóa đơn điện tử')}}</a>
+                <p><a href="{{ route('payment') }}">{{__('Hướng dẫn thanh toán')}}</a></p>
+                <p><a href="{{ route('electronicBill') }}">{{ __('In hóa đơn điện tử') }}</a>
                 </p>
-                <p><a href="{{ route('complaint') }}">{{__('Góp ý, Khiếu Nại')}}</a></p>
+                <p><a href="{{ route('complaint') }}">{{ __('Góp ý, Khiếu Nại') }}</a></p>
             </div>
             <div class="footer-middle-item">
-                <span class="footer-middle-title">{{__('CHÍNH SÁCH CHUNG')}}</span>
-                <p><a href="{{ route('rules') }}">{{__('Chính sách, quy định chung')}}</a></p>
-                <p><a href="{{ route('policy') }}">{{__('Chính sách bảo hành')}}</a></p>
-                <p><a href="{{ route('businessPolicy') }}">{{__('Chính sách cho doanh nghiệp')}}</a></p>
-                <p><a href="{{ route('productPolicy') }}">{{__('Chính sách hàng chính hãng')}}</a></p>
-                <p><a href="{{ route('securityCustomer') }}">{{__('Bảo mật thông tin khách hàng')}}</a></p>
+                <span class="footer-middle-title">{{ __('CHÍNH SÁCH CHUNG') }}</span>
+                <p><a href="{{ route('rules') }}">{{ __('Chính sách, quy định chung') }}</a></p>
+                <p><a href="{{ route('policy') }}">{{ __('Chính sách bảo hành') }}</a></p>
+                <p><a href="{{ route('businessPolicy') }}">{{ __('Chính sách cho doanh nghiệp') }}</a></p>
+                <p><a href="{{ route('productPolicy') }}">{{ __('Chính sách hàng chính hãng') }}</a></p>
+                <p><a href="{{ route('securityCustomer') }}">{{ __('Bảo mật thông tin khách hàng') }}</a></p>
             </div>
             <div class="footer-middle-item">
-                <span class="footer-middle-title">{{__('THÔNG TIN KHUYẾN MẠI')}}</span>
-                <p><a href="{{ route('promotion') }}" target="_blank">{{__('Thông tin khuyến mại')}}</a></p>
+                <span class="footer-middle-title">{{ __('THÔNG TIN KHUYẾN MẠI') }}</span>
+                <p><a href="{{ route('promotion') }}" target="_blank">{{ __('Thông tin khuyến mại') }}</a></p>
                 </p>
             </div>
         </div>

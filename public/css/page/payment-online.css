@@ -6,35 +6,30 @@
     margin-right: auto;
 }
 
-p {
+#content-page p {
     margin: 12px 0;
     line-height: 22px !important;
     font-size: 13pt;
     color: #464646;
 }
 
-
-* {
+#content-page {
     box-sizing: border-box;
 }
 
-/* Create two equal columns that floats next to each other */
 .column {
     float: left;
     width: 50%;
     padding: 10px;
-    height: 450px;/* Should be removed. Only for demonstration */
-
+    height: 450px;
 }
 
-/* Clear floats after the columns */
 .row:after {
     content: "";
     display: table;
     clear: both;
 }
 
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
     .column {
         width: 100%;
@@ -116,7 +111,7 @@ p {
 }
 
 .child {
-    flex: 1 0 21%; /* explanation below */
+    flex: 1 0 21%;
     margin: 5px;
     height: 100px;
     background-color: grey;
@@ -131,7 +126,7 @@ p {
     margin-bottom: 30px;
 }
 
-img {
+#content-page img {
     display: block;
     max-width: 100%;
     height: auto;
