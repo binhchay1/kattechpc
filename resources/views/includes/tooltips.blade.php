@@ -5,7 +5,7 @@
     <div class="tooltip-descreption">
         <div class="tooltip-descreption-price">
             <p>{{ __('Giá niêm yết') }}</p>
-            <p>{{ __('Giá bán') }}</p>
+            <p id="title-new-price">{{ __('Giá bán') }}</p>
             <p>{{ __('Bảo hành') }}</p>
             <p>{{ __('Tình trạng') }}</p>
         </div>
@@ -15,7 +15,7 @@
                     <p class="card-price-origin color-black" style="position: relative;" id="tooltips-price">
                         <span class="card-price-origin-line-through"></span>
                     </p>
-                    <span class="color-red" style="margin-left: 4px;">-5%</span>
+                    <span id="tooltips-sale-price" class="color-red" style="margin-left: 4px;">-5%</span>
                 </div>
             </div>
             <p style="margin: 0;" id="tooltips-new-price">

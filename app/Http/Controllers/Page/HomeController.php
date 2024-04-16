@@ -153,7 +153,6 @@ class HomeController extends Controller
         $getFlashSale = $this->layoutRepository->getFlashSale();
         $listFlashSale = [];
         $listSlide = [];
-        $listMenuBar = config('menu.list');
 
         if (isset($getSlide->slide_thumbnail)) {
             $listSlide = json_decode($getSlide->slide_thumbnail, true);
@@ -181,7 +180,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale', 'layout', 'listSlide', 'listFlashSale', 'listMenuBar', 'listPromotion'));
+        return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale', 'layout', 'listSlide', 'listFlashSale', 'listPromotion'));
     }
 
     public function viewPost()

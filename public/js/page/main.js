@@ -32,6 +32,22 @@ $(document).ready(function () {
         let status_guarantee = $(this).attr('data-status-guarantee');
         let status = $(this).attr('data-status');
 
+        if(new_price == '' || new_price == null) {
+            $('#title-new-price').hide();
+            $('#tooltips-new-price').hide();
+            $('#tooltips-sale-price').hide();
+        } else {
+            $('#title-new-price').show();
+            $('#tooltips-new-price').show();
+            $('#tooltips-sale-price').show();
+        }
+
+        if(sale_detail == '' || sale_detail == null) {
+            $('.tooltip-list-gift').hide();
+        } else {
+            $('.tooltip-list-gift').show();
+        }
+
         $('.global-tooltip .tooltip-name').html(title);
         $('#tooltips-price').html(price);
         $('#tooltips-new-price').html(new_price);

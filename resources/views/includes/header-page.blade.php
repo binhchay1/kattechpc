@@ -1,18 +1,3 @@
-<style>
-    .badge:after {
-        content: attr(value);
-        font-size: 15px;
-        background: red;
-        border-radius: 50%;
-        padding: 3px;
-        position: relative;
-        left: -8px;
-        top: -10px;
-        opacity: 0.9;
-        color: white;
-    }
-</style>
-
 <div class="header">
     <div class="header-top">
         <div class="header-top-container">
