@@ -1,18 +1,3 @@
-<style>
-    .badge:after {
-        content: attr(value);
-        font-size: 15px;
-        background: red;
-        border-radius: 50%;
-        padding: 3px;
-        position: relative;
-        left: -8px;
-        top: -10px;
-        opacity: 0.9;
-        color: white;
-    }
-</style>
-
 <div class="header">
     <div class="header-top">
         <div class="header-top-container">
@@ -40,15 +25,14 @@
                 <div class="ml-15px dropdown">
                     <a href="" class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
                     <div class="dropdown-content">
-                        <a href="{{route('profile')}}">{{ __('Tài khoản') }}</a>
-                        <a href="{{route('orderHistory')}}">{{ __('Lịch sử mua hàng') }}</a>
+                        <a href="{{ route('profile') }}">{{ __('Tài khoản') }}</a>
+                        <a href="{{ route('orderHistory') }}">{{ __('Lịch sử mua hàng') }}</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a onclick="this.closest('form').submit();return false;">
                                 {{__('Đăng xuất')}}
                             </a>
                         </form>
-
                     </div>
                 </div>
                 @else
@@ -82,14 +66,14 @@
 
             <div class="action-area d-flex ml-20px">
                 <div class="build-area">
-                    <a href="/build-pc">
+                    <a href="{{ route('buildPC') }}">
                         <i class="fa fa-screwdriver"></i>
                         <span>{{ __('Xây dựng cấu hình') }}</span>
                     </a>
                 </div>
                 <div class="cart-area ml-20px">
                     <a href="{{ route('showCart') }}">
-                        <i class="fa badge" style="font-size:24px text-align: right" value="{{ count(Cart::getContent()) }}">&#xf07a;</i> {{ __('Giỏ hàng') }}
+                        <i class="fa badge" value="{{ count(Cart::getContent()) }}">&#xf07a;</i> {{ __('Giỏ hàng') }}
                     </a>
                 </div>
             </div>
@@ -122,11 +106,11 @@
                                 <path d="M16.5284 1.31948C16.0412 0.967549 14.6837 0.5 8.99522 0.5C2.89942 0.5 1.99504 1.03692 1.7048 1.2126C0.160125 2.14402 0.0134681 6.26764 0 7.10376C0.0185428 8.20809 0.196385 11.8822 1.70369 12.7911C1.99337 12.9662 2.89268 13.5 8.99522 13.5C14.6873 13.5 16.0432 13.0347 16.5284 12.6842C17.8449 11.7336 17.9963 8.45989 18 7.08941C17.9966 5.98737 17.8814 2.29774 16.5284 1.3195L16.5284 1.31948ZM15.8721 11.7688C15.6763 11.9104 14.5518 12.372 8.99519 12.372C3.62312 12.372 2.49594 11.9535 2.28298 11.8246C1.74074 11.4981 1.16844 9.76467 1.12351 7.10066C1.1679 4.44256 1.74806 2.50215 2.28414 2.17955C2.49766 2.05011 3.62903 1.62825 8.99519 1.62825C14.5474 1.62825 15.6748 2.09299 15.8721 2.23512C16.3533 2.5831 16.8686 4.41495 16.8762 7.09306C16.8686 9.81319 16.35 11.4237 15.8721 11.7688H15.8721ZM12.6597 6.55639L7.60369 3.44229C7.51846 3.3907 7.4211 3.36276 7.32158 3.36133C7.22206 3.35989 7.12395 3.38501 7.03727 3.43411C6.95052 3.48322 6.87832 3.55459 6.82807 3.6409C6.77782 3.72721 6.75131 3.82538 6.75127 3.92535V10.1546C6.75134 10.3042 6.81056 10.4476 6.91593 10.5534C7.02129 10.6591 7.16417 10.7185 7.31317 10.7186C7.41544 10.7186 7.51577 10.6907 7.60337 10.6377L12.6594 7.52249C12.828 7.42014 12.9311 7.23714 12.9311 7.03944C12.9311 6.84175 12.8282 6.65819 12.6597 6.55639H12.6597ZM7.87537 9.15552V4.92388L11.2819 7.03941L7.87537 9.15552Z" fill="currentcolor"></path>
                             </svg>
                         </span>
-                        <span class="text">Video</span>
+                        <span class="text">{{ __('Video') }}</span>
                     </a>
                 </li>
                 <li class="item-submenu sm-4">
-                    <a href="">
+                    <a href="{{ route('payment') }}">
                         <span class="icon"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect x="1" y="0.5" width="18" height="13" rx="2.5" stroke="currentcolor"></rect>
                                 <rect x="1.25" y="3" width="18" height="2" fill="currentcolor"></rect>

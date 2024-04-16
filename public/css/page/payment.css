@@ -6,43 +6,30 @@
     margin-right: auto;
 }
 
-p {
-    margin: 12px 0;
-    line-height: 22px;
-    font-size: 13pt;
-    color: #464646;
-}
-
-
-* {
+#content-page {
     box-sizing: border-box;
 }
 
-/* Create two equal columns that floats next to each other */
-.column {
+#content-page .column {
     float: left;
     width: 50%;
     padding: 10px;
-    height: 450px;/* Should be removed. Only for demonstration */
-
+    height: 450px;
 }
 
-/* Clear floats after the columns */
 .row:after {
     content: "";
     display: table;
     clear: both;
 }
 
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
     .column {
         width: 100%;
-
     }
 }
 
-.column h1{
+.column h1 {
     font-size: 25px;
     margin-bottom: -10px;
     color: #e11414;
@@ -55,11 +42,11 @@ p {
     position: relative;
 }
 
-.column p{
+.column p {
     font-weight: 700;
 }
 
-.column h5{
+.column h5 {
     font-size: 15px;
     color: red;
 }
@@ -71,18 +58,19 @@ p {
     display: flex;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+        rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
-
 
 .flex-column h1 {
     color: #e11414;
 }
 
-#condition{
+#condition {
     width: 45%;
     padding: 10px;
-    border:1px solid;
+    border: 1px solid;
     border-radius: 10px;
 }
 
@@ -90,7 +78,7 @@ p {
     float: right;
     width: 45%;
     padding: 10px;
-    border:1px solid;
+    border: 1px solid;
     border-radius: 10px;
 }
 
@@ -148,7 +136,7 @@ img {
     display: flex;
 }
 
-.flex-column {
+#content-page .flex-column {
     padding: 50px;
 }
 
@@ -173,7 +161,7 @@ img {
 
 .text-accept {
     font-weight: bold;
-    color:black;
+    color: black;
     text-align: justify;
     font-size: 30px;
     line-height: 1.8;
@@ -194,6 +182,6 @@ img {
 .title-accept1 {
     background: red;
     color: white;
-    padding: 5px;
+    padding: 10px;
     border-radius: 10px;
 }

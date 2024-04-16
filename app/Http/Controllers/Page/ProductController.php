@@ -48,6 +48,7 @@ class ProductController extends Controller
         if (!Auth::check()) {
           return redirect()->back()->with('message', 'You must be logged in to post a comment!');;
         }
+
         $input = $request->except(['_token']);
         $input = $request->all();
         $input['user_id'] = Auth::user()->id;
@@ -55,7 +56,4 @@ class ProductController extends Controller
 
         return back();
     }
-
-
-
 }

@@ -115,13 +115,14 @@
                             </a>
 
                             <div class="product-martket-main d-flex align-items-center">
-                                <p class="product-market-price">{{ number_format($product->price) }} ₫</p>
-                                <div class="product-percent-price">-{{ 100 - (((int) $product->new_price / (int) $product->price) * 100) }}%</div>
+                                <p class="product-market-price">{{ $product->price }} ₫</p>
+                                <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
+                                <div class="product-percent-price">-{{ number_format($new_price) }} %</div>
                             </div>
 
-                            @if(is_float($product->new_price))
+                            @if(isset($product->new_price))
                             <div class="product-price-main font-weight-600">
-                                {{ number_format($product->new_price) }} đ
+                                {{ $product->new_price }} đ
                             </div>
                             @endif
                             <div class="p-quantity-sale">
@@ -174,13 +175,13 @@
                             </a>
 
                             <div class="product-martket-main d-flex align-items-center">
-                                <p class="product-market-price">{{ number_format($product->price) }} ₫</p>
+                                <p class="product-market-price">{{ $product->price }} ₫</p>
                                 <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                                <div class="product-percent-price">-{{ $new_price }} %</div>
+                                <div class="product-percent-price">-{{ number_format($new_price) }} %</div>
                             </div>
 
                             <div class="product-price-main font-weight-600">
-                                {{ number_format($product->new_price) }} đ
+                                {{ $product->new_price }} đ
                             </div>
                         </div>
                     </div>
@@ -201,14 +202,13 @@
         </div>
         <div class="flex-container">
             @foreach($listCategory as $category)
-            <a href="{{ route('showDataCategory', $category->slug) }}">
-                <img src="{{ asset($category->image) }}" class="item-hot lazy">
+            <a href="{{ route('showDataCategory', $category->slug) }}" class="d-flex flex-column text-center category-home-page">
+                <img src="{{ asset($category->image) }}" class="item-hot lazy" width="300" height="300">
                 <span class="policy-title">{{ $category->name }}</span>
             </a>
             @endforeach
         </div>
     </div>
-
 </section>
 
 @foreach($listCategory as $category)
@@ -260,13 +260,13 @@
                                 <h3 class="product-title line-clamp-3">{{ $product->name }}</h3>
                             </a>
                             <div class="product-martket-main d-flex align-items-center">
-                                <p class="product-market-price">{{ number_format($product->price) }} ₫</p>
+                                <p class="product-market-price">{{ $product->price }} ₫</p>
                                 <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
                                 <div class="product-percent-price">- {{ number_format($new_price) }} %</div>
                             </div>
 
                             <div class="product-price-main font-weight-600">
-                                {{ number_format($product->new_price) }} đ
+                                {{ $product->new_price }} đ
                             </div>
                             <div class="product-offer line-clamp-2">
                                 <p>{{ $product->short_description }}</p>

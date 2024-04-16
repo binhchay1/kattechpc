@@ -31,11 +31,11 @@
     </div>
     <div class=" ml-100px">
         <a href="https://www.meinvoice.vn/tra-cuu">
-            <h2>{{__('www.meinvoice.vn/tra-cuu')}}</h2>
+            <h2>{{ __('www.meinvoice.vn/tra-cuu') }}</h2>
         </a>
 
     </div>
-    <img class="images" src="https://w.ladicdn.com/s1550x950/5d3c13acdc09063fd1918045/image-1-20230703022233-au-9y.png">
+    <img class="images" src="{{ asset('/images/page/electric-bill.png') }}">
     <div class="row top">
         <div class="" id="bill">
             <h2>{{__('Bước 2:')}}</h2>
@@ -43,16 +43,16 @@
         </div>
     </div>
     <div class=" ml-100px">
-        <h2>{{__('CÁCH NHẬN BIẾT HOÁ ĐƠN ĐIỆN TỬ')}}</h2>
+        <h2>{{ __('CÁCH NHẬN BIẾT HOÁ ĐƠN ĐIỆN TỬ') }}</h2>
     </div>
-    <span>{{__(' Kiểm tra email (tài khoản email của khách hàng) KATTECH sẽ gửi email cho khách hàng bằng email:hoadonhacom@kattech.com')}}</span>
+    <span>{{ __(' Kiểm tra email (tài khoản email của khách hàng) KATTECH sẽ gửi email cho khách hàng bằng email:hoadonhacom@kattech.com') }}</span>
 
     <div class="take-care">
         <div class=" ml-200px">
-            <h2>{{__('CHĂM SÓC KHÁCH HÀNG')}}</h2>
-            <h3>{{__('Tòa nhà Vicom')}}</h3>
-            <h3>{{__('dichvukhachhang@kattech.vn')}}</h3>
-            <h3>{{__('1900 1903')}}</h3>
+            <h2>{{ __('CHĂM SÓC KHÁCH HÀNG') }}</h2>
+            <h3>{{ __('Tòa nhà Vicom') }}</h3>
+            <h3>{{ __('dichvukhachhang@kattech.vn') }}</h3>
+            <h3>{{ __('1900 1903') }}</h3>
         </div>
     </div>
 

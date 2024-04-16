@@ -39,7 +39,7 @@
 }
 
 .d-flex {
-    display: flex;
+    display: flex !important;
 }
 
 .align-items-center {
@@ -262,4 +262,12 @@
     margin-left: auto;
     margin-right: auto;
     padding: 0 10px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.height-auto {
+    height: auto !important;
 }

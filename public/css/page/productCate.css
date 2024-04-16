@@ -4,14 +4,12 @@
 }
 
 
-/* Create four equal columns that floats next to each other */
 .column {
     float: left;
     width: 20%;
     padding: 10px;
 }
 
-/* Clear floats after the columns */
 .row:after {
     content: "";
     display: table;
@@ -199,7 +197,7 @@ ul pagination {
 
 .pagination > li > a,
 .pagination > li > span {
-    color: black; // use your own color here
+    color: black;
 }
 
 .pagination > .active > a,

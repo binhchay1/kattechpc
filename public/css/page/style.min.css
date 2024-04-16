@@ -153,6 +153,7 @@ body a {
     font-size: 21px;
     border: 1px solid #aaa;
     border-radius: 30px;
+    padding-left: 10px;
 }
 
 .footer {
@@ -506,6 +507,9 @@ body a {
     display: flex;
     background-color: #eee;
     border-radius: 5px;
+    justify-content: space-around;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .flex-container > div {
@@ -517,7 +521,6 @@ body a {
 }
 
 .item-hot {
-    width: 100%;
     border-radius: 5px;
 }
 
@@ -711,40 +714,14 @@ body a {
     border-radius: 5px;
 }
 
-.box-article-group .list-article-group .item-article {
-    -ms-flex-direction: column;
-    flex-direction: column;
-    width: 25%;
-    border: 1px solid #ebebeb;
-    border-radius: 10px;
-    padding: 8px 8px 10px;
-}
-
 .item-article {
     margin: 5px;
 }
 
-.box-article-group .list-article-group .item-article .img-article {
-    display: block;
-    padding-bottom: 60%;
-    position: relative;
-    overflow: hidden;
-}
-
 .img-article img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    max-width: 100%;
-    min-height: 100%;
-    margin: auto;
     display: block;
-    -o-object-fit: cover;
+    width: 100%;
     object-fit: cover;
-    -webkit-transition: 0.5s all;
-    -o-transition: 0.5s all;
     transition: 0.5s all;
 }
 
@@ -1393,6 +1370,24 @@ a {
 
 .dropdown:hover .dropbtn {
     background-color: #3e8e41;
+}
+
+.badge:after {
+    content: attr(value);
+    font-size: 13px;
+    background: red;
+    border-radius: 83%;
+    padding: 3px;
+    position: relative;
+    left: -8px;
+    top: -14px;
+    opacity: 0.9;
+    color: white;
+}
+
+.category-home-page .policy-title {
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 @media screen and (max-width: 992px) {
