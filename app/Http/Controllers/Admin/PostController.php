@@ -29,9 +29,6 @@ class PostController extends Controller
         $this->utility = $utility;
     }
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $listPosts = $this->postRepository->index();
@@ -39,18 +36,12 @@ class PostController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function createPost()
     {
         $listCategories = $this->categoryPostRepository->index();
         return view('admin.post.create', compact('listCategories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function storePost(PostRequest $request)
     {
         $input = $request->except(['_token']);
@@ -58,7 +49,8 @@ class PostController extends Controller
         $input['slug'] =  Str::slug($input['title']);
         $input['author'] = Auth::user()->id;
         if (isset($input['thumbnail'])) {
-            $this->utility->saveImagePost($input);
+            // $this->utility->saveImagePost($input);
+            $input['thumbnail']->move(public_path('images/upload/post/'), $input['thumbnail']->getClientOriginalName());
             $path = '/images/upload/post/' . $input['thumbnail']->getClientOriginalName();
             $input['thumbnail'] = $path;
         }
@@ -83,6 +75,7 @@ class PostController extends Controller
         $input['slug'] =  Str::slug($input['title']);
         if (isset($input['thumbnail'])) {
             // $this->utility->saveImagePost($input);
+            $input['thumbnail']->move(public_path('images/upload/post/'), $input['thumbnail']->getClientOriginalName());
             $path = '/images/upload/post/' . $input['thumbnail']->getClientOriginalName();
             $input['thumbnail'] = $path;
         }

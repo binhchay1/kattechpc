@@ -32,6 +32,7 @@ $(document).ready(function () {
         let status_guarantee = $(this).attr('data-status-guarantee');
         let status = $(this).attr('data-status');
 
+        console.log(sale_detail);
         if(new_price == '' || new_price == null) {
             $('#title-new-price').hide();
             $('#tooltips-new-price').hide();

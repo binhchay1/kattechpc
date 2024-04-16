@@ -293,7 +293,7 @@
             </div>
             <a href="{{ route('promotion') }}" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
-        <div class="list-article-group d-flex align-items-center gap-10">
+        <div class="list-article-group d-flex align-items-center">
             @foreach($listPromotion as $promotion)
             <div class="item-article d-flex gap-12">
                 <a href="{{ route('showPromotionDetail', $promotion->slug) }}" class="img-article boder-radius-10 position-relative">
@@ -313,14 +313,14 @@
             </div>
             <a href="{{ route('post') }}" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
-        <div class="list-article-group d-flex align-items-center gap-10">
+        <div class="list-article-group d-flex align-items-center flex-row">
             @foreach($listNews as $news)
             <div class="item-article d-flex gap-12">
                 <a href="{{ route('post.detail', $news['slug']) }}" class="img-article boder-radius-10 position-relative">
-                    <img class="boder-radius-10" src="{{ $news->thumbnail ?? asset('/images/test_post/2904-viettel-dau-gia-thanh-cong-bang-tan-5g-1.jpg') }}" alt="Viettel trúng đấu giá băng tần để chính thức triển khai 5G tại Việt Nam">
+                    <img class="boder-radius-10" src="{{ asset($news->thumbnail) ?? asset('/images/test_post/2904-viettel-dau-gia-thanh-cong-bang-tan-5g-1.jpg') }}" alt="Viettel trúng đấu giá băng tần để chính thức triển khai 5G tại Việt Nam">
                 </a>
                 <div class="content-article content-article-item d-flex flex-column flex-1">
-                    <a href="{{route('post.detail', $news['slug'])}}" class="title-article">
+                    <a href="{{ route('post.detail', $news['slug']) }}" class="title-article">
                         <h3 class="font-weight-400 line-clamp-2">{{ Str::limit($news->short_description, 30) }}</h3>
                     </a>
                     <p class="time-article d-flex align-items-center gap-4">

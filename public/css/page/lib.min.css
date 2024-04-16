@@ -271,3 +271,7 @@
 .height-auto {
     height: auto !important;
 }
+
+.flex-row {
+    flex-direction: row;
+}
