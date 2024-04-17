@@ -105,7 +105,7 @@
                     <?php $date = date('Y-m-d H:i:s'); ?>
                     <input type="hidden" id="fname" name="user_id" value="{{Auth::user()->id}}" placeholder="{{__('Địa chỉ')}}">
                     <input type="hidden" id="fname" name="order_date" value="{{$date}}" placeholder="{{__('Địa chỉ')}}">
-                    <input type="hidden" id="fname" name="status" value="0" placeholder="{{__('Địa chỉ')}}">
+                    <input type="hidden" id="fname" name="status" value="0">
                 </div>
             </div>
         </div>
@@ -173,134 +173,6 @@
             </div>
         </div>
     @endif
-{{--        @if(Auth::user())--}}
-{{--        <div class="basket" id="info-user">--}}
-{{--            <div class="basket-module">--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-25">--}}
-{{--                        <label for="fname" class="label">{{__('Họ tên')}}</label>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-75">--}}
-{{--                        <input type="text" id="fname" name="name" value="{{Auth::user()->name}}" placeholder="{{__('Họ và tên')}}">--}}
-{{--                    </div>--}}
-{{--                    @if ($errors->has('name'))--}}
-{{--                    <span class="text-danger">{{ $errors->first('name') }}</span>--}}
-{{--                    @endif--}}
-{{--                </div>--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-25">--}}
-{{--                        <label for="fname" class="label">{{__('Số điện thoại')}}</label>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-75">--}}
-{{--                        <input type="text" id="fname" name="phone" value="{{Auth::user()->phone}}" placeholder="{{__('Số điện thoại')}}">--}}
-{{--                    </div>--}}
-{{--                    @if ($errors->has('phone'))--}}
-{{--                    <span class="text-danger">{{ $errors->first('phone') }}</span>--}}
-{{--                    @endif--}}
-{{--                </div>--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-25">--}}
-{{--                        <label for="fname" class="label">{{__('Tỉnh/Thành phố')}}</label>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-75">--}}
-{{--                        <input type="text" id="fname" name="province" value="{{Auth::user()->province}}" placeholder="{{__('Tỉnh/thành phố')}}">--}}
-{{--                    </div>--}}
-{{--                    @if ($errors->has('province'))--}}
-{{--                    <span class="text-danger">{{ $errors->first('province') }}</span>--}}
-{{--                    @endif--}}
-{{--                </div>--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-25">--}}
-{{--                        <label for="fname" class="label">{{__('Quận/huyện')}}</label>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-75">--}}
-{{--                        <input type="text" id="fname" name="district" value="{{Auth::user()->district}}" placeholder="{{__('Quận huyện')}}">--}}
-{{--                    </div>--}}
-{{--                    @if ($errors->has('district'))--}}
-{{--                    <span class="text-danger">{{ $errors->first('district') }}</span>--}}
-{{--                    @endif--}}
-{{--                </div>--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-25">--}}
-{{--                        <label for="fname" class="label">{{__('Địa chỉ')}}</label>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-75">--}}
-{{--                        <input type="text" id="fname" name="address" value="{{Auth::user()->address}}" placeholder="{{__('Địa chỉ')}}">--}}
-{{--                    </div>--}}
-{{--                    @if ($errors->has('address'))--}}
-{{--                    <span class="text-danger">{{ $errors->first('address') }}</span>--}}
-{{--                    @endif--}}
-{{--                    <?php $date = date('Y-m-d H:i:s'); ?>--}}
-{{--                    <input type="hidden" id="fname" name="user_id" value="{{Auth::user()->id}}" placeholder="{{__('Địa chỉ')}}">--}}
-{{--                    <input type="hidden" id="fname" name="order_date" value="{{$date}}" placeholder="{{__('Địa chỉ')}}">--}}
-{{--                    <input type="hidden" id="fname" name="status" value="0" placeholder="{{__('Địa chỉ')}}">--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        @else--}}
-{{--        <div class="basket" id="info-user">--}}
-{{--            <div class="basket-module">--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-25">--}}
-{{--                        <label for="fname" class="label">{{__('Họ tên')}}</label>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-75">--}}
-{{--                        <input type="text" id="fname" name="name" placeholder="{{__('Họ và tên')}}">--}}
-{{--                    </div>--}}
-{{--                    @if ($errors->has('name'))--}}
-{{--                    <span class="text-danger">{{ $errors->first('name') }}</span>--}}
-{{--                    @endif--}}
-{{--                </div>--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-25">--}}
-{{--                        <label for="fname" class="label">{{__('Số điện thoại')}}</label>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-75">--}}
-{{--                        <input type="text" id="fname" name="phone" placeholder="{{__('Số điện thoại')}}">--}}
-{{--                    </div>--}}
-{{--                    @if ($errors->has('phone'))--}}
-{{--                    <span class="text-danger">{{ $errors->first('phone') }}</span>--}}
-{{--                    @endif--}}
-{{--                </div>--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-25">--}}
-{{--                        <label for="fname" class="label">{{__('Tỉnh/Thành phố')}}</label>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-75">--}}
-{{--                        <input type="text" id="fname" name="province" placeholder="{{__('Tỉnh/thành phố')}}">--}}
-{{--                    </div>--}}
-{{--                    @if ($errors->has('province'))--}}
-{{--                    <span class="text-danger">{{ $errors->first('province') }}</span>--}}
-{{--                    @endif--}}
-{{--                </div>--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-25">--}}
-{{--                        <label for="fname" class="label">{{__('Quận/huyện')}}</label>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-75">--}}
-{{--                        <input type="text" id="fname" name="district" placeholder="{{__('Quận huyện')}}">--}}
-{{--                    </div>--}}
-{{--                    @if ($errors->has('district'))--}}
-{{--                    <span class="text-danger">{{ $errors->first('district') }}</span>--}}
-{{--                    @endif--}}
-{{--                </div>--}}
-{{--                <div class="row">--}}
-{{--                    <div class="col-25">--}}
-{{--                        <label for="fname" class="label">{{__('Địa chỉ')}}</label>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-75">--}}
-{{--                        <input type="text" id="fname" name="address" placeholder="{{__('Địa chỉ')}}">--}}
-{{--                    </div>--}}
-{{--                    @if ($errors->has('address'))--}}
-{{--                    <span class="text-danger">{{ $errors->first('address') }}</span>--}}
-{{--                    @endif--}}
-{{--                    <?php $date = date('Y-m-d H:i:s'); ?>--}}
-{{--                    <input type="hidden" id="fname" name="order_date" value="{{$date}}" placeholder="{{__('Địa chỉ')}}">--}}
-{{--                    <input type="hidden" id="fname" name="status" value="0" placeholder="{{__('Địa chỉ')}}">--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        @endif--}}
         <div class="basket">
             <div class="basket-labels">
                 <ul>
