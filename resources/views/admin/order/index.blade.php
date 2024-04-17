@@ -3,7 +3,9 @@
 @section('title')
 {{ __('Danh sách đơn hàng') }}
 @endsection
-
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/admin/order.css') }}" />
+@endsection
 @section('content')
 <div class="grid grid-cols-1 gap-x-5 xl:grid-cols-12 mt-4">
     <div class="xl:col-span-12">
@@ -73,7 +75,7 @@
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->order->note }}
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 status">
-                                    <a href="" class="btn btn-{{$order->order->status == 1 ? 'info' : 'secondary' }}">
+                                    <a href="{{route('activeOrder', $order->order['id'])}}" class="btn btn-{{$order->order->status == 1 ? 'success' : 'danger' }}">
                                         {{$order->order->status == 1 ? "Xác nhận " : "Chưa xác nhận"}}
                                     </a>
                                 </td>

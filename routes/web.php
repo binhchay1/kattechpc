@@ -116,6 +116,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::post('/update/{id}', [OrderController::class, 'updateOrder'])->name('admin.order.update');
         Route::get('/delete/{id}', [OrderController::class, 'deleteOrder'])->name('admin.order.delete');
         Route::get('/export', [OrderController::class, 'export'])->name('admin.order.export');
+        Route::get('/active-order/{id}', [OrderController::class, 'activeOrder'])->name('activeOrder');
     });
 
     Route::group(['prefix' => 'storages'], function () {
