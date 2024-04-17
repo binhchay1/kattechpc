@@ -38,8 +38,10 @@
 
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user">{{ __('Người đặt hàng') }}
                                 </th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="date">{{ __('Sản phẩm') }}
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="date">{{ __('Ngày đặt hàng') }}
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="quantity">{{ __('Số lượng') }}
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="quantity">{{ __('Tổng tiền') }}
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="address">{{ __('Địa chỉ') }}
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="phone">{{ __('Số điện thoại') }}
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="note">{{ __('Ghi chú') }}
@@ -54,19 +56,26 @@
 
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->id }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->user_id }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->order->name }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->total_amount }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->product->name ?? "" }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->order_date }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->order->order_date }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->address }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->quantity}}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->phone }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ number_format($order->price)}} đ
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->note }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->order->address }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->status }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->order->phone }}
+                                </td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->order->note }}
+                                </td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 status">
+                                    <a href="" class="btn btn-{{$order->order->status == 1 ? 'info' : 'secondary' }}">
+                                        {{$order->order->status == 1 ? "Xác nhận " : "Chưa xác nhận"}}
+                                    </a>
                                 </td>
                                 <td>
                                     <div class="relative dropdown">
