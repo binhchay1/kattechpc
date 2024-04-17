@@ -3,10 +3,9 @@
 namespace App\Http\Middleware;
 
 use App\Repositories\CategoryRepository;
-use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Facades\Redis;
+use Closure;
 use Cache;
 
 class CacheMenuDefined
@@ -20,8 +19,8 @@ class CacheMenuDefined
 
     public function handle(Request $request, Closure $next): Response
     {
-        $key = 'menu_homepage';
-        $getInfor = Cache::store('redis')->get($key);
+        $keyCache = 'menu_homepage';
+        $getInfor = Cache::store('redis')->get($keyCache);
 
         if (empty($getInfor)) {
             $data = [];
@@ -33,10 +32,10 @@ class CacheMenuDefined
                     foreach ($category->products as $product) {
                         if (isset($product->brands)) {
                             if (!array_key_exists($category->name, $listBrand)) {
-                                $listBrand[$category->name][] = $product->brands->name;
+                                $listBrand[$category->name][] = ['name' => $product->brands->name, 'slug' => $product->brands->slug];
                             } else {
                                 if (!in_array($product->brands->name, $listBrand[$category->name])) {
-                                    $listBrand[$category->name][] = $product->brands->name;
+                                    $listBrand[$category->name][] = ['name' => $product->brands->name, 'slug' => $product->brands->slug];
                                 }
                             }
                         }
@@ -65,7 +64,7 @@ class CacheMenuDefined
             $data['brand'] = $listBrand;
             $data['detail'] = $listDetail;
 
-            Cache::store('redis')->rememberForever($key, function () use ($data) {
+            Cache::store('redis')->rememberForever($keyCache, function () use ($data) {
                 return $data;
             });
         }

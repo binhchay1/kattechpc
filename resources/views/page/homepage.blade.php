@@ -201,7 +201,7 @@
             </div>
         </div>
         <div class="flex-container">
-            @foreach($listCategory as $category)
+            @foreach($listCategoryProduct as $category)
             <a href="{{ route('showDataCategory', $category->slug) }}" class="d-flex flex-column text-center category-home-page">
                 <img src="{{ asset($category->image) }}" class="item-hot lazy" width="300" height="300">
                 <span class="policy-title">{{ $category->name }}</span>

@@ -176,7 +176,6 @@ class HomeController extends Controller
         }
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
-        dd($listCategory);
         $listCategoryProduct = $listCategory['default'];
         $listNews = $this->postRepository->getListNewsInHomepage();
         $listPromotion = $this->promotionRepository->getListPromotionHomePage();
