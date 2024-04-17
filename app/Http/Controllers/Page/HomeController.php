@@ -163,7 +163,7 @@ class HomeController extends Controller
             $product->image = json_decode($product->image, true);
         }
         $listCategory = $this->categoryRepository->getListCategory();
-        dd($listCategory);
+        // dd($listCategory);
         $listNews = $this->postRepository->getListNewsInHomepage();
         $listPromotion = $this->promotionRepository->getListPromotionHomePage();
         $layout = $this->layoutRepository->getListLayout();

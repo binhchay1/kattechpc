@@ -19,12 +19,12 @@ class CacheMenuDefined
 
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Cache::has($key)) {
-            if ($key == 'listCategory') {
-                $value = $this->categoryRepository->listCategoryWithCount();
-            }
-
-            Cache::store('redis')->put($key, $value, 6000);
+        $key = 'log_behavior';
+        $getInfor = \Cache::store('redis')->get($key);
+        if (empty($getInfor)) {
+            \Cache::store('redis')->rememberForever($key, function () use ($data) {
+                return $data;
+            });
         }
 
         return $next($request);
