@@ -140,6 +140,12 @@ class ProductController extends Controller
         $input = $request->except(['_token']);
         $detail = [];
 
+        if (empty($input['image_review']) or $input['image_review'] == null) {
+            return redirect()->back()->with(['error' => 'Image null']);
+        }
+
+        dd($input);
+
         if (isset($input['hot_status'])) {
             $input['hot_status'] = 1;
         } else {

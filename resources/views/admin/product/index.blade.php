@@ -53,7 +53,10 @@
                                         <div class="flex items-center size-10 font-medium rounded-full shrink-0  text-slate-800 dark:text-zink-50 dark:bg-zink-600">
                                             @if(is_array($product->image))
                                             @foreach($product->image as $value)
+                                            @if(is_array($value))
+                                            @continue
                                             <img src="{{ asset($value) }}" class="h-10 rounded-full">
+                                            @endif
                                             @endforeach
                                             @else
                                             <img src="{{ asset('/images/') }}" class="h-10 rounded-full">

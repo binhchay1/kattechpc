@@ -39,6 +39,7 @@ class BrandController extends Controller
 
         if (isset($input['image'])) {
             // $this->utility->saveImagePost($input);
+            $input['image']->move(public_path('images/upload/brand/'), $input['image']->getClientOriginalName());
             $path = '/images/upload/brand/' . $input['image']->getClientOriginalName();
             $input['image'] = $path;
         }
@@ -61,6 +62,7 @@ class BrandController extends Controller
     {
         $input = $request->except(['_token']);
         if (isset($input['image'])) {
+            $input['image']->move(public_path('images/upload/brand/'), $input['image']->getClientOriginalName());
             $path = '/images/upload/brand/' . $input['thumbnail']->getClientOriginalName();
             $input['image'] = $path;
         }

@@ -19,7 +19,7 @@ class CacheMenuDefined
 
     public function handle(Request $request, Closure $next): Response
     {
-        $key = 'log_behavior';
+        $key = 'menu_homepage';
         $getInfor = \Cache::store('redis')->get($key);
         if (empty($getInfor)) {
             \Cache::store('redis')->rememberForever($key, function () use ($data) {

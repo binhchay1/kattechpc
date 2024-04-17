@@ -1,5 +1,6 @@
 var storeName = new Array();
 var storeFile = new DataTransfer();
+var lengthPreview = 0;
 
 $(document).ready(function () {
     $("#add-detail").click(function () {
@@ -10,7 +11,12 @@ $(document).ready(function () {
     $(`.btn-x`).click(function () { $(this).parent().remove(); });
 
     if (status_product == 'edit') {
-        var lengthPreview = $('#imgPreview li').length;
+        lengthPreview = $('#imgPreview li').length;
+        let listLiPreview = $('#imgPreview li');
+        for (let k = 0; k < listLiPreview.length; k++) {
+            storeName.push(listLiPreview.attr('data-id'));
+        }
+        console.log(storeName);
     }
 
     var multiImgPreview = function (input) {
@@ -25,11 +31,19 @@ $(document).ready(function () {
                     }
                     reader.readAsDataURL(input.files[i]);
                 } else {
-                    reader.progress = function (event) {
-                        $('#imgPreview').append('<li data-id="' + input.files[i].name + '"><img id="img-review-' + (lengthPreview + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><button id="button-review-' + (lengthPreview + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this, `' + input.files[i].name + '`)"/>Delete</button></li>');
-                        lengthPreview++;
+                    if (lengthPreview == 0) {
+                        reader.onload = function (event) {
+                            $('#imgPreview').append('<li data-id="' + input.files[i].name + '"><img id="img-review-' + (lengthPreview + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><button id="button-review-' + (lengthPreview + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this, `' + input.files[i].name + '`)"/>Delete</button></li>');
+                            lengthPreview++;
+                        }
+                        reader.readAsDataURL(input.files[i]);
+                    } else {
+                        reader.progress = function (event) {
+                            $('#imgPreview').append('<li data-id="' + input.files[i].name + '"><img id="img-review-' + (lengthPreview + 1) + '" src="' + event.target.result + '" class="p-2 m-3"><button id="button-review-' + (lengthPreview + 1) + '" type="button" class="btn-delete-image" onclick="deleteImagePreview(this, `' + input.files[i].name + '`)"/>Delete</button></li>');
+                            lengthPreview++;
+                        }
+                        reader.readAsDataURL(input.files[i]);
                     }
-                    reader.readAsDataURL(input.files[i]);
                 }
 
                 if (status_product == 'create') {
@@ -113,6 +127,7 @@ function deleteImagePreview(button, imgName) {
 
     storeName = imgPreview;
     images[0].files = storeFile.files;
+    lengthPreview = lengthPreview - 1;
 
     $('#input-review').val(storeName.join());
     $('#imgPreview').sortable('refresh');

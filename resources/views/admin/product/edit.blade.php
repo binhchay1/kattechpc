@@ -136,6 +136,7 @@
                                     continue;
                                     }
                                     $getNameImage = $itemInList;
+                                    $listNameImage[] = $getNameImage;
                                     }
                                     }
                                     @endphp
@@ -150,7 +151,7 @@
                                 @if(!empty($listNameImage))
                                 <input id="input-review" type="text" name="image_preview" value="{{ implode(',', $listNameImage) }}" hidden>
                                 @else
-                                <input id="input-review" type="text" name="image_preview" value="" hidden>
+                                <input id="input-review" type="text" name="image_preview" hidden>
                                 @endif
                             </div>
                             <div class="form-group">
