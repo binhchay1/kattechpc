@@ -6,6 +6,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Models\Product;
 
 class Category extends Model
 {
@@ -44,7 +45,7 @@ class Category extends Model
         });
     }
 
-    public function products()
+    public function productsParent()
     {
         return $this->hasMany('App\Models\Product', 'category_id', 'id');
     }
@@ -52,5 +53,9 @@ class Category extends Model
     public function children()
     {
         return $this->hasMany(Category::class, 'parent', 'id')->with('children');
+    }
+
+    public function products() {
+        return $this->hasManyThrough(Product::class, Category::class, 'parent', 'category_id', 'id');
     }
 }

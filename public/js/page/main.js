@@ -80,7 +80,6 @@ $(document).ready(function () {
                 countFlash += 1;
                 $('.swiper-flash-sale').css('transform', 'translate3d(' + transFlash + 'px, 0px, 0px)');
             }
-
         }, 3000);
     }
 
@@ -158,6 +157,12 @@ $(document).ready(function () {
         $(this).prev().css('background-color', '#ffffff');
         $(this).prev().css('color', 'black');
         $(this).css('display', 'none');
+    });
+
+    $('.sub-cat-2-link a').hover(function () {
+        $(this).css('color', 'red');
+    }, function () {
+        $(this).css('color', 'black');
     });
 
     $('.lazy').Lazy();

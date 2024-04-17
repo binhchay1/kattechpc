@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Exports\ExportOrder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
+use App\Models\Order;
 use App\Repositories\OrderDetailRepository;
 use App\Repositories\OrderRepository;
 use Illuminate\Http\Request;
@@ -99,5 +100,18 @@ class OrderController extends Controller
     public function export(Request $request)
     {
         return Excel::download(new ExportOrder(), 'order.xlsx');
+    }
+    
+    public function activeOrder(Request $request, $id)
+    {
+        $order = Order::find($id);
+        if ($order->status) {
+            $order->status = 0;
+        } else {
+            $order->status = 1;
+        }
+        $order->save();
+        
+        return back();
     }
 }

@@ -9,9 +9,9 @@
 @endsection
 
 @section('content')
-    @if(Session::has('success'))
-        <p class="alert-add {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('success') }}</p>
-    @endif
+@if(Session::has('success'))
+<p class="alert-add {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('success') }}</p>
+@endif
 <div class="container">
     <section class="product-container set-background">
         <div class="img-card">
@@ -39,7 +39,17 @@
             @else
             <h5>{{ __('Giá ') }}: {{ number_format($product->price) }} đ</h5>
             @endif
-
+            <div>
+                <p>{{ __('Bảo hành') }}: <span style="font-weight: bold; color: blue">{{ $product->status_guarantee }}</span></p>
+                @if($product->status == 'available')
+                <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: green">{{ __('Còn hàng') }}</span></p>
+                @elseif($product->status == 'out of stock')
+                <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: red">{{ __('Hết hàng') }}</span></p>
+                @else
+                <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: yellow">{{ __('Đang về hàng') }}</span></p>
+                @endif
+                <p></p>
+            </div>
             <div class="quantity mt-4 d-flex">
                 <a href="{{ route('addCart', $product['slug']) }}">
                     <button class="btn-buy">{{ __('Mua ngay') }}</button>
@@ -92,7 +102,6 @@
                 <div id="left">
                     <a href="{{ route('productDetail', $related->name) }}">
                         <img src="{{$product->image[0]}}" alt="Image Alt" class="img-fluid" />
-
                     </a>
                 </div>
                 <div id="content-right">
@@ -100,7 +109,7 @@
                     <div class="product-martket-main d-flex align-items-center">
                         <del class="product-market-price">{{ number_format($product->price) }} ₫</del>
                         <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                        <div class="product-percent-price">-{{ $new_price }}%</div>
+                        <div class="product-percent-price">-{{ $new_price }} %</div>
                     </div>
 
                     <div class="product-price-main font-weight-600">
@@ -108,19 +117,18 @@
                     </div>
                 </div>
             </div>
-
             @endforeach
         </div>
     </section>
 
     <section class="comment">
-        <form action="{{route('storeComment')}}" method="post"  enctype="multipart/form-data">
+        <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="gift-product">
                 <div class="gift-promotion">
                     <div class="">
                         <textarea id="comment" name="content" placeholder="{{ __('Mời bạn để lại bình luận...') }}" onfocus="$('.js-actions-comment-2020').show();" name="user_post[content]"></textarea>
-                        <input type="hidden" value="{{$product->id}}" name="product_id">
+                        <input type="hidden" value="{{ $product->id }}" name="product_id">
                         <div class="actions-comment-2020 js-actions-comment-2020 ">
                             <div class="actions-comment-wrap">
                                 <div class="cmt_right float-right">
@@ -133,12 +141,12 @@
                 </div>
             </div>
             @if(Session::has('message'))
-                <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+            <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
             @endif
         </form>
     </section>
     <hr class="hr-row">
-@include('page.product.comment-display', ['comments' => $product->comments, 'product_id' => $product->id]);
+    @include('page.product.comment-display', ['comments' => $product->comments, 'product_id' => $product->id]);
 </div>
 @endsection
 
@@ -166,8 +174,7 @@
             }
         }
     }
-</script>
-<script>
+
     setTimeout(function() {
         $('.alert-add').remove();
     }, 5000);
