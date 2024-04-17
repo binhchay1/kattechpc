@@ -211,7 +211,7 @@
     </div>
 </section>
 
-@foreach($listCategory as $category)
+@foreach($listCategoryProduct as $category)
 @if($category->parent == 0)
 <section class="product-slide">
     <div class="product-slide-main boder-radius-10">
