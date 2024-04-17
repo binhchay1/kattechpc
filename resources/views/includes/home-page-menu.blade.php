@@ -31,18 +31,21 @@
                     </div>
                 </div>
 
+                @if(array_key_exists($category->name, $listCategory['brand']))
                 <div class="sub-cat-2">
                     <p class="cat-2">{{ __('CHỌN THEO HÃNG') }}</p>
                     <div class="sub-cat-2-link">
                         @foreach($listCategory['brand'][$category->name] as $categoryBrand)
-                        <a href="{{ route('showDataCategory', $categoryBrand['slug']) }}">{{ $categoryBrand['name'] }}</a>
+                        <a href="">{{ $categoryBrand['name'] }}</a>
                         @endforeach
                     </div>
                 </div>
+                @endif
 
+                @if(array_key_exists($category->name, $listCategory['detail']))
                 @foreach($listCategory['detail'][$category->name] as $keyDetail => $valueDetail)
                 <div class="sub-cat-2">
-                    <p href="/chon-theo-cpu" class="cat-2">{{ __('CHỌN THEO') }} {{ $keyDetail }}</p>
+                    <p class="cat-2">{{ __('CHỌN THEO') }} {{ $keyDetail }}</p>
                     <div class="sub-cat-2-link">
                         @foreach($valueDetail as $detailProductKey)
                         <a href="/laptop-intel-core-i3">{{ $detailProductKey }}</a>
@@ -50,11 +53,10 @@
                     </div>
                 </div>
                 @endforeach
+                @endif
 
                 <div class="sub-cat-2">
                     <p class="cat-2">{{ __('PHỤ KIỆN') }} {{ strtoupper($category->name) }}</p>
-                    <div class="sub-cat-2-link">
-                    </div>
                 </div>
             </div>
         </div>
