@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\Admin\CategoryProductController;
+use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController as ProductAdmin;
 use App\Http\Controllers\Page\ProductController as ProductPage;
@@ -131,6 +132,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/storage-product', [StorageController::class, 'listProduct'])->name('admin.storage.listProduct');
         Route::post('/store-import', [StorageController::class, 'storeImportProduct'])->name('admin.storage.store-product');
         Route::get('/export/{id}', [StorageController::class, 'export'])->name('admin.storage.export');
+    });
+    
+    Route::group(['prefix' => 'coupon'], function () {
+        Route::get('/list', [CouponController::class, 'index'])->name('admin.coupon.index');
+        Route::get('/add', [CouponController::class, 'create'])->name('admin.coupon.create');
+        Route::post('/store', [CouponController::class, 'store'])->name('admin.coupon.store');
+        Route::get('/update/{id}', [CouponController::class, 'edit'])->name('admin.coupon.edit');
+        Route::post('/update/{id}', [CouponController::class, 'update'])->name('admin.coupon.update');
+        Route::get('/delete/{id}', [CouponController::class, 'delete'])->name('admin.coupon.delete');
     });
 
     Route::group(['prefix' => 'products'], function () {
