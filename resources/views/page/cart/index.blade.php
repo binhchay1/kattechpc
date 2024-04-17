@@ -212,7 +212,13 @@
                 <h3>{{__('Hình thức thanh toán')}}</h3>
                 <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" checked>
                 <label for="vehicle1">{{__('Thanh toán sau khi nhận hàng')}}</label><br>
+                <div class="basket-module">
+                    <label for="promo-code">{{__('Nhập mã khuyến mãi')}}</label>
+                    <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
+                    <button class="promo-code-cta">Apply</button>
+                </div>
             </div>
+
             <div class="summary">
                 <div class="summary-total-items total-title">{{__('Tổng cộng')}}</div>
                 <div class="total-value final-value get-total" id="basket-total">{{number_format($totalCart)}}đ</div>
