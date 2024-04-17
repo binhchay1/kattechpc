@@ -203,7 +203,8 @@
         .catch(error => {
             console.error(error);
         });
-
+</script>
+<script>
     ClassicEditor
         .create(document.querySelector('#editor-gift'), {
             height: 500,
@@ -217,5 +218,7 @@
 
     const status_product = 'create';
 </script>
+
+
 <script src="{{ URL::asset('js/admin/product.js') }}"></script>
 @endpush
