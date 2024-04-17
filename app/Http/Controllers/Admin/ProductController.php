@@ -140,11 +140,9 @@ class ProductController extends Controller
         $input = $request->except(['_token']);
         $detail = [];
 
-        if (empty($input['image_review']) or $input['image_review'] == null) {
+        if (empty($input['image_preview']) or $input['image_preview'] == null) {
             return redirect()->back()->with(['error' => 'Image null']);
         }
-
-        dd($input);
 
         if (isset($input['hot_status'])) {
             $input['hot_status'] = 1;
@@ -191,21 +189,18 @@ class ProductController extends Controller
             $input['detail'] = json_encode($detail);
         }
 
-        $getProduct = $this->productRepository->getById($id);
-        $arrOldImage = json_decode($getProduct->image, true);
         if ($request->hasfile('image')) {
-            if (isset($input['image_preview'])) {
-                foreach ($input['image_preview'] as $preview)
-                    foreach ($request->file('image') as $file) {
-                        if ($file->getClientOriginalName() == $preview) {
-                            $file->move(public_path('images/upload/product/'), $file->getClientOriginalName());
-                            $imgData[] = 'images/upload/product/' . $file->getClientOriginalName();
-                        }
-                    }
-                $arrMerger = array_merge($arrOldImage, $imgData);
-                $input['image'] = json_encode($arrMerger);
+            foreach ($request->file('image') as $file) {
+                $file->move(public_path('images/upload/product/'), $file->getClientOriginalName());
             }
         }
+
+        $explodeImagePreview = explode(',', $input['image_preview']);
+        foreach ($explodeImagePreview as $preview) {
+            $imgData[] = 'images/upload/product/' . $preview;
+        }
+
+        $input['image'] = json_encode($imgData);
 
         unset($input['detail_key']);
         unset($input['detail_value']);
