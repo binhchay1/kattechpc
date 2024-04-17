@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Exports\ExportOrder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
+use App\Repositories\OrderDetailRepository;
 use App\Repositories\OrderRepository;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -12,10 +13,16 @@ use Maatwebsite\Excel\Facades\Excel;
 class OrderController extends Controller
 {
     private $orderRepository;
+    private $orderDetailRepository;
 
-    public function __construct(OrderRepository $orderRepository)
+    public function __construct(
+        OrderRepository $orderRepository,
+        OrderDetailRepository $orderDetailRepository
+    
+    )
     {
         $this->orderRepository = $orderRepository;
+        $this->orderDetailRepository = $orderDetailRepository;
     }
 
     /**
@@ -23,7 +30,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $listOrders = $this->orderRepository->index();
+        $listOrders = $this->orderDetailRepository->index();
         return view('admin.order.index', compact('listOrders'));
     }
 

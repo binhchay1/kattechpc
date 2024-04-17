@@ -10,6 +10,8 @@ use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use Cart;
+use function Livewire\Features\SupportTesting\commit;
+
 class CartController extends Controller
 {
     
@@ -90,11 +92,12 @@ class CartController extends Controller
         
             if (count($cartInfor) >0) {
                 foreach ($cartInfor as $key => $item) {
+                   
                     $orderDetail = new OrderDetail();
                     $orderDetail->order_id = $order->id;
                     $orderDetail->product_id = $item->id;
                     $orderDetail->quantity = $item->quantity;
-                    $orderDetail->price = $item->price;
+                    $orderDetail->price = ($item->price * $item->quantity);
                     $orderDetail->save();
                 }
                 Cart::clear();
@@ -109,11 +112,13 @@ class CartController extends Controller
     
     public function thank()
     {
-        return view('page.cart.thank');
+        $listCategory = $this->categoryRepository->getListCategory();
+        return view('page.cart.thank', compact('listCategory'));
     }
     
     public function addToCart($id)
     {
+        $listCategory = $this->categoryRepository->getListCategory();
         $dataProduct = $this->productRepository->productDetail($id);
         Cart::add(
             $dataProduct->id,
@@ -123,7 +128,7 @@ class CartController extends Controller
             ['image' => $dataProduct->image]
         );
     
-        return redirect()->back()->with('success', 'Product add to cart successfully!');
+        return redirect()->back(compact('listCategory'))->with('success', 'Product add to cart successfully!');
     }
     
 }
