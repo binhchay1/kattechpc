@@ -35,9 +35,9 @@
         <div class="product-info">
             <h3>{{ $product->name }}</h3>
             @if($product->new_price != null)
-            <h5>{{ __('Giá ') }}: {{ number_format($product->new_price) }} đ <del class="old-price">{{ number_format($product->price) }} đ</del> </h5>
+            <h5>{{ __('Giá ') }}: {{ $product->new_price }} đ <del class="old-price">{{ $product->price }} đ</del> </h5>
             @else
-            <h5>{{ __('Giá ') }}: {{ number_format($product->price) }} đ</h5>
+            <h5>{{ __('Giá ') }}: {{ $product->price }} đ</h5>
             @endif
             <div>
                 <p>{{ __('Bảo hành') }}: <span style="font-weight: bold; color: blue">{{ $product->status_guarantee }}</span></p>
@@ -107,13 +107,13 @@
                 <div id="content-right">
                     <h4>{{ $related->name }}</h4>
                     <div class="product-martket-main d-flex align-items-center">
-                        <del class="product-market-price">{{ number_format($product->price) }} ₫</del>
+                        <del class="product-market-price">{{ $product->price }} ₫</del>
                         <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
                         <div class="product-percent-price">-{{ $new_price }} %</div>
                     </div>
 
                     <div class="product-price-main font-weight-600">
-                        {{ number_format($product->new_price) }} đ
+                        {{ $product->new_price }} đ
                     </div>
                 </div>
             </div>
