@@ -274,11 +274,36 @@ class HomeController extends Controller
         }
 
         $dataCategory = $this->categoryRepository->productByCategory($slug, $filters);
+        // dd($dataCategory);
+        $dataBrand = [];
+        $dataDetail = [];
+        foreach ($dataCategory->products as $product) {
+            if (isset($product->brands->name)) {
+                if (!in_array($product->brands->name, $dataBrand)) {
+                    $dataBrand[] = $product->brands->name;
+                }
+            }
+
+            if (isset($product->detail)) {
+                $decode = json_decode($product->detail, true);
+                foreach ($decode as $key => $value) {
+                    if (!array_key_exists($key, $dataDetail)) {
+                        $dataDetail[$key][] = $value;
+                    } else {
+                        if (!in_array($value, $dataDetail[$key])) {
+                            $dataDetail[$key][] = $value;
+                        }
+                    }
+                }
+            }
+        }
+
+        dd($dataDetail);
         $dataProducts = $this->categoryRepository->productSale($slug);
         $dataCategories = $this->utility->paginate($dataCategory->products, 5);
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
 
-        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory'));
+        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand'));
     }
 }

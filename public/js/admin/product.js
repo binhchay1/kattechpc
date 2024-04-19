@@ -4,8 +4,13 @@ var lengthPreview = 0;
 
 $(document).ready(function () {
     $("#add-detail").click(function () {
-        let detail_item = '<li class="item-detail"><input name="detail_key[]" class="form-input" value="" placeholder="Nhập tên trường"/><textarea name="detail_value[]" class="form-input ml-3" value="" placeholder="Nhập tên giá trị"></textarea><span class="btn-x">X</span></li><script>$(`.btn-x`).click(function () {$(this).parent().remove();});</script>';
+        let detail_item = '<li class="item-detail"><input name="detail_key[]" class="form-input" value="" placeholder="Nhập tên trường"/><input name="detail_value[]" class="form-input ml-3" placeholder="Nhập tên giá trị"><span class="btn-x">X</span></li><script>$(`.btn-x`).click(function () {$(this).parent().remove();});</script>';
         $("#area-detail").append(detail_item);
+    });
+
+    $("#add-detail-tech").click(function () {
+        let detail_item_tech = '<li class="item-detail"><input name="detail_tech_key[]" class="form-input" value="" placeholder="Nhập tên trường"/><textarea name="detail_tech_value[]" class="form-input ml-3" placeholder="Nhập tên giá trị"></textarea><span class="btn-x">X</span></li><script>$(`.btn-x`).click(function () {$(this).parent().remove();});</script>';
+        $("#area-detail-tech").append(detail_item_tech);
     });
 
     $(`.btn-x`).click(function () { $(this).parent().remove(); });

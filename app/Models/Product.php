@@ -29,7 +29,8 @@ class Product extends Model
         'key_word',
         'title',
         'brand_id',
-        'status_guarantee'
+        'status_guarantee',
+        'detail_tech'
     ];
 
     public function category()

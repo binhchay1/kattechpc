@@ -81,38 +81,29 @@
         <div class="flex sort" id="sort">
             <h2>{{ __('Lọc theo tiêu chí:') }}</h2>
             <div>
-                <select name="cars" id="cars">
-                    <option value="volvo">{{ __('Thương hiệu') }}</option>
-                    <option value="saab"></option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
+                <label>{{ __('Nhu cầu') }}</label>
+                <select>
+                    @foreach($dataCategory->children as $children)
+                    <option value="{{ $children->name }}">{{ $children->name }}</option>
+                    @endforeach
                 </select>
             </div>
             <div>
-                <select name="cars" id="cars">
+                <label>{{ __('Thương hiệu') }}</label>
+                <select>
+                    @foreach($dataBrand as $brand)
+                    <option value="{{ $brand }}">{{ $brand }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div>
+                <select>
                     <option value="volvo">Bộ vi xử lý(CPU)</option>
                     <option value="saab">Saab</option>
                     <option value="opel">Opel</option>
                     <option value="audi">Audi</option>
                 </select>
             </div>
-            <div>
-                <select name="cars" id="cars">
-                    <option value="volvo">Card đồ họa</option>
-                    <option value="saab">Saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
-                </select>
-            </div>
-            <div>
-                <select name="cars" id="cars">
-                    <option value="volvo">Dung lượng RAM</option>
-                    <option value="saab">Saab</option>
-                    <option value="opel">Opel</option>
-                    <option value="audi">Audi</option>
-                </select>
-            </div>
-
         </div>
     </div>
     <div class="row2">

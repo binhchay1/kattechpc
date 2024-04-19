@@ -50,7 +50,7 @@ class CategoryRepository extends BaseRepository
 
     public function productByCategory($slug, $filter = [])
     {
-        $query = $this->model->with('products')->where('slug', $slug);
+        $query = $this->model->with('children', 'products', 'children.products.productImages', 'products.brands', 'children.products.brands')->where('slug', $slug);
 
         if (isset($filter['code'])) {
             $query->where('payment.payment_code', 'like', '%' . $filter['code'] . '%');

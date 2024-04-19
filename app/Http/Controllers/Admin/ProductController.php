@@ -57,12 +57,20 @@ class ProductController extends Controller
     {
         $input = $request->except(['_token']);
         $detail = [];
+        $detail_tech = [];
 
         if (isset($input['detail_key'])) {
             for ($i = 0; $i < count($input['detail_key']); $i++) {
                 $detail[$input['detail_key'][$i]] = $input['detail_value'][$i];
             }
             $input['detail'] = json_encode($detail);
+        }
+
+        if (isset($input['detail_tech_key'])) {
+            for ($i = 0; $i < count($input['detail_tech_key']); $i++) {
+                $detail_tech[$input['detail_tech_key'][$i]] = $input['detail_tech_value'][$i];
+            }
+            $input['detail_tech'] = json_encode($detail_tech);
         }
 
         if (isset($input['hot_status'])) {
@@ -139,6 +147,7 @@ class ProductController extends Controller
     {
         $input = $request->except(['_token']);
         $detail = [];
+        $detail_tech = [];
 
         if (empty($input['image_preview']) or $input['image_preview'] == null) {
             return redirect()->back()->with(['error' => 'Image null']);
@@ -189,6 +198,14 @@ class ProductController extends Controller
             $input['detail'] = json_encode($detail);
         }
 
+        if (isset($input['detail_tech_key'])) {
+            for ($i = 0; $i < count($input['detail_tech_key']); $i++) {
+                $detail_tech[$input['detail_tech_key'][$i]] = $input['detail_tech_value'][$i];
+            }
+
+            $input['detail_tech'] = json_encode($detail_tech);
+        }
+
         if ($request->hasfile('image')) {
             foreach ($request->file('image') as $file) {
                 $file->move(public_path('images/upload/product/'), $file->getClientOriginalName());
@@ -203,7 +220,9 @@ class ProductController extends Controller
         $input['image'] = json_encode($imgData);
 
         unset($input['detail_key']);
+        unset($input['detail_tech_key']);
         unset($input['detail_value']);
+        unset($input['detail_tech_value']);
         unset($input['image_preview']);
 
         $this->productRepository->update($input, $id);
