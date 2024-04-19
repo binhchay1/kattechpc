@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
+use App\Models\Coupon;
 use App\Models\OrderDetail;
 use App\Repositories\CategoryRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
+use Session;
 use Illuminate\Http\Request;
 use Cart;
 use function Livewire\Features\SupportTesting\commit;
@@ -43,11 +45,11 @@ class CartController extends Controller
             1,
             ['image' => $dataProduct->image]
         );
+        Session::put('getProduct', $dataProduct);
         return redirect()->route('showCart');
-        
     }
     
-    public function showCart()
+    public function showCart(Request $request)
     {
         $totalCart = Cart::getTotal();
         $dataCart = Cart::getContent();
@@ -92,12 +94,11 @@ class CartController extends Controller
         
             if (count($cartInfor) >0) {
                 foreach ($cartInfor as $key => $item) {
-                   
                     $orderDetail = new OrderDetail();
                     $orderDetail->order_id = $order->id;
                     $orderDetail->product_id = $item->id;
                     $orderDetail->quantity = $item->quantity;
-                    $orderDetail->price = ($item->price * $item->quantity);
+                    $orderDetail->price = $request->total_cart;
                     $orderDetail->save();
                 }
                 Cart::clear();
@@ -107,6 +108,7 @@ class CartController extends Controller
         } catch (Exception $e) {
             echo $e->getMessage();
         }
+        session()->forget('discount');
         return redirect()->route('thank');
     }
     
@@ -129,6 +131,17 @@ class CartController extends Controller
         );
     
         return redirect()->back(compact('listCategory'))->with('success', 'Product add to cart successfully!');
+    }
+    
+    public function addCoupon(Request $request)
+    {
+        $coupon = Coupon::where('code', $request->discount_amount)->first();
+        if(!$coupon) {
+            return response()->json(['errors'=>'   Không tìm thấy mã giảm giá, làm ơn nhập lại!.']);
+        }
+        Session::put('discount', $coupon);
+        return response()->json(['success'=>'Mã giảm giá được thêm thành công']);
+       
     }
     
 }
