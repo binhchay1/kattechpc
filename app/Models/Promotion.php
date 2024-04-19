@@ -10,14 +10,14 @@ use Illuminate\Support\Str;
 class Promotion extends Model
 {
     use HasFactory;
-    
+
     use HasFactory;
     use Sluggable;
-    
+
     protected $fillable = [
         'title', 'slug', 'content'
     ];
-    
+
     public function sluggable(): array
     {
         return [
@@ -26,22 +26,21 @@ class Promotion extends Model
             ]
         ];
     }
-    
+
     protected static function boot()
     {
         parent::boot();
-        
+
         static::creating(function ($product) {
             $product->slug = Str::slug($product->title);
-            
-            // Ensure slug uniqueness
+
             $originalSlug = $slug = $product->slug;
             $count = 1;
-            
+
             while (static::where('slug', $slug)->exists()) {
                 $slug = $originalSlug . '-' . $count++;
             }
-            
+
             $product->slug = $slug;
         });
     }

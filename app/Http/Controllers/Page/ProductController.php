@@ -47,7 +47,7 @@ class ProductController extends Controller
     public function storeComment(Request $request)
     {
         if (!Auth::check()) {
-          return redirect()->back()->with('message', 'You must be logged in to post a comment!');;
+          return redirect()->back()->with('message', __('Bạn cần đăng nhập để bình luận!'));
         }
 
         $input = $request->except(['_token']);

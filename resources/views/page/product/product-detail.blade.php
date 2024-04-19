@@ -46,7 +46,7 @@
                 @elseif($product->status == 'out of stock')
                 <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: red">{{ __('Hết hàng') }}</span></p>
                 @else
-                <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: yellow">{{ __('Đang về hàng') }}</span></p>
+                <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: blue">{{ __('Đang về hàng') }}</span></p>
                 @endif
                 <p></p>
             </div>
@@ -101,7 +101,7 @@
             <div id="content">
                 <div id="left">
                     <a href="{{ route('productDetail', $related->name) }}">
-                        <img src="{{$product->image[0]}}" alt="Image Alt" class="img-fluid" />
+                        <img src="{{ $product->image[0] }}" alt="Image Alt" class="img-fluid" />
                     </a>
                 </div>
                 <div id="content-right">

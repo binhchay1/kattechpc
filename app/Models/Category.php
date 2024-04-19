@@ -45,11 +45,6 @@ class Category extends Model
         });
     }
 
-    public function productsParent()
-    {
-        return $this->hasMany('App\Models\Product', 'category_id', 'id');
-    }
-
     public function children()
     {
         return $this->hasMany(Category::class, 'parent', 'id')->with('children');

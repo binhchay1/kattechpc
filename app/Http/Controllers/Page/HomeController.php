@@ -229,6 +229,10 @@ class HomeController extends Controller
 
     public function postDetail($slug)
     {
+        if (!isset($slug)) {
+            abort(404);
+        }
+
         $listPost = $this->postRepository->index();
         $post = $this->postRepository->detail($slug);
         $key = 'menu_homepage';
@@ -259,10 +263,17 @@ class HomeController extends Controller
 
     public function showDataCategory(Request $request, $slug)
     {
-        $getPrice = $request->get('price');
-        $getSortBy = $request->get('sort');
+        if (!isset($slug)) {
+            abort(404);
+        }
 
-        $dataCategory = $this->categoryRepository->productByCategory($slug, $getPrice, $getSortBy);
+        $filters = [];
+
+        if (isset($request->price)) {
+            $filters['price'] = $request->price;
+        }
+
+        $dataCategory = $this->categoryRepository->productByCategory($slug, $filters);
         $dataProducts = $this->categoryRepository->productSale($slug);
         $dataCategories = $this->utility->paginate($dataCategory->products, 5);
         $key = 'menu_homepage';
