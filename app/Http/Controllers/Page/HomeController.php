@@ -169,8 +169,8 @@ class HomeController extends Controller
 
     public function viewHome()
     {
-        $listProductSale = $this->productRepository->listProductSale();
-        foreach ($listProductSale as $product) {
+        $listHotSale = $this->layoutRepository->listHotSale();
+        foreach ($listHotSale as $product) {
             $product->detail = json_decode($product->detail, true);
             $product->image = json_decode($product->image, true);
         }
@@ -211,7 +211,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale', 'layout', 'listSlide', 'listFlashSale', 'listPromotion', 'listCategoryProduct'));
+        return view('page.homepage', compact('listCategory', 'listNews', 'listHotSale', 'layout', 'listSlide', 'listFlashSale', 'listPromotion', 'listCategoryProduct'));
     }
 
     public function viewPost()

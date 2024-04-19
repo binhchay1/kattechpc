@@ -170,30 +170,34 @@
                             @endif
                         </div>
 
-                        <div class="lg:col-span-2 xl:col-span-6">
-                            <div class="d-flex">
-                                <label for="productDetail" class="inline-block mb-2 text-base font-medium">{{ __('Thông số sản phẩm') }}</label>
-                                <button id="add-detail" type="button" style="padding: 5px 10px;" class="ml-2 text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">+</button>
+                        <div class="lg:col-span-2 xl:col-span-12">
+                            <div class="lg:col-span-2 xl:col-span-6">
+                                <div class="d-flex">
+                                    <label for="productDetail" class="inline-block mb-2 text-base font-medium">{{ __('Thông số sản phẩm') }}</label>
+                                    <button id="add-detail" type="button" style="padding: 5px 10px;" class="ml-2 text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">+</button>
+                                </div>
+
+                                <ul class="space-y-5 rounded-md" id="area-detail"></ul>
+
+                                @if($errors->has('detail'))
+                                <span class="text-danger">{{ $errors->first('detail') }}</span>
+                                @endif
                             </div>
-
-                            <ul class="space-y-5 rounded-md" id="area-detail"></ul>
-
-                            @if($errors->has('detail'))
-                            <span class="text-danger">{{ $errors->first('detail') }}</span>
-                            @endif
                         </div>
 
-                        <div class="lg:col-span-2 xl:col-span-6">
-                            <div class="d-flex">
-                                <label for="productDetailTech" class="inline-block mb-2 text-base font-medium">{{ __('Thông số kĩ thuật') }}</label>
-                                <button id="add-detail-tech" type="button" style="padding: 5px 10px;" class="ml-2 text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">+</button>
+                        <div class="lg:col-span-2 xl:col-span-12">
+                            <div class="lg:col-span-2 xl:col-span-6">
+                                <div class="d-flex">
+                                    <label for="productDetailTech" class="inline-block mb-2 text-base font-medium">{{ __('Thông số kĩ thuật') }}</label>
+                                    <button id="add-detail-tech" type="button" style="padding: 5px 10px;" class="ml-2 text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">+</button>
+                                </div>
+
+                                <ul class="space-y-5 rounded-md mt-3" id="area-detail-tech"></ul>
+
+                                @if($errors->has('detail_tech'))
+                                <span class="text-danger">{{ $errors->first('detail_tech') }}</span>
+                                @endif
                             </div>
-
-                            <ul class="space-y-5 rounded-md" id="area-detail-tech"></ul>
-
-                            @if($errors->has('detail_tech'))
-                            <span class="text-danger">{{ $errors->first('detail_tech') }}</span>
-                            @endif
                         </div>
                     </div>
                     <div class="flex justify-end gap-2 mt-4">

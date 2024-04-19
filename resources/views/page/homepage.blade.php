@@ -161,7 +161,7 @@
                 @endif
             </div>
             <div class="swiper-wrapper swiper-top-sale" style="left: 48%;">
-                @foreach($listProductSale as $product)
+                @foreach($listHotSale as $product)
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">

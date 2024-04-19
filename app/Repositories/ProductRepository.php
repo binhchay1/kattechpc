@@ -16,15 +16,10 @@ class ProductRepository extends BaseRepository
     {
         return $this->model->with('category', 'productImages')->orderBy('created_at', 'DESC')->paginate(10);
     }
-    
+
     public function getProductBySearch($search)
     {
         return $this->model->where('name', 'like', '%' . $search . '%')->paginate(5);
-    }
-
-    public function listProductSale()
-    {
-        return $this->model->with('category', 'productImages')->orderBy('created_at', 'DESC')->get()->take(3);
     }
 
     public function store($input)

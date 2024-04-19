@@ -174,13 +174,7 @@ class LayoutController extends Controller
         $input = $request->except(['_token']);
         $data = [];
         if (array_key_exists('product_id', $input)) {
-            for ($i = 0; $i < count($input['product_id']); $i++) {
-                $listProduct[$input['product_id'][$i]] = [
-                    'quantity' => $input['quantity'][$i]
-                ];
-            }
-
-            $data['flash_sale_list_product_id'] = json_encode($listProduct);
+            $data['hot_deal_list_product_id'] = json_encode($input['product_id']);
         }
 
         if (isset($input['hot_deal_big_thumbnail'])) {

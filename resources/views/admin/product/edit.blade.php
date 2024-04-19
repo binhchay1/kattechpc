@@ -192,51 +192,57 @@
                             @endif
                         </div>
 
-                        <div class="lg:col-span-2 xl:col-span-6">
-                            <div class="d-flex">
-                                <label for="productDetail" class="inline-block mb-2 text-base font-medium">{{ __('Thông số sản phẩm') }}</label>
-                                <button id="add-detail" type="button" style="padding: 5px 10px;" class="ml-2 text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">+</button>
-                            </div>
+                        <div class="lg:col-span-2 xl:col-span-12">
+                            <div class="lg:col-span-2 xl:col-span-6">
+                                <div class="d-flex">
+                                    <label for="productDetail" class="inline-block mb-2 text-base font-medium">{{ __('Thông số sản phẩm') }}</label>
+                                    <button id="add-detail" type="button" style="padding: 5px 10px;" class="ml-2 text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">+</button>
+                                </div>
 
-                            <ul class="space-y-5 rounded-md" id="area-detail">
-                                @if($product->detail)
-                                @foreach($product->detail as $key => $value)
-                                <li class="item-detail">
-                                    <input name="detail_key[]" class="form-input" value="{{ $key }}" placeholder="{{ __('Nhập tên trường') }}" />
-                                    <input name="detail_value[]" class="form-input ml-3" placeholder="{{ __('Nhập tên giá trị') }}" value="{{ $value }}">
-                                    <span><i class="fa fa-xmas"></i></span>
-                                </li>
-                                @endforeach
+                                <ul class="space-y-5 rounded-md" id="area-detail">
+                                    @if($product->detail)
+                                    @foreach($product->detail as $key => $value)
+                                    <li class="item-detail">
+                                        <input name="detail_key[]" class="form-input" value="{{ $key }}" placeholder="{{ __('Nhập tên trường') }}" />
+                                        <input name="detail_value[]" class="form-input ml-3" placeholder="{{ __('Nhập tên giá trị') }}" value="{{ $value }}">
+                                        <span><i class="fa fa-xmas"></i></span>
+                                    </li>
+                                    @endforeach
+                                    @endif
+                                </ul>
+
+                                @if ($errors->has('detail'))
+                                <span class="text-danger">{{ $errors->first('detail') }}</span>
                                 @endif
-                            </ul>
-
-                            @if ($errors->has('detail'))
-                            <span class="text-danger">{{ $errors->first('detail') }}</span>
-                            @endif
+                            </div>
                         </div>
 
-                        <div class="lg:col-span-2 xl:col-span-6">
-                            <div class="d-flex">
-                                <label for="productDetailTech" class="inline-block mb-2 text-base font-medium">{{ __('Thông số kĩ thuật') }}</label>
-                                <button id="add-detail-tech" type="button" style="padding: 5px 10px;" class="ml-2 text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">+</button>
-                            </div>
 
-                            <ul class="space-y-5 rounded-md" id="area-detail-tech">
-                                @if($product->detail_tech)
-                                @foreach($product->detail_tech as $key => $value)
-                                <li class="item-detail">
-                                    <input name="detail_tech_key[]" class="form-input" value="{{ $key }}" placeholder="{{ __('Nhập tên trường') }}" />
-                                    <textarea name="detail_tech_value[]" class="form-input ml-3" placeholder="{{ __('Nhập tên giá trị') }}">{{ $value }}</textarea>
-                                    <span><i class="fa fa-xmas"></i></span>
-                                </li>
-                                @endforeach
+                        <div class="lg:col-span-2 xl:col-span-12">
+                            <div class="lg:col-span-2 xl:col-span-6">
+                                <div class="d-flex">
+                                    <label for="productDetailTech" class="inline-block mb-2 text-base font-medium">{{ __('Thông số kĩ thuật') }}</label>
+                                    <button id="add-detail-tech" type="button" style="padding: 5px 10px;" class="ml-2 text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">+</button>
+                                </div>
+
+                                <ul class="space-y-5 rounded-md" id="area-detail-tech">
+                                    @if($product->detail_tech)
+                                    @foreach($product->detail_tech as $key => $value)
+                                    <li class="item-detail">
+                                        <input name="detail_tech_key[]" class="form-input" value="{{ $key }}" placeholder="{{ __('Nhập tên trường') }}" />
+                                        <textarea name="detail_tech_value[]" class="form-input ml-3" placeholder="{{ __('Nhập tên giá trị') }}">{{ $value }}</textarea>
+                                        <span><i class="fa fa-xmas"></i></span>
+                                    </li>
+                                    @endforeach
+                                    @endif
+                                </ul>
+
+                                @if ($errors->has('detail_tech'))
+                                <span class="text-danger">{{ $errors->first('detail_tech') }}</span>
                                 @endif
-                            </ul>
-
-                            @if ($errors->has('detail_tech'))
-                            <span class="text-danger">{{ $errors->first('detail_tech') }}</span>
-                            @endif
+                            </div>
                         </div>
+
                     </div>
                     <div class="flex justify-end gap-2 mt-4">
                         <button type="reset" class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">{{__('Xóa toàn bộ')}}</button>

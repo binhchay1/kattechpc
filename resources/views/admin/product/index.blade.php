@@ -55,8 +55,8 @@
                                             @foreach($product->image as $value)
                                             @if(is_array($value))
                                             @continue
-                                            <img src="{{ asset($value) }}" class="h-10 rounded-full">
                                             @endif
+                                            <img src="{{ asset($value) }}" class="h-10 rounded-full">
                                             @endforeach
                                             @else
                                             <img src="{{ asset('/images/') }}" class="h-10 rounded-full">
