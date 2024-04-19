@@ -67,16 +67,16 @@ Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('collection/{slug}', [HomeController::class, 'showDataCategory'])->name('showDataCategory');
     Route::get('/promotion/{slug}', [HomeController::class, 'showPromotionDetail'])->name('showPromotionDetail');
     Route::get('/build-pc', [HomeController::class, 'buildPC'])->name('buildPC');
-});
 
-Route::group(['prefix' => 'cart'], function () {
-    Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
-    Route::get('add-to-cart/{slug}', [CartController::class, 'addToCart'])->name('add_to_cart');
-    Route::get('show-cart',  [CartController::class, 'showCart'])->name('showCart');
-    Route::get('delete-cart/{id}',  [CartController::class, 'deleteCart'])->name('deleteCart');
-    Route::get('update-cart',  [CartController::class, 'updateCart'])->name('updateCart');
-    Route::post('checkout',  [CartController::class, 'checkout'])->name('checkout');
-    Route::get('thank-you',  [CartController::class, 'thank'])->name('thank');
+    Route::group(['prefix' => 'cart'], function () {
+        Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
+        Route::get('add-to-cart/{slug}', [CartController::class, 'addToCart'])->name('add_to_cart');
+        Route::get('show-cart',  [CartController::class, 'showCart'])->name('showCart');
+        Route::get('delete-cart/{id}',  [CartController::class, 'deleteCart'])->name('deleteCart');
+        Route::get('update-cart',  [CartController::class, 'updateCart'])->name('updateCart');
+        Route::post('checkout',  [CartController::class, 'checkout'])->name('checkout');
+        Route::get('thank-you',  [CartController::class, 'thank'])->name('thank');
+    });
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
@@ -135,7 +135,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::post('/store-import', [StorageController::class, 'storeImportProduct'])->name('admin.storage.store-product');
         Route::get('/export/{id}', [StorageController::class, 'export'])->name('admin.storage.export');
     });
-    
+
     Route::group(['prefix' => 'coupon'], function () {
         Route::get('/list', [CouponController::class, 'index'])->name('admin.coupon.index');
         Route::get('/add', [CouponController::class, 'create'])->name('admin.coupon.create');

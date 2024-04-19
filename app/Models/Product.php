@@ -28,7 +28,8 @@ class Product extends Model
         'hot_sale_status',
         'key_word',
         'title',
-        'brand_id'
+        'brand_id',
+        'status_guarantee'
     ];
 
     public function category()

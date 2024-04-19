@@ -26,7 +26,7 @@
                         <div class="product-item">
                             <a href="" class="product-image position-relative">
                                 @if(isset($product->image))
-                                <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy entered loaded product-image">
+                                <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy product-image">
                                 @endif
                             </a>
                             <div class="product-info">
@@ -166,7 +166,6 @@
 
         </div>
     </div>
-
 </div>
 @endsection
 

@@ -117,11 +117,19 @@
                             <label for="productStatus" class="inline-block mb-2 text-base font-medium">{{ __('Trạng thái') }}</label>
                             <select class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false id="productStatus" name="status">
                                 @foreach($statusProduct as $status => $value)
-                                <option value="{{$value}}">{{$value}}</option>
+                                <option value="{{$value}}">{{ $value }}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('status'))
                             <span class="text-danger">{{ $errors->first('status') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="xl:col-span-4">
+                            <label for="statusGuarantee" class="inline-block mb-2 text-base font-medium"> {{ __('Bảo hành') }}</label>
+                            <input type="text" id="statusGuarantee" name="status_guarantee" value="{{ old('status_guarantee') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Bảo hành') }}">
+                            @if ($errors->has('status_guarantee'))
+                            <span class="text-danger">{{ $errors->first('status_guarantee') }}</span>
                             @endif
                         </div>
 
@@ -155,7 +163,7 @@
                         </div>
 
                         <div class="lg:col-span-2 xl:col-span-12">
-                            <label for="productSaleDescription" class="inline-block mb-2 text-base font-medium">{{ __('Qùa tặng kèm') }}</label>
+                            <label for="productSaleDescription" class="inline-block mb-2 text-base font-medium">{{ __('Quà tặng kèm') }}</label>
                             <textarea id="editor-gift" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="productSaleDescription" name="sale_detail" placeholder="{{ __('Qùa tặng kèm') }}" rows="5">{{ old('sale_detail') }}</textarea>
                             @if ($errors->has('sale_detail'))
                             <span class="text-danger">{{ $errors->first('sale_detail') }}</span>
