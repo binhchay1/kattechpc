@@ -108,13 +108,21 @@
                     <h4>{{ $related->name }}</h4>
                     <div class="product-martket-main d-flex align-items-center">
                         <del class="product-market-price">{{ number_format($product->price) }} ₫</del>
+                        @if($product->new_price != null)
                         <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
                         <div class="product-percent-price">-{{ $new_price }} %</div>
-                    </div>
+                         @endif
 
+                    </div>
+                    @if($product->new_price != null)
                     <div class="product-price-main font-weight-600">
                         {{ number_format($product->new_price) }} đ
                     </div>
+                        @else
+                        <div class="product-price-main font-weight-600">
+                            {{ number_format($product->price) }} đ
+                        </div>
+                        @endif
                 </div>
             </div>
             @endforeach

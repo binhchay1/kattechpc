@@ -75,6 +75,7 @@ Route::group(['prefix' => 'cart'], function () {
     Route::get('update-cart',  [CartController::class, 'updateCart'])->name('updateCart');
     Route::post('checkout',  [CartController::class, 'checkout'])->name('checkout');
     Route::get('thank-you',  [CartController::class, 'thank'])->name('thank');
+    Route::post('apply-coupon',  [CartController::class, 'addCoupon'])->name('apply.coupon');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
