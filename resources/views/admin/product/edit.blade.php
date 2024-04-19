@@ -120,6 +120,15 @@
                             <span class="text-danger">{{ $errors->first('status') }}</span>
                             @endif
                         </div>
+
+                        <div class="xl:col-span-4">
+                            <label for="statusGuarantee" class="inline-block mb-2 text-base font-medium"> {{ __('Bảo hành') }}</label>
+                            <input type="text" id="statusGuarantee" name="status_guarantee" value="{{ old('status_guarantee', $product->status_guarantee) }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Bảo hành') }}">
+                            @if ($errors->has('status_guarantee'))
+                            <span class="text-danger">{{ $errors->first('status_guarantee') }}</span>
+                            @endif
+                        </div>
+
                         <div class="xl:col-span-12">
                             <label for="categorySelect" class="inline-block mb-2 text-base font-medium ">{{ __('Hình ảnh thay đổi') }}</label>
                             <div class="user-image mb-3 text-center">
@@ -136,13 +145,14 @@
                                     continue;
                                     }
                                     $getNameImage = $itemInList;
+                                    $listNameImage[] = $getNameImage;
                                     }
                                     }
                                     @endphp
                                     @if(isset($getNameImage))
                                     <li data-id="{{ $getNameImage }}">
                                         <img id="img-review-{{ $key + 1 }}" src="{{ asset($value) }}" class="p-2" />
-                                        <button id="button-review-{{ $key + 1 }}" type="button" class="btn-delete-image" onclick="deleteImagePreview(this)" />Delete</button>
+                                        <button id="button-review-{{ $key + 1 }}" type="button" class="btn-delete-image" onclick="deleteImagePreview(this)" />{{ __('Xóa') }}</button>
                                     </li>
                                     @endif
                                     @endforeach
@@ -150,7 +160,7 @@
                                 @if(!empty($listNameImage))
                                 <input id="input-review" type="text" name="image_preview" value="{{ implode(',', $listNameImage) }}" hidden>
                                 @else
-                                <input id="input-review" type="text" name="image_preview" value="" hidden>
+                                <input id="input-review" type="text" name="image_preview" hidden>
                                 @endif
                             </div>
                             <div class="form-group">
@@ -175,35 +185,64 @@
                         </div>
 
                         <div class="lg:col-span-2 xl:col-span-12">
-                            <label for="productSaleDescription" class="inline-block mb-2 text-base font-medium">{{ __('Qùa tặng kèm') }}</label>
+                            <label for="productSaleDescription" class="inline-block mb-2 text-base font-medium">{{ __('Quà tặng kèm') }}</label>
                             <textarea id="editor-gift" class="editor form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="productSaleDescription" name="sale_detail" placeholder="{{ __('Qùa tặng kèm') }}" rows="5">{{ old('sale_detail', $product->sale_detail) }}</textarea>
                             @if ($errors->has('sale_detail'))
                             <span class="text-danger">{{ $errors->first('sale_detail') }}</span>
                             @endif
                         </div>
 
-                        <div class="lg:col-span-2 xl:col-span-6">
-                            <div class="d-flex">
-                                <label for="productDetail" class="inline-block mb-2 text-base font-medium">{{ __('Chi tiết') }}</label>
-                                <button id="add-detail" type="button" style="padding: 5px 10px;" class="ml-2 text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">+</button>
-                            </div>
+                        <div class="lg:col-span-2 xl:col-span-12">
+                            <div class="lg:col-span-2 xl:col-span-6">
+                                <div class="d-flex">
+                                    <label for="productDetail" class="inline-block mb-2 text-base font-medium">{{ __('Thông số sản phẩm') }}</label>
+                                    <button id="add-detail" type="button" style="padding: 5px 10px;" class="ml-2 text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">+</button>
+                                </div>
 
-                            <ul class="space-y-5 rounded-md" id="area-detail">
-                                @if($product->detail)
-                                @foreach($product->detail as $key => $value)
-                                <li class="item-detail">
-                                    <input name="detail_key[]" class="form-input" value="{{ $key }}" placeholder="{{ __('Nhập tên trường') }}" />
-                                    <input name="detail_value[]" class="form-input ml-3" value="{{ $value }}" placeholder="{{ __('Nhập tên giá trị') }}" />
-                                    <span><i class="fa fa-xmas"></i></span>
-                                </li>
-                                @endforeach
+                                <ul class="space-y-5 rounded-md" id="area-detail">
+                                    @if($product->detail)
+                                    @foreach($product->detail as $key => $value)
+                                    <li class="item-detail">
+                                        <input name="detail_key[]" class="form-input" value="{{ $key }}" placeholder="{{ __('Nhập tên trường') }}" />
+                                        <input name="detail_value[]" class="form-input ml-3" placeholder="{{ __('Nhập tên giá trị') }}" value="{{ $value }}">
+                                        <span><i class="fa fa-xmas"></i></span>
+                                    </li>
+                                    @endforeach
+                                    @endif
+                                </ul>
+
+                                @if ($errors->has('detail'))
+                                <span class="text-danger">{{ $errors->first('detail') }}</span>
                                 @endif
-                            </ul>
-
-                            @if ($errors->has('detail'))
-                            <span class="text-danger">{{ $errors->first('detail') }}</span>
-                            @endif
+                            </div>
                         </div>
+
+
+                        <div class="lg:col-span-2 xl:col-span-12">
+                            <div class="lg:col-span-2 xl:col-span-6">
+                                <div class="d-flex">
+                                    <label for="productDetailTech" class="inline-block mb-2 text-base font-medium">{{ __('Thông số kĩ thuật') }}</label>
+                                    <button id="add-detail-tech" type="button" style="padding: 5px 10px;" class="ml-2 text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">+</button>
+                                </div>
+
+                                <ul class="space-y-5 rounded-md" id="area-detail-tech">
+                                    @if($product->detail_tech)
+                                    @foreach($product->detail_tech as $key => $value)
+                                    <li class="item-detail">
+                                        <input name="detail_tech_key[]" class="form-input" value="{{ $key }}" placeholder="{{ __('Nhập tên trường') }}" />
+                                        <textarea name="detail_tech_value[]" class="form-input ml-3" placeholder="{{ __('Nhập tên giá trị') }}">{{ $value }}</textarea>
+                                        <span><i class="fa fa-xmas"></i></span>
+                                    </li>
+                                    @endforeach
+                                    @endif
+                                </ul>
+
+                                @if ($errors->has('detail_tech'))
+                                <span class="text-danger">{{ $errors->first('detail_tech') }}</span>
+                                @endif
+                            </div>
+                        </div>
+
                     </div>
                     <div class="flex justify-end gap-2 mt-4">
                         <button type="reset" class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">{{__('Xóa toàn bộ')}}</button>

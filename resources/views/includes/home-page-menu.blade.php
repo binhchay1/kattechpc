@@ -1,7 +1,7 @@
 <div class="global-menu-container">
-    <p class="group-title"><i class="fa fa-bars"></i> Danh mục sản phẩm</p>
+    <p class="group-title"><i class="fa fa-bars"></i> {{ __('Danh mục sản phẩm') }}</p>
     <div class="global-menu-holder">
-        @foreach($listCategory as $category)
+        @foreach($listCategory['default'] as $category)
         <div class="item">
             <a href="{{ $category->slug }}" class="cat-1">
                 <img class="lazy icon-menu entered loaded" alt="{{ $category->name }}" width="1" height="1" src="{{ asset($category->image) }}">
@@ -31,36 +31,32 @@
                     </div>
                 </div>
 
+                @if(array_key_exists($category->name, $listCategory['brand']))
                 <div class="sub-cat-2">
                     <p class="cat-2">{{ __('CHỌN THEO HÃNG') }}</p>
                     <div class="sub-cat-2-link">
-                        @foreach($category->products as $categoryChild)
-                        <a href="{{ route('showDataCategory', $categoryChild->slug) }}">{{ $categoryChild->name }}</a>
+                        @foreach($listCategory['brand'][$category->name] as $categoryBrand)
+                        <a href="">{{ $categoryBrand['name'] }}</a>
                         @endforeach
                     </div>
                 </div>
+                @endif
 
+                @if(array_key_exists($category->name, $listCategory['detail']))
+                @foreach($listCategory['detail'][$category->name] as $keyDetail => $valueDetail)
                 <div class="sub-cat-2">
-                    <p href="/chon-theo-cpu" class="cat-2">CHỌN THEO CPU</p>
+                    <p class="cat-2">{{ __('CHỌN THEO') }} {{ $keyDetail }}</p>
                     <div class="sub-cat-2-link">
-                        <a href="/laptop-intel-core-i3">Intel Core i3 </a>
-                        <a href="/intel-celeronpentium">Intel Celeron/Pentium </a>
-                        <a href="/intel-core-i5">Intel Core i5 </a>
-                        <a href="/intel-core-i7">Intel Core i7 </a>
-                        <a href="/intel-core-i9">Intel Core i9 </a>
-                        <a href="/amd-ryzen-3">AMD Ryzen 3 </a>
-                        <a href="/amd-ryzen-5">AMD Ryzen 5 </a>
-                        <a href="/amd-ryzen-7">AMD Ryzen 7 </a>
-                        <a href="/amd-ryzen-9">AMD Ryzen 9 </a>
-                        <a href="/apple-m1">Apple M1 </a>
-                        <a href="/apple-m2">Apple M2 </a>
+                        @foreach($valueDetail as $detailProductKey)
+                        <a href="/laptop-intel-core-i3">{{ $detailProductKey }}</a>
+                        @endforeach
                     </div>
                 </div>
+                @endforeach
+                @endif
 
                 <div class="sub-cat-2">
-                    <p class="cat-2">PHỤ KIỆN {{ strtoupper($category->name) }}</p>
-                    <div class="sub-cat-2-link">
-                    </div>
+                    <p class="cat-2">{{ __('PHỤ KIỆN') }} {{ strtoupper($category->name) }}</p>
                 </div>
             </div>
         </div>

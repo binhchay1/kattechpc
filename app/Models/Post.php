@@ -27,12 +27,12 @@ class Post extends Model
 
     public function category()
     {
-        return $this->belongsTo('App\Models\CategoryPost','category_id' ,'id' );
+        return $this->belongsTo(CategoryPost::class,'category_id' ,'id' );
     }
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'author' ,'id' );
+        return $this->belongsTo(User::class, 'author' ,'id' );
     }
 
     protected static function boot()

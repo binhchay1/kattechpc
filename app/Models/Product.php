@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Models\ProductImage;
 
 class Product extends Model
 {
@@ -27,22 +28,29 @@ class Product extends Model
         'hot_sale_status',
         'key_word',
         'title',
-        'brand_id'
+        'brand_id',
+        'status_guarantee',
+        'detail_tech'
     ];
 
     public function category()
     {
-        return $this->belongsTo('App\Models\Category', 'category_id', 'id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
     public function productImages()
     {
-        return $this->hasMany('App\Models\ProductImage', 'product_id', 'id');
+        return $this->hasMany(ProductImage::class, 'product_id', 'id');
     }
 
     public function comments()
     {
         return $this->hasMany(Comment::class)->whereNull('parent_id');
+    }
+
+    public function brands()
+    {
+        return $this->hasOne(Brand::class, 'id', 'brand_id');
     }
 
     public function sluggable(): array

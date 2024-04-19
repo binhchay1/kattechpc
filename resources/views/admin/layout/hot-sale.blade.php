@@ -38,7 +38,6 @@
                     @foreach($listHotSale as $key => $value)
                     <li class="item-product-hot-sale">
                         <input name="product_id[]" class="form-input" value="{{ $key }}" placeholder="{{ __('Nhập mã sản phẩm') }}" />
-                        <input name="quantity[]" class="form-input ml-3" value="{{ $value['quantity'] }}" placeholder="{{ __('Nhập số lượng') }}" />
                         <span class="btn-x">X</span>
                     </li>
                     @endforeach

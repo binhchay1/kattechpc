@@ -35,9 +35,9 @@
         <div class="product-info">
             <h3>{{ $product->name }}</h3>
             @if($product->new_price != null)
-            <h5>{{ __('Giá ') }}: {{ number_format($product->new_price) }} đ <del class="old-price">{{ number_format($product->price) }} đ</del> </h5>
+            <h5>{{ __('Giá ') }}: {{ $product->new_price }} đ <del class="old-price">{{ $product->price }} đ</del> </h5>
             @else
-            <h5>{{ __('Giá ') }}: {{ number_format($product->price) }} đ</h5>
+            <h5>{{ __('Giá ') }}: {{ $product->price }} đ</h5>
             @endif
             <div>
                 <p>{{ __('Bảo hành') }}: <span style="font-weight: bold; color: blue">{{ $product->status_guarantee }}</span></p>
@@ -46,7 +46,7 @@
                 @elseif($product->status == 'out of stock')
                 <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: red">{{ __('Hết hàng') }}</span></p>
                 @else
-                <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: yellow">{{ __('Đang về hàng') }}</span></p>
+                <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: blue">{{ __('Đang về hàng') }}</span></p>
                 @endif
                 <p></p>
             </div>
@@ -101,14 +101,14 @@
             <div id="content">
                 <div id="left">
                     <a href="{{ route('productDetail', $related->name) }}">
-                        <img src="{{$product->image[0]}}" alt="Image Alt" class="img-fluid" />
+                        <img src="{{ $product->image[0] }}" alt="Image Alt" class="img-fluid" />
                     </a>
                 </div>
                 <div id="content-right">
                     <h4>{{ $related->name }}</h4>
                     <div class="product-martket-main d-flex align-items-center">
-                        <del class="product-market-price">{{ number_format($product->price) }} ₫</del>
                         @if($product->new_price != null)
+                        <del class="product-market-price">{{ $product->price }} ₫</del>
                         <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
                         <div class="product-percent-price">-{{ $new_price }} %</div>
                          @endif
@@ -116,7 +116,7 @@
                     </div>
                     @if($product->new_price != null)
                     <div class="product-price-main font-weight-600">
-                        {{ number_format($product->new_price) }} đ
+                        {{ $product->new_price }} đ
                     </div>
                         @else
                         <div class="product-price-main font-weight-600">

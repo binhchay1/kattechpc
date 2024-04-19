@@ -15,6 +15,7 @@ use App\Repositories\LayoutRepository;
 use App\Repositories\PostRepository;
 use App\Repositories\PromotionRepository;
 use Illuminate\Http\Request;
+use Cache;
 
 class HomeController extends Controller
 {
@@ -80,89 +81,102 @@ class HomeController extends Controller
 
     public function viewPolicy()
     {
-        $listCategory = $this->categoryRepository->getListCategory();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
 
         return view('page.other.policy', compact('listCategory'));
     }
 
     public function paymentOnline()
     {
-        $listCategory = $this->categoryRepository->getListCategory();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
 
         return view('page.other.payment-online', compact('listCategory'));
     }
 
     public function payment()
     {
-        $listCategory = $this->categoryRepository->getListCategory();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
 
         return view('page.other.payment', compact('listCategory'));
     }
 
     public function viewPromotion()
     {
-        $listCategory = $this->categoryRepository->getListCategory();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
 
         return view('page.promotion.index', compact('listCategory'));
     }
 
     public function promotionDetail()
     {
-        $listCategory = $this->categoryRepository->getListCategory();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
 
         return view('page.promotion.promotion-detail', compact('listCategory'));
     }
 
     public function rules()
     {
-        $listCategory = $this->categoryRepository->getListCategory();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
 
         return view('page.other.rule', compact('listCategory'));
     }
 
     public function complaint()
     {
-        $listCategory = $this->categoryRepository->getListCategory();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
 
         return view('page.other.complaint', compact('listCategory'));
     }
 
     public function productPolicy()
     {
-        $listCategory = $this->categoryRepository->getListCategory();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
 
         return view('page.other.product-policy', compact('listCategory'));
     }
 
     public function businessPolicy()
     {
-        $listCategory = $this->categoryRepository->getListCategory();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
 
         return view('page.other.business-policy', compact('listCategory'));
     }
 
     public function electronicBill()
     {
-        $listCategory = $this->categoryRepository->getListCategory();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
 
         return view('page.other.electronic-bill', compact('listCategory'));
     }
 
     public function securityCustomer()
     {
-        $listCategory = $this->categoryRepository->getListCategory();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
 
         return view('page.other.security-customer', compact('listCategory'));
     }
 
     public function viewHome()
     {
-        $listProductSale = $this->productRepository->listProductSale();
-        foreach ($listProductSale as $product) {
+        $listHotSale = $this->layoutRepository->listHotSale();
+        foreach ($listHotSale as $product) {
             $product->detail = json_decode($product->detail, true);
             $product->image = json_decode($product->image, true);
         }
-        $listCategory = $this->categoryRepository->getListCategory();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+        $listCategoryProduct = $listCategory['default'];
         $listNews = $this->postRepository->getListNewsInHomepage();
         $listPromotion = $this->promotionRepository->getListPromotionHomePage();
         $layout = $this->layoutRepository->getListLayout();
@@ -197,7 +211,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('page.homepage', compact('listCategory', 'listNews', 'listProductSale', 'layout', 'listSlide', 'listFlashSale', 'listPromotion'));
+        return view('page.homepage', compact('listCategory', 'listNews', 'listHotSale', 'layout', 'listSlide', 'listFlashSale', 'listPromotion', 'listCategoryProduct'));
     }
 
     public function viewPost()
@@ -206,7 +220,8 @@ class HomeController extends Controller
         $listPostRandom = $this->postRepository->listPostRandom();
         $listPostDESC = $this->postRepository->listPostDESC();
         $listPostASC = $this->postRepository->listPostASC();
-        $listCategory = $this->categoryRepository->getListCategory();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
         $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
 
         return view('page.blog.posts', compact('listPost', 'listPostRandom', 'listPostDESC', 'listPostASC', 'listCategory', 'listCategoryPost'));
@@ -214,9 +229,14 @@ class HomeController extends Controller
 
     public function postDetail($slug)
     {
+        if (!isset($slug)) {
+            abort(404);
+        }
+
         $listPost = $this->postRepository->index();
         $post = $this->postRepository->detail($slug);
-        $listCategory = $this->categoryRepository->getListCategory();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
 
         return view('page.blog.post-detail', compact('post', 'listPost', 'listCategory'));
     }
@@ -243,14 +263,45 @@ class HomeController extends Controller
 
     public function showDataCategory(Request $request, $slug)
     {
-        $getPrice = $request->get('price');
-        $getSortBy = $request->get('sort');
+        if (!isset($slug)) {
+            abort(404);
+        }
 
-        $dataCategory = $this->categoryRepository->productByCategory($slug, $getPrice, $getSortBy);
+        $filters = [];
+
+        if (isset($request->price)) {
+            $filters['price'] = $request->price;
+        }
+
+        $dataCategory = $this->categoryRepository->productByCategory($slug, $filters);
+        $dataBrand = [];
+        $dataDetail = [];
+        foreach ($dataCategory->products as $product) {
+            if (isset($product->brands->name)) {
+                if (!in_array($product->brands->name, $dataBrand)) {
+                    $dataBrand[] = $product->brands->name;
+                }
+            }
+
+            if (isset($product->detail)) {
+                $decode = json_decode($product->detail, true);
+                foreach ($decode as $key => $value) {
+                    if (!array_key_exists($key, $dataDetail)) {
+                        $dataDetail[$key][] = $value;
+                    } else {
+                        if (!in_array($value, $dataDetail[$key])) {
+                            $dataDetail[$key][] = $value;
+                        }
+                    }
+                }
+            }
+        }
+
         $dataProducts = $this->categoryRepository->productSale($slug);
         $dataCategories = $this->utility->paginate($dataCategory->products, 5);
-        $listCategory = $this->categoryRepository->getListCategory();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
 
-        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory'));
+        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand'));
     }
 }

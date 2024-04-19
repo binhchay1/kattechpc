@@ -8,6 +8,7 @@ use App\Repositories\CommentRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Cache;
 
 class ProductController extends Controller
 {
@@ -28,7 +29,8 @@ class ProductController extends Controller
     public function productDetail($slug)
     {
         $product = $this->productRepository->productDetail($slug);
-        $listCategory = $this->categoryRepository->getListCategory();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
         if (isset($product->detail)) {
             $product->detail = json_decode($product->detail, true);
         }
@@ -37,7 +39,6 @@ class ProductController extends Controller
             $product->image = json_decode($product->image, true);
         }
         $listComment = $this->commentRepository->index();
-        $listCategory = $this->categoryRepository->getListCategory();
         $productRelated = $this->productRepository->getProductRelated($product->category_id, $product->id);
 
         return view('page.product.product-detail', compact('product', 'productRelated', 'listComment', 'listCategory'));
@@ -46,7 +47,7 @@ class ProductController extends Controller
     public function storeComment(Request $request)
     {
         if (!Auth::check()) {
-          return redirect()->back()->with('message', 'You must be logged in to post a comment!');;
+          return redirect()->back()->with('message', __('Bạn cần đăng nhập để bình luận!'));
         }
 
         $input = $request->except(['_token']);

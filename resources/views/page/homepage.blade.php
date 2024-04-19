@@ -161,7 +161,7 @@
                 @endif
             </div>
             <div class="swiper-wrapper swiper-top-sale" style="left: 48%;">
-                @foreach($listProductSale as $product)
+                @foreach($listHotSale as $product)
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
@@ -201,7 +201,7 @@
             </div>
         </div>
         <div class="flex-container">
-            @foreach($listCategory as $category)
+            @foreach($listCategoryProduct as $category)
             <a href="{{ route('showDataCategory', $category->slug) }}" class="d-flex flex-column text-center category-home-page">
                 <img src="{{ asset($category->image) }}" class="item-hot lazy" width="300" height="300">
                 <span class="policy-title">{{ $category->name }}</span>
@@ -211,7 +211,7 @@
     </div>
 </section>
 
-@foreach($listCategory as $category)
+@foreach($listCategoryProduct as $category)
 @if($category->parent == 0)
 <section class="product-slide">
     <div class="product-slide-main boder-radius-10">

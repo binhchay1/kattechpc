@@ -17,12 +17,14 @@ $(document).ready(function () {
         }
     }
 
-    $('.vendor-carousel').owlCarousel({
-        loop: true,
-        nav: false,
-        autoplay: true,
-        smartSpeed: 1000,
-    });
+    if ($(".vendor-carousel")[0]) {
+        $('.vendor-carousel').owlCarousel({
+            loop: true,
+            nav: false,
+            autoplay: true,
+            smartSpeed: 1000,
+        });
+    }
 
     $('.hover-for-tooltips').hover(function () {
         let title = $(this).attr('data-title');
