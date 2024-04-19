@@ -274,7 +274,6 @@ class HomeController extends Controller
         }
 
         $dataCategory = $this->categoryRepository->productByCategory($slug, $filters);
-        // dd($dataCategory);
         $dataBrand = [];
         $dataDetail = [];
         foreach ($dataCategory->products as $product) {
@@ -298,7 +297,6 @@ class HomeController extends Controller
             }
         }
 
-        dd($dataDetail);
         $dataProducts = $this->categoryRepository->productSale($slug);
         $dataCategories = $this->utility->paginate($dataCategory->products, 5);
         $key = 'menu_homepage';
