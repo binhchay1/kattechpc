@@ -160,34 +160,34 @@
                 </a>
                 @endif
             </div>
-            <div class="swiper-wrapper swiper-top-sale" style="left: 48%;">
-                @foreach($listHotSale as $product)
-                <div class="swiper-slide1" role="group">
-                    <div class="product-item">
-                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
-                            @if(isset($product->image))
-                            <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy">
-                            @endif
-                        </a>
-                        <div class="product-info">
-                            <a href="{{ route('productDetail', $product['slug']) }}">
-                                <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
-                            </a>
+{{--            <div class="swiper-wrapper swiper-top-sale" style="left: 48%;">--}}
+{{--                @foreach($listHotSale as $product)--}}
+{{--                <div class="swiper-slide1" role="group">--}}
+{{--                    <div class="product-item">--}}
+{{--                        <a href="" class="product-image position-relative">--}}
+{{--                            @if(isset($product->image))--}}
+{{--                            <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy">--}}
+{{--                            @endif--}}
+{{--                        </a>--}}
+{{--                        <div class="product-info">--}}
+{{--                            <a href="">--}}
+{{--                                <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>--}}
+{{--                            </a>--}}
 
-                            <div class="product-martket-main d-flex align-items-center">
-                                <p class="product-market-price">{{ $product->price }} ₫</p>
-                                <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                                <div class="product-percent-price">-{{ number_format($new_price) }} %</div>
-                            </div>
+{{--                            <div class="product-martket-main d-flex align-items-center">--}}
+{{--                                <p class="product-market-price">{{ $product->price }} ₫</p>--}}
+{{--                                <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>--}}
+{{--                                <div class="product-percent-price">-{{ number_format($new_price) }} %</div>--}}
+{{--                            </div>--}}
 
-                            <div class="product-price-main font-weight-600">
-                                {{ $product->new_price }} đ
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
+{{--                            <div class="product-price-main font-weight-600">--}}
+{{--                                {{ $product->new_price }} đ--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                @endforeach--}}
+{{--            </div>--}}
         </div>
     </div>
     </div>
