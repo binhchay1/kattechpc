@@ -169,11 +169,16 @@ class HomeController extends Controller
 
     public function viewHome()
     {
-        $listHotSale = $this->layoutRepository->index();
-        foreach ($listHotSale as $product) {
-            $product->detail = json_decode($product->detail, true);
-            $product->image = json_decode($product->image, true);
+        $getHotSale = $this->layoutRepository->listHotSale();
+
+        if (empty($getHotSale->hot_sale_list_product_id)) {
+            $listHotSale = [];
+        } else {
+            $listProductHotSale = json_decode($getHotSale->hot_sale_list_product_id, true);
+            $getListProductHotSale = $this->productRepository->getListProductHotSale($listProductHotSale);
+            $listHotSale = $getListProductHotSale;
         }
+
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         $listCategoryProduct = $listCategory['default'];

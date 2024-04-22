@@ -56,4 +56,9 @@ class ProductRepository extends BaseRepository
     {
         return $this->model->whereIn('code', $arrayCode)->get();
     }
+
+    public function getListProductHotSale($listCode)
+    {
+        return $this->model->whereIn('code', $listCode)->get();
+    }
 }

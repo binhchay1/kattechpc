@@ -6,7 +6,7 @@
                 <div class="xl:col-span-6">
                     <div class="">
                         <div class="" style="display: inline-grid;">
-                            <input type="file" class="border-0 bg-light pl-0" name="hot_deal_big_thumbnail" id="image9" hidden>
+                            <input type="file" class="border-0 bg-light pl-0" name="hot_sale_big_thumbnail" id="image9" hidden>
                             <div class=" choose-avatar">
                                 <div id="btnimage">
                                     @if(isset($layout->hot_sale_big_thumbnail))
@@ -35,9 +35,9 @@
                     <button id="add-product-hot-sale" type="button" style="padding: 5px 10px;" class="ml-2 text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">+</button>
                 </div>
                 <ul class="space-y-5 rounded-md" id="area-product-hot-sale">
-                    @foreach($listHotSale as $key => $value)
+                    @foreach($listHotSale as $productCode)
                     <li class="item-product-hot-sale">
-                        <input name="product_id[]" class="form-input" value="{{ $key }}" placeholder="{{ __('Nhập mã sản phẩm') }}" />
+                        <input name="product_id[]" class="form-input" value="{{ $productCode }}" placeholder="{{ __('Nhập mã sản phẩm') }}" />
                         <span class="btn-x">X</span>
                     </li>
                     @endforeach
