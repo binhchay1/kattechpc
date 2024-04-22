@@ -130,7 +130,7 @@ class CartController extends Controller
             ['image' => $dataProduct->image]
         );
     
-        return redirect()->back(compact('listCategory'))->with('success', 'Product add to cart successfully!');
+        return redirect()->back()->with('success', 'Product add to cart successfully!');
     }
     
     public function addCoupon(Request $request)

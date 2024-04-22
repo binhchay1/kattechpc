@@ -34,11 +34,15 @@
 
         <div class="product-info">
             <h3>{{ $product->name }}</h3>
-            @if($product->new_price != null)
-            <h5>{{ __('Giá ') }}: {{ $product->new_price }} đ <del class="old-price">{{ $product->price }} đ</del> </h5>
-            @else
-            <h5>{{ __('Giá ') }}: {{ $product->price }} đ</h5>
-            @endif
+            <div class="d-flex price-product">
+                @if($product->new_price != null)
+                    <h5>{{ number_format($product->new_price) }}đ  </h5>
+                    <del class="old-price">{{ number_format($product->price) }} đ</del>
+                    <div class="save-price-detail">{{__('Tiết kiệm:')}} {{number_format($product->price - $product->new_price )}}đ</div>
+                @else
+                    <h5>{{ __('Giá ') }}: {{ number_format($product->price) }} đ</h5>
+                @endif
+            </div>
             <div>
                 <p>{{ __('Bảo hành') }}: <span style="font-weight: bold; color: blue">{{ $product->status_guarantee }}</span></p>
                 @if($product->status == 'available')
@@ -50,34 +54,92 @@
                 @endif
                 <p></p>
             </div>
-            <div class="quantity mt-4 d-flex">
-                <a href="{{ route('addCart', $product['slug']) }}">
+            <div class="product-buy-quantity d-flex align-items-center">
+                <span class="title-quantity">Số lượng:</span>
+                <div class="cart-quantity-select justify-content-center align-items-center d-flex">
+                    <p class="js-quantity-change" data-value="-1"> − </p>
+                    <input type="text" class="js-buy-quantity js-quantity-change bk-product-qty font-weight-800" value="1">
+                    <p class="js-quantity-change" data-value="1"> + </p>
+                </div>
+                <a href="{{ route('add_to_cart', $product['slug']) }}" class="addCart gap-8 d-flex flex-wrap align-items-center justify-content-center">
+                    <i class="fa fa-shopping-cart"></i>
+                    <p class="title-cart">Thêm vào giỏ hàng</p>
+                </a>
+                <input type="hidden" class="js-buy-quantity-temp" value="1">
+            </div>
+            <div class="quantity mt-4 d-flex btn-buy-product" >
+                <a class="btn-1" href="{{ route('addCart', $product['slug']) }}">
                     <button class="btn-buy">{{ __('Mua ngay') }}</button>
                 </a>
 
-                <a href="{{ route('add_to_cart', $product['slug']) }}">
+                <a class="btn-2" href="{{ route('add_to_cart', $product['slug']) }}">
+                    <button class="btn-add-to-cart">{{ __('Thêm vào giỏ hàng') }}</button>
+                </a>
+
+                <a class="btn-3" href="{{ route('add_to_cart', $product['slug']) }}">
                     <button class="btn-add-to-cart">{{ __('Thêm vào giỏ hàng') }}</button>
                 </a>
             </div>
-            <div class="product-detail">
-                {!! html_entity_decode($product->description) !!}
-            </div>
-            <div class="gift-product">
-                <div class="gift" style="background: #ddd;">
-                    <h2 style="margin-left: 10px;">{{ __('Quà tặng và ưu đãi') }}</h2>
-                </div>
-                <div class="gift-promotion">
-                    <hr>
-                    <div>
-                        {!! $product->sale_detail !!}
+
+            <div class="box-product-policy-detal boder-radius-10 mt-12">
+                <p class="title font-weight-600">Yên tâm mua hàng</p>
+                <div class="list-showroom-detail d-flex flex-wrap justify-content-between" id="js-box-showrom-has-pro-list">
+                    <div class="item d-flex align-items-center gap-6">
+                        <i class="fas fa-comments-dollar"></i>
+                        <p class="gap-6-item">Cam kết giá tốt nhất thị trường.</p>
+                    </div>
+                    <div class="item d-flex align-items-center gap-6">
+                        <i class="fas fa-handshake"></i>
+                        <p class="gap-6-item">Sản phẩm mới 100%.</p>
+                    </div>
+                    <div class="item d-flex align-items-center gap-6">
+                        <i class="	fas fa-paper-plane"></i>
+                        <p class="gap-6-item">Lỗi 1 đổi 1 ngay lập tức.</p>
+                    </div>
+                    <div class="item d-flex align-items-center gap-6">
+                        <i class="fas fa-address-card"></i>
+                        <p class="gap-6-item">Hỗ trợ trả góp - Thủ tục nhanh gọn.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+
+    <h3 class="productRelated">{{__('Sản phẩm liên quan')}}</h3>
+    <div class="swiper d-flex">
+        <div class="swiper-wrapper swiper-top-sale">
+            @foreach($productRelated as $product)
+                <div class="swiper-slide1" role="group">
+                    <div class="product-item">
+                        <a href="" class="product-image position-relative">
+                            @if(isset($product->image))
+                                <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy product-image">
+                            @endif
+                        </a>
+                        <div class="">
+                            <a href="">
+                                <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
+                            </a>
+
+                            <div class="product-martket-main d-flex align-items-center">
+                                <del class="product-market-price">{{ number_format($product->price) }} ₫</del>
+                                <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
+                                <div class="product-percent-price">-{{ $new_price }}%</div>
+                            </div>
+
+                            <div class="product-price-main font-weight-600">
+                                {{ number_format($product->new_price) }} đ
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
     <section class="product-container set-background1">
-        <div class="product-info">
+        <div class="product-info" id="product-info">
             <h3>{{ __('Thông tin sản phẩm') }}</h3>
             <table>
                 <tr>
@@ -96,7 +158,7 @@
         </div>
 
         <div class="product-related">
-            <h3> {{ __('Sản phẩm liên quan') }}</h3>
+            <h3> {{ __('Thông số kĩ thuật') }}</h3>
             @foreach($productRelated as $related)
             <div id="content">
                 <div id="left">
@@ -128,7 +190,9 @@
             @endforeach
         </div>
     </section>
-
+    @if(Session::has('message'))
+        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+    @endif
     <section class="comment">
         <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
@@ -148,9 +212,6 @@
                     </div>
                 </div>
             </div>
-            @if(Session::has('message'))
-            <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
-            @endif
         </form>
     </section>
     <hr class="hr-row">

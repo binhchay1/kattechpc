@@ -18,7 +18,7 @@
 }
 
 .set-background1 {
-   margin-top: 25px;
+   margin-top: 90px;
 }
 
 .img-card {
@@ -64,10 +64,19 @@
     padding: 15px;
 }
 
+#product-info {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.productRelated {
+    font-size: 24px;
+}
+
 .product-info h3 {
-    font-size: 25px;
-    font-weight: 600;
-    line-height: 130%;
+    font-size: 20px;
+    line-height: 24px;
+    text-transform: capitalize;
+    margin-bottom: 12px;
     margin: 0;
 }
 
@@ -91,7 +100,7 @@
 }
 
 .product-related h3 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     margin: 0;
     line-height: 130%;
@@ -405,7 +414,8 @@ tr:nth-child(even) {
 
 
 .product-percent-price {
-    background: #FFEDED;
+    background: #be1f2d;
+    color: white;
     border: 1px solid red;
     border-radius: 5px;
     margin-left: 10px;
@@ -438,4 +448,3 @@ tr:nth-child(even) {
     font-size: 15px;
 }
 
-#f8f8f8
