@@ -164,7 +164,7 @@
                 @foreach($listHotSale as $product)
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
-                        <a href="" class="product-image position-relative">
+                        <a href="{{ route('productDetail', $product->slug) }}" class="product-image position-relative">
                             @if(isset($product->image))
                             <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy">
                             @endif
