@@ -13,7 +13,7 @@ use Session;
 use Illuminate\Http\Request;
 use Cart;
 use function Livewire\Features\SupportTesting\commit;
-
+use Cache;
 class CartController extends Controller
 {
     
@@ -51,9 +51,10 @@ class CartController extends Controller
     
     public function showCart(Request $request)
     {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
         $totalCart = Cart::getTotal();
         $dataCart = Cart::getContent();
-        $listCategory = $this->categoryRepository->getListCategory();
         return view('page.cart.index',[
             'dataCart'=> $dataCart,
             'totalCart'=> $totalCart,
@@ -130,7 +131,7 @@ class CartController extends Controller
             ['image' => $dataProduct->image]
         );
     
-        return redirect()->back(compact('listCategory'))->with('success', 'Product add to cart successfully!');
+        return redirect()->back()->with('success', 'Product add to cart successfully!');
     }
     
     public function addCoupon(Request $request)

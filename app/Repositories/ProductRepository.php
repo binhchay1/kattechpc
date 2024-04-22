@@ -49,7 +49,7 @@ class ProductRepository extends BaseRepository
 
     public function getProductRelated($category_id, $product_id)
     {
-        return $this->model->where('category_id', $category_id)->where('id', '!=', $product_id)->take(4)->get();
+        return $this->model->where('category_id', $category_id)->where('id', '!=', $product_id)->get();
     }
 
     public function getProductFlashSaleByCode($arrayCode)

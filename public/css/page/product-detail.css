@@ -17,7 +17,7 @@
 }
 
 .set-background1 {
-   margin-top: 25px;
+   margin-top: 90px;
 }
 
 .img-card {
@@ -67,8 +67,12 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+.productRelated {
+    font-size: 24px;
+}
+
 .product-info h3 {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 24px;
     text-transform: capitalize;
     margin-bottom: 12px;
@@ -96,7 +100,7 @@
 }
 
 .product-related h3 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     margin: 0;
     line-height: 130%;
@@ -434,7 +438,8 @@ tr:nth-child(even) {
 
 
 .product-percent-price {
-    background: #FFEDED;
+    background: #be1f2d;
+    color: white;
     border: 1px solid red;
     border-radius: 5px;
     margin-left: 10px;
@@ -556,4 +561,25 @@ tr:nth-child(even) {
 .fas {
     font-size: 20px;
     margin-right: 10px;
+}
+
+.btn-article-col {
+    width: 300px;
+    margin: 0 auto;
+    border: 1px solid #007aff;
+    border-radius: 8px;
+    margin-top: 14px;
+    padding: 10px 0;
+    cursor: pointer;
+    color: #007aff;
+}
+
+.quantity-field {
+    background-color: #ccc;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    font-size: 1rem;
+    padding: 2px;
+    width: 4.75rem;
+    height: 43px;
 }
