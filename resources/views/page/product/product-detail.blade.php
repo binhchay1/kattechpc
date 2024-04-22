@@ -156,8 +156,14 @@
                 <span id="more-{{ $dataProduct->id }}" style="display: none;">{{ substr($dataProduct->description, 50) }}</span>
                 @endif
             </div>
-            <a href="javascript:" onclick="loadMore('{{ $dataProduct->id }}')" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center" data-content="#content-desc">
+
+            <a href="javascript:" onclick="loadMore('{{ $dataProduct->id }}')" id="read-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
                 {{ __('Xem tất cả') }}
+                <i class="fas fa-angle-down" style="margin-left: 5px;"></i>
+            </a>
+
+            <a href="javascript:" onclick="loadMore('{{ $dataProduct->id }}')" id="hide-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center d-none">
+                {{ __('Thu gọn') }}
                 <i class="fas fa-angle-down" style="margin-left: 5px;"></i>
             </a>
         </div>
