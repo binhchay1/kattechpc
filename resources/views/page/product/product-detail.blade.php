@@ -117,10 +117,8 @@
                         <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy product-image">
                         @endif
                     </a>
-                    <div class="">
-                        <a href="">
-                            <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
-                        </a>
+                    <div>
+                        <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
 
                         <div class="product-martket-main d-flex align-items-center">
                             @if($product->new_price != null)
