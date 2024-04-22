@@ -169,7 +169,7 @@ class HomeController extends Controller
 
     public function viewHome()
     {
-        $listHotSale = $this->layoutRepository->listHotSale();
+        $listHotSale = $this->layoutRepository->index();
         foreach ($listHotSale as $product) {
             $product->detail = json_decode($product->detail, true);
             $product->image = json_decode($product->image, true);

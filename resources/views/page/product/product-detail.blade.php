@@ -15,11 +15,11 @@
 <div class="container">
     <section class="product-container set-background">
         <div class="img-card">
-            <img src="{{ asset($product->image[0]) }}" id="featured-image">
+            <img src="{{ asset($dataProduct->image[0]) }}" id="featured-image">
             <div class="small-Card">
                 <div class="swiper d-flex align-items-center" style="min-height: auto;">
                     <div class="swiper-wrapper swiper-image">
-                        @foreach ($product->image as $key => $image)
+                        @foreach ($dataProduct->image as $key => $image)
                         <div class="swiper-slide-image" role="group">
                             <img src="{{ asset($image) }}" data-index="{{ $key }}" class="small-Img" onclick="getImageCenter(this)">
                         </div>
@@ -33,21 +33,21 @@
         </div>
 
         <div class="product-info">
-            <h3>{{ $product->name }}</h3>
+            <h3>{{ $dataProduct->name }}</h3>
             <div class="d-flex price-product">
-                @if($product->new_price != null)
-                    <h5>{{ number_format($product->new_price) }}đ  </h5>
-                    <del class="old-price">{{ number_format($product->price) }} đ</del>
-                    <div class="save-price-detail">{{__('Tiết kiệm:')}} {{number_format($product->price - $product->new_price )}}đ</div>
+                @if($dataProduct->new_price != null)
+                    <h5>{{ number_format($dataProduct->new_price) }}đ  </h5>
+                    <del class="old-price">{{ number_format($dataProduct->price) }} đ</del>
+                    <div class="save-price-detail">{{__('Tiết kiệm:')}} {{number_format($dataProduct->price - $dataProduct->new_price )}}đ</div>
                 @else
-                    <h5>{{ __('Giá ') }}: {{ number_format($product->price) }} đ</h5>
+                    <h5>{{ __('Giá ') }}: {{ number_format($dataProduct->price) }} đ</h5>
                 @endif
             </div>
             <div>
-                <p>{{ __('Bảo hành') }}: <span style="font-weight: bold; color: blue">{{ $product->status_guarantee }}</span></p>
-                @if($product->status == 'available')
+                <p>{{ __('Bảo hành') }}: <span style="font-weight: bold; color: blue">{{ $dataProduct->status_guarantee }}</span></p>
+                @if($dataProduct->status == 'available')
                 <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: green">{{ __('Còn hàng') }}</span></p>
-                @elseif($product->status == 'out of stock')
+                @elseif($dataProduct->status == 'out of stock')
                 <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: red">{{ __('Hết hàng') }}</span></p>
                 @else
                 <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: blue">{{ __('Đang về hàng') }}</span></p>
@@ -61,23 +61,23 @@
                     <input type="text" class="js-buy-quantity js-quantity-change bk-product-qty font-weight-800" value="1">
                     <p class="js-quantity-change" data-value="1"> + </p>
                 </div>
-                <a href="{{ route('add_to_cart', $product['slug']) }}" class="addCart gap-8 d-flex flex-wrap align-items-center justify-content-center">
+                <a href="{{ route('add_to_cart', $dataProduct['slug']) }}" class="addCart gap-8 d-flex flex-wrap align-items-center justify-content-center">
                     <i class="fa fa-shopping-cart"></i>
                     <p class="title-cart">Thêm vào giỏ hàng</p>
                 </a>
                 <input type="hidden" class="js-buy-quantity-temp" value="1">
             </div>
             <div class="quantity mt-4 d-flex btn-buy-product" >
-                <a class="btn-1" href="{{ route('addCart', $product['slug']) }}">
+                <a class="btn-1" href="{{ route('addCart', $dataProduct['slug']) }}">
                     <button class="btn-buy">{{ __('Mua ngay') }}</button>
                 </a>
 
-                <a class="btn-2" href="{{ route('add_to_cart', $product['slug']) }}">
-                    <button class="btn-add-to-cart">{{ __('Thêm vào giỏ hàng') }}</button>
+                <a class="btn-2" href="#">
+                    <button class="btn-add-to-cart">{{ __('Trả góp qua hồ sơ') }}</button>
                 </a>
 
-                <a class="btn-3" href="{{ route('add_to_cart', $product['slug']) }}">
-                    <button class="btn-add-to-cart">{{ __('Thêm vào giỏ hàng') }}</button>
+                <a class="btn-3" href="">
+                    <button class="btn-add-to-cart">{{ __('Trả góp qua thẻ') }}</button>
                 </a>
             </div>
 
@@ -123,14 +123,22 @@
                             </a>
 
                             <div class="product-martket-main d-flex align-items-center">
-                                <del class="product-market-price">{{ number_format($product->price) }} ₫</del>
-                                <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                                <div class="product-percent-price">-{{ $new_price }}%</div>
-                            </div>
+                                @if($product->new_price != null)
+                                    <del class="product-market-price">{{ number_format($product->price) }} ₫</del>
+                                    <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
+                                    <div class="product-percent-price">-{{ $new_price }} %</div>
+                                @endif
 
-                            <div class="product-price-main font-weight-600">
-                                {{ number_format($product->new_price) }} đ
                             </div>
+                            @if($product->new_price != null)
+                                <div class="product-price-main font-weight-600">
+                                    {{ number_format($product->new_price )}} đ
+                                </div>
+                            @else
+                                <div class="product-price-main font-weight-600">
+                                    {{ number_format($product->price) }} đ
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -141,55 +149,41 @@
     <section class="product-container set-background1">
         <div class="product-info" id="product-info">
             <h3>{{ __('Thông tin sản phẩm') }}</h3>
-            <table>
-                <tr>
-                    <th col="300"></th>
-                    <th></th>
-                </tr>
-                @if(isset($product->detail))
-                @foreach($product->detail as $key => $value)
-                <tr>
-                    <td>{{ $key }}</td>
-                    <td>{{ $value }}</td>
-                </tr>
-                @endforeach
+            <div class="p-info1">
+                {!! Str::limit($dataProduct->description, 1000, '')!!}
+                @if (strlen($dataProduct->description) > 3)
+                    <span id="dots-{{ $dataProduct->id }}">...</span>
+                    <span id="more-{{ $dataProduct->id }}" style="display: none;">{{ substr($dataProduct->description, 50) }}</span>
                 @endif
-            </table>
+            </div>
+            <a href="javascript:" onclick="loadMore({{ $dataProduct->id }})" id="myBtn" class="  btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center" data-content="#content-desc">
+                Xem tất cả
+                <i class="fas fa-angle-down"></i>
+            </a>
+
+            {{--            <table>--}}
+{{--                <tr>--}}
+{{--                    <th col="300"></th>--}}
+{{--                    <th></th>--}}
+{{--                </tr>--}}
+{{--                @if(isset($product->detail))--}}
+{{--                @foreach($product->detail as $key => $value)--}}
+{{--                <tr>--}}
+{{--                    <td>{{ $key }}</td>--}}
+{{--                    <td>{{ $value }}</td>--}}
+{{--                </tr>--}}
+{{--                @endforeach--}}
+{{--                @endif--}}
+{{--            </table>--}}
+
         </div>
 
         <div class="product-related">
             <h3> {{ __('Thông số kĩ thuật') }}</h3>
-            @foreach($productRelated as $related)
-            <div id="content">
-                <div id="left">
-                    <a href="{{ route('productDetail', $related->name) }}">
-                        <img src="{{ $product->image[0] }}" alt="Image Alt" class="img-fluid" />
-                    </a>
-                </div>
-                <div id="content-right">
-                    <h4>{{ $related->name }}</h4>
-                    <div class="product-martket-main d-flex align-items-center">
-                        @if($product->new_price != null)
-                        <del class="product-market-price">{{ $product->price }} ₫</del>
-                        <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                        <div class="product-percent-price">-{{ $new_price }} %</div>
-                         @endif
 
-                    </div>
-                    @if($product->new_price != null)
-                    <div class="product-price-main font-weight-600">
-                        {{ $product->new_price }} đ
-                    </div>
-                        @else
-                        <div class="product-price-main font-weight-600">
-                            {{ number_format($product->price) }} đ
-                        </div>
-                        @endif
-                </div>
-            </div>
-            @endforeach
         </div>
     </section>
+
     @if(Session::has('message'))
         <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
     @endif
@@ -247,5 +241,34 @@
     setTimeout(function() {
         $('.alert-add').remove();
     }, 5000);
+
+</script>
+
+<script>
+    function loadMore(id) {
+        var dots = document.getElementById("dots-" + id);
+        var moreText = document.getElementById("more-" + id);
+        if (moreText.style.display === "none") {
+            moreText.style.display = "inline";
+            dots.style.display = "none";
+        } else {
+            moreText.style.display = "none";
+            dots.style.display = "inline";
+        }
+    }
+</script>
+
+<script>
+    function updateCart(quantity, id) {
+        $.get(
+            '{{ asset("/cart/update-cart") }}', {
+                quantity: quantity,
+                id: id
+            },
+            function () {
+                location.reload()
+            }
+        )
+    }
 </script>
 @endsection
