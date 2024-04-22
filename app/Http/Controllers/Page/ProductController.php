@@ -28,20 +28,20 @@ class ProductController extends Controller
 
     public function productDetail($slug)
     {
-        $product = $this->productRepository->productDetail($slug);
+        $dataProduct = $this->productRepository->productDetail($slug);
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
-        if (isset($product->detail)) {
-            $product->detail = json_decode($product->detail, true);
+        if (isset($dataProduct->detail)) {
+            $dataProduct->detail = json_decode($dataProduct->detail, true);
         }
 
-        if (isset($product->image)) {
-            $product->image = json_decode($product->image, true);
+        if (isset($dataProduct->image)) {
+            $dataProduct->image = json_decode($dataProduct->image, true);
         }
         $listComment = $this->commentRepository->index();
-        $productRelated = $this->productRepository->getProductRelated($product->category_id, $product->id);
+        $productRelated = $this->productRepository->getProductRelated($dataProduct->category_id, $dataProduct->id);
 
-        return view('page.product.product-detail', compact('product', 'productRelated', 'listComment', 'listCategory'));
+        return view('page.product.product-detail', compact('dataProduct', 'productRelated', 'listComment', 'listCategory'));
     }
 
     public function storeComment(Request $request)

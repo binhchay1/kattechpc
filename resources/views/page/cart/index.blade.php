@@ -177,24 +177,24 @@
                                         <h1><strong><span class="item-quantity"></span> {{$product->name}}</strong></h1>
                                     </div>
                                 </div>
-                                @if(Session::get('getProduct' && Session::get('getProduct')->new_price != null))
-                                    <div class="price">{{ Session::get('getProduct')->new_price }} đ</div>
+                                @if($product->new_price != null))
+                                    <div class="price">{{ number_format($product->new_price) }} đ</div>
                                 @else
                                     <div class="price">{{ number_format($product->price) }} đ</div>
                                 @endif
                                 <div class="quantity">
                                     <input type="number" value="{{$product->quantity}}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{$product->id}}')">
                                 </div>
-                                @if(Session::get('getProduct') && $product->new_price != null)
-                                    <?php $getDataProduct = Session::get('getProduct');
-                                    $totalDisCount = $product['quantity'] * $getDataProduct['new_price'];
+                                @if( $product->new_price != null)
+                                    <?php
+                                    $totalDisCount = $product['quantity'] * $product['new_price'];
                                     ?>
                                     <div class="subtotal get-total" id="total">{{ number_format($totalDisCount) }} đ
                                 @else
-                                    <?php $getDataProduct = Session::get('getProduct');
+                                    <?php
                                     $total = $product['quantity'] * $product['price'];
                                     ?>
-                                    <div class="subtotal get-total" id="total">{{ number_format($total) }} đ
+                                    <div class="subtotal get-total" id="total">{{number_format($total) }} đ
                                 @endif
                                     <div class=" delete">
                                             <a href="">
@@ -313,28 +313,28 @@
             }
         }
     </script>
-    <script>
-        $(document).ready(function () {
-            $(".btn-submit").click(function (e) {
-                e.preventDefault();
+{{--    <script>--}}
+{{--        $(document).ready(function () {--}}
+{{--            $(".btn-submit").click(function (e) {--}}
+{{--                e.preventDefault();--}}
 
-                var _token = $("input[name='_token']").val();
-                var discount_amount = $("input[name='discount_amount']").val();
-                $.ajax({
-                    url: "{{ route('apply.coupon') }}",
-                    type: 'POST',
-                    data: {_token: _token, discount_amount: discount_amount},
-                    success: function (data) {
-                        if ($.isEmptyObject(data.errors)) {
-                            $(".error_msg").html(data.success);
-                        } else {
-                            let resp = data.errors;
-                            $(".error_msg").html(resp);
-                        }
-                    }
-                });
+{{--                var _token = $("input[name='_token']").val();--}}
+{{--                var discount_amount = $("input[name='discount_amount']").val();--}}
+{{--                $.ajax({--}}
+{{--                    url: "{{ route('apply.coupon') }}",--}}
+{{--                    type: 'POST',--}}
+{{--                    data: {_token: _token, discount_amount: discount_amount},--}}
+{{--                    success: function (data) {--}}
+{{--                        if ($.isEmptyObject(data.errors)) {--}}
+{{--                            $(".error_msg").html(data.success);--}}
+{{--                        } else {--}}
+{{--                            let resp = data.errors;--}}
+{{--                            $(".error_msg").html(resp);--}}
+{{--                        }--}}
+{{--                    }--}}
+{{--                });--}}
 
-            });
-        });
-    </script>
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
 @endsection
