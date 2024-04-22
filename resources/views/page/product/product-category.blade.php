@@ -181,16 +181,12 @@
             let queryString = window.location.search;
             let searchParam = new URLSearchParams(queryString);
 
-            // for (let p of searchParams) {
-            //     console.log(p);
-            // }
-
             if (type == 'price') {
                 url = '?price=' + id;
             } else {
                 url = '?sort=' + id;
             }
-            console.log(searchParam.get('g'));
+            console.log(searchParam.get('price'));
             // let url = '?price=' + $(this).data('id');
             // window.location.href = url;
         });
