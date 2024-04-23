@@ -92,6 +92,34 @@
     margin-bottom: 20px;
 }
 
+.span-last {
+    margin-bottom: 8px;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #0F5B99;
+    border-radius: 3px;
+    line-height: 34px;
+    display: inline-block;
+    padding: 0 8px;
+    margin-left: 10px;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.drive-checked {
+    display: flex;
+    align-items: center;
+}
+
+.js-item-row {
+    margin-left: 40px;
+}
+
+.build-pc .build-pc_content .list-drive .item-drive span.span-last i {
+    margin-right: 3px;
+}
+
 #js-modal-popup {
     display: none;
 }
