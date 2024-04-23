@@ -42,37 +42,13 @@
         <div class="row1">
             <div class="flex sort" id="sort">
                 <h2>{{ __('Lọc theo tiêu chí:') }}</h2>
-                <div>
-                    <select name="cars" id="cars">
-                        <option value="volvo">{{ __('Thương hiệu') }}</option>
-                        <option value="saab"></option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
-                    </select>
-                </div>
-                <div>
-                    <select name="cars" id="cars">
-                        <option value="volvo">Bộ vi xử lý(CPU)</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
-                    </select>
-                </div>
-                <div>
-                    <select name="cars" id="cars">
-                        <option value="volvo">Card đồ họa</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
-                    </select>
-                </div>
-                <div>
-                    <select name="cars" id="cars">
-                        <option value="volvo">Dung lượng RAM</option>
-                        <option value="saab">Saab</option>
-                        <option value="opel">Opel</option>
-                        <option value="audi">Audi</option>
-                    </select>
+                <div class="flex sort" id="sort" style="flex-wrap: wrap;">
+                    <div class="d-flex flex-direction-column">
+                        <label class="font-bold">{{ __('Nhu cầu') }}</label>
+                        <select class="mt-1">
+                                <option value=""></option>
+                        </select>
+                    </div>
                 </div>
 
             </div>

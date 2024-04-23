@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\CategoryRepository;
 use App\Repositories\CommentRepository;
 use App\Repositories\ProductRepository;
+use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cache;
