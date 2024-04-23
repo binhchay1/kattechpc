@@ -65,10 +65,12 @@ class HomeController extends Controller
 
     public function viewSearch(Request $request)
     {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+        $listCategoryProduct = $listCategory['default'];
         $search = $request->get('q');
         $isList = false;
         $listProducts = [];
-        $listCategory = $this->categoryRepository->getListCategory();
         if ($search) {
             $listProducts = $this->productRepository->getProductBySearch($search);
             if (count($listProducts) > 0) {
