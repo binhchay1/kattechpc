@@ -16,8 +16,87 @@
     margin-right: 10px;
 }
 
-.list-btn-action .active {
-    background-color: rgb(180, 192, 10);
+.list-btn-action .active span {
+    background-color: rgb(101 106 27);
+}
+
+.build-pc .build-pc_content .list-drive .item-drive .drive-checked .contain-item-drive .d-img img {
+    max-width: 100%;
+    max-height: 90px;
+}
+
+.build-pc .build-pc_content .list-drive .item-drive:nth-of-type(odd) .drive-checked .contain-item-drive {
+    background-color: #f9f9f9;
+}
+
+.build-pc .build-pc_content .list-drive .item-drive .drive-checked .contain-item-drive {
+    margin-top: -50px;
+    padding: 10px;
+    background-color: #ffffff;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+}
+
+.d-name {
+    font-size: 15px;
+    color: #000000;
+}
+
+span.d-name {
+    float: left;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    width: 240px;
+    padding-left: 20px;
+}
+
+.d-price {
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    width: 120px;
+    text-align: right;
+    margin-right: 10px;
+}
+
+.item-drive .drive-checked .contain-item-drive i {
+    font-style: normal;
+    margin-top: 11px;
+}
+
+.item-drive .drive-checked .contain-item-drive input {
+    margin-top: 4px;
+    height: 30px;
+    outline: none;
+    padding: 0 5px;
+    width: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.item-drive .drive-checked .contain-item-drive .sum_price {
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #e51d24;
+    margin-right: 15px;
+    width: 120px;
+    margin-left: 10px;
+}
+
+.item-drive .drive-checked .contain-item-drive .btn-action_seclect {
+    font-size: 20px;
+    width: 30px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    cursor: pointer;
+    color: #0f5b99;
+}
+
+.item-drive .drive-checked .contain-item-drive .btn-action_seclect.delete_select {
+    color: #e51d24;
 }
 
 .total-price {
@@ -32,18 +111,17 @@
     margin-top: 0px;
 }
 
-.build-pc .build-pc_content .list-btn-action {
+.list-btn-action {
     margin-bottom: 20px;
     padding-bottom: 15px;
     border-bottom: 1px solid #959595;
     margin-top: 0;
-    float: left;
     border: none;
     width: 100%;
     list-style: none;
 }
 
-.build-pc .build-pc_content .list-btn-action li {
+.list-btn-action li {
     font-size: 16px;
     color: #fff;
     font-weight: bold;
@@ -67,11 +145,11 @@
     padding: 6px;
 }
 
-.build-pc .build-pc_content .list-drive {
+.list-drive {
     list-style-type: none;
 }
 
-.build-pc .build-pc_content .list-drive .item-drive {
+.list-drive .item-drive {
     padding: 0px;
     border-bottom: 1px solid #e1e1e1;
 }
@@ -82,7 +160,7 @@
     margin: 14px 0 !important;
 }
 
-.build-pc .build-pc_content h3 {
+.build-pc_content h3 {
     font-size: 21px;
     text-transform: uppercase;
     user-select: none;
@@ -97,7 +175,7 @@
     margin-top: 8px;
     font-size: 14px;
     color: #ffffff;
-    background-color: #0F5B99;
+    background-color: #e51d24;
     border-radius: 3px;
     line-height: 34px;
     display: inline-block;
@@ -116,10 +194,14 @@
     margin-left: 40px;
 }
 
-.build-pc .build-pc_content .list-drive .item-drive span.span-last i {
+.list-drive .item-drive span.span-last i {
     margin-right: 3px;
 }
 
 #js-modal-popup {
     display: none;
+}
+
+#js-buildpc-action i {
+    margin-left: 10px;
 }

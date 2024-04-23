@@ -27,7 +27,7 @@
         </ul>
         <div>
             <p class="total-price">Chi phí dự tính:
-                <span class="js-config-summary"><span class="total-price-config">1.790.000 đ</span>
+                <span class="js-config-summary"><span class="total-price-config"></span>
                 </span>
             </p>
             <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
@@ -279,23 +279,21 @@
     </div>
     <div class="item-drive d-flex">
         <div class="name-item-drive">
-            <h3 class="d-name d-name-3598" style="font-size: 15px;border-bottom: none;margin-bottom:10px;" "="">26. Giá treo màn hình</h3>
+            <h3 class="d-name d-name-3598" style="font-size: 15px;border-bottom: none;margin-bottom:10px;" "="">26. {{ __('Giá treo màn hình') }}</h3>
                             </div>
                             <div class=" drive-checked flex-1" style="margin-left:0;">
-                <span class="show-popup_select span-last open-selection" id="js-category-info-3598"><i class="fa fa-plus"></i> Chọn Giá treo màn hình</span>
+                <span class="show-popup_select span-last open-selection" id="js-category-info-3598"><i class="fa fa-plus"></i> {{ __('Chọn Giá treo màn hình') }}</span>
                 <div id="js-selected-item-3598" data-id="3598" class="js-item-row"></div>
         </div>
     </div>
 </div>
 
-<p style="float:right; font-size:18px; color:#d00; margin-top:10px;">Chi phí dự tính: <span class="js-config-summary"><span class="total-price-config"></span></span></p>
+<p class="total-price">{{ __('Chi phí dự tính:') }} <span class="js-config-summary"><span class="total-price-config"></span></span></p>
 
 <ul class="list-btn-action" id="js-buildpc-action">
-    <li><span data-action="create-image">tải ảnh cấu hình <i class="fa fa-image"></i></span></li>
-
-    <li><span data-action="download-excel">tải file excel cấu hình <i class="fa fa-file-excel"></i></span></li>
-    <li><span data-action="view">Xem &amp; In <i class="fa fa-print"></i></span></li>
-    <li><span data-action="add-cart">Thêm vào giỏ hàng <i class="fa fa-shopping-cart"></i></span></li>
+    <li><span data-action="create-image">{{ __('Tải ảnh cấu hình') }}<i class="fa fa-image"></i></span></li>
+    <li><span data-action="view">{{ __('Xem và in') }}<i class="fa fa-print"></i></span></li>
+    <li><span data-action="add-cart">{{ __('Thêm vào giỏ hàng') }}<i class="fa fa-shopping-cart"></i></span></li>
 </ul>
 </div>
 
