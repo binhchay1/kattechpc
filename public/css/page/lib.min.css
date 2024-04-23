@@ -301,3 +301,7 @@
 .mt-5 {
     margin-top: 5rem;
 }
+
+.d-none {
+    display: none !important;
+}

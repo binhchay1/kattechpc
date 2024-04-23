@@ -36,11 +36,11 @@
             <h3>{{ $dataProduct->name }}</h3>
             <div class="d-flex price-product">
                 @if($dataProduct->new_price != null)
-                    <h5>{{ number_format($dataProduct->new_price) }}đ  </h5>
-                    <del class="old-price">{{ number_format($dataProduct->price) }} đ</del>
-                    <div class="save-price-detail">{{__('Tiết kiệm:')}} {{number_format($dataProduct->price - $dataProduct->new_price )}}đ</div>
+                <h5>{{ $dataProduct->new_price }}đ </h5>
+                <del class="old-price">{{ $dataProduct->price }} đ</del>
+                <div class="save-price-detail">{{__('Tiết kiệm:')}} {{ $dataProduct->price - $dataProduct->new_price }}đ</div>
                 @else
-                    <h5>{{ __('Giá ') }}: {{ number_format($dataProduct->price) }} đ</h5>
+                <h5>{{ __('Giá ') }}: {{ $dataProduct->price }} đ</h5>
                 @endif
             </div>
             <div>
@@ -55,7 +55,7 @@
                 <p></p>
             </div>
             <div class="product-buy-quantity d-flex align-items-center">
-                <span class="title-quantity">Số lượng:</span>
+                <span class="title-quantity">{{ __('Số lượng') }}:</span>
                 <div class="cart-quantity-select justify-content-center align-items-center d-flex">
                     <p class="js-quantity-change" data-value="-1"> − </p>
                     <input type="text" class="js-buy-quantity js-quantity-change bk-product-qty font-weight-800" value="1">
@@ -63,11 +63,11 @@
                 </div>
                 <a href="{{ route('add_to_cart', $dataProduct['slug']) }}" class="addCart gap-8 d-flex flex-wrap align-items-center justify-content-center">
                     <i class="fa fa-shopping-cart"></i>
-                    <p class="title-cart">Thêm vào giỏ hàng</p>
+                    <p class="title-cart">{{ __('Thêm vào giỏ hàng') }}</p>
                 </a>
                 <input type="hidden" class="js-buy-quantity-temp" value="1">
             </div>
-            <div class="quantity mt-4 d-flex btn-buy-product" >
+            <div class="quantity mt-4 d-flex btn-buy-product">
                 <a class="btn-1" href="{{ route('addCart', $dataProduct['slug']) }}">
                     <button class="btn-buy">{{ __('Mua ngay') }}</button>
                 </a>
@@ -82,23 +82,23 @@
             </div>
 
             <div class="box-product-policy-detal boder-radius-10 mt-12">
-                <p class="title font-weight-600">Yên tâm mua hàng</p>
+                <p class="title font-weight-600">{{ __('Yên tâm mua hàng') }}</p>
                 <div class="list-showroom-detail d-flex flex-wrap justify-content-between" id="js-box-showrom-has-pro-list">
                     <div class="item d-flex align-items-center gap-6">
                         <i class="fas fa-comments-dollar"></i>
-                        <p class="gap-6-item">Cam kết giá tốt nhất thị trường.</p>
+                        <p class="gap-6-item">{{ __('Cam kết giá tốt nhất thị trường') }}.</p>
                     </div>
                     <div class="item d-flex align-items-center gap-6">
                         <i class="fas fa-handshake"></i>
-                        <p class="gap-6-item">Sản phẩm mới 100%.</p>
+                        <p class="gap-6-item">{{ __('Sản phẩm mới 100%.') }}</p>
                     </div>
                     <div class="item d-flex align-items-center gap-6">
                         <i class="	fas fa-paper-plane"></i>
-                        <p class="gap-6-item">Lỗi 1 đổi 1 ngay lập tức.</p>
+                        <p class="gap-6-item">{{ __('Lỗi 1 đổi 1 ngay lập tức.') }}</p>
                     </div>
                     <div class="item d-flex align-items-center gap-6">
                         <i class="fas fa-address-card"></i>
-                        <p class="gap-6-item">Hỗ trợ trả góp - Thủ tục nhanh gọn.</p>
+                        <p class="gap-6-item">{{ __('Hỗ trợ trả góp - Thủ tục nhanh gọn.') }}</p>
                     </div>
                 </div>
             </div>
@@ -106,42 +106,40 @@
     </section>
 
 
-    <h3 class="productRelated">{{__('Sản phẩm liên quan')}}</h3>
+    <h3 class="productRelated">{{ __('Sản phẩm liên quan') }}</h3>
     <div class="swiper d-flex">
         <div class="swiper-wrapper swiper-top-sale">
             @foreach($productRelated as $product)
-                <div class="swiper-slide1" role="group">
-                    <div class="product-item">
-                        <a href="" class="product-image position-relative">
-                            @if(isset($product->image))
-                                <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy product-image">
-                            @endif
-                        </a>
-                        <div class="">
-                            <a href="">
-                                <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
-                            </a>
+            <div class="swiper-slide1" role="group">
+                <div class="product-item">
+                    <a href="" class="product-image position-relative">
+                        @if(isset($product->image))
+                        <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy product-image">
+                        @endif
+                    </a>
+                    <div>
+                        <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
 
-                            <div class="product-martket-main d-flex align-items-center">
-                                @if($product->new_price != null)
-                                    <del class="product-market-price">{{ number_format($product->price) }} ₫</del>
-                                    <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                                    <div class="product-percent-price">-{{ $new_price }} %</div>
-                                @endif
-
-                            </div>
+                        <div class="product-martket-main d-flex align-items-center">
                             @if($product->new_price != null)
-                                <div class="product-price-main font-weight-600">
-                                    {{ number_format($product->new_price )}} đ
-                                </div>
-                            @else
-                                <div class="product-price-main font-weight-600">
-                                    {{ number_format($product->price) }} đ
-                                </div>
+                            <del class="product-market-price">{{ $product->price }} ₫</del>
+                            <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
+                            <div class="product-percent-price">-{{ $new_price }} %</div>
                             @endif
+
                         </div>
+                        @if($product->new_price != null)
+                        <div class="product-price-main font-weight-600">
+                            {{ $product->new_price }} đ
+                        </div>
+                        @else
+                        <div class="product-price-main font-weight-600">
+                            {{ $product->price }} đ
+                        </div>
+                        @endif
                     </div>
                 </div>
+            </div>
             @endforeach
         </div>
     </div>
@@ -152,47 +150,53 @@
             <div class="p-info1">
                 {!! Str::limit($dataProduct->description, 1000, '')!!}
                 @if (strlen($dataProduct->description) > 3)
-                    <span id="dots-{{ $dataProduct->id }}">...</span>
-                    <span id="more-{{ $dataProduct->id }}" style="display: none;">{{ substr($dataProduct->description, 50) }}</span>
+                <span id="dots-{{ $dataProduct->id }}">...</span>
+                <span id="more-{{ $dataProduct->id }}" style="display: none;">{{ substr($dataProduct->description, 50) }}</span>
                 @endif
             </div>
-            <a href="javascript:" onclick="loadMore({{ $dataProduct->id }})" id="myBtn" class="  btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center" data-content="#content-desc">
-                Xem tất cả
-                <i class="fas fa-angle-down"></i>
+
+            <a href="javascript:" onclick="loadMore('{{ $dataProduct->id }}')" id="read-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
+                {{ __('Xem tất cả') }}
+                <i class="fas fa-angle-down" style="margin-left: 5px;"></i>
             </a>
 
-            {{--            <table>--}}
-{{--                <tr>--}}
-{{--                    <th col="300"></th>--}}
-{{--                    <th></th>--}}
-{{--                </tr>--}}
-{{--                @if(isset($product->detail))--}}
-{{--                @foreach($product->detail as $key => $value)--}}
-{{--                <tr>--}}
-{{--                    <td>{{ $key }}</td>--}}
-{{--                    <td>{{ $value }}</td>--}}
-{{--                </tr>--}}
-{{--                @endforeach--}}
-{{--                @endif--}}
-{{--            </table>--}}
-
+            <a href="javascript:" onclick="loadMore('{{ $dataProduct->id }}')" id="hide-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center d-none">
+                {{ __('Thu gọn') }}
+                <i class="fas fa-angle-down" style="margin-left: 5px;"></i>
+            </a>
         </div>
 
         <div class="product-related">
             <h3> {{ __('Thông số kĩ thuật') }}</h3>
-
+            <table>
+                <tr>
+                    <th col="300"></th>
+                    <th></th>
+                </tr>
+                @if(isset($dataProduct->detail_tech))
+                @php
+                $dataProduct->detail_tech = json_decode($dataProduct->detail_tech, true);
+                @endphp
+                @foreach($dataProduct->detail_tech as $key => $value)
+                <tr>
+                    <td>{{ $key }}</td>
+                    <td>{{ $value }}</td>
+                </tr>
+                @endforeach
+                @endif
+            </table>
         </div>
     </section>
 
     @if(Session::has('message'))
-        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+    <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
     @endif
     <section class="comment">
         <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="gift-product">
                 <div class="gift-promotion">
-                    <div class="">
+                    <div>
                         <textarea id="comment" name="content" placeholder="{{ __('Mời bạn để lại bình luận...') }}" onfocus="$('.js-actions-comment-2020').show();" name="user_post[content]"></textarea>
                         <input type="hidden" value="{{ $product->id }}" name="product_id">
                         <div class="actions-comment-2020 js-actions-comment-2020 ">
@@ -241,7 +245,6 @@
     setTimeout(function() {
         $('.alert-add').remove();
     }, 5000);
-
 </script>
 
 <script>
@@ -254,6 +257,7 @@
         } else {
             moreText.style.display = "none";
             dots.style.display = "inline";
+
         }
     }
 </script>
@@ -265,7 +269,7 @@
                 quantity: quantity,
                 id: id
             },
-            function () {
+            function() {
                 location.reload()
             }
         )
