@@ -51,7 +51,7 @@
         <div class="header-bottom-container">
             <div class="logo">
                 <a href="/">
-                    <img src="{{ asset('/images/logo/logo.png') }}" alt="logo Kattech PC" width="232" height="211" class="loading">
+                    <img src="{{ asset('/images/logo/logo.png') }}" alt="logo Kattech PC" width="150" height="150" class="loading">
                 </a>
             </div>
 
@@ -83,7 +83,7 @@
 
 <div class="sub-header">
     <div class="container-fluid">
-        <div class="d-lg-block d-xl-block d-none">
+        <div class="d-lg-block d-xl-block">
             <ul class="list-submenu list-submenu--desktop">
                 <li class="item-submenu sm-1">
                     @include('includes.home-page-menu')

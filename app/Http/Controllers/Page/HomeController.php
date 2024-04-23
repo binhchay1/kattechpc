@@ -283,29 +283,36 @@ class HomeController extends Controller
         $dataCategory = $this->categoryRepository->productByCategory($slug, $filters);
         $dataBrand = [];
         $dataDetail = [];
-        foreach ($dataCategory->products as $product) {
-            if (isset($product->brands->name)) {
-                if (!in_array($product->brands->name, $dataBrand)) {
-                    $dataBrand[] = $product->brands->name;
-                }
-            }
+        $dataCategories = [];
 
-            if (isset($product->detail)) {
-                $decode = json_decode($product->detail, true);
-                foreach ($decode as $key => $value) {
-                    if (!array_key_exists($key, $dataDetail)) {
-                        $dataDetail[$key][] = $value;
-                    } else {
-                        if (!in_array($value, $dataDetail[$key])) {
+        if (isset($dataCategory->products)) {
+            foreach ($dataCategory->products as $product) {
+                if (isset($product->brands->name)) {
+                    if (!in_array($product->brands->name, $dataBrand)) {
+                        $dataBrand[] = $product->brands->name;
+                    }
+                }
+
+                if (isset($product->detail)) {
+                    $decode = json_decode($product->detail, true);
+                    foreach ($decode as $key => $value) {
+                        if (!array_key_exists($key, $dataDetail)) {
                             $dataDetail[$key][] = $value;
+                        } else {
+                            if (!in_array($value, $dataDetail[$key])) {
+                                $dataDetail[$key][] = $value;
+                            }
                         }
                     }
                 }
             }
+
+            $dataCategories = $this->utility->paginate($dataCategory->products, 5);
+        } else {
+            $dataCategories = $this->utility->paginate([], 5);
         }
 
         $dataProducts = $this->categoryRepository->productSale($slug);
-        $dataCategories = $this->utility->paginate($dataCategory->products, 5);
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
 

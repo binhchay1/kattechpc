@@ -20,6 +20,7 @@
 
             <div class="swiper d-flex">
                 <div class="swiper-wrapper swiper-top-sale">
+                    @if(isset($dataProducts->products))
                     @foreach($dataProducts->products as $product)
                     <div class="swiper-slide1" role="group">
                         <div class="product-item">
@@ -46,6 +47,7 @@
                         </div>
                     </div>
                     @endforeach
+                    @endif
                 </div>
             </div>
         </div>
@@ -84,6 +86,7 @@
             </div>
 
             <div class="flex sort" id="sort" style="flex-wrap: wrap;">
+                @if(isset($dataCategory->children))
                 <div class="d-flex flex-direction-column">
                     <label class="font-bold">{{ __('Nhu cầu') }}</label>
                     <select class="mt-1">
@@ -93,6 +96,7 @@
                         @endforeach
                     </select>
                 </div>
+                @endif
                 <div class="d-flex flex-direction-column">
                     <label class="font-bold">{{ __('Thương hiệu') }}</label>
                     <select class="mt-1">

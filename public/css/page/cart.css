@@ -58,20 +58,6 @@ img,
     width: 100%;
 }
 
-input,
-button,
-.basket,
-.basket-module,
-.basket-labels,
-.item,
-.price,
-.quantity,
-.subtotal,
-.basket-product,
-.product-image,
-.product-details {
-}
-
 .hide {
     display: none;
 }
@@ -98,10 +84,6 @@ aside {
     padding: 10px;
     background: #f0f0f0;
     margin-top: 30px;
-}
-
-.info-product {
-
 }
 
 .basket-module {
@@ -293,10 +275,6 @@ aside {
 
 .summary-delivery {
     padding-bottom: 3rem;
-}
-
-.subtotal-value,
-.total-value {
 }
 
 .total-title {

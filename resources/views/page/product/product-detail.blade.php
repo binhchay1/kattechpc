@@ -71,17 +71,9 @@
                 <a class="btn-1" href="{{ route('addCart', $dataProduct['slug']) }}">
                     <button class="btn-buy">{{ __('Mua ngay') }}</button>
                 </a>
-
-                <a class="btn-2" href="#">
-                    <button class="btn-add-to-cart">{{ __('Trả góp qua hồ sơ') }}</button>
-                </a>
-
-                <a class="btn-3" href="">
-                    <button class="btn-add-to-cart">{{ __('Trả góp qua thẻ') }}</button>
-                </a>
             </div>
 
-            <div class="box-product-policy-detal boder-radius-10 mt-12">
+            <div class="box-product-policy-detal boder-radius-10 mt-2">
                 <p class="title font-weight-600">{{ __('Yên tâm mua hàng') }}</p>
                 <div class="list-showroom-detail d-flex flex-wrap justify-content-between" id="js-box-showrom-has-pro-list">
                     <div class="item d-flex align-items-center gap-6">
@@ -95,10 +87,6 @@
                     <div class="item d-flex align-items-center gap-6">
                         <i class="	fas fa-paper-plane"></i>
                         <p class="gap-6-item">{{ __('Lỗi 1 đổi 1 ngay lập tức.') }}</p>
-                    </div>
-                    <div class="item d-flex align-items-center gap-6">
-                        <i class="fas fa-address-card"></i>
-                        <p class="gap-6-item">{{ __('Hỗ trợ trả góp - Thủ tục nhanh gọn.') }}</p>
                     </div>
                 </div>
             </div>
@@ -151,8 +139,11 @@
                 {!! Str::limit($dataProduct->description, 1000, '')!!}
                 @if (strlen($dataProduct->description) > 3)
                 <span id="dots-{{ $dataProduct->id }}">...</span>
-                <span id="more-{{ $dataProduct->id }}" style="display: none;">{{ substr($dataProduct->description, 50) }}</span>
                 @endif
+            </div>
+
+            <div class="p-info1">
+                <span id="more-{{ $dataProduct->id }}" style="display: none;">{!! $dataProduct->description !!}</span>
             </div>
 
             <a href="javascript:" onclick="loadMore('{{ $dataProduct->id }}')" id="read-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
@@ -162,7 +153,7 @@
 
             <a href="javascript:" onclick="loadMore('{{ $dataProduct->id }}')" id="hide-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center d-none">
                 {{ __('Thu gọn') }}
-                <i class="fas fa-angle-down" style="margin-left: 5px;"></i>
+                <i class="fas fa-angle-up" style="margin-left: 5px;"></i>
             </a>
         </div>
 
@@ -177,12 +168,14 @@
                 @php
                 $dataProduct->detail_tech = json_decode($dataProduct->detail_tech, true);
                 @endphp
+                @if(is_array($dataProduct->detail_tech))
                 @foreach($dataProduct->detail_tech as $key => $value)
                 <tr>
                     <td>{{ $key }}</td>
                     <td>{{ $value }}</td>
                 </tr>
                 @endforeach
+                @endif
                 @endif
             </table>
         </div>
@@ -254,10 +247,13 @@
         if (moreText.style.display === "none") {
             moreText.style.display = "inline";
             dots.style.display = "none";
+            $('#hide-all-product').removeClass('d-none');
+            $('#read-all-product').addClass('d-none');
         } else {
             moreText.style.display = "none";
             dots.style.display = "inline";
-
+            $('#read-all-product').removeClass('d-none');
+            $('#hide-all-product').addClass('d-none');
         }
     }
 </script>
