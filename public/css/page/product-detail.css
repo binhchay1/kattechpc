@@ -583,3 +583,7 @@ tr:nth-child(even) {
 .p-info1 img {
     max-width: 842px !important;
 }
+
+.js-quantity-change {
+    cursor: pointer;
+}

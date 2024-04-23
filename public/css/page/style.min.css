@@ -946,6 +946,20 @@ body a {
     margin: 0 10px 10px;
 }
 
+.tooltip-list-gift {
+    margin-top: 1px;
+    margin-bottom: 10px;
+}
+
+#tooltips-status-storage {
+    margin: 0;
+}
+
+#tooltips-status-guarantee {
+    margin: 0;
+    padding: 0;
+}
+
 .tooltip-descreption-price {
     padding: 0 12px;
     padding-bottom: 6px;

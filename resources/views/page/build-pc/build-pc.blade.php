@@ -1,86 +1,51 @@
-<div class="content container">
-    <div class="clear"></div>
-    <div class="build-pc_content" style="background: #fff;padding: 20px;margin-top: 0px;">
-        <div class="banner-buildpc swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden" id="js-banner-buildpc" style="margin-bottom:40px;">
-            <div class="swiper-wrapper" id="swiper-wrapper-1bb4594a6fc1d8810" aria-live="off" style="transition-duration: 1000ms; transform: translate3d(-10764px, 0px, 0px);">
-                <div class="item swiper-slide swiper-slide-duplicate swiper-slide-next swiper-slide-duplicate-prev" data-swiper-slide-index="7" style="width: 1184px; margin-right: 12px;" role="group" aria-label="8 / 8">
-                    <a target="_blank" href="/ad.php?id=154"><img class="swiper-lazy lazy swiper-lazy-loaded" src="/media/banner/13_Sep7cb28f39a5cc08b643a3a1b515ff9cea.webp" alt="Build PC - Xâu dựng cấu hình PC"></a>
-                </div>
+@extends('layouts.page')
 
-                <div class="item swiper-slide swiper-slide-duplicate-active" data-swiper-slide-index="0" style="width: 1184px; margin-right: 12px;" role="group" aria-label="1 / 8">
-                    <a target="_blank" href="/ad.php?id=261"><img class="swiper-lazy lazy entered swiper-lazy-loaded loaded exited" alt="Build PC - Xâu dựng cấu hình PC" data-was-processed="true" src="/media/banner/13_Sepdcaa911ad2c13b0144afb49cc1ecf5b6.webp"></a>
-                </div>
+@section('title')
+<title>{{ __('Xây dựng cấu hình') }} | Kattech PC</title>
+@endsection
 
-                <div class="item swiper-slide" data-swiper-slide-index="1" style="width: 1184px; margin-right: 12px;" role="group" aria-label="2 / 8">
-                    <a target="_blank" href="/ad.php?id=147"><img class="swiper-lazy lazy entered loaded swiper-lazy-loaded exited" alt="Build PC - Xâu dựng cấu hình PC" data-was-processed="true" src="/media/banner/13_Sep8205867c9a8214b8f28ef917ec313cbc.webp"></a>
-                </div>
+@section('css')
+<link rel="stylesheet" href="{{ asset('/css/page/build-pc.css') }}" />
+@endsection
 
-                <div class="item swiper-slide" data-swiper-slide-index="2" style="width: 1184px; margin-right: 12px;" role="group" aria-label="3 / 8">
-                    <a target="_blank" href="/ad.php?id=148"><img class="swiper-lazy lazy entered swiper-lazy-loaded loaded exited" alt="Build PC - Xâu dựng cấu hình PC" data-was-processed="true" src="/media/banner/13_Sepb2683d5eaca926e8edf3c8650ced0f7f.webp"></a>
-                </div>
-
-                <div class="item swiper-slide" data-swiper-slide-index="3" style="width: 1184px; margin-right: 12px;" role="group" aria-label="4 / 8">
-                    <a target="_blank" href="/ad.php?id=149"><img class="swiper-lazy lazy entered swiper-lazy-loaded loaded exited" alt="Build PC - Xâu dựng cấu hình PC" data-was-processed="true" src="/media/banner/13_Sep41f19925c6d4bab996726586e058ba86.webp"></a>
-                </div>
-
-                <div class="item swiper-slide" data-swiper-slide-index="4" style="width: 1184px; margin-right: 12px;" role="group" aria-label="5 / 8">
-                    <a target="_blank" href="/ad.php?id=150"><img class="swiper-lazy lazy entered swiper-lazy-loaded loaded exited" alt="Build PC - Xâu dựng cấu hình PC" data-was-processed="true" src="/media/banner/13_Sep5391a0810cddfc512a621f38e69de65a.webp"></a>
-                </div>
-
-                <div class="item swiper-slide" data-swiper-slide-index="5" style="width: 1184px; margin-right: 12px;" role="group" aria-label="6 / 8">
-                    <a target="_blank" href="/ad.php?id=152"><img class="swiper-lazy lazy entered loaded swiper-lazy-loaded exited" alt="Build PC - Xâu dựng cấu hình PC" data-was-processed="true" src="/media/banner/13_Sep0a1e75f0f50683591696b746c11991bb.webp"></a>
-                </div>
-
-                <div class="item swiper-slide" data-swiper-slide-index="6" style="width: 1184px; margin-right: 12px;" role="group" aria-label="7 / 8">
-                    <a target="_blank" href="/ad.php?id=153"><img class="swiper-lazy lazy swiper-lazy-loaded entered exited loaded" alt="Build PC - Xâu dựng cấu hình PC" data-was-processed="true" src="/media/banner/13_Sep2c0cc062d6888a9b7074d10133e60c22.webp"></a>
-                </div>
-
-                <div class="item swiper-slide swiper-slide-prev swiper-slide-duplicate-next" data-swiper-slide-index="7" style="width: 1184px; margin-right: 12px;" role="group" aria-label="8 / 8">
-                    <a target="_blank" href="/ad.php?id=154"><img class="swiper-lazy lazy swiper-lazy-loaded entered loaded loading" alt="Build PC - Xâu dựng cấu hình PC" data-was-processed="true" src="/media/banner/13_Sep7cb28f39a5cc08b643a3a1b515ff9cea.webp" data-ll-status="loading"></a>
-                </div>
-
-                <div class="item swiper-slide swiper-slide-duplicate swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 8" style="width: 1184px; margin-right: 12px;">
-                    <a target="_blank" href="/ad.php?id=261"><img class="swiper-lazy lazy loading entered swiper-lazy-loaded" src="/media/banner/13_Sepdcaa911ad2c13b0144afb49cc1ecf5b6.webp" alt="Build PC - Xâu dựng cấu hình PC" data-was-processed="true" data-ll-status="loading"></a>
-                </div>
-            </div>
-            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-        </div>
-
-        <div class="clear"></div>
+@section('content')
+<div class="build-pc-area">
+    <div class="build-pc_content">
         <h1 style="font-size: 30px;line-height:36px;margin-bottom: 10px;text-align: center;font-weight:500;">Build PC - Xây dựng cấu hình máy tính PC giá rẻ chuẩn nhất</h1>
         <h2 style="font-size: 26px;line-height:30px;margin-bottom: 10px;font-weight:500; ">Chọn linh kiện xây dựng cấu hình - Tự build PC</h2>
 
-        <ul class="list-btn-action list-btn-action-new " style="margin-top:0; float:left; border:none; width:100%;">
-            <li style="width:auto;" class=""><span onclick="showBuildId(1);changeTab(this);" style="padding:0 20px;">Cấu hình 1</span></li>
-            <li style="width:auto;" class="active"><span onclick="showBuildId(2);changeTab(this);" style="padding:0 20px;">Cấu hình 2</span></li>
-            <li style="width:auto;" class=""><span onclick="showBuildId(3);changeTab(this);" style="padding:0 20px;">Cấu hình 3</span></li>
-            <li style="width:auto;" class=""><span onclick="showBuildId(4);changeTab(this);" style="padding:0 20px;">Cấu hình 4</span></li>
-            <li style="width:auto;" class=""><span onclick="showBuildId(5);changeTab(this);" style="padding:0 20px;">Cấu hình 5</span></li>
+        <ul class="list-btn-action">
+            <li><span onclick="showBuildId(1);changeTab(this);" style="padding:0 20px;">Cấu hình 1</span></li>
+            <li class="active"><span onclick="showBuildId(2);changeTab(this);" style="padding:0 20px;">Cấu hình 2</span></li>
+            <li><span onclick="showBuildId(3);changeTab(this);" style="padding:0 20px;">Cấu hình 3</span></li>
+            <li><span onclick="showBuildId(4);changeTab(this);" style="padding:0 20px;">Cấu hình 4</span></li>
+            <li><span onclick="showBuildId(5);changeTab(this);" style="padding:0 20px;">Cấu hình 5</span></li>
         </ul>
 
-        <ul class="list-btn-action" style="margin-top:0; float:left; border:none;">
+        <ul class="list-btn-action">
             <li style="width:auto;"><span onclick="openPopupRebuild()" style="padding:0 20px;">Làm mới <i class="fa fa-undo"></i></span></li>
         </ul>
         <div>
-            <p style="float:right; font-size:18px; color:#d00; margin-top:10px;">Chi phí dự tính: <span class="js-config-summary"><span class="total-price-config">1.790.000 đ</span>
-                    <p> </p>
-                </span> </p>
+            <p class="total-price">Chi phí dự tính:
+                <span class="js-config-summary"><span class="total-price-config">1.790.000 đ</span>
+                </span>
+            </p>
             <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
         </div>
-
-        <div class="clear"></div>
 
         <div class="list-drive" id="js-buildpc-layout" style="border: solid 1px #e1e1e1;">
             <div class="item-drive d-flex">
                 <div class="name-item-drive">
-                    <h3 class="d-name d-name-277" style="font-size: 15px;border-bottom: none;margin-bottom:10px;" "="">1. CPU - Bộ Vi Xử Lý</h3><div class=" item-speciaoffer d-flex align-item-center font-weight-500 color-red gap-6"><i class="fa-solid fa-gift"></i>
+                    <h3 class="d-name d-name-277" style="font-size: 15px;border-bottom: none;margin-bottom:10px;" "="">1. CPU - Bộ Vi Xử Lý</h3>
+                    <div class=" item-speciaoffer d-flex align-item-center font-weight-500 color-red gap-6">
+                        <i class="fa-solid fa-gift"></i>
                         <p>Sale CPU sập sàn</p>
                 </div>
             </div>
             <div class="drive-checked flex-1" style="margin-left:0;">
                 <span class="show-popup_select span-last open-selection" id="js-category-info-277" data-info="{&quot;id&quot;:277,&quot;name&quot;:&quot;CPU - Bộ Vi Xử Lý&quot;}"><i class="fa fa-plus"></i> Chọn CPU - Bộ Vi Xử Lý</span>
                 <div id="js-selected-item-277" data-id="277" class="js-item-row">
-                    <div class="contain-item-drive" data-category_id="277" data-product_id="21492" data-current_price="{{price_default}}" data-current_stock="20">
+                    <div class="contain-item-drive" data-category_id="277" data-product_id="21492" data-current_stock="20">
                         <a target="_blank" href="/cpu-intel-core-i3-12100f" class="d-img"><img src="/media/product/75-21492-cpu-intel-core-i3-12100f.jpg"></a>
                         <span class="d-name">
                             <a target="_blank" href="/cpu-intel-core-i3-12100f"> CPU Intel Core i3 12100F (3.3GHz turbo up to 4.3GHz, 4 nhân 8 luồng, 12MB Cache) </a> <br>
@@ -192,8 +157,8 @@
     <div class="item-drive d-flex">
         <div class="name-item-drive">
             <h3 class="d-name d-name-3630" style="font-size: 15px;border-bottom: none;margin-bottom:10px;" "="">12. Tản Nhiệt Nước Custom</h3>
-                            </div>
-                            <div class=" drive-checked flex-1" style="margin-left:0;">
+        </div>
+        <div class=" drive-checked flex-1" style="margin-left:0;">
                 <span class="show-popup_select span-last open-selection" id="js-category-info-3630" data-info="{&quot;id&quot;:3630,&quot;name&quot;:&quot;Tản Nhiệt Nước Custom&quot;}"><i class="fa fa-plus"></i> Chọn Tản Nhiệt Nước Custom</span>
                 <div id="js-selected-item-3630" data-id="3630" class="js-item-row"></div>
         </div>
@@ -326,9 +291,8 @@
     </div>
 </div>
 
-<div class="clear"></div>
 <p style="float:right; font-size:18px; color:#d00; margin-top:10px;">Chi phí dự tính: <span class="js-config-summary"><span class="total-price-config">1.790.000 đ</span></span></p>
-<div class="clear"></div>
+
 <ul class="list-btn-action" id="js-buildpc-action">
     <li><span data-action="create-image">tải ảnh cấu hình <i class="fa fa-image"></i></span></li>
 
@@ -336,8 +300,7 @@
     <li><span data-action="view">Xem &amp; In <i class="fa fa-print"></i></span></li>
     <li><span data-action="add-cart">Thêm vào giỏ hàng <i class="fa fa-shopping-cart"></i></span></li>
 </ul>
-
 </div>
 
-<div class="clearfix"></div>
-</div>
+@include('includes.modal-build-pc')
+@endsection

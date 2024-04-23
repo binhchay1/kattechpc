@@ -1,0 +1,97 @@
+.build-pc-area {
+    width: 1430px;
+    max-width: 100%;
+    padding: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.list-btn-action {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.list-btn-action li {
+    margin-right: 10px;
+}
+
+.list-btn-action .active {
+    background-color: rgb(180, 192, 10);
+}
+
+.total-price {
+    font-size: 18px;
+    color: #d00;
+    margin-top: 10px;
+}
+
+.build-pc_content {
+    background: #fff;
+    padding: 20px;
+    margin-top: 0px;
+}
+
+.build-pc .build-pc_content .list-btn-action {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #959595;
+    margin-top: 0;
+    float: left;
+    border: none;
+    width: 100%;
+    list-style: none;
+}
+
+.build-pc .build-pc_content .list-btn-action li {
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+    width: 200px;
+    float: left;
+    text-align: center;
+    padding: 0 2px;
+}
+
+.list-btn-action li span,
+.list-btn-action li a {
+    display: block;
+    border-radius: 3px;
+    background-color: var(--color-primary);
+    text-transform: uppercase;
+    line-height: 40px;
+    cursor: pointer;
+    opacity: 1;
+    font-size: 14px;
+    color: #fff;
+    padding: 6px;
+}
+
+.build-pc .build-pc_content .list-drive {
+    list-style-type: none;
+}
+
+.build-pc .build-pc_content .list-drive .item-drive {
+    padding: 0px;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.name-item-drive {
+    width: 240px;
+    padding: 0 8px !important;
+    margin: 14px 0 !important;
+}
+
+.build-pc .build-pc_content h3 {
+    font-size: 21px;
+    text-transform: uppercase;
+    user-select: none;
+    font-weight: bold;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e1e1e1;
+    margin-bottom: 20px;
+}
+
+#js-modal-popup {
+    display: none;
+}

@@ -58,12 +58,13 @@
                 <span class="title-quantity">{{ __('Số lượng') }}:</span>
                 <div class="cart-quantity-select justify-content-center align-items-center d-flex">
                     <p class="js-quantity-change" data-value="-1"> − </p>
-                    <input type="text" class="js-buy-quantity js-quantity-change bk-product-qty font-weight-800" value="1">
+                    <input type="text" class="js-buy-quantity js-quantity-change bk-product-qty font-weight-800" value="1" id="quantity-to-cart">
                     <p class="js-quantity-change" data-value="1"> + </p>
                 </div>
-                <a href="{{ route('add_to_cart', $dataProduct['slug']) }}" class="addCart gap-8 d-flex flex-wrap align-items-center justify-content-center">
+                <a class="addCart gap-8 d-flex flex-wrap align-items-center justify-content-center" onclick="addToCart()">
+                    <input type="hidden" value="{{ $dataProduct['slug'] }}" id="product-to-cart">
                     <i class="fa fa-shopping-cart"></i>
-                    <p class="title-cart">{{ __('Thêm vào giỏ hàng') }}</p>
+                    <p class="title-cart" style="margin-left: 10px;">{{ __('Thêm vào giỏ hàng') }}</p>
                 </a>
                 <input type="hidden" class="js-buy-quantity-temp" value="1">
             </div>
@@ -93,42 +94,63 @@
         </div>
     </section>
 
+    <div class="product-related" style="width: 35% !important;">
+        <h3> {{ __('Thông số sản phẩm') }}</h3>
+        <table>
+            <tr>
+                <th col="300"></th>
+                <th></th>
+            </tr>
+            @if(isset($dataProduct->detail))
+            @if(is_array($dataProduct->detail))
+            @foreach($dataProduct->detail as $key => $value)
+            <tr>
+                <td>{{ $key }}</td>
+                <td>{{ $value }}</td>
+            </tr>
+            @endforeach
+            @endif
+            @endif
+        </table>
+    </div>
 
-    <h3 class="productRelated">{{ __('Sản phẩm liên quan') }}</h3>
-    <div class="swiper d-flex">
-        <div class="swiper-wrapper swiper-top-sale">
-            @foreach($productRelated as $product)
-            <div class="swiper-slide1" role="group">
-                <div class="product-item">
-                    <a href="" class="product-image position-relative">
-                        @if(isset($product->image))
-                        <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy product-image">
-                        @endif
-                    </a>
-                    <div>
-                        <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
-
-                        <div class="product-martket-main d-flex align-items-center">
-                            @if($product->new_price != null)
-                            <del class="product-market-price">{{ $product->price }} ₫</del>
-                            <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                            <div class="product-percent-price">-{{ $new_price }} %</div>
+    <div style="width: 40%;">
+        <h3 class="productRelated">{{ __('Sản phẩm liên quan') }}</h3>
+        <div class="swiper d-flex">
+            <div class="swiper-wrapper swiper-top-sale">
+                @foreach($productRelated as $product)
+                <div class="swiper-slide1" role="group">
+                    <div class="product-item">
+                        <a href="" class="product-image position-relative">
+                            @if(isset($product->image))
+                            <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy product-image">
                             @endif
+                        </a>
+                        <div>
+                            <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
 
+                            <div class="product-martket-main d-flex align-items-center">
+                                @if($product->new_price != null)
+                                <del class="product-market-price">{{ $product->price }} ₫</del>
+                                <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
+                                <div class="product-percent-price">-{{ $new_price }} %</div>
+                                @endif
+
+                            </div>
+                            @if($product->new_price != null)
+                            <div class="product-price-main font-weight-600">
+                                {{ $product->new_price }} đ
+                            </div>
+                            @else
+                            <div class="product-price-main font-weight-600">
+                                {{ $product->price }} đ
+                            </div>
+                            @endif
                         </div>
-                        @if($product->new_price != null)
-                        <div class="product-price-main font-weight-600">
-                            {{ $product->new_price }} đ
-                        </div>
-                        @else
-                        <div class="product-price-main font-weight-600">
-                            {{ $product->price }} đ
-                        </div>
-                        @endif
                     </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
         </div>
     </div>
 
@@ -238,9 +260,7 @@
     setTimeout(function() {
         $('.alert-add').remove();
     }, 5000);
-</script>
 
-<script>
     function loadMore(id) {
         var dots = document.getElementById("dots-" + id);
         var moreText = document.getElementById("more-" + id);
@@ -256,9 +276,7 @@
             $('#hide-all-product').addClass('d-none');
         }
     }
-</script>
 
-<script>
     function updateCart(quantity, id) {
         $.get(
             '{{ asset("/cart/update-cart") }}', {
@@ -270,5 +288,33 @@
             }
         )
     }
+
+    function addToCart() {
+        let slug = $('#product-to-cart').val();
+        let total = $('#quantity-to-cart').val();
+        let baseUrl = '/cart/add-to-cart/' + slug + '?total=' + total;
+
+        window.location.href = baseUrl;
+    }
+
+    $(document).ready(function() {
+        $('.js-quantity-change').on('click', function() {
+            let value = $(this).data('value');
+            let quantity = $('.js-buy-quantity').val();
+            let new_quantity = 1;
+            if (value == -1) {
+                if (quantity == 1) {
+                    return;
+                } else {
+                    new_quantity = parseInt(quantity) + parseInt(value);
+
+                }
+            } else {
+                new_quantity = parseInt(quantity) + parseInt(value);
+            }
+
+            $('.js-buy-quantity').val(new_quantity);
+        });
+    });
 </script>
 @endsection

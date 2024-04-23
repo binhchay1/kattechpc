@@ -12,7 +12,7 @@
         <div class="tooltip-descreption-info">
             <div>
                 <div class="d-flex align-items-center">
-                    <p class="card-price-origin color-black" style="position: relative;" id="tooltips-price">
+                    <p class="card-price-origin color-black" id="tooltips-price">
                         <span class="card-price-origin-line-through"></span>
                     </p>
                     <span id="tooltips-sale-price" class="color-red" style="margin-left: 4px;">-5%</span>

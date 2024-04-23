@@ -318,4 +318,11 @@ class HomeController extends Controller
 
         return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'dataDetail'));
     }
+
+    public function buildPC() {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('page.build-pc.build-pc', compact('listCategory'));
+    }
 }
