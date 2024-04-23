@@ -41,7 +41,7 @@ class CartController extends Controller
         Cart::add(
             $dataProduct->id,
             $dataProduct->name,
-            $dataProduct->price,
+            $dataProduct->new_price ??  $dataProduct->price,
             1,
             ['image' => $dataProduct->image]
         );
@@ -87,14 +87,13 @@ class CartController extends Controller
     public function checkout(OrderRequest $request)
     {
         $cartInfor =  Cart::getContent();
-    
         try {
             // save
             $input = $request->all();
             $order = $this->orderRepository->create($input);
-        
             if (count($cartInfor) >0) {
                 foreach ($cartInfor as $key => $item) {
+                    
                     $orderDetail = new OrderDetail();
                     $orderDetail->order_id = $order->id;
                     $orderDetail->product_id = $item->id;
@@ -115,7 +114,8 @@ class CartController extends Controller
     
     public function thank()
     {
-        $listCategory = $this->categoryRepository->getListCategory();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
         return view('page.cart.thank', compact('listCategory'));
     }
     

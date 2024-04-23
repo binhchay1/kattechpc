@@ -26,7 +26,7 @@
                 {{ csrf_field() }}
                 <div class="title-c-ct"> {{__('Địa chỉ giao hàng')}}</div>
                 <a href="#">
-                    <div class="title-c-ct input-address">{{__('Nhập thông tin địa chỉ bạn muốn giao hàng?')}}</div>
+                    <div class="title-c-ct input-address">{{__('THÔNG TIN KHÁCH HÀNG')}}</div>
                 </a>
                 <div class="product-data">
                     @if(Auth::user())
@@ -161,9 +161,9 @@
                         <div class="basket-labels">
                             <ul>
                                 <li class="item item-heading">{{__('Sản phẩm')}}</li>
-                                <li class="price">{{__('Giá')}}</li>
-                                <li class="quantity">{{__('Số lượng')}}</li>
-                                <li class="subtotal">{{__('Thành tiền')}}</li>
+                                <li class="price item-heading">{{__('Giá')}}</li>
+                                <li class="quantity item-heading">{{__('Số lượng')}}</li>
+                                <li class="subtotal item-heading">{{__('Thành tiền')}}</li>
                             </ul>
                         </div>
 
@@ -177,25 +177,16 @@
                                         <h1><strong><span class="item-quantity"></span> {{$product->name}}</strong></h1>
                                     </div>
                                 </div>
-                                @if($product->new_price != null))
-                                    <div class="price">{{ number_format($product->new_price) }} đ</div>
-                                @else
-                                    <div class="price">{{ number_format($product->price) }} đ</div>
-                                @endif
+                                <div class="price get-total ">{{ number_format($product->price) }} đ</div>
                                 <div class="quantity">
                                     <input type="number" value="{{$product->quantity}}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{$product->id}}')">
                                 </div>
-                                @if( $product->new_price != null)
-                                    <?php
-                                    $totalDisCount = $product['quantity'] * $product['new_price'];
-                                    ?>
-                                    <div class="subtotal get-total" id="total">{{ number_format($totalDisCount) }} đ
-                                @else
+
                                     <?php
                                     $total = $product['quantity'] * $product['price'];
                                     ?>
-                                    <div class="subtotal get-total" id="total">{{number_format($total) }} đ
-                                @endif
+                                    <div class="subtotal get-total" id="total_cart">{{number_format($total) }} đ
+                                        <input hidden name="total_cart" value="{{$total}}">
                                     <div class=" delete">
                                             <a href="">
                                                 <button type="button" onclick="deleteSales('{{ route("deleteCart", $product["id"]) }}')">{{__('Xóa')}}</button>
@@ -207,9 +198,8 @@
 
                         <div class="basket">
                             <div class="summary1">
-                                <h3>{{__('Hình thức thanh toán')}}</h3>
-                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" checked>
-                                <label for="vehicle1">{{__('Thanh toán sau khi nhận hàng')}}</label><br>
+                                <h3 class="input-address">{{__('Hình thức thanh toán')}}</h3>
+                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" checked>{{__('Thanh toán sau khi nhận hàng')}}<br>
                                 <form>
                                     <div class="basket-module">
                                         <label for="promo-code">{{__('Nhập mã khuyến mãi')}}</label>
@@ -221,55 +211,33 @@
                                 </form>
                             </div>
                             <div class="summary">
-                                @if(Session::get('getProduct' && Session::get('getProduct')->new_price != null))
-                                    <div class="summary-total-items total-title">{{__('Tổng cộng')}} : {{number_format($totalDisCount)}}đ</div>
-                                @else
-                                    <div class="summary-total-items total-title">{{__('Tổng cộng')}} : {{number_format($total)}}đ</div>
-                                @endif
-                                @if(Session::get('discount') && Session::get('getProduct')->new_price != null))
-                                    <div class="">
-                                        <?php $getDiscount = Session::get('discount')->discount_amount ?>
-                                    </div>
-                                    <div class="total-value final-value summary-total " id="basket-total">{{__('Giảm giá')}}
-                                        : {{number_format($getDiscount)}}đ
-                                    </div>
-                                    <div class="summary-total">
-                                        <div class="total-title">{{__('Thành tiền')}}</div>
-                                        <?php $money = $totalDisCount - $getDiscount?>
-                                        <div class="total-value final-value get-total" id="basket-total">{{number_format($money)}}đ
-                                            <input hidden name="total_cart" value="{{$money}}">
-                                        </div>
-                                    </div>
-                                @elseif(Session::get('discount'))
-                                    <div class="">
-                                        <?php $getDiscount = Session::get('discount')->discount_amount ?>
-                                    </div>
-                                    <div class="total-value final-value summary-total " id="basket-total">{{__('Giảm giá')}} : {{number_format($getDiscount)}}đ
-                                    </div>
-                                    <div class="summary-total">
-                                        <div class="total-title">{{__('Thành tiền')}}</div>
-                                        <?php $money = $total - $getDiscount?>
-                                        <div class="total-value final-value get-total" id="basket-total">{{number_format($money)}}đ</div>
-                                        <input hidden name="total_cart" value="{{$money}}">
-                                    </div>
-                                @elseif(Session::get('getProduct' && Session::get('getProduct')->new_price != null))
-                                    <div class="total-value final-value summary-total" id="basket-total">{{__('Giảm giá')}}
-                                    </div>
-                                    <div class="summary-total">
-                                        <div class="total-title">{{__('Thành tiền')}} {{number_format($totalDisCount)}}đ</div>
-                                        <input hidden name="total_cart" value="{{$totalDisCount}}">
-                                        <div class="total-value final-value get-total" id="basket-total"></div>
-                                    </div>
-                                    @else
-                                        <div class="total-value final-value summary-total" id="basket-total">{{__('Giảm giá')}}
-                                        </div>
-                                        <div class="summary-total">
-                                            <div class="total-title">{{__('Thành tiền')}} {{number_format($total)}}đ</div>
-                                            <input hidden name="total_cart" value="{{$total}}">
-                                            <div class="total-value final-value get-total" id="basket-total"></div>
-                                        </div>
-                                @endif
+                                <div class=" input-address summary-total-items total-title">{{__('Tổng cộng:')}} </div>
+                                <div class="total-value final-value get-total" id="basket-total">{{number_format($totalCart)}}đ</div>
+                                </div>
+                                    <div class=" input-address total-value final-value summary-total " id="basket-total">{{__('Giảm giá:')}}
+                                        @if(Session::get('discount'))
+                                            <?php $getDiscount = Session::get('discount')->discount_amount ?>
 
+                                             {{number_format($getDiscount)}}đ
+                                        @endif
+                                    </div>
+                                @if(Session::get('discount'))
+                                    <?php $getDiscount = Session::get('discount')->discount_amount ?>
+                                    <div class="summary-total">
+                                        <div class="input-address total-title">{{__('Thành tiền')}}</div>
+                                        <?php $money = $totalCart - $getDiscount?>
+                                        <div class="total-value final-value get-total" id="basket-total">{{number_format($money)}}đ
+                                            <input hidden name="" value="{{$money}}">
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="summary-total">
+                                        <div class="input-address total-title">{{__('Thành tiền')}}</div>
+                                        <div class="total-value final-value get-total" id="basket-total">{{number_format($totalCart)}}đ
+                                            <input hidden name="" value="{{$totalCart}}">
+                                        </div>
+                                    </div>
+                                @endif
                                 <div class="summary-checkout">
                                     <button class="checkout-cta">{{__('Đặt hàng')}}</button>
                                 </div>
@@ -313,28 +281,29 @@
             }
         }
     </script>
-{{--    <script>--}}
-{{--        $(document).ready(function () {--}}
-{{--            $(".btn-submit").click(function (e) {--}}
-{{--                e.preventDefault();--}}
+    <script>
+        $(document).ready(function () {
+            $(".btn-submit").click(function (e) {
+                e.preventDefault();
 
-{{--                var _token = $("input[name='_token']").val();--}}
-{{--                var discount_amount = $("input[name='discount_amount']").val();--}}
-{{--                $.ajax({--}}
-{{--                    url: "{{ route('apply.coupon') }}",--}}
-{{--                    type: 'POST',--}}
-{{--                    data: {_token: _token, discount_amount: discount_amount},--}}
-{{--                    success: function (data) {--}}
-{{--                        if ($.isEmptyObject(data.errors)) {--}}
-{{--                            $(".error_msg").html(data.success);--}}
-{{--                        } else {--}}
-{{--                            let resp = data.errors;--}}
-{{--                            $(".error_msg").html(resp);--}}
-{{--                        }--}}
-{{--                    }--}}
-{{--                });--}}
+                var _token = $("input[name='_token']").val();
+                var discount_amount = $("input[name='discount_amount']").val();
+                $.ajax({
+                    url: "{{ route('apply.coupon') }}",
+                    type: 'POST',
+                    data: {_token: _token, discount_amount: discount_amount},
+                    success: function (data) {
+                        if ($.isEmptyObject(data.errors)) {
+                            $(".error_msg").html(data.success);
+                        } else {
+                            let resp = data.errors;
+                            $(".error_msg").html(resp);
+                        }
+                    },
+                },
+                    setTimeout(window.location.reload.bind(window.location), 1000));
 
-{{--            });--}}
-{{--        });--}}
-{{--    </script>--}}
+            });
+        });
+    </script>
 @endsection
