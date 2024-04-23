@@ -82,7 +82,7 @@ main {
     margin: 0 auto;
     overflow: hidden;
     padding: 1rem 0;
-    width: 1430px;
+    max-width: 796px;
     padding: 15px;
 }
 
@@ -95,9 +95,9 @@ aside {
 }
 
 .basket {
-    border: 1px solid #aaa;
+    padding: 10px;
+    background: #f0f0f0;
     margin-top: 30px;
-    border-radius: 5px;
 }
 
 .info-product {
@@ -107,6 +107,7 @@ aside {
 .basket-module {
     color: #111;
     margin-bottom: 30px;
+    margin-top: 30px;
 }
 
 label {
@@ -133,12 +134,10 @@ label {
 
 .promo-code-cta {
     border-radius: 4px;
-    margin-left: 0.625rem;
     padding: 0.6875rem 1.25rem 0.625rem;
 }
 
 .basket-labels {
-    border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     margin-top: 1.625rem;
 }
@@ -188,10 +187,11 @@ li {
 }
 
 .item-heading {
-    padding-left: 4.375rem;
+
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    font-weight: 700;
 }
 
 .basket-product {
@@ -237,17 +237,14 @@ aside {
 }
 
 .summary {
-    padding: 1rem;
     width: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     border-radius: 5px;
-    margin-top: 30px;
 
 }
 .summary1 {
-    padding: 1rem;
     width: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -312,14 +309,20 @@ aside {
 }
 
 .checkout-cta {
-    display: block;
-    float: none;
-    font-size: 1rem;
-    text-align: center;
+    width: 100%;
+    background: #e31223;
+    border: none;
+    outline: 0;
+    color: #fff;
     text-transform: uppercase;
-    padding: 0.625rem 0;
-    width: 30%;
+    font-size: 18px;
+    line-height: 22px;
+    padding: 11px 0;
     border-radius: 5px;
+    margin-bottom: 12px;
+    display: block;
+    text-align: center;
+    cursor: pointer;
 }
 
 .summary-delivery-selection {
@@ -447,6 +450,11 @@ input {
 
 .input-address {
     color: #4281f8;
+    font-size: 16px;
+    line-height: 22px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 600;
 }
 
 .get-total {

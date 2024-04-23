@@ -75,6 +75,7 @@ Route::group(['middleware' => 'cache.menu'], function () {
         Route::get('delete-cart/{id}',  [CartController::class, 'deleteCart'])->name('deleteCart');
         Route::get('update-cart',  [CartController::class, 'updateCart'])->name('updateCart');
         Route::post('checkout',  [CartController::class, 'checkout'])->name('checkout');
+        Route::post('apply-coupon',  [CartController::class, 'addCoupon'])->name('apply.coupon');
         Route::get('thank-you',  [CartController::class, 'thank'])->name('thank');
     });
 });
