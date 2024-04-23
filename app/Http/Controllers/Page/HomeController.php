@@ -65,10 +65,12 @@ class HomeController extends Controller
 
     public function viewSearch(Request $request)
     {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+        $listCategoryProduct = $listCategory['default'];
         $search = $request->get('q');
         $isList = false;
         $listProducts = [];
-        $listCategory = $this->categoryRepository->getListCategory();
         if ($search) {
             $listProducts = $this->productRepository->getProductBySearch($search);
             if (count($listProducts) > 0) {
@@ -169,11 +171,16 @@ class HomeController extends Controller
 
     public function viewHome()
     {
-        $listHotSale = $this->layoutRepository->index();
-        foreach ($listHotSale as $product) {
-            $product->detail = json_decode($product->detail, true);
-            $product->image = json_decode($product->image, true);
+        $getHotSale = $this->layoutRepository->listHotSale();
+
+        if (empty($getHotSale->hot_sale_list_product_id)) {
+            $listHotSale = [];
+        } else {
+            $listProductHotSale = json_decode($getHotSale->hot_sale_list_product_id, true);
+            $getListProductHotSale = $this->productRepository->getListProductHotSale($listProductHotSale);
+            $listHotSale = $getListProductHotSale;
         }
+
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         $listCategoryProduct = $listCategory['default'];
@@ -302,6 +309,8 @@ class HomeController extends Controller
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
 
-        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand'));
+        // dd($dataDetail);
+
+        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'dataDetail'));
     }
 }

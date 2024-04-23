@@ -18,7 +18,7 @@ $(document).ready(function () {
     });
 
     $("#add-product-hot-sale").click(function () {
-        let detail_item = '<li class="item-product-hot-sale"><input name="product_id[]" class="form-input" value="" placeholder="Nhập mã sản phẩm"/><input name="quantity[]" class="form-input ml-3" value="" placeholder="Nhập số lượng"/><span class="btn-x">X</span></li><script>$(`.btn-x`).click(function () {$(this).parent().remove();});</script>';
+        let detail_item = '<li class="item-product-hot-sale"><input name="product_id[]" class="form-input" value="" placeholder="Nhập mã sản phẩm"/><span class="btn-x">X</span></li><script>$(`.btn-x`).click(function () {$(this).parent().remove();});</script>';
         $("#area-product-hot-sale").append(detail_item);
     });
 

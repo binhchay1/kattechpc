@@ -174,12 +174,12 @@ class LayoutController extends Controller
         $input = $request->except(['_token']);
         $data = [];
         if (array_key_exists('product_id', $input)) {
-            $data['hot_deal_list_product_id'] = json_encode($input['product_id']);
+            $data['hot_sale_list_product_id'] = json_encode($input['product_id']);
         }
 
-        if (isset($input['hot_deal_big_thumbnail'])) {
-            $input['hot_deal_big_thumbnail']->move(public_path('images/upload/layout/'), $input['hot_deal_big_thumbnail']->getClientOriginalName());
-            $data['hot_deal_big_thumbnail'] = '/images/upload/layout/' . $input['hot_deal_big_thumbnail']->getClientOriginalName();
+        if (isset($input['hot_sale_big_thumbnail'])) {
+            $input['hot_sale_big_thumbnail']->move(public_path('images/upload/layout/'), $input['hot_sale_big_thumbnail']->getClientOriginalName());
+            $data['hot_sale_big_thumbnail'] = '/images/upload/layout/' . $input['hot_sale_big_thumbnail']->getClientOriginalName();
         }
 
         if (isset($input['permarklink_hot_sale_big_thumbnail'])) {
