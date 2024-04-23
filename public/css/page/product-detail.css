@@ -16,10 +16,6 @@
     padding: 15px;
 }
 
-.set-background1 {
-   margin-top: 90px;
-}
-
 .img-card {
     float: left;
 }
@@ -582,4 +578,8 @@ tr:nth-child(even) {
     padding: 2px;
     width: 4.75rem;
     height: 43px;
+}
+
+.p-info1 img {
+    max-width: 842px !important;
 }
