@@ -221,47 +221,47 @@
                                     <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                                     <input id="promo-code" type="text" name="discount_amount" class="promo-code-field">
                                     <p class="error_msg" id="promo-code" style="color: red"></p>
-                                    <button type="button" class=" btn-submit promo-code-cta">Apply</button>
+                                    <button type="button" class=" btn-submit promo-code-cta">{{ __('Áp dụng') }}</button>
                                 </div>
                             </form>
                         </div>
                         <div class="summary">
                             @if(Session::get('getProduct' && Session::get('getProduct')->new_price != null))
-                            <div class="summary-total-items total-title">{{__('Tổng cộng')}} : {{number_format($totalDisCount)}}đ</div>
+                            <div class="summary-total-items total-title">{{ __('Tổng cộng') }} : {{ number_format($totalDisCount) }} đ</div>
                             @else
-                            <div class="summary-total-items total-title">{{__('Tổng cộng')}} : {{number_format($total)}}đ</div>
+                            <div class="summary-total-items total-title">{{ __('Tổng cộng') }} : {{ number_format($total) }} đ</div>
                             @endif
                             @if(Session::get('discount') && Session::get('getProduct')->new_price != null))
                             <div class="">
                                 <?php $getDiscount = Session::get('discount')->discount_amount ?>
                             </div>
-                            <div class="total-value final-value summary-total " id="basket-total">{{__('Giảm giá')}}
-                                : {{number_format($getDiscount)}}đ
+                            <div class="total-value final-value summary-total " id="basket-total">{{ __('Giảm giá') }}
+                                : {{number_format($getDiscount)}} đ
                             </div>
                             <div class="summary-total">
-                                <div class="total-title">{{__('Thành tiền')}}</div>
+                                <div class="total-title">{{ __('Thành tiền') }}</div>
                                 <?php $money = $totalDisCount - $getDiscount ?>
-                                <div class="total-value final-value get-total" id="basket-total">{{number_format($money)}}đ
+                                <div class="total-value final-value get-total" id="basket-total">{{ number_format($money) }} đ
                                     <input hidden name="total_cart" value="{{$money}}">
                                 </div>
                             </div>
                             @elseif(Session::get('discount'))
-                            <div class="">
+                            <div>
                                 <?php $getDiscount = Session::get('discount')->discount_amount ?>
                             </div>
-                            <div class="total-value final-value summary-total " id="basket-total">{{__('Giảm giá')}} : {{number_format($getDiscount)}}đ
+                            <div class="total-value final-value summary-total " id="basket-total">{{__('Giảm giá')}} : {{ number_format($getDiscount) }} đ
                             </div>
                             <div class="summary-total">
                                 <div class="total-title">{{__('Thành tiền')}}</div>
                                 <?php $money = $total - $getDiscount ?>
-                                <div class="total-value final-value get-total" id="basket-total">{{number_format($money)}}đ</div>
+                                <div class="total-value final-value get-total" id="basket-total">{{ number_format($money) }} đ</div>
                                 <input hidden name="total_cart" value="{{$money}}">
                             </div>
                             @elseif(Session::get('getProduct' && Session::get('getProduct')->new_price != null))
-                            <div class="total-value final-value summary-total" id="basket-total">{{__('Giảm giá')}}
+                            <div class="total-value final-value summary-total" id="basket-total">{{ __('Giảm giá') }}
                             </div>
                             <div class="summary-total">
-                                <div class="total-title">{{__('Thành tiền')}} {{number_format($totalDisCount)}}đ</div>
+                                <div class="total-title">{{ __('Thành tiền') }} {{ number_format($totalDisCount) }} đ</div>
                                 <input hidden name="total_cart" value="{{$totalDisCount}}">
                                 <div class="total-value final-value get-total" id="basket-total"></div>
                             </div>
@@ -269,14 +269,14 @@
                             <div class="total-value final-value summary-total" id="basket-total">{{__('Giảm giá')}}
                             </div>
                             <div class="summary-total">
-                                <div class="total-title">{{__('Thành tiền')}} {{number_format($total)}}đ</div>
-                                <input hidden name="total_cart" value="{{$total}}">
+                                <div class="total-title">{{ __('Thành tiền') }} {{ number_format($total) }} đ</div>
+                                <input hidden name="total_cart" value="{{ $total }}">
                                 <div class="total-value final-value get-total" id="basket-total"></div>
                             </div>
                             @endif
 
                             <div class="summary-checkout">
-                                <button class="checkout-cta">{{__('Đặt hàng')}}</button>
+                                <button class="checkout-cta">{{ __('Đặt hàng') }}</button>
                             </div>
                         </div>
                     </div>
@@ -291,8 +291,6 @@
 
 @section('js')
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-
-
 <script>
     function updateCart(quantity, id) {
         $.get(
