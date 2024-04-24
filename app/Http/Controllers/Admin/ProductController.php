@@ -134,6 +134,7 @@ class ProductController extends Controller
         $listBrands = $this->brandRepository->index();
         $product = $this->productRepository->show($id);
         $product->detail = json_decode($product->detail, true);
+        $product->detail_tech = json_decode($product->detail_tech, true);
         $product->image = json_decode($product->image, true);
 
         if (empty($product)) {
