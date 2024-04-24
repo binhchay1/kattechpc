@@ -16,11 +16,11 @@ use function Livewire\Features\SupportTesting\commit;
 use Cache;
 class CartController extends Controller
 {
-    
+
     private $productRepository;
     private $orderRepository;
     private $categoryRepository;
-    
+
     public function __construct(
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository,
@@ -31,7 +31,7 @@ class CartController extends Controller
         $this->orderRepository = $orderRepository;
         $this->categoryRepository = $categoryRepository;
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -48,7 +48,7 @@ class CartController extends Controller
         Session::put('getProduct', $dataProduct);
         return redirect()->route('showCart');
     }
-    
+
     public function showCart(Request $request)
     {
         $key = 'menu_homepage';
@@ -61,7 +61,7 @@ class CartController extends Controller
             'listCategory'=> $listCategory,
         ]);
     }
-    
+
     public function deleteCart($id)
     {
         if($id){
@@ -69,12 +69,12 @@ class CartController extends Controller
         }
         return success("Delete success");
     }
-    
+
     public function updateCart(Request $request)
     {
         $id = $request->id;
         $quantity = $request->quantity;
-        
+
         Cart::update($id,[
             'quantity' => array(
                 'relative' => false,
@@ -83,17 +83,16 @@ class CartController extends Controller
         ]);
         return back();
     }
-    
+
     public function checkout(OrderRequest $request)
     {
         $cartInfor =  Cart::getContent();
         try {
-            // save
             $input = $request->all();
             $order = $this->orderRepository->create($input);
             if (count($cartInfor) >0) {
                 foreach ($cartInfor as $key => $item) {
-                    
+
                     $orderDetail = new OrderDetail();
                     $orderDetail->order_id = $order->id;
                     $orderDetail->product_id = $item->id;
@@ -103,37 +102,36 @@ class CartController extends Controller
                 }
                 Cart::clear();
             }
-            // del
-           
+
         } catch (Exception $e) {
             echo $e->getMessage();
         }
         session()->forget('discount');
         return redirect()->route('thank');
     }
-    
+
     public function thank()
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         return view('page.cart.thank', compact('listCategory'));
     }
-    
-    public function addToCart($id)
+
+    public function addToCart($id, Request $request)
     {
-        $listCategory = $this->categoryRepository->getListCategory();
+        $total = $request->get('total');
         $dataProduct = $this->productRepository->productDetail($id);
         Cart::add(
             $dataProduct->id,
             $dataProduct->name,
             $dataProduct->price,
-            1,
+            $total,
             ['image' => $dataProduct->image]
         );
-    
-        return redirect()->back()->with('success', 'Product add to cart successfully!');
+
+        return redirect()->back()->with('success', __('Sản phẩm được thêm vào giỏ hàng!'));
     }
-    
+
     public function addCoupon(Request $request)
     {
         $coupon = Coupon::where('code', $request->discount_amount)->first();
@@ -142,7 +140,6 @@ class CartController extends Controller
         }
         Session::put('discount', $coupon);
         return response()->json(['success'=>'Mã giảm giá được thêm thành công']);
-       
     }
-    
+
 }
