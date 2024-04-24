@@ -11,7 +11,7 @@
                     <div class="gift-promotion">
                         <div class="">
                             <textarea id="comment" name="content" placeholder="{{ __('Trả lời...') }}" onfocus="$('.js-actions-comment-2020').show();" name="user_post[content]"></textarea>
-                            <input type="hidden" value="{{$product->id}}" name="product_id">
+                            <input type="hidden" value="{{$dataProduct->id}}" name="product_id">
                             <input type="hidden" name="parent_id" value="{{ $comment->id }}" />
                             <div class="actions-comment-2020 js-actions-comment-2020 ">
                                 <div class="actions-comment-wrap">

@@ -36,11 +36,11 @@
             <h3>{{ $dataProduct->name }}</h3>
             <div class="d-flex price-product">
                 @if($dataProduct->new_price != null)
-                <h5>{{ $dataProduct->new_price }}đ </h5>
-                <del class="old-price">{{ $dataProduct->price }} đ</del>
-                <div class="save-price-detail">{{__('Tiết kiệm:')}} {{ $dataProduct->price - $dataProduct->new_price }}đ</div>
+                <h5>{{ number_format($dataProduct->new_price )}}đ </h5>
+                <del class="old-price">{{ number_format($dataProduct->price) }} đ</del>
+                <div class="save-price-detail">{{__('Tiết kiệm:')}} {{ number_format($dataProduct->price - $dataProduct->new_price )}}đ</div>
                 @else
-                <h5>{{ __('Giá ') }}: {{ $dataProduct->price }} đ</h5>
+                <h5>{{ __('Giá ') }}: {{ number_format($dataProduct->price) }} đ</h5>
                 @endif
             </div>
             <div>
@@ -110,19 +110,19 @@
 
                         <div class="product-martket-main d-flex align-items-center">
                             @if($product->new_price != null)
-                            <del class="product-market-price">{{ $product->price }} ₫</del>
+                            <del class="product-market-price">{{ number_format($product->price) }} ₫</del>
                             <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                            <div class="product-percent-price">-{{ $new_price }} %</div>
+                            <div class="product-percent-price">-{{ number_format($new_price) }} %</div>
                             @endif
 
                         </div>
                         @if($product->new_price != null)
                         <div class="product-price-main font-weight-600">
-                            {{ $product->new_price }} đ
+                            {{ number_format($product->new_price) }} đ
                         </div>
                         @else
                         <div class="product-price-main font-weight-600">
-                            {{ $product->price }} đ
+                            {{ number_format($product->price) }} đ
                         </div>
                         @endif
                     </div>
@@ -171,7 +171,7 @@
                 @if(is_array($dataProduct->detail_tech))
                 @foreach($dataProduct->detail_tech as $key => $value)
                 <tr>
-                    <td>{{ $key }}</td>
+                    <td style="font-weight: 600">{{ $key }}</td>
                     <td>{{ $value }}</td>
                 </tr>
                 @endforeach
@@ -191,7 +191,7 @@
                 <div class="gift-promotion">
                     <div>
                         <textarea id="comment" name="content" placeholder="{{ __('Mời bạn để lại bình luận...') }}" onfocus="$('.js-actions-comment-2020').show();" name="user_post[content]"></textarea>
-                        <input type="hidden" value="{{ $product->id }}" name="product_id">
+                        <input type="hidden" value="{{ $dataProduct->id }}" name="product_id">
                         <div class="actions-comment-2020 js-actions-comment-2020 ">
                             <div class="actions-comment-wrap">
                                 <div class="cmt_right float-right">
@@ -206,7 +206,7 @@
         </form>
     </section>
     <hr class="hr-row">
-    @include('page.product.comment-display', ['comments' => $product->comments, 'product_id' => $product->id]);
+    @include('page.product.comment-display', ['comments' => $dataProduct->comments, 'product_id' => $dataProduct->id]);
 </div>
 @endsection
 
