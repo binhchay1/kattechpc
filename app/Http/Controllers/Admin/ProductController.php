@@ -12,6 +12,7 @@ use App\Repositories\ProductRepository;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Cache;
 
 class ProductController extends Controller
 {
@@ -47,7 +48,7 @@ class ProductController extends Controller
     public function createProduct()
     {
         $statusProduct = Product::STATUS;
-        $listCategories = $this->categoryRepository->index();
+        $listCategories = $this->categoryRepository->indexOnlyChild();
         $listBrands = $this->brandRepository->index();
 
         return view('admin.product.create', compact('listCategories', 'statusProduct', 'listBrands'));
@@ -123,6 +124,7 @@ class ProductController extends Controller
         }
 
         $this->productRepository->store($input);
+        Cache::store('redis')->forget('menu_homepage');
 
         return redirect()->route('admin.product.index')->with('success',  __('Sản phẩm được thêm thành công'));
     }
@@ -130,7 +132,7 @@ class ProductController extends Controller
     public function editProduct($id)
     {
         $statusProduct = Product::STATUS;
-        $listCategories = $this->categoryRepository->index();
+        $listCategories = $this->categoryRepository->indexOnlyChild();
         $listBrands = $this->brandRepository->index();
         $product = $this->productRepository->show($id);
         $product->detail = json_decode($product->detail, true);
@@ -227,6 +229,7 @@ class ProductController extends Controller
         unset($input['image_preview']);
 
         $this->productRepository->update($input, $id);
+        Cache::store('redis')->forget('menu_homepage');
 
         return redirect()->route('admin.product.index')->with('success', __('Sản phẩm được thay đổi thành công'));
     }
@@ -234,6 +237,7 @@ class ProductController extends Controller
     public function deleteProduct($id)
     {
         $this->productRepository->destroy($id);
+        Cache::store('redis')->forget('menu_homepage');
 
         return back()->with('success', __('Sản phẩm được xóa thành công'));
     }

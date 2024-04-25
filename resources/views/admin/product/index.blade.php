@@ -32,12 +32,14 @@
                         <thead class="text-left">
                             <tr class="relative rounded-md bg-slate-100 dark:bg-zink-600 after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="name">{{ __('Tên sản phẩm') }}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="name">{{ __('Thương hiệu') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="code">{{ __('Mã sản phẩm') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">{{ __('Ảnh sản phẩm') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="category">{{ __('Thể loại') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="description">{{ __('Mô tả') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="price">{{ __('Giá') }}</th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="detail">{{ __('Chi tiết') }}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="detail">{{ __('Thông số sản phẩm') }}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="detail">{{ __('Thông số kỹ thuật') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="status">{{ __('Trạng thái') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">{{ __('Hành động') }}</th>
                             </tr>
@@ -46,6 +48,7 @@
                             @foreach($listProducts as $product)
                             <tr class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 name"> {{ $product->name }}</td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 name"> {{ $product->brand }}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 code">{{ $product->code }}
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
@@ -69,9 +72,19 @@
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 description">{!! Str::limit(strip_tags(html_entity_decode($product->description)), 100) !!}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 price">{{ $product->price }}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 detail">
-                                    <ul class="space-y-5 list-disc list-inside rounded-md marker:text-red-500">
+                                    <ul class="list-disc list-inside rounded-md marker:text-red-500" style="height: 100px; overflow: hidden;">
                                         @if($product->detail)
                                         @foreach($product->detail as $key => $value)
+                                        <li>{{ $key }} : {{ $value }}</li>
+                                        @endforeach
+                                        @endif
+                                    </ul>
+                                </td>
+
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 detail">
+                                    <ul class="list-disc list-inside rounded-md marker:text-red-500" style="height: 100px; overflow: hidden;">
+                                        @if($product->detail_tech)
+                                        @foreach($product->detail_tech as $key => $value)
                                         <li>{{ $key }} : {{ $value }}</li>
                                         @endforeach
                                         @endif

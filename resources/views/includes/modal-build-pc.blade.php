@@ -1,7 +1,7 @@
 <div id="js-modal-popup">
     <div class="mask-popup active" onclick="closePopup()">
     </div>
-    <div class="popup-select active ">
+    <div class="popup-select active">
         <div class=" row header" id="form-header">
             <div class="col-lg-4 title-popup">
                 <h4 class="">Chọn linh kiện</h4>
@@ -185,4 +185,3 @@
         </div>
     </div>
 </div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">

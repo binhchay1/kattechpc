@@ -24,10 +24,9 @@ class CategoryRequest extends FormRequest
         return [
             'name' =>'required|max:191',
             'image' =>'required|mimes:jpeg,png,jpg|max:2048'
-        
         ];
     }
-    
+
     public function messages()
     {
         return [
