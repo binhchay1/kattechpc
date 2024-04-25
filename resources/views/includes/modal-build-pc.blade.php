@@ -1,20 +1,161 @@
+<style>
+    #js-modal-popup {
+        position: fixed;
+        z-index: 37;
+        padding-top: 25px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .popup-select{
+        background-color: #fefefe;
+        margin: auto;
+        border: 1px solid #888;
+        width: 60%;
+        overflow-y: initial !important;
+    }
+
+    #form-header {
+        margin: 0;
+        background: red;
+        padding: 10px;
+    }
+
+    .title-popup {
+        color: white;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 90px;
+    }
+
+    #popup-main {
+        margin: 0;
+    }
+
+    .popup-main_filter{
+        background: #eee;
+        padding: 20px;
+        height: 90vh;
+        overflow-y: auto;
+
+    }
+
+    .popup-main_content {
+        padding: 20px;
+        height: 90vh;
+        overflow-y: auto;
+    }
+
+    #buy-product {
+        background: red;
+        border-radius: 10px;
+        color: white;
+        padding: 10px;
+    }
+
+    .p-name {
+        font-weight: 700;
+    }
+
+    .p-price {
+        color: #ec1b23;
+        font-weight: bold;
+        font-size: 18px;
+        font-family: 'Roboto';
+        font-style: normal;
+        margin-top: 5px;
+    }
+
+    .product-market-price {
+        margin: 0;
+    }
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+    body{
+        background: #f2f2f2;
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    .search {
+        width: 100%;
+        position: relative;
+        display: flex;
+    }
+
+    .searchTerm {
+        width: 100%;
+        border: 3px solid white;
+        border-right: none;
+        padding: 5px;
+        height: 37px;
+        border-radius: 5px 0 0 5px;
+        outline: none;
+        color: #9DBFAF;
+    }
+
+    .searchTerm:focus{
+        color: #00B4CC;
+    }
+
+    .searchButton {
+
+        width: 50px;
+        height: 36px;
+        border: 1px solid #ebf1f1;
+        background: white;
+        text-align: center;
+        color: black;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    /*Resize the wrap to see the search bar change!*/
+    .wrap{
+        width: 80%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .btn-1:hover {
+        text-decoration: none;
+    }
+
+</style>
+
+
 <div id="js-modal-popup">
     <div class="mask-popup active" onclick="closePopup()">
     </div>
-    <div class="popup-select active">
-        <div class="header">
-            <h4>Chọn linh kiện</h4>
-            <form action="">
-                <input type="text" value="" id="buildpc-search-keyword" class="input-search" placeholder="Bạn cần tìm linh kiện gì?" data-url="https://nguyencongpc.vn/ajax/get_json.php?action=pcbuilder&amp;action_type=get-product-category&amp;category_id=277">
-                <span class="btn-search"><i class="fa fa-search" id="js-buildpc-search-btn"></i></span>
-                <div class="icon-menu-filter-mobile"><i class="fa fa-list"></i></div>
-            </form>
+    <div class="popup-select active ">
+        <div class=" row header" id="form-header">
+            <div class="col-lg-4 title-popup">
+                <h4 class="">Chọn linh kiện</h4>
 
-            <span class="close-popup" onclick="closePopup()"><i class="fa fa-times"></i></span>
+            </div>
+            <div class="col-lg-6">
+                <div class="wrap">
+                    <div class="search">
+                        <input type="text" class="searchTerm" placeholder="Bạn cần link kiện gì?">
+                        <button type="submit" class="searchButton">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2" style="text-align: right; color: white; font-size: 35px">
+                <span class="close-popup" onclick="closePopup()"><i class="fa fa-times"></i></span>
+            </div>
         </div>
 
-        <div class="popup-main">
-            <div class="popup-main_filter w-30 float_l">
+        <div class="row popup-main" id="popup-main">
+            <div class="col-lg-4 popup-main_filter w-30 float_l">
                 <h4>Lọc sản phẩm theo</h4>
                 <div class="list-filter">
                     <div class="gr-filter brand">
@@ -598,7 +739,7 @@
                 </div><!--list-filter-->
             </div><!--popup-main_filter-->
 
-            <div class="popup-main_content w-70 float_r">
+            <div class=" col-lg-8 popup-main_content w-70 float_r">
                 <div class="sort-paging clear">
 
                     <div class="sort-block float_l">
@@ -651,14 +792,15 @@
                 </div>
 
                 <div class="list-product-select" id="js-holder-p_item">
-                    <div class="p-item">
-                        <a href="/cpu-amd-ryzen-9-5900x" class="p-img">
-                            <img src="/media/product/250-17131-cpu-amd-ryzen-9-5900xcpu-amd-ryzen-9-5900xcpu-amd-ryzen-9-5900xcpu-amd-ryzen-9-5900x.jpg" alt="CPU AMD Ryzen 9 5900X (12 Nhân / 24 Luồng | 3.7GHz Boost 4.8GHz | 64MB Cache | PCIe 4.0)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-amd-ryzen-9-5900x" class="p-name">CPU AMD Ryzen 9 5900X (12 Nhân / 24 Luồng | 3.7GHz Boost 4.8GHz | 64MB Cache | PCIe 4.0)</a>
-
+                    @foreach($products as $product)
+                    <div class="row p-item">
+                        <div class="col-lg-3">
+                            <a href="/cpu-amd-ryzen-9-5900x" class="p-img">
+                                <img src="/media/product/250-17131-cpu-amd-ryzen-9-5900xcpu-amd-ryzen-9-5900xcpu-amd-ryzen-9-5900xcpu-amd-ryzen-9-5900x.jpg">
+                            </a>
+                        </div>
+                        <div class="col-lg-6 info">
+                            <a href="" class="p-name">{{$product->name}}</a>
                             <table>
                                 <tbody>
                                     <tr>
@@ -670,760 +812,38 @@
                                         <td valign="top"><b>Kho hàng:</b></td>
                                         <td>
                                             Còn hàng
-                                            | <b>Mã SP:</b> SP002423B
+                                            | <b>Mã SP:</b> {{$product->code}}
 
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <span class="p-price">6.990.000đ</span>
+                            @if($product->new_price !=null)
+                            <span class="p-price">{{number_format($product->new_price)}}</span>
 
                             <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
                                 <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    15.600.000<u>đ</u>
+                                    {{number_format($product->price)}}<u>đ</u>
                                 </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-55%</div>
+                                <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
+                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-{{$new_price}}%</div>
                             </div>
-
+                            @else
+                            <span class="p-price">{{number_format($product->price)}}</span>
+                            @endif
                         </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="17131">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-intel-core-i7-14700f-tray-lga1700-20-core28-thread-base-21ghz-turbo-54ghz-cache-33mb" class="p-img">
-                            <img src="/media/product/250-26474-cpuit14700__4_bf2f88a4-5cec-447d.png" alt="CPU Intel Core i7 14700F Tray New (LGA1700, 20 Core/28 Thread, Base 2.1Ghz/ Turbo 5.4Ghz, Cache 33MB)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-intel-core-i7-14700f-tray-lga1700-20-core28-thread-base-21ghz-turbo-54ghz-cache-33mb" class="p-name">CPU Intel Core i7 14700F Tray New (LGA1700, 20 Core/28 Thread, Base 2.1Ghz/ Turbo 5.4Ghz, Cache 33MB)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 Tháng</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> CPU000045T
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">6.990.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center">
-                            </div>
-
+                        <div class="col-lg-3" style="margin-top:10px ">
+                            <a class="btn-1" href="{{ route('addBuildPC', $product['slug']) }}">
+                            <span id="buy-product" class="btn-buy js-select-product"  data-id="17131">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
+                            </a>
                         </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="26474">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
                     </div>
+                        <hr>
+                    @endforeach
 
-                    <div class="p-item">
-                        <a href="/cpu-amd-ryzen-9-5950x" class="p-img">
-                            <img src="/media/product/250-17133-ryzen-9-5950x.jpg" alt="CPU AMD Ryzen 9 5950X (16 Nhân / 32 Luồng | 3.4GHz Boost 4.9GHz | 72MB Cache | PCIe 4.0)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-amd-ryzen-9-5950x" class="p-name">CPU AMD Ryzen 9 5950X (16 Nhân / 32 Luồng | 3.4GHz Boost 4.9GHz | 72MB Cache | PCIe 4.0)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 Tháng</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> SP002540B
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">8.700.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    17.990.000<u>đ</u>
-                                </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-52%</div>
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="17133">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-intel-core-i9-12900k" class="p-img">
-                            <img src="/media/product/250-21239-sp394843bsp394843bsp394843bsp394843b.jpg" alt="CPU Intel Core i9-12900K (3.9GHz turbo 5.2GHz | 16 nhân 24 luồng | 30MB Cache | 125W)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-intel-core-i9-12900k" class="p-name">CPU Intel Core i9-12900K (3.9GHz turbo 5.2GHz | 16 nhân 24 luồng | 30MB Cache | 125W)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 Tháng</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> SP394843B
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">7.490.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    13.490.000<u>đ</u>
-                                </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-44%</div>
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="21239">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-intel-core-i5-14600k" class="p-img">
-                            <img src="/media/product/250-25343-14600k.png" alt="CPU Intel Core i5 14600K (Up 5.30 GHz, 14 Nhân 20 Luồng, 24MB Cache, Raptor Lake Refresh)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-intel-core-i5-14600k" class="p-name">CPU Intel Core i5 14600K (Up 5.30 GHz, 14 Nhân 20 Luồng, 24MB Cache, Raptor Lake Refresh)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 Tháng</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> CPU000031B
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">5.990.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center">
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="25343">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-intel-core-i7-12700f-up-to-480ghz-12-nhan-20-luong-25m-cache-alder-lake" class="p-img">
-                            <img src="/media/product/250-21484-byc-i712700ftray_3cb379dd859541e7829df40615c08cc1_1024x1024.webp" alt="CPU Intel Core i7-12700F TRAY (Up To 4.80GHz, 12 Nhân 20 Luồng, 25M Cache, Alder Lake)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-intel-core-i7-12700f-up-to-480ghz-12-nhan-20-luong-25m-cache-alder-lake" class="p-name">CPU Intel Core i7-12700F TRAY (Up To 4.80GHz, 12 Nhân 20 Luồng, 25M Cache, Alder Lake)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 tháng</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> SP3940854T
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">4.790.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    8.990.000<u>đ</u>
-                                </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-47%</div>
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="21484">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-amd-ryzen-7-7700x" class="p-img">
-                            <img src="/media/product/250-23317-77.jpg" alt="CPU AMD Ryzen 7 7700X (4,5 GHz Boost 5,4 GHz | 8 Cores / 16 Threads | 32 MB Cache| PCIe 5.0)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-amd-ryzen-7-7700x" class="p-name">CPU AMD Ryzen 7 7700X (4,5 GHz Boost 5,4 GHz | 8 Cores / 16 Threads | 32 MB Cache| PCIe 5.0)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 tháng </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> CPU000005B
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">7.890.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    10.990.000<u>đ</u>
-                                </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-28%</div>
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="23317">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-intel-core-i9-13900k" class="p-img">
-                            <img src="/media/product/250-23428-i9-13900k.jpg" alt="CPU Intel Core i9 13900K (5.80GHz, 24 Nhân 32 Luồng, 36M Cache, Raptor Lake)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-intel-core-i9-13900k" class="p-name">CPU Intel Core i9 13900K (5.80GHz, 24 Nhân 32 Luồng, 36M Cache, Raptor Lake)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 tháng </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> CPU000010B
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">9.990.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    16.490.000<u>đ</u>
-                                </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-39%</div>
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="23428">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-amd-ryzen-9-7950x" class="p-img">
-                            <img src="/media/product/250-23316-cpu-amd-ryzen-9-7950x.jpg" alt="CPU AMD Ryzen 9 7950X (4,5 GHz Boost 5,7 GHz | 16 Cores / 32 Threads | 64 MB Cache| PCIe 5.0)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-amd-ryzen-9-7950x" class="p-name">CPU AMD Ryzen 9 7950X (4,5 GHz Boost 5,7 GHz | 16 Cores / 32 Threads | 64 MB Cache| PCIe 5.0)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 tháng </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> CPU000003B
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">12.900.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    15.990.000<u>đ</u>
-                                </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-19%</div>
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="23316">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-intel-core-i3-12100f" class="p-img">
-                            <img src="/media/product/250-21492-cpu-intel-core-i3-12100f.jpg" alt="CPU Intel Core i3 12100F (3.3GHz turbo up to 4.3GHz, 4 nhân 8 luồng, 12MB Cache)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-intel-core-i3-12100f" class="p-name">CPU Intel Core i3 12100F (3.3GHz turbo up to 4.3GHz, 4 nhân 8 luồng, 12MB Cache)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 tháng</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> SP3940860T
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">1.390.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    2.990.000<u>đ</u>
-                                </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-54%</div>
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="21492">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-amd-ryzen-5-4600g" class="p-img">
-                            <img src="/media/product/250-24969-cpu-asdamd-ryzen-5-4600g.jpg" alt="CPU AMD Ryzen 5 4600G (3.7GHz Boost 4.2GHz / 6 nhân 12 luồng / 11MB / AM4)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-amd-ryzen-5-4600g" class="p-name">CPU AMD Ryzen 5 4600G (3.7GHz Boost 4.2GHz / 6 nhân 12 luồng / 11MB / AM4)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 Tháng</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> CPU000027H
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">2.150.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    3.190.000<u>đ</u>
-                                </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-33%</div>
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="24969">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-amd-athlon-3000g" class="p-img">
-                            <img src="/media/product/250-25403-b----vi-x----l---amd-athlon-3000g.jpg" alt="Bộ vi xử lý AMD Athlon 3000G Tray ( 3.5GHz / 2 nhân 4 luồng / 5MB / AM4)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-amd-athlon-3000g" class="p-name">Bộ vi xử lý AMD Athlon 3000G Tray ( 3.5GHz / 2 nhân 4 luồng / 5MB / AM4)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td></td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> SP001508T
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">800.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    1.790.000<u>đ</u>
-                                </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-55%</div>
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="25403">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-intel-core-i5-13400-1" class="p-img">
-                            <img src="/media/product/250-26252-69894_cpu_intel_core_i5_13400_up.jpg" alt="CPU Intel Core i5 13400 (up to 4.6GHz, 10 nhân 16 luồng, 20MB Cache, 65W)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-intel-core-i5-13400-1" class="p-name">CPU Intel Core i5 13400 (up to 4.6GHz, 10 nhân 16 luồng, 20MB Cache, 65W)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 Tháng</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> CPU000015B
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">4.390.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    6.590.000<u>đ</u>
-                                </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-33%</div>
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="26252">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-intel-core-i3-10105f-tray-37ghz-turbo-44ghz-4-nhan-8-luong-6mb-cache-65w" class="p-img">
-                            <img src="/media/product/250-25782-250-18428-cpu-intel-core-i3-1010.jpg" alt="CPU Intel Core I3-10105F Tray New  (3.7GHz Turbo 4.4Ghz | 4 Nhân 8 Luồng | 6MB Cache | 65W)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-intel-core-i3-10105f-tray-37ghz-turbo-44ghz-4-nhan-8-luong-6mb-cache-65w" class="p-name">CPU Intel Core I3-10105F Tray New (3.7GHz Turbo 4.4Ghz | 4 Nhân 8 Luồng | 6MB Cache | 65W)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 Tháng</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> SP003346T
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">990.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    2.400.000<u>đ</u>
-                                </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-59%</div>
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="25782">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-intel-core-i7-13700" class="p-img">
-                            <img src="/media/product/250-24739-intel-core-i7-13700intel-core-i7-13700intel-core-i7-13700.jpg" alt="CPU Intel Core I7-13700 (2.10 GHz up to 5.20 GHz, 30M  16 nhân 24 luồng, Socket 1700)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-intel-core-i7-13700" class="p-name">CPU Intel Core I7-13700 (2.10 GHz up to 5.20 GHz, 30M 16 nhân 24 luồng, Socket 1700)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 Tháng </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> CPU000030B
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">6.800.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    10.350.000<u>đ</u>
-                                </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-34%</div>
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="24739">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-intel-core-i5-13400" class="p-img">
-                            <img src="/media/product/250-24016-cpu-intel-core-i5-13400-tray.png" alt="CPU Intel Core i5-13400 TRAY (Up To 4.60GHz, 10 Nhân 16 Luồng, 20MB Cache, LGA 1700)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-intel-core-i5-13400" class="p-name">CPU Intel Core i5-13400 TRAY (Up To 4.60GHz, 10 Nhân 16 Luồng, 20MB Cache, LGA 1700)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 tháng </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> CPU000015T
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">3.690.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    7.150.000<u>đ</u>
-                                </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-48%</div>
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="24016">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-intel-core-i5-13400f" class="p-img">
-                            <img src="/media/product/250-24017-cpu000016b.jpg" alt="CPU Intel Core i5-13400F (Up To 4.60GHz, 10 Nhân 16 Luồng, 20 MB Cache, LGA 1700)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-intel-core-i5-13400f" class="p-name">CPU Intel Core i5-13400F (Up To 4.60GHz, 10 Nhân 16 Luồng, 20 MB Cache, LGA 1700)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 tháng </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> CPU000016B
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">3.800.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    6.250.000<u>đ</u>
-                                </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-39%</div>
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="24017">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-amd-ryzen-5-4500-nguyen-cong-pc" class="p-img">
-                            <img src="/media/product/250-22160-cpu-amd-ryzen-5-4500--3-6-ghz-.jpg" alt="CPU AMD Ryzen 5 4500 (3,6 GHz Boost 4,1 GHz | 6 Cores / 12 Threads | 8MB Cache| PCIe 3.0)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-amd-ryzen-5-4500-nguyen-cong-pc" class="p-name">CPU AMD Ryzen 5 4500 (3,6 GHz Boost 4,1 GHz | 6 Cores / 12 Threads | 8MB Cache| PCIe 3.0)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 tháng </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> SP181106H
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">1.750.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    2.990.000<u>đ</u>
-                                </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-41%</div>
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="22160">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-amd-ryzen-7-5700x-nguyen-cong-pc" class="p-img">
-                            <img src="/media/product/250-22159-ryzen-7-5700x.jpg" alt="CPU AMD Ryzen 7 5700X (3,4 GHz Boost 4,6 GHz | 8 Cores / 16 Threads | 32MB Cache|  PCIe 4.0)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-amd-ryzen-7-5700x-nguyen-cong-pc" class="p-name">CPU AMD Ryzen 7 5700X (3,4 GHz Boost 4,6 GHz | 8 Cores / 16 Threads | 32MB Cache| PCIe 4.0)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 tháng </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> SP180553H
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">4.190.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    8.600.000<u>đ</u>
-                                </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-51%</div>
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="22159">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
-
-                    <div class="p-item">
-                        <a href="/cpu-intel-core-i7-12700k" class="p-img">
-                            <img src="/media/product/250-21251-i7-12700k.png" alt="CPU Intel Core i7-12700K (3.8GHz turbo 5.0Ghz | 12 nhân 20 luồng | 25MB Cache | 125W)">
-                        </a>
-
-                        <div class="info">
-                            <a href="/cpu-intel-core-i7-12700k" class="p-name">CPU Intel Core i7-12700K (3.8GHz turbo 5.0Ghz | 12 nhân 20 luồng | 25MB Cache | 125W)</a>
-
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>36 Tháng</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            Còn hàng
-                                            | <b>Mã SP:</b> SP394842B
-
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <span class="p-price">5.290.000đ</span>
-
-                            <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    7.390.000<u>đ</u>
-                                </p>
-                                <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-28%</div>
-                            </div>
-
-                        </div>
-
-                        <span class="btn-buy js-select-product" onclick="closePopup()" data-id="21251">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
