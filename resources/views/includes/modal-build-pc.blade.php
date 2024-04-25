@@ -2,10 +2,9 @@
     <div class="mask-popup active" onclick="closePopup()">
     </div>
     <div class="popup-select active">
-        <div class=" row header" id="form-header">
+        <div class="row header" id="form-header">
             <div class="col-lg-4 title-popup">
                 <h4 class="">Chọn linh kiện</h4>
-
             </div>
             <div class="col-lg-6">
                 <div class="wrap">

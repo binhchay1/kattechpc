@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 <link rel="stylesheet" href="{{ asset('/css/page/build-pc.css') }}" />
 @endsection
 
@@ -16,11 +16,8 @@
         <h2 style="font-size: 26px;line-height:30px;margin-bottom: 10px;font-weight:500; ">Chọn linh kiện xây dựng cấu hình - Tự build PC</h2>
 
         <ul class="list-btn-action">
-            <li><span onclick="showBuildId(1);changeTab(this);" style="padding:0 20px;">Cấu hình 1</span></li>
-            <li class="active"><span onclick="showBuildId(2);changeTab(this);" style="padding:0 20px;">Cấu hình 2</span></li>
-            <li><span onclick="showBuildId(3);changeTab(this);" style="padding:0 20px;">Cấu hình 3</span></li>
-            <li><span onclick="showBuildId(4);changeTab(this);" style="padding:0 20px;">Cấu hình 4</span></li>
-            <li><span onclick="showBuildId(5);changeTab(this);" style="padding:0 20px;">Cấu hình 5</span></li>
+            <li class="active"><span onclick="showBuildId(1); changeTab(this);" style="padding:0 20px;">Cấu hình 1</span></li>
+            <li><span onclick="showBuildId(2); changeTab(this);" style="padding:0 20px;">Cấu hình 2</span></li>
         </ul>
 
         <ul class="list-btn-action">
@@ -38,39 +35,10 @@
             <div class="item-drive d-flex">
                 <div class="name-item-drive">
                     <h3 class="d-name d-name-277" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">1. CPU - Bộ Vi Xử Lý</h3>
-                    <div class=" item-speciaoffer d-flex align-item-center font-weight-500 color-red gap-6">
-                    </div>
                 </div>
                 <div class="drive-checked" style="margin-left:0;">
-                    @if ($totalBuild == 0)
                     <span class="show-popup_select span-last open-selection" id="js-category-info-277"><i class="fa fa-plus"></i> Chọn CPU - Bộ Vi Xử Lý</span>
-                    @else
-                    @foreach($dataBuild as $productBuild)
-                    <div id="js-selected-item-277" data-id="277" class="js-item-row d-flex">
-                        <div class="">
-                            <a target="_blank" href="/cpu-intel-core-i3-12100f" class="d-img"><img src="https://nguyencongpc.vn/media/product/75-17131-cpu-amd-ryzen-9-5900xcpu-amd-ryzen-9-5900xcpu-amd-ryzen-9-5900xcpu-amd-ryzen-9-5900x.jpg"></a>
-                        </div>
-                        <div class="">
-                            <span class="d-name">
-                                <a target="_blank" href="/cpu-intel-core-i3-12100f" class="p-name"> {{$productBuild->name}} </a> <br>
-
-                                Bảo hành: 36 tháng <br>
-                                Kho hàng: <span style="color: red">Còn hàng </span> | Mã SP: <span style="color: red">{{$productBuild->code}}</span>
-                            </span>
-                        </div>
-                        <div class="check-build">
-                            <span class="d-price">{{number_format($productBuild->price)}}</span>
-                            <i>x</i> <input class="count-p" type="number" value="{{ $productBuild->quantity }}" min="1" max="50" onchange="updateOrder(this.value,'{{$productBuild->id}}')"><i>=</i>
-                            <?php
-                            $total = $productBuild['quantity'] * $productBuild['price'];
-                            ?>
-                            <span class="sum_price">{{number_format($total)}}</span>
-                            <span class="btn-action_seclect show-popup_select"><i class="fa fa-edit edit-item"></i></span>
-                            <span class="btn-action_seclect delete_select" onclick="deleteBuild(`{{ route('deleteBuildPC', $productBuild['id']) }}`)"><i class="fa fa-trash remove-item"></i></span>
-                        </div>
-                    </div>
-                    @endforeach
-                    @endif
+                    <div id="js-selected-item-278" data-id="278" class="js-item-row"></div>
                 </div>
             </div>
             <div class="item-drive d-flex">
@@ -233,7 +201,7 @@
                     <h3 class="d-name d-name-3308" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">19. Loa</h3>
                 </div>
                 <div class=" drive-checked flex-1" style="margin-left:0;">
-                    <span class="show-popup_select span-last open-selection" id="js-category-info-3308"><i class="fa fa-plus"></i> Chọn Loa</span>
+                    <span class="show-popup_select span-last open-selection" id="category"><i class="fa fa-plus"></i> Chọn Loa</span>
                     <div id="js-selected-item-3308" data-id="3308" class="js-item-row"></div>
                 </div>
             </div>
@@ -242,7 +210,7 @@
                     <h3 class="d-name d-name-3307" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">20. Ghế Gaming</h3>
                 </div>
                 <div class=" drive-checked flex-1" style="margin-left:0;">
-                    <span class="show-popup_select span-last open-selection" id="js-category-info-3307"><i class="fa fa-plus"></i> Chọn Ghế Gaming</span>
+                    <span class="show-popup_select span-last open-selection" id="category-chair"><i class="fa fa-plus"></i> Chọn Ghế Gaming</span>
                     <div id="js-selected-item-3307" data-id="3307" class="js-item-row"></div>
                 </div>
             </div>
@@ -251,7 +219,7 @@
                     <h3 class="d-name d-name-3411" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">21. Bàn Gaming</h3>
                 </div>
                 <div class=" drive-checked flex-1" style="margin-left:0;">
-                    <span class="show-popup_select span-last open-selection" id="js-category-info-3411"><i class="fa fa-plus"></i> Chọn Bàn Gaming</span>
+                    <span class="show-popup_select span-last open-selection" id="category-desk"><i class="fa fa-plus"></i> Chọn Bàn Gaming</span>
                     <div id="js-selected-item-3411" data-id="3411" class="js-item-row"></div>
                 </div>
             </div>
@@ -260,44 +228,26 @@
                     <h3 class="d-name d-name-3287" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">22. Webcam</h3>
                 </div>
                 <div class=" drive-checked flex-1" style="margin-left:0;">
-                    <span class="show-popup_select span-last open-selection" id="js-category-info-3287"><i class="fa fa-plus"></i> Chọn Webcam</span>
+                    <span class="show-popup_select span-last open-selection" id="category-webcam"><i class="fa fa-plus"></i> Chọn Webcam</span>
                     <div id="js-selected-item-3287" data-id="3287" class="js-item-row"></div>
                 </div>
             </div>
             <div class="item-drive d-flex">
                 <div class="name-item-drive">
-                    <h3 class="d-name d-name-3341" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">23. Microphones</h3>
+                    <h3 class="d-name" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">23. Microphones</h3>
                 </div>
                 <div class=" drive-checked flex-1" style="margin-left:0;">
-                    <span class="show-popup_select span-last open-selection" id="js-category-info-3341"><i class="fa fa-plus"></i> Chọn Microphones</span>
+                    <span class="show-popup_select span-last open-selection" id="category-microphone"><i class="fa fa-plus"></i> Chọn Microphones</span>
                     <div id="js-selected-item-3341" data-id="3341" class="js-item-row"></div>
                 </div>
             </div>
             <div class="item-drive d-flex">
                 <div class="name-item-drive">
-                    <h3 class="d-name d-name-3413" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">24. Thiết Bị Studio, Stream</h3>
+                    <h3 class="d-name" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">24. Thiết Bị Mạng</h3>
                 </div>
                 <div class=" drive-checked flex-1" style="margin-left:0;">
-                    <span class="show-popup_select span-last open-selection" id="js-category-info-3413"><i class="fa fa-plus"></i> Chọn Thiết Bị Studio, Stream</span>
-                    <div id="js-selected-item-3413" data-id="3413" class="js-item-row"></div>
-                </div>
-            </div>
-            <div class="item-drive d-flex">
-                <div class="name-item-drive">
-                    <h3 class="d-name d-name-1751" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">25. Thiết Bị Mạng</h3>
-                </div>
-                <div class=" drive-checked flex-1" style="margin-left:0;">
-                    <span class="show-popup_select span-last open-selection" id="js-category-info-1751"><i class="fa fa-plus"></i> Chọn Thiết Bị Mạng</span>
+                    <span class="show-popup_select span-last open-selection" id="category-network"><i class="fa fa-plus"></i> Chọn Thiết Bị Mạng</span>
                     <div id="js-selected-item-1751" data-id="1751" class="js-item-row"></div>
-                </div>
-            </div>
-            <div class="item-drive d-flex">
-                <div class="name-item-drive">
-                    <h3 class="d-name d-name-3598" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">26. {{ __('Giá treo màn hình') }}</h3>
-                </div>
-                <div class=" drive-checked flex-1" style="margin-left:0;">
-                    <span class="show-popup_select span-last open-selection" id="js-category-info-3598"><i class="fa fa-plus"></i> {{ __('Chọn Giá treo màn hình') }}</span>
-                    <div id="js-selected-item-3598" data-id="3598" class="js-item-row"></div>
                 </div>
             </div>
         </div>
@@ -319,6 +269,30 @@
 <script>
     $(document).ready(function() {
 
+        // <div id="js-selected-item-277" data-id="277" class="js-item-row d-flex">
+        //                 <div class="">
+        //                     <a target="_blank" href="/cpu-intel-core-i3-12100f" class="d-img"><img src="https://nguyencongpc.vn/media/product/75-17131-cpu-amd-ryzen-9-5900xcpu-amd-ryzen-9-5900xcpu-amd-ryzen-9-5900xcpu-amd-ryzen-9-5900x.jpg"></a>
+        //                 </div>
+        //                 <div class="">
+        //                     <span class="d-name">
+        //                         <a target="_blank" href="/cpu-intel-core-i3-12100f" class="p-name"> {{$productBuild->name}} </a> <br>
+
+        //                         Bảo hành: 36 tháng <br>
+        //                         Kho hàng: <span style="color: red">Còn hàng </span> | Mã SP: <span style="color: red">{{$productBuild->code}}</span>
+        //                     </span>
+        //                 </div>
+        //                 <div class="check-build">
+        //                     <span class="d-price">{{number_format($productBuild->price)}}</span>
+        //                     <i>x</i> <input class="count-p" type="number" value="{{ $productBuild->quantity }}" min="1" max="50" onchange="updateOrder(this.value,'{{$productBuild->id}}')"><i>=</i>
+        //                     <?php
+                                //                     $total = $productBuild['quantity'] * $productBuild['price'];
+                                //
+                                ?>
+        //                     <span class="sum_price">{{number_format($total)}}</span>
+        //                     <span class="btn-action_seclect show-popup_select"><i class="fa fa-edit edit-item"></i></span>
+        //                     <span class="btn-action_seclect delete_select" onclick="deleteBuild(`{{ route('deleteBuildPC', $productBuild['id']) }}`)"><i class="fa fa-trash remove-item"></i></span>
+        //                 </div>
+        //             </div>
         $(".open-selection").click(function() {
             var userChose = $(this).attr("id");
             var url = "get-product?key=" + userChose;
