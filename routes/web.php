@@ -67,19 +67,18 @@ Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFacebookCallback']);
     Route::get('collection/{slug}', [HomeController::class, 'showDataCategory'])->name('showDataCategory');
     Route::get('/promotion/{slug}', [HomeController::class, 'showPromotionDetail'])->name('showPromotionDetail');
-    
+
         Route::get('build-pc',  [BuildPCController::class, 'buildPC'])->name('buildPC');
         Route::get('get-product',  [BuildPCController::class, 'getProduct'])->name('getProduct');
         Route::get('/add-build-pc/{slug}',  [BuildPCController::class, 'addBuildPC'])->name('addBuildPC');
         Route::get('add-to-build-pc/{slug}', [BuildPCController::class, 'addBuildPC'])->name('add_to_BuildPC');
-//        Route::get('show-build-pc',  [BuildPCController::class, 'showBuildPC'])->name('showBuildPC');
         Route::get('delete-build-pc/{id}',  [BuildPCController::class, 'deleteBuildPC'])->name('deleteBuildPC');
         Route::get('update-build-pc',  [BuildPCController::class, 'updateBuildPC'])->name('updateBuildPC');
         Route::post('checkout',  [BuildPCController::class, 'checkout'])->name('checkout');
         Route::post('apply-coupon',  [BuildPCController::class, 'addCoupon'])->name('apply.coupon');
         Route::get('thank-you',  [BuildPCController::class, 'thank'])->name('thank');
-    
-    
+
+
     Route::group(['prefix' => 'cart'], function () {
         Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
         Route::get('add-to-cart/{slug}', [CartController::class, 'addToCart'])->name('add_to_cart');
