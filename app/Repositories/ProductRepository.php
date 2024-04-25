@@ -61,4 +61,20 @@ class ProductRepository extends BaseRepository
     {
         return $this->model->whereIn('code', $listCode)->get();
     }
+    
+    public function listProduct($getProductByKey = null)
+    {
+        if ($getProductByKey == 'linh-kiện') {
+            return $this->model->with('category', 'productImages')->orderBy('created_at', 'DESC')->get();
+    
+        } elseif ($getProductByKey == 'next') {
+            return $this->model->with('category', 'productImages')->orderBy('created_at', 'DESC')->get();
+    
+        } elseif ($getProductByKey == 'completed') {
+            return $this->model->with('category', 'productImages')->orderBy('created_at', 'DESC')->get();
+    
+        }
+        return $this->model->with('category', 'productImages')->orderBy('created_at', 'DESC')->get();
+    
+    }
 }
