@@ -46,9 +46,13 @@
 span.d-name {
     float: left;
     margin-bottom: 8px;
-    margin-top: 8px;
-    width: 240px;
+    margin-top: 20px;
+    width: 500px;
     padding-left: 20px;
+}
+
+span .p-name{
+    font-weight: 700;
 }
 
 .d-price {
@@ -75,7 +79,7 @@ span.d-name {
     margin-right: 10px;
 }
 
-.item-drive .drive-checked .contain-item-drive .sum_price {
+ .sum_price {
     margin-top: 10px;
     font-size: 15px;
     font-weight: bold;
@@ -85,7 +89,7 @@ span.d-name {
     margin-left: 10px;
 }
 
-.item-drive .drive-checked .contain-item-drive .btn-action_seclect {
+ .show-popup_select {
     font-size: 20px;
     width: 30px;
     height: 35px;
@@ -95,8 +99,14 @@ span.d-name {
     color: #0f5b99;
 }
 
-.item-drive .drive-checked .contain-item-drive .btn-action_seclect.delete_select {
+.delete_select {
     color: #e51d24;
+    font-size: 20px;
+    width: 30px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    cursor: pointer;
 }
 
 .total-price {
@@ -171,6 +181,7 @@ span.d-name {
 }
 
 .span-last {
+    width: 100%;
     margin-bottom: 8px;
     margin-top: 8px;
     font-size: 14px;
@@ -204,4 +215,13 @@ span.d-name {
 
 #js-buildpc-action i {
     margin-left: 10px;
+}
+
+
+.check-build {
+    width: 417px;
+    margin-top: 30px;
+    margin-right: 23px;
+    text-align: center;
+    vertical-align: middle;
 }
