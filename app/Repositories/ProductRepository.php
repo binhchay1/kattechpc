@@ -13,7 +13,7 @@ class ProductRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->with('category', 'productImages')->orderBy('created_at', 'DESC')->paginate(10);
+        return $this->model->with('category', 'productImages', 'brands')->orderBy('created_at', 'DESC')->paginate(10);
     }
 
     public function getProductBySearch($search)

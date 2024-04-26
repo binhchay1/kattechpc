@@ -30,29 +30,60 @@
                     <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                 </div>
             </div>
+            <div class="product-related" style="margin-top: 40px; width: 97%">
+                <h3> {{ __('Thông số sản phẩm') }}</h3>
+                <table>
+                    <tr>
+                        <th col="300"></th>
+                        <th></th>
+                    </tr>
+                    @if(isset($dataProduct->detail))
+                        @if(is_array($dataProduct->detail))
+                            @foreach($dataProduct->detail as $key => $value)
+                                <tr>
+                                    <td>{{ $key }}</td>
+                                    <td>{{ $value }}</td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    @endif
+                </table>
+            </div>
         </div>
 
-        <div class="product-info">
+        <div class="product-info" style="padding: 0">
             <h3>{{ $dataProduct->name }}</h3>
             <div class="d-flex price-product">
                 @if($dataProduct->new_price != null)
-                <h5>{{ number_format($dataProduct->new_price )}}đ </h5>
-                <del class="old-price">{{ number_format($dataProduct->price) }} đ</del>
-                <div class="save-price-detail">{{__('Tiết kiệm:')}} {{ number_format($dataProduct->price - $dataProduct->new_price )}}đ</div>
+                <h5>{{ ($dataProduct->new_price )}}đ </h5>
+                <del class="old-price">{{ ($dataProduct->price) }} đ</del>
+{{--                <div class="save-price-detail">{{__('Tiết kiệm:')}} {{ ((int)$dataProduct->price - (int)$dataProduct->new_price )}}đ</div>--}}
                 @else
-                <h5>{{ __('Giá ') }}: {{ number_format($dataProduct->price) }} đ</h5>
+                <h5>{{ __('Giá ') }}: {{ ($dataProduct->price) }} đ</h5>
                 @endif
             </div>
             <div>
                 <p>{{ __('Bảo hành') }}: <span style="font-weight: bold; color: blue">{{ $dataProduct->status_guarantee }}</span></p>
                 @if($dataProduct->status == 'available')
-                <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: green">{{ __('Còn hàng') }}</span></p>
+                    <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: green">{{ __('Còn hàng') }}</span></p>
                 @elseif($dataProduct->status == 'out of stock')
-                <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: red">{{ __('Hết hàng') }}</span></p>
+                    <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: red">{{ __('Hết hàng') }}</span></p>
                 @else
-                <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: blue">{{ __('Đang về hàng') }}</span></p>
+                    <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: blue">{{ __('Đang về hàng') }}</span></p>
                 @endif
                 <p></p>
+            </div>
+            <div class="box-offer-detail border-radius-10">
+                <div class="title-offer-detail d-flex align-items-center">
+                    <i class="sprite sprite-gift-detail"></i>
+                    <p class="font-weight-600 " id="product-gift">Khuyến mãi</p>
+                </div>
+                <div class="list-info-offter">
+                    <div class="item-offer">
+                        {!!$dataProduct->sale_detail!!}
+                    </div>
+
+                </div>
             </div>
             <div class="product-buy-quantity d-flex align-items-center">
                 <span class="title-quantity">{{ __('Số lượng') }}:</span>
@@ -94,27 +125,8 @@
         </div>
     </section>
 
-    <div class="product-related" style="width: 35% !important;">
-        <h3> {{ __('Thông số sản phẩm') }}</h3>
-        <table>
-            <tr>
-                <th col="300"></th>
-                <th></th>
-            </tr>
-            @if(isset($dataProduct->detail))
-            @if(is_array($dataProduct->detail))
-            @foreach($dataProduct->detail as $key => $value)
-            <tr>
-                <td>{{ $key }}</td>
-                <td>{{ $value }}</td>
-            </tr>
-            @endforeach
-            @endif
-            @endif
-        </table>
-    </div>
 
-    <div style="width: 40%;">
+    <div >
         <h3 class="productRelated">{{ __('Sản phẩm liên quan') }}</h3>
         <div class="swiper d-flex">
             <div class="swiper-wrapper swiper-top-sale">
@@ -123,42 +135,27 @@
                     <div class="product-item">
                         <a href="" class="product-image position-relative">
                             @if(isset($product->image))
-                            <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy product-image">
+                            <img src="{{ asset($dataProduct->image[0]) }}" width="210" height="164" class="lazy product-image">
                             @endif
                         </a>
                         <div>
                             <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
-
+                            @if($product->new_price != null)
                             <div class="product-martket-main d-flex align-items-center">
-                                @if($product->new_price != null)
                                 <del class="product-market-price">{{ $product->price }} ₫</del>
                                 <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                                <div class="product-percent-price">-{{ $new_price }} %</div>
-                                @endif
 
+                                 <div class="product-percent-price">-{{ $new_price }} %</div>
                             </div>
-                            @if($product->new_price != null)
-                            <del class="product-market-price">{{ number_format($product->price) }} ₫</del>
-                            <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                            <div class="product-percent-price">-{{ number_format($new_price) }} %</div>
-                            <div class="product-price-main font-weight-600">
-                                {{ $product->new_price }} đ
-                            </div>
+                                <div class="product-price-main font-weight-600">
+                                    {{ $product->new_price }} đ
+                                </div>
                             @else
-                            <div class="product-price-main font-weight-600">
-                                {{ $product->price }} đ
-                            </div>
+                                <div class="product-price-main font-weight-600">
+                                    {{ $product->price }} đ
+                                </div>
                             @endif
-                        </div>
-                        @if($product->new_price != null)
-                        <div class="product-price-main font-weight-600">
-                            {{ number_format($product->new_price) }} đ
-                        </div>
-                        @else
-                        <div class="product-price-main font-weight-600">
-                            {{ number_format($product->price) }} đ
-                        </div>
-                        @endif
+
                     </div>
                 </div>
                 @endforeach
@@ -191,7 +188,7 @@
             </a>
         </div>
 
-        <div class="product-related">
+        <div class="product-related" >
             <h3> {{ __('Thông số kĩ thuật') }}</h3>
             <table>
                 <tr>

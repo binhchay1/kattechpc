@@ -13,6 +13,7 @@ use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Cache;
+use function League\Flysystem\type;
 
 class ProductController extends Controller
 {
@@ -39,6 +40,7 @@ class ProductController extends Controller
 
         foreach ($listProducts as $product) {
             $product->detail = json_decode($product->detail, true);
+            $product->detail_tech  = json_decode($product->detail_tech , true);
             $product->image = json_decode($product->image, true);
         }
 
@@ -125,7 +127,7 @@ class ProductController extends Controller
 
         $this->productRepository->store($input);
         Cache::store('redis')->forget('menu_homepage');
-
+    
         return redirect()->route('admin.product.index')->with('success',  __('Sản phẩm được thêm thành công'));
     }
 
@@ -138,7 +140,6 @@ class ProductController extends Controller
         $product->detail = json_decode($product->detail, true);
         $product->detail_tech = json_decode($product->detail_tech, true);
         $product->image = json_decode($product->image, true);
-
         if (empty($product)) {
             abort(404);
         }
