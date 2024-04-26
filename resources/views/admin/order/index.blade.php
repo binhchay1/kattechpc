@@ -66,7 +66,7 @@
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->quantity}}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ number_format($order->price)}} đ
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ ($order->price)}} đ
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->order->address }}
                                 </td>
