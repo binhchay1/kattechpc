@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Category;
 use App\Models\Product;
 
 class ProductRepository extends BaseRepository
@@ -63,7 +64,8 @@ class ProductRepository extends BaseRepository
 
     public function listProduct($getProductByKey)
     {
-        return $this->model->with('category', 'productImages')->orderBy('created_at', 'DESC')->get();
-
+        return $this->model->with('category', 'productImages')->whereHas('category', function (Category $category) use ($getProductByKey) {
+            $category->whereIn('name', 'like', $getProductByKey);
+        })->orderBy('created_at', 'DESC')->get();
     }
 }
