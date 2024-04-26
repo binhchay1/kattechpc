@@ -200,15 +200,41 @@
                 $dataProduct->detail_tech = json_decode($dataProduct->detail_tech, true);
                 @endphp
                 @if(is_array($dataProduct->detail_tech))
-                @foreach($dataProduct->detail_tech as $key => $value)
+                @foreach(array_slice($dataProduct->detail_tech, 0, 4) as $key => $value)
                 <tr>
-                    <td style="font-weight: 600">{{ $key }}</td>
+                    <td style="font-weight: 600; width: 20%;">{{ $key }}</td>
                     <td>{{ $value }}</td>
                 </tr>
                 @endforeach
                 @endif
                 @endif
             </table>
+            <a href="javascript:"  id="read-all-product-detail" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
+                {{ __('Xem tất cả') }}
+            </a>
+            <div id="myModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <table>
+                        <tr>
+                            <th col="300"></th>
+                            <th></th>
+                        </tr>
+                        @if(isset($dataProduct->detail_tech))
+                            @if(is_array($dataProduct->detail_tech))
+                                @foreach($dataProduct->detail_tech as $key => $value)
+                                    <tr>
+                                        <td style="font-weight: 600">{{ $key }}</td>
+                                        <td>{{ $value }}</td>
+                                    </tr>
+                                @endforeach
+                            @endif
+                        @endif
+                    </table>
+                </div>
+
+            </div>
         </div>
     </section>
 
@@ -243,6 +269,18 @@
 
 @section('js')
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#myModal').hide();
+        $('#read-all-product-detail').on('click', function() {
+            $('#myModal').show();
+        });
+        $('.close').click(function() {
+            $('#myModal').hide();
+        });
+
+    });
+</script>
 <script>
     function getImageCenter(image) {
         let src = image.src;
