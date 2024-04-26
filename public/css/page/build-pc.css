@@ -20,16 +20,33 @@
     background-color: rgb(101 106 27);
 }
 
-.build-pc .build-pc_content .list-drive .item-drive .drive-checked .contain-item-drive .d-img img {
+.build-pc
+    .build-pc_content
+    .list-drive
+    .item-drive
+    .drive-checked
+    .contain-item-drive
+    .d-img
+    img {
     max-width: 100%;
     max-height: 90px;
 }
 
-.build-pc .build-pc_content .list-drive .item-drive:nth-of-type(odd) .drive-checked .contain-item-drive {
+.build-pc
+    .build-pc_content
+    .list-drive
+    .item-drive:nth-of-type(odd)
+    .drive-checked
+    .contain-item-drive {
     background-color: #f9f9f9;
 }
 
-.build-pc .build-pc_content .list-drive .item-drive .drive-checked .contain-item-drive {
+.build-pc
+    .build-pc_content
+    .list-drive
+    .item-drive
+    .drive-checked
+    .contain-item-drive {
     margin-top: -50px;
     padding: 10px;
     background-color: #ffffff;
@@ -51,7 +68,7 @@ span.d-name {
     padding-left: 20px;
 }
 
-span .p-name{
+span .p-name {
     font-weight: 700;
 }
 
@@ -79,7 +96,7 @@ span .p-name{
     margin-right: 10px;
 }
 
- .sum_price {
+.sum_price {
     margin-top: 10px;
     font-size: 15px;
     font-weight: bold;
@@ -89,7 +106,7 @@ span .p-name{
     margin-left: 10px;
 }
 
- .show-popup_select {
+.show-popup_select {
     font-size: 20px;
     width: 30px;
     height: 35px;
@@ -217,7 +234,6 @@ span .p-name{
     margin-left: 10px;
 }
 
-
 .check-build {
     width: 417px;
     margin-top: 30px;
@@ -238,7 +254,7 @@ span .p-name{
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.popup-select{
+.popup-select {
     background-color: #fefefe;
     margin: auto;
     border: 1px solid #888;
@@ -263,12 +279,11 @@ span .p-name{
     margin: 0;
 }
 
-.popup-main_filter{
+.popup-main_filter {
     background: #eee;
     padding: 20px;
     height: 90vh;
     overflow-y: auto;
-
 }
 
 .popup-main_content {
@@ -292,7 +307,7 @@ span .p-name{
     color: #ec1b23;
     font-weight: bold;
     font-size: 18px;
-    font-family: 'Roboto';
+    font-family: "Roboto";
     font-style: normal;
     margin-top: 5px;
 }
@@ -302,9 +317,9 @@ span .p-name{
 }
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-body{
+body {
     background: #f2f2f2;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 .search {
@@ -318,18 +333,17 @@ body{
     border: 3px solid white;
     border-right: none;
     padding: 5px;
-    height: 37px;
+    height: 36px;
     border-radius: 5px 0 0 5px;
     outline: none;
-    color: #9DBFAF;
+    color: #9dbfaf;
 }
 
-.searchTerm:focus{
-    color: #00B4CC;
+.searchTerm:focus {
+    color: #00b4cc;
 }
 
 .searchButton {
-
     width: 50px;
     height: 36px;
     border: 1px solid #ebf1f1;
@@ -341,7 +355,7 @@ body{
     font-size: 20px;
 }
 
-.wrap{
+.wrap {
     width: 80%;
     position: absolute;
     top: 50%;
@@ -351,4 +365,84 @@ body{
 
 .btn-1:hover {
     text-decoration: none;
+}
+
+#js-modal-popup {
+    .col-lg-4 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+    }
+
+    h4 {
+        margin-bottom: 0.5rem;
+        font-family: inherit;
+        font-weight: 500;
+        line-height: 1.2;
+        color: inherit;
+        font-size: 1.5rem;
+        margin-top: 0;
+    }
+
+    *,
+    ::after,
+    ::before {
+        box-sizing: border-box;
+    }
+
+    h5 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+        font-family: inherit;
+        font-weight: 500;
+        line-height: 1.2;
+        color: inherit;
+        margin-top: 0;
+    }
+
+    .col-lg-6 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .row {
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    }
+
+    .col-lg-8 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 66.666667%;
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%;
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .col-lg-3 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 25%;
+        flex: 0 0 25%;
+        max-width: 25%;
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
 }

@@ -8,6 +8,7 @@ use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Repositories\CategoryRepository;
 use Illuminate\Support\Str;
+use Cache;
 
 class CategoryProductController extends Controller
 {
@@ -43,11 +44,12 @@ class CategoryProductController extends Controller
         if (isset($input['image'])) {
 
             // $this->utility->saveImageCategory($input);
-            $file->move(public_path('images/upload/category-product/'), $file->getClientOriginalName());
+            $input['image']->move(public_path('images/upload/category-product/'), $input['image']->getClientOriginalName());
             $path = '/images/upload/category-product/' . $input['image']->getClientOriginalName();
             $input['image'] = $path;
         }
         $this->categoryRepository->create($input);
+        Cache::store('redis')->forget('menu_homepage');
 
         return redirect()->route('admin.categoryProduct.index')->with('success',  __('Danh mục sản phẩm được thêm thành công'));
     }
@@ -75,7 +77,7 @@ class CategoryProductController extends Controller
             $input['image'] = $path;
         }
         $input = $this->categoryRepository->update($input, $id);
-
+        Cache::store('redis')->forget('menu_homepage');
 
         return redirect()->route('admin.categoryProduct.index')->with('success',  __('Danh mục sản phẩm được thay đổi thành công'));
     }
@@ -83,6 +85,7 @@ class CategoryProductController extends Controller
     public function deleteCategory($id)
     {
         $this->categoryRepository->destroy($id);
+        Cache::store('redis')->forget('menu_homepage');
 
         return back()->with('success', __('Danh mục sản phẩm  được xóa đổi thành công'));
     }

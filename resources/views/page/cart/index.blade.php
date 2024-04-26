@@ -177,7 +177,7 @@
                                         <h1><strong><span class="item-quantity"></span> {{$product->name}}</strong></h1>
                                     </div>
                                 </div>
-                                <div class="price get-total ">{{ number_format($product->price) }} đ</div>
+                                <div class="price get-total ">{{ ($product->price) }} đ</div>
                                 <div class="quantity">
                                     <input type="number" value="{{$product->quantity}}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{$product->id}}')">
                                 </div>
@@ -185,7 +185,7 @@
                                 <?php
                                 $total = $product['quantity'] * $product['price'];
                                 ?>
-                                <div class="subtotal get-total" id="total_cart">{{number_format($total) }} đ
+                                <div class="subtotal get-total" id="total_cart">{{($total) }} đ
                                     <input hidden name="total_cart" value="{{$total}}">
                                     <div class=" delete">
                                         <a href="">
@@ -212,13 +212,13 @@
                             </div>
                             <div class="summary">
                                 <div class=" input-address summary-total-items total-title">{{__('Tổng cộng:')}} </div>
-                                <div class="total-value final-value get-total" id="basket-total">{{number_format($totalCart)}}đ</div>
+                                <div class="total-value final-value get-total" id="basket-total">{{($totalCart)}}đ</div>
                             </div>
                             <div class=" input-address total-value final-value summary-total " id="basket-total">{{__('Giảm giá:')}}
                                 @if(Session::get('discount'))
                                     <?php $getDiscount = Session::get('discount')->discount_amount ?>
 
-                                    {{number_format($getDiscount)}}đ
+                                    {{($getDiscount)}}đ
                                 @endif
                             </div>
                             @if(Session::get('discount'))
@@ -226,14 +226,14 @@
                                 <div class="summary-total">
                                     <div class="input-address total-title">{{__('Thành tiền')}}</div>
                                     <?php $money = $totalCart - $getDiscount?>
-                                    <div class="total-value final-value get-total" id="basket-total">{{number_format($money)}}đ
+                                    <div class="total-value final-value get-total" id="basket-total">{{($money)}}đ
                                         <input hidden name="" value="{{$money}}">
                                     </div>
                                 </div>
                             @else
                                 <div class="summary-total">
                                     <div class="input-address total-title">{{__('Thành tiền')}}</div>
-                                    <div class="total-value final-value get-total" id="basket-total">{{number_format($totalCart)}}đ
+                                    <div class="total-value final-value get-total" id="basket-total">{{($totalCart)}}đ
                                         <input hidden name="" value="{{$totalCart}}">
                                     </div>
                                 </div>

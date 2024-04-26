@@ -32,20 +32,12 @@ class BuildPCController extends Controller
         $this->categoryRepository = $categoryRepository;
     }
 
-    /**
-     * Display a listing of the resource.
-     */
-
-
     public function buildPC(Request $request) {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         $getProductByKey = $request->get('key');
 
-        $totalBuild = Cart::getTotal();
-        $dataBuild = Cart::getContent();
-
-        return view('page.build-pc.build-pc', compact('listCategory', 'totalBuild', 'dataBuild'));
+        return view('page.build-pc.build-pc', compact('listCategory'));
     }
 
     public function getProduct(Request $request) {

@@ -13,7 +13,6 @@
 }
 .set-background {
     border-radius: 5px;
-    padding: 15px;
 }
 
 .img-card {
@@ -55,7 +54,7 @@
     padding: 15px;
     width: 60%;
     float: right;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 15px;
 }
 
@@ -78,8 +77,7 @@
 .product-related{
     padding: 15px;
     flex-wrap: wrap;
-    float: right;
-    width: 40%;
+    width: 50%;
     border-radius: 5px;
 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -586,4 +584,36 @@ tr:nth-child(even) {
 
 .js-quantity-change {
     cursor: pointer;
+}
+
+.box-offer-detail {
+    background: url(https://nguyencongpc.vn/static/assets/nguyencong_2023/images/background_offer_detail.png) no-repeat;
+    background-size: 100% 100%;
+    min-height: 200px;
+    padding: 4px;
+    margin-bottom: 16px;
+}
+
+#product-gift {
+    margin-left: 8px;
+    font-size: 17px;
+    line-height: 22px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.list-info-offter {
+    background-color: #fff;
+    border-radius: 0 0 10px 10px;
+    padding: 12px 6px;
+    min-height: 158px;
+    font-size: 13px;
+    line-height: 24px;
+}
+
+.item-offer {
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #464646;
 }

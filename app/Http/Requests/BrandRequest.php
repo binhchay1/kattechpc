@@ -23,7 +23,7 @@ class BrandRequest extends FormRequest
     {
         return [
             'name' =>'required|max:191',
-            'image.*' =>'required|mimes:jpeg,png,jpg|max:2048'
+            'image' =>'required|mimes:jpeg,png,jpg|max:2048'
         ];
     }
 
@@ -32,9 +32,9 @@ class BrandRequest extends FormRequest
         return [
             'name.required' => __('Tên sản phẩm không được để trống'),
             'name.max' => __('Tên sản phẩm không vượt quá 191 kí tự'),
-            'image.*.required' => __('Hình ảnh sản phẩm không được để trống'),
-            'image.*.mine' => __('Hình ảnh sản phẩm không đúng định dạng: jpeg,png,jpg '),
-            'image.*.max' => __('Hình ảnh sản phẩm không vượt quá 2048'),
+            'image.required' => __('Hình ảnh sản phẩm không được để trống'),
+            'image.mine' => __('Hình ảnh sản phẩm không đúng định dạng: jpeg,png,jpg '),
+            'image.max' => __('Hình ảnh sản phẩm không vượt quá 2048'),
         ];
     }
 }

@@ -18,6 +18,11 @@ class CategoryRepository extends BaseRepository
         return $this->model->orderBy('created_at', 'DESC')->paginate(10);
     }
 
+    public function indexOnlyChild()
+    {
+        return $this->model->where('parent', '!=', '0')->orderBy('created_at', 'DESC')->paginate(10);
+    }
+
     public function store($input)
     {
         return $this->model->create($input);
