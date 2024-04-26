@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Page;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\OrderRequest;
 use App\Models\Coupon;
 use App\Models\OrderDetail;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\OrderRequest;
 use App\Repositories\CategoryRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
+use App\Enums\Category;
 use Session;
-use Illuminate\Http\Request;
 use Cart;
-use function Livewire\Features\SupportTesting\commit;
 use Cache;
+
 class BuildPCController extends Controller
 {
 
@@ -25,14 +26,14 @@ class BuildPCController extends Controller
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository,
         OrderRepository $orderRepository
-    )
-    {
+    ) {
         $this->productRepository = $productRepository;
         $this->orderRepository = $orderRepository;
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function buildPC(Request $request) {
+    public function buildPC(Request $request)
+    {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         $getProductByKey = $request->get('key');
@@ -40,7 +41,8 @@ class BuildPCController extends Controller
         return view('page.build-pc.build-pc', compact('listCategory'));
     }
 
-    public function getProduct(Request $request) {
+    public function getProduct(Request $request)
+    {
         $getProductByKey = $request->get('key');
         $products = $this->productRepository->listProduct($getProductByKey);
 
@@ -65,7 +67,7 @@ class BuildPCController extends Controller
         $id = $request->id;
         $quantity = $request->quantity;
 
-        Cart::update($id,[
+        Cart::update($id, [
             'quantity' => array(
                 'relative' => false,
                 'value' => $quantity
@@ -76,7 +78,7 @@ class BuildPCController extends Controller
 
     public function deleteBuildPC($id)
     {
-        if($id){
+        if ($id) {
             Cart::remove($id);
         }
         return redirect()->back();
@@ -88,7 +90,7 @@ class BuildPCController extends Controller
         try {
             $input = $request->all();
             $order = $this->orderRepository->create($input);
-            if (count($cartInfor) >0) {
+            if (count($cartInfor) > 0) {
                 foreach ($cartInfor as $key => $item) {
 
                     $orderDetail = new OrderDetail();
@@ -100,7 +102,6 @@ class BuildPCController extends Controller
                 }
                 Cart::clear();
             }
-
         } catch (Exception $e) {
             echo $e->getMessage();
         }
@@ -133,11 +134,10 @@ class BuildPCController extends Controller
     public function addCoupon(Request $request)
     {
         $coupon = Coupon::where('code', $request->discount_amount)->first();
-        if(!$coupon) {
-            return response()->json(['errors'=>'   Không tìm thấy mã giảm giá, làm ơn nhập lại!.']);
+        if (!$coupon) {
+            return response()->json(['errors' => '   Không tìm thấy mã giảm giá, làm ơn nhập lại!.']);
         }
         Session::put('discount', $coupon);
-        return response()->json(['success'=>'Mã giảm giá được thêm thành công']);
+        return response()->json(['success' => 'Mã giảm giá được thêm thành công']);
     }
-
 }
