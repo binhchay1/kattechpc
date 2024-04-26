@@ -43,15 +43,9 @@ class BuildPCController extends Controller
 
     public function getProduct(Request $request)
     {
-        $listCategoryKeyWord = Category::KEY_WORD;
         $getProductByKey = $request->get('key');
         if (!isset($getProductByKey)) {
             abort(404);
-        }
-
-        $listSearch = $listCategoryKeyWord[$getProductByKey];
-        foreach ($listSearch as $search) {
-            $getListCategory = $this->categoryRepository->getListCategoryForBuild($search);
         }
 
         // $products = $this->productRepository->listProduct($listSearch);
