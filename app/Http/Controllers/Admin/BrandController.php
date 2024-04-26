@@ -63,7 +63,7 @@ class BrandController extends Controller
         $input = $request->except(['_token']);
         if (isset($input['image'])) {
             $input['image']->move(public_path('images/upload/brand/'), $input['image']->getClientOriginalName());
-            $path = '/images/upload/brand/' . $input['thumbnail']->getClientOriginalName();
+            $path = '/images/upload/brand/' . $input['image']->getClientOriginalName();
             $input['image'] = $path;
         }
         $input = $this->brandRepository->update($input, $id);

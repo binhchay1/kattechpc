@@ -178,10 +178,6 @@
                                 </div>
 
                                 <ul class="space-y-5 rounded-md" id="area-detail"></ul>
-
-                                @if($errors->has('detail'))
-                                <span class="text-danger">{{ $errors->first('detail') }}</span>
-                                @endif
                             </div>
                         </div>
 
@@ -193,10 +189,6 @@
                                 </div>
 
                                 <ul class="space-y-5 rounded-md mt-3" id="area-detail-tech"></ul>
-
-                                @if($errors->has('detail_tech'))
-                                <span class="text-danger">{{ $errors->first('detail_tech') }}</span>
-                                @endif
                             </div>
                         </div>
                     </div>

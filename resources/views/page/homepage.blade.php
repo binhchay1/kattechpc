@@ -117,7 +117,7 @@
                             <div class="product-martket-main d-flex align-items-center">
                                 <p class="product-market-price">{{ $product->price }} ₫</p>
                                 <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                                <div class="product-percent-price">-{{ number_format($new_price) }} %</div>
+                                <div class="product-percent-price">-{{ ($new_price) }} %</div>
                             </div>
 
                             @if(isset($product->new_price))
@@ -176,7 +176,7 @@
                             <div class="product-martket-main d-flex align-items-center">
                                 <p class="product-market-price">{{ $product->price }} ₫</p>
                                 <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                                <div class="product-percent-price">-{{ number_format($new_price) }} %</div>
+                                <div class="product-percent-price">-{{ ($new_price) }} %</div>
                             </div>
                             <div class="product-price-main font-weight-600">
                                 {{ $product->new_price }} đ
@@ -251,17 +251,23 @@
                             <a href="{{ route('productDetail', $product['slug']) }}">
                                 <h3 class="product-title line-clamp-3">{{ $product->name }}</h3>
                             </a>
+                            @if($product->new_price != null)
                             <div class="product-martket-main d-flex align-items-center">
                                 <p class="product-market-price">{{ $product->price }} ₫</p>
                                 <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                                <div class="product-percent-price">- {{ number_format($new_price) }} %</div>
+                                <div class="product-percent-price">- {{ $new_price }} %</div>
                             </div>
 
                             <div class="product-price-main font-weight-600">
                                 {{ $product->new_price }} đ
                             </div>
+                            @else
+                            <div class="product-price-main font-weight-600">
+                                {{ $product->price }} đ
+                            </div>
+                            @endif
                             <div class="product-offer line-clamp-2">
-                                <p>{{ $product->short_description }}</p>
+                                <p>{!! Str::limit($product->sale_detail, 100, ' ...') ?? ""!!}</p>
                             </div>
                         </div>
                     </div>
