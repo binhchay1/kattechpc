@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enums\Product;
 use App\Models\Category;
 
 class CategoryRepository extends BaseRepository
@@ -54,17 +55,16 @@ class CategoryRepository extends BaseRepository
 
     public function productByCategory($slug, $filter = [])
     {
+        $rangePrice = Product::RANGE_PRICE;
         $query = $this->model->with('children', 'products', 'children.products.productImages', 'products.brands', 'children.products.brands')->where('slug', $slug);
 
         if (isset($filter['price'])) {
-            if ($filter['price'] == 'duoi-10trieu') {
-                $query->whereRelation(
-                    'products',
-                    function ($query) {
-                        $query->whereBetween('products.price', [0, 10000000]);
-                    }
-                );
-            }
+            $query->whereRelation(
+                'products',
+                function ($query) {
+                    $query->whereBetween('products.price', $rangePrice[$filter['price']]);
+                }
+            );
         }
 
         if (isset($filter['sort'])) {
@@ -75,7 +75,6 @@ class CategoryRepository extends BaseRepository
                         $query->orderBy('created_at', 'desc');
                     }
                 );
-
             }
 
             if ($filter['sort'] == 'price-asc') {
@@ -114,8 +113,10 @@ class CategoryRepository extends BaseRepository
         return $this->model->with('products')->where('slug', $slug)->first();
     }
 
-    public function getListCategoryForBuild($keyWord)
+    public function getListCategoryForBuild($listCategory)
     {
-        return $this->model->where('parent', '!=', 0)->whereIn('name', 'LIKE', '%' . $keyWord . '%')->get();
+        return $this->model
+            ->with('children', 'products', 'children.products.productImages', 'products.brands', 'children.products.brands')
+            ->where('parent', '!=', 0)->whereIn('name', $listCategory)->get();
     }
 }

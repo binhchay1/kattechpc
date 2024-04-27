@@ -11,6 +11,7 @@ use App\Repositories\CategoryRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
 use App\Enums\Category;
+use App\Repositories\BuildPcRepository;
 use Session;
 use Cart;
 use Cache;
@@ -20,15 +21,18 @@ class BuildPCController extends Controller
 
     private $productRepository;
     private $orderRepository;
+    private $buildPcRepository;
     private $categoryRepository;
 
     public function __construct(
         ProductRepository $productRepository,
-        CategoryRepository $categoryRepository,
-        OrderRepository $orderRepository
+        OrderRepository $orderRepository,
+        BuildPcRepository $buildPcRepository,
+        CategoryRepository $categoryRepository
     ) {
         $this->productRepository = $productRepository;
         $this->orderRepository = $orderRepository;
+        $this->buildPcRepository = $buildPcRepository;
         $this->categoryRepository = $categoryRepository;
     }
 
@@ -37,8 +41,9 @@ class BuildPCController extends Controller
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         $getProductByKey = $request->get('key');
+        $menu = $this->buildPcRepository->index();
 
-        return view('page.build-pc.build-pc', compact('listCategory'));
+        return view('page.build-pc.build-pc', compact('listCategory', 'menu'));
     }
 
     public function getProduct(Request $request)
@@ -48,8 +53,12 @@ class BuildPCController extends Controller
             abort(404);
         }
 
-        // $products = $this->productRepository->listProduct($listSearch);
+        $explode = explode('-', $getProductByKey);
+        $buildId = $explode[2];
+
+        $getListCategory = $this->buildPcRepository->getListCategory($buildId);
         dd($getListCategory);
+        $products = $this->categoryRepository->getListCategoryForBuild($getListCategory);
 
         return $products;
     }
