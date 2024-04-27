@@ -44,9 +44,9 @@
                                     {{ $product->new_price }} đ
                                 </div>
                                 @else
-                                    <div class="product-price-main font-weight-600">
-                                        {{ $product->price }} đ
-                                    </div>
+                                <div class="product-price-main font-weight-600">
+                                    {{ $product->price }} đ
+                                </div>
                                 @endif
                             </div>
                         </div>
@@ -195,21 +195,40 @@
 @section('js')
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script>
+    var url = location.href;
+    var arrayParam = [];
+
+    if (url.indexOf('?') != -1) {
+        var ary = url.split('?')[1].split('&');
+        for (i = 0; i <= ary.length - 1; i++) {
+            var val = ary[i].split('=')[1];
+            var param = ary[i].split('=')[0];
+            arrayParam[param] = val;
+        }
+    }
+
     $(document).ready(function() {
         $('#select-price div').click(function(event) {
             event.preventDefault();
             let type = $(this).data('type');
             let id = $(this).data('id');
             let url = '';
-            let queryString = window.location.search;
-            let searchParam = new URLSearchParams(queryString);
 
             if (type == 'price') {
-                url = '?price=' + id;
-            } else {
-                url = '?sort=' + id;
+                arrayParam['price'] = id;
             }
-            console.log(searchParam.get('price'));
+
+            if (type == 'sort') {
+                arrayParam['sort'] = id;
+            }
+
+            for (k = 0; k < arrayParam.length; k++) {
+                if(i == 0) {
+                    url += arrayParam[k]
+                }
+                arrayParam[param] = val;
+            }
+
             // let url = '?price=' + $(this).data('id');
             // window.location.href = url;
         });

@@ -44,7 +44,12 @@ class BuildPCController extends Controller
     public function getProduct(Request $request)
     {
         $getProductByKey = $request->get('key');
-        $products = $this->productRepository->listProduct($getProductByKey);
+        if (!isset($getProductByKey)) {
+            abort(404);
+        }
+
+        // $products = $this->productRepository->listProduct($listSearch);
+        dd($getListCategory);
 
         return $products;
     }

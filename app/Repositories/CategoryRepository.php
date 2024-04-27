@@ -68,4 +68,9 @@ class CategoryRepository extends BaseRepository
     {
         return $this->model->with('products')->where('slug', $slug)->first();
     }
+
+    public function getListCategoryForBuild($keyWord)
+    {
+        return $this->model->where('parent', '!=', 0)->whereIn('name', 'LIKE', '%' . $keyWord . '%')->get();
+    }
 }
