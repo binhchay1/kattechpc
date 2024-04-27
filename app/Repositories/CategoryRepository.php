@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Category;
-use Illuminate\Support\Collection;
 
 class CategoryRepository extends BaseRepository
 
@@ -57,8 +56,54 @@ class CategoryRepository extends BaseRepository
     {
         $query = $this->model->with('children', 'products', 'children.products.productImages', 'products.brands', 'children.products.brands')->where('slug', $slug);
 
-        if (isset($filter['code'])) {
-            $query->where('payment.payment_code', 'like', '%' . $filter['code'] . '%');
+        if (isset($filter['price'])) {
+            if ($filter['price'] == 'duoi-10trieu') {
+                $query->whereRelation(
+                    'products',
+                    function ($query) {
+                        $query->whereBetween('products.price', [0, 10000000]);
+                    }
+                );
+            }
+        }
+
+        if (isset($filter['sort'])) {
+            if ($filter['sort'] == 'new') {
+                $query->whereRelation(
+                    'products',
+                    function ($query) {
+                        $query->orderBy('created_at', 'desc');
+                    }
+                );
+
+            }
+
+            if ($filter['sort'] == 'price-asc') {
+                $query->whereRelation(
+                    'products',
+                    function ($query) {
+                        $query->orderBy('products.price', 'asc');
+                    }
+                );
+            }
+
+            if ($filter['sort'] == 'price-desc') {
+                $query->whereRelation(
+                    'products',
+                    function ($query) {
+                        $query->orderBy('products.price', 'desc');
+                    }
+                );
+            }
+
+            if ($filter['sort'] == 'name') {
+                $query->whereRelation(
+                    'products',
+                    function ($query) {
+                        $query->orderBy('products.name', 'asc');
+                    }
+                );
+            }
         }
 
         return $query->first();

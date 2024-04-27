@@ -63,23 +63,6 @@ class HomeController extends Controller
         }
     }
 
-    public function viewSearch(Request $request)
-    {
-        $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
-        $listCategoryProduct = $listCategory['default'];
-        $search = $request->get('q');
-        $isList = false;
-        $listProducts = [];
-        if ($search) {
-            $listProducts = $this->productRepository->getProductBySearch($search);
-            if (count($listProducts) > 0) {
-                $isList = true;
-            }
-        }
-        return view('page.search', compact('listProducts', 'search', 'isList', 'listCategory'));
-    }
-
 
     public function viewPolicy()
     {
@@ -221,6 +204,23 @@ class HomeController extends Controller
         return view('page.homepage', compact('listCategory', 'listNews', 'listHotSale', 'layout', 'listSlide', 'listFlashSale', 'listPromotion', 'listCategoryProduct'));
     }
 
+    public function viewSearch(Request $request)
+    {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+        $listCategoryProduct = $listCategory['default'];
+        $search = $request->get('q');
+        $isList = false;
+        $listProducts = [];
+        if ($search) {
+            $listProducts = $this->productRepository->getProductBySearch($search);
+            if (count($listProducts) > 0) {
+                $isList = true;
+            }
+        }
+        return view('page.search', compact('listProducts', 'search', 'isList', 'listCategory'));
+    }
+
     public function viewPost()
     {
         $listPost = $this->postRepository->index();
@@ -280,6 +280,10 @@ class HomeController extends Controller
             $filters['price'] = $request->price;
         }
 
+        if (isset($request->sort)) {
+            $filters['sort'] = $request->sort;
+        }
+
         $dataCategory = $this->categoryRepository->productByCategory($slug, $filters);
         $dataBrand = [];
         $dataDetail = [];
@@ -318,5 +322,4 @@ class HomeController extends Controller
 
         return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'dataDetail'));
     }
-
 }
