@@ -224,6 +224,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::post('/update/{role}', [CategoryPostController::class, 'updateCategory'])->name('admin.categoryPost.update');
         Route::get('/delete/{id}', [CategoryPostController::class, 'deleteCategory'])->name('admin.categoryPost.delete');
     });
+    
+    Route::group(['prefix' => 'build-pc'], function () {
+        Route::get('/list', [\App\Http\Controllers\Admin\BuildPCController::class, 'index'])->name('admin.buildPC.index');
+        Route::get('/add', [\App\Http\Controllers\Admin\BuildPCController::class, 'create'])->name('admin.buildPC.create');
+        Route::post('/store', [\App\Http\Controllers\Admin\BuildPCController::class, 'store'])->name('admin.buildPC.store');
+        Route::get('/update/{id}', [\App\Http\Controllers\Admin\BuildPCController::class, 'edit'])->name('admin.buildPC.edit');
+        Route::post('/update/{id}', [\App\Http\Controllers\Admin\BuildPCController::class, 'update'])->name('admin.buildPC.update');
+        Route::get('/delete/{id}', [\App\Http\Controllers\Admin\BuildPCController::class, 'delete'])->name('admin.buildPC.delete');
+    });
 
     Route::get('products/{productId}/upload', [ProductImageController::class, 'index']);
     Route::post('products/{productId}/upload', [ProductImageController::class, 'store']);
