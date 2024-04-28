@@ -16,6 +16,11 @@ class BuildPcRepository extends BaseRepository
         return $this->model->orderBy('created_at', 'DESC')->paginate(10);
     }
 
+    public function show($id)
+    {
+        return $this->model->where('id', $id)->first();
+    }
+
     public function create($input)
     {
         return $this->model->create($input);
