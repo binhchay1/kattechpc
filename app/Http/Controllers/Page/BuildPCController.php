@@ -55,12 +55,21 @@ class BuildPCController extends Controller
 
         $explode = explode('-', $getProductByKey);
         $buildId = $explode[2];
+        $arrID = [];
 
         $getListCategory = $this->buildPcRepository->getListCategory($buildId);
-        dd($getListCategory);
-        $products = $this->categoryRepository->getListCategoryForBuild($getListCategory);
+        $decode = json_decode($getListCategory->category_id, true);
+        foreach ($decode as $category) {
+            $arrID[] = $category;
+        }
 
-        return $products;
+        $products = $this->productRepository->getListProductForBuild($arrID);
+        $data = [
+            'products' => $products,
+            'menu' => $getProductByKey
+        ];
+
+        return \response()->json($data);
     }
 
     public function addBuildPC(Request $request, $slug)

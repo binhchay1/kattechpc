@@ -112,11 +112,4 @@ class CategoryRepository extends BaseRepository
     {
         return $this->model->with('products')->where('slug', $slug)->first();
     }
-
-    public function getListCategoryForBuild($listCategory)
-    {
-        return $this->model
-            ->with('children', 'products', 'children.products.productImages', 'products.brands', 'children.products.brands')
-            ->where('parent', '!=', 0)->whereIn('name', $listCategory)->get();
-    }
 }

@@ -1,5 +1,5 @@
 <div id="js-modal-popup">
-    <div class="mask-popup active" onclick="closePopup()">
+    <div class="mask-popup active">
     </div>
     <div class="popup-select active">
         <div class="row header" id="form-header">
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="col-lg-2" style="text-align: right; color: white; font-size: 35px">
-                <span class="close-popup" onclick="closePopup()"><i class="fa fa-times"></i></span>
+                <span class="close-popup"><i class="fa fa-times"></i></span>
             </div>
         </div>
 
@@ -154,15 +154,9 @@
 
                     <div class="sort-block float_l">
                         <span>Sắp xếp: </span>
-                        <select onchange="objBuildPCVisual.showProductFilter(this.value)" id="js-sort-holder">
+                        <select onchange="productWithFilter(this.value)" id="js-sort-holder">
                             <option value="">Tùy chọn</option>
                             <option value="https://nguyencongpc.vn/ajax/get_json.php?action=pcbuilder&amp;action_type=get-product-category&amp;category_id=277&amp;sort=new">Mới nhất</option>
-                            <option value="https://nguyencongpc.vn/ajax/get_json.php?action=pcbuilder&amp;action_type=get-product-category&amp;category_id=277&amp;sort=price-asc">Giá tăng dần</option>
-                            <option value="https://nguyencongpc.vn/ajax/get_json.php?action=pcbuilder&amp;action_type=get-product-category&amp;category_id=277&amp;sort=price-desc">Giá giảm dần</option>
-                            <option value="https://nguyencongpc.vn/ajax/get_json.php?action=pcbuilder&amp;action_type=get-product-category&amp;category_id=277&amp;sort=view">Lượt xem</option>
-                            <option value="https://nguyencongpc.vn/ajax/get_json.php?action=pcbuilder&amp;action_type=get-product-category&amp;category_id=277&amp;sort=comment">Trao đổi</option>
-                            <option value="https://nguyencongpc.vn/ajax/get_json.php?action=pcbuilder&amp;action_type=get-product-category&amp;category_id=277&amp;sort=rating">Đánh giá</option>
-                            <option value="https://nguyencongpc.vn/ajax/get_json.php?action=pcbuilder&amp;action_type=get-product-category&amp;category_id=277&amp;sort=name">Tên A-&gt;Z</option>
                         </select>
                     </div>
 

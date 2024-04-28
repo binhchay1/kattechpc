@@ -69,7 +69,7 @@
                 url: url,
                 success: function(data) {
                     $(".list-product-select").empty();
-                    $.each(data, function(key, val) {
+                    $.each(data['product'], function(key, val) {
                         let name = val.name;
                         let code = val.code;
                         let new_price = val.new_price;
@@ -128,7 +128,7 @@
 
                         stringAppend += `</div><div class="col-lg-3" style="margin-top:10px ">
                              <a class="btn-1" href="` + urlAddToBuild + `">
-                                 <span id="buy-product" class="btn-buy js-select-product" data-id="17131">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
+                                 <span id="buy-product" class="btn-buy js-select-product" data-id="` + data['menu'] + `" onclick="addToMenu(this, ` + data['product'] + `)">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
                              </a>
                         </div>
                         </div>
@@ -170,5 +170,28 @@
             });
 
         }
+    }
+
+    function addToMenu(idMenu, product) {
+        let stringAppend = `<div class="drive-checked flex-1" style="margin-left:0;">
+                                <span class="show-popup_select span-last open-selection" id="js-category-info-277" data-info="{&quot;id&quot;:277,&quot;name&quot;:&quot;CPU - Bộ Vi Xử Lý&quot;}"><i class="fa fa-plus"></i> Chọn CPU - Bộ Vi Xử Lý</span>
+                                <div id="js-selected-item-277" data-id="277" class="js-item-row"><div class="contain-item-drive" data-category_id="277" data-product_id="26474" data-current_price="{{price_default}}" data-current_stock="20">
+                            <a target="_blank" href="/cpu-intel-core-i7-14700f-tray-lga1700-20-core28-thread-base-21ghz-turbo-54ghz-cache-33mb" class="d-img"><img src="/media/product/75-26474-cpuit14700__4_bf2f88a4-5cec-447d.png"></a>
+                            <span class="d-name">
+                                <a target="_blank" href="/cpu-intel-core-i7-14700f-tray-lga1700-20-core28-thread-base-21ghz-turbo-54ghz-cache-33mb"> CPU Intel Core i7 14700F Tray New (LGA1700, 20 Core/28 Thread, Base 2.1Ghz/ Turbo 5.4Ghz, Cache 33MB)  </a> <br>
+                                Bảo hành: 36 Tháng <br>
+                                Kho hàng: <span style="color: red">Còn hàng </span> | Mã SP: <span style="color: red">CPU000045T</span>
+                            </span>
+                            <span class="d-price">6.990.000</span>
+                            <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50"><i>=</i>
+                            <span class="sum_price">6.990.000</span>
+                            <span class="btn-action_seclect show-popup_select"><i class="fa fa-edit edit-item"></i></span>
+                            <span class="btn-action_seclect delete_select"><i class="fa fa-trash remove-item"></i></span>
+                            /div></div>
+                            </div>`;
+    }
+
+    function productWithFilter() {
+
     }
 </script>

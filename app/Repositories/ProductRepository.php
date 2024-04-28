@@ -68,4 +68,9 @@ class ProductRepository extends BaseRepository
             $category->whereIn('name', 'like', $getProductByKey);
         })->orderBy('created_at', 'DESC')->get();
     }
+
+    public function getListProductForBuild($arrID)
+    {
+        return $this->model->with('category', 'productImages')->whereIn('category_id', $arrID)->get();
+    }
 }

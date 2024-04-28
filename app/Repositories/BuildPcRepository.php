@@ -33,6 +33,6 @@ class BuildPcRepository extends BaseRepository
 
     public function getListCategory($id)
     {
-        return $this->model->select('category_id')->where('id', $id)->get();
+        return $this->model->select('category_id')->where('id', $id)->first();
     }
 }
