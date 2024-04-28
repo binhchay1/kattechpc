@@ -2,13 +2,13 @@
 
 namespace App\Repositories;
 
-use App\Models\BuildPC;
+use App\Models\CategoryFillter;
 
-class BuildPcRepository extends BaseRepository
+class CategoryFillterRepository extends BaseRepository
 {
     public function model()
     {
-        return BuildPC::class;
+        return CategoryFillter::class;
     }
 
     public function index()

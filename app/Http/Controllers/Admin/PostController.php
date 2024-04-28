@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\Utility;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\UpdatePostRequest;
@@ -15,18 +14,15 @@ use Illuminate\Support\Str;
 class PostController extends Controller
 {
     private $postRepository;
-    private $utility;
     private $categoryPostRepository;
 
     public function __construct(
         CategoryPostRepository $categoryPostRepository,
         PostRepository $postRepository,
-        Utility $utility
     )
     {
         $this->categoryPostRepository = $categoryPostRepository;
         $this->postRepository = $postRepository;
-        $this->utility = $utility;
     }
 
     public function index()
@@ -49,7 +45,6 @@ class PostController extends Controller
         $input['slug'] =  Str::slug($input['title']);
         $input['author'] = Auth::user()->id;
         if (isset($input['thumbnail'])) {
-            // $this->utility->saveImagePost($input);
             $input['thumbnail']->move(public_path('images/upload/post/'), $input['thumbnail']->getClientOriginalName());
             $path = '/images/upload/post/' . $input['thumbnail']->getClientOriginalName();
             $input['thumbnail'] = $path;
@@ -74,7 +69,6 @@ class PostController extends Controller
         $input = $request->except(['_token']);
         $input['slug'] =  Str::slug($input['title']);
         if (isset($input['thumbnail'])) {
-            // $this->utility->saveImagePost($input);
             $input['thumbnail']->move(public_path('images/upload/post/'), $input['thumbnail']->getClientOriginalName());
             $path = '/images/upload/post/' . $input['thumbnail']->getClientOriginalName();
             $input['thumbnail'] = $path;

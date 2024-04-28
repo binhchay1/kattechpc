@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryFillterController;
 use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\CouponController;
@@ -224,7 +225,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::post('/update/{role}', [CategoryPostController::class, 'updateCategory'])->name('admin.categoryPost.update');
         Route::get('/delete/{id}', [CategoryPostController::class, 'deleteCategory'])->name('admin.categoryPost.delete');
     });
-    
+
     Route::group(['prefix' => 'build-pc'], function () {
         Route::get('/list', [\App\Http\Controllers\Admin\BuildPCController::class, 'index'])->name('admin.buildPC.index');
         Route::get('/add', [\App\Http\Controllers\Admin\BuildPCController::class, 'create'])->name('admin.buildPC.create');
@@ -233,6 +234,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::post('/update/{id}', [\App\Http\Controllers\Admin\BuildPCController::class, 'update'])->name('admin.buildPC.update');
         Route::get('/delete/{id}', [\App\Http\Controllers\Admin\BuildPCController::class, 'delete'])->name('admin.buildPC.delete');
     });
+
+    Route::group(['prefix' => 'category-filter'], function () {
+        Route::get('/list', [CategoryFillterController::class, 'index'])->name('admin.category-filter.index');
+        Route::get('/add', [CategoryFillterController::class, 'create'])->name('admin.category-filter.create');
+        Route::post('/store', [CategoryFillterController::class, 'store'])->name('admin.category-filter.store');
+        Route::get('/update/{id}', [CategoryFillterController::class, 'edit'])->name('admin.category-filter.edit');
+        Route::post('/update/{id}', [CategoryFillterController::class, 'update'])->name('admin.category-filter.update');
+        Route::get('/delete/{id}', [CategoryFillterController::class, 'delete'])->name('admin.category-filter.delete');
+    });
+
 
     Route::get('products/{productId}/upload', [ProductImageController::class, 'index']);
     Route::post('products/{productId}/upload', [ProductImageController::class, 'store']);

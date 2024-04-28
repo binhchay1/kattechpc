@@ -212,7 +212,7 @@
             event.preventDefault();
             let type = $(this).data('type');
             let id = $(this).data('id');
-            let url = '';
+            let url = location.protocol + '//' + location.host + location.pathname;
 
             if (type == 'price') {
                 arrayParam['price'] = id;
@@ -222,21 +222,17 @@
                 arrayParam['sort'] = id;
             }
 
-            for (k = 0; k < arrayParam.length; k++) {
-                if(i == 0) {
-                    url += arrayParam[k]
+            for (var k in arrayParam) {
+                if (arrayParam.hasOwnProperty(k)) {
+                    if (k == Object.keys(arrayParam)[0]) {
+                        url += '?' + k + '=' + arrayParam[k];
+                    } else {
+                        url += '&' + k + '=' + arrayParam[k];
+                    }
                 }
-                arrayParam[param] = val;
             }
 
-            // let url = '?price=' + $(this).data('id');
-            // window.location.href = url;
-        });
-
-        $('#sort div').click(function(event) {
-            event.preventDefault();
-            let url = '?sort=' +
-                $(this).data('id');
+            window.location.href = url;
         });
     });
 </script>

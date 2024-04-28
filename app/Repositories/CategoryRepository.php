@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
+use App\Enums\Product;
 use App\Models\Category;
-use Illuminate\Support\Collection;
 
 class CategoryRepository extends BaseRepository
 
@@ -55,10 +55,54 @@ class CategoryRepository extends BaseRepository
 
     public function productByCategory($slug, $filter = [])
     {
+        $rangePrice = Product::RANGE_PRICE;
         $query = $this->model->with('children', 'products', 'children.products.productImages', 'products.brands', 'children.products.brands')->where('slug', $slug);
 
-        if (isset($filter['code'])) {
-            $query->where('payment.payment_code', 'like', '%' . $filter['code'] . '%');
+        if (isset($filter['price'])) {
+            $query->whereRelation(
+                'products',
+                function ($query) {
+                    $query->whereBetween('products.price', $rangePrice[$filter['price']]);
+                }
+            );
+        }
+
+        if (isset($filter['sort'])) {
+            if ($filter['sort'] == 'new') {
+                $query->whereRelation(
+                    'products',
+                    function ($query) {
+                        $query->orderBy('created_at', 'desc');
+                    }
+                );
+            }
+
+            if ($filter['sort'] == 'price-asc') {
+                $query->whereRelation(
+                    'products',
+                    function ($query) {
+                        $query->orderBy('products.price', 'asc');
+                    }
+                );
+            }
+
+            if ($filter['sort'] == 'price-desc') {
+                $query->whereRelation(
+                    'products',
+                    function ($query) {
+                        $query->orderBy('products.price', 'desc');
+                    }
+                );
+            }
+
+            if ($filter['sort'] == 'name') {
+                $query->whereRelation(
+                    'products',
+                    function ($query) {
+                        $query->orderBy('products.name', 'asc');
+                    }
+                );
+            }
         }
 
         return $query->first();
@@ -67,10 +111,5 @@ class CategoryRepository extends BaseRepository
     public function productSale($slug)
     {
         return $this->model->with('products')->where('slug', $slug)->first();
-    }
-
-    public function getListCategoryForBuild($keyWord)
-    {
-        return $this->model->where('parent', '!=', 0)->whereIn('name', 'LIKE', '%' . $keyWord . '%')->get();
     }
 }
