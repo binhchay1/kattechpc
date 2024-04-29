@@ -275,6 +275,11 @@ class HomeController extends Controller
         }
 
         $filters = [];
+        $input = $request->except(['price', 'sort']);
+
+        foreach ($input as $key => $value) {
+            $filters[$key] = $value;
+        }
 
         if (isset($request->price)) {
             $filters['price'] = $request->price;
@@ -286,7 +291,6 @@ class HomeController extends Controller
 
         $dataCategory = $this->categoryRepository->productByCategory($slug, $filters);
         $dataBrand = [];
-        $dataDetail = [];
         $dataCategories = [];
 
         if (isset($dataCategory->products)) {
@@ -294,19 +298,6 @@ class HomeController extends Controller
                 if (isset($product->brands->name)) {
                     if (!in_array($product->brands->name, $dataBrand)) {
                         $dataBrand[] = $product->brands->name;
-                    }
-                }
-
-                if (isset($product->detail)) {
-                    $decode = json_decode($product->detail, true);
-                    foreach ($decode as $key => $value) {
-                        if (!array_key_exists($key, $dataDetail)) {
-                            $dataDetail[$key][] = $value;
-                        } else {
-                            if (!in_array($value, $dataDetail[$key])) {
-                                $dataDetail[$key][] = $value;
-                            }
-                        }
                     }
                 }
             }
@@ -320,6 +311,6 @@ class HomeController extends Controller
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
 
-        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'dataDetail'));
+        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand'));
     }
 }

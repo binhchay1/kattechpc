@@ -81,7 +81,7 @@ class CategoryRepository extends BaseRepository
                 $query->whereRelation(
                     'products',
                     function ($query) {
-                        $query->orderBy('created_at', 'desc');
+                        $query->orderBy('products.created_at', 'desc');
                     }
                 );
             }
@@ -111,6 +111,12 @@ class CategoryRepository extends BaseRepository
                         $query->orderBy('products.name', 'asc');
                     }
                 );
+            }
+        }
+
+        foreach ($filter as $key => $value) {
+            if ($key == 'price' or $key == 'sort') {
+                continue;
             }
         }
 

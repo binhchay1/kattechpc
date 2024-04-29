@@ -5,7 +5,6 @@
 @endsection
 
 @section('css')
-
 <link rel="stylesheet" href="{{ asset('/css/page/build-pc.css') }}" />
 @endsection
 

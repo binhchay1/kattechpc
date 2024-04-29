@@ -112,9 +112,10 @@
                     </select>
                 </div>
 
-                @foreach($dataDetail as $detail => $arrValue)
+                @if(array_key_exists($dataCategory->name, $listCategory['keyword']))
+                @foreach($listCategory['keyword'][$dataCategory->name] as $keyword => $arrValue)
                 <div class="d-flex flex-direction-column">
-                    <label class="font-bold">{{ __($detail) }}</label>
+                    <label class="font-bold">{{ __($keyword) }}</label>
                     <select class="mt-1">
                         <option value="all">{{ __('Tất cả') }}</option>
                         @foreach($arrValue as $value)
@@ -123,6 +124,7 @@
                     </select>
                 </div>
                 @endforeach
+                @endif
             </div>
         </div>
     </div>
