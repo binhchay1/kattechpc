@@ -42,13 +42,13 @@
                 </div>
                 @endif
 
-                @if(array_key_exists($category->name, $listCategory['detail']))
-                @foreach($listCategory['detail'][$category->name] as $keyDetail => $valueDetail)
+                @if(array_key_exists($category->name, $listCategory['keyword']))
+                @foreach($listCategory['keyword'][$category->name] as $title => $listKeyword)
                 <div class="sub-cat-2">
-                    <p class="cat-2">{{ __('CHỌN THEO') }} {{ $keyDetail }}</p>
+                    <p class="cat-2">{{ __('CHỌN THEO') }} {{ $title }}</p>
                     <div class="sub-cat-2-link">
-                        @foreach($valueDetail as $detailProductKey)
-                        <a href="/laptop-intel-core-i3">{{ $detailProductKey }}</a>
+                        @foreach($listKeyword as $keyword)
+                        <a href="/laptop-intel-core-i3">{{ $keyword }}</a>
                         @endforeach
                     </div>
                 </div>

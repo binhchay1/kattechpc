@@ -127,9 +127,7 @@
                         }
 
                         stringAppend += `</div><div class="col-lg-3" style="margin-top:10px ">
-                             <a class="btn-1" href="` + urlAddToBuild + `">
-                                 <span id="buy-product" class="btn-buy js-select-product" data-id="` + data.menu + `" onclick="addToMenu(this, ` + val + `)">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                             </a>
+                        <span id="buy-product" class="btn-buy js-select-product" data-id="` + data.menu + `" onclick="addToMenu(this, ` + val + `)">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
                         </div>
                         </div>
                      <hr>`;
@@ -173,18 +171,24 @@
     }
 
     function addToMenu(idMenu, product) {
-        console.log(product);
+        let status = product.status;
+        if (status == 'available') {
+            textStatus = 'Còn hàng';
+        } else if (status == 'out of stock') {
+            textStatus = 'Hết hàng';
+        } else {
+            textStatus = 'Đang về hàng';
+        }
         let stringAppend = `<div class="contain-item-drive">
-                            <a target="_blank" href="/cpu-amd-ryzen-9-5900x" class="d-img"><img src="/media/product/75-17131-cpu-amd-ryzen-9-5900xcpu-amd-ryzen-9-5900xcpu-amd-ryzen-9-5900xcpu-amd-ryzen-9-5900x.jpg"></a>
+                            <a target="_blank" href="/product/` + product.slug + `" class="d-img"><img src="` + product.image + `"></a>
                             <span class="d-name">
-                                <a target="_blank" href="/cpu-amd-ryzen-9-5900x"> CPU AMD Ryzen 9 5900X (12 Nhân / 24 Luồng | 3.7GHz Boost 4.8GHz | 64MB Cache | PCIe 4.0)  </a> <br>
-
-                                Bảo hành: 36 Tháng <br>
-                                Kho hàng: <span style="color: red">Còn hàng </span> | Mã SP: <span style="color: red">SP002423B</span>
+                                <a target="_blank" href="/product/` + product.slug + `"> ` + product.name + `  </a> <br>
+                                Bảo hành: ` + product.status_guarantee + ` <br>
+                                Kho hàng: <span style="color: red">` + textStatus + `</span> | Mã SP: <span style="color: red">` + product.code + `</span>
                             </span>
-                            <span class="d-price">6.990.000</span>
+                            <span class="d-price">` + product.price + `</span>
                             <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50"><i>=</i>
-                            <span class="sum_price">6.990.000</span>
+                            <span class="sum_price">` + product.price + `</span>
                             <span class="btn-action_seclect show-popup_select"><i class="fa fa-edit edit-item"></i></span>
                             <span class="btn-action_seclect delete_select"><i class="fa fa-trash remove-item"></i></span>
                             </div>`;

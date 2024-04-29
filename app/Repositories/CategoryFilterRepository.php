@@ -2,13 +2,13 @@
 
 namespace App\Repositories;
 
-use App\Models\CategoryFillter;
+use App\Models\CategoryFilter;
 
-class CategoryFillterRepository extends BaseRepository
+class CategoryFilterRepository extends BaseRepository
 {
     public function model()
     {
-        return CategoryFillter::class;
+        return CategoryFilter::class;
     }
 
     public function index()

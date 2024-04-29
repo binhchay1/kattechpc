@@ -4,21 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\BrandRepository;
-use App\Enums\Utility;
 use App\Http\Requests\BrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
 
 class BrandController extends Controller
 {
     private $brandRepository;
-    private $utility;
 
     public function __construct(
         BrandRepository $brandRepository,
-        Utility $utility
     ) {
         $this->brandRepository = $brandRepository;
-        $this->utility = $utility;
     }
 
     public function index()
@@ -38,12 +34,12 @@ class BrandController extends Controller
         $input = $request->except(['_token']);
 
         if (isset($input['image'])) {
-            // $this->utility->saveImagePost($input);
             $input['image']->move(public_path('images/upload/brand/'), $input['image']->getClientOriginalName());
             $path = '/images/upload/brand/' . $input['image']->getClientOriginalName();
             $input['image'] = $path;
         }
         $this->brandRepository->create($input);
+        Cache::store('redis')->forget('menu_homepage');
 
         return redirect()->route('admin.brand.index')->with('success',  __('Thương hiệu được thêm thành công'));
     }
@@ -67,6 +63,7 @@ class BrandController extends Controller
             $input['image'] = $path;
         }
         $input = $this->brandRepository->update($input, $id);
+        Cache::store('redis')->forget('menu_homepage');
 
         return redirect()->route('admin.brand.index')->with('success',  __('Thương hiệu được thay đổi thành công'));
     }

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryFillterController;
+use App\Http\Controllers\Admin\CategoryFilterController;
 use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\CouponController;
@@ -236,12 +236,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'category-filter'], function () {
-        Route::get('/list', [CategoryFillterController::class, 'index'])->name('admin.category-filter.index');
-        Route::get('/add', [CategoryFillterController::class, 'create'])->name('admin.category-filter.create');
-        Route::post('/store', [CategoryFillterController::class, 'store'])->name('admin.category-filter.store');
-        Route::get('/update/{id}', [CategoryFillterController::class, 'edit'])->name('admin.category-filter.edit');
-        Route::post('/update/{id}', [CategoryFillterController::class, 'update'])->name('admin.category-filter.update');
-        Route::get('/delete/{id}', [CategoryFillterController::class, 'delete'])->name('admin.category-filter.delete');
+        Route::get('/list', [CategoryFilterController::class, 'index'])->name('admin.category-filter.index');
+        Route::get('/add', [CategoryFilterController::class, 'create'])->name('admin.category-filter.create');
+        Route::post('/store', [CategoryFilterController::class, 'store'])->name('admin.category-filter.store');
+        Route::get('/update/{id}', [CategoryFilterController::class, 'edit'])->name('admin.category-filter.edit');
+        Route::post('/update/{id}', [CategoryFilterController::class, 'update'])->name('admin.category-filter.update');
+        Route::get('/delete/{id}', [CategoryFilterController::class, 'delete'])->name('admin.category-filter.delete');
     });
 
 
