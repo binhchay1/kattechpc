@@ -461,3 +461,13 @@ body {
     display: flex;
     align-items: center;
 }
+
+.inline-search {
+    width: 92%;
+    height: 46px;
+}
+
+.input-search form {
+    margin: 0;
+    height: 46px;
+}
