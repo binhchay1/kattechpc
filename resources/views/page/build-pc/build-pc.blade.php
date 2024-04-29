@@ -42,8 +42,8 @@
                         @endif
                     </div>
                     <div class="drive-checked" style="margin-left:0;">
-                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $key + 1 }}"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
-                        <div id="category-js-selected-{{ $key + 1 }}" class="js-item-row"></div>
+                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $key + 1 }}-1"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
+                        <div id="category-js-selected-{{ $key + 1 }}-1" class="js-item-row"></div>
                     </div>
                 </div>
                 @endforeach
@@ -68,8 +68,8 @@
                         @endif
                     </div>
                     <div class="drive-checked" style="margin-left:0;">
-                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $key + 1 }}"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
-                        <div id="category-js-selected-{{ $key + 1 }}" class="js-item-row"></div>
+                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $key + 1 }}-2"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
+                        <div id="category-js-selected-{{ $key + 1 }}-2" class="js-item-row"></div>
                     </div>
                 </div>
                 @endforeach
@@ -78,8 +78,8 @@
         </div>
 
         <ul class="list-btn-action" id="js-buildpc-action">
-            <li><span data-action="create-image">{{ __('Tải ảnh cấu hình') }}<i class="fa fa-image"></i></span></li>
-            <li><span data-action="view">{{ __('Xem và in') }}<i class="fa fa-print"></i></span></li>
+            {{-- <li><span data-action="create-image">{{ __('Tải ảnh cấu hình') }}<i class="fa fa-image"></i></span></li>
+            <li><span data-action="view">{{ __('Xem và in') }}<i class="fa fa-print"></i></span></li>--}}
             <li><span data-action="add-cart">{{ __('Thêm vào giỏ hàng') }}<i class="fa fa-shopping-cart"></i></span></li>
         </ul>
     </div>
