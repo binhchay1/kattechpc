@@ -16,36 +16,66 @@
         <h2 style="font-size: 26px;line-height:30px;margin-bottom: 10px;font-weight:500; ">Chọn linh kiện xây dựng cấu hình - Tự build PC</h2>
 
         <ul class="list-btn-action">
-            <li class="active"><span onclick="showBuildId(1); changeTab(this);" style="padding:0 20px;">Cấu hình 1</span></li>
-            <li><span onclick="showBuildId(2); changeTab(this);" style="padding:0 20px;">Cấu hình 2</span></li>
+            <li id="build-pc-set-item-1" class="active"><span onclick="changeBuild(1);" style="padding:0 20px;">Cấu hình 1</span></li>
+            <li id="build-pc-set-item-2"><span onclick="changeBuild(2);" style="padding:0 20px;">Cấu hình 2</span></li>
         </ul>
 
         <ul class="list-btn-action">
             <li style="width:auto;"><span onclick="openPopupRebuild()" style="padding:0 20px;">Làm mới <i class="fa fa-undo"></i></span></li>
         </ul>
-        <div>
-            <p class="total-price">Chi phí dự tính:
-                <span class="js-config-summary"><span class="total-price-config"></span>
-                </span>
-            </p>
-            <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
-        </div>
 
-        <div class="list-drive" id="js-buildpc-layout" style="border: solid 1px #e1e1e1;">
-            @foreach($menu as $key => $value)
-            <div class="item-drive d-flex">
-                <div class="name-item-drive">
-                    <h3 class="d-name d-name-277" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">{{ $key + 1 }}. {{ $value->name }}</h3>
-                </div>
-                <div class="drive-checked" style="margin-left:0;">
-                    <span class="show-popup_select span-last open-selection" id="category-js-{{ $key + 1 }}"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
-                    <div id="category-js-selected-{{ $key + 1 }}" class="js-item-row"></div>
-                </div>
+        <div id="build-pc-content-area-1">
+            <div id="build-pc-content-price-1">
+                <p class="total-price">Chi phí dự tính:
+                    <span class="js-config-summary"><span class="total-price-config"></span>
+                    </span>
+                </p>
+                <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
             </div>
-            @endforeach
+            <div class="list-drive" id="build-pc-content-list-1" style="border: solid 1px #e1e1e1;">
+                @foreach($menu as $key => $value)
+                <div class="item-drive d-flex">
+                    <div class="name-item-drive">
+                        <h3 class="d-name d-name-277" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">{{ $key + 1 }}. {{ $value->name }}</h3>
+                        @if(isset($value->offers))
+                        <h5 style="color: red; font-style: italic; font-weight: bold">{{ $value->offers }}</h5>
+                        @endif
+                    </div>
+                    <div class="drive-checked" style="margin-left:0;">
+                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $key + 1 }}"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
+                        <div id="category-js-selected-{{ $key + 1 }}" class="js-item-row"></div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="js-config-summary"><span class="total-price-config"></span></span></p>
         </div>
 
-        <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="js-config-summary"><span class="total-price-config"></span></span></p>
+        <div id="build-pc-content-area-2" class="d-none">
+            <div id="build-pc-content-price-2">
+                <p class="total-price">Chi phí dự tính:
+                    <span class="js-config-summary"><span class="total-price-config"></span>
+                    </span>
+                </p>
+            </div>
+            <div class="list-drive" id="build-pc-content-list-1" style="border: solid 1px #e1e1e1;">
+                @foreach($menu as $key => $value)
+                <div class="item-drive d-flex">
+                    <div class="name-item-drive">
+                        <h3 class="d-name d-name-277" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">{{ $key + 1 }}. {{ $value->name }}</h3>
+                        @if(isset($value->offers))
+                        <h5 style="color: red; font-style: italic; font-weight: bold">{{ $value->offers }}</h5>
+                        @endif
+                    </div>
+                    <div class="drive-checked" style="margin-left:0;">
+                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $key + 1 }}"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
+                        <div id="category-js-selected-{{ $key + 1 }}" class="js-item-row"></div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="js-config-summary"><span class="total-price-config"></span></span></p>
+        </div>
 
         <ul class="list-btn-action" id="js-buildpc-action">
             <li><span data-action="create-image">{{ __('Tải ảnh cấu hình') }}<i class="fa fa-image"></i></span></li>
@@ -58,8 +88,9 @@
 @include('includes.modal-build-pc')
 @endsection
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-
 <script>
+    var currentArea = 1;
+
     $(document).ready(function() {
         $(".open-selection").click(function() {
             var userChose = $(this).attr("id");
@@ -70,12 +101,13 @@
                 success: function(data) {
                     $(".list-product-select").empty();
                     $.each(data.products, function(key, val) {
+                        let dataSendToAdd = JSON.stringify(val);
                         let name = val.name;
                         let code = val.code;
                         let new_price = val.new_price;
                         let price = val.price;
                         let slug = val.slug;
-                        let image = val.image;
+                        let image = JSON.parse(val.image);
                         let urlProduct = '/product/' + slug;
                         let urlAddToBuild = '/add-build-pc/' + slug;
                         let status_guarantee = val.status_guarantee;
@@ -91,7 +123,7 @@
                         let stringAppend = `<div class="row p-item">
                         <div class="col-lg-3">
                             <a href="` + urlProduct + `" class="p-img">
-                                <img src="` + image + `">
+                                <img src="` + image[0] + `">
                             </a>
                         </div>
                         <div class="col-lg-6 info">
@@ -127,7 +159,7 @@
                         }
 
                         stringAppend += `</div><div class="col-lg-3" style="margin-top:10px ">
-                        <span id="buy-product" class="btn-buy js-select-product" data-id="` + data.menu + `" onclick="addToMenu(this, ` + val + `)">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
+                        <span id="buy-product" style="display: flex" class="btn-buy js-select-product" data-id="` + data.menu + `" data-product='` + dataSendToAdd + `' onclick="addToMenu(this)">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
                         </div>
                         </div>
                      <hr>`;
@@ -170,8 +202,13 @@
         }
     }
 
-    function addToMenu(idMenu, product) {
+    function addToMenu(choose) {
+        let idMenu = choose.getAttribute('data-id');
+        let product = JSON.parse(choose.getAttribute('data-product'));
         let status = product.status;
+        let image = JSON.parse(product.image);
+        let split = idMenu.split('-');
+        let idSelected = '#category-js-selected-' + split[2];
         if (status == 'available') {
             textStatus = 'Còn hàng';
         } else if (status == 'out of stock') {
@@ -180,7 +217,7 @@
             textStatus = 'Đang về hàng';
         }
         let stringAppend = `<div class="contain-item-drive">
-                            <a target="_blank" href="/product/` + product.slug + `" class="d-img"><img src="` + product.image + `"></a>
+                            <a target="_blank" href="/product/` + product.slug + `" class="d-img"><img src="` + image[0] + `"></a>
                             <span class="d-name">
                                 <a target="_blank" href="/product/` + product.slug + `"> ` + product.name + `  </a> <br>
                                 Bảo hành: ` + product.status_guarantee + ` <br>
@@ -192,9 +229,24 @@
                             <span class="btn-action_seclect show-popup_select"><i class="fa fa-edit edit-item"></i></span>
                             <span class="btn-action_seclect delete_select"><i class="fa fa-trash remove-item"></i></span>
                             </div>`;
+        $('#' + idMenu).hide();
+        $(idSelected).append(stringAppend);
+        $('#js-modal-popup').hide();
     }
 
-    function productWithFilter() {
-
+    function changeBuild(tabSelect) {
+        if (tabSelect == 1) {
+            $('#build-pc-content-area-1').removeClass('d-none');
+            $('#build-pc-content-area-2').addClass('d-none');
+            $('#build-pc-set-item-1').addClass('active');
+            $('#build-pc-set-item-2').removeClass('active');
+            currentArea = 1;
+        } else {
+            $('#build-pc-content-area-2').removeClass('d-none');
+            $('#build-pc-content-area-1').addClass('d-none');
+            $('#build-pc-set-item-1').removeClass('active');
+            $('#build-pc-set-item-2').addClass('active');
+            currentArea = 2;
+        }
     }
 </script>

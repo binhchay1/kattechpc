@@ -79,7 +79,6 @@ Route::group(['middleware' => 'cache.menu'], function () {
         Route::post('apply-coupon',  [BuildPCController::class, 'addCoupon'])->name('apply.coupon');
         Route::get('thank-you',  [BuildPCController::class, 'thank'])->name('thank');
 
-
     Route::group(['prefix' => 'cart'], function () {
         Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
         Route::get('add-to-cart/{slug}', [CartController::class, 'addToCart'])->name('add_to_cart');
