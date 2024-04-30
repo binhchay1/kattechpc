@@ -75,7 +75,7 @@ Route::group(['middleware' => 'cache.menu'], function () {
         Route::get('add-to-build-pc/{slug}', [BuildPCController::class, 'addBuildPC'])->name('add_to_BuildPC');
         Route::get('delete-build-pc/{id}',  [BuildPCController::class, 'deleteBuildPC'])->name('deleteBuildPC');
         Route::get('update-build-pc',  [BuildPCController::class, 'updateBuildPC'])->name('updateBuildPC');
-        Route::post('checkout',  [BuildPCController::class, 'checkout'])->name('checkout');
+        Route::post('checkout',  [BuildPCController::class, 'checkout'])->name('checkoutInBuild');
         Route::post('apply-coupon',  [BuildPCController::class, 'addCoupon'])->name('apply.coupon');
         Route::get('thank-you',  [BuildPCController::class, 'thank'])->name('thank');
 
