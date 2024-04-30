@@ -76,7 +76,6 @@ Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('delete-build-pc/{id}',  [BuildPCController::class, 'deleteBuildPC'])->name('deleteBuildPC');
     Route::get('update-build-pc',  [BuildPCController::class, 'updateBuildPC'])->name('updateBuildPC');
     Route::post('checkout',  [BuildPCController::class, 'checkout'])->name('checkout.in.build');
-    Route::get('thank-you',  [BuildPCController::class, 'thank'])->name('thank');
 
     Route::group(['prefix' => 'cart'], function () {
         Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
