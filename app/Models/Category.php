@@ -50,11 +50,18 @@ class Category extends Model
         return $this->hasMany(Category::class, 'parent', 'id')->with('children');
     }
 
-    public function products() {
+    public function products()
+    {
         return $this->hasManyThrough(Product::class, Category::class, 'parent', 'category_id', 'id');
     }
 
-    public function categoryFilter() {
+    public function categoryFilter()
+    {
         return $this->hasMany(CategoryFilter::class, 'category_id', 'id');
+    }
+
+    public function productChildren()
+    {
+        return $this->hasMany(Product::class, 'category_id', 'id');
     }
 }

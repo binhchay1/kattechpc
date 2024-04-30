@@ -15,6 +15,7 @@ use App\Repositories\LayoutRepository;
 use App\Repositories\PostRepository;
 use App\Repositories\PromotionRepository;
 use Illuminate\Http\Request;
+use App\Enums\Product;
 use Cache;
 
 class HomeController extends Controller
@@ -289,27 +290,69 @@ class HomeController extends Controller
             $filters['sort'] = $request->sort;
         }
 
-        $dataCategory = $this->categoryRepository->productByCategory($slug, $filters);
+        $isParent = $this->categoryRepository->checkIsParent($slug);
+        if ($isParent == 0) {
+            abort(404);
+        }
+
+        $dataCategory = $this->categoryRepository->productByCategory($slug, $isParent, $filters);
         $dataBrand = [];
         $dataCategories = [];
 
-        if (isset($dataCategory->products)) {
-            foreach ($dataCategory->products as $product) {
-                if (isset($product->brands->name)) {
-                    if (!in_array($product->brands->name, $dataBrand)) {
-                        $dataBrand[] = $product->brands->name;
+        if (isset($filters['price'])) {
+            $listRangePrice = Product::RANGE_PRICE;
+            $listProductForRange = $dataCategory->productChildren;
+            if (array_key_exists($filters['price'], $listRangePrice)) {
+                $rangePrice = $listRangePrice[$filters['price']];
+                $fromPrice = $rangePrice[0];
+                $toPrice = $rangePrice[1];
+
+                foreach ($listProductForRange as $key => $productRange) {
+                    $priceForCheck = str_replace('.', '', $productRange->price);
+                    $convertPrice = intval($priceForCheck);
+                    if ($convertPrice < $fromPrice or $convertPrice > $toPrice) {
+                        $dataCategory->productChildren->forget($key);
                     }
                 }
             }
+        }
 
-            $dataCategories = $this->utility->paginate($dataCategory->products, 5);
+        if ($isParent == 1) {
+            if (isset($dataCategory->products)) {
+                foreach ($dataCategory->products as $product) {
+                    if (isset($product->brands->name)) {
+                        if (!in_array($product->brands->name, $dataBrand)) {
+                            $dataBrand[] = $product->brands->name;
+                        }
+                    }
+                }
+
+                $dataCategories = $this->utility->paginate($dataCategory->products, 5);
+            } else {
+                $dataCategories = $this->utility->paginate([], 5);
+            }
+        } elseif ($isParent == 2) {
+            if (isset($dataCategory->productChildren)) {
+                foreach ($dataCategory->productChildren as $product) {
+                    if (isset($product->brands->name)) {
+                        if (!in_array($product->brands->name, $dataBrand)) {
+                            $dataBrand[] = $product->brands->name;
+                        }
+                    }
+                }
+
+                $dataCategories = $this->utility->paginate($dataCategory->productChildren, 5);
+            } else {
+                $dataCategories = $this->utility->paginate([], 5);
+            }
         } else {
             $dataCategories = $this->utility->paginate([], 5);
         }
 
-        $dataProducts = $this->categoryRepository->productSale($slug);
+        $dataProducts = $this->categoryRepository->productSale($slug, $isParent);
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        dd($listCategory);
 
         return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand'));
     }

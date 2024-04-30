@@ -241,7 +241,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/delete/{id}', [CategoryFilterController::class, 'delete'])->name('admin.category-filter.delete');
     });
 
-
     Route::get('products/{productId}/upload', [ProductImageController::class, 'index']);
     Route::post('products/{productId}/upload', [ProductImageController::class, 'store']);
     Route::get('product-image/{productImageId}/delete', [ProductImageController::class, 'destroy']);

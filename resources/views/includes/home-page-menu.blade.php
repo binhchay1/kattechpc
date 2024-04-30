@@ -21,13 +21,13 @@
                 <div class="sub-cat-2">
                     <p class="cat-2">{{ __('CHỌN THEO KHOẢNG GIÁ') }}</p>
                     <div class="sub-cat-2-link">
-                        <a href="/duoi-10-trieu">{{ __('Dưới 10 Triệu') }}</a>
-                        <a href="/10-trieu-15-trieu">{{ __('10 Triệu - 15 Triệu') }}</a>
-                        <a href="/15-trieu-20-trieu">{{ __('15 Triệu - 20 Triệu') }}</a>
-                        <a href="/20-trieu-30-trieu">{{ __('20 Triệu - 30 Triệu') }}</a>
-                        <a href="/30-trieu-50-trieu">{{ __('30 Triệu - 50 Triệu') }}</a>
-                        <a href="/50-trieu-100-trieu">{{ __('50 Triệu - 100 Triệu') }}</a>
-                        <a href="/tren-100-trieu">{{ __('Trên 100 Triệu') }}</a>
+                        <a href="{{ route('showDataCategory', $category->slug) }}?price=duoi-10trieu">{{ __('Dưới 10 Triệu') }}</a>
+                        <a href="{{ route('showDataCategory', $category->slug) }}?price=tu-10trieu-15trieu">{{ __('10 Triệu - 15 Triệu') }}</a>
+                        <a href="{{ route('showDataCategory', $category->slug) }}?price=tu-15trieu-20trieu">{{ __('15 Triệu - 20 Triệu') }}</a>
+                        <a href="{{ route('showDataCategory', $category->slug) }}?price=tu-20trieu-30trieu">{{ __('20 Triệu - 30 Triệu') }}</a>
+                        <a href="{{ route('showDataCategory', $category->slug) }}?price=tu-30trieu-50trieu">{{ __('30 Triệu - 50 Triệu') }}</a>
+                        <a href="{{ route('showDataCategory', $category->slug) }}?price=tu-50trieu-100trieu">{{ __('50 Triệu - 100 Triệu') }}</a>
+                        <a href="{{ route('showDataCategory', $category->slug) }}?price=tren-100trieu">{{ __('Trên 100 Triệu') }}</a>
                     </div>
                 </div>
 

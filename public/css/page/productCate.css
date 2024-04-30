@@ -252,3 +252,15 @@ ul pagination {
 .product-short-description {
     margin: 0;
 }
+
+#select-price div {
+    margin-top: 15px;
+}
+
+#select-price div:not(:first-child) {
+    margin-left: 10px;
+}
+
+#sort div:not(:first-child) {
+    margin-left: 10px;
+}

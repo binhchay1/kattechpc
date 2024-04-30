@@ -53,6 +53,40 @@
                     </div>
                     @endforeach
                     @endif
+
+                    @if(isset($dataProducts->productChildren))
+                    @foreach($dataProducts->productChildren as $product)
+                    <div class="swiper-slide1" role="group">
+                        <div class="product-item">
+                            <a href="" class="product-image position-relative">
+                                @if(isset($product->image))
+                                <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy product-image">
+                                @endif
+                            </a>
+                            <div class="product-info">
+                                <a>
+                                    <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
+                                </a>
+                                @if($product->new_price != null)
+                                <div class="product-martket-main d-flex align-items-center">
+                                    <p class="product-market-price">{{ $product->price }} ₫</p>
+                                    <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
+                                    <div class="product-percent-price">-{{ $new_price }}%</div>
+                                </div>
+
+                                <div class="product-price-main font-weight-600">
+                                    {{ $product->new_price }} đ
+                                </div>
+                                @else
+                                <div class="product-price-main font-weight-600">
+                                    {{ $product->price }} đ
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    @endif
                 </div>
             </div>
         </div>
@@ -85,7 +119,7 @@
         </div>
     </div>
     <div class="row1 mt-1">
-        <div class="flex sort" id="sort">
+        <div class="flex sort">
             <div>
                 <h2>{{ __('Lọc theo tiêu chí:') }}</h2>
             </div>
