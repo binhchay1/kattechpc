@@ -31,6 +31,7 @@
                     </div>
                 </div>
 
+                @if(array_key_exists('brand', $listCategory))
                 @if(array_key_exists($category->name, $listCategory['brand']))
                 <div class="sub-cat-2">
                     <p class="cat-2">{{ __('CHỌN THEO HÃNG') }}</p>
@@ -41,7 +42,9 @@
                     </div>
                 </div>
                 @endif
+                @endif
 
+                @if(array_key_exists('keyword', $listCategory))
                 @if(array_key_exists($category->name, $listCategory['keyword']))
                 @foreach($listCategory['keyword'][$category->name] as $title => $listKeyword)
                 <div class="sub-cat-2">
@@ -53,6 +56,7 @@
                     </div>
                 </div>
                 @endforeach
+                @endif
                 @endif
 
                 <div class="sub-cat-2">

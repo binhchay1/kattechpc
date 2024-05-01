@@ -470,3 +470,16 @@ body {
     margin: 0;
     height: 46px;
 }
+
+.list-product-select img {
+    width: 160px;
+}
+
+.contain-item-drive img {
+    width: 160px;
+}
+
+.total-price-in-hud {
+    font-weight: bold;
+    font-size: 20px;
+}

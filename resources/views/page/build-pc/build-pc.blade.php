@@ -19,13 +19,9 @@
             <li id="build-pc-set-item-2"><span onclick="changeBuild(2);" style="padding:0 20px;">{{ __('Cấu hình') }} 2</span></li>
         </ul>
 
-        <ul class="list-btn-action">
-            <li style="width:auto;"><span onclick="resetBuildPC()" style="padding:0 20px;">{{ __('Làm mới cấu hình hiện tại') }} <i class="fa fa-undo"></i></span></li>
-        </ul>
-
         <div id="build-pc-content-area-1">
             <div id="build-pc-content-price-1">
-                <p class="total-price">{{ __('Chi phí dự tính') }}:
+                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">0</span>
                     <span class="total-price-config-1"></span>
                 </p>
                 <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
@@ -46,12 +42,12 @@
                 </div>
                 @endforeach
             </div>
-            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-config-1"></span></p>
+            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">0</span><span class="total-price-config-1"></span></p>
         </div>
 
         <div id="build-pc-content-area-2" class="d-none">
             <div id="build-pc-content-price-2">
-                <p class="total-price">Chi phí dự tính:
+                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-2">0</span>
                     <span class="total-price-config-2"></span>
                 </p>
             </div>
@@ -71,7 +67,7 @@
                 </div>
                 @endforeach
             </div>
-            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-config-1"></span></p>
+            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-2">0</span><span class="total-price-config-2"></span></p>
         </div>
 
         <ul class="list-btn-action" id="js-buildpc-action">
@@ -85,6 +81,9 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
     var currentArea = 1;
+    var currentPrice1 = 0;
+    var currentPrice2 = 0;
+    const menu = '<?php print_r(json_encode($menu)) ?>';
 
     $(document).ready(function() {
         $(".open-selection").click(function() {
@@ -219,7 +218,7 @@
                                 Kho hàng: <span style="color: red">` + textStatus + `</span> | Mã SP: <span style="color: red">` + product.code + `</span>
                             </span>
                             <span class="d-price">` + product.price + `</span>
-                            <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50"><i>=</i>
+                            <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50" disabled><i>=</i>
                             <span class="sum_price">` + product.price + `</span>
                             <span class="btn-action_seclect show-popup_select"><i class="fa fa-edit edit-item"></i></span>
                             <span class="btn-action_seclect delete_select"><i class="fa fa-trash remove-item"></i></span>
@@ -227,7 +226,7 @@
         $('#' + idMenu).hide();
         $(idSelected).append(stringAppend);
         $('#js-modal-popup').hide();
-        countTotalPrice();
+        countTotalPrice(product.price);
     }
 
     function changeBuild(tabSelect) {
@@ -247,10 +246,30 @@
     }
 
     function resetBuildPC() {
-        $('#build-pc-content-list-' + currentArea + ' category-selected-row').empty();
+        if (currentArea == 1) {
+            currentPrice1 = 0;
+        } else {
+            currentPrice2 = 0;
+        }
+
+        $('#build-pc-content-list-' + currentArea + ' .category-selected-row').empty();
+
+        let stringBtn = `<span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-2"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>`;
     }
 
-    function countTotalPrice() {
+    function countTotalPrice(priceUpdate) {
+        if (currentArea == 1) {
+            currentPrice1 += parseInt(priceUpdate.replaceAll('.', ''));
+            $('.total-price-in-hud-1').html(priceWithCommas(currentPrice1));
+        } else {
+            currentPrice2 += parseInt(priceUpdate.replaceAll('.', ''));
 
+
+            $('.total-price-in-hud-2').html(priceWithCommas(currentPrice2));
+        }
+    }
+
+    function priceWithCommas(price) {
+        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 </script>
