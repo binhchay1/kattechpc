@@ -11,21 +11,21 @@
 @section('content')
 <div class="build-pc-area">
     <div class="build-pc_content">
-        <h1 style="font-size: 30px;line-height:36px;margin-bottom: 10px;text-align: center;font-weight:500;">Build PC - Xây dựng cấu hình máy tính PC giá rẻ chuẩn nhất</h1>
-        <h2 style="font-size: 26px;line-height:30px;margin-bottom: 10px;font-weight:500; ">Chọn linh kiện xây dựng cấu hình - Tự build PC</h2>
+        <h1 style="font-size: 30px;line-height:36px;margin-bottom: 10px;text-align: center;font-weight:500;">{{ __('Build PC - Xây dựng cấu hình máy tính PC giá rẻ chuẩn nhất') }}</h1>
+        <h2 style="font-size: 26px;line-height:30px;margin-bottom: 10px;font-weight:500; ">{{ __('Chọn linh kiện xây dựng cấu hình - Tự build PC') }} </h2>
 
         <ul class="list-btn-action">
-            <li id="build-pc-set-item-1" class="active"><span onclick="changeBuild(1);" style="padding:0 20px;">Cấu hình 1</span></li>
-            <li id="build-pc-set-item-2"><span onclick="changeBuild(2);" style="padding:0 20px;">Cấu hình 2</span></li>
+            <li id="build-pc-set-item-1" class="active"><span onclick="changeBuild(1);" style="padding:0 20px;">{{ __('Cấu hình') }} 1</span></li>
+            <li id="build-pc-set-item-2"><span onclick="changeBuild(2);" style="padding:0 20px;">{{ __('Cấu hình') }} 2</span></li>
         </ul>
 
         <ul class="list-btn-action">
-            <li style="width:auto;"><span onclick="resetBuildPC()" style="padding:0 20px;">Làm mới cấu hình hiện tại <i class="fa fa-undo"></i></span></li>
+            <li style="width:auto;"><span onclick="resetBuildPC()" style="padding:0 20px;">{{ __('Làm mới cấu hình hiện tại') }} <i class="fa fa-undo"></i></span></li>
         </ul>
 
         <div id="build-pc-content-area-1">
             <div id="build-pc-content-price-1">
-                <p class="total-price">Chi phí dự tính:
+                <p class="total-price">{{ __('Chi phí dự tính') }}:
                     <span class="total-price-config-1"></span>
                 </p>
                 <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
@@ -40,7 +40,7 @@
                         @endif
                     </div>
                     <div class="drive-checked" style="margin-left:0;">
-                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $key + 1 }}-1"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
+                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-1"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
                         <div id="category-js-selected-{{ $key + 1 }}-1" class="js-item-row category-selected-row"></div>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
                         @endif
                     </div>
                     <div class="drive-checked" style="margin-left:0;">
-                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $key + 1 }}-2"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
+                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-2"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
                         <div id="category-js-selected-{{ $key + 1 }}-2" class="js-item-row category-selected-row"></div>
                     </div>
                 </div>

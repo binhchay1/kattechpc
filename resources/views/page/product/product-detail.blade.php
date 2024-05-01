@@ -38,14 +38,14 @@
                         <th></th>
                     </tr>
                     @if(isset($dataProduct->detail))
-                        @if(is_array($dataProduct->detail))
-                            @foreach($dataProduct->detail as $key => $value)
-                                <tr>
-                                    <td>{{ $key }}</td>
-                                    <td>{{ $value }}</td>
-                                </tr>
-                            @endforeach
-                        @endif
+                    @if(is_array($dataProduct->detail))
+                    @foreach($dataProduct->detail as $key => $value)
+                    <tr>
+                        <td>{{ $key }}</td>
+                        <td>{{ $value }}</td>
+                    </tr>
+                    @endforeach
+                    @endif
                     @endif
                 </table>
             </div>
@@ -57,7 +57,7 @@
                 @if($dataProduct->new_price != null)
                 <h5>{{ ($dataProduct->new_price )}}đ </h5>
                 <del class="old-price">{{ ($dataProduct->price) }} đ</del>
-{{--                <div class="save-price-detail">{{__('Tiết kiệm:')}} {{ ((int)$dataProduct->price - (int)$dataProduct->new_price )}}đ</div>--}}
+                <div class="save-price-detail">{{ __('Tiết kiệm:') }} {{ number_format((int) str_replace('.', '', $dataProduct->price) - (int) str_replace('.', '', $dataProduct->new_price) )}} đ</div>
                 @else
                 <h5>{{ __('Giá ') }}: {{ ($dataProduct->price) }} đ</h5>
                 @endif
@@ -65,26 +65,29 @@
             <div>
                 <p>{{ __('Bảo hành') }}: <span style="font-weight: bold; color: blue">{{ $dataProduct->status_guarantee }}</span></p>
                 @if($dataProduct->status == 'available')
-                    <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: green">{{ __('Còn hàng') }}</span></p>
+                <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: green">{{ __('Còn hàng') }}</span></p>
                 @elseif($dataProduct->status == 'out of stock')
-                    <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: red">{{ __('Hết hàng') }}</span></p>
+                <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: red">{{ __('Hết hàng') }}</span></p>
                 @else
-                    <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: blue">{{ __('Đang về hàng') }}</span></p>
+                <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: blue">{{ __('Đang về hàng') }}</span></p>
                 @endif
                 <p></p>
             </div>
+
+            @if(isset($dataProduct->sale_detail))
             <div class="box-offer-detail border-radius-10">
                 <div class="title-offer-detail d-flex align-items-center">
                     <i class="sprite sprite-gift-detail"></i>
-                    <p class="font-weight-600 " id="product-gift">Khuyến mãi</p>
+                    <p class="font-weight-600 " id="product-gift">{{ __('Khuyến mãi') }}</p>
                 </div>
+
                 <div class="list-info-offter">
                     <div class="item-offer">
-                        {!!$dataProduct->sale_detail!!}
+                        {!! $dataProduct->sale_detail !!}
                     </div>
-
                 </div>
             </div>
+            @endif
             <div class="product-buy-quantity d-flex align-items-center">
                 <span class="title-quantity">{{ __('Số lượng') }}:</span>
                 <div class="cart-quantity-select justify-content-center align-items-center d-flex">
@@ -126,7 +129,7 @@
     </section>
 
 
-    <div >
+    <div>
         <h3 class="productRelated">{{ __('Sản phẩm liên quan') }}</h3>
         <div class="swiper d-flex">
             <div class="swiper-wrapper swiper-top-sale">
@@ -145,223 +148,223 @@
                                 <del class="product-market-price">{{ $product->price }} ₫</del>
                                 <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
 
-                                 <div class="product-percent-price">-{{ $new_price }} %</div>
+                                <div class="product-percent-price">-{{ $new_price }} %</div>
                             </div>
-                                <div class="product-price-main font-weight-600">
-                                    {{ $product->new_price }} đ
-                                </div>
+                            <div class="product-price-main font-weight-600">
+                                {{ $product->new_price }} đ
+                            </div>
                             @else
-                                <div class="product-price-main font-weight-600">
-                                    {{ $product->price }} đ
-                                </div>
+                            <div class="product-price-main font-weight-600">
+                                {{ $product->price }} đ
+                            </div>
                             @endif
 
+                        </div>
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
         </div>
-    </div>
 
-    <section class="product-container set-background1">
-        <div class="product-info" id="product-info">
-            <h3>{{ __('Thông tin sản phẩm') }}</h3>
-            <div class="p-info1">
-                {!! Str::limit($dataProduct->description, 1000, '')!!}
-                @if (strlen($dataProduct->description) > 3)
-                <span id="dots-{{ $dataProduct->id }}">...</span>
-                @endif
+        <section class="product-container set-background1">
+            <div class="product-info" id="product-info">
+                <h3>{{ __('Thông tin sản phẩm') }}</h3>
+                <div class="p-info1">
+                    {!! Str::limit($dataProduct->description, 1000, '')!!}
+                    @if (strlen($dataProduct->description) > 3)
+                    <span id="dots-{{ $dataProduct->id }}">...</span>
+                    @endif
+                </div>
+
+                <div class="p-info1">
+                    <span id="more-{{ $dataProduct->id }}" style="display: none;">{!! $dataProduct->description !!}</span>
+                </div>
+
+                <a href="javascript:" onclick="loadMore('{{ $dataProduct->id }}')" id="read-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
+                    {{ __('Xem tất cả') }}
+                    <i class="fas fa-angle-down" style="margin-left: 5px;"></i>
+                </a>
+
+                <a href="javascript:" onclick="loadMore('{{ $dataProduct->id }}')" id="hide-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center d-none">
+                    {{ __('Thu gọn') }}
+                    <i class="fas fa-angle-up" style="margin-left: 5px;"></i>
+                </a>
             </div>
 
-            <div class="p-info1">
-                <span id="more-{{ $dataProduct->id }}" style="display: none;">{!! $dataProduct->description !!}</span>
-            </div>
-
-            <a href="javascript:" onclick="loadMore('{{ $dataProduct->id }}')" id="read-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
-                {{ __('Xem tất cả') }}
-                <i class="fas fa-angle-down" style="margin-left: 5px;"></i>
-            </a>
-
-            <a href="javascript:" onclick="loadMore('{{ $dataProduct->id }}')" id="hide-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center d-none">
-                {{ __('Thu gọn') }}
-                <i class="fas fa-angle-up" style="margin-left: 5px;"></i>
-            </a>
-        </div>
-
-        <div class="product-related" >
-            <h3> {{ __('Thông số kĩ thuật') }}</h3>
-            <table>
-                <tr>
-                    <th col="300"></th>
-                    <th></th>
-                </tr>
-                @if(isset($dataProduct->detail_tech))
-                @php
-                $dataProduct->detail_tech = json_decode($dataProduct->detail_tech, true);
-                @endphp
-                @if(is_array($dataProduct->detail_tech))
-                @foreach(array_slice($dataProduct->detail_tech, 0, 4) as $key => $value)
-                <tr>
-                    <td style="font-weight: 600; width: 20%;">{{ $key }}</td>
-                    <td>{{ $value }}</td>
-                </tr>
-                @endforeach
-                @endif
-                @endif
-            </table>
-            <a href="javascript:"  id="read-all-product-detail" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
-                {{ __('Xem tất cả') }}
-            </a>
-            <div id="myModal" class="modal">
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <table>
-                        <tr>
-                            <th col="300"></th>
-                            <th></th>
-                        </tr>
-                        @if(isset($dataProduct->detail_tech))
+            <div class="product-related">
+                <h3> {{ __('Thông số kĩ thuật') }}</h3>
+                <table>
+                    <tr>
+                        <th col="300"></th>
+                        <th></th>
+                    </tr>
+                    @if(isset($dataProduct->detail_tech))
+                    @php
+                    $dataProduct->detail_tech = json_decode($dataProduct->detail_tech, true);
+                    @endphp
+                    @if(is_array($dataProduct->detail_tech))
+                    @foreach(array_slice($dataProduct->detail_tech, 0, 4) as $key => $value)
+                    <tr>
+                        <td style="font-weight: 600; width: 20%;">{{ $key }}</td>
+                        <td>{{ $value }}</td>
+                    </tr>
+                    @endforeach
+                    @endif
+                    @endif
+                </table>
+                <a href="javascript:" id="read-all-product-detail" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
+                    {{ __('Xem tất cả') }}
+                </a>
+                <div id="myModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <table>
+                            <tr>
+                                <th col="300"></th>
+                                <th></th>
+                            </tr>
+                            @if(isset($dataProduct->detail_tech))
                             @if(is_array($dataProduct->detail_tech))
-                                @foreach($dataProduct->detail_tech as $key => $value)
-                                    <tr>
-                                        <td style="font-weight: 600">{{ $key }}</td>
-                                        <td>{{ $value }}</td>
-                                    </tr>
-                                @endforeach
+                            @foreach($dataProduct->detail_tech as $key => $value)
+                            <tr>
+                                <td style="font-weight: 600">{{ $key }}</td>
+                                <td>{{ $value }}</td>
+                            </tr>
+                            @endforeach
                             @endif
-                        @endif
-                    </table>
+                            @endif
+                        </table>
+                    </div>
+
                 </div>
-
             </div>
-        </div>
-    </section>
+        </section>
 
-    @if(Session::has('message'))
-    <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
-    @endif
-    <section class="comment">
-        <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data">
-            {{ csrf_field() }}
-            <div class="gift-product">
-                <div class="gift-promotion">
-                    <div>
-                        <textarea id="comment" name="content" placeholder="{{ __('Mời bạn để lại bình luận...') }}" onfocus="$('.js-actions-comment-2020').show();" name="user_post[content]"></textarea>
-                        <input type="hidden" value="{{ $dataProduct->id }}" name="product_id">
-                        <div class="actions-comment-2020 js-actions-comment-2020 ">
-                            <div class="actions-comment-wrap">
-                                <div class="cmt_right float-right">
-                                    <button type="submit" class="btn btn-primary btn-comment">{{ __('Viết bình luận') }}</button>
+        @if(Session::has('message'))
+        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+        @endif
+        <section class="comment">
+            <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div class="gift-product">
+                    <div class="gift-promotion">
+                        <div>
+                            <textarea id="comment" name="content" placeholder="{{ __('Mời bạn để lại bình luận...') }}" onfocus="$('.js-actions-comment-2020').show();" name="user_post[content]"></textarea>
+                            <input type="hidden" value="{{ $dataProduct->id }}" name="product_id">
+                            <div class="actions-comment-2020 js-actions-comment-2020 ">
+                                <div class="actions-comment-wrap">
+                                    <div class="cmt_right float-right">
+                                        <button type="submit" class="btn btn-primary btn-comment">{{ __('Viết bình luận') }}</button>
+                                    </div>
+                                    <div class="js-preview-upload" id="js-preview-file-upload-comment"></div>
                                 </div>
-                                <div class="js-preview-upload" id="js-preview-file-upload-comment"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
-    </section>
-    <hr class="hr-row">
-    @include('page.product.comment-display', ['comments' => $dataProduct->comments, 'product_id' => $dataProduct->id]);
-</div>
-@endsection
+            </form>
+        </section>
+        <hr class="hr-row">
+        @include('page.product.comment-display', ['comments' => $dataProduct->comments, 'product_id' => $dataProduct->id]);
+    </div>
+    @endsection
 
-@section('js')
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#myModal').hide();
-        $('#read-all-product-detail').on('click', function() {
-            $('#myModal').show();
-        });
-        $('.close').click(function() {
+    @section('js')
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
             $('#myModal').hide();
+            $('#read-all-product-detail').on('click', function() {
+                $('#myModal').show();
+            });
+            $('.close').click(function() {
+                $('#myModal').hide();
+            });
+
         });
+    </script>
+    <script>
+        function getImageCenter(image) {
+            let src = image.src;
+            indexImage = image.getAttribute('data-index');
+            $('#featured-image').attr('src', src);
+        }
 
-    });
-</script>
-<script>
-    function getImageCenter(image) {
-        let src = image.src;
-        indexImage = image.getAttribute('data-index');
-        $('#featured-image').attr('src', src);
-    }
+        function handleSlideImage(status) {
+            if (status == 'next') {
+                let maxIndex = $('.swiper-slide-image').length;
+                if (indexImage < maxIndex) {
+                    let nextIndex = parseInt(indexImage) + 1;
+                    $("[data-index=" + nextIndex + "]").click();
+                }
 
-    function handleSlideImage(status) {
-        if (status == 'next') {
-            let maxIndex = $('.swiper-slide-image').length;
-            if (indexImage < maxIndex) {
-                let nextIndex = parseInt(indexImage) + 1;
-                $("[data-index=" + nextIndex + "]").click();
-            }
-
-        } else {
-            if (parseInt(indexImage) > 0) {
-                let prevIndex = parseInt(indexImage) - 1;
-                $("[data-index=" + prevIndex + "]").click();
+            } else {
+                if (parseInt(indexImage) > 0) {
+                    let prevIndex = parseInt(indexImage) - 1;
+                    $("[data-index=" + prevIndex + "]").click();
+                }
             }
         }
-    }
 
-    setTimeout(function() {
-        $('.alert-add').remove();
-    }, 5000);
+        setTimeout(function() {
+            $('.alert-add').remove();
+        }, 5000);
 
-    function loadMore(id) {
-        var dots = document.getElementById("dots-" + id);
-        var moreText = document.getElementById("more-" + id);
-        if (moreText.style.display === "none") {
-            moreText.style.display = "inline";
-            dots.style.display = "none";
-            $('#hide-all-product').removeClass('d-none');
-            $('#read-all-product').addClass('d-none');
-        } else {
-            moreText.style.display = "none";
-            dots.style.display = "inline";
-            $('#read-all-product').removeClass('d-none');
-            $('#hide-all-product').addClass('d-none');
-        }
-    }
-
-    function updateCart(quantity, id) {
-        $.get(
-            '{{ asset("/cart/update-cart") }}', {
-                quantity: quantity,
-                id: id
-            },
-            function() {
-                location.reload()
+        function loadMore(id) {
+            var dots = document.getElementById("dots-" + id);
+            var moreText = document.getElementById("more-" + id);
+            if (moreText.style.display === "none") {
+                moreText.style.display = "inline";
+                dots.style.display = "none";
+                $('#hide-all-product').removeClass('d-none');
+                $('#read-all-product').addClass('d-none');
+            } else {
+                moreText.style.display = "none";
+                dots.style.display = "inline";
+                $('#read-all-product').removeClass('d-none');
+                $('#hide-all-product').addClass('d-none');
             }
-        )
-    }
+        }
 
-    function addToCart() {
-        let slug = $('#product-to-cart').val();
-        let total = $('#quantity-to-cart').val();
-        let baseUrl = '/cart/add-to-cart/' + slug + '?total=' + total;
+        function updateCart(quantity, id) {
+            $.get(
+                '{{ asset("/cart/update-cart") }}', {
+                    quantity: quantity,
+                    id: id
+                },
+                function() {
+                    location.reload()
+                }
+            )
+        }
 
-        window.location.href = baseUrl;
-    }
+        function addToCart() {
+            let slug = $('#product-to-cart').val();
+            let total = $('#quantity-to-cart').val();
+            let baseUrl = '/cart/add-to-cart/' + slug + '?total=' + total;
 
-    $(document).ready(function() {
-        $('.js-quantity-change').on('click', function() {
-            let value = $(this).data('value');
-            let quantity = $('.js-buy-quantity').val();
-            let new_quantity = 1;
-            if (value == -1) {
-                if (quantity == 1) {
-                    return;
+            window.location.href = baseUrl;
+        }
+
+        $(document).ready(function() {
+            $('.js-quantity-change').on('click', function() {
+                let value = $(this).data('value');
+                let quantity = $('.js-buy-quantity').val();
+                let new_quantity = 1;
+                if (value == -1) {
+                    if (quantity == 1) {
+                        return;
+                    } else {
+                        new_quantity = parseInt(quantity) + parseInt(value);
+
+                    }
                 } else {
                     new_quantity = parseInt(quantity) + parseInt(value);
-
                 }
-            } else {
-                new_quantity = parseInt(quantity) + parseInt(value);
-            }
 
-            $('.js-buy-quantity').val(new_quantity);
+                $('.js-buy-quantity').val(new_quantity);
+            });
         });
-    });
-</script>
-@endsection
+    </script>
+    @endsection

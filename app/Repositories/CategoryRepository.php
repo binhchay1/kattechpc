@@ -22,6 +22,11 @@ class CategoryRepository extends BaseRepository
         return $this->model->where('parent', '!=', '0')->orderBy('created_at', 'DESC')->paginate(10);
     }
 
+    public function indexOnlyParent()
+    {
+        return $this->model->where('parent', '0')->orderBy('name', 'ASC')->get();
+    }
+
     public function store($input)
     {
         return $this->model->create($input);
