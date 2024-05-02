@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers\Page;
 
-use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\OrderRequest;
-use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\BuildPcRepository;
 use Cart;
