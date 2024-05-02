@@ -9,16 +9,16 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    
+
     private $roleRepository;
-    
+
     public function __construct(
         RoleRepository $roleRepository
     )
     {
         $this->roleRepository = $roleRepository;
     }
-    
+
     /**
      * Display a listing of the resource.
      */
@@ -43,7 +43,7 @@ class RoleController extends Controller
     {
         $input = $request->except(['token']);
         $input = $request->all();
-        
+
         $this->roleRepository->store($input);
         return redirect()->route('admin.role.index')->with('success', __('QUyền người dùng được thêm thành công'));
     }
@@ -63,7 +63,7 @@ class RoleController extends Controller
     {
         $role = $this->roleRepository->show($id);
         if (empty($role)) {
-            abort(404);
+            return redirect('/404');
         }
         return view('admin.user.role.edit', compact('role'));
     }
@@ -75,7 +75,7 @@ class RoleController extends Controller
     {
         $input = $request->except(['_token']);
         $this->roleRepository->update($input, $id);
-    
+
         return redirect()->route('admin.role.index')->with('success', __('QUyền người dùng được thay đổi thành công'));
     }
 
@@ -84,9 +84,9 @@ class RoleController extends Controller
      */
     public function deleteRole(string $id)
     {
-    
+
         $this->roleRepository->destroy($id);
-    
+
         return back()->with('success', __('Quyền người dùng được xóa thành công'));
     }
 }

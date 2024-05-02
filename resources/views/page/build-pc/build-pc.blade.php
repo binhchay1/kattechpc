@@ -19,6 +19,10 @@
             <li id="build-pc-set-item-2"><span onclick="changeBuild(2);" style="padding:0 20px;">{{ __('Cấu hình') }} 2</span></li>
         </ul>
 
+        <ul class="list-btn-action">
+            <li class="reset-build-pc" style="width:auto;"><span onclick="resetBuildPC()" style="padding:0 20px;">{{ __('Làm mới') }} <i class="fa fa-undo"></i></span></li>
+        </ul>
+
         <div id="build-pc-content-area-1">
             <div id="build-pc-content-price-1">
                 <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">0</span>
@@ -37,7 +41,7 @@
                     </div>
                     <div class="drive-checked" style="margin-left:0;">
                         <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-1"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
-                        <div id="category-js-selected-{{ $key + 1 }}-1" class="js-item-row category-selected-row"></div>
+                        <div id="category-js-selected-{{ $value->id }}-1" class="js-item-row category-selected-row"></div>
                     </div>
                 </div>
                 @endforeach
@@ -62,7 +66,7 @@
                     </div>
                     <div class="drive-checked" style="margin-left:0;">
                         <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-2"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
-                        <div id="category-js-selected-{{ $key + 1 }}-2" class="js-item-row category-selected-row"></div>
+                        <div id="category-js-selected-{{ $value->id }}-2" class="js-item-row category-selected-row"></div>
                     </div>
                 </div>
                 @endforeach
@@ -83,9 +87,6 @@
     var currentArea = 1;
     var currentPrice1 = 0;
     var currentPrice2 = 0;
-    const menu = '<?php print_r(json_encode($menu)) ?>';
-
-    console.log(menu);
 
     $(document).ready(function() {
         $(".open-selection").click(function() {
@@ -175,29 +176,6 @@
 
     });
 
-    function updateOrder(quantity, id) {
-        $.get(
-            '{{ asset("update-build-pc") }}', {
-                quantity: quantity,
-                id: id
-            },
-            function() {
-                location.reload()
-            }
-        )
-    }
-
-    function deleteBuild(url) {
-        if (confirm('Are you sure?')) {
-            $.ajax({
-                type: "get",
-                url: url,
-                success: function(result) {}
-            });
-
-        }
-    }
-
     function addToMenu(choose) {
         let idMenu = choose.getAttribute('data-id');
         let product = JSON.parse(choose.getAttribute('data-product'));
@@ -212,6 +190,7 @@
         } else {
             textStatus = 'Đang về hàng';
         }
+
         let stringAppend = `<div class="contain-item-drive">
                             <a target="_blank" href="/product/` + product.slug + `" class="d-img"><img src="` + image[0] + `"></a>
                             <span class="d-name">
@@ -248,15 +227,28 @@
     }
 
     function resetBuildPC() {
-        if (currentArea == 1) {
-            currentPrice1 = 0;
-        } else {
-            currentPrice2 = 0;
-        }
+        let urlGetMenu = '/get-list-menu';
+        $.ajax({
+            type: "get",
+            url: urlGetMenu,
+            success: function(result) {
+                if (currentArea == 1) {
+                    currentPrice1 = 0;
+                    $('.total-price-in-hud-1').html(0);
+                } else {
+                    currentPrice2 = 0;
+                    $('.total-price-in-hud-2').html(0);
+                }
 
-        $('#build-pc-content-list-' + currentArea + ' .category-selected-row').empty();
+                $('#build-pc-content-list-' + currentArea + ' .category-selected-row').empty();
+                let currentAreaID = '#build-pc-content-area-' + currentArea + ' .drive-checked';
 
-
+                for (let k = 0; k < result.length; k++) {
+                    let idBtnAdd = '#category-js-' + result[k].id + '-' + currentArea;
+                    $(idBtnAdd).show();
+                }
+            }
+        });
     }
 
     function countTotalPrice(priceUpdate) {
@@ -265,7 +257,6 @@
             $('.total-price-in-hud-1').html(priceWithCommas(currentPrice1));
         } else {
             currentPrice2 += parseInt(priceUpdate.replaceAll('.', ''));
-
 
             $('.total-price-in-hud-2').html(priceWithCommas(currentPrice2));
         }

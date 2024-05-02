@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers\Page;
 
-use App\Models\Coupon;
 use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
-use App\Repositories\CategoryRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
-use App\Enums\Category;
 use App\Repositories\BuildPcRepository;
-use Session;
 use Cart;
 use Cache;
 
@@ -22,18 +18,15 @@ class BuildPCController extends Controller
     private $productRepository;
     private $orderRepository;
     private $buildPcRepository;
-    private $categoryRepository;
 
     public function __construct(
         ProductRepository $productRepository,
         OrderRepository $orderRepository,
-        BuildPcRepository $buildPcRepository,
-        CategoryRepository $categoryRepository
+        BuildPcRepository $buildPcRepository
     ) {
         $this->productRepository = $productRepository;
         $this->orderRepository = $orderRepository;
         $this->buildPcRepository = $buildPcRepository;
-        $this->categoryRepository = $categoryRepository;
     }
 
     public function buildPC(Request $request)
@@ -50,7 +43,7 @@ class BuildPCController extends Controller
     {
         $getProductByKey = $request->get('key');
         if (!isset($getProductByKey)) {
-            abort(404);
+            return redirect('/404');
         }
 
         $explode = explode('-', $getProductByKey);
@@ -130,5 +123,12 @@ class BuildPCController extends Controller
         }
         session()->forget('discount');
         return redirect()->route('thank');
+    }
+
+    public function getListMenu()
+    {
+        $menu = $this->buildPcRepository->index();
+
+        return response()->json($menu);
     }
 }

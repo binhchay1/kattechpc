@@ -59,7 +59,7 @@ class PostController extends Controller
         $listCategories = $this->categoryPostRepository->index();
         $post = $this->postRepository->show($id);
         if (empty($post)) {
-            abort(404);
+            return redirect('/404');
         }
         return view('admin.post.edit', compact('post','listCategories'));
     }

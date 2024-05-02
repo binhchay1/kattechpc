@@ -238,7 +238,7 @@ class HomeController extends Controller
     public function postDetail($slug)
     {
         if (!isset($slug)) {
-            abort(404);
+            return redirect('/404');
         }
 
         $listPost = $this->postRepository->index();
@@ -253,7 +253,7 @@ class HomeController extends Controller
     {
         $getLandingPage = $this->landingPageRepository->getBySlug($slug);
         if (!$getLandingPage) {
-            abort(404);
+            return redirect('/404');
         }
         $content = $getLandingPage->content;
 
@@ -263,7 +263,7 @@ class HomeController extends Controller
     public function storeCustomContact(Request $request)
     {
         if (is_numeric($request) || !filter_var($request, FILTER_VALIDATE_EMAIL)) {
-            abort(404);
+            return redirect('/404');
         }
 
         $this->customContactRepository->store($request);
@@ -272,7 +272,7 @@ class HomeController extends Controller
     public function showDataCategory(Request $request, $slug)
     {
         if (!isset($slug)) {
-            abort(404);
+            return redirect('/404');
         }
 
         $filters = [];
@@ -292,7 +292,7 @@ class HomeController extends Controller
 
         $isParent = $this->categoryRepository->checkIsParent($slug);
         if ($isParent == 0) {
-            abort(404);
+            return redirect('/404');
         }
 
         $dataCategory = $this->categoryRepository->productByCategory($slug, $isParent, $filters);

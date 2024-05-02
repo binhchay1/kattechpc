@@ -59,7 +59,7 @@ class CategoryProductController extends Controller
         $categoryProduct = $this->categoryRepository->show($id);
         $listCategory = $this->categoryRepository->getListCategoryExcludeId($id);
         if (empty($categoryProduct)) {
-            abort(404);
+            return redirect('/404');
         }
 
         return view('admin.category-product.edit', compact('categoryProduct', 'listCategory'));

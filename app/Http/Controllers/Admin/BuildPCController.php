@@ -14,18 +14,22 @@ class BuildPCController extends Controller
 {
     private $buildPcRepository;
     private $categoryRepository;
+    private $utility;
 
     public function __construct(
         BuildPcRepository $buildPcRepository,
-        CategoryRepository $categoryRepository
+        CategoryRepository $categoryRepository,
+        Utility $utility
     ) {
         $this->buildPcRepository = $buildPcRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->utility = $utility;
     }
 
     public function index()
     {
         $listBuildPcs = $this->buildPcRepository->index();
+        $listBuildPcs = $this->utility->paginate($listBuildPcs, 5);
 
         return view('admin.buildPc.index', compact('listBuildPcs'));
     }
@@ -51,7 +55,7 @@ class BuildPCController extends Controller
     {
         $buildPc = $this->buildPcRepository->show($id);
         if (empty($buildPc)) {
-            abort(404);
+            return redirect('/404');
         }
         $listCategories = $this->categoryRepository->indexOnlyChild();
 

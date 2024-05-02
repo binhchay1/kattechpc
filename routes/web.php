@@ -23,6 +23,7 @@ use App\Http\Controllers\Admin\LandingPageController;
 use App\Http\Controllers\Admin\LayoutController;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Page\ErrorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -69,13 +70,14 @@ Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('collection/{slug}', [HomeController::class, 'showDataCategory'])->name('showDataCategory');
     Route::get('/promotion/{slug}', [HomeController::class, 'showPromotionDetail'])->name('showPromotionDetail');
 
-    Route::get('build-pc',  [BuildPCController::class, 'buildPC'])->name('buildPC');
-    Route::get('get-product',  [BuildPCController::class, 'getProduct'])->name('getProduct');
+    Route::get('/build-pc',  [BuildPCController::class, 'buildPC'])->name('buildPC');
+    Route::get('/get-product',  [BuildPCController::class, 'getProduct'])->name('getProduct');
     Route::get('/add-build-pc/{slug}',  [BuildPCController::class, 'addBuildPC'])->name('addBuildPC');
-    Route::get('add-to-build-pc/{slug}', [BuildPCController::class, 'addBuildPC'])->name('add_to_BuildPC');
-    Route::get('delete-build-pc/{id}',  [BuildPCController::class, 'deleteBuildPC'])->name('deleteBuildPC');
-    Route::get('update-build-pc',  [BuildPCController::class, 'updateBuildPC'])->name('updateBuildPC');
-    Route::post('checkout',  [BuildPCController::class, 'checkout'])->name('checkout.in.build');
+    Route::get('/add-to-build-pc/{slug}', [BuildPCController::class, 'addBuildPC'])->name('add_to_BuildPC');
+    Route::get('/delete-build-pc/{id}',  [BuildPCController::class, 'deleteBuildPC'])->name('deleteBuildPC');
+    Route::get('/update-build-pc',  [BuildPCController::class, 'updateBuildPC'])->name('updateBuildPC');
+    Route::get('/get-list-menu', [BuildPCController::class, 'getListMenu'])->name('get.list.menu');
+    Route::post('/checkout',  [BuildPCController::class, 'checkout'])->name('checkout.in.build');
 
     Route::group(['prefix' => 'cart'], function () {
         Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
@@ -88,6 +90,15 @@ Route::group(['middleware' => 'cache.menu'], function () {
         Route::get('thank-you',  [CartController::class, 'thank'])->name('thank');
     });
 });
+
+Route::get('/401', [ErrorController::class, 'view401'])->name('error.401');
+Route::get('/402', [ErrorController::class, 'view402'])->name('error.402');
+Route::get('/403', [ErrorController::class, 'view403'])->name('error.403');
+Route::get('/404', [ErrorController::class, 'view404'])->name('error.404');
+Route::get('/419', [ErrorController::class, 'view419'])->name('error.419');
+Route::get('/429', [ErrorController::class, 'view429'])->name('error.429');
+Route::get('/500', [ErrorController::class, 'view500'])->name('error.500');
+Route::get('/503', [ErrorController::class, 'view503'])->name('error.503');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');

@@ -27,7 +27,7 @@ class ProfileController extends Controller
     {
         $user = $this->userRepository->show($id);
         if (empty($user)) {
-            abort(404);
+            return redirect('/404');
         }
         $genderUser = User::SEX;
 

@@ -7,6 +7,7 @@ use App\Http\Requests\CategoryFilterRequest;
 use App\Repositories\CategoryFilterRepository;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
+use Cache;
 
 class CategoryFilterController extends Controller
 {
@@ -48,7 +49,7 @@ class CategoryFilterController extends Controller
     {
         $categoryFilter = $this->categoryFilterRepository->show($id);
         if (empty($categoryFilter)) {
-            abort(404);
+            return redirect('/404');
         }
         $listCategories = $this->categoryRepository->indexOnlyParent();
         Cache::store('redis')->forget('menu_homepage');

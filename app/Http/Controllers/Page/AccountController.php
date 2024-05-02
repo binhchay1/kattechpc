@@ -28,13 +28,13 @@ class AccountController extends Controller
     public function show()
     {
         if (empty(Auth::user())) {
-            abort(404);
+            return redirect('/404');
         }
         $idUser = Auth::user()->id;
         $dataUser = $this->userRepository->show($idUser);
         $genderUser = User::SEX;
         if (empty($dataUser)) {
-            abort(404);
+            return redirect('/404');
         }
         $genderUser = User::SEX;
         return view('page.account.show', compact('dataUser', 'genderUser'));
@@ -81,13 +81,13 @@ class AccountController extends Controller
     public function orderHistory ()
     {
         if (empty(Auth::user())) {
-            abort(404);
+            return redirect('/404');
         }
         $idUser = Auth::user()->id;
         $dataUser = $this->userRepository->show($idUser);
         $genderUser = User::SEX;
         if (empty($dataUser)) {
-            abort(404);
+            return redirect('/404');
         }
         $genderUser = User::SEX;
         return view('page.account.order-history', compact('dataUser'));
