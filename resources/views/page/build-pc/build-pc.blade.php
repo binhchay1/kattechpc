@@ -87,6 +87,10 @@
     var currentArea = 1;
     var currentPrice1 = 0;
     var currentPrice2 = 0;
+    var currentArrayProduct = {
+        'listArea1': [],
+        'listArea2': []
+    };
 
     $(document).ready(function() {
         $(".open-selection").click(function() {
@@ -136,12 +140,16 @@
                 }
 
                 $('.total-price-in-hud-1').html(priceWithCommas(currentPrice1));
+
+                currentArrayProduct.listArea1.push(product.id);
             } else {
                 if (currentPrice2 != 0) {
                     currentPrice2 -= parseInt($(idSelected + ' .sum_price').html().replaceAll('.', ''));
                 }
 
                 $('.total-price-in-hud-2').html(priceWithCommas(currentPrice2));
+
+                currentArrayProduct.listArea2.push(product.id);
             }
         }
 
@@ -158,12 +166,14 @@
             $('#build-pc-set-item-1').addClass('active');
             $('#build-pc-set-item-2').removeClass('active');
             currentArea = 1;
+            currentArrayProduct.listArea1 = [];
         } else {
             $('#build-pc-content-area-2').removeClass('d-none');
             $('#build-pc-content-area-1').addClass('d-none');
             $('#build-pc-set-item-1').removeClass('active');
             $('#build-pc-set-item-2').addClass('active');
             currentArea = 2;
+            currentArrayProduct.listArea2 = [];
         }
     }
 
@@ -213,9 +223,17 @@
         if (currentArea == 1) {
             currentPrice1 -= parseInt(price.replaceAll('.', ''));
             $('.total-price-in-hud-1').html(priceWithCommas(currentPrice1));
+            var index = currentArrayProduct.listArea1.indexOf(id);
+            if (index !== -1) {
+                currentArrayProduct.listArea1.splice(index, 1);
+            }
         } else {
             currentPrice2 -= parseInt(price.replaceAll('.', ''));
             $('.total-price-in-hud-2').html(priceWithCommas(currentPrice2));
+            var index = currentArrayProduct.listArea2.indexOf(id);
+            if (index !== -1) {
+                currentArrayProduct.listArea2.splice(index, 1);
+            }
         }
         $(idArea).remove();
     }
@@ -300,6 +318,22 @@
     }
 
     function addToCart() {
+        console.log(currentArrayProduct);
+        let url = '/build-pc-checkout';
+        let data = '';
+        if (currentArea == 1) {
+            data = currentArrayProduct.listArea1;
+        } else {
+            data = currentArrayProduct.listArea2;
+        }
+
+        $.ajax({
+            type: "get",
+            url: url,
+            success: function(result) {
+
+            }
+        });
 
     }
 </script>

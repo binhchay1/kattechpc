@@ -82,7 +82,21 @@ class BuildPCController extends Controller
         return response()->json($menu);
     }
 
-    public function addToCartBuildPC() {
+    public function addToCartBuildPC(Request $request)
+    {
+        $data = $request->get('data');
+        $dataProduct = $this->productRepository->getProductByArrayID($data);
 
+        foreach ($dataProduct as $product) {
+            Cart::add(
+                $product->id,
+                $product->name,
+                $product->price,
+                1,
+                ['image' => $product->image]
+            );
+        }
+
+        return redirect()->back()->with('success', __('Sản phẩm được thêm vào giỏ hàng!'));
     }
 }
