@@ -150,9 +150,9 @@ class CartController extends Controller
     {
         $coupon = Coupon::where('code', $request->discount_amount)->first();
         if (!$coupon) {
-            return response()->json(['errors' => '   Không tìm thấy mã giảm giá, làm ơn nhập lại!.']);
+            return response()->json(['errors' => __('Không tìm thấy mã giảm giá, làm ơn nhập lại!.')]);
         }
         Session::put('discount', $coupon);
-        return response()->json(['success' => 'Mã giảm giá được thêm thành công']);
+        return response()->json(['success' => __('Mã giảm giá được thêm thành công')]);
     }
 }

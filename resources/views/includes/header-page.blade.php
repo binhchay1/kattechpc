@@ -9,7 +9,7 @@
                     <a href="{{ route('policy') }}" class="sep-item-link" target="_blank"><i class="fa fa-pen"></i> {{ __('Chính sách bảo hành') }}</a>
                 </div>
                 <div class="ml-15px dropdown">
-                    <a href="{{ route('support') }}" class="sep-item-link" target="_blank"><i class="fa fa-wrench"></i> {{ __('Chính sách hỗ trợ') }}</a>
+                    <a class="sep-item-link" target="_blank"><i class="fa fa-wrench"></i> {{ __('Chính sách hỗ trợ') }}</a>
                     <div class="dropdown-content">
                         <a href="{{ route('rules') }}">{{ __('Quy định chung của công ty') }}</a>
                         <a href="{{ route('businessPolicy') }}">{{ __('Chính sách doanh nghiệp') }}</a>

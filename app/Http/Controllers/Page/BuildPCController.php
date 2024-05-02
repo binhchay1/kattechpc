@@ -16,16 +16,13 @@ class BuildPCController extends Controller
 {
 
     private $productRepository;
-    private $orderRepository;
     private $buildPcRepository;
 
     public function __construct(
         ProductRepository $productRepository,
-        OrderRepository $orderRepository,
         BuildPcRepository $buildPcRepository
     ) {
         $this->productRepository = $productRepository;
-        $this->orderRepository = $orderRepository;
         $this->buildPcRepository = $buildPcRepository;
     }
 

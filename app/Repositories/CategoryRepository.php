@@ -56,7 +56,7 @@ class CategoryRepository extends BaseRepository
                 'children.products',
                 'children.products.productImages',
                 'children.products.brands',
-                'children.categoryFilter'
+                'categoryFilter'
             )
             ->where('parent', 0)->get();
     }
