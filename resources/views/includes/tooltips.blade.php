@@ -15,7 +15,7 @@
                     <p class="card-price-origin color-black" id="tooltips-price">
                         <span class="card-price-origin-line-through"></span>
                     </p>
-                    <span id="tooltips-sale-price" class="color-red" style="margin-left: 4px;">-5%</span>
+                    <span id="tooltips-sale-price" class="color-red" style="margin-left: 4px;"></span>
                 </div>
             </div>
             <p style="margin: 0;" id="tooltips-new-price">

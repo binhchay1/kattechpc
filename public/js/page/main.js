@@ -38,10 +38,16 @@ $(document).ready(function () {
             $('#title-new-price').hide();
             $('#tooltips-new-price').hide();
             $('#tooltips-sale-price').hide();
+            $('#tooltips-price').removeClass('price-with-new-price');
         } else {
             $('#title-new-price').show();
             $('#tooltips-new-price').show();
             $('#tooltips-sale-price').show();
+            let priceCur = parseInt(price.replaceAll('.', ''));
+            let newPriceCur = parseInt(new_price.replaceAll('.', ''));
+            let calPriceCur = Math.floor(100 - ((newPriceCur / priceCur) * 100));
+            $('#tooltips-price').addClass('price-with-new-price');
+            $('#tooltips-sale-price').html('-' + calPriceCur + '%');
         }
 
         if (sale_detail == '' || sale_detail == null) {
@@ -169,3 +175,7 @@ $(document).ready(function () {
 
     $('.lazy').Lazy();
 });
+
+function priceWithCommas(price) {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
