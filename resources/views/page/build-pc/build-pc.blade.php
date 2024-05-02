@@ -85,6 +85,8 @@
     var currentPrice2 = 0;
     const menu = '<?php print_r(json_encode($menu)) ?>';
 
+    console.log(menu);
+
     $(document).ready(function() {
         $(".open-selection").click(function() {
             var userChose = $(this).attr("id");
@@ -254,7 +256,7 @@
 
         $('#build-pc-content-list-' + currentArea + ' .category-selected-row').empty();
 
-        let stringBtn = `<span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-2"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>`;
+
     }
 
     function countTotalPrice(priceUpdate) {
