@@ -78,57 +78,14 @@ class BuildPCController extends Controller
         return redirect()->route('buildPC');
     }
 
-    public function updateBuildPC(Request $request)
-    {
-        $id = $request->id;
-        $quantity = $request->quantity;
-
-        Cart::update($id, [
-            'quantity' => array(
-                'relative' => false,
-                'value' => $quantity
-            ),
-        ]);
-        return back();
-    }
-
-    public function deleteBuildPC($id)
-    {
-        if ($id) {
-            Cart::remove($id);
-        }
-        return redirect()->back();
-    }
-
-    public function checkout(OrderRequest $request)
-    {
-        $cartInfor =  Cart::getContent();
-        try {
-            $input = $request->all();
-            $order = $this->orderRepository->create($input);
-            if (count($cartInfor) > 0) {
-                foreach ($cartInfor as $key => $item) {
-
-                    $orderDetail = new OrderDetail();
-                    $orderDetail->order_id = $order->id;
-                    $orderDetail->product_id = $item->id;
-                    $orderDetail->quantity = $item->quantity;
-                    $orderDetail->price = $request->total_cart;
-                    $orderDetail->save();
-                }
-                Cart::clear();
-            }
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
-        session()->forget('discount');
-        return redirect()->route('thank');
-    }
-
     public function getListMenu()
     {
         $menu = $this->buildPcRepository->index();
 
         return response()->json($menu);
+    }
+
+    public function addToCartBuildPC() {
+
     }
 }
