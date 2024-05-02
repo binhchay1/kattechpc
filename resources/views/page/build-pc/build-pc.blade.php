@@ -75,7 +75,7 @@
         </div>
 
         <ul class="list-btn-action" id="js-buildpc-action">
-            <li><span data-action="add-cart">{{ __('Thêm vào giỏ hàng') }}<i class="fa fa-shopping-cart"></i></span></li>
+            <li onclick="addToCart()"><span>{{ __('Thêm vào giỏ hàng') }}<i class="fa fa-shopping-cart"></i></span></li>
         </ul>
     </div>
 </div>
@@ -91,83 +91,7 @@
     $(document).ready(function() {
         $(".open-selection").click(function() {
             var userChose = $(this).attr("id");
-            var url = "get-product?key=" + userChose;
-            $(".list-product-select").empty();
-            $.ajax({
-                type: 'get',
-                url: url,
-                success: function(data) {
-                    $.each(data.products, function(key, val) {
-                        let dataSendToAdd = JSON.stringify(val);
-                        let name = val.name;
-                        let code = val.code;
-                        let new_price = val.new_price;
-                        let price = val.price;
-                        let slug = val.slug;
-                        let image = JSON.parse(val.image);
-                        let urlProduct = '/product/' + slug;
-                        let urlAddToBuild = '/add-build-pc/' + slug;
-                        let status_guarantee = val.status_guarantee;
-                        let status = val.status;
-                        if (status == 'available') {
-                            textStatus = 'Còn hàng';
-                        } else if (status == 'out of stock') {
-                            textStatus = 'Hết hàng';
-                        } else {
-                            textStatus = 'Đang về hàng';
-                        }
-
-                        let stringAppend = `<div class="row p-item">
-                        <div class="col-lg-3">
-                            <a href="` + urlProduct + `" class="p-img">
-                                <img src="` + image[0] + `">
-                            </a>
-                        </div>
-                        <div class="col-lg-6 info">
-                            <a href="" class="p-name">` + name + `</a>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>` + status_guarantee + `</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            ` + textStatus + `
-                                            | <b>Mã SP:</b> ` + code + `
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>`;
-
-                        if (new_price != null) {
-                            let discount = Math.floor(100 - ((parseInt(new_price) / parseInt(price)) * 100));
-                            stringAppend += `<span class="p-price">` + new_price + `</span>
-                                    <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    ` + price + `<u> đ</u>
-                                </p>
-                            <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-` + discount + ` %</div>
-                            </div>`;
-                        } else {
-                            stringAppend += `<span class="p-price">` + price + `</span>`;
-                        }
-
-                        stringAppend += `</div><div class="col-lg-3" style="margin-top:10px ">
-                        <span id="buy-product" style="display: flex" class="btn-buy js-select-product" data-id="` + data.menu + `" data-product='` + dataSendToAdd + `' onclick="addToMenu(this)">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                        </div>
-                        </div>
-                     <hr>`;
-
-                        $(".list-product-select").append(stringAppend);
-                    })
-                }
-            });
-
-            $('#js-modal-popup').show();
-
+            changeProductHandle(userChose);
         });
 
         $('.close-popup').click(function() {
@@ -191,7 +115,7 @@
             textStatus = 'Đang về hàng';
         }
 
-        let stringAppend = `<div class="contain-item-drive">
+        let stringAppend = `<div class="contain-item-drive" id="product-item-in-list-` + currentArea + `-` + product.id + `">
                             <a target="_blank" href="/product/` + product.slug + `" class="d-img"><img src="` + image[0] + `"></a>
                             <span class="d-name">
                                 <a target="_blank" href="/product/` + product.slug + `"> ` + product.name + `  </a> <br>
@@ -201,10 +125,27 @@
                             <span class="d-price">` + product.price + `</span>
                             <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50" disabled><i>=</i>
                             <span class="sum_price">` + product.price + `</span>
-                            <span class="btn-action_seclect show-popup_select"><i class="fa fa-edit edit-item"></i></span>
-                            <span class="btn-action_seclect delete_select"><i class="fa fa-trash remove-item"></i></span>
+                            <span class="btn-action_seclect show-popup_select" onclick="changeProductHandle('` + idMenu + `')"><i class="fa fa-edit edit-item"></i></span>
+                            <span class="btn-action_seclect delete_select" data-id="` + product.id + `" data-price="` + product.price + `" onclick="deleteProductHandle(this)"><i class="fa fa-trash remove-item"></i></span>
                             </div>`;
         $('#' + idMenu).hide();
+        if ($(idSelected + ' .sum_price') != undefined) {
+            if (currentArea == 1) {
+                if (currentPrice1 != 0) {
+                    currentPrice1 -= parseInt($(idSelected + ' .sum_price').html().replaceAll('.', ''));
+                }
+
+                $('.total-price-in-hud-1').html(priceWithCommas(currentPrice1));
+            } else {
+                if (currentPrice2 != 0) {
+                    currentPrice2 -= parseInt($(idSelected + ' .sum_price').html().replaceAll('.', ''));
+                }
+
+                $('.total-price-in-hud-2').html(priceWithCommas(currentPrice2));
+            }
+        }
+
+        $(idSelected).empty();
         $(idSelected).append(stringAppend);
         $('#js-modal-popup').hide();
         countTotalPrice(product.price);
@@ -257,12 +198,108 @@
             $('.total-price-in-hud-1').html(priceWithCommas(currentPrice1));
         } else {
             currentPrice2 += parseInt(priceUpdate.replaceAll('.', ''));
-
             $('.total-price-in-hud-2').html(priceWithCommas(currentPrice2));
         }
     }
 
     function priceWithCommas(price) {
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    function deleteProductHandle(button) {
+        let id = button.getAttribute('data-id');
+        let idArea = '#product-item-in-list-' + currentArea + '-' + id;
+        let price = button.getAttribute('data-price');
+        if (currentArea == 1) {
+            currentPrice1 -= parseInt(price.replaceAll('.', ''));
+            $('.total-price-in-hud-1').html(priceWithCommas(currentPrice1));
+        } else {
+            currentPrice2 -= parseInt(price.replaceAll('.', ''));
+            $('.total-price-in-hud-2').html(priceWithCommas(currentPrice2));
+        }
+        $(idArea).remove();
+    }
+
+    function changeProductHandle(userChose) {
+        var url = "get-product?key=" + userChose;
+        $(".list-product-select").empty();
+        $.ajax({
+            type: 'get',
+            url: url,
+            success: function(data) {
+                $.each(data.products, function(key, val) {
+                    let dataSendToAdd = JSON.stringify(val);
+                    let name = val.name;
+                    let code = val.code;
+                    let new_price = val.new_price;
+                    let price = val.price;
+                    let slug = val.slug;
+                    let image = JSON.parse(val.image);
+                    let urlProduct = '/product/' + slug;
+                    let urlAddToBuild = '/add-build-pc/' + slug;
+                    let status_guarantee = val.status_guarantee;
+                    let status = val.status;
+                    if (status == 'available') {
+                        textStatus = 'Còn hàng';
+                    } else if (status == 'out of stock') {
+                        textStatus = 'Hết hàng';
+                    } else {
+                        textStatus = 'Đang về hàng';
+                    }
+
+                    let stringAppend = `<div class="row p-item">
+                        <div class="col-lg-3">
+                            <a href="` + urlProduct + `" class="p-img">
+                                <img src="` + image[0] + `">
+                            </a>
+                        </div>
+                        <div class="col-lg-6 info">
+                            <a href="" class="p-name">` + name + `</a>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><b>Bảo hành:</b></td>
+                                        <td>` + status_guarantee + `</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td valign="top"><b>Kho hàng:</b></td>
+                                        <td>
+                                            ` + textStatus + `
+                                            | <b>Mã SP:</b> ` + code + `
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>`;
+
+                    if (new_price != null) {
+                        let discount = Math.floor(100 - ((parseInt(new_price) / parseInt(price)) * 100));
+                        stringAppend += `<span class="p-price">` + new_price + `</span>
+                                    <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
+                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
+                                    ` + price + `<u> đ</u>
+                                </p>
+                            <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-` + discount + ` %</div>
+                            </div>`;
+                    } else {
+                        stringAppend += `<span class="p-price">` + price + `</span>`;
+                    }
+
+                    stringAppend += `</div><div class="col-lg-3" style="margin-top:10px ">
+                        <span id="buy-product" style="display: flex" class="btn-buy js-select-product" data-id="` + data.menu + `" data-product='` + dataSendToAdd + `' onclick="addToMenu(this)">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
+                        </div>
+                        </div>
+                     <hr>`;
+
+                    $(".list-product-select").append(stringAppend);
+                })
+            }
+        });
+
+        $('#js-modal-popup').show();
+    }
+
+    function addToCart() {
+
     }
 </script>
