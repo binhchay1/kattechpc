@@ -64,7 +64,6 @@ class HomeController extends Controller
         }
     }
 
-
     public function viewPolicy()
     {
         $key = 'menu_homepage';

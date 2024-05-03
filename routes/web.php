@@ -38,6 +38,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/401', [ErrorController::class, 'view401'])->name('error.401');
+Route::get('/402', [ErrorController::class, 'view402'])->name('error.402');
+Route::get('/403', [ErrorController::class, 'view403'])->name('error.403');
+Route::get('/404', [ErrorController::class, 'view404'])->name('error.404');
+Route::get('/419', [ErrorController::class, 'view419'])->name('error.419');
+Route::get('/429', [ErrorController::class, 'view429'])->name('error.429');
+Route::get('/500', [ErrorController::class, 'view500'])->name('error.500');
+Route::get('/503', [ErrorController::class, 'view503'])->name('error.503');
+
 Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('/', [HomeController::class, 'viewHome'])->name('home');
     Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
@@ -58,8 +67,8 @@ Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('/chinh-sach-doanh-nghiep', [HomeController::class, 'businessPolicy'])->name('businessPolicy');
     Route::get('/landing/{slug}', [HomeController::class, 'viewLandingPage'])->name('landing.page');
     Route::get('/custom-contact', [HomeController::class, 'storeCustomContact'])->name('custom.contact');
-    Route::get('account-info', [AccountController::class, 'show'])->name('profile');
-    Route::post('account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
+    Route::get('/account-info', [AccountController::class, 'show'])->name('profile');
+    Route::post('/account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
     Route::get('/change-password', [AccountController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password', [AccountController::class, 'updatePassword'])->name('update-password');
     Route::get('/order-history', [AccountController::class, 'orderHistory'])->name('orderHistory');
@@ -67,7 +76,7 @@ Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('/auth/google/callback/', [SocialLoginController::class, 'handleGoogleCallback']);
     Route::get('/auth/facebook/', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
     Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFacebookCallback']);
-    Route::get('collection/{slug}', [HomeController::class, 'showDataCategory'])->name('showDataCategory');
+    Route::get('/collection/{slug}', [HomeController::class, 'showDataCategory'])->name('showDataCategory');
     Route::get('/promotion/{slug}', [HomeController::class, 'showPromotionDetail'])->name('showPromotionDetail');
 
     Route::get('/build-pc',  [BuildPCController::class, 'buildPC'])->name('buildPC');
@@ -90,15 +99,6 @@ Route::group(['middleware' => 'cache.menu'], function () {
         Route::get('/thank-you',  [CartController::class, 'thank'])->name('thank');
     });
 });
-
-Route::get('/401', [ErrorController::class, 'view401'])->name('error.401');
-Route::get('/402', [ErrorController::class, 'view402'])->name('error.402');
-Route::get('/403', [ErrorController::class, 'view403'])->name('error.403');
-Route::get('/404', [ErrorController::class, 'view404'])->name('error.404');
-Route::get('/419', [ErrorController::class, 'view419'])->name('error.419');
-Route::get('/429', [ErrorController::class, 'view429'])->name('error.429');
-Route::get('/500', [ErrorController::class, 'view500'])->name('error.500');
-Route::get('/503', [ErrorController::class, 'view503'])->name('error.503');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
@@ -252,7 +252,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/delete/{id}', [CategoryFilterController::class, 'delete'])->name('admin.category-filter.delete');
     });
 
-    Route::get('products/{productId}/upload', [ProductImageController::class, 'index']);
-    Route::post('products/{productId}/upload', [ProductImageController::class, 'store']);
-    Route::get('product-image/{productImageId}/delete', [ProductImageController::class, 'destroy']);
+    Route::get('/products/{productId}/upload', [ProductImageController::class, 'index']);
+    Route::post('/products/{productId}/upload', [ProductImageController::class, 'store']);
+    Route::get('/product-image/{productImageId}/delete', [ProductImageController::class, 'destroy']);
 });
