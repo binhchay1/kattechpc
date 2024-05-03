@@ -4,7 +4,6 @@
         <div class="form-reply-comment">
             <div class="comment-name d-flex align-items-center justify-content-between">
                 <div class="comment-form-left d-flex align-items-center gap-6">
-                    <b class="avatar-user js-avatar-user d-flex align-items-center justify-content-center">t</b>
 
                     <b class="user-name d-flex align-items-center gap-6">
                         {{ $comment->user->name  }}
@@ -55,7 +54,7 @@
                 <p id="js-content-note0" style="color: red;max-width: 100%;display: flex;font-weight:700;margin-bottom:10px;"></p>
             </div>
         </form>
-        @include('page.product.comment-display', ['comments' => $comment->replies]);
+        @include('page.product.comment-display', ['comments' => $comment->replies])
     </div>
 </div>
 @endforeach

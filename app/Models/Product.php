@@ -47,6 +47,11 @@ class Product extends Model
     {
         return $this->hasMany(Comment::class)->whereNull('parent_id');
     }
+    
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class,'product_id', 'id');
+    }
 
     public function brands()
     {
