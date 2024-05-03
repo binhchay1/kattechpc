@@ -137,13 +137,16 @@
                     @foreach($productRelated as $product)
                         <div class="swiper-slide1" role="group">
                             <div class="product-item">
-                                <a href="" class="product-image position-relative">
+                                <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
                                     @if(isset($product->image))
                                         <img src="{{ asset($dataProduct->image[0]) }}" width="210" height="164" class="lazy product-image">
                                     @endif
                                 </a>
                                 <div>
-                                    <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
+                                    <a href="{{ route('productDetail', $product['slug']) }}">
+                                        <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
+                                    </a>
+
                                     @if($product->new_price != null)
                                         <div class="product-martket-main d-flex align-items-center">
                                             <del class="product-market-price">{{ $product->price }} ₫</del>
@@ -249,15 +252,28 @@
             <div class="feedback-form">
                 <h2>{{__('Đánh giá sản phẩm')}}</h2>
                 <div class="review-info d-flex boder-radius-10">
+                    @foreach($listRatings as $rating)
                     <div class="avgRate d-flex justify-content-center align-items-center flex-column">
-                        <span class="font-weight-700">5/5</span>
-                        <i class="sprite-star-5 star5 icon-star-detail"></i>
-                        <p class="mt-12">2 đánh giá và nhận xét</p>
+                        @php $ratenum = number_format($ratingValue) @endphp
+                        <div class="rating1">
+                            <!-- Notice that the stars are in reverse order -->
+                            @for($i = 1; $i <= $ratenum; $i++)
+                                <i class=" checked-rating fa fa-star "  style="font-size: 20px"></i>
+                            @endfor
+                            @for($j = $ratenum + 1; $j <= 5; $j++)
+                                <i class="fa fa-star " style="font-size: 20px"></i>
+                            @endfor
+                        </div>
+                        @if($rating->count() > 0)
+                        <p class="mt-12">{{$rating->count()}} đánh giá và nhận xét</p>
+                            @else
+                            <p class="mt-12">Chưa có đánh giá và nhận xét</p>
+                        @endif
                     </div>
                     <div class="box-avg-rate-count">
                         <div class="avg-rate-count">
                             <div class="avg-rate-item d-flex justify-content-center align-items-center">
-                                <span class="rate-number">5 <i class="fas fa-star"></i></span>
+                                <span class="rate-number">5 <i class="fas fa-star checked-rating"></i></span>
                                 <div class="nhan-xet-bar">
                                     <div class="percent percent5" style="width:50%"></div>
                                 </div>
@@ -265,7 +281,7 @@
                             </div>
 
                             <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
-                                <span class="rate-number">4 <i class="fas fa-star"></i></span>
+                                <span class="rate-number">4 <i class="fas fa-star checked-rating"></i></span>
                                 <div class="nhan-xet-bar">
                                     <div class="percent percent4" style="width:50%"></div>
                                 </div>
@@ -273,7 +289,7 @@
                             </div>
 
                             <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
-                                <span class="rate-number">3 <i class="fas fa-star"></i></span>
+                                <span class="rate-number">3 <i class="fas fa-star checked-rating"></i></span>
                                 <div class="nhan-xet-bar">
                                     <div class="percent percent3" style="width:0%"></div>
                                 </div>
@@ -281,7 +297,7 @@
                             </div>
 
                             <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
-                                <span class="rate-number">2 <i class="fas fa-star"></i></span>
+                                <span class="rate-number">2 <i class="fas fa-star checked-rating"></i></span>
                                 <div class="nhan-xet-bar">
                                     <div class="percent percent2" style="width:0%"></div>
                                 </div>
@@ -289,7 +305,7 @@
                             </div>
 
                             <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
-                                <span class="rate-number rate-number1">1 <i class="fas fa-star"></i></span>
+                                <span class="rate-number rate-number1">1 <i class="fas fa-star checked-rating"></i></span>
                                 <div class="nhan-xet-bar">
                                     <div class="percent percent1" style="width:0%"></div>
                                 </div>
@@ -299,7 +315,7 @@
                         </div>
 
                     </div>
-
+                    @endforeach
                 </div>
                 <div class="button-review d-flex justify-content-center align-items-center" id="js-show-review">
                     <a href="javascript:" class="font-weight-500" id="showmenu">Đánh giá ngay</a>
@@ -309,6 +325,7 @@
                     <div class="box-form-review" id="js-box-review" style="display: block;">
                         <textarea class="review_reply_content" id="rating-content" placeholder="Mời bạn để lại đánh giá..." name="content" spellcheck="false"></textarea>
                         <div class="rating">
+
                             <!-- Notice that the stars are in reverse order -->
                             <input type="radio" id="star5" name="rating_product" value="5">
                             <label for="star5">&#9733;</label>
@@ -320,6 +337,7 @@
                             <label for="star2">&#9733;</label>
                             <input type="radio" id="star1" name="rating_product" value="1">
                             <label for="star1">&#9733;</label>
+
                         </div>
                     </div>
                     <input type="hidden" name="product_id" value="{{$dataProduct->id}}">
@@ -327,80 +345,44 @@
                     <button type="submit" class="submit-btn" id="">{{__('Gửi đánh giá')}}</button>
                 </form>
 
+                <!----BOX RATING-->
+
                 <div class="list-review">
                     <div id="js-review-holder">
+                        @foreach($listRatings as $rating)
                         <div class="item-comment">
                             <div class="form-reply-comment">
                                 <div class="comment-name d-flex align-items-center justify-content-between">
                                     <div class="comment-form-left d-flex align-items-center gap-6">
-                                        <b class="avatar-user js-avatar-user d-flex align-items-center justify-content-center">P</b>
                                         <b class="user-name d-flex align-items-center gap-6">
-                                            Phạm Minh Đăng
+                                           {{$rating->user->name}}
                                         </b>
                                     </div>
                                     <div class="comment-form-right d-flex align-items-center gap-4">
-                                        <i class="fa-regular fa-clock"></i>
-                                        <span style="color:#787878;font-size: 12px;margin-right: 4px;">1/5/2024</span>
+                                        <i class="fa fa-clock-o" style="font-size:15px; margin-right: 5px"></i>
+                                        <?php $date = date_format($rating->created_at,"d/m/Y"  ) ?>
+                                        <span style="color:#787878;font-size: 12px;margin-right: 4px;font-weight: 700">{{$date}}</span>
                                     </div>
                                 </div>
                                 <div class="comment-content d-flex align-items-center justify-content-between">
                                     <div class="text-review d-flex flex-column gap-12">
-                                        <p class="d-flex aligin-items-center"><b>Đánh giá:</b> <i class="sprite-star-5 star5"></i></p>
-                                        <p class="d-flex aligin-items-center"><b>Nhận xét:</b>Dùng mượt</p>
-                                    </div>
-                                    <div class="comment-form-right d-flex align-items-center gap-4" style="margin-top: 40px">
-                                        <i class="fa fa-reply" style="font-size:20px; margin-right: 5px"></i>
-                                        <a href="javascript:" onclick="$('#reply_review_104').toggle()" class="write_reply  font-weight-500">Trả lời</a>
-                                    </div>
-                                </div>
-                                <div id="reply_review_104" class="reply-form-group" style="display:none;">
-                                    <div class="comment-form reply-template">
-                                        <form action="/ajax/post_comment.php" method="post" enctype="multipart/form-data" onsubmit="return check_field(104)" class="form-reply104">
-                                            <input type="hidden" name="user_post[reply_to]" value="104">
-
-                                            <div class="relative">
-                                                <textarea placeholder="Nội dung phản hồi" class="content-holder js-show-form-input  boder-radius-10" id="review-content104"></textarea>
-
-                                                <div class="form-input" id="review-input104">
-
-                                                    <div class="comment-form-input" id="comment-form-input-0" style="display: block;">
-                                                        <div class="form-group clearfix">
-                                                            <input type="text" id="review-name104" name="user_post[user_name]" class="inputText" placeholder="Họ tên*" value="">
-                                                            <input type="text" id="review-email104" name="user_post[user_email]" class="inputText" placeholder="Email*" value="">
-                                                            <input type="button" onclick="postReview(104,'reply')" value="Gửi" class="btn-send-comment">
-                                                        </div>
-                                                        <p id="js-reply-reivew-note104" style="color: red;max-width: 100%;display: flex;font-weight:700;"></p>
-                                                    </div>
-                                                </div>
-                                            </div><!--relative-->
-                                        </form>
-                                    </div>  <!-- comment-form -->
-                                </div> <!-- reply-form -->
-
-                                <!-- reply list -->
-                                <div class="reply-holder reply-list-container" id="review-reply_list_104">
-
-                                    <div class="item_reply mt-12">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="comment-left-form d-flex align-item-center gap-6">
-                                                <b class="avatar-user js-avatar-user">T</b>
-                                                <div class="comment-name mb-10">
-                                                    <b class="user-name"><b class="user-name">Tô thành Ân</b> </b>
-                                                    undefined
-                                                </div>
-                                            </div>
-
-                                            <div class="info_feeback comment-right-form">
-                                                <span style="color:#787878;font-size: 12px;">(1714645308)</span>
-                                            </div>
+                                        @php $ratenum = number_format($ratingValue) @endphp
+                                        <div class="rating1">
+                                            <!-- Notice that the stars are in reverse order -->
+                                                @for($i = 1; $i <= $ratenum; $i++)
+                                                   <i class=" checked-rating fa fa-star "></i>
+                                                @endfor
+                                                @for($j = $ratenum + 1; $j <= 5; $j++)
+                                                        <i class="fa fa-star "></i>
+                                                @endfor
                                         </div>
-                                        <div class="comment-content boder-radius-10">rrgtrgr</div>
+                                        <p class="d-flex aligin-items-center"><b>Nhận xét:</b>{{$rating->content}}</p>
                                     </div>
 
                                 </div>
-                                <!-- end reply list-->
                             </div>
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -428,34 +410,9 @@
                         <p id="js-content-note0" style="color: red;max-width: 100%;display: flex;font-weight:700;margin-bottom:10px;"></p>
                     </div>
                 </form>
-                @include('page.product.comment-display', ['comments' => $dataProduct->comments, 'product_id' => $dataProduct->id]);
+                @include('page.product.comment-display', ['comments' => $dataProduct->comments, 'product_id' => $dataProduct->id])
             </div>
 
-
-
-
-{{--            <section class="comment">--}}
-{{--                <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data">--}}
-{{--                    {{ csrf_field() }}--}}
-{{--                    <div class="gift-product">--}}
-{{--                        <div class="gift-promotion">--}}
-{{--                            <div>--}}
-{{--                                <textarea id="comment" name="content" placeholder="{{ __('Mời bạn để lại bình luận...') }}" onfocus="$('.js-actions-comment-2020').show();" name="user_post[content]"></textarea>--}}
-{{--                                <input type="hidden" value="{{ $dataProduct->id }}" name="product_id">--}}
-{{--                                <div class="actions-comment-2020 js-actions-comment-2020 ">--}}
-{{--                                    <div class="actions-comment-wrap">--}}
-{{--                                        <div class="cmt_right float-right">--}}
-{{--                                            <button type="submit" class="btn btn-primary btn-comment">{{ __('Viết bình luận') }}</button>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="js-preview-upload" id="js-preview-file-upload-comment"></div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </form>--}}
-{{--            </section>--}}
-{{--            @include('page.product.comment-display', ['comments' => $dataProduct->comments, 'product_id' => $dataProduct->id]);--}}
         </div>
         @endsection
 

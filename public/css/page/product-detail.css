@@ -673,6 +673,10 @@ tr:nth-child(even) {
     flex-direction: row-reverse; /* this is the magic */
     justify-content: flex-end;
 }
+.rating1 {
+    margin-bottom: 20px;
+    justify-content: flex-end;
+}
 
 .rating input {
     display: none;
@@ -687,6 +691,12 @@ tr:nth-child(even) {
 .rating label:hover ~ label { /* reason why the stars are in reverse order in the html */
     color: orange;
 }
+
+.checked-rating {
+    color: orange;
+}
+
+
 
 .rating input:checked ~ label {
     color: orange;
