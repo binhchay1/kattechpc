@@ -352,11 +352,14 @@ class HomeController extends Controller
         $dataProducts = $this->categoryRepository->productSale($slug, $isParent);
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
-        if (count($dataCategories) > 0) {
-            $getParent = getTopParent($this->categoryRepository->getById($dataCategories));
+        if (count($dataCategories) > 0 and $isParent == 2) {
+            $getParent = $this->getTopParent($this->categoryRepository->getParentWithKeyword($dataCategory->id));
+            $listKeyWord = $getParent->categoryFilter;
+        } else {
+            $listKeyWord = $dataCategory->categoryFilter;
         }
 
-        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand'));
+        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'listKeyWord'));
     }
 
     function getTopParent($category)
@@ -365,6 +368,6 @@ class HomeController extends Controller
             return $category;
         }
 
-        return getTopParent($this->categoryRepository->getById($id));
+        return getTopParent($this->categoryRepository->getParentWithKeyword($category->id));
     }
 }

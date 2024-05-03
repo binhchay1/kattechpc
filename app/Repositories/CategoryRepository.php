@@ -69,7 +69,7 @@ class CategoryRepository extends BaseRepository
     public function productByCategory($slug, $isParent, $filter = [])
     {
         if ($isParent == 1) {
-            $query = $this->model->with('children', 'products', 'children.products.productImages', 'products.brands', 'children.products.brands')->where('slug', $slug);
+            $query = $this->model->with('children', 'products', 'children.products.productImages', 'products.brands', 'children.products.brands', 'categoryFilter')->where('slug', $slug);
 
             if (isset($filter['sort'])) {
                 if ($filter['sort'] == 'new') {
@@ -182,5 +182,10 @@ class CategoryRepository extends BaseRepository
         }
 
         return $status;
+    }
+
+    public function getParentWithKeyword($id)
+    {
+        return $this->model->with('categoryFilter')->where('id', $id)->first();
     }
 }
