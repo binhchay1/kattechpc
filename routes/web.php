@@ -78,6 +78,7 @@ Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFacebookCallback']);
     Route::get('/collection/{slug}', [HomeController::class, 'showDataCategory'])->name('showDataCategory');
     Route::get('/promotion/{slug}', [HomeController::class, 'showPromotionDetail'])->name('showPromotionDetail');
+    Route::get('/get-products-for-suggestions', [ProductPage::class, 'suggestionsProduct'])->name('suggestions.product');
 
     Route::get('/build-pc',  [BuildPCController::class, 'buildPC'])->name('buildPC');
     Route::get('/get-product',  [BuildPCController::class, 'getProduct'])->name('getProduct');

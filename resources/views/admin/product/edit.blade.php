@@ -218,7 +218,6 @@
                             </div>
                         </div>
 
-
                         <div class="lg:col-span-2 xl:col-span-12">
                             <div class="lg:col-span-2 xl:col-span-6">
                                 <div class="d-flex">

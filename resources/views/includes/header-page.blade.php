@@ -61,6 +61,12 @@
                         <div class="input-text"><input type="text" name="q" class="inline-search" placeholder="Nhập tên sản phẩm, từ khóa cần tìm" autocomplete="off" field_signature="1012080445"></div>
                         <button type="submit" class="button-search"><i class="fa fa-search"></i></button>
                     </form>
+
+                    <div class="autocomplete-suggestions list" id="js-search-result">
+                        <div class="list">
+
+                        </div>
+                    </div>
                 </div>
             </div>
 

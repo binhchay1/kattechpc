@@ -1453,6 +1453,48 @@ a {
     text-decoration: line-through;
 }
 
+.autocomplete-suggestions {
+    position: absolute;
+    width: calc(100% + 4px);
+    border: 1px solid #ddd;
+    left: -2px;
+    margin-top: 8px;
+    max-height: 560px;
+    overflow: auto;
+    background: #fff;
+    z-index: 999;
+    border-radius: 5px;
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.18);
+}
+
+.autocomplete-suggestions a {
+    display: block;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.autocomplete-suggestions a img {
+    width: 60px;
+    float: left;
+    border: none;
+    height: auto;
+}
+
+.autocomplete-suggestions a .info {
+    display: block;
+    margin-left: 65px;
+}
+
+.autocomplete-suggestions a .info .name {
+    display: block;
+    color: #333e48;
+}
+
+.autocomplete-suggestions a .info .price,
+.sub-menu a:hover {
+    color: #e00;
+}
+
 @media screen and (max-width: 992px) {
     .header-top-left {
         margin: 0 auto;

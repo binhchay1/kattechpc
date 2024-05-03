@@ -174,8 +174,60 @@ $(document).ready(function () {
     });
 
     $('.lazy').Lazy();
+
+    $('.inline-search').unbind('keyup');
+    $('.inline-search').bind('keyup', function () { });
+    $(".inline-search").on('keyup', function (e) {
+        suggestionForSearch(this);
+    });
+
+    $('#js-search-result').hide();
 });
 
 function priceWithCommas(price) {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+function suggestionForSearch(input) {
+    let urlSuggest = '/get-products-for-suggestions';
+    if (input.value != '') {
+        $.ajax({
+            type: "get",
+            data: {
+                search: input.value
+            },
+            url: urlSuggest,
+            success: function (result) {
+                if (result.length > 0) {
+
+                    $('#js-search-result .list').empty();
+                    for (let i = 0; i < result.length; i++) {
+                        let price = result[i].price;
+                        let name = result[i].name;
+                        let slug = result[i].slug;
+                        let image = JSON.parse(result[i].image);
+
+                        let stringAppend = `<a href="/product/` + slug + `">
+                                    <img src="`+ image[0] + `" alt="` + name + `">
+                                    <span class="info">
+                                    <span class="name">`+ name + `</span>
+                                    <span class="price">`+ price + `</span>
+                                    </span>
+                                </a>`;
+
+                        $('#js-search-result .list').append(stringAppend);
+                    }
+
+                    $('#js-search-result').show();
+                } else {
+                    $('#js-search-result .list').empty();
+                    $('#js-search-result').hide();
+                }
+            }
+        });
+    } else {
+        $('#js-search-result .list').empty();
+        $('#js-search-result').hide();
+    }
+
 }

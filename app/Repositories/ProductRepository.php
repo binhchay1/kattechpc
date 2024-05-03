@@ -22,6 +22,11 @@ class ProductRepository extends BaseRepository
         return $this->model->where('name', 'like', '%' . $search . '%')->paginate(5);
     }
 
+    public function getProductBySearchSuggestion($search)
+    {
+        return $this->model->select('slug', 'name', 'price', 'image')->where('name', 'like', '%' . $search . '%')->orderBy('id', 'DESC')->get();
+    }
+
     public function store($input)
     {
         return $this->model->create($input);

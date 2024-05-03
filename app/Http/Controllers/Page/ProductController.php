@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Repositories\CategoryRepository;
 use App\Repositories\CommentRepository;
 use App\Repositories\ProductRepository;
-use Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cache;
@@ -48,7 +47,7 @@ class ProductController extends Controller
     public function storeComment(Request $request)
     {
         if (!Auth::check()) {
-          return redirect()->back()->with('message', __('Bạn cần đăng nhập để bình luận!'));
+            return redirect()->back()->with('message', __('Bạn cần đăng nhập để bình luận!'));
         }
 
         $input = $request->except(['_token']);
@@ -59,5 +58,12 @@ class ProductController extends Controller
         return back();
     }
 
+    public function suggestionsProduct(Request $request)
+    {
+        $search = $request->get('search');
 
+        $products = $this->productRepository->getProductBySearchSuggestion($search);
+
+        return response()->json($products);
+    }
 }
