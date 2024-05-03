@@ -146,6 +146,7 @@
                     </select>
                 </div>
 
+                @if(array_key_exists('keyword', $listCategory))
                 @if(array_key_exists($dataCategory->name, $listCategory['keyword']))
                 @foreach($listCategory['keyword'][$dataCategory->name] as $keyword => $arrValue)
                 <div class="d-flex flex-direction-column">
@@ -158,6 +159,7 @@
                     </select>
                 </div>
                 @endforeach
+                @endif
                 @endif
             </div>
         </div>
