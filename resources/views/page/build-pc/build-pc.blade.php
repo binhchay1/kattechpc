@@ -318,7 +318,6 @@
     }
 
     function addToCart() {
-        console.log(currentArrayProduct);
         let url = '/build-pc-checkout';
         let data = '';
         if (currentArea == 1) {
@@ -329,9 +328,14 @@
 
         $.ajax({
             type: "get",
+            data: {
+                data: data
+            },
             url: url,
             success: function(result) {
-
+                if (result == 'success') {
+                    window.location.href = '/show-cart';
+                }
             }
         });
 

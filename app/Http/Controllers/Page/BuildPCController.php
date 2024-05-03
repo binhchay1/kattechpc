@@ -94,6 +94,6 @@ class BuildPCController extends Controller
             );
         }
 
-        return redirect()->back()->with('success', __('Sản phẩm được thêm vào giỏ hàng!'));
+        return 'success';
     }
 }

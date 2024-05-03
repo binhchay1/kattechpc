@@ -179,7 +179,7 @@
                         </div>
                     </div>
 
-                    <div class="price get-total">{{ number_format($product->price, 0, '.', '.') }} đ</div>
+                    <div class="price get-total">{{ $product->price }} đ</div>
                     <div class="quantity">
                         <input type="number" value="{{ $product->quantity }}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{$product->id}}')">
                     </div>

@@ -58,6 +58,10 @@ img,
     width: 100%;
 }
 
+.basket-product .item {
+    display: flex;
+}
+
 .hide {
     display: none;
 }

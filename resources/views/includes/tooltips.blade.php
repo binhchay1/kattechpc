@@ -18,14 +18,11 @@
                     <span id="tooltips-sale-price" class="color-red" style="margin-left: 4px;"></span>
                 </div>
             </div>
-            <p style="margin: 0;" id="tooltips-new-price">
-
-            </p>
+            <p style="margin: 0;" id="tooltips-new-price"></p>
             <p>
                 <span class="color-red line-clamp" id="tooltips-status-guarantee"></span>
             </p>
             <p class="color-secondary" id="tooltips-status-storage">
-
             </p>
         </div>
     </div>

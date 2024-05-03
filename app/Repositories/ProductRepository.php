@@ -74,7 +74,13 @@ class ProductRepository extends BaseRepository
         return $this->model->with('category', 'productImages')->whereIn('category_id', $arrID)->get();
     }
 
-    public function getListProductForCart($arrID) {
-        return $this->model->with('category', 'productImages')->where('id', $arrID)->get();
+    public function getListProductForCart($arrID)
+    {
+        return $this->model->with('category', 'productImages')->whereIn('id', $arrID)->get();
+    }
+
+    public function getProductByArrayID($arrID)
+    {
+        return $this->model->whereIn('id', $arrID)->get();
     }
 }
