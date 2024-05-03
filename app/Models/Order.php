@@ -12,11 +12,16 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        'user_id', 'name', 'order_date', 'address', 'phone', 'note', 'province', 'district'
+        'user_id', 'name', 'order_date', 'address', 'phone', 'note', 'province', 'district', 'status', 'order_code'
     ];
-    
+
     public function orderDetails()
     {
         return $this->hasMany(OrderDetail::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
     }
 }

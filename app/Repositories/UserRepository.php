@@ -25,7 +25,7 @@ class UserRepository extends BaseRepository
 
     public function show($id)
     {
-        return $this->model->with('orders')->where('id', $id)->first();
+        return $this->model->with('orders.orderDetails')->where('id', $id)->first();
     }
 
     public function update($input, $id)

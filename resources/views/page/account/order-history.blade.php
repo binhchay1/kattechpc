@@ -18,23 +18,18 @@
             <div class="basket " style="width: 100%;">
                 <div class="basket-labels">
                     <ul>
-                        <li class="item item-heading">{{ __('Sản phẩm') }}</li>
-                        <li class="price">{{ __('Giá') }}</li>
-                        <li class="quantity">{{ __('Số lượng') }}</li>
+                        <li class="item item-heading">{{ __('Mã đơn hàng') }}</li>
+                        <li class="price">{{ __('Ngày') }}</li>
                         <li class="subtotal">{{ __('Thành tiền') }}</li>
                     </ul>
                 </div>
                 @foreach($dataUser->orders as $orderHistory)
                 <div class="basket-product">
                     <div class="item">
-                        <div class="price">11111đ</div>
-                        <div class="product-image">
-                            <img src="" alt="Placholder Image 2" class="product-frame">
-                        </div>
+                        <div class="price">{{ $orderHistory->orders->order_code }}</div>
                     </div>
-                    <div class="price">11111đ</div>
-                    <div class="quantity">
-                        <input type="number" value="1" min="1" class="quantity-field " disabled>
+                    <div class="item">
+                        <div class="price">{{ $orderHistory->orders->order_date }}</div>
                     </div>
                     <div class="subtotal get-total" id="total">111111đ</div>
                 </div>

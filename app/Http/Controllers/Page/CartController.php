@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Page;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Models\Coupon;
-use App\Models\OrderDetail;
-use App\Repositories\CategoryRepository;
+use App\Repositories\OrderDetailRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
@@ -19,16 +18,16 @@ class CartController extends Controller
 
     private $productRepository;
     private $orderRepository;
-    private $categoryRepository;
+    private $orderDetailRepository;
 
     public function __construct(
         ProductRepository $productRepository,
-        CategoryRepository $categoryRepository,
-        OrderRepository $orderRepository
+        OrderRepository $orderRepository,
+        OrderDetailRepository $orderDetailRepository
     ) {
         $this->productRepository = $productRepository;
         $this->orderRepository = $orderRepository;
-        $this->categoryRepository = $categoryRepository;
+        $this->orderDetailRepository = $orderDetailRepository;
     }
 
     public function addCart($slug)
@@ -42,6 +41,7 @@ class CartController extends Controller
             ['image' => $dataProduct->image]
         );
         Session::put('getProduct', $dataProduct);
+
         return redirect()->route('showCart');
     }
 
@@ -78,6 +78,7 @@ class CartController extends Controller
         if ($id) {
             Cart::remove($id);
         }
+
         return success("Delete success");
     }
 
@@ -92,6 +93,7 @@ class CartController extends Controller
                 'value' => $quantity
             ),
         ]);
+
         return back();
     }
 
@@ -100,16 +102,22 @@ class CartController extends Controller
         $cartInfor =  Cart::getContent();
         try {
             $input = $request->all();
+            $today = date("YmdHis");
+            $rand = strtoupper(substr(uniqid(sha1(time())), 0, 4));
+            $unique = $today . $rand;
+            $input['order_code'] = $unique;
             $order = $this->orderRepository->create($input);
-            if (count($cartInfor) > 0) {
-                foreach ($cartInfor as $key => $item) {
 
-                    $orderDetail = new OrderDetail();
-                    $orderDetail->order_id = $order->id;
-                    $orderDetail->product_id = $item->id;
-                    $orderDetail->quantity = $item->quantity;
-                    $orderDetail->price = $request->total_cart;
-                    $orderDetail->save();
+            if (count($cartInfor) > 0) {
+                foreach ($cartInfor as $item) {
+                    $data = [
+                        'order_id' => $order->id,
+                        'product_id' => $item->id,
+                        'quantity' => $item->quantity,
+                        'price' => $request->total_cart,
+                    ];
+
+                    $this->orderDetailRepository->create($data);
                 }
                 Cart::clear();
             }
@@ -117,6 +125,7 @@ class CartController extends Controller
             echo $e->getMessage();
         }
         session()->forget('discount');
+
         return redirect()->route('thank');
     }
 
@@ -124,6 +133,7 @@ class CartController extends Controller
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+
         return view('page.cart.thank', compact('listCategory'));
     }
 
@@ -149,6 +159,7 @@ class CartController extends Controller
             return response()->json(['errors' => __('Không tìm thấy mã giảm giá, làm ơn nhập lại!.')]);
         }
         Session::put('discount', $coupon);
+
         return response()->json(['success' => __('Mã giảm giá được thêm thành công')]);
     }
 }
