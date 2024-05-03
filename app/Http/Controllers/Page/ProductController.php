@@ -61,7 +61,6 @@ class ProductController extends Controller
     public function suggestionsProduct(Request $request)
     {
         $search = $request->get('search');
-
         $products = $this->productRepository->getProductBySearchSuggestion($search);
 
         return response()->json($products);

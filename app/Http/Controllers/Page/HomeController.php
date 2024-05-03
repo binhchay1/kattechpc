@@ -208,17 +208,18 @@ class HomeController extends Controller
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
-        $listCategoryProduct = $listCategory['default'];
         $search = $request->get('q');
         $isList = false;
         $listProducts = [];
+        $dataBrand = [];
         if ($search) {
             $listProducts = $this->productRepository->getProductBySearch($search);
             if (count($listProducts) > 0) {
                 $isList = true;
             }
         }
-        return view('page.search', compact('listProducts', 'search', 'isList', 'listCategory'));
+
+        return view('page.search', compact('listProducts', 'search', 'isList', 'listCategory', 'dataBrand'));
     }
 
     public function viewPost()
@@ -293,8 +294,6 @@ class HomeController extends Controller
         if ($isParent == 0) {
             return redirect('/404');
         }
-
-        dd($filters);
 
         $dataCategory = $this->categoryRepository->productByCategory($slug, $isParent, $filters);
         $dataBrand = [];
