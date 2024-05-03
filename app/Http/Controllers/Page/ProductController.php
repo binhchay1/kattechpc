@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\CategoryRepository;
+use App\Repositories\RatingRepository;
 use App\Repositories\CommentRepository;
 use App\Repositories\ProductRepository;
 use Cart;
@@ -16,13 +17,16 @@ class ProductController extends Controller
     protected $productRepository;
     protected $commentRepository;
     protected $categoryRepository;
+    protected $ratingRepository;
 
     public function __construct(
         ProductRepository $productRepository,
+        RatingRepository $ratingRepository,
         CommentRepository $commentRepository,
         CategoryRepository $categoryRepository
     ) {
         $this->productRepository = $productRepository;
+        $this->ratingRepository = $ratingRepository;
         $this->commentRepository = $commentRepository;
         $this->categoryRepository = $categoryRepository;
     }
@@ -58,6 +62,18 @@ class ProductController extends Controller
 
         return back();
     }
-
+    
+    public function rating(Request $request)
+    {
+        if (!Auth::check()) {
+            return redirect()->back()->with('message', __('Bạn cần đăng nhập để đánh giá sản phẩm!'));
+        }
+    
+        $input = $request->except(['_token']);
+        $input = $request->all();
+        $this->ratingRepository->store($input);
+    
+        return back();
+    }
 
 }

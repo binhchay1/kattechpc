@@ -543,7 +543,6 @@ tr:nth-child(even) {
 .gap-6 {
     width: 50%;
     font-size: 13px;
-    margin-bottom: 14px;
 }
 
 .gap-6-item {
@@ -659,4 +658,210 @@ tr:nth-child(even) {
 
 #product-info img {
     max-width: 750px !important;
+}
+
+.feedback-form {
+    border-radius: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.rating {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row-reverse; /* this is the magic */
+    justify-content: flex-end;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.rating label:hover,
+.rating label:hover ~ label { /* reason why the stars are in reverse order in the html */
+    color: orange;
+}
+
+.rating input:checked ~ label {
+    color: orange;
+}
+
+.comment {
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.comment textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+}
+
+.submit-btn {
+    background-color: red;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.review-info {
+    border: 1px solid #dedede;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.review-info .avgRate {
+    border-right: 1px solid #dedede;
+    width: 37%;
+    color: #000;
+}
+
+ .box-avg-rate-count {
+    width: calc(100% - 37%);
+    padding: 16px 12px;
+}
+
+.avg-rate-count {
+    font-size: 12px;
+    line-height: 18px;
+    color: #000;
+    padding: 0;
+}
+
+ .nhan-xet-bar {
+    width: 74%;
+    height: 8px;
+    background: #dedede;
+    border-radius: 5px;
+    margin: 0 14px 0 20px;
+    position: relative;
+}
+
+.justify-content-center {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.button-review a {
+    line-height: 30px;
+    color: #fff;
+    padding: 5px 20px;
+    background: #1781e0;
+    border-radius: 8px;
+    display: block;
+    text-align: center;
+    margin-top: 14px;
+    width: 278px;
+}
+
+.review_reply_content {
+    border: 1px solid #dedede;
+    outline: 0;
+    padding: 15px;
+    width: 98%;
+    height: 122px;
+    border-radius: 12px;
+    resize: none;
+    margin: 16px 0;
+}
+
+.item-comment {
+    margin-bottom: 16px;
+}
+
+.avatar-user {
+    background: #c8c8c8;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+}
+
+.gap-6 {
+    gap: 6px;
+}
+
+.comment-content {
+    background: #f3f3f3;
+    padding: 14px 16px;
+    color: #3a3a3a;
+    min-height: 70px;
+    margin-left: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.aligin-items-center {
+    margin: 0;
+}
+
+.write_reply {
+    color: #36ac4a;
+    font-weight: 700;
+}
+
+.box-comment {
+    background: #f5f5f5;
+    box-shadow: 0 1px 8px 0 rgba(0, 0, 0, .25);
+    border-radius: 12px;
+    padding: 18px 13px 23px;
+    margin-bottom: 12px;
+    color: #000;
+    margin-top: 20px;
+}
+
+.comment_reply_content {
+    background: #fff;
+    padding: 16px;
+    color: #444;
+    line-height: 20px;
+    outline: 0;
+    resize: none;
+    width: 90%;
+    border: none;
+    height: 90px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.form-comment {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-send-form-comment {
+    border-radius: 8px;
+    background: #0a76e4;
+    color: #fff;
+    padding: 12px;
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+    width: 85px;
+}
+
+.comment-content1 {
+    display: flex;
+    padding: 14px 16px;
+    background: #fff;
+    color: #3a3a3a;
+    margin-left: 20px;
+    border-radius: 10px;
+}
+
+.box-comment1 {
+    background: #f5f5f5;
+    border-radius: 12px;
+    padding: 18px 13px 23px;
+    margin-bottom: 12px;
+    color: #000;
+    margin-top: 20px;
 }
