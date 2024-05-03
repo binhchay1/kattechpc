@@ -210,6 +210,11 @@
 </section>
 
 @foreach($listCategoryProduct as $category)
+
+@if(count($category->products) == 0)
+@continue
+@endif
+
 @if($category->parent == 0)
 <section class="product-slide">
     <div class="product-slide-main boder-radius-10">
@@ -283,6 +288,7 @@
 @endif
 @endforeach
 
+@if(count($listPromotion) > 0)
 <section class="content-sale">
     <div class="box-article-group boder-radius-10">
         <div class="d-flex justify-content-between align-items-center">
@@ -302,7 +308,9 @@
         </div>
     </div>
 </section>
+@endif
 
+@if(count($listNews) > 0)
 <section class="content-news">
     <div class="box-article-group boder-radius-10">
         <div class="d-flex justify-content-between align-items-center">
@@ -332,6 +340,7 @@
         </div>
     </div>
 </section>
+@endif
 
 <section class="review">
     <div class="box-review-from-customer boder-radius-10">

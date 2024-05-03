@@ -9,44 +9,18 @@
 @endsection
 
 @section('content')
-<div class="row">
-    <div class="leftcolumn">
-        <div class="card">
-            <h2>{{$dataUser->name}}</h2>
-            <a href="#">
-                <div class="hover">
-                    <h5>{{__('Thông tin tài khoản')}}</h5>
-                </div>
-            </a>
-            <a href="{{route('orderHistory')}}">
-                <div class="hover">
-                    <h5>{{__('Quản lý đơn hàng')}}</h5>
-                </div>
-            </a>
-            <a href="{{route('change-password')}}">
-                <div class="hover">
-                    <h5>{{__('Thay đổi mật khẩu')}}</h5>
-                </div>
-            </a>
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <a onclick="this.closest('form').submit();return false;">
-                    <div class="hover">
-                        <h5>{{__('Đăng xuất')}}</h5>
-                    </div>
-                </a>
-            </form>
-        </div>
-    </div>
+<div class="row" id="content-profile">
+    @include('includes.left-menu-profile')
     <div class="rightcolumn">
         <div class="card">
             <h2>{{__('Thông tin tài khoản')}}</h2>
-            <form method="POST" action="{{route('updateProfile', $dataUser['id'])}}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('updateProfile', $dataUser['id']) }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
-                    <div class="xl:col-span-6 account">
+                    <div class="xl:col-span-6 account input-data">
                         <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Tên người dùng')}}</label>
                         <input type="text" id="productNameInput" name="name" value="{{$dataUser->name}}" class="form-input  " placeholder="{{__('Tên người dùng')}}">
+                        <div class="underline"></div>
                         @if ($errors->has('name'))
                         <span class="text-danger">{{ $errors->first('name') }}</span>
                         @endif
@@ -84,7 +58,6 @@
                     </div>
 
                     <div class="xl:col-span-6 account">
-
                         <div class="xl:col-span-4 mt-4">
                             <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Địa chỉ')}}
                             </label>
@@ -96,16 +69,16 @@
                     </div>
 
                     <div class="xl:col-span-6 account">
-                        <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Số điện thoại')}}
+                        <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{ __('Số điện thoại') }}
                         </label>
-                        <input type="text" id="productCodeInput" name="phone" value="{{$dataUser->phone}}" class="form-input " placeholder="{{__('Số điện thoại')}}">
+                        <input type="text" id="productCodeInput" name="phone" value="{{$dataUser->phone}}" class="form-input " placeholder="{{ __('Số điện thoại') }}">
                         @if ($errors->has('phone'))
                         <span class="text-danger">{{ $errors->first('phone') }}</span>
                         @endif
-                    </div><!--end col-->
+                    </div>
 
                     <div class="xl:col-span-6 account">
-                        <label for="productPrice" class="inline-block mb-2 text-base font-medium">{{__('Ngày sinh')}}</label>
+                        <label for="productPrice" class="inline-block mb-2 text-base font-medium">{{ __('Ngày sinh') }}</label>
                         <input type="date" id="productPrice" name="age" value="{{$dataUser->age}}" class="form-input " placeholder="Enter User Age">
                         @if ($errors->has('age'))
                         <span class="text-danger">{{ $errors->first('age') }}</span>

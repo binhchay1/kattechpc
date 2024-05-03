@@ -10,10 +10,11 @@ use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Cache;
 
 class AccountController extends Controller
 {
-    private $userRepository ;
+    private $userRepository;
     private $utility;
 
     public function __construct(
@@ -28,16 +29,21 @@ class AccountController extends Controller
     public function show()
     {
         if (empty(Auth::user())) {
-            abort(404);
+            return redirect('/404');
         }
+
         $idUser = Auth::user()->id;
         $dataUser = $this->userRepository->show($idUser);
-        $genderUser = User::SEX;
+
         if (empty($dataUser)) {
-            abort(404);
+            return redirect('/404');
         }
+
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
         $genderUser = User::SEX;
-        return view('page.account.show', compact('dataUser', 'genderUser'));
+
+        return view('page.account.show', compact('dataUser', 'genderUser', 'listCategory'));
     }
 
     public function update(UserUpdateRequest $request, $userIdHash)
@@ -57,7 +63,10 @@ class AccountController extends Controller
 
     public function changePassword()
     {
-        return view('page.account.change-password');
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('page.account.change-password', compact('listCategory'));
     }
 
     public function updatePassword(Request $request)
@@ -78,18 +87,23 @@ class AccountController extends Controller
         return back()->with("success", __("Mật khẩu đã thay đổi thành công!"));
     }
 
-    public function orderHistory ()
+    public function orderHistory()
     {
         if (empty(Auth::user())) {
-            abort(404);
+            return redirect('/404');
         }
+
         $idUser = Auth::user()->id;
         $dataUser = $this->userRepository->show($idUser);
         $genderUser = User::SEX;
+
         if (empty($dataUser)) {
-            abort(404);
+            return redirect('/404');
         }
-        $genderUser = User::SEX;
-        return view('page.account.order-history', compact('dataUser'));
+
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('page.account.order-history', compact('dataUser', 'listCategory'));
     }
 }

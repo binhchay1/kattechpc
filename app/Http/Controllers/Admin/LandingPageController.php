@@ -57,7 +57,7 @@ class LandingPageController extends Controller
     {
         $landingPage = $this->landingPageRepository->destroy($id);
         if (empty($landingPage)) {
-            abort(404);
+            return redirect('/404');
         }
 
         return back()->with('success', __('Trang đích xóa thành công'));

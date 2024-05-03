@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController as ProductAdmin;
 use App\Http\Controllers\Page\BuildPCController;
+use App\Http\Controllers\Admin\BuildPCController as BuildPCAdmin;
 use App\Http\Controllers\Page\ProductController as ProductPage;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\Admin\LandingPageController;
 use App\Http\Controllers\Admin\LayoutController;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Page\ErrorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,30 +38,38 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/401', [ErrorController::class, 'view401'])->name('error.401');
+Route::get('/402', [ErrorController::class, 'view402'])->name('error.402');
+Route::get('/403', [ErrorController::class, 'view403'])->name('error.403');
+Route::get('/404', [ErrorController::class, 'view404'])->name('error.404');
+Route::get('/419', [ErrorController::class, 'view419'])->name('error.419');
+Route::get('/429', [ErrorController::class, 'view429'])->name('error.429');
+Route::get('/500', [ErrorController::class, 'view500'])->name('error.500');
+Route::get('/503', [ErrorController::class, 'view503'])->name('error.503');
+
 Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('/', [HomeController::class, 'viewHome'])->name('home');
     Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
-    Route::get('/policy', [HomeController::class, 'viewPolicy'])->name('policy');
-    Route::get('/payment-online', [HomeController::class, 'paymentOnline'])->name('paymentOnline');
-    Route::get('/payment', [HomeController::class, 'payment'])->name('payment');
+    Route::get('/chinh-sach-bao-hanh', [HomeController::class, 'viewPolicy'])->name('policy');
+    Route::get('/thanh-toan-truc-tuyen', [HomeController::class, 'paymentOnline'])->name('paymentOnline');
+    Route::get('/huong-dan-thanh-toan', [HomeController::class, 'payment'])->name('payment');
     Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
     Route::get('/blog-detail/{slug}', [HomeController::class, 'postDetail'])->name('post.detail');
-    Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
     Route::get('/product/{slug}', [ProductPage::class, 'productDetail'])->name('productDetail');
     Route::post('/comment', [ProductPage::class, 'storeComment'])->name('storeComment');
     Route::post('/rating', [ProductPage::class, 'rating'])->name('rating');
     Route::get('/promotion', [HomeController::class, 'viewPromotion'])->name('promotion');
     Route::get('/promotion-detail', [HomeController::class, 'promotionDetail'])->name('promotionDetail');
-    Route::get('/rules', [HomeController::class, 'rules'])->name('rules');
-    Route::get('/electronic-bill', [HomeController::class, 'electronicBill'])->name('electronicBill');
-    Route::get('/security-customer', [HomeController::class, 'securityCustomer'])->name('securityCustomer');
+    Route::get('/chinh-sach-quy-dinh-chung', [HomeController::class, 'rules'])->name('rules');
+    Route::get('/tra-cuu-hoa-don', [HomeController::class, 'electronicBill'])->name('electronicBill');
+    Route::get('/bao-mat-thong-tin-khach-hang', [HomeController::class, 'securityCustomer'])->name('securityCustomer');
     Route::get('/complaint', [HomeController::class, 'complaint'])->name('complaint');
-    Route::get('/product-policy', [HomeController::class, 'productPolicy'])->name('productPolicy');
-    Route::get('/business-policy', [HomeController::class, 'businessPolicy'])->name('businessPolicy');
+    Route::get('/chinh-sach-hang-chinh-hang', [HomeController::class, 'productPolicy'])->name('productPolicy');
+    Route::get('/chinh-sach-doanh-nghiep', [HomeController::class, 'businessPolicy'])->name('businessPolicy');
     Route::get('/landing/{slug}', [HomeController::class, 'viewLandingPage'])->name('landing.page');
     Route::get('/custom-contact', [HomeController::class, 'storeCustomContact'])->name('custom.contact');
-    Route::get('account-info', [AccountController::class, 'show'])->name('profile');
-    Route::post('account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
+    Route::get('/account-info', [AccountController::class, 'show'])->name('profile');
+    Route::post('/account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
     Route::get('/change-password', [AccountController::class, 'changePassword'])->name('change-password');
     Route::post('/change-password', [AccountController::class, 'updatePassword'])->name('update-password');
     Route::get('/order-history', [AccountController::class, 'orderHistory'])->name('orderHistory');
@@ -67,26 +77,28 @@ Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('/auth/google/callback/', [SocialLoginController::class, 'handleGoogleCallback']);
     Route::get('/auth/facebook/', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
     Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFacebookCallback']);
-    Route::get('collection/{slug}', [HomeController::class, 'showDataCategory'])->name('showDataCategory');
+    Route::get('/collection/{slug}', [HomeController::class, 'showDataCategory'])->name('showDataCategory');
     Route::get('/promotion/{slug}', [HomeController::class, 'showPromotionDetail'])->name('showPromotionDetail');
+    Route::get('/get-products-for-suggestions', [ProductPage::class, 'suggestionsProduct'])->name('suggestions.product');
 
-    Route::get('build-pc',  [BuildPCController::class, 'buildPC'])->name('buildPC');
-    Route::get('get-product',  [BuildPCController::class, 'getProduct'])->name('getProduct');
+    Route::get('/build-pc',  [BuildPCController::class, 'buildPC'])->name('buildPC');
+    Route::get('/get-product',  [BuildPCController::class, 'getProduct'])->name('getProduct');
     Route::get('/add-build-pc/{slug}',  [BuildPCController::class, 'addBuildPC'])->name('addBuildPC');
-    Route::get('add-to-build-pc/{slug}', [BuildPCController::class, 'addBuildPC'])->name('add_to_BuildPC');
-    Route::get('delete-build-pc/{id}',  [BuildPCController::class, 'deleteBuildPC'])->name('deleteBuildPC');
-    Route::get('update-build-pc',  [BuildPCController::class, 'updateBuildPC'])->name('updateBuildPC');
-    Route::post('checkout',  [BuildPCController::class, 'checkout'])->name('checkout.in.build');
+    Route::get('/add-to-build-pc/{slug}', [BuildPCController::class, 'addBuildPC'])->name('add_to_BuildPC');
+    Route::get('/delete-build-pc/{id}',  [BuildPCController::class, 'deleteBuildPC'])->name('deleteBuildPC');
+    Route::get('/update-build-pc',  [BuildPCController::class, 'updateBuildPC'])->name('updateBuildPC');
+    Route::get('/get-list-menu', [BuildPCController::class, 'getListMenu'])->name('get.list.menu');
+    Route::get('/build-pc-checkout',  [BuildPCController::class, 'addToCartBuildPC'])->name('checkout.in.build');
 
     Route::group(['prefix' => 'cart'], function () {
         Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
-        Route::get('add-to-cart/{slug}', [CartController::class, 'addToCart'])->name('add_to_cart');
-        Route::get('show-cart',  [CartController::class, 'showCart'])->name('showCart');
-        Route::get('delete-cart/{id}',  [CartController::class, 'deleteCart'])->name('deleteCart');
-        Route::get('update-cart',  [CartController::class, 'updateCart'])->name('updateCart');
-        Route::post('checkout',  [CartController::class, 'checkout'])->name('checkout');
-        Route::post('apply-coupon',  [CartController::class, 'addCoupon'])->name('apply.coupon');
-        Route::get('thank-you',  [CartController::class, 'thank'])->name('thank');
+        Route::get('/add-to-cart/{slug}', [CartController::class, 'addToCart'])->name('add_to_cart');
+        Route::get('/show-cart',  [CartController::class, 'showCart'])->name('showCart');
+        Route::get('/delete-cart/{id}',  [CartController::class, 'deleteCart'])->name('deleteCart');
+        Route::get('/update-cart',  [CartController::class, 'updateCart'])->name('updateCart');
+        Route::post('/checkout',  [CartController::class, 'checkout'])->name('checkout');
+        Route::post('/apply-coupon',  [CartController::class, 'addCoupon'])->name('apply.coupon');
+        Route::get('/thank-you',  [CartController::class, 'thank'])->name('thank');
     });
 });
 
@@ -225,12 +237,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'build-pc'], function () {
-        Route::get('/list', [\App\Http\Controllers\Admin\BuildPCController::class, 'index'])->name('admin.buildPC.index');
-        Route::get('/add', [\App\Http\Controllers\Admin\BuildPCController::class, 'create'])->name('admin.buildPC.create');
-        Route::post('/store', [\App\Http\Controllers\Admin\BuildPCController::class, 'store'])->name('admin.buildPC.store');
-        Route::get('/update/{id}', [\App\Http\Controllers\Admin\BuildPCController::class, 'edit'])->name('admin.buildPC.edit');
-        Route::post('/update/{id}', [\App\Http\Controllers\Admin\BuildPCController::class, 'update'])->name('admin.buildPC.update');
-        Route::get('/delete/{id}', [\App\Http\Controllers\Admin\BuildPCController::class, 'delete'])->name('admin.buildPC.delete');
+        Route::get('/list', [BuildPCAdmin::class, 'index'])->name('admin.buildPC.index');
+        Route::get('/add', [BuildPCAdmin::class, 'create'])->name('admin.buildPC.create');
+        Route::post('/store', [BuildPCAdmin::class, 'store'])->name('admin.buildPC.store');
+        Route::get('/update/{id}', [BuildPCAdmin::class, 'edit'])->name('admin.buildPC.edit');
+        Route::post('/update/{id}', [BuildPCAdmin::class, 'update'])->name('admin.buildPC.update');
+        Route::get('/delete/{id}', [BuildPCAdmin::class, 'delete'])->name('admin.buildPC.delete');
     });
 
     Route::group(['prefix' => 'category-filter'], function () {
@@ -242,7 +254,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/delete/{id}', [CategoryFilterController::class, 'delete'])->name('admin.category-filter.delete');
     });
 
-    Route::get('products/{productId}/upload', [ProductImageController::class, 'index']);
-    Route::post('products/{productId}/upload', [ProductImageController::class, 'store']);
-    Route::get('product-image/{productImageId}/delete', [ProductImageController::class, 'destroy']);
+    Route::get('/products/{productId}/upload', [ProductImageController::class, 'index']);
+    Route::post('/products/{productId}/upload', [ProductImageController::class, 'store']);
+    Route::get('/product-image/{productImageId}/delete', [ProductImageController::class, 'destroy']);
 });

@@ -6,12 +6,12 @@
     margin-right: auto;
 }
 
-p {
+#content-page p {
     font-size: 15px;
 }
 
 
-* {
+#content-page * {
     box-sizing: border-box;
 }
 

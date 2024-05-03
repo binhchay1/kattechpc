@@ -2,11 +2,7 @@
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600);
 
-html,
-html a {
-    -webkit-font-smoothing: antialiased;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
-}
+
 
 body {
     background-color: #fff;
@@ -15,54 +11,56 @@ body {
     margin: 0 auto;
 }
 
-a {
+#content-page a {
     border: 0 none;
     outline: 0;
     text-decoration: none;
 }
 
-strong {
+#content-page strong {
     font-weight: bold;
 }
 
-
-
-h1 {
+#content-page h1 {
     font-size: 0.75rem;
     font-weight: normal;
     margin: 0;
     padding: 0;
 }
 
-input,
+#content-page input,
 button {
     border: 0 none;
     outline: 0 none;
 }
 
-button {
+#content-page button {
     background-color: #4267b2;
     color: #fff;
     border-radius: 5px;
 }
 
-button:hover,
+#content-page button:hover,
 button:focus {
     background-color: #555;
 }
 
-img,
+#content-page img,
 .basket-module,
 .basket-labels,
 .basket-product {
     width: 100%;
 }
 
+.basket-product .item {
+    display: flex;
+}
+
 .hide {
     display: none;
 }
 
-main {
+#content-page main {
     clear: both;
     font-size: 15px;
     margin: 0 auto;
@@ -92,7 +90,7 @@ aside {
     margin-top: 30px;
 }
 
-label {
+#content-page label {
     display: block;
     margin-bottom: 0.3125rem;
 }
@@ -124,20 +122,20 @@ label {
     margin-top: 1.625rem;
 }
 
-ul {
+#content-page ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-li {
+#content-page li {
     color: #111;
     display: inline-block;
     padding: 0.625rem 0;
 }
 
 
-.item {
+#content-page .item {
     width: 50%;
 }
 
@@ -212,7 +210,7 @@ li {
     height: 20px;
 }
 
-aside {
+#content-page aside {
     float: right;
     position: relative;
     width: 30%;

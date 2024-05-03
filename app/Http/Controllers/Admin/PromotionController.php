@@ -45,7 +45,7 @@ class PromotionController extends Controller
     {
         $promotion = $this->promotionRepository->show($id);
         if (empty($promotion)) {
-            abort(404);
+            return redirect('/404');
         }
         return view('admin.promotion.edit', compact('promotion'));
     }

@@ -19,6 +19,10 @@
             <li id="build-pc-set-item-2"><span onclick="changeBuild(2);" style="padding:0 20px;">{{ __('Cấu hình') }} 2</span></li>
         </ul>
 
+        <ul class="list-btn-action">
+            <li class="reset-build-pc" style="width:auto;"><span onclick="resetBuildPC()" style="padding:0 20px;">{{ __('Làm mới') }} <i class="fa fa-undo"></i></span></li>
+        </ul>
+
         <div id="build-pc-content-area-1">
             <div id="build-pc-content-price-1">
                 <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">0</span>
@@ -37,7 +41,7 @@
                     </div>
                     <div class="drive-checked" style="margin-left:0;">
                         <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-1"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
-                        <div id="category-js-selected-{{ $key + 1 }}-1" class="js-item-row category-selected-row"></div>
+                        <div id="category-js-selected-{{ $value->id }}-1" class="js-item-row category-selected-row"></div>
                     </div>
                 </div>
                 @endforeach
@@ -62,7 +66,7 @@
                     </div>
                     <div class="drive-checked" style="margin-left:0;">
                         <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-2"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
-                        <div id="category-js-selected-{{ $key + 1 }}-2" class="js-item-row category-selected-row"></div>
+                        <div id="category-js-selected-{{ $value->id }}-2" class="js-item-row category-selected-row"></div>
                     </div>
                 </div>
                 @endforeach
@@ -71,7 +75,7 @@
         </div>
 
         <ul class="list-btn-action" id="js-buildpc-action">
-            <li><span data-action="add-cart">{{ __('Thêm vào giỏ hàng') }}<i class="fa fa-shopping-cart"></i></span></li>
+            <li onclick="addToCart()"><span>{{ __('Thêm vào giỏ hàng') }}<i class="fa fa-shopping-cart"></i></span></li>
         </ul>
     </div>
 </div>
@@ -83,38 +87,185 @@
     var currentArea = 1;
     var currentPrice1 = 0;
     var currentPrice2 = 0;
-    const menu = '<?php print_r(json_encode($menu)) ?>';
+    var currentArrayProduct = {
+        'listArea1': [],
+        'listArea2': []
+    };
 
     $(document).ready(function() {
         $(".open-selection").click(function() {
             var userChose = $(this).attr("id");
-            var url = "get-product?key=" + userChose;
-            $(".list-product-select").empty();
-            $.ajax({
-                type: 'get',
-                url: url,
-                success: function(data) {
-                    $.each(data.products, function(key, val) {
-                        let dataSendToAdd = JSON.stringify(val);
-                        let name = val.name;
-                        let code = val.code;
-                        let new_price = val.new_price;
-                        let price = val.price;
-                        let slug = val.slug;
-                        let image = JSON.parse(val.image);
-                        let urlProduct = '/product/' + slug;
-                        let urlAddToBuild = '/add-build-pc/' + slug;
-                        let status_guarantee = val.status_guarantee;
-                        let status = val.status;
-                        if (status == 'available') {
-                            textStatus = 'Còn hàng';
-                        } else if (status == 'out of stock') {
-                            textStatus = 'Hết hàng';
-                        } else {
-                            textStatus = 'Đang về hàng';
-                        }
+            changeProductHandle(userChose);
+        });
 
-                        let stringAppend = `<div class="row p-item">
+        $('.close-popup').click(function() {
+            $('#js-modal-popup').hide();
+        });
+
+    });
+
+    function addToMenu(choose) {
+        let idMenu = choose.getAttribute('data-id');
+        let product = JSON.parse(choose.getAttribute('data-product'));
+        let status = product.status;
+        let image = JSON.parse(product.image);
+        let split = idMenu.split('-');
+        let idSelected = '#category-js-selected-' + split[2] + '-' + currentArea;
+        if (status == 'available') {
+            textStatus = 'Còn hàng';
+        } else if (status == 'out of stock') {
+            textStatus = 'Hết hàng';
+        } else {
+            textStatus = 'Đang về hàng';
+        }
+
+        let stringAppend = `<div class="contain-item-drive" id="product-item-in-list-` + currentArea + `-` + product.id + `">
+                            <a target="_blank" href="/product/` + product.slug + `" class="d-img"><img src="` + image[0] + `"></a>
+                            <span class="d-name">
+                                <a target="_blank" href="/product/` + product.slug + `"> ` + product.name + `  </a> <br>
+                                Bảo hành: ` + product.status_guarantee + ` <br>
+                                Kho hàng: <span style="color: red">` + textStatus + `</span> | Mã SP: <span style="color: red">` + product.code + `</span>
+                            </span>
+                            <span class="d-price">` + product.price + `</span>
+                            <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50" disabled><i>=</i>
+                            <span class="sum_price">` + product.price + `</span>
+                            <span class="btn-action_seclect show-popup_select" onclick="changeProductHandle('` + idMenu + `')"><i class="fa fa-edit edit-item"></i></span>
+                            <span class="btn-action_seclect delete_select" data-id="` + product.id + `" data-price="` + product.price + `" onclick="deleteProductHandle(this)"><i class="fa fa-trash remove-item"></i></span>
+                            </div>`;
+        $('#' + idMenu).hide();
+        if ($(idSelected + ' .sum_price') != undefined) {
+            if (currentArea == 1) {
+                if (currentPrice1 != 0) {
+                    currentPrice1 -= parseInt($(idSelected + ' .sum_price').html().replaceAll('.', ''));
+                }
+
+                $('.total-price-in-hud-1').html(priceWithCommas(currentPrice1));
+
+                currentArrayProduct.listArea1.push(product.id);
+            } else {
+                if (currentPrice2 != 0) {
+                    currentPrice2 -= parseInt($(idSelected + ' .sum_price').html().replaceAll('.', ''));
+                }
+
+                $('.total-price-in-hud-2').html(priceWithCommas(currentPrice2));
+
+                currentArrayProduct.listArea2.push(product.id);
+            }
+        }
+
+        $(idSelected).empty();
+        $(idSelected).append(stringAppend);
+        $('#js-modal-popup').hide();
+        countTotalPrice(product.price);
+    }
+
+    function changeBuild(tabSelect) {
+        if (tabSelect == 1) {
+            $('#build-pc-content-area-1').removeClass('d-none');
+            $('#build-pc-content-area-2').addClass('d-none');
+            $('#build-pc-set-item-1').addClass('active');
+            $('#build-pc-set-item-2').removeClass('active');
+            currentArea = 1;
+            currentArrayProduct.listArea1 = [];
+        } else {
+            $('#build-pc-content-area-2').removeClass('d-none');
+            $('#build-pc-content-area-1').addClass('d-none');
+            $('#build-pc-set-item-1').removeClass('active');
+            $('#build-pc-set-item-2').addClass('active');
+            currentArea = 2;
+            currentArrayProduct.listArea2 = [];
+        }
+    }
+
+    function resetBuildPC() {
+        let urlGetMenu = '/get-list-menu';
+        $.ajax({
+            type: "get",
+            url: urlGetMenu,
+            success: function(result) {
+                if (currentArea == 1) {
+                    currentPrice1 = 0;
+                    $('.total-price-in-hud-1').html(0);
+                } else {
+                    currentPrice2 = 0;
+                    $('.total-price-in-hud-2').html(0);
+                }
+
+                $('#build-pc-content-list-' + currentArea + ' .category-selected-row').empty();
+                let currentAreaID = '#build-pc-content-area-' + currentArea + ' .drive-checked';
+
+                for (let k = 0; k < result.length; k++) {
+                    let idBtnAdd = '#category-js-' + result[k].id + '-' + currentArea;
+                    $(idBtnAdd).show();
+                }
+            }
+        });
+    }
+
+    function countTotalPrice(priceUpdate) {
+        if (currentArea == 1) {
+            currentPrice1 += parseInt(priceUpdate.replaceAll('.', ''));
+            $('.total-price-in-hud-1').html(priceWithCommas(currentPrice1));
+        } else {
+            currentPrice2 += parseInt(priceUpdate.replaceAll('.', ''));
+            $('.total-price-in-hud-2').html(priceWithCommas(currentPrice2));
+        }
+    }
+
+    function priceWithCommas(price) {
+        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    function deleteProductHandle(button) {
+        let id = button.getAttribute('data-id');
+        let idArea = '#product-item-in-list-' + currentArea + '-' + id;
+        let price = button.getAttribute('data-price');
+        if (currentArea == 1) {
+            currentPrice1 -= parseInt(price.replaceAll('.', ''));
+            $('.total-price-in-hud-1').html(priceWithCommas(currentPrice1));
+            var index = currentArrayProduct.listArea1.indexOf(id);
+            if (index !== -1) {
+                currentArrayProduct.listArea1.splice(index, 1);
+            }
+        } else {
+            currentPrice2 -= parseInt(price.replaceAll('.', ''));
+            $('.total-price-in-hud-2').html(priceWithCommas(currentPrice2));
+            var index = currentArrayProduct.listArea2.indexOf(id);
+            if (index !== -1) {
+                currentArrayProduct.listArea2.splice(index, 1);
+            }
+        }
+        $(idArea).remove();
+    }
+
+    function changeProductHandle(userChose) {
+        var url = "get-product?key=" + userChose;
+        $(".list-product-select").empty();
+        $.ajax({
+            type: 'get',
+            url: url,
+            success: function(data) {
+                $.each(data.products, function(key, val) {
+                    let dataSendToAdd = JSON.stringify(val);
+                    let name = val.name;
+                    let code = val.code;
+                    let new_price = val.new_price;
+                    let price = val.price;
+                    let slug = val.slug;
+                    let image = JSON.parse(val.image);
+                    let urlProduct = '/product/' + slug;
+                    let urlAddToBuild = '/add-build-pc/' + slug;
+                    let status_guarantee = val.status_guarantee;
+                    let status = val.status;
+                    if (status == 'available') {
+                        textStatus = 'Còn hàng';
+                    } else if (status == 'out of stock') {
+                        textStatus = 'Hết hàng';
+                    } else {
+                        textStatus = 'Đang về hàng';
+                    }
+
+                    let stringAppend = `<div class="row p-item">
                         <div class="col-lg-3">
                             <a href="` + urlProduct + `" class="p-img">
                                 <img src="` + image[0] + `">
@@ -139,137 +290,54 @@
                                 </tbody>
                             </table>`;
 
-                        if (new_price != null) {
-                            let discount = Math.floor(100 - ((parseInt(new_price) / parseInt(price)) * 100));
-                            stringAppend += `<span class="p-price">` + new_price + `</span>
+                    if (new_price != null) {
+                        let discount = Math.floor(100 - ((parseInt(new_price) / parseInt(price)) * 100));
+                        stringAppend += `<span class="p-price">` + new_price + `</span>
                                     <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
                                 <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
                                     ` + price + `<u> đ</u>
                                 </p>
                             <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-` + discount + ` %</div>
                             </div>`;
-                        } else {
-                            stringAppend += `<span class="p-price">` + price + `</span>`;
-                        }
+                    } else {
+                        stringAppend += `<span class="p-price">` + price + `</span>`;
+                    }
 
-                        stringAppend += `</div><div class="col-lg-3" style="margin-top:10px ">
+                    stringAppend += `</div><div class="col-lg-3" style="margin-top:10px ">
                         <span id="buy-product" style="display: flex" class="btn-buy js-select-product" data-id="` + data.menu + `" data-product='` + dataSendToAdd + `' onclick="addToMenu(this)">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
                         </div>
                         </div>
                      <hr>`;
 
-                        $(".list-product-select").append(stringAppend);
-                    })
-                }
-            });
-
-            $('#js-modal-popup').show();
-
-        });
-
-        $('.close-popup').click(function() {
-            $('#js-modal-popup').hide();
-        });
-
-    });
-
-    function updateOrder(quantity, id) {
-        $.get(
-            '{{ asset("update-build-pc") }}', {
-                quantity: quantity,
-                id: id
-            },
-            function() {
-                location.reload()
+                    $(".list-product-select").append(stringAppend);
+                })
             }
-        )
+        });
+
+        $('#js-modal-popup').show();
     }
 
-    function deleteBuild(url) {
-        if (confirm('Are you sure?')) {
-            $.ajax({
-                type: "get",
-                url: url,
-                success: function(result) {}
-            });
-
-        }
-    }
-
-    function addToMenu(choose) {
-        let idMenu = choose.getAttribute('data-id');
-        let product = JSON.parse(choose.getAttribute('data-product'));
-        let status = product.status;
-        let image = JSON.parse(product.image);
-        let split = idMenu.split('-');
-        let idSelected = '#category-js-selected-' + split[2] + '-' + currentArea;
-        if (status == 'available') {
-            textStatus = 'Còn hàng';
-        } else if (status == 'out of stock') {
-            textStatus = 'Hết hàng';
-        } else {
-            textStatus = 'Đang về hàng';
-        }
-        let stringAppend = `<div class="contain-item-drive">
-                            <a target="_blank" href="/product/` + product.slug + `" class="d-img"><img src="` + image[0] + `"></a>
-                            <span class="d-name">
-                                <a target="_blank" href="/product/` + product.slug + `"> ` + product.name + `  </a> <br>
-                                Bảo hành: ` + product.status_guarantee + ` <br>
-                                Kho hàng: <span style="color: red">` + textStatus + `</span> | Mã SP: <span style="color: red">` + product.code + `</span>
-                            </span>
-                            <span class="d-price">` + product.price + `</span>
-                            <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50" disabled><i>=</i>
-                            <span class="sum_price">` + product.price + `</span>
-                            <span class="btn-action_seclect show-popup_select"><i class="fa fa-edit edit-item"></i></span>
-                            <span class="btn-action_seclect delete_select"><i class="fa fa-trash remove-item"></i></span>
-                            </div>`;
-        $('#' + idMenu).hide();
-        $(idSelected).append(stringAppend);
-        $('#js-modal-popup').hide();
-        countTotalPrice(product.price);
-    }
-
-    function changeBuild(tabSelect) {
-        if (tabSelect == 1) {
-            $('#build-pc-content-area-1').removeClass('d-none');
-            $('#build-pc-content-area-2').addClass('d-none');
-            $('#build-pc-set-item-1').addClass('active');
-            $('#build-pc-set-item-2').removeClass('active');
-            currentArea = 1;
-        } else {
-            $('#build-pc-content-area-2').removeClass('d-none');
-            $('#build-pc-content-area-1').addClass('d-none');
-            $('#build-pc-set-item-1').removeClass('active');
-            $('#build-pc-set-item-2').addClass('active');
-            currentArea = 2;
-        }
-    }
-
-    function resetBuildPC() {
+    function addToCart() {
+        let url = '/build-pc-checkout';
+        let data = '';
         if (currentArea == 1) {
-            currentPrice1 = 0;
+            data = currentArrayProduct.listArea1;
         } else {
-            currentPrice2 = 0;
+            data = currentArrayProduct.listArea2;
         }
 
-        $('#build-pc-content-list-' + currentArea + ' .category-selected-row').empty();
+        $.ajax({
+            type: "get",
+            data: {
+                data: data
+            },
+            url: url,
+            success: function(result) {
+                if (result == 'success') {
+                    window.location.href = '/show-cart';
+                }
+            }
+        });
 
-        let stringBtn = `<span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-2"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>`;
-    }
-
-    function countTotalPrice(priceUpdate) {
-        if (currentArea == 1) {
-            currentPrice1 += parseInt(priceUpdate.replaceAll('.', ''));
-            $('.total-price-in-hud-1').html(priceWithCommas(currentPrice1));
-        } else {
-            currentPrice2 += parseInt(priceUpdate.replaceAll('.', ''));
-
-
-            $('.total-price-in-hud-2').html(priceWithCommas(currentPrice2));
-        }
-    }
-
-    function priceWithCommas(price) {
-        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 </script>

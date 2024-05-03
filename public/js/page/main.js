@@ -38,10 +38,16 @@ $(document).ready(function () {
             $('#title-new-price').hide();
             $('#tooltips-new-price').hide();
             $('#tooltips-sale-price').hide();
+            $('#tooltips-price').removeClass('price-with-new-price');
         } else {
             $('#title-new-price').show();
             $('#tooltips-new-price').show();
             $('#tooltips-sale-price').show();
+            let priceCur = parseInt(price.replaceAll('.', ''));
+            let newPriceCur = parseInt(new_price.replaceAll('.', ''));
+            let calPriceCur = Math.floor(100 - ((newPriceCur / priceCur) * 100));
+            $('#tooltips-price').addClass('price-with-new-price');
+            $('#tooltips-sale-price').html('-' + calPriceCur + '%');
         }
 
         if (sale_detail == '' || sale_detail == null) {
@@ -134,10 +140,12 @@ $(document).ready(function () {
         }, 3000);
     }
 
+    $('.global-menu-holder').hide();
+
     $('.global-menu-container').hover(function () {
-        $('.global-menu-holder').css('opacity', 1);
+        $('.global-menu-holder').show();
     }, function () {
-        $('.global-menu-holder').css('opacity', 0);
+        // $('.global-menu-holder').hide();
     });
 
     $('.global-menu-holder .item .cat-1').hover(function () {
@@ -159,6 +167,7 @@ $(document).ready(function () {
         $(this).prev().css('background-color', '#ffffff');
         $(this).prev().css('color', 'black');
         $(this).css('display', 'none');
+        $('.global-menu-holder').hide();
     });
 
     $('.sub-cat-2-link a').hover(function () {
@@ -168,4 +177,59 @@ $(document).ready(function () {
     });
 
     $('.lazy').Lazy();
+
+    $('.inline-search').unbind('keyup');
+    $('.inline-search').bind('keyup', function () { });
+    $(".inline-search").on('keyup', function (e) {
+        suggestionForSearch(this);
+    });
+
+    $('#js-search-result').hide();
 });
+
+function priceWithCommas(price) {
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+function suggestionForSearch(input) {
+    let urlSuggest = '/get-products-for-suggestions';
+    if (input.value != '') {
+        $.ajax({
+            type: "get",
+            data: {
+                search: input.value
+            },
+            url: urlSuggest,
+            success: function (result) {
+                if (result.length > 0) {
+
+                    $('#js-search-result .list').empty();
+                    for (let i = 0; i < result.length; i++) {
+                        let price = result[i].price;
+                        let name = result[i].name;
+                        let slug = result[i].slug;
+                        let image = JSON.parse(result[i].image);
+
+                        let stringAppend = `<a href="/product/` + slug + `">
+                                    <img src="`+ image[0] + `" alt="` + name + `">
+                                    <span class="info">
+                                    <span class="name">`+ name + `</span>
+                                    <span class="price">`+ price + `</span>
+                                    </span>
+                                </a>`;
+
+                        $('#js-search-result .list').append(stringAppend);
+                    }
+
+                    $('#js-search-result').show();
+                } else {
+                    $('#js-search-result .list').empty();
+                    $('#js-search-result').hide();
+                }
+            }
+        });
+    } else {
+        $('#js-search-result .list').empty();
+        $('#js-search-result').hide();
+    }
+}

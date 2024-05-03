@@ -2,17 +2,10 @@
 
 namespace App\Http\Controllers\Page;
 
-use App\Models\Coupon;
-use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\OrderRequest;
-use App\Repositories\CategoryRepository;
-use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
-use App\Enums\Category;
 use App\Repositories\BuildPcRepository;
-use Session;
 use Cart;
 use Cache;
 
@@ -20,20 +13,14 @@ class BuildPCController extends Controller
 {
 
     private $productRepository;
-    private $orderRepository;
     private $buildPcRepository;
-    private $categoryRepository;
 
     public function __construct(
         ProductRepository $productRepository,
-        OrderRepository $orderRepository,
-        BuildPcRepository $buildPcRepository,
-        CategoryRepository $categoryRepository
+        BuildPcRepository $buildPcRepository
     ) {
         $this->productRepository = $productRepository;
-        $this->orderRepository = $orderRepository;
         $this->buildPcRepository = $buildPcRepository;
-        $this->categoryRepository = $categoryRepository;
     }
 
     public function buildPC(Request $request)
@@ -50,7 +37,7 @@ class BuildPCController extends Controller
     {
         $getProductByKey = $request->get('key');
         if (!isset($getProductByKey)) {
-            abort(404);
+            return redirect('/404');
         }
 
         $explode = explode('-', $getProductByKey);
@@ -85,50 +72,28 @@ class BuildPCController extends Controller
         return redirect()->route('buildPC');
     }
 
-    public function updateBuildPC(Request $request)
+    public function getListMenu()
     {
-        $id = $request->id;
-        $quantity = $request->quantity;
+        $menu = $this->buildPcRepository->index();
 
-        Cart::update($id, [
-            'quantity' => array(
-                'relative' => false,
-                'value' => $quantity
-            ),
-        ]);
-        return back();
+        return response()->json($menu);
     }
 
-    public function deleteBuildPC($id)
+    public function addToCartBuildPC(Request $request)
     {
-        if ($id) {
-            Cart::remove($id);
-        }
-        return redirect()->back();
-    }
+        $data = $request->get('data');
+        $dataProduct = $this->productRepository->getProductByArrayID($data);
 
-    public function checkout(OrderRequest $request)
-    {
-        $cartInfor =  Cart::getContent();
-        try {
-            $input = $request->all();
-            $order = $this->orderRepository->create($input);
-            if (count($cartInfor) > 0) {
-                foreach ($cartInfor as $key => $item) {
-
-                    $orderDetail = new OrderDetail();
-                    $orderDetail->order_id = $order->id;
-                    $orderDetail->product_id = $item->id;
-                    $orderDetail->quantity = $item->quantity;
-                    $orderDetail->price = $request->total_cart;
-                    $orderDetail->save();
-                }
-                Cart::clear();
-            }
-        } catch (Exception $e) {
-            echo $e->getMessage();
+        foreach ($dataProduct as $product) {
+            Cart::add(
+                $product->id,
+                $product->name,
+                $product->price,
+                1,
+                ['image' => $product->image]
+            );
         }
-        session()->forget('discount');
-        return redirect()->route('thank');
+
+        return 'success';
     }
 }

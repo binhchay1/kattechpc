@@ -52,7 +52,7 @@ class CategoryPostController extends Controller
         $categoryPost = $this->categoryPostRepository->show($id);
         $listCategory = $this->categoryPostRepository->getListCategoryExcludeId($id);
         if (empty($categoryPost)) {
-            abort(404);
+            return redirect('/404');
         }
         return view('admin.category-post.edit', compact('categoryPost', 'listCategory'));
     }

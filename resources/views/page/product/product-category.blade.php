@@ -24,7 +24,7 @@
                     @foreach($dataProducts->products as $product)
                     <div class="swiper-slide1" role="group">
                         <div class="product-item">
-                            <a href="" class="product-image position-relative">
+                            <a href="{{ route('productDetail', $product->slug) }}" class="product-image position-relative">
                                 @if(isset($product->image))
                                 <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy product-image">
                                 @endif
@@ -146,14 +146,19 @@
                     </select>
                 </div>
 
-                @if(array_key_exists($dataCategory->name, $listCategory['keyword']))
-                @foreach($listCategory['keyword'][$dataCategory->name] as $keyword => $arrValue)
+                @if(isset($listKeyWord))
+                @foreach($listKeyWord as $item)
                 <div class="d-flex flex-direction-column">
-                    <label class="font-bold">{{ __($keyword) }}</label>
+                    <label class="font-bold">{{ __($item->title) }}</label>
                     <select class="mt-1">
                         <option value="all">{{ __('Tất cả') }}</option>
-                        @foreach($arrValue as $value)
-                        <option value="{{ $value }}">{{ $value }}</option>
+
+                        @php
+                        $item->keyword = explode(PHP_EOL, $item->keyword);
+                        @endphp
+
+                        @foreach($item->keyword as $keyword)
+                        <option value="{{ $keyword }}">{{ $keyword }}</option>
                         @endforeach
                     </select>
                 </div>

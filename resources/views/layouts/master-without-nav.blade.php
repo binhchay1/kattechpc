@@ -17,7 +17,6 @@
 
     @yield('content')
     @include('layouts.vendor-scripts')
-    @livewireScripts
 
 </body>
 

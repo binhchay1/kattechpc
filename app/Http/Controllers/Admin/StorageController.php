@@ -53,7 +53,7 @@ class StorageController extends Controller
     {
         $storage = $this->storageRepository->show($id);
         if (empty($storage)) {
-            abort(404);
+            return redirect('/404');
         }
 
         return view('admin.storage.edit', compact('storage'));
@@ -80,16 +80,16 @@ class StorageController extends Controller
         $listProducts = $this->productRepository->index();
         return view('admin.storage.import', compact('storage', 'listProducts'));
     }
-    
+
     public function storeImportProduct(StorageProductRequest $request)
     {
         $input = $request->except(['_token']);
         $this->productStorageRepository->create($input);
-        
+
         return redirect()->route('admin.storage.index')->with('success', __('Kho hàng được thay đổi thành công'));
-        
+
     }
-    
+
     public function listProduct()
     {
         $listProducts = $this->productRepository->index();

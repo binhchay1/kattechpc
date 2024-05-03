@@ -64,7 +64,6 @@ class HomeController extends Controller
         }
     }
 
-
     public function viewPolicy()
     {
         $key = 'menu_homepage';
@@ -209,17 +208,18 @@ class HomeController extends Controller
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
-        $listCategoryProduct = $listCategory['default'];
         $search = $request->get('q');
         $isList = false;
         $listProducts = [];
+        $dataBrand = [];
         if ($search) {
             $listProducts = $this->productRepository->getProductBySearch($search);
             if (count($listProducts) > 0) {
                 $isList = true;
             }
         }
-        return view('page.search', compact('listProducts', 'search', 'isList', 'listCategory'));
+
+        return view('page.search', compact('listProducts', 'search', 'isList', 'listCategory', 'dataBrand'));
     }
 
     public function viewPost()
@@ -238,7 +238,7 @@ class HomeController extends Controller
     public function postDetail($slug)
     {
         if (!isset($slug)) {
-            abort(404);
+            return redirect('/404');
         }
 
         $listPost = $this->postRepository->index();
@@ -253,7 +253,7 @@ class HomeController extends Controller
     {
         $getLandingPage = $this->landingPageRepository->getBySlug($slug);
         if (!$getLandingPage) {
-            abort(404);
+            return redirect('/404');
         }
         $content = $getLandingPage->content;
 
@@ -263,7 +263,7 @@ class HomeController extends Controller
     public function storeCustomContact(Request $request)
     {
         if (is_numeric($request) || !filter_var($request, FILTER_VALIDATE_EMAIL)) {
-            abort(404);
+            return redirect('/404');
         }
 
         $this->customContactRepository->store($request);
@@ -272,7 +272,7 @@ class HomeController extends Controller
     public function showDataCategory(Request $request, $slug)
     {
         if (!isset($slug)) {
-            abort(404);
+            return redirect('/404');
         }
 
         $filters = [];
@@ -292,7 +292,7 @@ class HomeController extends Controller
 
         $isParent = $this->categoryRepository->checkIsParent($slug);
         if ($isParent == 0) {
-            abort(404);
+            return redirect('/404');
         }
 
         $dataCategory = $this->categoryRepository->productByCategory($slug, $isParent, $filters);
@@ -352,7 +352,22 @@ class HomeController extends Controller
         $dataProducts = $this->categoryRepository->productSale($slug, $isParent);
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        if (count($dataCategories) > 0 and $isParent == 2) {
+            $getParent = $this->getTopParent($this->categoryRepository->getParentWithKeyword($dataCategory->id));
+            $listKeyWord = $getParent->categoryFilter;
+        } else {
+            $listKeyWord = $dataCategory->categoryFilter;
+        }
 
-        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand'));
+        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'listKeyWord'));
+    }
+
+    function getTopParent($category)
+    {
+        if ($category->parent === 0) {
+            return $category;
+        }
+
+        return getTopParent($this->categoryRepository->getParentWithKeyword($category->id));
     }
 }

@@ -69,7 +69,7 @@ class UserController extends Controller
         $roles = $this->roleRepository->index();
         $user = $this->userRepository->show($id);
         if (empty($user)) {
-            abort(404);
+            return redirect('/404');
         }
         $genderUser = User::SEX;
 
@@ -81,10 +81,10 @@ class UserController extends Controller
         $input = $request->except(['_token']);
         if (isset($input['profile_photo_path'])) {
            $this->utility->saveImageUser($input);
-           
+
             $path = '/images/upload/user/' . $input['profile_photo_path']->getClientOriginalName();
             $input['profile_photo_path'] = $path;
-        
+
         }
 
         $user = $this->userRepository->update($input, $id);

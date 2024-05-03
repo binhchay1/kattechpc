@@ -19,7 +19,7 @@ class OrderController extends Controller
     public function __construct(
         OrderRepository $orderRepository,
         OrderDetailRepository $orderDetailRepository
-    
+
     )
     {
         $this->orderRepository = $orderRepository;
@@ -92,7 +92,7 @@ class OrderController extends Controller
     {
         $order = $this->orderRepository->destroy($id);
         if (empty($order)) {
-            abort(404);
+            return redirect('/404');
         }
         return back()->with('success', 'Order successfully updated.');
     }
@@ -101,7 +101,7 @@ class OrderController extends Controller
     {
         return Excel::download(new ExportOrder(), 'order.xlsx');
     }
-    
+
     public function activeOrder(Request $request, $id)
     {
         $order = Order::find($id);
@@ -111,7 +111,7 @@ class OrderController extends Controller
             $order->status = 1;
         }
         $order->save();
-        
+
         return back();
     }
 }

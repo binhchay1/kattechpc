@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\BrandRepository;
 use App\Http\Requests\BrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
+use Cache;
 
 class BrandController extends Controller
 {
@@ -48,7 +49,7 @@ class BrandController extends Controller
     {
         $brand = $this->brandRepository->show($id);
         if (empty($brand)) {
-            abort(404);
+            return redirect('/404');
         }
 
         return view('admin.brand.edit', compact('brand'));
