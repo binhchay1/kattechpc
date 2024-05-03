@@ -33,13 +33,24 @@ class CartController extends Controller
     public function addCart($slug)
     {
         $dataProduct = $this->productRepository->productDetail($slug);
-        Cart::add(
-            $dataProduct->id,
-            $dataProduct->name,
-            (int) str_replace('.', '', $dataProduct->new_price) ?? (int) str_replace('.', '', $dataProduct->price),
-            1,
-            ['image' => $dataProduct->image]
-        );
+        if ($dataProduct->new_price != null) {
+            Cart::add(
+                $dataProduct->id,
+                $dataProduct->name,
+                (int) str_replace('.', '', $dataProduct->new_price),
+                1,
+                ['image' => $dataProduct->image]
+            );
+        } else {
+            Cart::add(
+                $dataProduct->id,
+                $dataProduct->name,
+                (int) str_replace('.', '', $dataProduct->price),
+                1,
+                ['image' => $dataProduct->image]
+            );
+        }
+
         Session::put('getProduct', $dataProduct);
 
         return redirect()->route('showCart');
@@ -52,18 +63,10 @@ class CartController extends Controller
         $totalCart = 0;
         $totalCart = Cart::getTotal();
         $dataCart = Cart::getContent();
+
         $arrayID = [];
         foreach ($dataCart as $item) {
             array_push($arrayID, $item->id);
-        }
-
-        $getListProduct = $this->productRepository->getListProductForCart($arrayID);
-        foreach ($getListProduct as $product) {
-            foreach ($dataCart as $cart) {
-                if ($product->id == $cart->id) {
-                    $cart->price = (int) str_replace('.', '', $product->price);
-                }
-            }
         }
 
         return view('page.cart.index', [
@@ -79,7 +82,7 @@ class CartController extends Controller
             Cart::remove($id);
         }
 
-        return success("Delete success");
+        return 'success';
     }
 
     public function updateCart(Request $request)

@@ -95,7 +95,6 @@ class AccountController extends Controller
 
         $idUser = Auth::user()->id;
         $dataUser = $this->userRepository->show($idUser);
-        dd($dataUser);
         $genderUser = User::SEX;
 
         if (empty($dataUser)) {

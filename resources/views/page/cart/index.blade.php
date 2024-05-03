@@ -179,23 +179,19 @@
                         </div>
                     </div>
 
-                    <div class="price get-total">{{ $product->new_price ?? $product->price }} đ</div>
+                    <div class="price get-total">{{ number_format($product->price, 0, '.', '.') }} đ</div>
                     <div class="quantity">
                         <input type="number" value="{{ $product->quantity }}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{ $product->id }}')">
                     </div>
 
                     <?php
-                    if (isset($product->new_price)) {
-                        $total = (int) $product->quantity * (int) str_replace('.', '',  $product->new_price);
-                    } else {
-                        $total = (int) $product->quantity * (int) str_replace('.', '',  $product->price);
-                    }
+                    $total = (int) $product->quantity * (int) str_replace('.', '',  $product->price);
 
                     ?>
                     <div class="subtotal get-total" id="total_cart">{{ number_format($total, 0, '.', '.') }} đ
                         <input hidden name="total_cart" value="{{ $total }}">
                         <div class="delete">
-                            <a href="">
+                            <a>
                                 <button type="button" onclick="deleteSales(`{{ route('deleteCart', $product['id']) }}`)">{{ __('Xóa') }}</button>
                             </a>
                         </div>
@@ -304,7 +300,9 @@
             $.ajax({
                 type: "get",
                 url: url,
-                success: function(result) {}
+                success: function(result) {
+                    location.reload()
+                }
             });
         }
     }

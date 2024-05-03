@@ -26,10 +26,10 @@
                 @foreach($dataUser->orders as $orderHistory)
                 <div class="basket-product">
                     <div class="item">
-                        <div class="price">{{ $orderHistory->orders->order_code }}</div>
+                        <div class="price">{{ $orderHistory->order_code }}</div>
                     </div>
                     <div class="item">
-                        <div class="price">{{ $orderHistory->orders->order_date }}</div>
+                        <div class="price">{{ $orderHistory->order_date }}</div>
                     </div>
                     <div class="subtotal get-total" id="total">111111đ</div>
                 </div>
