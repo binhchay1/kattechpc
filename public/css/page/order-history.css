@@ -1,0 +1,36 @@
+.basket-labels {
+    display: flex;
+    padding: 10px;
+    text-align: center;
+}
+
+.basket-product {
+    display: flex;
+    padding: 10px;
+    text-align: center;
+}
+
+.basket {
+    padding: 10px;
+}
+
+.item-code {
+    width: 30%;
+}
+
+.item-date {
+    width: 30%;
+}
+
+.item-total {
+    width: 20%;
+}
+
+.item-action {
+    width: 20%;
+}
+
+.heading {
+    font-size: 18px;
+    font-weight: bold;
+}

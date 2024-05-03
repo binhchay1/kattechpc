@@ -6,7 +6,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/page/profile.css') }}" />
-<link rel="stylesheet" href="{{ asset('/css/page/cart.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/page/order-history.css') }}" />
 @endsection
 
 @section('content')
@@ -15,23 +15,19 @@
     <div class="rightcolumn">
         <div class="card">
             <h2>{{ __('Lịch sử mua hàng') }}</h2>
-            <div class="basket " style="width: 100%;">
+            <div class="basket">
                 <div class="basket-labels">
-                    <ul>
-                        <li class="item item-heading">{{ __('Mã đơn hàng') }}</li>
-                        <li class="price">{{ __('Ngày') }}</li>
-                        <li class="subtotal">{{ __('Thành tiền') }}</li>
-                    </ul>
+                    <div class="item-code heading">{{ __('Mã đơn hàng') }}</div>
+                    <div class="item-date heading">{{ __('Ngày') }}</div>
+                    <div class="item-total heading">{{ __('Thành tiền') }}</div>
+                    <div class="item-action heading">{{ __('Hành động') }}</div>
                 </div>
                 @foreach($dataUser->orders as $orderHistory)
                 <div class="basket-product">
-                    <div class="item">
-                        <div class="price">{{ $orderHistory->order_code }}</div>
-                    </div>
-                    <div class="item">
-                        <div class="price">{{ $orderHistory->order_date }}</div>
-                    </div>
-                    <div class="subtotal get-total" id="total">111111đ</div>
+                    <div class="item-code">{{ $orderHistory->order_code }}</div>
+                    <div class="item-date">{{ $orderHistory->order_date }}</div>
+                    <div class="item-total"></div>
+                    <div class="item-action"><button>{{ __('Xem chi tiết') }}</button></div>
                 </div>
                 @endforeach
             </div>
