@@ -10,23 +10,23 @@
 
 @section('content')
 <main>
-    @if ($totalCart == 0)
+    @if($totalCart == 0)
     <div class="">
         <img class="image-cart" src="{{asset('images/cart.jpg')}}">
-        <h2 class="text-center">{{__('Không có sản phẩm nào trong giỏ hàng')}}</h2>
+        <h2 class="text-center">{{ __('Không có sản phẩm nào trong giỏ hàng') }}</h2>
 
         <div class="button-css-cart">
-            <a href="{{route('home')}}">
-                <button class="button-cart">{{__('Tiếp tục mua hàng')}}</button>
+            <a href="{{ route('home') }}">
+                <button class="button-cart">{{ __('Tiếp tục mua hàng') }}</button>
             </a>
         </div>
     </div>
     @else
-    <form action="{{route('checkout')}}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('checkout') }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
-        <div class="title-c-ct"> {{__('Địa chỉ giao hàng')}}</div>
+        <div class="title-c-ct"> {{ __('Địa chỉ giao hàng') }}</div>
         <a href="#">
-            <div class="title-c-ct input-address">{{__('THÔNG TIN KHÁCH HÀNG')}}</div>
+            <div class="title-c-ct input-address">{{ __('THÔNG TIN KHÁCH HÀNG') }}</div>
         </a>
         <div class="product-data">
             @if(Auth::user())
@@ -37,7 +37,7 @@
                             <label for="fname" class="label">{{__('Họ tên')}}</label>
                         </div>
                         <div class="col-75">
-                            <input type="text" id="fname" name="name" value="{{Auth::user()->name}}" placeholder="{{__('Họ và tên')}}">
+                            <input type="text" id="fname" name="name" value="{{Auth::user()->name}}" placeholder="{{ __('Họ và tên') }}">
                         </div>
                         @if ($errors->has('name'))
                         <span class="text-danger">{{ $errors->first('name') }}</span>
@@ -48,7 +48,7 @@
                             <label for="fname" class="label">{{__('Số điện thoại')}}</label>
                         </div>
                         <div class="col-75">
-                            <input type="text" id="fname" name="phone" value="{{Auth::user()->phone}}" placeholder="{{__('Số điện thoại')}}">
+                            <input type="text" id="fname" name="phone" value="{{Auth::user()->phone}}" placeholder="{{ __('Số điện thoại') }}">
                         </div>
                         @if ($errors->has('phone'))
                         <span class="text-danger">{{ $errors->first('phone') }}</span>
@@ -70,7 +70,7 @@
                             <label for="fname" class="label">{{__('Quận/huyện')}}</label>
                         </div>
                         <div class="col-75">
-                            <input type="text" id="fname" name="district" value="{{Auth::user()->district}}" placeholder="{{__('Quận huyện')}}">
+                            <input type="text" id="fname" name="district" value="{{Auth::user()->district}}" placeholder="{{ __('Quận huyện') }}">
                         </div>
                         @if ($errors->has('district'))
                         <span class="text-danger">{{ $errors->first('district') }}</span>
@@ -81,14 +81,14 @@
                             <label for="fname" class="label">{{__('Địa chỉ')}}</label>
                         </div>
                         <div class="col-75">
-                            <input type="text" id="fname" name="address" value="{{Auth::user()->address}}" placeholder="{{__('Địa chỉ')}}">
+                            <input type="text" id="fname" name="address" value="{{Auth::user()->address}}" placeholder="{{ __('Địa chỉ') }}">
                         </div>
                         @if ($errors->has('address'))
                         <span class="text-danger">{{ $errors->first('address') }}</span>
                         @endif
                         <?php $date = date('Y-m-d H:i:s'); ?>
-                        <input type="hidden" id="fname" name="user_id" value="{{Auth::user()->id}}" placeholder="{{__('Địa chỉ')}}">
-                        <input type="hidden" id="fname" name="order_date" value="{{$date}}" placeholder="{{__('Địa chỉ')}}">
+                        <input type="hidden" id="fname" name="user_id" value="{{Auth::user()->id}}" placeholder="{{ __('Địa chỉ') }}">
+                        <input type="hidden" id="fname" name="order_date" value="{{$date}}" placeholder="{{ __('Địa chỉ') }}">
                         <input type="hidden" id="fname" name="status" value="0">
                     </div>
                 </div>
@@ -160,10 +160,10 @@
             <div class="basket">
                 <div class="basket-labels">
                     <ul>
-                        <li class="item item-heading">{{__('Sản phẩm')}}</li>
-                        <li class="price item-heading">{{__('Giá')}}</li>
-                        <li class="quantity item-heading">{{__('Số lượng')}}</li>
-                        <li class="subtotal item-heading">{{__('Thành tiền')}}</li>
+                        <li class="item item-heading">{{ __('Sản phẩm') }}</li>
+                        <li class="price item-heading">{{ __('Giá') }}</li>
+                        <li class="quantity item-heading">{{ __('Số lượng') }}</li>
+                        <li class="subtotal item-heading">{{ __('Thành tiền') }}</li>
                     </ul>
                 </div>
 
@@ -175,7 +175,7 @@
                             <img src="{{ asset($image[0])}}" alt="Placholder Image 2" class="product-frame">
                         </div>
                         <div class="product-details">
-                            <h1><strong><span class="item-quantity"></span> {{$product->name}}</strong></h1>
+                            <h1><strong><span class="item-quantity"></span> {{ $product->name }}</strong></h1>
                         </div>
                     </div>
 
@@ -191,7 +191,7 @@
                         <input hidden name="total_cart" value="{{ $total }}">
                         <div class="delete">
                             <a href="">
-                                <button type="button" onclick="deleteSales(`{{ route('deleteCart', $product['id']) }}`)">{{__('Xóa')}}</button>
+                                <button type="button" onclick="deleteSales(`{{ route('deleteCart', $product['id']) }}`)">{{ __('Xóa') }}</button>
                             </a>
                         </div>
                     </div>
@@ -213,14 +213,13 @@
                         </form>
                     </div>
                     <div class="summary">
-                        <div class=" input-address summary-total-items total-title">{{__('Tổng cộng:')}} </div>
-                        <div class="total-value final-value get-total" id="basket-total">{{ number_format($totalCart, 0, '.', '.') }}đ</div>
+                        <div class=" input-address summary-total-items total-title">{{ __('Tổng cộng:') }} </div>
+                        <div class="total-value final-value get-total" id="basket-total">{{ number_format($totalCart, 0, '.', '.') }} đ</div>
                     </div>
                     <div class=" input-address total-value final-value summary-total " id="basket-total">{{__('Giảm giá:')}}
                         @if(Session::get('discount'))
                         <?php $getDiscount = Session::get('discount')->discount_amount ?>
-
-                        {{($getDiscount)}}đ
+                        {{($getDiscount)}} đ
                         @endif
                     </div>
                     @if(Session::get('discount'))
@@ -251,37 +250,10 @@
     </form>
     @endif
 </main>
-<meta name="viewport" content="width=device-width" />
 @endsection
 
 @section('js')
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-
-
-<script>
-    function updateCart(quantity, id) {
-        $.get(
-            '{{ asset("/cart/update-cart") }}', {
-                quantity: quantity,
-                id: id
-            },
-            function() {
-                location.reload()
-            }
-        )
-    }
-</script>
-<script>
-    function deleteSales(url) {
-        if (confirm('Are you sure?')) {
-            $.ajax({
-                type: "get",
-                url: url,
-                success: function(result) {}
-            });
-        }
-    }
-</script>
 <script>
     $(document).ready(function() {
         $(".btn-submit").click(function(e) {
@@ -309,5 +281,27 @@
 
         });
     });
+
+    function updateCart(quantity, id) {
+        $.get(
+            '{{ asset("/cart/update-cart") }}', {
+                quantity: quantity,
+                id: id
+            },
+            function() {
+                location.reload()
+            }
+        )
+    }
+
+    function deleteSales(url) {
+        if (confirm('Are you sure?')) {
+            $.ajax({
+                type: "get",
+                url: url,
+                success: function(result) {}
+            });
+        }
+    }
 </script>
 @endsection

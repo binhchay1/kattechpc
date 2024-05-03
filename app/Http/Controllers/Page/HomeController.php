@@ -352,7 +352,19 @@ class HomeController extends Controller
         $dataProducts = $this->categoryRepository->productSale($slug, $isParent);
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        if (count($dataCategories) > 0) {
+            $getParent = getTopParent($this->categoryRepository->getById($dataCategories));
+        }
 
         return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand'));
+    }
+
+    function getTopParent($category)
+    {
+        if ($category->parent === 0) {
+            return $category;
+        }
+
+        return getTopParent($this->categoryRepository->getById($id));
     }
 }
