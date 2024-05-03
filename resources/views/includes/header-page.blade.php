@@ -49,6 +49,9 @@
 
     <div class="header-bottom">
         <div class="header-bottom-container">
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
             <div class="logo">
                 <a href="/">
                     <img src="{{ asset('/images/logo/logo.png') }}" alt="logo Kattech PC" width="150" height="150" class="loading">
@@ -74,12 +77,12 @@
                 <div class="build-area">
                     <a href="{{ route('buildPC') }}">
                         <i class="fa fa-screwdriver"></i>
-                        <span>{{ __('Xây dựng cấu hình') }}</span>
+                        <span >{{ __('Xây dựng cấu hình') }}</span>
                     </a>
                 </div>
                 <div class="cart-area ml-20px">
                     <a href="{{ route('showCart') }}">
-                        <i class="fa badge" value="{{ count(Cart::getContent()) }}">&#xf07a;</i> {{ __('Giỏ hàng') }}
+                        <i class="fa badge" value="{{ count(Cart::getContent()) }}">&#xf07a;</i>   <span >{{ __('Giỏ hàng') }}</span>
                     </a>
                 </div>
             </div>

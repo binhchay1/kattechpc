@@ -57,6 +57,7 @@ Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('/blog-detail/{slug}', [HomeController::class, 'postDetail'])->name('post.detail');
     Route::get('/product/{slug}', [ProductPage::class, 'productDetail'])->name('productDetail');
     Route::post('/comment', [ProductPage::class, 'storeComment'])->name('storeComment');
+    Route::post('/rating', [ProductPage::class, 'rating'])->name('rating');
     Route::get('/promotion', [HomeController::class, 'viewPromotion'])->name('promotion');
     Route::get('/promotion-detail', [HomeController::class, 'promotionDetail'])->name('promotionDetail');
     Route::get('/chinh-sach-quy-dinh-chung', [HomeController::class, 'rules'])->name('rules');

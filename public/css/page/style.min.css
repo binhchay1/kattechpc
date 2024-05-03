@@ -27,7 +27,6 @@ body a {
 
 .header-top {
     background: #000000;
-    margin-bottom: 20px;
     border-bottom: 1px solid #ccc;
     padding: 10px;
     color: var(--color-primary);
@@ -56,7 +55,6 @@ body a {
 .header-bottom-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     width: var(--flex-width);
     max-width: 100%;
     padding: 0 10px;
@@ -1511,9 +1509,6 @@ a {
         display: none !important;
     }
 
-    .logo {
-        margin: 0 auto;
-    }
 
     .newsletter-area {
         flex-direction: column;
@@ -1559,10 +1554,35 @@ a {
         display: flex;
         flex-direction: column;
     }
+
+    .header-top-container {
+        display: none;
+    }
+
+    .icon {
+        display: block !important;
+        font-size: 35px;
+    }
+
+    .logo .loading {
+        width: 100px;
+        height: 100px;
+    }
+
+    .build-area {
+        display: none;
+    }
+
+
+
 }
 
 @media only screen and (max-width: 767px) {
     .modal-box .modal-dialog {
         width: 95% !important;
     }
+}
+
+.icon {
+    display: none;
 }
