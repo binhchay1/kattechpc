@@ -215,8 +215,11 @@ ul pagination {
     justify-content: space-between;
     gap: 12px;
     min-height: auto;
-    margin-left: 20px;
     margin-top: 20px;
+}
+
+.list-product-flex .product-item:not(:first-child) {
+    margin-left: 20px;
 }
 
 .flex-wrap {

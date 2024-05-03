@@ -5,7 +5,6 @@
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('/plugins/owlcarousel/owl.theme.default.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('/css/page/business-policy.css') }}" />
 @endsection
 

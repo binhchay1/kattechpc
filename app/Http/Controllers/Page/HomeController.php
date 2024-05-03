@@ -295,6 +295,8 @@ class HomeController extends Controller
             return redirect('/404');
         }
 
+        dd($filters);
+
         $dataCategory = $this->categoryRepository->productByCategory($slug, $isParent, $filters);
         $dataBrand = [];
         $dataCategories = [];
