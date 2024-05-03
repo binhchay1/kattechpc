@@ -114,3 +114,12 @@
 .hover:hover {
     background-color: #ebebeb;
 }
+
+.menu-profile {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.btn-reset,.btn-submit {
+    cursor: pointer;
+}

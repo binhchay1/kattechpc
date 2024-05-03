@@ -9,10 +9,9 @@ use App\Models\OrderDetail;
 use App\Repositories\CategoryRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
-use Session;
 use Illuminate\Http\Request;
+use Session;
 use Cart;
-use function Livewire\Features\SupportTesting\commit;
 use Cache;
 
 class CartController extends Controller
@@ -32,16 +31,13 @@ class CartController extends Controller
         $this->categoryRepository = $categoryRepository;
     }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function addCart(Request $request, $slug)
+    public function addCart($slug)
     {
         $dataProduct = $this->productRepository->productDetail($slug);
         Cart::add(
             $dataProduct->id,
             $dataProduct->name,
-            $dataProduct->new_price ??  $dataProduct->price,
+            (int) str_replace('.', '', $dataProduct->new_price) ?? (int) str_replace('.', '', $dataProduct->price),
             1,
             ['image' => $dataProduct->image]
         );
@@ -49,7 +45,7 @@ class CartController extends Controller
         return redirect()->route('showCart');
     }
 
-    public function showCart(Request $request)
+    public function showCart()
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
@@ -138,7 +134,7 @@ class CartController extends Controller
         Cart::add(
             $dataProduct->id,
             $dataProduct->name,
-            $dataProduct->price,
+            (int) str_replace('.', '', $dataProduct->new_price) ?? (int) str_replace('.', '', $dataProduct->price),
             $total,
             ['image' => $dataProduct->image]
         );

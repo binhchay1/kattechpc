@@ -140,10 +140,12 @@ $(document).ready(function () {
         }, 3000);
     }
 
+    $('.global-menu-holder').hide();
+
     $('.global-menu-container').hover(function () {
-        $('.global-menu-holder').css('opacity', 1);
+        $('.global-menu-holder').show();
     }, function () {
-        $('.global-menu-holder').css('opacity', 0);
+        // $('.global-menu-holder').hide();
     });
 
     $('.global-menu-holder .item .cat-1').hover(function () {
@@ -165,6 +167,7 @@ $(document).ready(function () {
         $(this).prev().css('background-color', '#ffffff');
         $(this).prev().css('color', 'black');
         $(this).css('display', 'none');
+        $('.global-menu-holder').hide();
     });
 
     $('.sub-cat-2-link a').hover(function () {
@@ -229,5 +232,4 @@ function suggestionForSearch(input) {
         $('#js-search-result .list').empty();
         $('#js-search-result').hide();
     }
-
 }

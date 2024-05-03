@@ -179,13 +179,18 @@
                         </div>
                     </div>
 
-                    <div class="price get-total">{{ $product->price }} đ</div>
+                    <div class="price get-total">{{ $product->new_price ?? $product->price }} đ</div>
                     <div class="quantity">
-                        <input type="number" value="{{ $product->quantity }}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{$product->id}}')">
+                        <input type="number" value="{{ $product->quantity }}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{ $product->id }}')">
                     </div>
 
                     <?php
-                    $total = (int) $product->quantity * (int) str_replace('.', '',  $product->price);
+                    if (isset($product->new_price)) {
+                        $total = (int) $product->quantity * (int) str_replace('.', '',  $product->new_price);
+                    } else {
+                        $total = (int) $product->quantity * (int) str_replace('.', '',  $product->price);
+                    }
+
                     ?>
                     <div class="subtotal get-total" id="total_cart">{{ number_format($total, 0, '.', '.') }} đ
                         <input hidden name="total_cart" value="{{ $total }}">

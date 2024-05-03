@@ -10,31 +10,7 @@
 
 @section('content')
 <div class="row">
-    <div class="leftcolumn">
-        <div class="card">
-            <h2></h2>
-            <a href="#">
-                <div class="hover">
-                    <h5>{{__('Thông tin tài khoản')}}</h5>
-                </div>
-            </a>
-            <a href="#">
-                <div class="hover">
-                    <h5>{{__('Quản lý đơn hàng')}}</h5>
-                </div>
-            </a>
-            <a href="#">
-                <div class="hover">
-                    <h5>{{__('Thay đổi mật khẩu')}}</h5>
-                </div>
-            </a>
-            <a href="#">
-                <div class="hover">
-                    <h5>{{__('Đăng xuất')}}</h5>
-                </div>
-            </a>
-        </div>
-    </div>
+    @include('includes.left-menu-profile')
     <div class="rightcolumn">
         <div class="card">
             <h2>{{__('Thay đổi mật khẩu')}}</h2>
