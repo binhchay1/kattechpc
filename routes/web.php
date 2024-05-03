@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryFillterController;
+use App\Http\Controllers\Admin\CategoryFilterController;
 use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\CouponController;
@@ -47,6 +47,7 @@ Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('/support', [HomeController::class, 'viewSupport'])->name('support');
     Route::get('/product/{slug}', [ProductPage::class, 'productDetail'])->name('productDetail');
     Route::post('/comment', [ProductPage::class, 'storeComment'])->name('storeComment');
+    Route::post('/rating', [ProductPage::class, 'rating'])->name('rating');
     Route::get('/promotion', [HomeController::class, 'viewPromotion'])->name('promotion');
     Route::get('/promotion-detail', [HomeController::class, 'promotionDetail'])->name('promotionDetail');
     Route::get('/rules', [HomeController::class, 'rules'])->name('rules');
@@ -69,16 +70,13 @@ Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('collection/{slug}', [HomeController::class, 'showDataCategory'])->name('showDataCategory');
     Route::get('/promotion/{slug}', [HomeController::class, 'showPromotionDetail'])->name('showPromotionDetail');
 
-        Route::get('build-pc',  [BuildPCController::class, 'buildPC'])->name('buildPC');
-        Route::get('get-product',  [BuildPCController::class, 'getProduct'])->name('getProduct');
-        Route::get('/add-build-pc/{slug}',  [BuildPCController::class, 'addBuildPC'])->name('addBuildPC');
-        Route::get('add-to-build-pc/{slug}', [BuildPCController::class, 'addBuildPC'])->name('add_to_BuildPC');
-        Route::get('delete-build-pc/{id}',  [BuildPCController::class, 'deleteBuildPC'])->name('deleteBuildPC');
-        Route::get('update-build-pc',  [BuildPCController::class, 'updateBuildPC'])->name('updateBuildPC');
-        Route::post('checkout',  [BuildPCController::class, 'checkout'])->name('checkout');
-        Route::post('apply-coupon',  [BuildPCController::class, 'addCoupon'])->name('apply.coupon');
-        Route::get('thank-you',  [BuildPCController::class, 'thank'])->name('thank');
-
+    Route::get('build-pc',  [BuildPCController::class, 'buildPC'])->name('buildPC');
+    Route::get('get-product',  [BuildPCController::class, 'getProduct'])->name('getProduct');
+    Route::get('/add-build-pc/{slug}',  [BuildPCController::class, 'addBuildPC'])->name('addBuildPC');
+    Route::get('add-to-build-pc/{slug}', [BuildPCController::class, 'addBuildPC'])->name('add_to_BuildPC');
+    Route::get('delete-build-pc/{id}',  [BuildPCController::class, 'deleteBuildPC'])->name('deleteBuildPC');
+    Route::get('update-build-pc',  [BuildPCController::class, 'updateBuildPC'])->name('updateBuildPC');
+    Route::post('checkout',  [BuildPCController::class, 'checkout'])->name('checkout.in.build');
 
     Route::group(['prefix' => 'cart'], function () {
         Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
@@ -236,14 +234,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'category-filter'], function () {
-        Route::get('/list', [CategoryFillterController::class, 'index'])->name('admin.category-filter.index');
-        Route::get('/add', [CategoryFillterController::class, 'create'])->name('admin.category-filter.create');
-        Route::post('/store', [CategoryFillterController::class, 'store'])->name('admin.category-filter.store');
-        Route::get('/update/{id}', [CategoryFillterController::class, 'edit'])->name('admin.category-filter.edit');
-        Route::post('/update/{id}', [CategoryFillterController::class, 'update'])->name('admin.category-filter.update');
-        Route::get('/delete/{id}', [CategoryFillterController::class, 'delete'])->name('admin.category-filter.delete');
+        Route::get('/list', [CategoryFilterController::class, 'index'])->name('admin.category-filter.index');
+        Route::get('/add', [CategoryFilterController::class, 'create'])->name('admin.category-filter.create');
+        Route::post('/store', [CategoryFilterController::class, 'store'])->name('admin.category-filter.store');
+        Route::get('/update/{id}', [CategoryFilterController::class, 'edit'])->name('admin.category-filter.edit');
+        Route::post('/update/{id}', [CategoryFilterController::class, 'update'])->name('admin.category-filter.update');
+        Route::get('/delete/{id}', [CategoryFilterController::class, 'delete'])->name('admin.category-filter.delete');
     });
-
 
     Route::get('products/{productId}/upload', [ProductImageController::class, 'index']);
     Route::post('products/{productId}/upload', [ProductImageController::class, 'store']);

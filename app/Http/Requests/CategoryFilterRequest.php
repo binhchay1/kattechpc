@@ -31,10 +31,10 @@ class CategoryFilterRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('Tên thể loại danh mục không được để trống'),
-            'keyword.required' => __('Từ khóa thể loại danh mục không được để trống'),
-            'name.max' => __('Tên thể loại danh mục không vượt quá 191 kí tự'),
-            'keyword.max' => __('Từ khóa thể loại danh mục không vượt quá 191 kí tự'),
+            'name.required' => __('Tên từ khóa danh mục không được để trống'),
+            'keyword.required' => __('Từ khóa từ khóa danh mục không được để trống'),
+            'name.max' => __('Tên từ khóa danh mục không vượt quá 191 kí tự'),
+            'keyword.max' => __('Từ khóa từ khóa danh mục không vượt quá 191 kí tự'),
             'category_id.required' => __('Thể loại sản phẩm không được để trống'),
         ];
     }

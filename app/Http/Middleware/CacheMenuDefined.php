@@ -25,8 +25,9 @@ class CacheMenuDefined
         if (empty($getInfor)) {
             $data = [];
             $listBrand = [];
-            $listDetail = [];
+            $listKeyword = [];
             $listCategory = $this->categoryRepository->getListCategory();
+
             foreach ($listCategory as $category) {
                 if (isset($category->products)) {
                     foreach ($category->products as $product) {
@@ -39,20 +40,16 @@ class CacheMenuDefined
                                 }
                             }
                         }
+                    }
+                }
 
-                        if (isset($product->detail)) {
-                            $decode = json_decode($product->detail, true);
-                            foreach ($decode as $key => $value) {
-                                if (!array_key_exists($category->name, $listDetail)) {
-                                    $listDetail[$category->name][$key][] = $value;
-                                } else {
-                                    if (!array_key_exists($key, $listDetail[$category->name])) {
-                                        $listDetail[$category->name][$key][] = $value;
-                                    } else {
-                                        if (!in_array($value, $listDetail[$category->name][$key])) {
-                                            $listDetail[$category->name][$key][] = $value;
-                                        }
-                                    }
+                if (isset($category->children)) {
+                    foreach ($category->children as $children) {
+                        if (isset($children->categoryFilter)) {
+                            foreach ($children->categoryFilter as $filter) {
+                                $explodeKeyWord = explode(PHP_EOL, $filter->keyword);
+                                foreach ($explodeKeyWord as $explode) {
+                                    $listKeyword[$category->name][$filter->title][] = $explode;
                                 }
                             }
                         }
@@ -62,7 +59,7 @@ class CacheMenuDefined
 
             $data['default'] = $listCategory;
             $data['brand'] = $listBrand;
-            $data['detail'] = $listDetail;
+            $data['keyword'] = $listKeyword;
 
             Cache::store('redis')->rememberForever($keyCache, function () use ($data) {
                 return $data;

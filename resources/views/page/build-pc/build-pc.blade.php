@@ -5,51 +5,72 @@
 @endsection
 
 @section('css')
-
 <link rel="stylesheet" href="{{ asset('/css/page/build-pc.css') }}" />
 @endsection
 
 @section('content')
 <div class="build-pc-area">
     <div class="build-pc_content">
-        <h1 style="font-size: 30px;line-height:36px;margin-bottom: 10px;text-align: center;font-weight:500;">Build PC - Xây dựng cấu hình máy tính PC giá rẻ chuẩn nhất</h1>
-        <h2 style="font-size: 26px;line-height:30px;margin-bottom: 10px;font-weight:500; ">Chọn linh kiện xây dựng cấu hình - Tự build PC</h2>
+        <h1 style="font-size: 30px;line-height:36px;margin-bottom: 10px;text-align: center;font-weight:500;">{{ __('Build PC - Xây dựng cấu hình máy tính PC giá rẻ chuẩn nhất') }}</h1>
+        <h2 style="font-size: 26px;line-height:30px;margin-bottom: 10px;font-weight:500; ">{{ __('Chọn linh kiện xây dựng cấu hình - Tự build PC') }} </h2>
 
         <ul class="list-btn-action">
-            <li class="active"><span onclick="showBuildId(1); changeTab(this);" style="padding:0 20px;">Cấu hình 1</span></li>
-            <li><span onclick="showBuildId(2); changeTab(this);" style="padding:0 20px;">Cấu hình 2</span></li>
+            <li id="build-pc-set-item-1" class="active"><span onclick="changeBuild(1);" style="padding:0 20px;">{{ __('Cấu hình') }} 1</span></li>
+            <li id="build-pc-set-item-2"><span onclick="changeBuild(2);" style="padding:0 20px;">{{ __('Cấu hình') }} 2</span></li>
         </ul>
 
-        <ul class="list-btn-action">
-            <li style="width:auto;"><span onclick="openPopupRebuild()" style="padding:0 20px;">Làm mới <i class="fa fa-undo"></i></span></li>
-        </ul>
-        <div>
-            <p class="total-price">Chi phí dự tính:
-                <span class="js-config-summary"><span class="total-price-config"></span>
-                </span>
-            </p>
-            <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
-        </div>
-
-        <div class="list-drive" id="js-buildpc-layout" style="border: solid 1px #e1e1e1;">
-            @foreach($menu as $key => $value)
-            <div class="item-drive d-flex">
-                <div class="name-item-drive">
-                    <h3 class="d-name d-name-277" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">{{ $key + 1 }}. {{ $value->name }}</h3>
-                </div>
-                <div class="drive-checked" style="margin-left:0;">
-                    <span class="show-popup_select span-last open-selection" id="category-js-{{ $key + 1 }}"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
-                    <div id="js-selected-item-278" data-id="278" class="js-item-row"></div>
-                </div>
+        <div id="build-pc-content-area-1">
+            <div id="build-pc-content-price-1">
+                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">0</span>
+                    <span class="total-price-config-1"></span>
+                </p>
+                <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
             </div>
-            @endforeach
+            <div class="list-drive" id="build-pc-content-list-1" style="border: solid 1px #e1e1e1;">
+                @foreach($menu as $key => $value)
+                <div class="item-drive d-flex">
+                    <div class="name-item-drive">
+                        <h3 class="d-name d-name-277" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">{{ $key + 1 }}. {{ $value->name }}</h3>
+                        @if(isset($value->offers))
+                        <h5 style="color: red; font-style: italic; font-weight: bold">{{ $value->offers }}</h5>
+                        @endif
+                    </div>
+                    <div class="drive-checked" style="margin-left:0;">
+                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-1"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
+                        <div id="category-js-selected-{{ $key + 1 }}-1" class="js-item-row category-selected-row"></div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">0</span><span class="total-price-config-1"></span></p>
         </div>
 
-        <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="js-config-summary"><span class="total-price-config"></span></span></p>
+        <div id="build-pc-content-area-2" class="d-none">
+            <div id="build-pc-content-price-2">
+                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-2">0</span>
+                    <span class="total-price-config-2"></span>
+                </p>
+            </div>
+            <div class="list-drive" id="build-pc-content-list-1" style="border: solid 1px #e1e1e1;">
+                @foreach($menu as $key => $value)
+                <div class="item-drive d-flex">
+                    <div class="name-item-drive">
+                        <h3 class="d-name d-name-277" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">{{ $key + 1 }}. {{ $value->name }}</h3>
+                        @if(isset($value->offers))
+                        <h5 style="color: red; font-style: italic; font-weight: bold">{{ $value->offers }}</h5>
+                        @endif
+                    </div>
+                    <div class="drive-checked" style="margin-left:0;">
+                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-2"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
+                        <div id="category-js-selected-{{ $key + 1 }}-2" class="js-item-row category-selected-row"></div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-2">0</span><span class="total-price-config-2"></span></p>
+        </div>
 
         <ul class="list-btn-action" id="js-buildpc-action">
-            <li><span data-action="create-image">{{ __('Tải ảnh cấu hình') }}<i class="fa fa-image"></i></span></li>
-            <li><span data-action="view">{{ __('Xem và in') }}<i class="fa fa-print"></i></span></li>
             <li><span data-action="add-cart">{{ __('Thêm vào giỏ hàng') }}<i class="fa fa-shopping-cart"></i></span></li>
         </ul>
     </div>
@@ -58,24 +79,29 @@
 @include('includes.modal-build-pc')
 @endsection
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-
 <script>
+    var currentArea = 1;
+    var currentPrice1 = 0;
+    var currentPrice2 = 0;
+    const menu = '<?php print_r(json_encode($menu)) ?>';
+
     $(document).ready(function() {
         $(".open-selection").click(function() {
             var userChose = $(this).attr("id");
             var url = "get-product?key=" + userChose;
+            $(".list-product-select").empty();
             $.ajax({
                 type: 'get',
                 url: url,
                 success: function(data) {
-                    $(".list-product-select").empty();
-                    $.each(data['product'], function(key, val) {
+                    $.each(data.products, function(key, val) {
+                        let dataSendToAdd = JSON.stringify(val);
                         let name = val.name;
                         let code = val.code;
                         let new_price = val.new_price;
                         let price = val.price;
                         let slug = val.slug;
-                        let image = val.image;
+                        let image = JSON.parse(val.image);
                         let urlProduct = '/product/' + slug;
                         let urlAddToBuild = '/add-build-pc/' + slug;
                         let status_guarantee = val.status_guarantee;
@@ -91,7 +117,7 @@
                         let stringAppend = `<div class="row p-item">
                         <div class="col-lg-3">
                             <a href="` + urlProduct + `" class="p-img">
-                                <img src="` + image + `">
+                                <img src="` + image[0] + `">
                             </a>
                         </div>
                         <div class="col-lg-6 info">
@@ -127,9 +153,7 @@
                         }
 
                         stringAppend += `</div><div class="col-lg-3" style="margin-top:10px ">
-                             <a class="btn-1" href="` + urlAddToBuild + `">
-                                 <span id="buy-product" class="btn-buy js-select-product" data-id="` + data['menu'] + `" onclick="addToMenu(this, ` + data['product'] + `)">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                             </a>
+                        <span id="buy-product" style="display: flex" class="btn-buy js-select-product" data-id="` + data.menu + `" data-product='` + dataSendToAdd + `' onclick="addToMenu(this)">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
                         </div>
                         </div>
                      <hr>`;
@@ -172,26 +196,80 @@
         }
     }
 
-    function addToMenu(idMenu, product) {
-        let stringAppend = `<div class="drive-checked flex-1" style="margin-left:0;">
-                                <span class="show-popup_select span-last open-selection" id="js-category-info-277" data-info="{&quot;id&quot;:277,&quot;name&quot;:&quot;CPU - Bộ Vi Xử Lý&quot;}"><i class="fa fa-plus"></i> Chọn CPU - Bộ Vi Xử Lý</span>
-                                <div id="js-selected-item-277" data-id="277" class="js-item-row"><div class="contain-item-drive" data-category_id="277" data-product_id="26474" data-current_price="{{price_default}}" data-current_stock="20">
-                            <a target="_blank" href="/cpu-intel-core-i7-14700f-tray-lga1700-20-core28-thread-base-21ghz-turbo-54ghz-cache-33mb" class="d-img"><img src="/media/product/75-26474-cpuit14700__4_bf2f88a4-5cec-447d.png"></a>
+    function addToMenu(choose) {
+        let idMenu = choose.getAttribute('data-id');
+        let product = JSON.parse(choose.getAttribute('data-product'));
+        let status = product.status;
+        let image = JSON.parse(product.image);
+        let split = idMenu.split('-');
+        let idSelected = '#category-js-selected-' + split[2] + '-' + currentArea;
+        if (status == 'available') {
+            textStatus = 'Còn hàng';
+        } else if (status == 'out of stock') {
+            textStatus = 'Hết hàng';
+        } else {
+            textStatus = 'Đang về hàng';
+        }
+        let stringAppend = `<div class="contain-item-drive">
+                            <a target="_blank" href="/product/` + product.slug + `" class="d-img"><img src="` + image[0] + `"></a>
                             <span class="d-name">
-                                <a target="_blank" href="/cpu-intel-core-i7-14700f-tray-lga1700-20-core28-thread-base-21ghz-turbo-54ghz-cache-33mb"> CPU Intel Core i7 14700F Tray New (LGA1700, 20 Core/28 Thread, Base 2.1Ghz/ Turbo 5.4Ghz, Cache 33MB)  </a> <br>
-                                Bảo hành: 36 Tháng <br>
-                                Kho hàng: <span style="color: red">Còn hàng </span> | Mã SP: <span style="color: red">CPU000045T</span>
+                                <a target="_blank" href="/product/` + product.slug + `"> ` + product.name + `  </a> <br>
+                                Bảo hành: ` + product.status_guarantee + ` <br>
+                                Kho hàng: <span style="color: red">` + textStatus + `</span> | Mã SP: <span style="color: red">` + product.code + `</span>
                             </span>
-                            <span class="d-price">6.990.000</span>
-                            <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50"><i>=</i>
-                            <span class="sum_price">6.990.000</span>
+                            <span class="d-price">` + product.price + `</span>
+                            <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50" disabled><i>=</i>
+                            <span class="sum_price">` + product.price + `</span>
                             <span class="btn-action_seclect show-popup_select"><i class="fa fa-edit edit-item"></i></span>
                             <span class="btn-action_seclect delete_select"><i class="fa fa-trash remove-item"></i></span>
-                            /div></div>
                             </div>`;
+        $('#' + idMenu).hide();
+        $(idSelected).append(stringAppend);
+        $('#js-modal-popup').hide();
+        countTotalPrice(product.price);
     }
 
-    function productWithFilter() {
+    function changeBuild(tabSelect) {
+        if (tabSelect == 1) {
+            $('#build-pc-content-area-1').removeClass('d-none');
+            $('#build-pc-content-area-2').addClass('d-none');
+            $('#build-pc-set-item-1').addClass('active');
+            $('#build-pc-set-item-2').removeClass('active');
+            currentArea = 1;
+        } else {
+            $('#build-pc-content-area-2').removeClass('d-none');
+            $('#build-pc-content-area-1').addClass('d-none');
+            $('#build-pc-set-item-1').removeClass('active');
+            $('#build-pc-set-item-2').addClass('active');
+            currentArea = 2;
+        }
+    }
 
+    function resetBuildPC() {
+        if (currentArea == 1) {
+            currentPrice1 = 0;
+        } else {
+            currentPrice2 = 0;
+        }
+
+        $('#build-pc-content-list-' + currentArea + ' .category-selected-row').empty();
+
+        let stringBtn = `<span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-2"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>`;
+    }
+
+    function countTotalPrice(priceUpdate) {
+        if (currentArea == 1) {
+            currentPrice1 += parseInt(priceUpdate.replaceAll('.', ''));
+            $('.total-price-in-hud-1').html(priceWithCommas(currentPrice1));
+        } else {
+            currentPrice2 += parseInt(priceUpdate.replaceAll('.', ''));
+
+
+            $('.total-price-in-hud-2').html(priceWithCommas(currentPrice2));
+        }
+    }
+
+    function priceWithCommas(price) {
+        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 </script>

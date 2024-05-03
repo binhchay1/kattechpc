@@ -185,6 +185,8 @@ span .p-name {
     width: 240px;
     padding: 0 8px !important;
     margin: 14px 0 !important;
+    display: flex;
+    flex-direction: column;
 }
 
 .build-pc_content h3 {
@@ -297,6 +299,8 @@ span .p-name {
     border-radius: 10px;
     color: white;
     padding: 10px;
+    display: flex;
+    cursor: pointer;
 }
 
 .p-name {
@@ -445,4 +449,37 @@ body {
         padding-right: 15px;
         padding-left: 15px;
     }
+}
+
+.contain-item-drive {
+    display: flex;
+    align-items: center;
+}
+
+.d-img {
+    display: flex;
+    align-items: center;
+}
+
+.inline-search {
+    width: 92%;
+    height: 46px;
+}
+
+.input-search form {
+    margin: 0;
+    height: 46px;
+}
+
+.list-product-select img {
+    width: 160px;
+}
+
+.contain-item-drive img {
+    width: 160px;
+}
+
+.total-price-in-hud {
+    font-weight: bold;
+    font-size: 20px;
 }

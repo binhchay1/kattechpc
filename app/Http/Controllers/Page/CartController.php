@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Cart;
 use function Livewire\Features\SupportTesting\commit;
 use Cache;
+
 class CartController extends Controller
 {
 
@@ -25,8 +26,7 @@ class CartController extends Controller
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository,
         OrderRepository $orderRepository
-    )
-    {
+    ) {
         $this->productRepository = $productRepository;
         $this->orderRepository = $orderRepository;
         $this->categoryRepository = $categoryRepository;
@@ -53,18 +53,33 @@ class CartController extends Controller
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $totalCart = 0;
         $totalCart = Cart::getTotal();
         $dataCart = Cart::getContent();
-        return view('page.cart.index',[
-            'dataCart'=> $dataCart,
-            'totalCart'=> $totalCart,
-            'listCategory'=> $listCategory,
+        $arrayID = [];
+        foreach ($dataCart as $item) {
+            array_push($arrayID, $item->id);
+        }
+
+        $getListProduct = $this->productRepository->getListProductForCart($arrayID);
+        foreach ($getListProduct as $product) {
+            foreach ($dataCart as $cart) {
+                if ($product->id == $cart->id) {
+                    $cart->price = (int) str_replace('.', '', $product->price);
+                }
+            }
+        }
+
+        return view('page.cart.index', [
+            'dataCart' => $dataCart,
+            'totalCart' => $totalCart,
+            'listCategory' => $listCategory,
         ]);
     }
 
     public function deleteCart($id)
     {
-        if($id){
+        if ($id) {
             Cart::remove($id);
         }
         return success("Delete success");
@@ -75,7 +90,7 @@ class CartController extends Controller
         $id = $request->id;
         $quantity = $request->quantity;
 
-        Cart::update($id,[
+        Cart::update($id, [
             'quantity' => array(
                 'relative' => false,
                 'value' => $quantity
@@ -90,7 +105,7 @@ class CartController extends Controller
         try {
             $input = $request->all();
             $order = $this->orderRepository->create($input);
-            if (count($cartInfor) >0) {
+            if (count($cartInfor) > 0) {
                 foreach ($cartInfor as $key => $item) {
 
                     $orderDetail = new OrderDetail();
@@ -102,7 +117,6 @@ class CartController extends Controller
                 }
                 Cart::clear();
             }
-
         } catch (Exception $e) {
             echo $e->getMessage();
         }
@@ -135,11 +149,10 @@ class CartController extends Controller
     public function addCoupon(Request $request)
     {
         $coupon = Coupon::where('code', $request->discount_amount)->first();
-        if(!$coupon) {
-            return response()->json(['errors'=>'   Không tìm thấy mã giảm giá, làm ơn nhập lại!.']);
+        if (!$coupon) {
+            return response()->json(['errors' => '   Không tìm thấy mã giảm giá, làm ơn nhập lại!.']);
         }
         Session::put('discount', $coupon);
-        return response()->json(['success'=>'Mã giảm giá được thêm thành công']);
+        return response()->json(['success' => 'Mã giảm giá được thêm thành công']);
     }
-
 }

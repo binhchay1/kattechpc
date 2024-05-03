@@ -131,36 +131,4 @@ class BuildPCController extends Controller
         session()->forget('discount');
         return redirect()->route('thank');
     }
-
-    public function thank()
-    {
-        $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
-        return view('page.cart.thank', compact('listCategory'));
-    }
-
-    public function addToCart($id, Request $request)
-    {
-        $total = $request->get('total');
-        $dataProduct = $this->productRepository->productDetail($id);
-        Cart::add(
-            $dataProduct->id,
-            $dataProduct->name,
-            $dataProduct->price,
-            $total,
-            ['image' => $dataProduct->image]
-        );
-
-        return redirect()->back()->with('success', __('Sản phẩm được thêm vào giỏ hàng!'));
-    }
-
-    public function addCoupon(Request $request)
-    {
-        $coupon = Coupon::where('code', $request->discount_amount)->first();
-        if (!$coupon) {
-            return response()->json(['errors' => '   Không tìm thấy mã giảm giá, làm ơn nhập lại!.']);
-        }
-        Session::put('discount', $coupon);
-        return response()->json(['success' => 'Mã giảm giá được thêm thành công']);
-    }
 }

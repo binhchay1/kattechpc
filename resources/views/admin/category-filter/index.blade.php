@@ -1,7 +1,7 @@
 @extends('layouts.master-admin')
 
 @section('title')
-{{ __('Danh sách thể loại danh mục') }}
+{{ __('Danh sách từ khóa danh mục') }}
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@
         <div class="card" id="usersTable">
             <div class="card-body">
                 <div class="flex items-center">
-                    <h6 class="text-15 grow">{{ __('Danh sách thể loại danh mục') }}</h6>
+                    <h6 class="text-15 grow">{{ __('Danh sách từ khóa danh mục') }}</h6>
                     <div class="lg:col-span-2 ltr:lg:text-right rtl:lg:text-left xl:col-span-2 xl:col-start-11">
                         <a href="{{route('admin.category-filter.create')}}" type="button" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20"><i data-lucide="plus" class="inline-block size-4"></i> <span class="align-middle">{{__('Thêm cấu hình')}}</span></a>
                     </div>
