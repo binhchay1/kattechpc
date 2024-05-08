@@ -8,6 +8,21 @@
                 </button>
             </div>
             <div class="modal-body">
+                <table>
+                    <thead>
+                        <tr class="table100-head">
+                            <th class="column1">{{ __('Ngày') }}</th>
+                            <th class="column2">{{ __('Mã đơn') }}</th>
+                            <th class="column3">{{ __('Tên') }}</th>
+                            <th class="column4">{{ __('Gía') }}</th>
+                            <th class="column5">{{ __('Số lượng') }}</th>
+                            <th class="column6">{{ __('Tổng') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body-detail">
+
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

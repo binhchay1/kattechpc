@@ -6,6 +6,7 @@ use App\Enums\User;
 use App\Enums\Utility;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserUpdateRequest;
+use App\Repositories\OrderDetailRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,14 +17,17 @@ class AccountController extends Controller
 {
     private $userRepository;
     private $utility;
+    private $orderDetailRepository;
 
     public function __construct(
         UserRepository $userRepository,
+        OrderDetailRepository $orderDetailRepository,
         Utility $utility
 
     ) {
         $this->userRepository = $userRepository;
         $this->utility = $utility;
+        $this->orderDetailRepository = $orderDetailRepository;
     }
 
     public function show()
@@ -114,5 +118,16 @@ class AccountController extends Controller
         $listCategory = Cache::store('redis')->get($key);
 
         return view('page.account.order-history', compact('dataUser', 'listCategory'));
+    }
+
+    public function getOrderDetail($order_id)
+    {
+        if (empty($order_id)) {
+            return redirect('/404');
+        }
+
+        $listOrderDetail = $this->orderDetailRepository->getOrderDetailByOrderId($order_id);
+
+        return response()->json($listOrderDetail);
     }
 }
