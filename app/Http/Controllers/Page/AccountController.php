@@ -95,6 +95,15 @@ class AccountController extends Controller
 
         $idUser = Auth::user()->id;
         $dataUser = $this->userRepository->show($idUser);
+        foreach ($dataUser->orders as $order) {
+            $details = $order->orderDetails;
+            $totalDetail = 0;
+            foreach ($details as $detail) {
+                $totalDetail += $detail->price * $detail->quantity;
+            }
+
+            $order->total_detail = $totalDetail;
+        }
         $genderUser = User::SEX;
 
         if (empty($dataUser)) {

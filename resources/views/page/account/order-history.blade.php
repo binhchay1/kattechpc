@@ -26,14 +26,16 @@
                 <div class="basket-product">
                     <div class="item-code">{{ $orderHistory->order_code }}</div>
                     <div class="item-date">{{ $orderHistory->order_date }}</div>
-                    <div class="item-total"></div>
-                    <div class="item-action"><button>{{ __('Xem chi tiết') }}</button></div>
+                    <div class="item-total">{{ number_format($orderHistory->total_detail) }}</div>
+                    <div class="item-action"><button type="button" data-toggle="modal" data-target="#modalDetail">{{ __('Xem chi tiết') }}</button></div>
                 </div>
                 @endforeach
             </div>
         </div>
     </div>
 </div>
+
+@include('includes.modal-detail-order-history')
 @endsection
 
 @section('js')
