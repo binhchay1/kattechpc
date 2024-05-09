@@ -190,6 +190,7 @@ class HomeController extends Controller
                 foreach ($getProductFlashSale as $product) {
                     $product->new_price = $listProductFlashSale[$product->code]['new_price'];
                     $product->sale_quantity = $listProductFlashSale[$product->code]['quantity'];
+                    $product->stock = $listProductFlashSale[$product->code]['stock'];
                 }
 
                 if (count($getProductFlashSale) > 0) {

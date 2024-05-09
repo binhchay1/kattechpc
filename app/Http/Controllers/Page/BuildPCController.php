@@ -59,7 +59,7 @@ class BuildPCController extends Controller
         return \response()->json($data);
     }
 
-    public function addBuildPC(Request $request, $slug)
+    public function addBuildPC($slug)
     {
         $dataProduct = $this->productRepository->productDetail($slug);
         Cart::add(

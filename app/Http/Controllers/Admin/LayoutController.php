@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\Utility;
 use App\Repositories\LayoutRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class LayoutController extends Controller
 {
-    private $utility;
     private $layoutRepository;
 
     public function __construct(
-        Utility $utility,
         LayoutRepository $layoutRepository
     ) {
-        $this->utility = $utility;
         $this->layoutRepository = $layoutRepository;
     }
 
@@ -206,7 +202,8 @@ class LayoutController extends Controller
             for ($i = 0; $i < count($input['product_id']); $i++) {
                 $listProduct[$input['product_id'][$i]] = [
                     'quantity' => $input['quantity'][$i],
-                    'new_price' => $input['new_price'][$i]
+                    'new_price' => $input['new_price'][$i],
+                    'stock' => $input['quantity'][$i]
                 ];
             }
 

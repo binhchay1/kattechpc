@@ -68,10 +68,6 @@ Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('/chinh-sach-doanh-nghiep', [HomeController::class, 'businessPolicy'])->name('businessPolicy');
     Route::get('/landing/{slug}', [HomeController::class, 'viewLandingPage'])->name('landing.page');
     Route::get('/custom-contact', [HomeController::class, 'storeCustomContact'])->name('custom.contact');
-    Route::get('/account-info', [AccountController::class, 'show'])->name('profile');
-    Route::post('/account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
-    Route::get('/change-password', [AccountController::class, 'changePassword'])->name('change-password');
-    Route::post('/change-password', [AccountController::class, 'updatePassword'])->name('update-password');
     Route::get('/order-history', [AccountController::class, 'orderHistory'])->name('orderHistory');
     Route::get('/auth/google/', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
     Route::get('/auth/google/callback/', [SocialLoginController::class, 'handleGoogleCallback']);
@@ -80,7 +76,14 @@ Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('/collection/{slug}', [HomeController::class, 'showDataCategory'])->name('showDataCategory');
     Route::get('/promotion/{slug}', [HomeController::class, 'showPromotionDetail'])->name('showPromotionDetail');
     Route::get('/get-products-for-suggestions', [ProductPage::class, 'suggestionsProduct'])->name('suggestions.product');
-    Route::get('/get-order-detail/{order_id}', [AccountController::class, 'getOrderDetail']);
+
+    Route::group(['middleware' => 'user'], function () {
+        Route::get('/get-order-detail/{order_id}', [AccountController::class, 'getOrderDetail']);
+        Route::get('/account-info', [AccountController::class, 'show'])->name('profile');
+        Route::post('/account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
+        Route::get('/change-password', [AccountController::class, 'changePassword'])->name('change-password');
+        Route::post('/change-password', [AccountController::class, 'updatePassword'])->name('update-password');
+    });
 
     Route::get('/build-pc',  [BuildPCController::class, 'buildPC'])->name('buildPC');
     Route::get('/get-product',  [BuildPCController::class, 'getProduct'])->name('getProduct');

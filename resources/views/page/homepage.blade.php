@@ -18,7 +18,7 @@
                         @foreach($listSlide as $slide)
                         <div class="carousel-item active">
                             <a href="{{ $slide['url'] }}">
-                                <img src="{{ asset($slide['image']) }}" width="850" height="403" alt="Image" class="lazy">
+                                <img src="{{ asset($slide['image']) }}" width="920" height="500" alt="Image" class="lazy">
                             </a>
                         </div>
                         @endforeach
@@ -41,14 +41,14 @@
                 <div class="news-main-right-1">
                     @if(isset($layout->small_thumbnail_1))
                     <a href="{{ isset($layout->permarklink_small_thumbnail_1) ? $layout->permarklink_small_thumbnail_1 : '#' }}">
-                        <img src="{{ asset($layout->small_thumbnail_1) }}" width="400" class="lazy">
+                        <img src="{{ asset($layout->small_thumbnail_1) }}" width="500" class="lazy">
                     </a>
                     @endif
                 </div>
                 <div class="news-main-right-2">
                     @if(isset($layout->small_thumbnail_2))
                     <a href="{{ isset($layout->permarklink_small_thumbnail_2) ? $layout->permarklink_small_thumbnail_2 : '#' }}">
-                        <img src="{{ asset($layout->small_thumbnail_2) }}" width="400" class="lazy">
+                        <img src="{{ asset($layout->small_thumbnail_2) }}" width="500" class="lazy">
                     </a>
                     @endif
                 </div>
@@ -113,23 +113,23 @@
                             <a href="{{ route('productDetail', $product['slug']) }}">
                                 <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
                             </a>
-
                             <div class="product-martket-main d-flex align-items-center">
                                 <p class="product-market-price">{{ $product->price }} ₫</p>
-                                <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
+                                <?php $new_price = floor(100 - (((int) $product->new_price / (int) str_replace('.', '', $product->price)) * 100)) ?>
                                 <div class="product-percent-price">-{{ ($new_price) }} %</div>
                             </div>
 
                             @if(isset($product->new_price))
                             <div class="product-price-main font-weight-600">
-                                {{ $product->new_price }} đ
+                                {{ number_format($product->new_price, 0, ',', '.') }} đ
                             </div>
                             @endif
                             <div class="p-quantity-sale">
                                 <i class="sprite sprite-fire-deal"></i>
                                 <div class="bg-gradient"></div>
-                                <p class="js-line-deal-left" style="width: 28.5714%;"></p>
-                                <span>{{ __('Còn') }} 5 / {{ $product->sale_quantity }} {{ __('sản phẩm') }}</span>
+                                <?php $total_line = ($product->stock / $product->sale_quantity) * 100 ?>
+                                <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>"></p>
+                                <span>{{ __('Còn') }} {{ $product->stock }} / {{ $product->sale_quantity }} {{ __('sản phẩm') }}</span>
                             </div>
                         </div>
                     </div>
