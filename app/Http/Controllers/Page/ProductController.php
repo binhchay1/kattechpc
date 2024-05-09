@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
-use App\Models\Rating;
+use App\Http\Requests\RatingRequest;
 use App\Repositories\CategoryRepository;
 use App\Repositories\RatingRepository;
 use App\Repositories\CommentRepository;
@@ -53,13 +53,13 @@ class ProductController extends Controller
         else {
             $ratingValue = 0;
         }
- 
+
         $productRelated = $this->productRepository->getProductRelated($dataProduct->category_id, $dataProduct->id);
 
         return view('page.product.product-detail', compact('dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue'));
     }
 
-    public function storeComment(Request $request)
+    public function storeComment(RatingRequest $request)
     {
         if (!Auth::check()) {
             return redirect()->back()->with('message', __('Bạn cần đăng nhập để bình luận!'));
@@ -72,28 +72,27 @@ class ProductController extends Controller
 
         return back();
     }
-    
-    public function rating(Request $request)
+
+    public function rating(RatingRequest $request)
     {
         if (!Auth::check()) {
             return redirect()->back()->with('message', __('Bạn cần đăng nhập để đánh giá sản phẩm!'));
         }
         $input = $request->except(['_token']);
-        
+
         $exit_rate = $this->ratingRepository->show();
-        
+
         if($exit_rate) {
             $exit_rate->rating_product = $input['rating_product'];
             $exit_rate->content = $input['content'];
             $exit_rate->update();
         }else{
-            
+
             $input = $request->all();
             $this->ratingRepository->store($input);
-    
+
         }
-    
-      
+
         return back();
     }
 

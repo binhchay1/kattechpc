@@ -786,6 +786,7 @@ tr:nth-child(even) {
 
 .item-comment {
     margin-bottom: 16px;
+    margin-top: 20px;
 }
 
 .avatar-user {
