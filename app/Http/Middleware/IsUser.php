@@ -18,9 +18,9 @@ class IsUser
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            // if (Auth::user()->role == Role::USER) {
+            if (Auth::user()->role == Role::USER or Auth::user()->role == Role::ADMIN) {
                 return $next($request);
-            // }
+            }
         }
 
         abort(403);

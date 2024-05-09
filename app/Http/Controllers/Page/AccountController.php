@@ -52,7 +52,6 @@ class AccountController extends Controller
 
     public function update(UserUpdateRequest $request, $userIdHash)
     {
-
         $input = $request->except(['_token']);
         if (isset($input['profile_photo_path'])) {
             $img = $this->utility->saveImageUser($input);

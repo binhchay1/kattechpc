@@ -18,7 +18,7 @@
                         @foreach($listSlide as $slide)
                         <div class="carousel-item active">
                             <a href="{{ $slide['url'] }}">
-                                <img src="{{ asset($slide['image']) }}" width="850" height="403" alt="Image" class="lazy">
+                                <img src="{{ asset($slide['image']) }}" width="920" height="500" alt="Image" class="lazy">
                             </a>
                         </div>
                         @endforeach
@@ -41,14 +41,14 @@
                 <div class="news-main-right-1">
                     @if(isset($layout->small_thumbnail_1))
                     <a href="{{ isset($layout->permarklink_small_thumbnail_1) ? $layout->permarklink_small_thumbnail_1 : '#' }}">
-                        <img src="{{ asset($layout->small_thumbnail_1) }}" width="400" class="lazy">
+                        <img src="{{ asset($layout->small_thumbnail_1) }}" width="500" class="lazy">
                     </a>
                     @endif
                 </div>
                 <div class="news-main-right-2">
                     @if(isset($layout->small_thumbnail_2))
                     <a href="{{ isset($layout->permarklink_small_thumbnail_2) ? $layout->permarklink_small_thumbnail_2 : '#' }}">
-                        <img src="{{ asset($layout->small_thumbnail_2) }}" width="400" class="lazy">
+                        <img src="{{ asset($layout->small_thumbnail_2) }}" width="500" class="lazy">
                     </a>
                     @endif
                 </div>
