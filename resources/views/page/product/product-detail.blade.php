@@ -71,27 +71,27 @@
                     <div class="box-middle product-time-holder global-time-deal d-flex gap-6">
                         <div class="item-time">
                             <b class="font-weight-500"> 00</b>
-                            <p>Ngày</p>
+                            <p>{{ __('Ngày') }}</p>
                         </div>
                         <span>:</span>
                         <div class="item-time">
                             <b class="font-weight-500">17</b>
-                            <p>Giờ</p>
+                            <p>{{ __('Giờ') }}</p>
                         </div>
                         <span>:</span>
                         <div class="item-time">
                             <b class="font-weight-500">51</b>
-                            <p>Phút</p>
+                            <p>{{ __('Phút') }}</p>
                         </div>
                         <span>:</span>
                         <div class="item-time">
                             <b class="font-weight-500">03</b>
-                            <p>Giây</p>
+                            <p>{{ __('Giây') }}</p>
                         </div>
                     </div>
                     <div class="box-right">
                         <div id="deal-line-detail" class="box-product-deal">
-                            <p class="text-deal-detail">Còn 3/5 sản phẩm</p>
+                            <p class="text-deal-detail">Còn 3/5 {{ __('sản phẩm') }}</p>
                             <div class="p-quantity-sale" data-quantity-left="3" data-quantity-sale-total="5">
                                 <i class="sprite sprite-fire-deal"></i>
                                 <div class="bg-gradient"></div>

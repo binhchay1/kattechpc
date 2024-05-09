@@ -101,7 +101,6 @@ button.close {
     cursor: pointer;
     background: transparent;
     border: 0;
-    -webkit-appearance: none;
 }
 .modal-open {
     overflow: hidden;
@@ -582,5 +581,9 @@ button.close {
             padding-left: 15px;
             padding-right: 15px;
         }
+    }
+
+    .modal {
+        top: 40%;
     }
 }
