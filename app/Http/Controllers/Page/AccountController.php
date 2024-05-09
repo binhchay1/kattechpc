@@ -126,9 +126,7 @@ class AccountController extends Controller
             return redirect('/404');
         }
 
-
         $listOrderDetail = $this->orderDetailRepository->getOrderDetailByOrderId($order_id);
-        dd($listOrderDetail);
 
         return response()->json($listOrderDetail);
     }
