@@ -351,28 +351,26 @@
                     </div>
 
                 </div>
-                @endforeach
-            </div>
-            <div class="button-review d-flex justify-content-center align-items-center" id="js-show-review">
-                <a href="javascript:" class="font-weight-500" id="showmenu">Đánh giá ngay</a>
-            </div>
-            <form id="feedbackForm" action="{{ route('rating') }}" class="menu" method="post" enctype="multipart/form-data" style="display: none">
-                {{ csrf_field() }}
-                <div class="box-form-review" id="js-box-review" style="display: block;">
-                    <textarea class="review_reply_content" id="rating-content" placeholder="Mời bạn để lại đánh giá..." name="content" spellcheck="false"></textarea>
-                    <div class="rating">
 
-                        <!-- Notice that the stars are in reverse order -->
-                        <input type="radio" id="star5" name="rating_product" value="5">
-                        <label for="star5">&#9733;</label>
-                        <input type="radio" id="star4" name="rating_product" value="4">
-                        <label for="star4">&#9733;</label>
-                        <input type="radio" id="star3" name="rating_product" value="3">
-                        <label for="star3">&#9733;</label>
-                        <input type="radio" id="star2" name="rating_product" value="2">
-                        <label for="star2">&#9733;</label>
-                        <input type="radio" id="star1" name="rating_product" value="1">
-                        <label for="star1">&#9733;</label>
+                <form id="feedbackForm" action="{{ route('rating') }}" class="menu" method="post" enctype="multipart/form-data" style="display: none">
+                    {{ csrf_field() }}
+                    <div class="box-form-review" id="js-box-review" style="display: block;">
+                        <textarea class="review_reply_content" id="rating-content" placeholder="Mời bạn để lại đánh giá..." name="content" spellcheck="false"></textarea>
+                        @if ($errors->has('content'))
+                            <span class="text-danger" style="color: red">{{ $errors->first('content') }}</span>
+                        @endif
+                        <div class="rating">
+                            <!-- Notice that the stars are in reverse order -->
+                            <input type="radio" id="star5" name="rating_product" value="5">
+                            <label for="star5">&#9733;</label>
+                            <input type="radio" id="star4" name="rating_product" value="4">
+                            <label for="star4">&#9733;</label>
+                            <input type="radio" id="star3" name="rating_product" value="3">
+                            <label for="star3">&#9733;</label>
+                            <input type="radio" id="star2" name="rating_product" value="2">
+                            <label for="star2">&#9733;</label>
+                            <input type="radio" id="star1" name="rating_product" value="1">
+                            <label for="star1">&#9733;</label>
 
                     </div>
                 </div>
@@ -421,22 +419,27 @@
             </div>
         </div>
 
+            <!----BOX COMMENT-->
+            <div class="box-comment">
+                <p class="title-comment font-weight-600">Hỏi và đáp</p>
+                <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="comment-detail">
+                        <div class="form-comment gap-10 d-flex justify-content-between">
+                            <div style="width: 80%;">
+                                <textarea class="comment_reply_content boder-radius-10" id="content0" name="content" placeholder="Xin mời để lại câu hỏi" ></textarea>
+                                @if ($errors->has('content'))
+                                    <span class="text-danger" style="color: red;white-space: nowrap;">{{ $errors->first('content') }}</span>
+                                @endif
+                                <input type="hidden" value="{{ $dataProduct->id }}" name="product_id">
+                            </div>
 
-        <!----BOX COMMENT-->
-        <div class="box-comment">
-            <p class="title-comment font-weight-600">Hỏi và đáp</p>
-            <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data">
-                {{ csrf_field() }}
-                <div class="comment-detail">
-                    <div class="form-comment gap-10 d-flex justify-content-between">
-                        <div style="width: 80%;">
-                            <textarea class="comment_reply_content boder-radius-10" id="content0" name="content" placeholder="Xin mời để lại câu hỏi"></textarea>
-                            <input type="hidden" value="{{ $dataProduct->id }}" name="product_id">
-                        </div>
-                        <div style="width: 20%;">
-                            <button type="submit" style="border: 0">
-                                <a class="btn-send-form-comment d-flex align-items-center justify-content-center gap-6 send-comment-pc"> <i class="fa fa-send-o" style="font-size:24px"></i>Gửi</a>
-                            </button>
+                            <div style="width: 20%;">
+                                <button type="submit" style="border: 0">
+                                    <a class="btn-send-form-comment d-flex align-items-center justify-content-center gap-6 send-comment-pc"
+                                    > <i class="fa fa-send-o" style="font-size:24px"></i>Gửi</a>
+                                </button>
+                            </div>
                         </div>
                     </div>
 

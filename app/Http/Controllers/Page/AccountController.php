@@ -66,10 +66,20 @@ class AccountController extends Controller
 
     public function changePassword()
     {
+        if (empty(Auth::user())) {
+            return redirect('/404');
+        }
+
+        $idUser = Auth::user()->id;
+        $dataUser = $this->userRepository->show($idUser);
+
+        if (empty($dataUser)) {
+            return redirect('/404');
+        }
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
 
-        return view('page.account.change-password', compact('listCategory'));
+        return view('page.account.change-password', compact('dataUser','listCategory'));
     }
 
     public function updatePassword(Request $request)
