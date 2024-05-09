@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RatingRequest;
 use App\Repositories\CategoryRepository;
 use App\Repositories\RatingRepository;
 use App\Repositories\CommentRepository;
@@ -58,7 +59,7 @@ class ProductController extends Controller
         return view('page.product.product-detail', compact('dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue'));
     }
 
-    public function storeComment(Request $request)
+    public function storeComment(RatingRequest $request)
     {
         if (!Auth::check()) {
             return redirect()->back()->with('message', __('Bạn cần đăng nhập để bình luận!'));
@@ -72,7 +73,7 @@ class ProductController extends Controller
         return back();
     }
 
-    public function rating(Request $request)
+    public function rating(RatingRequest $request)
     {
         if (!Auth::check()) {
             return redirect()->back()->with('message', __('Bạn cần đăng nhập để đánh giá sản phẩm!'));
