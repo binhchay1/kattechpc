@@ -13,25 +13,21 @@ use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Cache;
-use function League\Flysystem\type;
 
 class ProductController extends Controller
 {
     private $productRepository;
     private $categoryRepository;
     private $brandRepository;
-    private $utility;
 
     public function __construct(
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository,
-        BrandRepository $brandRepository,
-        Utility $utility
+        BrandRepository $brandRepository
     ) {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
         $this->brandRepository = $brandRepository;
-        $this->utility = $utility;
     }
 
     public function index()

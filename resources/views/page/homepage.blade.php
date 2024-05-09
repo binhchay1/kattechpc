@@ -113,23 +113,23 @@
                             <a href="{{ route('productDetail', $product['slug']) }}">
                                 <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
                             </a>
-
                             <div class="product-martket-main d-flex align-items-center">
                                 <p class="product-market-price">{{ $product->price }} ₫</p>
-                                <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
+                                <?php $new_price = floor(100 - (((int) $product->new_price / (int) str_replace('.', '', $product->price)) * 100)) ?>
                                 <div class="product-percent-price">-{{ ($new_price) }} %</div>
                             </div>
 
                             @if(isset($product->new_price))
                             <div class="product-price-main font-weight-600">
-                                {{ $product->new_price }} đ
+                                {{ number_format($product->new_price, 0, ',', '.') }} đ
                             </div>
                             @endif
                             <div class="p-quantity-sale">
                                 <i class="sprite sprite-fire-deal"></i>
                                 <div class="bg-gradient"></div>
-                                <p class="js-line-deal-left" style="width: 28.5714%;"></p>
-                                <span>{{ __('Còn') }} 5 / {{ $product->sale_quantity }} {{ __('sản phẩm') }}</span>
+                                <?php $total_line = ($product->stock / $product->sale_quantity) * 100 ?>
+                                <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>"></p>
+                                <span>{{ __('Còn') }} {{ $product->stock }} / {{ $product->sale_quantity }} {{ __('sản phẩm') }}</span>
                             </div>
                         </div>
                     </div>
