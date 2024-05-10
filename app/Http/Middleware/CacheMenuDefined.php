@@ -27,7 +27,6 @@ class CacheMenuDefined
             $listBrand = [];
             $listKeyword = [];
             $listCategory = $this->categoryRepository->getListCategory();
-
             foreach ($listCategory as $category) {
                 if (isset($category->products)) {
                     foreach ($category->products as $product) {

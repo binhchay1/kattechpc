@@ -442,10 +442,10 @@
                             </div>
                         </div>
                     </div>
-
                     <p id="js-content-note0" style="color: red;max-width: 100%;display: flex;font-weight:700;margin-bottom:10px;"></p>
-                </div>
-            </form>
+                </form>
+            </div>
+
             @include('page.product.comment-display', ['comments' => $dataProduct->comments, 'product_id' => $dataProduct->id])
         </div>
 
@@ -557,11 +557,15 @@
             });
         });
     </script>
-    <script>
+
+
+
+        <script>
         $(document).ready(function() {
             $('.write_reply').click(function() {
                 $('.menu1').slideToggle("fast");
             });
         });
     </script>
+
     @endsection

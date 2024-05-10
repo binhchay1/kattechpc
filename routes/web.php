@@ -228,6 +228,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::post('/store', [CategoryProductController::class, 'storeCategory'])->name('admin.categoryProduct.store');
         Route::get('/update/{role}', [CategoryProductController::class, 'editCategory'])->name('admin.categoryProduct.edit');
         Route::post('/update/{role}', [CategoryProductController::class, 'updateCategory'])->name('admin.categoryProduct.update');
+        Route::get('/active-category/{id}', [CategoryProductController::class, 'activeCate'])->name('activeCate');
         Route::get('/delete/{id}', [CategoryProductController::class, 'deleteCategory'])->name('admin.categoryProduct.delete');
     });
 

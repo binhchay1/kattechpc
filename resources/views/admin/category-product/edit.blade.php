@@ -53,6 +53,7 @@
                             </div>
                         </div>
                         <input type="hidden" name="slug" class="form-control" id="name" placeholder="Enter name" value="{{ $categoryProduct->slug }}">
+                        <input type="hidden" name="status" class="form-control" id="name" placeholder="Enter name" value="{{ $categoryProduct->status }}">
                     </div>
                     <div class="flex justify-end gap-2 mt-4">
                         <button type="reset" class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">{{__('Xóa toàn bộ')}}</button>
