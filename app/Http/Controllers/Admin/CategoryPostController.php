@@ -37,7 +37,6 @@ class CategoryPostController extends Controller
         $input = $request->all();
         $input['slug'] =  Str::slug($input['name']);
         if (isset($input['image'])) {
-            // $this->utility->saveImagePost($input);
             $input['image']->move(public_path('images/upload/category-post/'), $input['image']->getClientOriginalName());
             $path = '/images/upload/category-post/' . $input['image']->getClientOriginalName();
             $input['image'] = $path;
@@ -62,7 +61,6 @@ class CategoryPostController extends Controller
         $input = $request->except(['_token']);
         $input['slug'] =  Str::slug($input['name']);
         if (isset($input['image'])) {
-            // $this->utility->saveImagePost($input);
             $input['image']->move(public_path('images/upload/category-post/'), $input['image']->getClientOriginalName());
             $path = '/images/upload/category-post/' . $input['image']->getClientOriginalName();
             $input['image'] = $path;

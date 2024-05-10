@@ -54,7 +54,7 @@
         <div class="product-info" style="padding: 0">
             <h3>{{ $dataProduct->name }}</h3>
             <div class="d-flex price-product">
-                @if($dataProduct->is_flashsale == 0)
+                @if($dataProduct->is_flash_sale == 0)
                 @if($dataProduct->new_price != null)
                 <h5>{{ ($dataProduct->new_price )}}đ </h5>
                 <del class="old-price">{{ ($dataProduct->price) }} đ</del>
@@ -200,7 +200,6 @@
                                 {{ $product->price }} đ
                             </div>
                             @endif
-
                         </div>
                     </div>
                     @endforeach
@@ -258,7 +257,6 @@
                     {{ __('Xem tất cả') }}
                 </a>
                 <div id="myModal" class="modal">
-                    <!-- Modal content -->
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <table>
@@ -306,6 +304,7 @@
                     <p class="mt-12">Chưa có đánh giá và nhận xét</p>
                     @endif
                 </div>
+                @endforeach
                 <div class="box-avg-rate-count">
                     <div class="avg-rate-count">
                         <div class="avg-rate-item d-flex justify-content-center align-items-center">
@@ -357,10 +356,9 @@
                     <div class="box-form-review" id="js-box-review" style="display: block;">
                         <textarea class="review_reply_content" id="rating-content" placeholder="Mời bạn để lại đánh giá..." name="content" spellcheck="false"></textarea>
                         @if ($errors->has('content'))
-                            <span class="text-danger" style="color: red">{{ $errors->first('content') }}</span>
+                        <span class="text-danger" style="color: red">{{ $errors->first('content') }}</span>
                         @endif
                         <div class="rating">
-                            <!-- Notice that the stars are in reverse order -->
                             <input type="radio" id="star5" name="rating_product" value="5">
                             <label for="star5">&#9733;</label>
                             <input type="radio" id="star4" name="rating_product" value="4">
@@ -372,72 +370,70 @@
                             <input type="radio" id="star1" name="rating_product" value="1">
                             <label for="star1">&#9733;</label>
 
-                    </div>
-                </div>
-                <input type="hidden" name="product_id" value="{{$dataProduct->id}}">
-                <input type="hidden" name="user_id" value="{{Auth::user()->id ?? ""}}">
-                <button type="submit" class="submit-btn" id="">{{__('Gửi đánh giá')}}</button>
-            </form>
-
-            <!----BOX RATING-->
-
-            <div class="list-review">
-                <div id="js-review-holder">
-                    @foreach($listRatings as $rating)
-                    <div class="item-comment">
-                        <div class="form-reply-comment">
-                            <div class="comment-name d-flex align-items-center justify-content-between">
-                                <div class="comment-form-left d-flex align-items-center gap-6">
-                                    <b class="user-name d-flex align-items-center gap-6">
-                                        {{$rating->user->name}}
-                                    </b>
-                                </div>
-                                <div class="comment-form-right d-flex align-items-center gap-4">
-                                    <i class="fa fa-clock-o" style="font-size:15px; margin-right: 5px"></i>
-                                    <?php $date = date_format($rating->created_at, "d/m/Y") ?>
-                                    <span style="color:#787878;font-size: 12px;margin-right: 4px;font-weight: 700">{{$date}}</span>
-                                </div>
-                            </div>
-                            <div class="comment-content d-flex align-items-center justify-content-between">
-                                <div class="text-review d-flex flex-column gap-12">
-                                    @php $ratenum = number_format($ratingValue) @endphp
-                                    <div class="rating1">
-                                        <!-- Notice that the stars are in reverse order -->
-                                        @for($i = 1; $i <= $ratenum; $i++) <i class=" checked-rating fa fa-star "></i>
-                                            @endfor
-                                            @for($j = $ratenum + 1; $j <= 5; $j++) <i class="fa fa-star "></i>
-                                                @endfor
-                                    </div>
-                                    <p class="d-flex aligin-items-center"><b>Nhận xét:</b>{{$rating->content}}</p>
-                                </div>
-
-                            </div>
                         </div>
                     </div>
-                    @endforeach
+                    <input type="hidden" name="product_id" value="{{$dataProduct->id}}">
+                    <input type="hidden" name="user_id" value="{{Auth::user()->id ?? ""}}">
+                    <button type="submit" class="submit-btn" id="">{{__('Gửi đánh giá')}}</button>
+                </form>
+
+                <!----BOX RATING-->
+
+                <div class="list-review">
+                    <div id="js-review-holder">
+                        @foreach($listRatings as $rating)
+                        <div class="item-comment">
+                            <div class="form-reply-comment">
+                                <div class="comment-name d-flex align-items-center justify-content-between">
+                                    <div class="comment-form-left d-flex align-items-center gap-6">
+                                        <b class="user-name d-flex align-items-center gap-6">
+                                            {{$rating->user->name}}
+                                        </b>
+                                    </div>
+                                    <div class="comment-form-right d-flex align-items-center gap-4">
+                                        <i class="fa fa-clock-o" style="font-size:15px; margin-right: 5px"></i>
+                                        <?php $date = date_format($rating->created_at, "d/m/Y") ?>
+                                        <span style="color:#787878;font-size: 12px;margin-right: 4px;font-weight: 700">{{$date}}</span>
+                                    </div>
+                                </div>
+                                <div class="comment-content d-flex align-items-center justify-content-between">
+                                    <div class="text-review d-flex flex-column gap-12">
+                                        @php $ratenum = number_format($ratingValue) @endphp
+                                        <div class="rating1">
+                                            @for($i = 1; $i <= $ratenum; $i++) <i class=" checked-rating fa fa-star "></i>
+                                                @endfor
+                                                @for($j = $ratenum + 1; $j <= 5; $j++) <i class="fa fa-star "></i>
+                                                    @endfor
+                                        </div>
+                                        <p class="d-flex aligin-items-center"><b>{{ __('Nhận xét:') }}</b>{{$rating->content}}</p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
-        </div>
 
             <!----BOX COMMENT-->
             <div class="box-comment">
-                <p class="title-comment font-weight-600">Hỏi và đáp</p>
+                <p class="title-comment font-weight-600">{{ __('Hỏi và đáp') }}</p>
                 <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="comment-detail">
                         <div class="form-comment gap-10 d-flex justify-content-between">
                             <div style="width: 80%;">
-                                <textarea class="comment_reply_content boder-radius-10" id="content0" name="content" placeholder="Xin mời để lại câu hỏi" ></textarea>
+                                <textarea class="comment_reply_content boder-radius-10" id="content0" name="content" placeholder="Xin mời để lại câu hỏi"></textarea>
                                 @if ($errors->has('content'))
-                                    <span class="text-danger" style="color: red;white-space: nowrap;">{{ $errors->first('content') }}</span>
+                                <span class="text-danger" style="color: red;white-space: nowrap;">{{ $errors->first('content') }}</span>
                                 @endif
                                 <input type="hidden" value="{{ $dataProduct->id }}" name="product_id">
                             </div>
 
                             <div style="width: 20%;">
                                 <button type="submit" style="border: 0">
-                                    <a class="btn-send-form-comment d-flex align-items-center justify-content-center gap-6 send-comment-pc"
-                                    > <i class="fa fa-send-o" style="font-size:24px"></i>Gửi</a>
+                                    <a class="btn-send-form-comment d-flex align-items-center justify-content-center gap-6 send-comment-pc"> <i class="fa fa-send-o" style="font-size:24px"></i>Gửi</a>
                                 </button>
                             </div>
                         </div>
