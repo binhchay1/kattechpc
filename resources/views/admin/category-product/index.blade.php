@@ -4,7 +4,18 @@
 @endsection
 @section('content')
 <!-- page title -->
+<style>
+    .btn-success {
+        background: green;
+        color: white;
+    }
 
+    .btn-danger {
+        background: red;
+        color: white;
+    }
+
+</style>
 <div class="grid grid-cols-1 gap-x-5 xl:grid-cols-12 mt-4">
     <div class="xl:col-span-12">
         <div class="card" id="usersTable">
@@ -42,6 +53,8 @@
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{__('Tên miền')}}
                                 </th>
                                 </th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{ __('Trạng thái') }}
+                                </th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">{{ __('Hành động') }}</th>
                             </tr>
                         </thead>
@@ -58,6 +71,11 @@
                                 </td>
 
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $category->slug }}
+                                </td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 status">
+                                    <a href="{{route('activeCate', $category['id'])}}" class="btn btn-{{$category->status == 1 ? 'success' : 'danger' }}">
+                                        {{$category->status == 1 ? "Hiển thị " : "Không hiển thị"}}
+                                    </a>
                                 </td>
 
                                 <td>

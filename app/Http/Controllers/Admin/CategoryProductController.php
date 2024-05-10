@@ -6,10 +6,11 @@ use App\Enums\Utility;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\CategoryUpdateRequest;
+use App\Models\Category;
 use App\Repositories\CategoryRepository;
 use Illuminate\Support\Str;
 use Cache;
-
+use Illuminate\Http\Request;
 class CategoryProductController extends Controller
 {
     private $categoryRepository;
@@ -88,5 +89,18 @@ class CategoryProductController extends Controller
         Cache::store('redis')->forget('menu_homepage');
 
         return back()->with('success', __('Danh mục sản phẩm  được xóa đổi thành công'));
+    }
+
+    public function activeCate(Request $request, $id)
+    {
+        $categoryProduct = Category::find($id);
+        if ($categoryProduct->status) {
+            $categoryProduct->status = 0;
+        } else {
+            $categoryProduct->status = 1;
+        }
+        $categoryProduct->save();
+
+        return back();
     }
 }
