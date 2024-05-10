@@ -21,7 +21,7 @@ class CacheMenuDefined
     {
         $keyCache = 'menu_homepage';
         $getInfor = Cache::store('redis')->get($keyCache);
-
+        Cache::store('redis')->forget('menu_homepage');
         if (empty($getInfor)) {
             $data = [];
             $listBrand = [];
