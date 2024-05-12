@@ -368,7 +368,6 @@
                             <label for="star2">&#9733;</label>
                             <input type="radio" id="star1" name="rating_product" value="1">
                             <label for="star1">&#9733;</label>
-
                         </div>
                     </div>
                     <input type="hidden" name="product_id" value="{{$dataProduct->id}}">
@@ -443,7 +442,6 @@
 
             @include('page.product.comment-display', ['comments' => $dataProduct->comments, 'product_id' => $dataProduct->id])
         </div>
-
     </div>
     @endsection
 
@@ -452,16 +450,42 @@
     <script>
         $(document).ready(function() {
             $('#myModal').hide();
+
             $('#read-all-product-detail').on('click', function() {
                 $('#myModal').show();
             });
+
             $('.close').click(function() {
                 $('#myModal').hide();
             });
 
+            $('.js-quantity-change').on('click', function() {
+                let value = $(this).data('value');
+                let quantity = $('.js-buy-quantity').val();
+                let new_quantity = 1;
+                if (value == -1) {
+                    if (quantity == 1) {
+                        return;
+                    } else {
+                        new_quantity = parseInt(quantity) + parseInt(value);
+
+                    }
+                } else {
+                    new_quantity = parseInt(quantity) + parseInt(value);
+                }
+
+                $('.js-buy-quantity').val(new_quantity);
+            });
+
+            $('#showmenu').click(function() {
+                $('.menu').slideToggle("fast");
+            });
+
+            $('.write_reply').click(function() {
+                $('.menu1').slideToggle("fast");
+            });
         });
-    </script>
-    <script>
+
         function getImageCenter(image) {
             let src = image.src;
             indexImage = image.getAttribute('data-index');
@@ -523,44 +547,5 @@
 
             window.location.href = baseUrl;
         }
-
-        $(document).ready(function() {
-            $('.js-quantity-change').on('click', function() {
-                let value = $(this).data('value');
-                let quantity = $('.js-buy-quantity').val();
-                let new_quantity = 1;
-                if (value == -1) {
-                    if (quantity == 1) {
-                        return;
-                    } else {
-                        new_quantity = parseInt(quantity) + parseInt(value);
-
-                    }
-                } else {
-                    new_quantity = parseInt(quantity) + parseInt(value);
-                }
-
-                $('.js-buy-quantity').val(new_quantity);
-            });
-        });
     </script>
-
-    <script>
-        $(document).ready(function() {
-            $('#showmenu').click(function() {
-                $('.menu').slideToggle("fast");
-            });
-        });
-    </script>
-
-
-
-    <script>
-        $(document).ready(function() {
-            $('.write_reply').click(function() {
-                $('.menu1').slideToggle("fast");
-            });
-        });
-    </script>
-
     @endsection

@@ -8,6 +8,7 @@ use App\Models\Coupon;
 use App\Repositories\OrderDetailRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
+use App\Repositories\LayoutRepository;
 use Illuminate\Http\Request;
 use Session;
 use Cart;
@@ -19,36 +20,60 @@ class CartController extends Controller
     private $productRepository;
     private $orderRepository;
     private $orderDetailRepository;
+    private $layoutRepository;
 
     public function __construct(
         ProductRepository $productRepository,
         OrderRepository $orderRepository,
-        OrderDetailRepository $orderDetailRepository
+        OrderDetailRepository $orderDetailRepository,
+        LayoutRepository $layoutRepository
     ) {
         $this->productRepository = $productRepository;
         $this->orderRepository = $orderRepository;
         $this->orderDetailRepository = $orderDetailRepository;
+        $this->layoutRepository = $layoutRepository;
     }
 
     public function addCart($slug)
     {
         $dataProduct = $this->productRepository->productDetail($slug);
-        if ($dataProduct->new_price != null) {
+        $getFlashSale = $this->layoutRepository->getFlashSale();
+        $isFlashSale = false;
+        $priceFlashSale = '';
+        $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
+        foreach ($listProductFlashSale as $productFlash => $value) {
+            if ($productFlash == $dataProduct->code) {
+                $isFlashSale = true;
+                $priceFlashSale = $value['new_price'];
+            }
+        }
+
+        if ($isFlashSale) {
             Cart::add(
                 $dataProduct->id,
                 $dataProduct->name,
-                (int) str_replace('.', '', $dataProduct->new_price),
+                (int) $priceFlashSale,
                 1,
                 ['image' => $dataProduct->image]
             );
         } else {
-            Cart::add(
-                $dataProduct->id,
-                $dataProduct->name,
-                (int) str_replace('.', '', $dataProduct->price),
-                1,
-                ['image' => $dataProduct->image]
-            );
+            if ($dataProduct->new_price != null) {
+                Cart::add(
+                    $dataProduct->id,
+                    $dataProduct->name,
+                    (int) str_replace('.', '', $dataProduct->new_price),
+                    1,
+                    ['image' => $dataProduct->image]
+                );
+            } else {
+                Cart::add(
+                    $dataProduct->id,
+                    $dataProduct->name,
+                    (int) str_replace('.', '', $dataProduct->price),
+                    1,
+                    ['image' => $dataProduct->image]
+                );
+            }
         }
 
         Session::put('getProduct', $dataProduct);
