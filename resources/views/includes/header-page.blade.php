@@ -49,9 +49,6 @@
 
     <div class="header-bottom">
         <div class="header-bottom-container">
-            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                <i class="fa fa-bars"></i>
-            </a>
             <div class="logo">
                 <a href="/">
                     <img src="{{ asset('/images/logo/logo.png') }}" alt="logo Kattech PC" width="150" height="150" class="loading">

@@ -63,6 +63,9 @@ class ProductController extends Controller
             if ($productSaleCode == $dataProduct->code) {
                 $dataProduct->is_flash_sale = 1;
                 $dataProduct->flash_sale_time = $getFlashSale->flash_sale_timer;
+                $dataProduct->new_price = $value['new_price'];
+                $dataProduct->sale_quantity = $value['quantity'];
+                $dataProduct->sale_stock = $value['stock'];
             }
         }
 
