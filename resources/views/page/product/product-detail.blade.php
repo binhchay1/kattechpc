@@ -69,22 +69,22 @@
                         <p class="title-deal font-weight-800">flash sale</p>
                     </div>
                     <div class="box-middle product-time-holder global-time-deal d-flex gap-6">
-                        <div class="item-time">
+                        <div class="time-count">
                             <b class="font-weight-500"> 00</b>
                             <p>{{ __('Ngày') }}</p>
                         </div>
                         <span>:</span>
-                        <div class="item-time">
+                        <div class="time-count">
                             <b class="font-weight-500">17</b>
                             <p>{{ __('Giờ') }}</p>
                         </div>
                         <span>:</span>
-                        <div class="item-time">
+                        <div class="time-count">
                             <b class="font-weight-500">51</b>
                             <p>{{ __('Phút') }}</p>
                         </div>
                         <span>:</span>
-                        <div class="item-time">
+                        <div class="time-count">
                             <b class="font-weight-500">03</b>
                             <p>{{ __('Giây') }}</p>
                         </div>
@@ -292,7 +292,6 @@
                 <div class="avgRate d-flex justify-content-center align-items-center flex-column">
                     @php $ratenum = number_format($ratingValue) @endphp
                     <div class="rating1">
-                        <!-- Notice that the stars are in reverse order -->
                         @for($i = 1; $i <= $ratenum; $i++) <i class=" checked-rating fa fa-star " style="font-size: 20px"></i>
                             @endfor
                             @for($j = $ratenum + 1; $j <= 5; $j++) <i class="fa fa-star " style="font-size: 20px"></i>
@@ -556,7 +555,7 @@
 
 
 
-        <script>
+    <script>
         $(document).ready(function() {
             $('.write_reply').click(function() {
                 $('.menu1').slideToggle("fast");
