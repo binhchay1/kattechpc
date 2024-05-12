@@ -56,52 +56,60 @@
             <div class="d-flex price-product">
                 @if($dataProduct->is_flash_sale == 0)
                 @if($dataProduct->new_price != null)
-                <h5>{{ ($dataProduct->new_price )}}đ </h5>
+                <h5>{{ ($dataProduct->new_price )}} đ </h5>
                 <del class="old-price">{{ ($dataProduct->price) }} đ</del>
                 <div class="save-price-detail">{{ __('Tiết kiệm:') }} {{ number_format((int) str_replace('.', '', $dataProduct->price) - (int) str_replace('.', '', $dataProduct->new_price) )}} đ</div>
                 @else
                 <h5>{{ __('Giá ') }}: {{ ($dataProduct->price) }} đ</h5>
                 @endif
                 @else
-                <div class="box-flash-sale d-flex align-items-center boder-radius-10">
-                    <div class="box-left position-relative d-flex align-items-center">
-                        <i class="sprite sprite-flashsale-detail"></i>
-                        <p class="title-deal font-weight-800">flash sale</p>
+                <h5>{{ number_format($dataProduct->new_price, 0, ',', '.') }} đ </h5>
+                <del class="old-price">{{ ($dataProduct->price) }} đ</del>
+                <div class="save-price-detail">{{ __('Tiết kiệm:') }} {{ number_format((int) str_replace('.', '', $dataProduct->price) - (int) str_replace('.', '', $dataProduct->new_price) )}} đ</div>
+                @endif
+            </div>
+
+            @if($dataProduct->is_flash_sale != 0)
+            <div class="box-flash-sale d-flex align-items-center boder-radius-10">
+                <div class="box-left position-relative d-flex align-items-center">
+                    <img class="sprite sprite-flashsale-detail" src="{{ asset('images/sale_icon_2.png') }}">
+                    <p class="title-deal font-weight-800">flash sale</p>
+                </div>
+                <div class="box-middle product-time-holder global-time-deal d-flex gap-6">
+                    <div class="time-count" id="date-count-sale">
+                        <b class="font-weight-500 border-radius-10"></b>
+                        <p>{{ __('Ngày') }}</p>
                     </div>
-                    <div class="box-middle product-time-holder global-time-deal d-flex gap-6">
-                        <div class="time-count">
-                            <b class="font-weight-500"> 00</b>
-                            <p>{{ __('Ngày') }}</p>
-                        </div>
-                        <span>:</span>
-                        <div class="time-count">
-                            <b class="font-weight-500">17</b>
-                            <p>{{ __('Giờ') }}</p>
-                        </div>
-                        <span>:</span>
-                        <div class="time-count">
-                            <b class="font-weight-500">51</b>
-                            <p>{{ __('Phút') }}</p>
-                        </div>
-                        <span>:</span>
-                        <div class="time-count">
-                            <b class="font-weight-500">03</b>
-                            <p>{{ __('Giây') }}</p>
-                        </div>
+                    <span>:</span>
+                    <div class="time-count" id="hours-count-sale">
+                        <b class="font-weight-500 border-radius-10"></b>
+                        <p>{{ __('Giờ') }}</p>
                     </div>
-                    <div class="box-right">
-                        <div id="deal-line-detail" class="box-product-deal">
-                            <p class="text-deal-detail">Còn 3/5 {{ __('sản phẩm') }}</p>
-                            <div class="p-quantity-sale" data-quantity-left="3" data-quantity-sale-total="5">
-                                <i class="sprite sprite-fire-deal"></i>
-                                <div class="bg-gradient"></div>
-                                <p class="js-line-deal-left" style="width: 40%;"></p>
+                    <span>:</span>
+                    <div class="time-count" id="min-count-sale">
+                        <b class="font-weight-500 border-radius-10"></b>
+                        <p>{{ __('Phút') }}</p>
+                    </div>
+                    <span>:</span>
+                    <div class="time-count" id="second-count-sale">
+                        <b class="font-weight-500 border-radius-10"></b>
+                        <p>{{ __('Giây') }}</p>
+                    </div>
+                </div>
+                <div class="box-right">
+                    <div id="deal-line-detail" class="box-product-deal">
+                        <p class="text-deal-detail">{{ __('Còn') }} {{ $dataProduct->sale_quantity }}/{{ $dataProduct->sale_stock }} {{ __('sản phẩm') }}</p>
+                        <div class="p-quantity-sale">
+                            <div>
+                                <?php $total_line = ($dataProduct->sale_stock / $dataProduct->sale_quantity) * 100 ?>
+                                <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>"></p>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endif
             </div>
+            @endif
+
             <div>
                 <p>{{ __('Bảo hành') }}: <span style="font-weight: bold; color: blue">{{ $dataProduct->status_guarantee }}</span></p>
                 @if($dataProduct->status == 'available')
@@ -311,7 +319,7 @@
                             <div class="nhan-xet-bar">
                                 <div class="percent percent5" style="width:50%"></div>
                             </div>
-                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>1</strong> đánh giá</span>
+                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>1</strong> {{ __('đánh giá') }}</span>
                         </div>
 
                         <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
@@ -319,7 +327,7 @@
                             <div class="nhan-xet-bar">
                                 <div class="percent percent4" style="width:50%"></div>
                             </div>
-                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>1</strong> đánh giá</span>
+                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>1</strong> {{ __('đánh giá') }}</span>
                         </div>
 
                         <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
@@ -327,7 +335,7 @@
                             <div class="nhan-xet-bar">
                                 <div class="percent percent3" style="width:0%"></div>
                             </div>
-                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>0</strong> đánh giá</span>
+                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>0</strong> {{ __('đánh giá') }}</span>
                         </div>
 
                         <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
@@ -335,7 +343,7 @@
                             <div class="nhan-xet-bar">
                                 <div class="percent percent2" style="width:0%"></div>
                             </div>
-                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>0</strong> đánh giá</span>
+                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>0</strong> {{ __('đánh giá') }}</span>
                         </div>
 
                         <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
@@ -343,7 +351,7 @@
                             <div class="nhan-xet-bar">
                                 <div class="percent percent1" style="width:0%"></div>
                             </div>
-                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>0</strong> đánh giá</span>
+                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>0</strong> {{ __('đánh giá') }}</span>
                         </div>
 
                     </div>
@@ -547,5 +555,64 @@
 
             window.location.href = baseUrl;
         }
+
+        <?php if (isset($dataProduct->flash_sale_time)) { ?>
+            let countTimeSale = `<?php echo $dataProduct->flash_sale_time ?>`;
+
+            var countDownDate = new Date(countTimeSale).getTime();
+            var x = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if (days == 0) {
+                    days = '00';
+                }
+
+                if (hours == 0) {
+                    hours = '00';
+                }
+
+                if (minutes == 0) {
+                    minutes = '00';
+                }
+
+                if (days < 10 && days != '00') {
+                    days = '0' + days;
+                }
+
+                if (hours < 10 && hours != '00') {
+                    hours = '0' + hours;
+                }
+
+                if (minutes < 10 && minutes != '00') {
+                    minutes = '0' + minutes;
+                }
+
+                if (seconds < 10 && seconds != '00') {
+                    seconds = '0' + seconds;
+                }
+
+                $('#date-count-sale b').empty();
+                $('#date-count-sale b').append(days);
+
+                $('#hours-count-sale b').empty();
+                $('#hours-count-sale b').append(hours);
+
+                $('#min-count-sale b').empty();
+                $('#min-count-sale b').append(minutes);
+
+                $('#second-count-sale b').empty();
+                $('#second-count-sale b').append(seconds);
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    $('.box-flash-sale').empty();
+                }
+            }, 1000);
+        <?php } ?>
     </script>
     @endsection

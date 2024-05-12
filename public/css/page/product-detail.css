@@ -892,7 +892,6 @@ tr:nth-child(even) {
 .sprite-flashsale-detail {
     width: 34px;
     height: 33px;
-    background-position: -74px -85px;
 }
 
 .box-flash-sale .box-left .title-deal {
@@ -942,6 +941,8 @@ tr:nth-child(even) {
 .time-count b {
     background-color: red;
     padding: 5px;
+    color: #fdf6f6;
+    font-weight: bold;
 }
 
 .box-right p {

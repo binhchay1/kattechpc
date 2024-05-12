@@ -169,13 +169,34 @@ class CartController extends Controller
     {
         $total = $request->get('total');
         $dataProduct = $this->productRepository->productDetail($id);
-        Cart::add(
-            $dataProduct->id,
-            $dataProduct->name,
-            (int) str_replace('.', '', $dataProduct->new_price) ?? (int) str_replace('.', '', $dataProduct->price),
-            $total,
-            ['image' => $dataProduct->image]
-        );
+        $getFlashSale = $this->layoutRepository->getFlashSale();
+        $isFlashSale = false;
+        $priceFlashSale = '';
+        $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
+        foreach ($listProductFlashSale as $productFlash => $value) {
+            if ($productFlash == $dataProduct->code) {
+                $isFlashSale = true;
+                $priceFlashSale = $value['new_price'];
+            }
+        }
+
+        if ($isFlashSale) {
+            Cart::add(
+                $dataProduct->id,
+                $dataProduct->name,
+                (int) $priceFlashSale,
+                $total,
+                ['image' => $dataProduct->image]
+            );
+        } else {
+            Cart::add(
+                $dataProduct->id,
+                $dataProduct->name,
+                (int) str_replace('.', '', $dataProduct->new_price) ?? (int) str_replace('.', '', $dataProduct->price),
+                $total,
+                ['image' => $dataProduct->image]
+            );
+        }
 
         return redirect()->back()->with('success', __('Sản phẩm được thêm vào giỏ hàng!'));
     }
