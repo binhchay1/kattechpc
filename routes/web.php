@@ -9,7 +9,8 @@ use App\Http\Controllers\Admin\ProductController as ProductAdmin;
 use App\Http\Controllers\Page\BuildPCController;
 use App\Http\Controllers\Admin\BuildPCController as BuildPCAdmin;
 use App\Http\Controllers\Page\ProductController as ProductPage;
-use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\PostController as PostAdmin;
+use App\Http\Controllers\Page\PostController as PostPage;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\RoleController;
@@ -54,7 +55,6 @@ Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('/thanh-toan-truc-tuyen', [HomeController::class, 'paymentOnline'])->name('paymentOnline');
     Route::get('/huong-dan-thanh-toan', [HomeController::class, 'payment'])->name('payment');
     Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
-    Route::get('/blog-detail/{slug}', [HomeController::class, 'postDetail'])->name('post.detail');
     Route::get('/product/{slug}', [ProductPage::class, 'productDetail'])->name('productDetail');
     Route::post('/comment', [ProductPage::class, 'storeComment'])->name('storeComment');
     Route::post('/rating', [ProductPage::class, 'rating'])->name('rating');
@@ -104,6 +104,8 @@ Route::group(['middleware' => 'cache.menu'], function () {
         Route::post('/apply-coupon',  [CartController::class, 'addCoupon'])->name('apply.coupon');
         Route::get('/thank-you',  [CartController::class, 'thank'])->name('thank');
     });
+
+    Route::get('/blog-detail/{slug}', [PostPage::class, 'postDetail'])->name('post.detail');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
@@ -129,13 +131,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'post'], function () {
-        Route::get('/list', [PostController::class, 'index'])->name('admin.post.index');
-        Route::get('/add', [PostController::class, 'createPost'])->name('admin.post.create');
-        Route::post('/store', [PostController::class, 'storePost'])->name('admin.post.store');
-        Route::get('/update/{id}', [PostController::class, 'editPost'])->name('admin.post.edit');
-        Route::post('/update/{id}', [PostController::class, 'updatePost'])->name('admin.post.update');
-        Route::get('/delete/{id}', [PostController::class, 'deletePost'])->name('admin.post.delete');
-        Route::post('post/img', [PostController::class, 'uploadMedia'])->name('admin.post.uploadMedia');
+        Route::get('/list', [PostAdmin::class, 'index'])->name('admin.post.index');
+        Route::get('/add', [PostAdmin::class, 'createPost'])->name('admin.post.create');
+        Route::post('/store', [PostAdmin::class, 'storePost'])->name('admin.post.store');
+        Route::get('/update/{id}', [PostAdmin::class, 'editPost'])->name('admin.post.edit');
+        Route::post('/update/{id}', [PostAdmin::class, 'updatePost'])->name('admin.post.update');
+        Route::get('/delete/{id}', [PostAdmin::class, 'deletePost'])->name('admin.post.delete');
+        Route::post('post/img', [PostAdmin::class, 'uploadMedia'])->name('admin.post.uploadMedia');
     });
 
     Route::group(['prefix' => 'orders'], function () {

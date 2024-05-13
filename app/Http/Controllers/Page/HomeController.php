@@ -236,20 +236,6 @@ class HomeController extends Controller
         return view('page.blog.posts', compact('listPost', 'listPostRandom', 'listPostDESC', 'listPostASC', 'listCategory', 'listCategoryPost'));
     }
 
-    public function postDetail($slug)
-    {
-        if (!isset($slug)) {
-            return redirect('/404');
-        }
-
-        $listPost = $this->postRepository->index();
-        $post = $this->postRepository->detail($slug);
-        $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
-
-        return view('page.blog.post-detail', compact('post', 'listPost', 'listCategory'));
-    }
-
     public function viewLandingPage($slug)
     {
         $getLandingPage = $this->landingPageRepository->getBySlug($slug);
