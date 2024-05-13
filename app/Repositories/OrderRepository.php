@@ -36,4 +36,8 @@ class  OrderRepository extends BaseRepository
         return $this->model->where('id', $id)->delete();
     }
 
+    public function getOrderForStatic()
+    {
+        return $this->model->with('orderDetails')->orderBy('created_at', 'DESC')->paginate();
+    }
 }

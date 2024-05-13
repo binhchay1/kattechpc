@@ -119,11 +119,11 @@
                     </div>
 
                     <div class="paging-block float_r paging-ajax js-paging">
-                        <a href="javascript:void(0);" class="active" onclick="objBuildPCVisual.showProductFilter('/ajax/get_json.php?action=pcbuilder&amp;action_type=get-product-category&amp;category_id=277&amp;pc_part_id=')">
+                        <a href="javascript:void(0);" class="active" onclick="">
                             1
                         </a>
 
-                        <a href="javascript:void(0);" onclick="objBuildPCVisual.showProductFilter('/ajax/get_json.php?action=pcbuilder&amp;action_type=get-product-category&amp;category_id=277&amp;pc_part_id=&amp;page=2')">
+                        <a href="javascript:void(0);" onclick="">
                             next
                         </a>
                     </div>

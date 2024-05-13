@@ -39,12 +39,16 @@ class CartController extends Controller
         $dataProduct = $this->productRepository->productDetail($slug);
         $getFlashSale = $this->layoutRepository->getFlashSale();
         $isFlashSale = false;
-        $priceFlashSale = '';
-        $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
-        foreach ($listProductFlashSale as $productFlash => $value) {
-            if ($productFlash == $dataProduct->code) {
-                $isFlashSale = true;
-                $priceFlashSale = $value['new_price'];
+        if ($getFlashSale) {
+            if (strtotime($getFlashSale->flash_sale_timer) <= strtotime(date('Y-m-d H:i:s'))) {
+                $priceFlashSale = '';
+                $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
+                foreach ($listProductFlashSale as $productFlash => $value) {
+                    if ($productFlash == $dataProduct->code) {
+                        $isFlashSale = true;
+                        $priceFlashSale = $value['new_price'];
+                    }
+                }
             }
         }
 
@@ -143,6 +147,7 @@ class CartController extends Controller
                         'product_id' => $item->id,
                         'quantity' => $item->quantity,
                         'price' => $request->total_cart,
+                        'payment' => 'thanh-toan-truc-tuyen'
                     ];
 
                     $this->orderDetailRepository->create($data);
@@ -171,12 +176,16 @@ class CartController extends Controller
         $dataProduct = $this->productRepository->productDetail($id);
         $getFlashSale = $this->layoutRepository->getFlashSale();
         $isFlashSale = false;
-        $priceFlashSale = '';
-        $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
-        foreach ($listProductFlashSale as $productFlash => $value) {
-            if ($productFlash == $dataProduct->code) {
-                $isFlashSale = true;
-                $priceFlashSale = $value['new_price'];
+        if ($getFlashSale) {
+            if (strtotime($getFlashSale->flash_sale_timer) <= strtotime(date('Y-m-d H:i:s'))) {
+                $priceFlashSale = '';
+                $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
+                foreach ($listProductFlashSale as $productFlash => $value) {
+                    if ($productFlash == $dataProduct->code) {
+                        $isFlashSale = true;
+                        $priceFlashSale = $value['new_price'];
+                    }
+                }
             }
         }
 

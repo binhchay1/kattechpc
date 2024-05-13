@@ -610,7 +610,7 @@
 
                 if (distance < 0) {
                     clearInterval(x);
-                    $('.box-flash-sale').empty();
+                    $('.box-flash-sale').remove();
                 }
             }, 1000);
         <?php } ?>

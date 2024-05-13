@@ -31,13 +31,13 @@ class BuildPCController extends Controller
         $listBuildPcs = $this->buildPcRepository->index();
         $listBuildPcs = $this->utility->paginate($listBuildPcs, 5);
 
-        return view('admin.buildPc.index', compact('listBuildPcs'));
+        return view('admin.build-pc.index', compact('listBuildPcs'));
     }
 
     public function create()
     {
         $listCategories = $this->categoryRepository->indexOnlyChild();
-        return view('admin.buildPc.create', compact('listCategories'));
+        return view('admin.build-pc.create', compact('listCategories'));
     }
 
     public function store(BuildPcRequest $request)
@@ -59,7 +59,7 @@ class BuildPCController extends Controller
         }
         $listCategories = $this->categoryRepository->indexOnlyChild();
 
-        return view('admin.buildPC.edit', compact('buildPc', 'listCategories'));
+        return view('admin.build-pc.edit', compact('buildPc', 'listCategories'));
     }
 
     public function update(BuildPcRequest $request,  $id)
