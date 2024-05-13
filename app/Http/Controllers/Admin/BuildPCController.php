@@ -40,7 +40,7 @@ class BuildPCController extends Controller
         return view('admin.build-pc.create', compact('listCategories'));
     }
 
-    public function store(BuildPcRequest $request)
+    public function store(BuildPCRequest $request)
     {
         $input = $request->except(['_token']);
 
@@ -62,7 +62,7 @@ class BuildPCController extends Controller
         return view('admin.build-pc.edit', compact('buildPc', 'listCategories'));
     }
 
-    public function update(BuildPcRequest $request,  $id)
+    public function update(BuildPCRequest $request,  $id)
     {
         $input = $request->except(['_token']);
         $input['category_id'] = json_encode($input['category_id'], true);
