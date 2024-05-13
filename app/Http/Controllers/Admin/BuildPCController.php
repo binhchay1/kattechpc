@@ -5,10 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Repositories\BuildPcRepository;
 use App\Enums\Utility;
-use App\Http\Requests\BuildPcRequest;
-use App\Http\Requests\UpdateBuildPcRequest;
+use App\Http\Requests\BuildPCRequest;
 use App\Repositories\CategoryRepository;
-use Illuminate\Http\Request;
 
 class BuildPCController extends Controller
 {
