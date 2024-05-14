@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Page;
 
-use Illuminate\Http\Request;
 use App\Repositories\PostRepository;
 use App\Http\Controllers\Controller;
+use Cache;
 
 class PostController extends Controller
 {
@@ -27,6 +27,6 @@ class PostController extends Controller
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
 
-        return view('page.blog.post-detail', compact('post', 'listPost', 'listCategory'));
+        return view('page.post.post-detail', compact('post', 'listPost', 'listCategory'));
     }
 }

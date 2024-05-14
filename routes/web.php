@@ -54,7 +54,7 @@ Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('/chinh-sach-bao-hanh', [HomeController::class, 'viewPolicy'])->name('policy');
     Route::get('/thanh-toan-truc-tuyen', [HomeController::class, 'paymentOnline'])->name('paymentOnline');
     Route::get('/huong-dan-thanh-toan', [HomeController::class, 'payment'])->name('payment');
-    Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
+    Route::get('/post', [HomeController::class, 'viewPost'])->name('post');
     Route::get('/product/{slug}', [ProductPage::class, 'productDetail'])->name('productDetail');
     Route::post('/comment', [ProductPage::class, 'storeComment'])->name('storeComment');
     Route::post('/rating', [ProductPage::class, 'rating'])->name('rating');
@@ -105,7 +105,7 @@ Route::group(['middleware' => 'cache.menu'], function () {
         Route::get('/thank-you',  [CartController::class, 'thank'])->name('thank');
     });
 
-    Route::get('/blog-detail/{slug}', [PostPage::class, 'postDetail'])->name('post.detail');
+    Route::get('/post-detail/{slug}', [PostPage::class, 'postDetail'])->name('post.detail');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {

@@ -228,12 +228,11 @@ class HomeController extends Controller
         $listPost = $this->postRepository->index();
         $listPostRandom = $this->postRepository->listPostRandom();
         $listPostDESC = $this->postRepository->listPostDESC();
-        $listPostASC = $this->postRepository->listPostASC();
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
 
-        return view('page.blog.posts', compact('listPost', 'listPostRandom', 'listPostDESC', 'listPostASC', 'listCategory', 'listCategoryPost'));
+        return view('page.post.posts', compact('listPost', 'listPostRandom', 'listPostDESC', 'listCategory', 'listCategoryPost'));
     }
 
     public function viewLandingPage($slug)

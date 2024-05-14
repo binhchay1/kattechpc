@@ -9,11 +9,11 @@
 @endsection
 
 @section('content')
-<div class="row d-flex">
+<div class="row d-flex" id="content-post">
     <div class="leftcolumn">
-        <div class="card d-flex">
+        <div class="card d-flex" style="flex-direction: column;">
             <div class="d-flex flex-direction-column">
-                <h1>{{$post->title}}</h1>
+                <h1>{{ $post->title }}</h1>
                 <p>{{ date_format($post->created_at, "F j, Y, g:i a") }}</p>
                 <p>{{ $post->short_description }}</p>
             </div>
@@ -24,7 +24,7 @@
         </div>
 
         <div class="row">
-            <p class="">{!!$post->content!!}</p>
+            <p class="">{!! $post->content !!}</p>
         </div>
     </div>
     <div class="rightcolumn">
