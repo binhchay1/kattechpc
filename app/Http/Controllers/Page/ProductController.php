@@ -74,6 +74,8 @@ class ProductController extends Controller
         }
 
         $productRelated = $this->productRepository->getProductRelated($dataProduct->category_id, $dataProduct->id);
+        $view = $dataProduct->views + 1;
+        $this->productRepository->update(['views' => $view], $dataProduct->id);
 
         return view('page.product.product-detail', compact('dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue'));
     }

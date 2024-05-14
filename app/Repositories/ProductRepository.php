@@ -88,4 +88,9 @@ class ProductRepository extends BaseRepository
     {
         return $this->model->whereIn('id', $arrID)->get();
     }
+
+    public function getProductForStatic()
+    {
+        return $this->model->with('orderDetails')->paginate(15);
+    }
 }
