@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'user' => \App\Http\Middleware\IsUser::class,
         'admin' => \App\Http\Middleware\IsAdmin::class,
         'cache.menu' => \App\Http\Middleware\CacheMenuDefined::class,
+        'count.visitor' => \App\Http\Middleware\CountVisitor::class,
     ];
 }

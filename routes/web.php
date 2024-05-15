@@ -48,7 +48,7 @@ Route::get('/429', [ErrorController::class, 'view429'])->name('error.429');
 Route::get('/500', [ErrorController::class, 'view500'])->name('error.500');
 Route::get('/503', [ErrorController::class, 'view503'])->name('error.503');
 
-Route::group(['middleware' => 'cache.menu'], function () {
+Route::group(['middleware' => ['cache.menu', 'count.visitor']], function () {
     Route::get('/', [HomeController::class, 'viewHome'])->name('home');
     Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
     Route::get('/chinh-sach-bao-hanh', [HomeController::class, 'viewPolicy'])->name('policy');
