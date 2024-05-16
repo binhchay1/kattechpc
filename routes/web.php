@@ -264,4 +264,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/products/{productId}/upload', [ProductImageController::class, 'index']);
     Route::post('/products/{productId}/upload', [ProductImageController::class, 'store']);
     Route::get('/product-image/{productImageId}/delete', [ProductImageController::class, 'destroy']);
+
+    Route::get('/get-data-for-income', [AdminController::class, 'getDataForIncomeChart']);
+    Route::get('/get-data-for-visitor', [AdminController::class, 'getDataForVisitorChart']);
 });

@@ -10,28 +10,18 @@
     <div class="order-6 col-span-12 2xl:order-1 card 2xl:col-span-5">
         <div class="card-body">
             <div class="flex items-center gap-2">
-                <h6 class="mb-3 text-15 grow">Location-Based Response Times</h6>
-                <div class="shrink-0">
-                    <button type="button" class="px-2 py-1.5 text-xs text-custom-500 btn bg-custom-100 hover:text-white hover:bg-custom-600 focus:text-white focus:bg-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:ring active:ring-custom-100 dark:bg-custom-500/20 dark:text-custom-500 dark:hover:bg-custom-500 dark:hover:text-white dark:focus:bg-custom-500 dark:focus:text-white dark:active:bg-custom-500 dark:active:text-white dark:ring-custom-400/20">
-                        View More <i data-lucide="move-right" class="inline-block size-4 ltr:ml-1 rlt:mr-1 rtl:-rotate-180"></i>
-                    </button>
-                </div>
+                <h6 class="mb-3 text-15 grow">{{ __('Tổng tiền theo tháng trong năm') }} - {{ date('Y') }}</h6>
             </div>
 
-            <div id="responseTimes" class="apex-charts" data-chart-colors='["bg-red-500"]' dir="ltr"></div>
+            <div id="incomeChart" class="apex-charts" data-chart-colors='["bg-red-500"]' dir="ltr"></div>
         </div>
     </div>
     <div class="order-7 col-span-12 2xl:order-1 card 2xl:col-span-7">
         <div class="card-body">
             <div class="flex items-center gap-2">
                 <h6 class="mb-3 text-15 grow">{{ __('Tổng lượt truy cập năm') }} - {{ date('Y') }}</h6>
-                <div class="relative dropdown shrink-0">
-                    <button type="button" class="px-2 py-1.5 text-xs bg-text-slate-500 btn bg-slate-100 hover:text-white hover:bg-slate-600 focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 dark:bg-slate-500/20 dark:text-slate-400 dark:hover:bg-slate-500 dark:hover:text-white dark:focus:bg-slate-500 dark:focus:text-white dark:active:bg-slate-500 dark:active:text-white dark:ring-slate-400/20 dropdown-toggle" id="emailDataDropdown" data-bs-toggle="dropdown">
-                        This Yearly <i data-lucide="chevron-down" class="inline-block size-4 ltr:ml-1 rlt:mr-1"></i>
-                    </button>
-                </div>
             </div>
-            <div id="pagesInteraction" class="apex-charts" data-chart-colors='["bg-custom-500", "bg-purple-500"]' dir="ltr"></div>
+            <div id="visitorChart" class="apex-charts" data-chart-colors='["bg-custom-500", "bg-purple-500"]' dir="ltr"></div>
         </div>
     </div>
     @include('includes.product-static')

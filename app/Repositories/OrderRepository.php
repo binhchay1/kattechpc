@@ -40,4 +40,9 @@ class  OrderRepository extends BaseRepository
     {
         return $this->model->with('orderDetails')->orderBy('created_at', 'DESC')->paginate();
     }
+
+    public function getOrderForStaticIncome()
+    {
+        return $this->model->with('orderDetails')->whereYear('created_at', date('Y'))->get();
+    }
 }
