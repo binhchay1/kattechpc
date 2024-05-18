@@ -106,6 +106,7 @@ Route::group(['middleware' => ['cache.menu', 'count.visitor']], function () {
     });
 
     Route::get('/post-detail/{slug}', [PostPage::class, 'postDetail'])->name('post.detail');
+    Route::get('/post-category/{slug}', [HomeController::class, 'postCategory'])->name('post.category');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {

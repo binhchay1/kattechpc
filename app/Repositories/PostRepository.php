@@ -17,6 +17,11 @@ class PostRepository extends BaseRepository
         return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->paginate(10);
     }
 
+    public function postHome()
+    {
+        return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->take(10)->get();
+    }
+
     public function listPostRandom()
     {
         return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->get();
