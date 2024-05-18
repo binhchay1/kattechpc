@@ -9,7 +9,8 @@ use App\Http\Controllers\Admin\ProductController as ProductAdmin;
 use App\Http\Controllers\Page\BuildPCController;
 use App\Http\Controllers\Admin\BuildPCController as BuildPCAdmin;
 use App\Http\Controllers\Page\ProductController as ProductPage;
-use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\PostController as PostAdmin;
+use App\Http\Controllers\Page\PostController as PostPage;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PromotionController;
 use App\Http\Controllers\Admin\RoleController;
@@ -47,14 +48,13 @@ Route::get('/429', [ErrorController::class, 'view429'])->name('error.429');
 Route::get('/500', [ErrorController::class, 'view500'])->name('error.500');
 Route::get('/503', [ErrorController::class, 'view503'])->name('error.503');
 
-Route::group(['middleware' => 'cache.menu'], function () {
+Route::group(['middleware' => ['cache.menu', 'count.visitor']], function () {
     Route::get('/', [HomeController::class, 'viewHome'])->name('home');
     Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
     Route::get('/chinh-sach-bao-hanh', [HomeController::class, 'viewPolicy'])->name('policy');
     Route::get('/thanh-toan-truc-tuyen', [HomeController::class, 'paymentOnline'])->name('paymentOnline');
     Route::get('/huong-dan-thanh-toan', [HomeController::class, 'payment'])->name('payment');
-    Route::get('/blog', [HomeController::class, 'viewPost'])->name('post');
-    Route::get('/blog-detail/{slug}', [HomeController::class, 'postDetail'])->name('post.detail');
+    Route::get('/post', [HomeController::class, 'viewPost'])->name('post');
     Route::get('/product/{slug}', [ProductPage::class, 'productDetail'])->name('productDetail');
     Route::post('/comment', [ProductPage::class, 'storeComment'])->name('storeComment');
     Route::post('/rating', [ProductPage::class, 'rating'])->name('rating');
@@ -68,7 +68,7 @@ Route::group(['middleware' => 'cache.menu'], function () {
     Route::get('/chinh-sach-doanh-nghiep', [HomeController::class, 'businessPolicy'])->name('businessPolicy');
     Route::get('/landing/{slug}', [HomeController::class, 'viewLandingPage'])->name('landing.page');
     Route::get('/custom-contact', [HomeController::class, 'storeCustomContact'])->name('custom.contact');
-    Route::get('/order-history', [AccountController::class, 'orderHistory'])->name('orderHistory');
+    Route::get('/lich-su-mua-hang', [AccountController::class, 'orderHistory'])->name('orderHistory');
     Route::get('/auth/google/', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
     Route::get('/auth/google/callback/', [SocialLoginController::class, 'handleGoogleCallback']);
     Route::get('/auth/facebook/', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
@@ -79,7 +79,7 @@ Route::group(['middleware' => 'cache.menu'], function () {
 
     Route::group(['middleware' => 'user'], function () {
         Route::get('/get-order-detail/{order_id}', [AccountController::class, 'getOrderDetail']);
-        Route::get('/account-info', [AccountController::class, 'show'])->name('profile');
+        Route::get('/thong-tin-tai-khoan', [AccountController::class, 'show'])->name('profile');
         Route::post('/account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
         Route::get('/change-password', [AccountController::class, 'changePassword'])->name('change-password');
         Route::post('/change-password', [AccountController::class, 'updatePassword'])->name('update-password');
@@ -104,6 +104,9 @@ Route::group(['middleware' => 'cache.menu'], function () {
         Route::post('/apply-coupon',  [CartController::class, 'addCoupon'])->name('apply.coupon');
         Route::get('/thank-you',  [CartController::class, 'thank'])->name('thank');
     });
+
+    Route::get('/post-detail/{slug}', [PostPage::class, 'postDetail'])->name('post.detail');
+    Route::get('/post-category/{slug}', [HomeController::class, 'postCategory'])->name('post.category');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
@@ -129,13 +132,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'post'], function () {
-        Route::get('/list', [PostController::class, 'index'])->name('admin.post.index');
-        Route::get('/add', [PostController::class, 'createPost'])->name('admin.post.create');
-        Route::post('/store', [PostController::class, 'storePost'])->name('admin.post.store');
-        Route::get('/update/{id}', [PostController::class, 'editPost'])->name('admin.post.edit');
-        Route::post('/update/{id}', [PostController::class, 'updatePost'])->name('admin.post.update');
-        Route::get('/delete/{id}', [PostController::class, 'deletePost'])->name('admin.post.delete');
-        Route::post('post/img', [PostController::class, 'uploadMedia'])->name('admin.post.uploadMedia');
+        Route::get('/list', [PostAdmin::class, 'index'])->name('admin.post.index');
+        Route::get('/add', [PostAdmin::class, 'createPost'])->name('admin.post.create');
+        Route::post('/store', [PostAdmin::class, 'storePost'])->name('admin.post.store');
+        Route::get('/update/{id}', [PostAdmin::class, 'editPost'])->name('admin.post.edit');
+        Route::post('/update/{id}', [PostAdmin::class, 'updatePost'])->name('admin.post.update');
+        Route::get('/delete/{id}', [PostAdmin::class, 'deletePost'])->name('admin.post.delete');
+        Route::post('post/img', [PostAdmin::class, 'uploadMedia'])->name('admin.post.uploadMedia');
     });
 
     Route::group(['prefix' => 'orders'], function () {
@@ -262,4 +265,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/products/{productId}/upload', [ProductImageController::class, 'index']);
     Route::post('/products/{productId}/upload', [ProductImageController::class, 'store']);
     Route::get('/product-image/{productImageId}/delete', [ProductImageController::class, 'destroy']);
+
+    Route::get('/get-data-for-income', [AdminController::class, 'getDataForIncomeChart']);
+    Route::get('/get-data-for-visitor', [AdminController::class, 'getDataForVisitorChart']);
 });

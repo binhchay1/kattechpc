@@ -29,7 +29,7 @@
                         <h5 class="title-filter">{{ __('Hãng sản xuất') }} </h5>
                         <ul id="js-brand-filter" class="ul-filter">
                             <li>
-                                <label style="cursor: pointer;">
+                                <label>
                                     <input type="checkbox">
                                     <span class="value-filter">Intel (98)</span>
                                 </label>
@@ -43,7 +43,49 @@
                             <li>
                                 <label>
                                     <input type="checkbox">
-                                    <span class="value-filter">Dưới 1 triệu (17)</span>
+                                    <span class="value-filter">{{ ('Dưới 1 triệu') }} (17)</span>
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox">
+                                    <span class="value-filter">{{ __('10 triệu - 15 triệu') }} (17)</span>
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox">
+                                    <span class="value-filter">{{ __('15 triệu - 20 triệu') }} (17)</span>
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox">
+                                    <span class="value-filter">{{ __('20 triệu - 30 triệu') }} (17)</span>
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox">
+                                    <span class="value-filter">{{ __('30 triệu - 50 triệu') }} (17)</span>
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox">
+                                    <span class="value-filter">{{ __('50 triệu - 100 triệu') }} (17)</span>
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox">
+                                    <span class="value-filter">{{ __('Trên 100 triệu') }} (17)</span>
                                 </label>
                             </li>
                         </ul>
@@ -51,7 +93,6 @@
 
                     <div class="gr-filter" id="js-attr-filter">
                         <h5 class="title-filter"> </h5>
-
                         <div id="js-attr-list" class="ul-filter">
                             <h5 class="title-filter"> Loại CPU </h5>
                             <ul id="js-attr-list" class="ul-filter">
@@ -73,16 +114,16 @@
                         <span>{{ __('Sắp xếp') }}: </span>
                         <select onchange="productWithFilter(this.value)" id="js-sort-holder">
                             <option value="">{{ __('Tùy chọn') }}</option>
-                            <option value="">Mới nhất</option>
+                            <option value="">{{ ('Mới nhất') }}</option>
                         </select>
                     </div>
 
                     <div class="paging-block float_r paging-ajax js-paging">
-                        <a href="javascript:void(0);" class="active" onclick="objBuildPCVisual.showProductFilter('/ajax/get_json.php?action=pcbuilder&amp;action_type=get-product-category&amp;category_id=277&amp;pc_part_id=')">
+                        <a href="javascript:void(0);" class="active" onclick="">
                             1
                         </a>
 
-                        <a href="javascript:void(0);" onclick="objBuildPCVisual.showProductFilter('/ajax/get_json.php?action=pcbuilder&amp;action_type=get-product-category&amp;category_id=277&amp;pc_part_id=&amp;page=2')">
+                        <a href="javascript:void(0);" onclick="">
                             next
                         </a>
                     </div>

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\Utility;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\CategoryUpdateRequest;
@@ -10,18 +9,15 @@ use App\Models\Category;
 use App\Repositories\CategoryRepository;
 use Illuminate\Support\Str;
 use Cache;
-use Illuminate\Http\Request;
+
 class CategoryProductController extends Controller
 {
     private $categoryRepository;
-    private $utility;
 
     public function __construct(
         CategoryRepository $categoryRepository,
-        Utility $utility
     ) {
         $this->categoryRepository = $categoryRepository;
-        $this->utility = $utility;
     }
 
     public function index()
@@ -43,8 +39,6 @@ class CategoryProductController extends Controller
         $input = $request->except(['_token']);
         $input['slug'] = Str::slug($input['name']);
         if (isset($input['image'])) {
-
-            // $this->utility->saveImageCategory($input);
             $input['image']->move(public_path('images/upload/category-product/'), $input['image']->getClientOriginalName());
             $path = '/images/upload/category-product/' . $input['image']->getClientOriginalName();
             $input['image'] = $path;
@@ -71,8 +65,6 @@ class CategoryProductController extends Controller
         $input = $request->except(['_token']);
         $input['slug'] =  Str::slug($input['name']);
         if (isset($input['image'])) {
-
-            // $this->utility->saveImageCategory($input);
             $input['image']->move(public_path('images/upload/category-product/'), $input['image']->getClientOriginalName());
             $path = '/images/upload/category-product/' . $input['image']->getClientOriginalName();
             $input['image'] = $path;
@@ -91,7 +83,7 @@ class CategoryProductController extends Controller
         return back()->with('success', __('Danh mục sản phẩm  được xóa đổi thành công'));
     }
 
-    public function activeCate(Request $request, $id)
+    public function activeCate($id)
     {
         $categoryProduct = Category::find($id);
         if ($categoryProduct->status) {
@@ -100,6 +92,7 @@ class CategoryProductController extends Controller
             $categoryProduct->status = 1;
         }
         $categoryProduct->save();
+        Cache::store('redis')->forget('menu_homepage');
 
         return back();
     }

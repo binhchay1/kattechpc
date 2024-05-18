@@ -10,17 +10,6 @@
     margin-right: auto;
 }
 
-.leftcolumn {
-    float: left;
-    width: 75%;
-}
-
-.rightcolumn {
-    float: left;
-    width: 25%;
-    padding-left: 20px;
-}
-
 .fakeimg {
     background-color: #aaa;
     width: 100%;
@@ -60,13 +49,18 @@
     height: 100px;
 }
 
-#content-page p {
+#content-post p {
     font-weight: 600;
     font-size: 15px;
     color: black;
     -webkit-line-clamp: 10;
 }
 
-img {
+#content-post img {
     border-radius: 5px;
+}
+
+#content-post h1 {
+    font-size: 30px;
+    font-weight: bold;
 }

@@ -5,10 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Repositories\BuildPcRepository;
 use App\Enums\Utility;
-use App\Http\Requests\BuildPcRequest;
-use App\Http\Requests\UpdateBuildPcRequest;
+use App\Http\Requests\BuildPCRequest;
 use App\Repositories\CategoryRepository;
-use Illuminate\Http\Request;
 
 class BuildPCController extends Controller
 {
@@ -31,16 +29,16 @@ class BuildPCController extends Controller
         $listBuildPcs = $this->buildPcRepository->index();
         $listBuildPcs = $this->utility->paginate($listBuildPcs, 5);
 
-        return view('admin.buildPc.index', compact('listBuildPcs'));
+        return view('admin.build-pc.index', compact('listBuildPcs'));
     }
 
     public function create()
     {
         $listCategories = $this->categoryRepository->indexOnlyChild();
-        return view('admin.buildPc.create', compact('listCategories'));
+        return view('admin.build-pc.create', compact('listCategories'));
     }
 
-    public function store(BuildPcRequest $request)
+    public function store(BuildPCRequest $request)
     {
         $input = $request->except(['_token']);
 
@@ -59,10 +57,10 @@ class BuildPCController extends Controller
         }
         $listCategories = $this->categoryRepository->indexOnlyChild();
 
-        return view('admin.buildPC.edit', compact('buildPc', 'listCategories'));
+        return view('admin.build-pc.edit', compact('buildPc', 'listCategories'));
     }
 
-    public function update(BuildPcRequest $request,  $id)
+    public function update(BuildPCRequest $request,  $id)
     {
         $input = $request->except(['_token']);
         $input['category_id'] = json_encode($input['category_id'], true);

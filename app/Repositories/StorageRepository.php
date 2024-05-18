@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Storage;
-use Illuminate\Support\Facades\DB;
 
 class StorageRepository extends BaseRepository
 

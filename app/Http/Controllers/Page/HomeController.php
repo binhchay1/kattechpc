@@ -225,29 +225,32 @@ class HomeController extends Controller
 
     public function viewPost()
     {
-        $listPost = $this->postRepository->index();
+        $listPost = $this->postRepository->postHome();
         $listPostRandom = $this->postRepository->listPostRandom();
+        $postRandom = $this->postRepository->listPostRandom();
         $listPostDESC = $this->postRepository->listPostDESC();
-        $listPostASC = $this->postRepository->listPostASC();
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
 
-        return view('page.blog.posts', compact('listPost', 'listPostRandom', 'listPostDESC', 'listPostASC', 'listCategory', 'listCategoryPost'));
+        return view('page.post.posts', compact('listPost', 'listPostRandom', 'postRandom','listPostDESC', 'listCategory', 'listCategoryPost'));
     }
 
-    public function postDetail($slug)
+    public function postCategory($slug)
     {
         if (!isset($slug)) {
             return redirect('/404');
         }
 
-        $listPost = $this->postRepository->index();
-        $post = $this->postRepository->detail($slug);
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $listPostRandom = $this->postRepository->listPostRandom();
+        $postCategory = $this->categoryPostRepository->getCatePost($slug);
+        $postCateLimit = $postCategory->posts->take(3);
+        $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
 
-        return view('page.blog.post-detail', compact('post', 'listPost', 'listCategory'));
+
+        return view('page.post.category-post', compact('listCategoryPost','postCategory', 'listPostRandom','listCategory','postCateLimit'));
     }
 
     public function viewLandingPage($slug)

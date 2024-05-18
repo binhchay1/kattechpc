@@ -2,6 +2,9 @@
     <p class="group-title"><i class="fa fa-bars"></i> {{ __('Danh mục sản phẩm') }}</p>
     <div class="global-menu-holder">
         @foreach($listCategory['default'] as $category)
+        @if($category->status == 0)
+        @continue
+        @endif
         <div class="item">
             <a href="{{ $category->slug }}" class="cat-1">
                 <img class="lazy icon-menu entered loaded" alt="{{ $category->name }}" width="1" height="1" src="{{ asset($category->image) }}">

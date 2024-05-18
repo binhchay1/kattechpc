@@ -8,6 +8,7 @@ use App\Models\Coupon;
 use App\Repositories\OrderDetailRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
+use App\Repositories\LayoutRepository;
 use Illuminate\Http\Request;
 use Session;
 use Cart;
@@ -19,36 +20,64 @@ class CartController extends Controller
     private $productRepository;
     private $orderRepository;
     private $orderDetailRepository;
+    private $layoutRepository;
 
     public function __construct(
         ProductRepository $productRepository,
         OrderRepository $orderRepository,
-        OrderDetailRepository $orderDetailRepository
+        OrderDetailRepository $orderDetailRepository,
+        LayoutRepository $layoutRepository
     ) {
         $this->productRepository = $productRepository;
         $this->orderRepository = $orderRepository;
         $this->orderDetailRepository = $orderDetailRepository;
+        $this->layoutRepository = $layoutRepository;
     }
 
     public function addCart($slug)
     {
         $dataProduct = $this->productRepository->productDetail($slug);
-        if ($dataProduct->new_price != null) {
+        $getFlashSale = $this->layoutRepository->getFlashSale();
+        $isFlashSale = false;
+        if ($getFlashSale) {
+            if (strtotime($getFlashSale->flash_sale_timer) <= strtotime(date('Y-m-d H:i:s'))) {
+                $priceFlashSale = '';
+                $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
+                foreach ($listProductFlashSale as $productFlash => $value) {
+                    if ($productFlash == $dataProduct->code) {
+                        $isFlashSale = true;
+                        $priceFlashSale = $value['new_price'];
+                    }
+                }
+            }
+        }
+
+        if ($isFlashSale) {
             Cart::add(
                 $dataProduct->id,
                 $dataProduct->name,
-                (int) str_replace('.', '', $dataProduct->new_price),
+                (int) $priceFlashSale,
                 1,
                 ['image' => $dataProduct->image]
             );
         } else {
-            Cart::add(
-                $dataProduct->id,
-                $dataProduct->name,
-                (int) str_replace('.', '', $dataProduct->price),
-                1,
-                ['image' => $dataProduct->image]
-            );
+            if ($dataProduct->new_price != null) {
+                Cart::add(
+                    $dataProduct->id,
+                    $dataProduct->name,
+                    (int) str_replace('.', '', $dataProduct->new_price),
+                    1,
+                    ['image' => $dataProduct->image]
+                );
+            } else {
+                Cart::add(
+                    $dataProduct->id,
+                    $dataProduct->name,
+                    (int) str_replace('.', '', $dataProduct->price),
+                    1,
+                    ['image' => $dataProduct->image]
+                );
+            }
         }
 
         Session::put('getProduct', $dataProduct);
@@ -118,6 +147,7 @@ class CartController extends Controller
                         'product_id' => $item->id,
                         'quantity' => $item->quantity,
                         'price' => $request->total_cart,
+                        'payment' => 'thanh-toan-truc-tuyen'
                     ];
 
                     $this->orderDetailRepository->create($data);
@@ -144,13 +174,38 @@ class CartController extends Controller
     {
         $total = $request->get('total');
         $dataProduct = $this->productRepository->productDetail($id);
-        Cart::add(
-            $dataProduct->id,
-            $dataProduct->name,
-            (int) str_replace('.', '', $dataProduct->new_price) ?? (int) str_replace('.', '', $dataProduct->price),
-            $total,
-            ['image' => $dataProduct->image]
-        );
+        $getFlashSale = $this->layoutRepository->getFlashSale();
+        $isFlashSale = false;
+        if ($getFlashSale) {
+            if (strtotime($getFlashSale->flash_sale_timer) <= strtotime(date('Y-m-d H:i:s'))) {
+                $priceFlashSale = '';
+                $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
+                foreach ($listProductFlashSale as $productFlash => $value) {
+                    if ($productFlash == $dataProduct->code) {
+                        $isFlashSale = true;
+                        $priceFlashSale = $value['new_price'];
+                    }
+                }
+            }
+        }
+
+        if ($isFlashSale) {
+            Cart::add(
+                $dataProduct->id,
+                $dataProduct->name,
+                (int) $priceFlashSale,
+                $total,
+                ['image' => $dataProduct->image]
+            );
+        } else {
+            Cart::add(
+                $dataProduct->id,
+                $dataProduct->name,
+                (int) str_replace('.', '', $dataProduct->new_price) ?? (int) str_replace('.', '', $dataProduct->price),
+                $total,
+                ['image' => $dataProduct->image]
+            );
+        }
 
         return redirect()->back()->with('success', __('Sản phẩm được thêm vào giỏ hàng!'));
     }

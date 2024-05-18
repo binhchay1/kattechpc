@@ -58,15 +58,24 @@ class ProductController extends Controller
 
         $dataProduct->is_flash_sale = 0;
         $getFlashSale = $this->layoutRepository->getFlashSale();
-        $listProductSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
-        foreach ($listProductSale as $productSaleCode => $value) {
-            if ($productSaleCode == $dataProduct->code) {
-                $dataProduct->is_flash_sale = 1;
-                $dataProduct->flash_sale_time = $getFlashSale->flash_sale_timer;
+        if ($getFlashSale) {
+            if (strtotime($getFlashSale->flash_sale_timer) <= strtotime(date('Y-m-d H:i:s'))) {
+                $listProductSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
+                foreach ($listProductSale as $productSaleCode => $value) {
+                    if ($productSaleCode == $dataProduct->code) {
+                        $dataProduct->is_flash_sale = 1;
+                        $dataProduct->flash_sale_time = $getFlashSale->flash_sale_timer;
+                        $dataProduct->new_price = $value['new_price'];
+                        $dataProduct->sale_quantity = $value['quantity'];
+                        $dataProduct->sale_stock = $value['stock'];
+                    }
+                }
             }
         }
 
         $productRelated = $this->productRepository->getProductRelated($dataProduct->category_id, $dataProduct->id);
+        $view = $dataProduct->views + 1;
+        $this->productRepository->update(['views' => $view], $dataProduct->id);
 
         return view('page.product.product-detail', compact('dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue'));
     }

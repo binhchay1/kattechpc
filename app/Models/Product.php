@@ -30,7 +30,8 @@ class Product extends Model
         'title',
         'brand_id',
         'status_guarantee',
-        'detail_tech'
+        'detail_tech',
+        'views'
     ];
 
     public function category()
@@ -47,15 +48,20 @@ class Product extends Model
     {
         return $this->hasMany(Comment::class)->whereNull('parent_id');
     }
-    
+
     public function ratings()
     {
-        return $this->hasMany(Rating::class,'product_id', 'id');
+        return $this->hasMany(Rating::class, 'product_id', 'id');
     }
 
     public function brands()
     {
         return $this->hasOne(Brand::class, 'id', 'brand_id');
+    }
+
+    public function orderDetails()
+    {
+        return $this->hasMany(OrderDetail::class);
     }
 
     public function sluggable(): array
