@@ -29,4 +29,5 @@ class PostController extends Controller
 
         return view('page.post.post-detail', compact('post', 'listPost', 'listCategory'));
     }
+
 }

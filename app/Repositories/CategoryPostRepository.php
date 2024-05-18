@@ -43,6 +43,11 @@ class CategoryPostRepository extends BaseRepository
 
     public function getListCategoryPost()
     {
-        return $this->model->orderBy('created_at', 'desc')->get();
+        return $this->model->orderBy('created_at', 'desc')->take(6)->get();
+    }
+
+    public function getCatePost($slug)
+    {
+        return $this->model->with('posts')->where('slug', $slug)->first();
     }
 }
