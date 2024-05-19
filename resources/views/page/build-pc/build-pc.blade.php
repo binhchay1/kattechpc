@@ -87,6 +87,7 @@
     var currentArea = 1;
     var currentPrice1 = 0;
     var currentPrice2 = 0;
+    var currentChoice = '';
     var currentArrayProduct = {
         'listArea1': [],
         'listArea2': []
@@ -240,77 +241,15 @@
 
     function changeProductHandle(userChose) {
         var url = "get-product?key=" + userChose;
+        currentChoice = userChose;
         $(".list-product-select").empty();
         $.ajax({
             type: 'get',
             url: url,
             success: function(data) {
-                $.each(data.products, function(key, val) {
-                    let dataSendToAdd = JSON.stringify(val);
-                    let name = val.name;
-                    let code = val.code;
-                    let new_price = val.new_price;
-                    let price = val.price;
-                    let slug = val.slug;
-                    let image = JSON.parse(val.image);
-                    let urlProduct = '/product/' + slug;
-                    let urlAddToBuild = '/add-build-pc/' + slug;
-                    let status_guarantee = val.status_guarantee;
-                    let status = val.status;
-                    if (status == 'available') {
-                        textStatus = 'Còn hàng';
-                    } else if (status == 'out of stock') {
-                        textStatus = 'Hết hàng';
-                    } else {
-                        textStatus = 'Đang về hàng';
-                    }
-
-                    let stringAppend = `<div class="row p-item">
-                        <div class="col-lg-3">
-                            <a href="` + urlProduct + `" class="p-img">
-                                <img src="` + image[0] + `">
-                            </a>
-                        </div>
-                        <div class="col-lg-6 info">
-                            <a href="" class="p-name">` + name + `</a>
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td><b>Bảo hành:</b></td>
-                                        <td>` + status_guarantee + `</td>
-                                    </tr>
-
-                                    <tr>
-                                        <td valign="top"><b>Kho hàng:</b></td>
-                                        <td>
-                                            ` + textStatus + `
-                                            | <b>Mã SP:</b> ` + code + `
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>`;
-
-                    if (new_price != null) {
-                        let discount = Math.floor(100 - ((parseInt(new_price) / parseInt(price)) * 100));
-                        stringAppend += `<span class="p-price">` + new_price + `</span>
-                                    <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
-                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
-                                    ` + price + `<u> đ</u>
-                                </p>
-                            <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-` + discount + ` %</div>
-                            </div>`;
-                    } else {
-                        stringAppend += `<span class="p-price">` + price + `</span>`;
-                    }
-
-                    stringAppend += `</div><div class="col-lg-3" style="margin-top:10px ">
-                        <span id="buy-product" style="display: flex" class="btn-buy js-select-product" data-id="` + data.menu + `" data-product='` + dataSendToAdd + `' onclick="addToMenu(this)">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
-                        </div>
-                        </div>
-                     <hr>`;
-
-                    $(".list-product-select").append(stringAppend);
-                })
+                renderProductToModal(data);
+                $('#js-brand-filter').empty();
+                renderBrandToModal(data);
             }
         });
 
@@ -338,6 +277,112 @@
                 }
             }
         });
+    }
 
+    function renderProductToModal(data) {
+        $.each(data.products, function(key, val) {
+            let dataSendToAdd = JSON.stringify(val);
+            let name = val.name;
+            let code = val.code;
+            let new_price = val.new_price;
+            let price = val.price;
+            let slug = val.slug;
+            let image = JSON.parse(val.image);
+            let urlProduct = '/product/' + slug;
+            let urlAddToBuild = '/add-build-pc/' + slug;
+            let status_guarantee = val.status_guarantee;
+            let status = val.status;
+            if (status == 'available') {
+                textStatus = 'Còn hàng';
+            } else if (status == 'out of stock') {
+                textStatus = 'Hết hàng';
+            } else {
+                textStatus = 'Đang về hàng';
+            }
+
+            let stringAppend = `<div class="row p-item">
+                        <div class="col-lg-3">
+                            <a href="` + urlProduct + `" class="p-img">
+                                <img src="` + image[0] + `">
+                            </a>
+                        </div>
+                        <div class="col-lg-6 info">
+                            <a href="" class="p-name">` + name + `</a>
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td><b>Bảo hành:</b></td>
+                                        <td>` + status_guarantee + `</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td valign="top"><b>Kho hàng:</b></td>
+                                        <td>
+                                            ` + textStatus + `
+                                            | <b>Mã SP:</b> ` + code + `
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>`;
+
+            if (new_price != null) {
+                let discount = Math.floor(100 - ((parseInt(new_price) / parseInt(price)) * 100));
+                stringAppend += `<span class="p-price">` + new_price + `</span>
+                                    <div class="product-martket-main d-flex align-items-center" style="margin-top:10px;">
+                                <p class="product-market-price" style="color: #575757;text-decoration: line-through;">
+                                    ` + price + `<u> đ</u>
+                                </p>
+                            <div class="product-percent-price" style="background: #BE1F2D;border-radius: 7px;color:#fff;border-radius: 7px;margin-left:6px;padding: 1px 8px;">-` + discount + ` %</div>
+                            </div>`;
+            } else {
+                stringAppend += `<span class="p-price">` + price + `</span>`;
+            }
+
+            stringAppend += `</div><div class="col-lg-3" style="margin-top:10px ">
+                        <span id="buy-product" style="display: flex" class="btn-buy js-select-product" data-id="` + data.menu + `" data-product='` + dataSendToAdd + `' onclick="addToMenu(this)">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
+                        </div>
+                        </div>
+                     <hr>`;
+
+            $(".list-product-select").append(stringAppend);
+        })
+    }
+
+    function renderBrandToModal(data) {
+        var listBrand = {};
+        $.each(data.products, function(key, val) {
+            if (!(val.brands.name in listBrand)) {
+                listBrand[val.brands.name] = 1;
+            } else {
+                listBrand[val.brands.name] += 1;
+            }
+        });
+
+        $.each(listBrand, function(key, val) {
+            let strAppend = `<li>
+                                <label>
+                                    <input type="checkbox">
+                                    <span class="value-filter">` + key + ` ( ` + val + ` )</span>
+                                </label>
+                            </li>`;
+
+            $('#js-brand-filter').append(strAppend);
+        });
+    }
+
+    function sortProduct(sort) {
+        var choice = currentChoice;
+        var url = "get-product?key=" + currentChoice + "&sort=" + sort;
+
+        $.ajax({
+            type: 'get',
+            url: url,
+            success: function(data) {
+                $(".list-product-select").empty();
+                renderProductToModal(data);
+                $('#js-brand-filter').empty();
+                renderBrandToModal(data);
+            }
+        });
     }
 </script>

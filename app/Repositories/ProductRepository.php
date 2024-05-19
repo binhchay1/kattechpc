@@ -74,9 +74,23 @@ class ProductRepository extends BaseRepository
         })->orderBy('created_at', 'DESC')->get();
     }
 
-    public function getListProductForBuild($arrID)
+    public function getListProductForBuild($arrID, $sort = null)
     {
-        return $this->model->with('category', 'productImages')->whereIn('category_id', $arrID)->get();
+        $query = $this->model->with('category', 'productImages', 'brands')->whereIn('category_id', $arrID);
+        if ($sort != null) {
+            if ($sort == 'newest') {
+                $query = $query->orderBy('created_at', 'desc');
+            }
+
+            if ($sort == 'price-asc') {
+                $query = $query->orderBy('price', 'asc');
+            }
+
+            if ($sort == 'price-desc') {
+                $query = $query->orderBy('created_at', 'desc');
+            }
+        }
+        return $query->get();
     }
 
     public function getListProductForCart($arrID)

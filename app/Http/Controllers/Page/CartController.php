@@ -153,10 +153,11 @@ class CartController extends Controller
             if (count($cartInfor) > 0) {
                 if ($isFlashSale) {
                     $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
-                    dd($cartInfor);
                     foreach ($cartInfor as $item) {
-                        foreach($listProductFlashSale as $productFlashSale => $value) {
-
+                        foreach ($listProductFlashSale as $productFlashSale => $value) {
+                            if ($item->conditions == $productFlashSale) {
+                                $listProductFlashSale[$productFlashSale]['stock'] = $value['stock'] - 1;
+                            }
                         }
                         $data = [
                             'order_id' => $order->id,
@@ -167,6 +168,9 @@ class CartController extends Controller
 
                         $this->orderDetailRepository->create($data);
                     }
+
+                    $listProductFlashSale = json_encode($listProductFlashSale);
+                    $this->layoutRepository->updateStockFlashSale($getFlashSale->id, $listProductFlashSale);
                     Cart::clear();
                 } else {
                     foreach ($cartInfor as $item) {
@@ -224,9 +228,8 @@ class CartController extends Controller
                 (int) $priceFlashSale,
                 $total,
                 ['image' => $dataProduct->image],
-
+                $dataProduct->code
             );
-
         } else {
             Cart::add(
                 $dataProduct->id,
