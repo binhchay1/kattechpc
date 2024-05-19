@@ -14,7 +14,7 @@ class VisitorRepository extends BaseRepository
 
     public function getVisitorByIp($ip, $month, $year)
     {
-        return $this->model->where('ip_address', $ip)->whereMonth('month', $month)->whereYear('year', $year)->first();
+        return $this->model->where('ip_address', $ip)->where('month', $month)->where('year', $year)->first();
     }
 
     public function create($input)

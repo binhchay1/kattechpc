@@ -202,7 +202,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('page.homepage', compact('listCategory', 'listNews', 'listHotSale', 'layout', 'listSlide', 'listFlashSale', 'listPromotion', 'listCategoryProduct'));
+        return view('page.homepage', compact('listCategory', 'listNews', 'listHotSale', 'layout', 'listSlide', 'listFlashSale', 'listPromotion', 'listCategoryProduct', 'getFlashSale'));
     }
 
     public function viewSearch(Request $request)

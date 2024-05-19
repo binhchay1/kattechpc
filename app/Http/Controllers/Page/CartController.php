@@ -40,7 +40,7 @@ class CartController extends Controller
         $getFlashSale = $this->layoutRepository->getFlashSale();
         $isFlashSale = false;
         if ($getFlashSale) {
-            if (strtotime($getFlashSale->flash_sale_timer) <= strtotime(date('Y-m-d H:i:s'))) {
+            if (strtotime($getFlashSale->flash_sale_timer) >= strtotime(date('Y-m-d H:i:s'))) {
                 $priceFlashSale = '';
                 $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
                 foreach ($listProductFlashSale as $productFlash => $value) {
@@ -58,7 +58,8 @@ class CartController extends Controller
                 $dataProduct->name,
                 (int) $priceFlashSale,
                 1,
-                ['image' => $dataProduct->image]
+                ['image' => $dataProduct->image],
+                $dataProduct->code
             );
         } else {
             if ($dataProduct->new_price != null) {
@@ -132,27 +133,54 @@ class CartController extends Controller
     public function checkout(OrderRequest $request)
     {
         $cartInfor =  Cart::getContent();
+        $getFlashSale = $this->layoutRepository->getFlashSale();
+        $isFlashSale = false;
+        if ($getFlashSale) {
+            if (strtotime($getFlashSale->flash_sale_timer) >= strtotime(date('Y-m-d H:i:s'))) {
+                $isFlashSale = true;
+            }
+        }
+
         try {
             $input = $request->all();
             $today = date("YmdHis");
             $rand = strtoupper(substr(uniqid(sha1(time())), 0, 4));
             $unique = $today . $rand;
             $input['order_code'] = $unique;
+            $input['payment'] = 'thanh-toan-truc-tuyen';
             $order = $this->orderRepository->create($input);
 
             if (count($cartInfor) > 0) {
-                foreach ($cartInfor as $item) {
-                    $data = [
-                        'order_id' => $order->id,
-                        'product_id' => $item->id,
-                        'quantity' => $item->quantity,
-                        'price' => $request->total_cart,
-                        'payment' => 'thanh-toan-truc-tuyen'
-                    ];
+                if ($isFlashSale) {
+                    $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
+                    dd($cartInfor);
+                    foreach ($cartInfor as $item) {
+                        foreach($listProductFlashSale as $productFlashSale => $value) {
 
-                    $this->orderDetailRepository->create($data);
+                        }
+                        $data = [
+                            'order_id' => $order->id,
+                            'product_id' => $item->id,
+                            'quantity' => $item->quantity,
+                            'price' => $request->total_cart
+                        ];
+
+                        $this->orderDetailRepository->create($data);
+                    }
+                    Cart::clear();
+                } else {
+                    foreach ($cartInfor as $item) {
+                        $data = [
+                            'order_id' => $order->id,
+                            'product_id' => $item->id,
+                            'quantity' => $item->quantity,
+                            'price' => $request->total_cart
+                        ];
+
+                        $this->orderDetailRepository->create($data);
+                    }
+                    Cart::clear();
                 }
-                Cart::clear();
             }
         } catch (Exception $e) {
             echo $e->getMessage();
@@ -177,7 +205,7 @@ class CartController extends Controller
         $getFlashSale = $this->layoutRepository->getFlashSale();
         $isFlashSale = false;
         if ($getFlashSale) {
-            if (strtotime($getFlashSale->flash_sale_timer) <= strtotime(date('Y-m-d H:i:s'))) {
+            if (strtotime($getFlashSale->flash_sale_timer) >= strtotime(date('Y-m-d H:i:s'))) {
                 $priceFlashSale = '';
                 $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
                 foreach ($listProductFlashSale as $productFlash => $value) {
@@ -195,8 +223,10 @@ class CartController extends Controller
                 $dataProduct->name,
                 (int) $priceFlashSale,
                 $total,
-                ['image' => $dataProduct->image]
+                ['image' => $dataProduct->image],
+
             );
+
         } else {
             Cart::add(
                 $dataProduct->id,

@@ -59,7 +59,7 @@ class ProductController extends Controller
         $dataProduct->is_flash_sale = 0;
         $getFlashSale = $this->layoutRepository->getFlashSale();
         if ($getFlashSale) {
-            if (strtotime($getFlashSale->flash_sale_timer) <= strtotime(date('Y-m-d H:i:s'))) {
+            if (strtotime($getFlashSale->flash_sale_timer) > strtotime(date('Y-m-d H:i:s'))) {
                 $listProductSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
                 foreach ($listProductSale as $productSaleCode => $value) {
                     if ($productSaleCode == $dataProduct->code) {

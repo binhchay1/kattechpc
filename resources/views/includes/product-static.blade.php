@@ -73,9 +73,9 @@
         <div class="flex flex-col items-center mt-5 md:flex-row">
             <div class="mb-4 grow md:mb-0">
                 @if($orderStatic->total() < 16)
-                <p class="text-slate-500 dark:text-zink-200">{{ __('Hiển thị') }} <b>{{ $orderStatic->total() }}</b> {{ __('thuộc') }} <b>{{ $orderStatic->total() }}</b> {{ __('kết quả') }}</p>
+                <p class="text-slate-500 dark:text-zink-200">{{ __('Hiển thị') }} <b>{{ $productStatic->total() }}</b> {{ __('thuộc') }} <b>{{ $productStatic->total() }}</b> {{ __('kết quả') }}</p>
                 @else
-                <p class="text-slate-500 dark:text-zink-200">{{ __('Hiển thị') }} <b>{{ $orderStatic->perPage() }}</b> {{ __('thuộc') }} <b>{{ $orderStatic->total() }}</b> {{ __('kết quả') }}</p>
+                <p class="text-slate-500 dark:text-zink-200">{{ __('Hiển thị') }} <b>{{ $productStatic->perPage() }}</b> {{ __('thuộc') }} <b>{{ $productStatic->total() }}</b> {{ __('kết quả') }}</p>
                 @endif
             </div>
             @if($orderStatic->total() > 15)

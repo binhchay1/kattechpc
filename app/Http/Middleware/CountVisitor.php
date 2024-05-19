@@ -22,6 +22,7 @@ class CountVisitor
         $month = date('m');
         $year = date('Y');
         $getVisitor = $this->visitorRepository->getVisitorByIp($ip_address, $month, $year);
+
         if (!$getVisitor) {
             $data = [
                 'ip_address' => $ip_address,

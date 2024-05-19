@@ -87,6 +87,7 @@
     </div>
 </section>
 
+@if(strtotime($getFlashSale->flash_sale_timer) >= strtotime(date('Y-m-d H:i:s')))
 <section class="flash-sale-banner">
     <div class="flash-sale-area">
         <div class="d-flex align-items-center justify-content-between">
@@ -143,6 +144,7 @@
         </div>
     </div>
 </section>
+@endif
 
 <section class="top-sale">
     <div class="flash-sale-area">
@@ -199,13 +201,13 @@
             </div>
         </div>
         <div class="flex-container">
-        @foreach($listCategoryProduct as $category)
+            @foreach($listCategoryProduct as $category)
             @if($category->status == 1)
             <a href="{{ route('showDataCategory', $category->slug) }}" class="d-flex flex-column text-center category-home-page">
                 <img src="{{ asset($category->image) }}" class="item-hot lazy" width="300" height="300">
                 <span class="policy-title">{{ $category->name }}</span>
             </a>
-                @endif
+            @endif
             @endforeach
         </div>
     </div>

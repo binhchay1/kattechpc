@@ -6,7 +6,11 @@ $(document).ready(function () {
         type: "get",
         url: urlGetIncome,
         success: function (result) {
-            let data = result;
+            var data = [];
+
+            for (var i in result)
+                data.push(result[i]);
+
             renderIncomeChart(data);
         }
     });
@@ -15,8 +19,12 @@ $(document).ready(function () {
         type: "get",
         url: urlGetVisitor,
         success: function (result) {
-            let data = result;
-            renderIncomeChart(data);
+            var data = [];
+
+            for (var i in result)
+                data.push(result[i]);
+
+            renderVisitorChart(data);
         }
     });
 });
@@ -55,7 +63,7 @@ function renderIncomeChart(data) {
         },
         colors: getChartColorsArray("responseTimes"),
         xaxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         }
     };
 

@@ -98,8 +98,16 @@ class AdminController extends Controller
         ];
 
         foreach ($getOrder as $order) {
-            foreach ($getOrder->orderDetails as $detail) {
+            $explodeDate = explode(' ', $order->order_date);
+            $explodeMonth = explode('-', $explodeDate[0]);
+            $month = $explodeMonth[1];
+            $total = 0;
+            $arrMonth[] = $month;
+            foreach ($order->orderDetails as $detail) {
+                $total += ($detail->price * $detail->quantity);
             }
+
+            $data[$month] += $total;
         }
 
         return response()->json($data);
@@ -122,6 +130,14 @@ class AdminController extends Controller
             '11' => 0,
             '12' => 0,
         ];
+
+        foreach ($getVisitor as $visitor) {
+            foreach ($data as $key => $val) {
+                if ($visitor->month == $key) {
+                    $data[$key] += 1;
+                }
+            }
+        }
 
         return response()->json($data);
     }
