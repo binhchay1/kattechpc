@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
+use App\Jobs\SendMailByGoogle;
 use App\Models\Coupon;
 use App\Repositories\OrderDetailRepository;
 use App\Repositories\OrderRepository;
@@ -186,6 +187,14 @@ class CartController extends Controller
                     Cart::clear();
                 }
             }
+
+            $orderDetailMail = new OrderDetail;
+            $dataOrderMail = [
+                'customer' => $input,
+                'order' => $orderDetailMail
+            ];
+
+            SendMailByGoogle::dispatch($orderDetailMail, $input['email'], $data)->onQueue('order-detail');
         } catch (Exception $e) {
             echo $e->getMessage();
         }

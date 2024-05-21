@@ -88,6 +88,7 @@
     var currentPrice1 = 0;
     var currentPrice2 = 0;
     var currentChoice = '';
+    var urlCurrent = location.href;
     var currentArrayProduct = {
         'listArea1': [],
         'listArea2': []
@@ -103,6 +104,19 @@
             $('#js-modal-popup').hide();
         });
 
+        let search = document.getElementById('search-in-modal');
+        let lis = document.getElementsByClassName('p-item');
+        search.onkeyup = function() {
+            var filter = search.value.toUpperCase();
+            for (var i = 0; i < lis.length; i++) {
+                var text = lis[i].getElementsByClassName('p-name')[0].innerHTML;
+                if (text.toUpperCase().indexOf(filter) == 0) {
+                    lis[i].style.display = 'block';
+                } else {
+                    lis[i].style.display = 'none';
+                }
+            }
+        };
     });
 
     function addToMenu(choose) {
@@ -300,7 +314,7 @@
                 textStatus = 'Đang về hàng';
             }
 
-            let stringAppend = `<div class="row p-item">
+            let stringAppend = `<div class="p-item"><div class="row">
                         <div class="col-lg-3">
                             <a href="` + urlProduct + `" class="p-img">
                                 <img src="` + image[0] + `">
@@ -342,7 +356,7 @@
                         <span id="buy-product" style="display: flex" class="btn-buy js-select-product" data-id="` + data.menu + `" data-product='` + dataSendToAdd + `' onclick="addToMenu(this)">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
                         </div>
                         </div>
-                     <hr>`;
+                     <hr></div>`;
 
             $(".list-product-select").append(stringAppend);
         })
@@ -384,5 +398,9 @@
                 renderBrandToModal(data);
             }
         });
+    }
+
+    function handleSortBrand() {
+
     }
 </script>

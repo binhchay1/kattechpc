@@ -9,8 +9,8 @@
             <div class="col-lg-6">
                 <div class="wrap">
                     <div class="search">
-                        <input type="text" class="searchTerm" placeholder="{{ __('Bạn cần link kiện gì?') }}">
-                        <button type="submit" class="searchButton">
+                        <input type="text" class="searchTerm" placeholder="{{ __('Bạn cần link kiện gì?') }}" id="search-in-modal">
+                        <button type="submit" class="searchButton" id="btn-search-in-modal">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
