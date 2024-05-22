@@ -1,0 +1,137 @@
+@media screen and (max-width: 992px) {
+
+    body {
+        min-width: 100% !important;
+    }
+
+    .slider-banner-main, .news-main-under {
+        width: inherit !important;
+    }
+
+    .header-bottom-container {
+        justify-content: center;
+    }
+
+    .header-top-left {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .list-submenu--desktop {
+        display: none;
+    }
+
+    .list-submenu--mobile {
+        display: block;
+        padding: 0;
+    }
+
+    .action-area {
+        display: none !important;
+    }
+
+    .search-area {
+        display: none;
+    }
+
+    .header-top-right {
+        display: none !important;
+    }
+
+    .newsletter-area {
+        flex-direction: column;
+    }
+
+    .flash-sale-banner {
+        width: 100%;
+    }
+
+    .top-sale {
+        width: 100%;
+    }
+
+    .category {
+        width: 100%;
+    }
+
+    .product-slide-main {
+        width: 100%;
+    }
+
+    .content-sale {
+        width: 100%;
+    }
+
+    .content-news {
+        width: 100%;
+    }
+
+    .review {
+        width: 100%;
+        padding: 10px 0 !important;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    #page-banner {
+        display: none;
+    }
+
+    .policy-area {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .icon {
+        display: block !important;
+        font-size: 35px;
+    }
+
+    .build-area {
+        display: none;
+    }
+
+    .build-area-mobile {
+        display: flex !important;
+        align-items: center;
+        margin-left: 9px;
+
+    }
+
+    .build-area-mobile span {
+        color: var(--color-primary);
+    }
+
+    .build-area i {
+        background: #fff;
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+        text-align: center;
+        font-size: 16px;
+        border: 1px solid #aaa;
+        border-radius: 30px;
+    }
+
+    .sub-header .d-xl-block {
+        display: flex;
+    }
+
+    .modal-box .modal-dialog {
+        width: 95% !important;
+    }
+
+    .footer-middle-content {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .policy-item {
+        margin-top: 15px;
+    }
+
+    .footer-middle-item {
+        margin-top: 15px;
+    }
+}

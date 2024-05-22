@@ -87,6 +87,7 @@
     </div>
 </section>
 
+@if(isset($getFlashSale->flash_sale_timer))
 @if(strtotime($getFlashSale->flash_sale_timer) >= strtotime(date('Y-m-d H:i:s')))
 <section class="flash-sale-banner">
     <div class="flash-sale-area">
@@ -144,6 +145,7 @@
         </div>
     </div>
 </section>
+@endif
 @endif
 
 <section class="top-sale">
