@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row d-flex">
+    <div class="row d-flex post-data">
         <div class="column1">
             <div class="top5 flex">
                 <div style="float: left; width: 60%;">

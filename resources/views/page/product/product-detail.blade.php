@@ -15,7 +15,10 @@
 <div class="container">
     <section class="product-container set-background">
         <div class="img-card">
-            <img src="{{ asset($dataProduct->image[0]) }}" id="featured-image">
+            <div class="image-container">
+                <img src="{{ asset($dataProduct->image[0]) }}" id="featured-image">
+            </div>
+
             <div class="small-Card">
                 <div class="swiper d-flex align-items-center" style="min-height: auto;">
                     <div class="swiper-wrapper swiper-image">
@@ -30,7 +33,7 @@
                     <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                 </div>
             </div>
-            <div class="product-related" style="margin-top: 40px; width: 97%">
+            <div class="product-related" style="margin-top: 40px; width: 100%">
                 <h3> {{ __('Thông số sản phẩm') }}</h3>
                 <table>
                     <tr>
@@ -295,9 +298,9 @@
 
         <div class="feedback-form">
             <h2>{{__('Đánh giá sản phẩm')}}</h2>
-            <div class="review-info d-flex boder-radius-10">
+            <div class="review-info  boder-radius-10">
                 @foreach($listRatings as $rating)
-                <div class="avgRate d-flex justify-content-center align-items-center flex-column">
+                <div class="avgRate justify-content-center align-items-center flex-column">
                     @php $ratenum = number_format($ratingValue) @endphp
                     <div class="rating1">
                         @for($i = 1; $i <= $ratenum; $i++) <i class=" checked-rating fa fa-star " style="font-size: 20px"></i>
@@ -437,7 +440,7 @@
                                 <input type="hidden" value="{{ $dataProduct->id }}" name="product_id">
                             </div>
 
-                            <div style="width: 20%;">
+                            <div style="">
                                 <button type="submit" style="border: 0">
                                     <a class="btn-send-form-comment d-flex align-items-center justify-content-center gap-6 send-comment-pc"> <i class="fa fa-send-o" style="font-size:24px"></i>Gửi</a>
                                 </button>
