@@ -52,7 +52,7 @@ body a {
     justify-content: space-between;
 }
 
-.list-submenu--mobile {
+#menu-mb {
     display: none;
 }
 

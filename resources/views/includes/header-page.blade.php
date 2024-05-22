@@ -135,7 +135,7 @@
                 </li>
             </ul>
 
-            <ul class="list-submenu list-submenu--mobile">
+            <ul class="list-submenu list-submenu-mobile" id="menu-mb">
                 <li class="item-submenu sm-1">
                     @include('includes.home-page-menu')
                 </li>
