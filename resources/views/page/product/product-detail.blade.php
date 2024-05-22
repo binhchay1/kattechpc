@@ -213,8 +213,8 @@
                             @endif
                         </div>
                     </div>
-                    @endforeach
                 </div>
+                @endforeach
             </div>
         </div>
 
@@ -440,7 +440,7 @@
                                 <input type="hidden" value="{{ $dataProduct->id }}" name="product_id">
                             </div>
 
-                            <div style="">
+                            <div>
                                 <button type="submit" style="border: 0">
                                     <a class="btn-send-form-comment d-flex align-items-center justify-content-center gap-6 send-comment-pc"> <i class="fa fa-send-o" style="font-size:24px"></i>Gửi</a>
                                 </button>

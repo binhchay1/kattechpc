@@ -38,49 +38,56 @@
                             <li>
                                 <label>
                                     <input type="checkbox">
-                                    <span class="value-filter">{{ ('Dưới 1 triệu') }}</span>
+                                    <span class="value-filter">{{ ('Dưới 1 triệu') }} (<span id="price-under-1m"> 0 </span>)</span>
                                 </label>
                             </li>
 
                             <li>
                                 <label>
                                     <input type="checkbox">
-                                    <span class="value-filter">{{ __('10 triệu - 15 triệu') }}</span>
+                                    <span class="value-filter">{{ ('1 triệu - 10 triệu') }} (<span id="price-1m-to-10m"> 0 </span>)</span>
                                 </label>
                             </li>
 
                             <li>
                                 <label>
                                     <input type="checkbox">
-                                    <span class="value-filter">{{ __('15 triệu - 20 triệu') }}</span>
+                                    <span class="value-filter">{{ __('10 triệu - 15 triệu') }} (<span id="price-10m-to-15m"> 0 </span>)</span>
                                 </label>
                             </li>
 
                             <li>
                                 <label>
                                     <input type="checkbox">
-                                    <span class="value-filter">{{ __('20 triệu - 30 triệu') }}</span>
+                                    <span class="value-filter">{{ __('15 triệu - 20 triệu') }} (<span id="price-15m-to-20m"> 0 </span>)</span>
                                 </label>
                             </li>
 
                             <li>
                                 <label>
                                     <input type="checkbox">
-                                    <span class="value-filter">{{ __('30 triệu - 50 triệu') }}</span>
+                                    <span class="value-filter">{{ __('20 triệu - 30 triệu') }} (<span id="price-20m-to-30m"> 0 </span>)</span>
                                 </label>
                             </li>
 
                             <li>
                                 <label>
                                     <input type="checkbox">
-                                    <span class="value-filter">{{ __('50 triệu - 100 triệu') }}</span>
+                                    <span class="value-filter">{{ __('30 triệu - 50 triệu') }} (<span id="price-30m-to-50m"> 0 </span>)</span>
                                 </label>
                             </li>
 
                             <li>
                                 <label>
                                     <input type="checkbox">
-                                    <span class="value-filter">{{ __('Trên 100 triệu') }}</span>
+                                    <span class="value-filter">{{ __('50 triệu - 100 triệu') }} (<span id="price-50m-to-100m"> 0 </span>)</span>
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox">
+                                    <span class="value-filter">{{ __('Trên 100 triệu') }} (<span id="price-over-100m"> 0 </span>)</span>
                                 </label>
                             </li>
                         </ul>

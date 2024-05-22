@@ -160,7 +160,7 @@
 
     .product-info h5
     {
-        font-size: 15px;
+        font-size: 4.1vw !important;
     }
 
     .product-info .old-price

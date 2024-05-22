@@ -11,6 +11,7 @@ use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\LayoutRepository;
 use Illuminate\Http\Request;
+use App\Mail\OrderDetail;
 use Session;
 use Cart;
 use Cache;
@@ -150,6 +151,16 @@ class CartController extends Controller
             $input['order_code'] = $unique;
             $input['payment'] = 'thanh-toan-truc-tuyen';
             $order = $this->orderRepository->create($input);
+            $dataSendEmail = [
+                'order' => [],
+                'order_code' => $unique,
+                'name' => $input['name'],
+                'phone' => $input['phone'],
+                'province' => $input['province'],
+                'district' => $input['district'],
+                'address' => $input['address'],
+                'payment' => $input['payment'],
+            ];
 
             if (count($cartInfor) > 0) {
                 if ($isFlashSale) {
@@ -188,13 +199,11 @@ class CartController extends Controller
                 }
             }
 
-            $orderDetailMail = new OrderDetail;
-            $dataOrderMail = [
-                'customer' => $input,
-                'order' => $orderDetailMail
-            ];
+            if (isset($input['email'])) {
+                $orderDetailMail = new OrderDetail($dataSendEmail);
+                SendMailByGoogle::dispatch($orderDetailMail, $input['email'], $dataSendEmail)->onQueue('order-detail');
+            }
 
-            SendMailByGoogle::dispatch($orderDetailMail, $input['email'], $data)->onQueue('order-detail');
         } catch (Exception $e) {
             echo $e->getMessage();
         }

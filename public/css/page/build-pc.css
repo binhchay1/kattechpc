@@ -487,3 +487,15 @@ body {
 #js-modal-popup ul {
     list-style: none;
 }
+
+#js-brand-filter {
+    padding: 0;
+}
+
+#js-price-filter {
+    padding: 0;
+}
+
+.value-filter {
+    font-weight: bold;
+}
