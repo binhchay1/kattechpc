@@ -50,7 +50,13 @@ class BuildPCController extends Controller
             $arrID[] = $category;
         }
 
-        $products = $this->productRepository->getListProductForBuild($arrID);
+        $sort = $request->get('sort');
+        if (isset($sort)) {
+            $products = $this->productRepository->getListProductForBuild($arrID, $sort);
+        } else {
+            $products = $this->productRepository->getListProductForBuild($arrID);
+        }
+
         $data = [
             'products' => $products,
             'menu' => $getProductByKey

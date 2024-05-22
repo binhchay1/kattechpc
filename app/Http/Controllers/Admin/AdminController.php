@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Repositories\CustomContactRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\OrderRepository;
+use App\Repositories\VisitorRepository;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 
@@ -15,15 +16,18 @@ class AdminController extends Controller
     private $customContactRepository;
     private $orderRepository;
     private $productRepository;
+    private $visitorRepository;
 
     public function __construct(
         CustomContactRepository $customContactRepository,
         OrderRepository $orderRepository,
         ProductRepository $productRepository,
+        VisitorRepository $visitorRepository
     ) {
         $this->customContactRepository = $customContactRepository;
         $this->orderRepository = $orderRepository;
         $this->productRepository = $productRepository;
+        $this->visitorRepository = $visitorRepository;
     }
 
     public function viewDashBoard()
@@ -44,7 +48,7 @@ class AdminController extends Controller
             $income = 0;
             $totalQuantity = 0;
 
-            foreach($product->orderDetails as $orderDetails) {
+            foreach ($product->orderDetails as $orderDetails) {
                 $income += $orderDetails->quantity * $orderDetails->price;
                 $totalQuantity += $orderDetails->quantity;
             }
@@ -75,9 +79,9 @@ class AdminController extends Controller
         return view('admin.custom-contact.index', compact('listCustomContact'));
     }
 
-    public function getDataForIncomeChart() {
+    public function getDataForIncomeChart()
+    {
         $getOrder = $this->orderRepository->getOrderForStaticIncome();
-
         $data = [
             '01' => 0,
             '02' => 0,
@@ -93,15 +97,25 @@ class AdminController extends Controller
             '12' => 0,
         ];
 
-        foreach($getOrder as $order) {
-            foreach($getOrder->orderDetails as $detail) {
-
+        foreach ($getOrder as $order) {
+            $explodeDate = explode(' ', $order->order_date);
+            $explodeMonth = explode('-', $explodeDate[0]);
+            $month = $explodeMonth[1];
+            $total = 0;
+            $arrMonth[] = $month;
+            foreach ($order->orderDetails as $detail) {
+                $total += ($detail->price * $detail->quantity);
             }
+
+            $data[$month] += $total;
         }
+
+        return response()->json($data);
     }
 
-    public function getDataForVisitorChart() {
-
+    public function getDataForVisitorChart()
+    {
+        $getVisitor = $this->visitorRepository->getVisitorForStatic();
         $data = [
             '01' => 0,
             '02' => 0,
@@ -116,5 +130,15 @@ class AdminController extends Controller
             '11' => 0,
             '12' => 0,
         ];
+
+        foreach ($getVisitor as $visitor) {
+            foreach ($data as $key => $val) {
+                if ($visitor->month == $key) {
+                    $data[$key] += 1;
+                }
+            }
+        }
+
+        return response()->json($data);
     }
 }

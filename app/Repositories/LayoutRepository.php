@@ -46,4 +46,9 @@ class LayoutRepository extends BaseRepository
     {
         return $this->model->select('hot_sale_list_product_id', 'hot_sale_big_thumbnail')->first();
     }
+
+    public function updateStockFlashSale($id, $data)
+    {
+        return $this->model->where('id', $id)->update(['flash_sale_list_product_id' => $data]);
+    }
 }

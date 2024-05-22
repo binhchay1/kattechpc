@@ -74,12 +74,12 @@
                 <div class="build-area">
                     <a href="{{ route('buildPC') }}">
                         <i class="fa fa-screwdriver"></i>
-                        <span >{{ __('Xây dựng cấu hình') }}</span>
+                        <span>{{ __('Xây dựng cấu hình') }}</span>
                     </a>
                 </div>
                 <div class="cart-area ml-20px">
                     <a href="{{ route('showCart') }}">
-                        <i class="fa badge" value="{{ count(Cart::getContent()) }}">&#xf07a;</i>   <span >{{ __('Giỏ hàng') }}</span>
+                        <i class="fa badge" value="{{ count(Cart::getContent()) }}">&#xf07a;</i> <span>{{ __('Giỏ hàng') }}</span>
                     </a>
                 </div>
             </div>
@@ -134,6 +134,19 @@
                     </a>
                 </li>
             </ul>
+
+            <ul class="list-submenu list-submenu-mobile" id="menu-mb">
+                <li class="item-submenu sm-1">
+                    @include('includes.home-page-menu')
+                </li>
+            </ul>
+
+            <div class="build-area build-area-mobile">
+                <a href="{{ route('buildPC') }}">
+                    <i class="fa fa-screwdriver"></i>
+                    <span>{{ __('Xây dựng cấu hình') }}</span>
+                </a>
+            </div>
         </div>
     </div>
 </div>

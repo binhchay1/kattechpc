@@ -76,7 +76,7 @@
 .product-related {
     padding: 15px;
     flex-wrap: wrap;
-    width: 50%;
+    width: 100%;
     border-radius: 5px;
 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -92,6 +92,7 @@
     font-size: 18px;
 }
 
+
 .product-related h3 {
     font-size: 20px;
     font-weight: 600;
@@ -100,7 +101,7 @@
 }
 
 .product-info h5 {
-    font-size: 32px;
+    font-size: 5.9vw;
     line-height: 10px;
     font-weight: 600;
     color: #e30019;
@@ -383,7 +384,7 @@ tr:nth-child(even) {
 }
 
 @media screen and (max-width: 800px) {
-    .product-related,
+
     .product-info {
         width: 100%;
         padding: 0;
@@ -565,7 +566,7 @@ tr:nth-child(even) {
 }
 
 .p-info1 img {
-    max-width: 842px !important;
+    width: 100%;
 }
 
 .js-quantity-change {
@@ -642,7 +643,7 @@ tr:nth-child(even) {
 }
 
 #product-info img {
-    max-width: 750px !important;
+    width: 100%;
 }
 
 .feedback-form {
@@ -679,6 +680,7 @@ tr:nth-child(even) {
 
 .checked-rating {
     color: orange;
+    width: 20%;
 }
 
 .rating input:checked ~ label {
@@ -718,7 +720,7 @@ tr:nth-child(even) {
 }
 
 .box-avg-rate-count {
-    width: calc(100% - 37%);
+    width: 100%;
     padding: 16px 12px;
 }
 
@@ -730,7 +732,7 @@ tr:nth-child(even) {
 }
 
 .nhan-xet-bar {
-    width: 74%;
+    width: 60%;
     height: 8px;
     background: #dedede;
     border-radius: 5px;
@@ -949,3 +951,16 @@ tr:nth-child(even) {
     font-size: 15px;
     margin: 0;
 }
+
+.image-container {
+    width: 90%;
+    max-width: 600px;
+}
+
+#featured-image {
+    width: 100%;
+    display: block;
+    border-radius: 8px; /* Optional: for rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: for a subtle shadow */
+}
+

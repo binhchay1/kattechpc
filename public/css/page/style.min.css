@@ -52,6 +52,10 @@ body a {
     justify-content: space-between;
 }
 
+#menu-mb {
+    display: none;
+}
+
 .header-bottom-container {
     display: flex;
     align-items: center;
@@ -1491,93 +1495,4 @@ a {
     color: #e00;
 }
 
-@media screen and (max-width: 992px) {
-    .header-top-left {
-        margin: 0 auto;
-    }
 
-    .action-area {
-        display: none !important;
-    }
-
-    .search-area {
-        display: none;
-    }
-
-    .header-top-right {
-        display: none !important;
-    }
-
-
-    .newsletter-area {
-        flex-direction: column;
-    }
-
-    .global-menu-container {
-        display: none;
-    }
-
-    .flash-sale-banner {
-        width: 100%;
-    }
-
-    .top-sale {
-        width: 100%;
-    }
-
-    .category {
-        width: 100%;
-    }
-
-    .product-slide-main {
-        width: 100%;
-    }
-
-    .content-sale {
-        width: 100%;
-    }
-
-    .content-news {
-        width: 100%;
-    }
-
-    .review {
-        width: 100%;
-    }
-
-    #page-banner {
-        display: none;
-    }
-
-    .policy-area {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .header-top-container {
-        display: none;
-    }
-
-    .icon {
-        display: block !important;
-        font-size: 35px;
-    }
-
-    .logo .loading {
-        width: 100px;
-        height: 100px;
-    }
-
-    .build-area {
-        display: none;
-    }
-
-
-
-}
-
-@media only screen and (max-width: 767px) {
-    .modal-box .modal-dialog {
-        width: 95% !important;
-    }
-}
