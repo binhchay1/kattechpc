@@ -1495,4 +1495,8 @@ a {
     color: #e00;
 }
 
+.build-area-mobile {
+    display: none;
+}
+
 
