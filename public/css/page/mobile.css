@@ -210,7 +210,6 @@
         text-align: center;
     }
 
-    /* policy */
     .policy-part1, #policy-condition, #payment, #policy-apply{
         flex-direction: column;
     }
@@ -233,10 +232,6 @@
         gap: 30px;
     }
 
-
-
-
-    /* payment */
     #payment-step {
         width: 100%;
         margin: 0;
@@ -254,9 +249,6 @@
         font-size: 25px;
     }
 
-
-    /* policy-business */
-
     #text-title {
         width: 100%;
     }
@@ -272,13 +264,9 @@
         height: auto;
     }
 
-
-
-    /* complaint */
     #complaint-1 {
         width: 100%;
     }
-
 
     #product-poli {
         height: auto;
@@ -295,5 +283,13 @@
         padding: 0;
     }
 
+    .sub-header-mobile {
+        display: flex;
+        justify-content: center;
+        z-index: 10;
+    }
 
+    .sub-header {
+        display: none;
+    }
 }

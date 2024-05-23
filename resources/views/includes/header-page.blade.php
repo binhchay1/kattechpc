@@ -134,19 +134,21 @@
                     </a>
                 </li>
             </ul>
-
-            <ul class="list-submenu list-submenu--mobile" id="menu-mb">
-                <li class="item-submenu sm-1">
-                    @include('includes.home-page-menu')
-                </li>
-            </ul>
-
-            <div class="build-area build-area-mobile">
-                <a href="{{ route('buildPC') }}">
-                    <i class="fa fa-screwdriver"></i>
-                    <span>{{ __('Xây dựng cấu hình') }}</span>
-                </a>
-            </div>
         </div>
+    </div>
+</div>
+
+<div class="sub-header-mobile">
+    <ul class="list-submenu list-submenu--mobile" id="menu-mb">
+        <li class="item-submenu sm-1">
+            @include('includes.home-page-menu')
+        </li>
+    </ul>
+
+    <div class="build-area build-area-mobile">
+        <a href="{{ route('buildPC') }}">
+            <i class="fa fa-screwdriver"></i>
+            <span>{{ __('Xây dựng cấu hình') }}</span>
+        </a>
     </div>
 </div>
