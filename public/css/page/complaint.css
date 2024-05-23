@@ -101,7 +101,6 @@
 .policy-step {
     width: 100%;
     margin-top: 30px;
-    height: 250px;
     border-radius: 5px;
     background: #e2e2e2;
 
@@ -116,31 +115,24 @@
 }
 
 #condition{
-    width: 45%;
-    padding: 10px;
-    height: 400px;
+    width: 100%;
     border:1px solid;
     border-radius: 10px;
     background: #e2e2e2;
 }
 
 #condition2 {
-    float: right;
-    width: 45%;
-    padding: 10px;
-    height: 400px;
+    width: 100%;
     border:1px solid;
     border-radius: 10px;
     background: #e2e2e2;
+    margin-top: 50px;
 }
 
 .top {
-    margin-top: 100px;
+    margin-top: 50px;
 }
 
-.top1 {
-    margin-top: 100px;
-}
 
 .promotion {
     margin-bottom: 30px;

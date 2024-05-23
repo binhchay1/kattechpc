@@ -50,7 +50,7 @@
     </div>
     <div class="row top">
         <h1 class="title-top1"> {{__('Điều kiện bảo hành sản phẩm')}}</h1>
-        <div class="d-flex" id="policy-condition">
+        <div class="d-flex" id="policy-condition" style="gap: 30px">
             <div  id="condition">
                 <h2>{{__('NHỮNG SẢN PHẨM ĐỦ ĐIỀU KIỆN BẢO HÀNH')}}</h2>
                 <p class="policy-title">{{__('Sản phẩm nếu có tem niêm phong (seal) trên sản phẩm thì tem niêm phong phải còn nguyên vẹn.')}}</p>
@@ -72,16 +72,19 @@
 
     <div class="row top1">
         <h1 class="title-top1"> {{ __('Chính sách bảo hành chung') }}</h1>
-        <div class="column height-auto">
-            <h2 class="color-primary">{{ __('Sản phẩm đổi mới 100%') }}</h2>
-            <p class="policy-title">{{ __('Trong 15 ngày đầu khi phát sinh lỗi từ nhà sản xuất') }}</p>
-            <p class="policy-title">{{ __('Sản phẩm phải có đầy đủ vỏ hộp, phụ kiện kèm theo, không bị trầy xước.') }}</p>
-            <p class="policy-title">{{ __('Không vi phạm điều kiện bảo hành khác và không phải là vật tư tiêu hao.') }}</p>
-            <p class="policy-title">{{ __('Không áp dụng với các sản phẩm: CPU, máy in, máy chiếu, máy photo, máy fax, TV, các sản phẩm của Apple, Surface, máy chơi game Sony, Nintendo, Xbox, hàng thanh lý, hàng cũ,… (nếu lỗi HACOM sẽ tiếp nhận bảo hành sản phẩm)') }}</p>
+        <div class="d-flex" id="policy-apply">
+            <div class="column height-auto">
+                <h2 class="color-primary">{{ __('Sản phẩm đổi mới 100%') }}</h2>
+                <p class="policy-title">{{ __('Trong 15 ngày đầu khi phát sinh lỗi từ nhà sản xuất') }}</p>
+                <p class="policy-title">{{ __('Sản phẩm phải có đầy đủ vỏ hộp, phụ kiện kèm theo, không bị trầy xước.') }}</p>
+                <p class="policy-title">{{ __('Không vi phạm điều kiện bảo hành khác và không phải là vật tư tiêu hao.') }}</p>
+                <p class="policy-title">{{ __('Không áp dụng với các sản phẩm: CPU, máy in, máy chiếu, máy photo, máy fax, TV, các sản phẩm của Apple, Surface, máy chơi game Sony, Nintendo, Xbox, hàng thanh lý, hàng cũ,… (nếu lỗi HACOM sẽ tiếp nhận bảo hành sản phẩm)') }}</p>
+            </div>
+            <div class="column">
+                <img class="image" src="{{asset('/images/pc.jpg')}}">
+            </div>
         </div>
-        <div class="column">
-            <img class="image" src="{{asset('/images/pc.jpg')}}">
-        </div>
+
     </div>
 
     <div class="row row-top1">
