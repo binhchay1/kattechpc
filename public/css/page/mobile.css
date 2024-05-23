@@ -209,4 +209,30 @@
     .review h2.title-box {
         text-align: center;
     }
+
+    /* policy */
+    .policy-part1, #policy-condition {
+        flex-direction: column;
+    }
+
+    .policy-image1 {
+        width: 100%;
+        height: auto;
+    }
+
+    #poli-step {
+        width: 100%;
+        padding: 2px;
+    }
+
+    #poli-padding {
+        padding: 10px;
+    }
+
+    #policy-condition {
+        gap: 30px;
+    }
+
+
+
 }
