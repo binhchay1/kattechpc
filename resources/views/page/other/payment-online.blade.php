@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row d-flex">
+    <div class="row d-flex" id="payment">
         <div class="column">
             <h1>{{ __('Mua hàng trực tuyến') }}</h1>
             <h2>{{ __('1, Đặt hàng qua số điện thoại') }}</h2>

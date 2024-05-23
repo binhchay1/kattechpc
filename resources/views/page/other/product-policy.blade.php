@@ -45,28 +45,28 @@
 
     <div class=" top1">
         <div class="parent">
-            <div class="child">
+            <div class="child" id="product-poli">
                 <span class="policy-title">{{ __('DELL') }}</span>
             </div>
-            <div class="child">
+            <div class="child" id="product-poli">
                 <span class="policy-title">{{ __('HP') }}</span>
             </div>
-            <div class="child">
+            <div class="child" id="product-poli">
                 <span class="policy-title">{{ __('ASUS') }}</span>
             </div>
-            <div class="child">
+            <div class="child" id="product-poli">
                 <span class="policy-title">{{ __('APPLE') }}</span>
             </div>
-            <div class="child">
+            <div class="child" id="product-poli" >
                 <span class="policy-title">{{ __('SAM SUNG') }}</span>
             </div>
-            <div class="child">
+            <div class="child" id="product-poli">
                 <span class="policy-title">{{ __('MSI') }}</span>
             </div>
-            <div class="child">
+            <div class="child" id="product-poli">
                 <span class="policy-title">{{ __('GIGABYTE') }}</span>
             </div>
-            <div class="child">
+            <div class="child" id="product-poli">
                 <span class="policy-title">{{ __('KINGFAST') }}</span>
             </div>
         </div>
