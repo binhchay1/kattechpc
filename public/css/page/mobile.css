@@ -211,7 +211,7 @@
     }
 
     /* policy */
-    .policy-part1, #policy-condition {
+    .policy-part1, #policy-condition, #payment, #policy-apply{
         flex-direction: column;
     }
 
@@ -233,6 +233,67 @@
         gap: 30px;
     }
 
+
+
+
+    /* payment */
+    #payment-step {
+        width: 100%;
+        margin: 0;
+    }
+
+    #content-page .flex-column {
+        padding: 10px;
+    }
+
+    .payment {
+        gap: 10px;
+    }
+
+    #title-mobile {
+        font-size: 25px;
+    }
+
+
+    /* policy-business */
+
+    #text-title {
+        width: 100%;
+    }
+
+    #business-title {
+        flex: 1 0 35%;
+        height: auto;
+        line-height: 40px;
+    }
+
+    #business-title1 {
+        flex: 1 0 50%;
+        height: auto;
+    }
+
+
+
+    /* complaint */
+    #complaint-1 {
+        width: 100%;
+    }
+
+
+    #product-poli {
+        height: auto;
+        line-height: 40px;
+        flex: 1 0 32%;
+    }
+
+    .images-bill {
+        width: 100%;
+    }
+
+    #bill-care{
+        width: 100%;
+        padding: 0;
+    }
 
 
 }

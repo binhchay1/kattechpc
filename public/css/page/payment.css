@@ -11,10 +11,7 @@
 }
 
 #content-page .column {
-    float: left;
-    width: 50%;
     padding: 10px;
-    height: 450px;
 }
 
 .row:after {
@@ -134,10 +131,6 @@ img {
 
 .payment {
     display: flex;
-}
-
-#content-page .flex-column {
-    padding: 50px;
 }
 
 .flex-column h3 {

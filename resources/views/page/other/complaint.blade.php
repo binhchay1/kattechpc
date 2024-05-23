@@ -11,12 +11,10 @@
 @section('content')
 <div class="container">
     <div class="footer-container">
-        <div class="">
-            <div class="policy-step ">
-                <div class=" ml-100px">
-                    <h1>{{ __('GIẢI QUYẾT KHIẾU NẠI') }}</h1>
-                    <h1>{{ __('KATTECH PC') }}</h1>
-                </div>
+        <div class="policy-step">
+            <div class=" ml-100px">
+                <h1>{{ __('GIẢI QUYẾT KHIẾU NẠI') }}</h1>
+                <h1>{{ __('KATTECH PC') }}</h1>
             </div>
         </div>
         <div class="ml-100px">
@@ -25,7 +23,7 @@
             <h3>{{ __(' Mỗi ý kiến của bạn sẽ là cơ hội để chúng tôi phục vụ ngày một tốt hơn.') }}</h3>
         </div>
 
-        <div class="ml-200px">
+        <div class="ml-200px" id="complaint-1">
             <h2>{{ __('CHĂM SÓC KHÁCH HÀNG') }}</h2>
             <h3>{{ __('Tầng 3 Tòa nhà LILAMA, 124 Minh Khai, Hai Bà Trưng, Hà Nội.') }}</h3>
             <h3>{{ __('dichvukhachhang@kattech.vn') }}</h3>
@@ -34,13 +32,13 @@
     </div>
 
     <div class="row top">
-        <div class="column" id="condition">
+        <div id="condition">
             <h2>{{ __('1. TIẾP NHẬN YÊU CẦU') }}</h2>
             <p class="policy-title">{{ __('● Cách 1: Gọi điện thoại đến hotline: 1900 1903') }}</p>
             <p class="policy-title">{{ __('● Cách 2: Gửi Email về địa chỉ: dichvukhachhang@kattech.vn') }}</p>
             <p class="policy-title">{{ __('● Cách 3: Gửi tin nhắn tới Facebook hoặc Website: kattech.vn') }}</p>
         </div>
-        <div class="column" id="condition2">
+        <div  id="condition2">
             <h2>{{__('2. PHÂN TÍCH YÊU CẦU')}}</h2>
             <p class="policy-title">{{ __('1. Đối với các khiếu nại trực tiếp hoặc qua điện thoại mà có đủ thông tin, có thể giải quyết được ngay: trả lời khiếu nại khách hàng ngay.') }}</p>
             <p class="policy-title">{{ __('2. Đối với khiếu nại chưa đủ thông tin hoặc không thể giải quyết được ngay thì thực hiện:') }}</p>
@@ -51,12 +49,12 @@
     </div>
 
     <div class="row top promotion">
-        <div class="column" id="condition">
+        <div id="condition">
             <h2>{{ __('3. TRẢ LỜI, GIẢI QUYẾT YÊU CẦU') }}</h2>
             <p class="policy-title">{{ __('1. Liên hệ lại với khách hàng để trả lời khiếu nại và đề xuất các phương án giải quyết.') }}</p>
             <p class="policy-title">{{ __('2. Giải quyết khiếu nại theo hướng đề xuất đã được khách hàng yêu cầu.') }}</p>
         </div>
-        <div class="column" id="condition2">
+        <div  id="condition2">
             <h2>{{ __('4. KẾT THÚC YÊU CẦU') }}</h2>
             <p class="policy-title">{{ __('Lưu lại thông tin khiếu nại để tổng hợp và rút kinh nghiệm.') }}</p>
         </div>
