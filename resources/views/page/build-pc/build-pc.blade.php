@@ -264,6 +264,7 @@
                 renderProductToModal(data);
                 $('#js-brand-filter').empty();
                 renderBrandToModal(data);
+                renderCountWithPrice(data);
             }
         });
 
@@ -382,6 +383,63 @@
 
             $('#js-brand-filter').append(strAppend);
         });
+    }
+
+    function renderCountWithPrice(data) {
+        let under1m = 0;
+        let to10m = 0;
+        let to15m = 0;
+        let to20m = 0;
+        let to30m = 0;
+        let to50m = 0;
+        let to100m = 0;
+        let over100m = 0;
+
+        $.each(data.products, function(key, val) {
+            let price = val.price.replaceAll('.', '');
+
+            if (price < 1000000) {
+                under1m += 1;
+            }
+
+            if (price > 1000000 && price < 10000000) {
+                to10m += 1;
+            }
+
+            if (price > 10000000 && price < 15000000) {
+                to15m += 1;
+            }
+
+            if (price > 15000000 && price < 20000000) {
+                to20m += 1;
+            }
+
+            if (price > 20000000 && price < 30000000) {
+                to30m += 1;
+            }
+
+            if (price > 30000000 && price < 50000000) {
+                to50m += 1;
+            }
+
+            if (price > 50000000 && price < 100000000) {
+                to100m += 1;
+            }
+
+            if (price > 100000000) {
+                over100m += 1;
+            }
+        });
+
+
+        $('#price-under-1m').html(under1m);
+        $('#price-1m-to-10m').html(to10m);
+        $('#price-10m-to-15m').html(to15m);
+        $('#price-15m-to-20m').html(to20m);
+        $('#price-20m-to-30m').html(to30m);
+        $('#price-30m-to-50m').html(to50m);
+        $('#price-50m-to-100m').html(to100m);
+        $('#price-over-100m').html(over100m);
     }
 
     function sortProduct(sort) {

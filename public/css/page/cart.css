@@ -420,7 +420,7 @@ aside {
     margin-top: 20px;
 }
 
-input {
+#content-page input {
     border-radius: 5px;
 }
 
@@ -482,4 +482,12 @@ input {
     text-align: center;
     margin-top: 30px;
     padding: 35px;
+}
+
+.newsletter-form input {
+    margin-top: 0.65px;
+    padding: 12px;
+    border: none;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }

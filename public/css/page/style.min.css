@@ -292,7 +292,6 @@ body a {
 
 .newsletter-area p {
     color: #fff;
-    font-size: bold;
     font-size: 18px;
 }
 
@@ -1493,6 +1492,10 @@ a {
 .autocomplete-suggestions a .info .price,
 .sub-menu a:hover {
     color: #e00;
+}
+
+.build-area-mobile {
+    display: none;
 }
 
 

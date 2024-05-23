@@ -72,6 +72,11 @@
         padding: 10px 0 !important;
         margin-left: 5px;
         margin-right: 5px;
+        margin-bottom: 20px;
+    }
+
+    .box-article-group {
+        margin-bottom: 0;
     }
 
     #page-banner {
@@ -81,6 +86,8 @@
     .policy-area {
         display: flex;
         flex-direction: column;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     .icon {
@@ -125,6 +132,12 @@
     .footer-middle-content {
         display: flex;
         flex-wrap: wrap;
+        margin-left: 20px;
+    }
+
+    .footer-bottom-content {
+        padding-left: 20px;
+
     }
 
     .policy-item {
@@ -160,7 +173,7 @@
 
     .product-info h5
     {
-        font-size: 15px;
+        font-size: 4.1vw !important;
     }
 
     .product-info .old-price
@@ -175,5 +188,51 @@
     .column1 ,.column2 {
         width: 95%;
     }
+
+    .content-news {
+        padding: 0;
+    }
+
+    .newsletter-area {
+        padding: 0;
+    }
+
+    .newsletter-title {
+        text-align: center;
+    }
+
+    .newsletter-form {
+        justify-content: center;
+        margin-left: 0;
+    }
+
+    .review h2.title-box {
+        text-align: center;
+    }
+
+    /* policy */
+    .policy-part1, #policy-condition {
+        flex-direction: column;
+    }
+
+    .policy-image1 {
+        width: 100%;
+        height: auto;
+    }
+
+    #poli-step {
+        width: 100%;
+        padding: 2px;
+    }
+
+    #poli-padding {
+        padding: 10px;
+    }
+
+    #policy-condition {
+        gap: 30px;
+    }
+
+
 
 }
