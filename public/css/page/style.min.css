@@ -1498,4 +1498,12 @@ a {
     display: none;
 }
 
-
+.sub-header-mobile {
+    display: none;
+    background: #ffffff;
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    background: #000000;
+    color: var(--color-primary);
+    width: 100%;
+}

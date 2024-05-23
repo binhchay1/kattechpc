@@ -28,6 +28,8 @@ class OrderRequest extends FormRequest
             'name' =>'required|max:100',
             'province' =>'required|max:100',
             'district' =>'required|max:100',
+            'ward' =>'required|max:100',
+            'email' =>'required|email',
         
         ];
     }
@@ -45,6 +47,8 @@ class OrderRequest extends FormRequest
             'province.max' => __('Tỉnh/Thành phố không được vượt quá 100 kí tự'),
             'district.required' => __('Quận/Huyện không được để trống'),
             'district.max' => __('Quận/Huyện không được vượt quá 100 kí tự'),
+            'ward.required' => __('Phường/Xã không được để trống'),
+            'ward.max' => __('Phường/Xã không được vượt quá 100 kí tự'),
         ];
     }
 }
