@@ -91,14 +91,14 @@ $(document).ready(function () {
         }, 3000);
     }
 
-    if (typeof (listCategory) != "undefined" && listCategory !== null) {
-        for (let k = 0; k < listCategory.length; k++) {
+    if (typeof (listCategory) != 'undefined' && listCategory !== null) {
+        for (let k = 0; k < listCategory.default.length; k++) {
             let transProduct = 0;
             let defaultProduct = 6;
             let perTransProduct = 238;
-            let idElementProduct = '.swiper-product-' + listCategory[k].slug;
-
+            let idElementProduct = '.swiper-product-' + listCategory.default[k].slug;
             let listChildProduct = $(idElementProduct).children();
+
             if (listChildProduct.length > defaultProduct) {
                 let stopProduct = listChildProduct.length - defaultProduct;
                 let countProduct = 0;
@@ -106,11 +106,11 @@ $(document).ready(function () {
                     if (countProduct == stopProduct) {
                         transProduct = 0;
                         countProduct = 0;
-                        $('.swiper-product').css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
+                        $(idElementProduct).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
                     } else {
                         transProduct = transProduct - perTransProduct;
                         countProduct += 1;
-                        $('.swiper-product').css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
+                        $(idElementProduct).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
                     }
 
                 }, 3000);
@@ -185,6 +185,17 @@ $(document).ready(function () {
     });
 
     $('#js-search-result').hide();
+});
+
+$(document).scroll(function () {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        var y = $(this).scrollTop();
+        if (y > 400) {
+            $('.bottomMenu').fadeIn();
+        } else {
+            $('.bottomMenu').fadeOut();
+        }
+    }
 });
 
 function priceWithCommas(price) {

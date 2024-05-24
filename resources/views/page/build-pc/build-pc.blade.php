@@ -82,12 +82,15 @@
 
 @include('includes.modal-build-pc')
 @endsection
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script>
     var currentArea = 1;
     var currentPrice1 = 0;
     var currentPrice2 = 0;
-    var currentChoice = '';
+    var currentParam = {
+        'choice': '',
+        'brand': '',
+        'price': ''
+    };
     var urlCurrent = location.href;
     var currentArrayProduct = {
         'listArea1': [],
@@ -255,7 +258,7 @@
 
     function changeProductHandle(userChose) {
         var url = "get-product?key=" + userChose;
-        currentChoice = userChose;
+        currentParam.choice = userChose;
         $(".list-product-select").empty();
         $.ajax({
             type: 'get',
@@ -443,8 +446,8 @@
     }
 
     function sortProduct(sort) {
-        var choice = currentChoice;
-        var url = "get-product?key=" + currentChoice + "&sort=" + sort;
+        var choice = currentParam.choice;
+        var url = "get-product?key=" + choice + "&sort=" + sort;
 
         $.ajax({
             type: 'get',

@@ -246,7 +246,8 @@
     }
 
     #title-mobile {
-        font-size: 25px;
+        font-size: 15px;
+        background-color: red;
     }
 
     #text-title {
@@ -296,14 +297,28 @@
     #toolbar-menu-mobile {
         display: block;
     }
-}
 
-@media screen and (max-width: 450px) {
-    #title-mobile {
-        font-size: 15px;
-        background-color: red;
-        /* position: absolute; */
-        /* width: 100%; */
-        /* height: 100%; */
+    .title-category {
+        display: none;
+    }
+
+    .product-slide {
+        margin: 0;
+    }
+
+    .flash-sale-title-area {
+        margin-left: 10px;
+    }
+
+    .category .flex-container {
+        flex-wrap: wrap;
+    }
+
+    .product-slide .justify-content-between {
+        justify-content: inherit;
+    }
+
+    .title-all-category {
+        margin-left: 20px;
     }
 }
