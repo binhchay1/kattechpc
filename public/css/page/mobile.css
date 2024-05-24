@@ -292,4 +292,18 @@
     .sub-header {
         display: none;
     }
+
+    #toolbar-menu-mobile {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    #title-mobile {
+        font-size: 15px;
+        background-color: red;
+        /* position: absolute; */
+        /* width: 100%; */
+        /* height: 100%; */
+    }
 }
