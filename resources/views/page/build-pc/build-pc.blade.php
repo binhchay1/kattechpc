@@ -82,6 +82,8 @@
 
 @include('includes.modal-build-pc')
 @endsection
+
+@section('js')
 <script>
     var currentArea = 1;
     var currentPrice1 = 0;
@@ -89,7 +91,8 @@
     var currentParam = {
         'choice': '',
         'brand': '',
-        'price': ''
+        'price': '',
+        'sort': ''
     };
     var urlCurrent = location.href;
     var currentArrayProduct = {
@@ -380,7 +383,7 @@
             let strAppend = `<li>
                                 <label>
                                     <input type="checkbox">
-                                    <span class="value-filter">` + key + ` ( ` + val + ` )</span>
+                                    <span class="value-filter" onclick="handleSortBrand('` + key + `')">` + key + ` ( ` + val + ` )</span>
                                 </label>
                             </li>`;
 
@@ -446,8 +449,16 @@
     }
 
     function sortProduct(sort) {
-        var choice = currentParam.choice;
-        var url = "get-product?key=" + choice + "&sort=" + sort;
+        currentParam.sort = sort;
+        var url = "get-product?key=" + currentParam.choice + "&sort=" + sort;
+
+        if (currentParam.brand != '') {
+            url = url + '&brand=' + currentParam.brand
+        }
+
+        if (currentParam.price != '') {
+            url = url + '&price=' + currentParam.price
+        }
 
         $.ajax({
             type: 'get',
@@ -461,7 +472,52 @@
         });
     }
 
-    function handleSortBrand() {
+    function handleSortBrand(brandName) {
+        currentParam.brand = brandName;
+        var url = "get-product?key=" + currentParam.choice + "&brand=" + brandName;
 
+        if (currentParam.sort != '') {
+            url = url + '&sort=' + currentParam.sort
+        }
+
+        if (currentParam.price != '') {
+            url = url + '&price=' + currentParam.price
+        }
+
+        $.ajax({
+            type: 'get',
+            url: url,
+            success: function(data) {
+                $(".list-product-select").empty();
+                renderProductToModal(data);
+                $('#js-brand-filter').empty();
+                renderBrandToModal(data);
+            }
+        });
+    }
+
+    function handleSortPrice(price) {
+        currentParam.price = price;
+        var url = "get-product?key=" + currentParam.choice + "&price=" + price;
+
+        if (currentParam.sort != '') {
+            url = url + '&sort=' + currentParam.sort
+        }
+
+        if (currentParam.brand != '') {
+            url = url + '&brand=' + currentParam.brand
+        }
+
+        $.ajax({
+            type: 'get',
+            url: url,
+            success: function(data) {
+                $(".list-product-select").empty();
+                renderProductToModal(data);
+                $('#js-brand-filter').empty();
+                renderBrandToModal(data);
+            }
+        });
     }
 </script>
+@endsection

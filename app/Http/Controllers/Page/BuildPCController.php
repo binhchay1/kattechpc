@@ -43,6 +43,7 @@ class BuildPCController extends Controller
         $explode = explode('-', $getProductByKey);
         $buildId = $explode[2];
         $arrID = [];
+        $filter = [];
 
         $getListCategory = $this->buildPcRepository->getListCategory($buildId);
         $decode = json_decode($getListCategory->category_id, true);
@@ -51,10 +52,23 @@ class BuildPCController extends Controller
         }
 
         $sort = $request->get('sort');
+        $price = $request->get('price');
+        $brand = $request->get('brand');
+
         if (isset($sort)) {
-            $products = $this->productRepository->getListProductForBuild($arrID, $sort);
-        } else {
-            $products = $this->productRepository->getListProductForBuild($arrID);
+            $filter['sort'] = $sort;
+        }
+
+        if (isset($brand)) {
+            $filter['brand'] = $brand;
+        }
+
+        $products = $this->productRepository->getListProductForBuild($arrID, $filter);
+
+        if (isset($price)) {
+            foreach($products as $item) {
+
+            }
         }
 
         $data = [

@@ -461,11 +461,6 @@ body {
     align-items: center;
 }
 
-.inline-search {
-    width: 94%;
-    height: 46px;
-}
-
 .input-search form {
     margin: 0;
     height: 46px;

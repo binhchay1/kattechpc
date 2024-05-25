@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 
@@ -74,20 +75,29 @@ class ProductRepository extends BaseRepository
         })->orderBy('created_at', 'DESC')->get();
     }
 
-    public function getListProductForBuild($arrID, $sort = null)
+    public function getListProductForBuild($arrID, $filter)
     {
         $query = $this->model->with('category', 'productImages', 'brands')->whereIn('category_id', $arrID);
-        if ($sort != null) {
-            if ($sort == 'newest') {
-                $query = $query->orderBy('created_at', 'desc');
+        if (!empty($filter)) {
+            if (array_key_exists('sort', $filter)) {
+                $sort = $filter['sort'];
+                if ($sort == 'newest') {
+                    $query = $query->orderBy('created_at', 'desc');
+                }
+
+                if ($sort == 'price-asc') {
+                    $query = $query->orderBy('price', 'asc');
+                }
+
+                if ($sort == 'price-desc') {
+                    $query = $query->orderBy('created_at', 'desc');
+                }
             }
 
-            if ($sort == 'price-asc') {
-                $query = $query->orderBy('price', 'asc');
-            }
-
-            if ($sort == 'price-desc') {
-                $query = $query->orderBy('created_at', 'desc');
+            if (array_key_exists('brand', $filter)) {
+                $query = $query->whereHas('brands', function (Brand $brand) use ($filter) {
+                    $brand->where('name', 'like', $filter['brand']);
+                });
             }
         }
         return $query->get();
