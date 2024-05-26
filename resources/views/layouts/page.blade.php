@@ -8,7 +8,7 @@
     <meta content="Kattechpc" name="description">
     <meta content="Kattechpc" name="author">
     <link rel="shortcut icon" href="{{ asset('/images/logo/favicon.ico') }}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('/css/page/style.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/page/lib.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/page/mobile.css') }}">
@@ -34,7 +34,7 @@
         @include('includes.footer-page')
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="{{ asset('/plugins/jquery/jquery-3.4.1.min.js') }}"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.plugins.min.js"></script>
     <script src="{{ asset('/js/page/main.js') }}"></script>

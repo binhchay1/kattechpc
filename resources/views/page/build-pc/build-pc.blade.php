@@ -82,12 +82,18 @@
 
 @include('includes.modal-build-pc')
 @endsection
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+@section('js')
 <script>
     var currentArea = 1;
     var currentPrice1 = 0;
     var currentPrice2 = 0;
-    var currentChoice = '';
+    var currentParam = {
+        'choice': '',
+        'brand': '',
+        'price': '',
+        'sort': ''
+    };
     var urlCurrent = location.href;
     var currentArrayProduct = {
         'listArea1': [],
@@ -255,7 +261,7 @@
 
     function changeProductHandle(userChose) {
         var url = "get-product?key=" + userChose;
-        currentChoice = userChose;
+        currentParam.choice = userChose;
         $(".list-product-select").empty();
         $.ajax({
             type: 'get',
@@ -377,7 +383,7 @@
             let strAppend = `<li>
                                 <label>
                                     <input type="checkbox">
-                                    <span class="value-filter">` + key + ` ( ` + val + ` )</span>
+                                    <span class="value-filter" onclick="handleSortBrand('` + key + `')">` + key + ` ( ` + val + ` )</span>
                                 </label>
                             </li>`;
 
@@ -443,8 +449,16 @@
     }
 
     function sortProduct(sort) {
-        var choice = currentChoice;
-        var url = "get-product?key=" + currentChoice + "&sort=" + sort;
+        currentParam.sort = sort;
+        var url = "get-product?key=" + currentParam.choice + "&sort=" + sort;
+
+        if (currentParam.brand != '') {
+            url = url + '&brand=' + currentParam.brand
+        }
+
+        if (currentParam.price != '') {
+            url = url + '&price=' + currentParam.price
+        }
 
         $.ajax({
             type: 'get',
@@ -458,7 +472,52 @@
         });
     }
 
-    function handleSortBrand() {
+    function handleSortBrand(brandName) {
+        currentParam.brand = brandName;
+        var url = "get-product?key=" + currentParam.choice + "&brand=" + brandName;
 
+        if (currentParam.sort != '') {
+            url = url + '&sort=' + currentParam.sort
+        }
+
+        if (currentParam.price != '') {
+            url = url + '&price=' + currentParam.price
+        }
+
+        $.ajax({
+            type: 'get',
+            url: url,
+            success: function(data) {
+                $(".list-product-select").empty();
+                renderProductToModal(data);
+                $('#js-brand-filter').empty();
+                renderBrandToModal(data);
+            }
+        });
+    }
+
+    function handleSortPrice(price) {
+        currentParam.price = price;
+        var url = "get-product?key=" + currentParam.choice + "&price=" + price;
+
+        if (currentParam.sort != '') {
+            url = url + '&sort=' + currentParam.sort
+        }
+
+        if (currentParam.brand != '') {
+            url = url + '&brand=' + currentParam.brand
+        }
+
+        $.ajax({
+            type: 'get',
+            url: url,
+            success: function(data) {
+                $(".list-product-select").empty();
+                renderProductToModal(data);
+                $('#js-brand-filter').empty();
+                renderBrandToModal(data);
+            }
+        });
     }
 </script>
+@endsection

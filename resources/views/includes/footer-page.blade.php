@@ -97,18 +97,18 @@
             <li class="item">
                 <a href="{{ route('profile') }}">
 				<span class="icon">
-					<i class="fa fa-user-o" aria-hidden="true"></i>
+					<i class="fa fa-user" aria-hidden="true"></i>
 				</span>
-                    <span>{{Auth::user()->name}}</span>
+                    <span>{{ Auth::user()->name }}</span>
                 </a>
             </li>
         @else
         <li class="item">
             <a href="{{ route('login') }}">
 				<span class="icon">
-					<i class="fa fa-user-o" aria-hidden="true"></i>
+					<i class="fa fa-user" aria-hidden="true"></i>
 				</span>
-                <span>Khách hàng</span>
+                <span>{{ __('Khách hàng') }}</span>
             </a>
         </li>
         @endif
@@ -117,50 +117,25 @@
 				<span class="icon">
 				<i class="fa fa-shopping-cart" aria-hidden="true"></i>
 				</span>
-                <span>Giỏ hàng</span>
+                <span>{{ __('Giỏ hàng') }}</span>
             </a>
         </li>
         <li class="item ">
             <a href="{{ route('post') }}">
 					<span class="icon">
-					<i class="fa fa-newspaper-o" aria-hidden="true"></i>
+					<i class="fa fa-newspaper" aria-hidden="true"></i>
 				</span>
-                <span>Tin tức</span>
+                <span>{{ __('Tin tức') }}</span>
             </a>
         </li>
         <li class="item about-smember ">
             <a href="/account">
 				<span class="icon">
-					<i class="fa fa-youtube-play" aria-hidden="true"></i>
+					<i class="fa fa-youtube" aria-hidden="true"></i>
 				</span>
                 <span>Youtube</span>
             </a>
         </li>
     </ul>
 </div>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-
-<style>
-    .bottomMenu {
-        display: none;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        height: 60px;
-        border-top: 1px solid #000;
-    }
-</style>
-<script>
-    $(document).scroll(function () {
-        var y = $(this).scrollTop();
-        if (y > 800) {
-            $('.bottomMenu').fadeIn();
-        } else {
-            $('.bottomMenu').fadeOut();
-        }
-
-    });
-</script>
 @include('includes.modal-submit-get-news')

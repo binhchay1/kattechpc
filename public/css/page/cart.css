@@ -135,15 +135,7 @@ aside {
 }
 
 
-#content-page .item {
-    width: 50%;
-}
-
 .price,
-.quantity,
-.subtotal {
-    width: 15%;
-}
 
 .subtotal {
     text-align: right;
@@ -499,3 +491,13 @@ aside {
     border: 0;
     border-radius: 5px;
 }
+
+.item-heading {
+    width: 50%;
+}
+
+ .item-quan {
+     width: 32%;
+     text-align: right;
+     margin-right: 35px;
+ }
