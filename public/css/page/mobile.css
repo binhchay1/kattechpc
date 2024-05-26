@@ -39,7 +39,7 @@
         display: none !important;
     }
 
-    .newsletter-area , .post-data {
+    .newsletter-area , .post-data, #item-cart {
         flex-direction: column;
     }
 
@@ -320,5 +320,28 @@
 
     .title-all-category {
         margin-left: 20px;
+    }
+
+    #content-page .item {
+        width: 100%;
+    }
+
+    #total_cart {
+        width: 100%;
+
+    }
+
+    #delete-cart {
+        float: none;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    #get-total {
+        text-align: left;
+    }
+
+    #cart-basket {
+        display: none;
     }
 }
