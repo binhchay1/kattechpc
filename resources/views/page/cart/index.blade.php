@@ -203,18 +203,17 @@
 
             @endif
             <div class="basket">
-                <div class="basket-labels">
+                <div class="basket-labels" id="cart-basket">
                     <ul>
                         <li class="item item-heading">{{ __('Sản phẩm') }}</li>
-                        <li class="price item-heading">{{ __('Giá') }}</li>
-                        <li class="quantity item-heading">{{ __('Số lượng') }}</li>
-                        <li class="subtotal item-heading">{{ __('Thành tiền') }}</li>
+                        <li class="quantity item-quan">{{ __('Số lượng') }}</li>
+                        <li class="subtotal ">{{ __('Thành tiền') }}</li>
                     </ul>
                 </div>
 
                 @foreach($dataCart as $product)
-                <div class="basket-product">
-                    <div class="item">
+                <div class="basket-product" id="item-cart">
+                    <div class="item" >
                         <div class="product-image">
                             <?php $image = json_decode($product->attributes->image, true); ?>
                             <img src="{{ asset($image[0])}}" alt="Placholder Image 2" class="product-frame">
@@ -224,8 +223,8 @@
                         </div>
                     </div>
 
-                    <div class="price get-total">{{ number_format($product->price, 0, '.', '.') }} đ</div>
-                    <div class="quantity">
+{{--                    <div class="price get-total">{{ number_format($product->price, 0, '.', '.') }} đ</div>--}}
+                    <div class="quantity " id="quantity-cart">
                         <input type="number" value="{{ $product->quantity }}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{ $product->id }}')">
                     </div>
 
@@ -233,9 +232,9 @@
                     $total = (int) $product->quantity * (int) str_replace('.', '',  $product->price);
 
                     ?>
-                    <div class="subtotal get-total" id="total_cart">{{ number_format($total, 0, '.', '.') }} đ
+                    <div id="get-total" class="subtotal get-total inline" id="total_cart">{{ number_format($total, 0, '.', '.') }} đ
                         <input hidden name="total_cart" value="{{ $total }}">
-                        <div class="delete">
+                        <div class="delete" id="delete-cart">
                             <a>
                                 <button type="button" onclick="deleteSales(`{{ route('deleteCart', $product['id']) }}`)">{{ __('Xóa') }}</button>
                             </a>
