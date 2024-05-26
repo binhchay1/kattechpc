@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Page;
 
 use Illuminate\Http\Request;
+use App\Enums\Product;
 use App\Http\Controllers\Controller;
 use App\Repositories\ProductRepository;
 use App\Repositories\BuildPcRepository;
@@ -59,15 +60,30 @@ class BuildPCController extends Controller
             $filter['sort'] = $sort;
         }
 
-        if (isset($brand)) {
-            $filter['brand'] = $brand;
-        }
-
         $products = $this->productRepository->getListProductForBuild($arrID, $filter);
 
         if (isset($price)) {
-            foreach($products as $item) {
+            $listRangePrice = Product::RANGE_PRICE_BUILD_PC;
+            if (array_key_exists($price, $listRangePrice)) {
+                $rangePrice = $listRangePrice[$price];
+                $fromPrice = $rangePrice[0];
+                $toPrice = $rangePrice[1];
 
+                foreach ($products as $key => $productPrice) {
+                    $priceForCheck = str_replace('.', '', $productPrice->price);
+                    $convertPrice = intval($priceForCheck);
+                    if ($convertPrice < $fromPrice or $convertPrice > $toPrice) {
+                        $products->forget($key);
+                    }
+                }
+            }
+        }
+
+        if (isset($brand)) {
+            foreach ($products as $index => $productBrand) {
+                if ($productBrand->brands->name != $brand) {
+                    $products->forget($index);
+                }
             }
         }
 
