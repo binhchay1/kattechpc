@@ -320,13 +320,13 @@ body a {
 .fixed-left {
     position: fixed;
     top: 110px;
-    left: 0;
+    left: 35px;
 }
 
 .fixed-right {
     position: fixed;
     top: 110px;
-    right: 0;
+    right: 35px;
 }
 
 .slider-banner-main {
@@ -1562,4 +1562,8 @@ a {
     width: 100%;
     height: 60px;
     border-top: 1px solid #000;
+}
+
+#timer-flashsale {
+    margin-left: 15px;
 }

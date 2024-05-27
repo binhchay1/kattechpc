@@ -87,13 +87,13 @@ class LayoutController extends Controller
             }
 
             if (isset($input['small_banner_thumbnail_left'])) {
-                $input['small_banner_thumbnail_left']->move(public_path('images/upload/layout/'), $input['small_banner_thumbnail_1']->getClientOriginalName());
-                $input['small_banner_thumbnail_left'] = '/images/upload/layout/' . $input['small_banner_thumbnail_1']->getClientOriginalName();
+                $input['small_banner_thumbnail_left']->move(public_path('images/upload/layout/'), $input['small_banner_thumbnail_left']->getClientOriginalName());
+                $input['small_banner_thumbnail_left'] = '/images/upload/layout/' . $input['small_banner_thumbnail_left']->getClientOriginalName();
             }
 
             if (isset($input['small_banner_thumbnail_right'])) {
-                $input['small_banner_thumbnail_right']->move(public_path('images/upload/layout/'), $input['small_banner_thumbnail_2']->getClientOriginalName());
-                $input['small_banner_thumbnail_right'] = '/images/upload/layout/' . $input['small_banner_thumbnail_2']->getClientOriginalName();
+                $input['small_banner_thumbnail_right']->move(public_path('images/upload/layout/'), $input['small_banner_thumbnail_right']->getClientOriginalName());
+                $input['small_banner_thumbnail_right'] = '/images/upload/layout/' . $input['small_banner_thumbnail_right']->getClientOriginalName();
             }
         }
 

@@ -357,4 +357,11 @@
         width: 70%;
     }
 
+    .hide-mobile {
+        display: none;
+    }
+
+    .flash-sale-title-area {
+        flex-direction: column;
+    }
 }

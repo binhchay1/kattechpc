@@ -43,7 +43,7 @@
                             {{ $product->price }} đ
                         </td>
                         <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
-                            {{ $product->income }} đ
+                            {{ number_format($product->income, 0, ',', '.') }} đ
                         </td>
                         <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
                             {{ $product->total_quantity }}
@@ -53,7 +53,7 @@
                         </td>
                         @if($product->views != 0)
                         <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
-                            {{ ($product->total_quantity / $product->views) * 100 }}%
+                            {{ number_format(($product->total_quantity / $product->views) * 100, 2) }}%
                         </td>
                         @else
                         <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">

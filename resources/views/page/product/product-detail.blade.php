@@ -300,12 +300,6 @@
                 @foreach($listRatings as $rating)
                 <div class="avgRate justify-content-center align-items-center flex-column">
                     @php $ratenum = number_format($ratingValue) @endphp
-{{--                    <div class="rating1">--}}
-{{--                        @for($i = 1; $i <= $ratenum; $i++) <i class=" checked-rating fa fa-star " style="font-size: 20px"></i>--}}
-{{--                            @endfor--}}
-{{--                            @for($j = $ratenum + 1; $j <= 5; $j++) <i class="fa fa-star " style="font-size: 20px"></i>--}}
-{{--                                @endfor--}}
-{{--                    </div>--}}
                     @if($rating->count() > 0)
                     <p style="padding: 10px;font-size: 15px" class="mt-12">{{$rating->count()}} đánh giá và nhận xét</p>
                     @else
