@@ -149,7 +149,7 @@
                 <a class="addCart gap-8 d-flex flex-wrap align-items-center justify-content-center" onclick="addToCart()">
                     <input type="hidden" value="{{ $dataProduct['slug'] }}" id="product-to-cart">
                     <i class="fa fa-shopping-cart"></i>
-                    <p class="title-cart" style="margin-left: 10px;">{{ __('Thêm vào giỏ hàng') }}</p>
+                    <p class="title-cart" id="cart-text" style="margin-left: 10px;">{{ __('Thêm vào giỏ hàng') }}</p>
                 </a>
                 <input type="hidden" class="js-buy-quantity-temp" value="1">
             </div>
@@ -360,6 +360,10 @@
                     </div>
 
                 </div>
+                    <p class="text-danh-gia">Bạn đánh giá sao sản phẩm này</p>
+                    <div class="button-review d-flex justify-content-center align-items-center" id="js-show-review">
+                        <a href="javascript:;" class="font-weight-500">Đánh giá ngay</a>
+                    </div>
 
                 <form id="feedbackForm" action="{{ route('rating') }}" class="menu" method="post" enctype="multipart/form-data" style="display: none">
                     {{ csrf_field() }}
@@ -460,6 +464,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script>
         $(document).ready(function() {
+            //detail-product
             $('#myModal').hide();
 
             $('#read-all-product-detail').on('click', function() {
@@ -469,6 +474,14 @@
             $('.close').click(function() {
                 $('#myModal').hide();
             });
+
+            //rating-product
+            $('#js-show-review').on('click', function () {
+                $('#feedbackForm').css('display','block');
+            })
+
+
+
 
             $('.js-quantity-change').on('click', function() {
                 let value = $(this).data('value');

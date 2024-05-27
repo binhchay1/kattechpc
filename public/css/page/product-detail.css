@@ -461,7 +461,7 @@ tr:nth-child(even) {
     align-items: center;
     height: 50px;
     border-radius: 5px;
-    padding: 15px;
+    padding: 7px;
     margin-top: 20px;
 }
 
@@ -553,6 +553,7 @@ tr:nth-child(even) {
     padding: 10px 0;
     cursor: pointer;
     color: #007aff;
+    margin-bottom: 10px;
 }
 
 .quantity-field {
@@ -705,6 +706,7 @@ tr:nth-child(even) {
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    margin: 10px;
 }
 
 .review-info {
@@ -1006,4 +1008,26 @@ tr:nth-child(even) {
     #featured-image {
         height: 300px;
     }
+}
+
+
+.box-form-review {
+    padding: 10px;
+}
+
+.button-review a {
+    line-height: 26px;
+    color: #fff;
+    padding: 5px 20px;
+    background: #1781e0;
+    border-radius: 8px;
+    display: block;
+    text-align: center;
+    margin-top: 14px;
+    width: 205px;
+}
+
+.text-danh-gia {
+    text-align: center;
+    margin-top: 12px;
 }
