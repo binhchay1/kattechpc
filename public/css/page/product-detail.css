@@ -652,6 +652,7 @@ tr:nth-child(even) {
     margin-top: 20px;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin-bottom: 20px;
 }
 
 .rating {
@@ -681,7 +682,6 @@ tr:nth-child(even) {
 
 .checked-rating {
     color: orange;
-    width: 20%;
 }
 
 .rating input:checked ~ label {
@@ -774,6 +774,7 @@ tr:nth-child(even) {
 .item-comment {
     margin-bottom: 16px;
     margin-top: 20px;
+    padding: 10px;
 }
 
 .avatar-user {
@@ -1030,4 +1031,8 @@ tr:nth-child(even) {
 .text-danh-gia {
     text-align: center;
     margin-top: 12px;
+}
+
+#rating-review {
+    width: 15%;
 }

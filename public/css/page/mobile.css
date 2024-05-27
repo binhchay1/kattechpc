@@ -353,4 +353,8 @@
         font-size: 13px;
     }
 
+    #rating-review {
+        width: 70%;
+    }
+
 }
