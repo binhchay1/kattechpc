@@ -79,8 +79,8 @@
         </ul>
     </div>
 </div>
-
 @include('includes.modal-build-pc')
+@include('includes.tooltips-buildpc')
 @endsection
 
 @section('js')
@@ -108,6 +108,16 @@
 
         $('.close-popup').click(function() {
             $('#js-modal-popup').hide();
+        });
+
+        $('#js-brand-filter').on('click', 'li input', function() {
+            if ($(this).is(":checked")) {
+                var brandName = $(this).attr("data-id");
+            } else {
+                brandName = '';
+            }
+
+            handleSortBrand(brandName);
         });
 
         let search = document.getElementById('search-in-modal');
@@ -379,16 +389,31 @@
             }
         });
 
-        $.each(listBrand, function(key, val) {
-            let strAppend = `<li>
+        if (currentParam.brand != '') {
+            $.each(listBrand, function(key, val) {
+                let strAppend = `<li id="brand-js-` + key.toLowerCase().replaceAll(' ', '-') + `">
                                 <label>
-                                    <input type="checkbox">
-                                    <span class="value-filter" onclick="handleSortBrand('` + key + `')">` + key + ` ( ` + val + ` )</span>
+                                    <input type="checkbox" data-id="` + key + `" checked>
+                                    <span class="value-filter">` + key + ` ( ` + val + ` )</span>
                                 </label>
-                            </li>`;
+                            </li>
+                            `;
 
-            $('#js-brand-filter').append(strAppend);
-        });
+                $('#js-brand-filter').append(strAppend);
+            });
+        } else {
+            $.each(listBrand, function(key, val) {
+                let strAppend = `<li id="brand-js-` + key.toLowerCase().replaceAll(' ', '-') + `">
+                                <label>
+                                    <input type="checkbox" data-id="` + key + `">
+                                    <span class="value-filter">` + key + ` ( ` + val + ` )</span>
+                                </label>
+                            </li>
+                            `;
+
+                $('#js-brand-filter').append(strAppend);
+            });
+        }
     }
 
     function renderCountWithPrice(data) {
@@ -448,7 +473,28 @@
         $('#price-over-100m').html(over100m);
     }
 
-    function sortProduct(sort) {
+    function renderPriceToModal() {
+        let choicePrice = currentParam.price;
+        let listLiPrice = $('#js-price-filter li');
+        if (choicePrice == '') {
+            for (let i = 0; i < listLiPrice.length; i++) {
+                listLiPrice[i].style.display = 'block';
+            }
+        } else {
+            let idChoicePrice = 'choice-' + choicePrice;
+
+            for (let i = 0; i < listLiPrice.length; i++) {
+                if (listLiPrice[i].getAttribute('id') == idChoicePrice) {
+                    listLiPrice[i].style.display = 'block';
+                } else {
+                    listLiPrice[i].style.display = 'none';
+                }
+            }
+        }
+
+    }
+
+    function handelSortProduct(sort) {
         currentParam.sort = sort;
         var url = "get-product?key=" + currentParam.choice + "&sort=" + sort;
 
@@ -468,13 +514,19 @@
                 renderProductToModal(data);
                 $('#js-brand-filter').empty();
                 renderBrandToModal(data);
+                renderPriceToModal();
             }
         });
     }
 
     function handleSortBrand(brandName) {
         currentParam.brand = brandName;
-        var url = "get-product?key=" + currentParam.choice + "&brand=" + brandName;
+
+        if (brandName == '') {
+            var url = "get-product?key=" + currentParam.choice;
+        } else {
+            var url = "get-product?key=" + currentParam.choice + "&brand=" + brandName;
+        }
 
         if (currentParam.sort != '') {
             url = url + '&sort=' + currentParam.sort
@@ -492,13 +544,20 @@
                 renderProductToModal(data);
                 $('#js-brand-filter').empty();
                 renderBrandToModal(data);
+                renderPriceToModal();
             }
         });
     }
 
     function handleSortPrice(price) {
-        currentParam.price = price;
-        var url = "get-product?key=" + currentParam.choice + "&price=" + price;
+        var idInput = '#input-' + price;
+        if ($(idInput).is(":checked")) {
+            currentParam.price = price;
+            var url = "get-product?key=" + currentParam.choice + "&price=" + price;
+        } else {
+            currentParam.price = '';
+            var url = "get-product?key=" + currentParam.choice;
+        }
 
         if (currentParam.sort != '') {
             url = url + '&sort=' + currentParam.sort
@@ -516,6 +575,7 @@
                 renderProductToModal(data);
                 $('#js-brand-filter').empty();
                 renderBrandToModal(data);
+                renderPriceToModal();
             }
         });
     }

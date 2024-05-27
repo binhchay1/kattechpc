@@ -494,3 +494,32 @@ body {
 .value-filter {
     font-weight: bold;
 }
+
+#js-holder-p_item {
+    margin-top: 15px;
+}
+
+@media screen and (max-width: 992px) {
+    .popup-select {
+        width: 100%;
+    }
+
+    .list-product-select .row .col-lg-3 {
+        max-width: 100% !important;
+        flex: inherit !important;
+    }
+
+    .list-product-select .row .col-lg-6 {
+        max-width: 100% !important;
+        flex: inherit !important;
+    }
+
+    .popup-select .title-popup h4 {
+        margin-top: 10px !important;
+        font-size: 1rem !important;
+    }
+
+    #popup-main h4 {
+        font-size: 1rem !important;
+    }
+}

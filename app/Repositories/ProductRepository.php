@@ -93,12 +93,6 @@ class ProductRepository extends BaseRepository
                     $query = $query->orderBy('created_at', 'desc');
                 }
             }
-
-            if (array_key_exists('brand', $filter)) {
-                $query = $query->whereHas('brands', function (Brand $brand) use ($filter) {
-                    $brand->where('name', 'like', $filter['brand']);
-                });
-            }
         }
         return $query->get();
     }

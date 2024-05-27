@@ -344,4 +344,13 @@
     #cart-basket {
         display: none;
     }
+
+    #rating-content {
+        width: 50%;
+    }
+
+    #cart-text {
+        font-size: 13px;
+    }
+
 }

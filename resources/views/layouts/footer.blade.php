@@ -6,7 +6,7 @@
             </div>
             <div class="hidden lg:block">
                 <div class="ltr:text-right rtl:text-left">
-                    Design & Develop by Kattech PC
+                    {{ __('Thiết kế và sử dụng bởi') }} Kattech PC
                 </div>
             </div>
         </div>

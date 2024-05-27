@@ -35,58 +35,58 @@
                     <div class="gr-filter">
                         <h5 class="title-filter">{{ __('Khoảng giá') }} </h5>
                         <ul id="js-price-filter" class="ul-filter">
-                            <li>
+                            <li id="choice-price-under-1m">
                                 <label>
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="input-price-under-1m" onclick="handleSortPrice('price-under-1m')">
                                     <span class="value-filter">{{ ('Dưới 1 triệu') }} (<span id="price-under-1m"> 0 </span>)</span>
                                 </label>
                             </li>
 
-                            <li>
+                            <li id="choice-price-1m-to-10m">
                                 <label>
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="input-price-1m-to-10m" onclick="handleSortPrice('price-1m-to-10m')">
                                     <span class="value-filter">{{ ('1 triệu - 10 triệu') }} (<span id="price-1m-to-10m"> 0 </span>)</span>
                                 </label>
                             </li>
 
-                            <li>
+                            <li id="choice-price-10m-to-15m">
                                 <label>
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="input-price-10m-to-15m" onclick="handleSortPrice('price-10m-to-15m')">
                                     <span class="value-filter">{{ __('10 triệu - 15 triệu') }} (<span id="price-10m-to-15m"> 0 </span>)</span>
                                 </label>
                             </li>
 
-                            <li>
+                            <li id="choice-price-15m-to-20m">
                                 <label>
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="input-price-15m-to-20m" onclick="handleSortPrice('price-15m-to-20m')">
                                     <span class="value-filter">{{ __('15 triệu - 20 triệu') }} (<span id="price-15m-to-20m"> 0 </span>)</span>
                                 </label>
                             </li>
 
-                            <li>
+                            <li id="choice-price-20m-to-30m">
                                 <label>
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="input-price-20m-to-30m" onclick="handleSortPrice('price-20m-to-30m')">
                                     <span class="value-filter">{{ __('20 triệu - 30 triệu') }} (<span id="price-20m-to-30m"> 0 </span>)</span>
                                 </label>
                             </li>
 
-                            <li>
+                            <li id="choice-price-30m-to-50m">
                                 <label>
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="input-price-30m-to-50m" onclick="handleSortPrice('price-30m-to-50m')">
                                     <span class="value-filter">{{ __('30 triệu - 50 triệu') }} (<span id="price-30m-to-50m"> 0 </span>)</span>
                                 </label>
                             </li>
 
-                            <li>
+                            <li id="choice-price-50m-to-100m">
                                 <label>
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="input-price-50m-to-100m" onclick="handleSortPrice('price-50m-to-100m')">
                                     <span class="value-filter">{{ __('50 triệu - 100 triệu') }} (<span id="price-50m-to-100m"> 0 </span>)</span>
                                 </label>
                             </li>
 
-                            <li>
+                            <li id="choice-price-over-100m">
                                 <label>
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="input-price-over-100m" onclick="handleSortPrice('price-over-100m')">
                                     <span class="value-filter">{{ __('Trên 100 triệu') }} (<span id="price-over-100m"> 0 </span>)</span>
                                 </label>
                             </li>
@@ -116,7 +116,7 @@
                 <div class="sort-paging clear">
                     <div class="sort-block float_l">
                         <span>{{ __('Sắp xếp') }}: </span>
-                        <select onchange="sortProduct(this.value)" id="js-sort-holder">
+                        <select onchange="handelSortProduct(this.value)" id="js-sort-holder">
                             <option value="newest">{{ __('Mới nhất') }}</option>
                             <option value="price-asc">{{ __('Gía từ thấp đến cao') }}</option>
                             <option value="price-desc">{{ __('Gía từ cao đến thấp') }}</option>
