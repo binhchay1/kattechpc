@@ -292,9 +292,7 @@
             </div>
         </section>
 
-        @if(Session::has('message'))
-        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
-        @endif
+
 
         <div class="feedback-form">
             <h2>{{__('Đánh giá sản phẩm')}}</h2>
@@ -302,14 +300,14 @@
                 @foreach($listRatings as $rating)
                 <div class="avgRate justify-content-center align-items-center flex-column">
                     @php $ratenum = number_format($ratingValue) @endphp
-                    <div class="rating1">
-                        @for($i = 1; $i <= $ratenum; $i++) <i class=" checked-rating fa fa-star " style="font-size: 20px"></i>
-                            @endfor
-                            @for($j = $ratenum + 1; $j <= 5; $j++) <i class="fa fa-star " style="font-size: 20px"></i>
-                                @endfor
-                    </div>
+{{--                    <div class="rating1">--}}
+{{--                        @for($i = 1; $i <= $ratenum; $i++) <i class=" checked-rating fa fa-star " style="font-size: 20px"></i>--}}
+{{--                            @endfor--}}
+{{--                            @for($j = $ratenum + 1; $j <= 5; $j++) <i class="fa fa-star " style="font-size: 20px"></i>--}}
+{{--                                @endfor--}}
+{{--                    </div>--}}
                     @if($rating->count() > 0)
-                    <p class="mt-12">{{$rating->count()}} đánh giá và nhận xét</p>
+                    <p style="padding: 10px;font-size: 15px" class="mt-12">{{$rating->count()}} đánh giá và nhận xét</p>
                     @else
                     <p class="mt-12">Chưa có đánh giá và nhận xét</p>
                     @endif
@@ -364,8 +362,10 @@
                     <div class="button-review d-flex justify-content-center align-items-center" id="js-show-review">
                         <a href="javascript:;" class="font-weight-500">Đánh giá ngay</a>
                     </div>
-
-                <form id="feedbackForm" action="{{ route('rating') }}" class="menu" method="post" enctype="multipart/form-data" style="display: none">
+                    @if(Session::has('message'))
+                        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+                    @endif
+                <form id="feedbackForm" action="{{ route('rating') }}" class="menu" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="box-form-review" id="js-box-review" style="display: block;">
                         <textarea class="review_reply_content" id="rating-content" placeholder="Mời bạn để lại đánh giá..." name="content" spellcheck="false"></textarea>
@@ -410,7 +410,7 @@
                                     </div>
                                 </div>
                                 <div class="comment-content d-flex align-items-center justify-content-between">
-                                    <div class="text-review d-flex flex-column gap-12">
+                                    <div class="text-review d-flex flex-column gap-12" id="rating-review">
                                         @php $ratenum = number_format($ratingValue) @endphp
                                         <div class="rating1">
                                             @for($i = 1; $i <= $ratenum; $i++) <i class=" checked-rating fa fa-star "></i>
@@ -476,9 +476,9 @@
             });
 
             //rating-product
-            $('#js-show-review').on('click', function () {
-                $('#feedbackForm').css('display','block');
-            })
+            // $('#js-show-review').on('click', function () {
+            //     $('#feedbackForm').css('display','block');
+            // })
 
 
 
