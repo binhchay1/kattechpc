@@ -793,7 +793,6 @@ tr:nth-child(even) {
     padding: 14px 16px;
     color: #3a3a3a;
     min-height: 70px;
-    margin-left: 20px;
     margin-top: 20px;
     border-radius: 10px;
 }
@@ -1031,8 +1030,4 @@ tr:nth-child(even) {
 .text-danh-gia {
     text-align: center;
     margin-top: 12px;
-}
-
-#rating-review {
-    width: 15%;
 }

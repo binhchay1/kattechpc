@@ -297,56 +297,92 @@
         <div class="feedback-form">
             <h2>{{__('Đánh giá sản phẩm')}}</h2>
             <div class="review-info  boder-radius-10">
-                @foreach($listRatings as $rating)
+
                 <div class="avgRate justify-content-center align-items-center flex-column">
-                    @php $ratenum = number_format($ratingValue) @endphp
-                    @if($rating->count() > 0)
-                    <p style="padding: 10px;font-size: 15px" class="mt-12">{{$rating->count()}} đánh giá và nhận xét</p>
+                    @if($countRate > 0)
+                    <p style="padding: 10px;font-size: 15px" class="mt-12">{{$countRate}} đánh giá và nhận xét</p>
                     @else
                     <p class="mt-12">Chưa có đánh giá và nhận xét</p>
                     @endif
                 </div>
-                @endforeach
+
                 <div class="box-avg-rate-count">
                     <div class="avg-rate-count">
+                        <?php
+                        $style = '';
+                        if(isset($countRate5) && $countRate5 > 0 )
+                        {
+                            $style = 'style="background:red"';
+                            // Put your css style property here
+                        }
+                        ?>
                         <div class="avg-rate-item d-flex justify-content-center align-items-center">
                             <span class="rate-number">5 <i class="fas fa-star checked-rating"></i></span>
-                            <div class="nhan-xet-bar">
+                            <div class="nhan-xet-bar" <?php echo $style ?>>
                                 <div class="percent percent5" style="width:50%"></div>
                             </div>
-                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>1</strong> {{ __('đánh giá') }}</span>
+                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate5}}</strong> {{ __('đánh giá') }}</span>
                         </div>
 
+                            <?php
+                            $style = '';
+                            if(isset($countRate4) && $countRate4 > 0 )
+                            {
+                                $style = 'style="background:red"';
+                                // Put your css style property here
+                            }
+                            ?>
                         <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
                             <span class="rate-number">4 <i class="fas fa-star checked-rating"></i></span>
-                            <div class="nhan-xet-bar">
+                            <div class="nhan-xet-bar" <?php echo $style ?>>
                                 <div class="percent percent4" style="width:50%"></div>
                             </div>
-                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>1</strong> {{ __('đánh giá') }}</span>
+                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate4}}</strong> {{ __('đánh giá') }}</span>
                         </div>
-
+                            <?php
+                            $style = '';
+                            if(isset($countRate3) && $countRate3 > 0 )
+                            {
+                                $style = 'style="background:red"';
+                                // Put your css style property here
+                            }
+                            ?>
                         <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
                             <span class="rate-number">3 <i class="fas fa-star checked-rating"></i></span>
-                            <div class="nhan-xet-bar">
+                            <div class="nhan-xet-bar" <?php echo $style ?>>
                                 <div class="percent percent3" style="width:0%"></div>
                             </div>
-                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>0</strong> {{ __('đánh giá') }}</span>
+                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate3}}</strong> {{ __('đánh giá') }}</span>
                         </div>
-
+                            <?php
+                            $style = '';
+                            if(isset($countRate2) && $countRate2 > 0 )
+                            {
+                                $style = 'style="background:red"';
+                                // Put your css style property here
+                            }
+                            ?>
                         <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
                             <span class="rate-number">2 <i class="fas fa-star checked-rating"></i></span>
-                            <div class="nhan-xet-bar">
+                            <div class="nhan-xet-bar" <?php echo $style ?>>
                                 <div class="percent percent2" style="width:0%"></div>
                             </div>
-                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>0</strong> {{ __('đánh giá') }}</span>
+                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate2}}</strong> {{ __('đánh giá') }}</span>
                         </div>
-
+                            <?php
+                            $style = '';
+                            if(isset($countRate1) && $countRate1 > 0 )
+                            {
+                                $style = 'style="background:red"';
+                                // Put your css style property here
+                            }
+                            ?>
                         <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
                             <span class="rate-number rate-number1">1 <i class="fas fa-star checked-rating"></i></span>
-                            <div class="nhan-xet-bar">
+                            <div class="nhan-xet-bar" <?php echo $style ?>>
                                 <div class="percent percent1" style="width:0%"></div>
                             </div>
-                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>0</strong> {{ __('đánh giá') }}</span>
+                            <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate1}}</strong> {{ __('đánh giá') }}</span>
                         </div>
 
                     </div>
@@ -405,7 +441,7 @@
                                 </div>
                                 <div class="comment-content d-flex align-items-center justify-content-between">
                                     <div class="text-review d-flex flex-column gap-12" id="rating-review">
-                                        @php $ratenum = number_format($ratingValue) @endphp
+                                        @php $ratenum = number_format($rating->rating_product) @endphp
                                         <div class="rating1">
                                             @for($i = 1; $i <= $ratenum; $i++) <i class=" checked-rating fa fa-star "></i>
                                                 @endfor
