@@ -93,11 +93,16 @@
     <div class="flash-sale-area">
         <div class="d-flex align-items-center justify-content-between">
             <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
-                <i class="fa fa-bolt"></i>
-                <h2 class="flash-sale-title">{{ __('Flash sale') }}</h2>
-                <span class="text-time-deal-home">{{ __('Kết thúc sau') }}</span>
-                <div class="global-time-dea d-flex align-items-center" id="timer-flashsale">
+                <div class="d-flex align-items-center justify-content-center">
+                    <i class="fa fa-bolt"></i>
+                    <h2 class="flash-sale-title">{{ __('Flash sale') }}</h2>
+                </div>
 
+                <div class="d-flex align-items-center justify-content-center">
+                    <span class="text-time-deal-home">{{ __('Kết thúc sau') }}</span>
+                    <div class="global-time-dea d-flex align-items-center" id="timer-flashsale">
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -229,8 +234,8 @@
                 <a href="{{ route('showDataCategory', $category['slug']) }}">
                     <h2 class="title-box font-weight-600">{{ $category->name }}</h2>
                 </a>
-                <i class="fa fa-truck"></i>
-                <p>{{ __('Miễn phí giao hàng') }}</p>
+                <i class="fa fa-truck hide-mobile"></i>
+                <p class="hide-mobile">{{ __('Miễn phí giao hàng') }}</p>
             </div>
 
             <div class="list-category-child d-flex align-items-center justify-content-end flex-1">
@@ -425,9 +430,37 @@
             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            var strDays = '';
+            var strHours = '';
+            var strMinutes = '';
+            var strSeconds = '';
+
+            if(days < 10) {
+                strDays = '0' + days;
+            } else {
+                strDays = days;
+            }
+
+            if(hours < 10) {
+                strHours = '0' + hours;
+            } else {
+                strHours = hours;
+            }
+
+            if(minutes < 10) {
+                strMinutes = '0' + minutes;
+            } else {
+                strMinutes = minutes;
+            }
+
+            if(seconds < 10) {
+                strSeconds = '0' + seconds;
+            } else {
+                strSeconds = seconds;
+            }
 
             $('#timer-flashsale').empty();
-            $('#timer-flashsale').append('<p>' + days + '</p><span>:</span><p>' + hours + '</p><span>:</span><p>' + minutes + '</p><span>:</span><p>' + seconds + '</p>');
+            $('#timer-flashsale').append('<p>' + strDays + '</p><span>:</span><p>' + strHours + '</p><span>:</span><p>' + strMinutes + '</p><span>:</span><p>' + strSeconds + '</p>');
 
             if (distance < 0) {
                 clearInterval(x);

@@ -57,10 +57,10 @@
                             {{ date("F j, Y", strtotime($order->order_date)) }}
                         </td>
                         <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
-{{--                            {{ \App\Enums\Order::TYPE[$order->payment] }}--}}
+                            {{ \App\Enums\Order::TYPE[$order->payment] }}
                         </td>
                         <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
-                            {{ $order->total }}
+                            {{ number_format($order->total, 0, ',', '.') }}
                         </td>
                         <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
                             <span class="delivery_status px-2.5 py-0.5 text-xs inline-block font-medium rounded border bg-green-100 border-green-200 text-green-500 dark:bg-green-500/20 dark:border-green-500/20">{{ $order->status }}</span>

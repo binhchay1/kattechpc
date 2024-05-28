@@ -36,7 +36,7 @@ class ProductController extends Controller
 
         foreach ($listProducts as $product) {
             $product->detail = json_decode($product->detail, true);
-            $product->detail_tech  = json_decode($product->detail_tech , true);
+            $product->detail_tech  = json_decode($product->detail_tech, true);
             $product->image = json_decode($product->image, true);
         }
 
@@ -82,6 +82,12 @@ class ProductController extends Controller
 
         if (empty($input['title'])) {
             $input['title'] = $input['name'];
+        }
+
+        if (isset($input['status_guarantee'])) {
+            if (is_numeric($input['status_guarantee'])) {
+                $input['status_guarantee'] = $input['status_guarantee'] . ' tháng';
+            }
         }
 
         if (empty($input['short_description'])) {
@@ -204,6 +210,12 @@ class ProductController extends Controller
             }
 
             $input['detail_tech'] = json_encode($detail_tech);
+        }
+
+        if (isset($input['status_guarantee'])) {
+            if (is_numeric($input['status_guarantee'])) {
+                $input['status_guarantee'] = $input['status_guarantee'] . ' tháng';
+            }
         }
 
         if ($request->hasfile('image')) {
