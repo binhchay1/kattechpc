@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RatingRequest;
+use App\Models\Rating;
 use App\Repositories\CategoryRepository;
 use App\Repositories\RatingRepository;
 use App\Repositories\CommentRepository;
@@ -12,6 +13,7 @@ use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cache;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -38,6 +40,7 @@ class ProductController extends Controller
     public function productDetail($slug)
     {
         $dataProduct = $this->productRepository->productDetail($slug);
+        $getProduct = $dataProduct['id'];
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         if (isset($dataProduct->detail)) {
@@ -72,12 +75,38 @@ class ProductController extends Controller
                 }
             }
         }
+        
+        $countRate = DB::table('ratings')
+//            ->where("rating_product", )
+            ->where('product_id', $getProduct)->count();
+        
+        $countRate1 = DB::table('ratings')
+        ->where("rating_product", "=", 1 )
+        ->where('product_id', $getProduct)->count();
+    
+        $countRate2 = DB::table('ratings')
+            ->where("rating_product", "=", 2 )
+            ->where('product_id', $getProduct)->count();
+    
+        $countRate3 = DB::table('ratings')
+            ->where("rating_product", "=", 3 )
+            ->where('product_id', $getProduct)->count();
+    
+        $countRate4 = DB::table('ratings')
+            ->where("rating_product", "=", 4 )
+            ->where('product_id', $getProduct)->count();
+    
+        $countRate5 = DB::table('ratings')
+            ->where("rating_product", "=", 5 )
+            ->where('product_id', $getProduct)->count();
+    
 
         $productRelated = $this->productRepository->getProductRelated($dataProduct->category_id, $dataProduct->id);
         $view = $dataProduct->views + 1;
         $this->productRepository->update(['views' => $view], $dataProduct->id);
 
-        return view('page.product.product-detail', compact('dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue'));
+        return view('page.product.product-detail',
+            compact('countRate','countRate1','countRate2','countRate3','countRate4','countRate5','dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue'));
     }
 
     public function storeComment(RatingRequest $request)

@@ -50,7 +50,7 @@ class ProductRepository extends BaseRepository
 
     public function productDetail($slug)
     {
-        return $this->model->with('productImages')->where('slug', $slug)->first();
+        return $this->model->with('productImages','ratings')->where('slug', $slug)->first();
     }
 
     public function getProductRelated($category_id, $product_id)
