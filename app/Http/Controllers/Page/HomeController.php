@@ -90,18 +90,36 @@ class HomeController extends Controller
 
     public function viewPromotion()
     {
+    
+        $listPromotion = $this->promotionRepository->promotionHome();
+        $listPromotionRandom = $this->promotionRepository->promotionRandom();
+        $promotionRandom = $this->promotionRepository->promotionRandom();
+        $listPromotionDESC = $this->promotionRepository->promotionDESC();
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
-
-        return view('page.promotion.index', compact('listCategory'));
+        $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
+    
+        return view('page.promotion.index', compact('listPromotion',
+            'listPromotionRandom', 'promotionRandom','listPromotionDESC', 'listCategory',
+            'listCategoryPost'));
+        
+        
+      
     }
 
     public function promotionDetail()
     {
+        if (!isset($slug)) {
+            return redirect('/404');
+        }
+    
+        $listPromotion = $this->promotionRepository->index();
+        $promotion = $this->promotionRepository->detail($slug);
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+    
+        return view('page.promotion.promotion-detail', compact('promotion', 'listPromotion', 'listCategory'));
 
-        return view('page.promotion.promotion-detail', compact('listCategory'));
     }
 
     public function rules()
@@ -233,7 +251,9 @@ class HomeController extends Controller
         $listCategory = Cache::store('redis')->get($key);
         $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
 
-        return view('page.post.posts', compact('listPost', 'listPostRandom', 'postRandom','listPostDESC', 'listCategory', 'listCategoryPost'));
+        return view('page.post.posts', compact('listPost',
+            'listPostRandom', 'postRandom','listPostDESC', 'listCategory',
+            'listCategoryPost'));
     }
 
     public function postCategory($slug)

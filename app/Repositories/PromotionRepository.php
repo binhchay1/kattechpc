@@ -40,4 +40,24 @@ class PromotionRepository extends BaseRepository
     {
         return $this->model->orderBy('created_at', 'desc')->get();
     }
+    
+    public function promotionHome()
+    {
+        return $this->model->orderBy('created_at', 'DESC')->take(10)->get();
+    }
+    
+    public function promotionRandom()
+    {
+        return $this->model->orderBy('created_at', 'DESC')->get();
+    }
+    
+    public function promotionDESC()
+    {
+        return $this->model->orderBy('created_at', 'DESC')->get()->take(3);
+    }
+    
+    public function detail($slug)
+    {
+        return $this->model->where('slug', $slug)->first();
+    }
 }
