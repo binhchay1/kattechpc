@@ -165,7 +165,7 @@
             <div class="box-banner-collection">
                 @if(isset($layout->hot_sale_big_thumbnail))
                 <a href="{{ isset($layout->permarklink_hot_sale_big_thumbnail) ? $layout->permarklink_hot_sale_big_thumbnail : '#' }}" class="banner-collection boder-radius-10">
-                    <img src="{{ asset($layout->hot_sale_big_thumbnail) }}" width="365" class="boder-radius-10 lazy" alt="" data-was-processed="true" data-ll-status="loaded">
+                    <img src="{{ asset($layout->hot_sale_big_thumbnail) }}" width="500" height="250" class="boder-radius-10 lazy" alt="" data-was-processed="true" data-ll-status="loaded">
                 </a>
                 @endif
             </div>
@@ -175,7 +175,7 @@
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product->slug) }}" class="product-image position-relative">
                             @if(isset($product->image))
-                            <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy">
+                            <img src="{{ asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="lazy">
                             @endif
                         </a>
                         <div class="product-info">
