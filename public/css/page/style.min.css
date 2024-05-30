@@ -1567,3 +1567,7 @@ a {
 #timer-flashsale {
     margin-left: 15px;
 }
+
+.addCart {
+    cursor: pointer;
+}

@@ -16,7 +16,7 @@
                         <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Ảnh') }}</label>
                         <input type="file" class="border-0 bg-light pl-0" name="slide_image" id="image10" hidden>
                         <div id="btnimage">
-                            <img id="showImage10" class="show-avatar" src="{{ asset('/images/layout/400x200.png') }}" alt="avatar">
+                            <img id="showImage10" class="show-avatar" src="{{ asset('/images/layout/500x250.png') }}" alt="avatar">
                         </div>
                         <div id="button-10">
                             <i class="fas fa-camera btn_chooseImg"> {{ __('Chọn hình ảnh') }}</i>

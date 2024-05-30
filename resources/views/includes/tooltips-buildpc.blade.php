@@ -1,15 +1,15 @@
-<div id="tooltip-buildpc" class="global-tooltip-buildpc">
-    <div class="tooltip-buildpc-name">
+<div id="tooltip-buildpc" class="global-tooltip">
+    <div class="tooltip-name">
 
     </div>
-    <div class="tooltip-buildpc-descreption">
-        <div class="tooltip-buildpc-descreption-price">
+    <div class="tooltip-descreption">
+        <div class="tooltip-descreption-price">
             <p>{{ __('Giá niêm yết') }}</p>
             <p id="title-new-price">{{ __('Giá bán') }}</p>
             <p>{{ __('Bảo hành') }}</p>
             <p>{{ __('Tình trạng') }}</p>
         </div>
-        <div class="tooltip-buildpc-descreption-info">
+        <div class="tooltip-descreption-info">
             <div>
                 <div class="d-flex align-items-center">
                     <p class="card-price-origin color-black" id="tooltips-price">
@@ -27,14 +27,14 @@
         </div>
     </div>
 
-    <div class="box-tooltip-buildpc-gift">
-        <div class="tooltip-buildpc-input tooltip-buildpc-gift">
+    <div class="box-tooltip-gift">
+        <div class="tooltip-input tooltip-gift">
             <p class="icon-gift">
                 <i class="fa-solid fa-gift"></i>
                 {{ __('Khuyến mãi') }}
             </p>
         </div>
-        <div class="tooltip-buildpc-list tooltip-buildpc-list-gift">
+        <div class="tooltip-list tooltip-list-gift">
 
         </div>
     </div>

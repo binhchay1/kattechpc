@@ -58,12 +58,12 @@ Route::group(['middleware' => ['cache.menu', 'count.visitor']], function () {
     Route::get('/product/{slug}', [ProductPage::class, 'productDetail'])->name('productDetail');
     Route::post('/comment', [ProductPage::class, 'storeComment'])->name('storeComment');
     Route::post('/rating', [ProductPage::class, 'rating'])->name('rating');
-    Route::get('/promotion', [HomeController::class, 'viewPromotion'])->name('promotion');
+    Route::get('/khuyen-mai', [HomeController::class, 'viewPromotion'])->name('promotion');
     Route::get('/promotion-detail/{slug}', [HomeController::class, 'promotionDetail'])->name('promotion.detail');
     Route::get('/chinh-sach-quy-dinh-chung', [HomeController::class, 'rules'])->name('rules');
     Route::get('/tra-cuu-hoa-don', [HomeController::class, 'electronicBill'])->name('electronicBill');
     Route::get('/bao-mat-thong-tin-khach-hang', [HomeController::class, 'securityCustomer'])->name('securityCustomer');
-    Route::get('/complaint', [HomeController::class, 'complaint'])->name('complaint');
+    Route::get('/gop-y-khieu-nai', [HomeController::class, 'complaint'])->name('complaint');
     Route::get('/chinh-sach-hang-chinh-hang', [HomeController::class, 'productPolicy'])->name('productPolicy');
     Route::get('/chinh-sach-doanh-nghiep', [HomeController::class, 'businessPolicy'])->name('businessPolicy');
     Route::get('/landing/{slug}', [HomeController::class, 'viewLandingPage'])->name('landing.page');
@@ -119,7 +119,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::post('/store-flash-sale', [LayoutController::class, 'storeFlashSale'])->name('admin.store.flash.sale');
         Route::post('/store-hot-sale', [LayoutController::class, 'storeHotSale'])->name('admin.store.hot.sale');
         Route::post('/store-slide', [LayoutController::class, 'storeSlide'])->name('admin.store.slide');
-        Route::post('/delete-slide/{index}', [LayoutController::class, 'deleteSlide'])->name('admin.delete.slide');
+        Route::get('/delete-slide/{index}', [LayoutController::class, 'deleteSlide'])->name('admin.delete.slide');
     });
 
     Route::group(['prefix' => 'promotion'], function () {

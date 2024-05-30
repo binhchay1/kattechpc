@@ -82,7 +82,7 @@
     color: #e11414;
 }
 
-.text {
+#content-page .text {
     text-align: center;
     color: red;
 }

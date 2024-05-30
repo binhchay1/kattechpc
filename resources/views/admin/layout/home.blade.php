@@ -13,7 +13,7 @@
                                     @if(isset($layout->small_thumbnail_1))
                                     <img id="showImage1" class="show-avatar" src="{{ asset($layout->small_thumbnail_1) }}" alt="avatar">
                                     @else
-                                    <img id="showImage1" class="show-avatar" src="{{ asset('/images/layout/400x200.png') }}" alt="avatar">
+                                    <img id="showImage1" class="show-avatar" src="{{ asset('/images/layout/500x250.png') }}" alt="avatar">
                                     @endif
                                 </div>
                                 <div id="button-1">
@@ -42,7 +42,7 @@
                                     @if(isset($layout->small_thumbnail_2))
                                     <img id="showImage2" class="show-avatar" src="{{ asset($layout->small_thumbnail_2) }}" alt="avatar">
                                     @else
-                                    <img id="showImage2" class="show-avatar" src="{{ asset('/images/layout/400x200.png') }}" alt="avatar">
+                                    <img id="showImage2" class="show-avatar" src="{{ asset('/images/layout/500x250.png') }}" alt="avatar">
                                     @endif
                                 </div>
                                 <div id="button-2">
@@ -71,7 +71,7 @@
                                     @if(isset($layout->small_thumbnail_3))
                                     <img id="showImage3" class="show-avatar" src="{{ asset($layout->small_thumbnail_3) }}" alt="avatar">
                                     @else
-                                    <img id="showImage3" class="show-avatar" src="{{ asset('/images/layout/350x200.png') }}" alt="avatar">
+                                    <img id="showImage3" class="show-avatar" src="{{ asset('/images/layout/350x175.png') }}" alt="avatar">
                                     @endif
                                 </div>
                                 <div id="button-3">
@@ -100,7 +100,7 @@
                                     @if(isset($layout->small_thumbnail_4))
                                     <img id="showImage4" class="show-avatar" src="{{ asset($layout->small_thumbnail_4) }}" alt="avatar">
                                     @else
-                                    <img id="showImage4" class="show-avatar" src="{{ asset('/images/layout/350x200.png') }}" alt="avatar">
+                                    <img id="showImage4" class="show-avatar" src="{{ asset('/images/layout/350x175.png') }}" alt="avatar">
                                     @endif
                                 </div>
                                 <div id="button-4">
@@ -129,7 +129,7 @@
                                     @if(isset($layout->small_thumbnail_5))
                                     <img id="showImage5" class="show-avatar" src="{{ asset($layout->small_thumbnail_5) }}" alt="avatar">
                                     @else
-                                    <img id="showImage5" class="show-avatar" src="{{ asset('/images/layout/350x200.png') }}" alt="avatar">
+                                    <img id="showImage5" class="show-avatar" src="{{ asset('/images/layout/350x175.png') }}" alt="avatar">
                                     @endif
                                 </div>
                                 <div id="button-5">
@@ -158,7 +158,7 @@
                                     @if(isset($layout->small_thumbnail_6))
                                     <img id="showImage6" class="show-avatar" src="{{ asset($layout->small_thumbnail_6) }}" alt="avatar">
                                     @else
-                                    <img id="showImage6" class="show-avatar" src="{{ asset('/images/layout/350x200.png') }}" alt="avatar">
+                                    <img id="showImage6" class="show-avatar" src="{{ asset('/images/layout/350x175.png') }}" alt="avatar">
                                     @endif
                                 </div>
                                 <div id="button-6">
@@ -187,7 +187,7 @@
                                     @if(isset($layout->small_banner_thumbnail_left))
                                     <img id="showImage7" class="show-avatar" src="{{ asset($layout->small_banner_thumbnail_left) }}" alt="avatar">
                                     @else
-                                    <img id="showImage7" class="show-avatar" src="{{ asset('/images/layout/200x400.png') }}" alt="avatar">
+                                    <img id="showImage7" class="show-avatar" src="{{ asset('/images/layout/150x450.png') }}" alt="avatar">
                                     @endif
                                 </div>
                                 <div id="button-7">
@@ -216,7 +216,7 @@
                                     @if(isset($layout->small_banner_thumbnail_right))
                                     <img id="showImage8" class="show-avatar" src="{{ asset($layout->small_banner_thumbnail_right) }}" alt="avatar">
                                     @else
-                                    <img id="showImage8" class="show-avatar" src="{{ asset('/images/layout/200x400.png') }}" alt="avatar">
+                                    <img id="showImage8" class="show-avatar" src="{{ asset('/images/layout/150x450.png') }}" alt="avatar">
                                     @endif
                                 </div>
                                 <div id="button-8">
