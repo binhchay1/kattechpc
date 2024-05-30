@@ -59,7 +59,7 @@ Route::group(['middleware' => ['cache.menu', 'count.visitor']], function () {
     Route::post('/comment', [ProductPage::class, 'storeComment'])->name('storeComment');
     Route::post('/rating', [ProductPage::class, 'rating'])->name('rating');
     Route::get('/promotion', [HomeController::class, 'viewPromotion'])->name('promotion');
-    Route::get('/promotion-detail', [HomeController::class, 'promotionDetail'])->name('promotionDetail');
+    Route::get('/promotion-detail/{slug}', [HomeController::class, 'promotionDetail'])->name('promotion.detail');
     Route::get('/chinh-sach-quy-dinh-chung', [HomeController::class, 'rules'])->name('rules');
     Route::get('/tra-cuu-hoa-don', [HomeController::class, 'electronicBill'])->name('electronicBill');
     Route::get('/bao-mat-thong-tin-khach-hang', [HomeController::class, 'securityCustomer'])->name('securityCustomer');
