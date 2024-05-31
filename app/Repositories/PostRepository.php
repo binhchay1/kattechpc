@@ -19,17 +19,32 @@ class PostRepository extends BaseRepository
 
     public function postHome()
     {
-        return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->take(10)->get();
+        return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->get();
     }
 
-    public function listPostRandom()
+    public function firstPost()
+    {
+        return $this->model->with('user', 'category')->orderBy('id', 'DESC')->first();
+    }
+    
+    public function secondPost() {
+        return $this->model->with('user', 'category')->orderBy('id', 'ASC')->first();
+    }
+    
+    public function postRandom5() {
+        return $this->model->with('user', 'category')->orderBy('created_at', 'ASC')->get()->take(10);
+    }
+    
+    
+    
+    public function listRandom()
     {
         return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->get();
     }
 
     public function listPostDESC()
     {
-        return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->get()->take(3);
+        return $this->model->with('user', 'category')->orderBy('created_at', 'ASC')->get()->take(3);
     }
 
     public function create($input)

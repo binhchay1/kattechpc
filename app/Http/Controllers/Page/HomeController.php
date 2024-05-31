@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Page;
 
 use App\Enums\Utility;
+use App\Models\Post;
 use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -121,6 +122,59 @@ class HomeController extends Controller
         $listCategory = Cache::store('redis')->get($key);
 
         return view('page.promotion.promotion-detail', compact('promotion', 'listPromotion', 'listCategory'));
+    }
+    
+    public function viewPost()
+    {
+        $listPost = $this->postRepository->postHome();
+        $firstPosts1 = $this->postRepository->firstPost();
+        $secondPost = $this->postRepository->secondPost();
+        $postRandom3 = $listPost->splice(1, 3);
+        $postRandom4 = $listPost->splice(1, 8);
+        $postRandom5 = $this->postRepository->postRandom5();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+        $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
+        
+        return view('page.post.posts', compact(
+            'listPost',
+            'firstPosts1',
+            'secondPost',
+            'postRandom3',
+            'postRandom4',
+            'postRandom5',
+            'listCategory',
+            'listCategoryPost'
+        ));
+    }
+    
+    public function postCategory($slug)
+    {
+        if (!isset($slug)) {
+            return redirect('/404');
+        }
+        $postCategory = $this->categoryPostRepository->getCatePost($slug);
+        $dataPostCategory = $this->categoryPostRepository->getCate($slug);
+        $getPosts = $postCategory->posts;
+        $firstPosts1 = $getPosts->splice(0,1);
+        $firstPosts2 = $getPosts->splice(1,1);
+        $postRandom3 = $getPosts->splice(1, 3);
+        $postRandom4 = $getPosts->splice(1, 8);
+        
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+        $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
+        
+        
+        return view('page.post.category-post', compact(
+            'listCategoryPost',
+            'firstPosts1',
+            'firstPosts2',
+            'postRandom3',
+            'postRandom4',
+            'postCategory',
+            'listCategory',
+            'dataPostCategory'));
     }
 
     public function rules()
@@ -241,43 +295,7 @@ class HomeController extends Controller
 
         return view('page.search', compact('listProducts', 'search', 'isList', 'listCategory', 'dataBrand'));
     }
-
-    public function viewPost()
-    {
-        $listPost = $this->postRepository->postHome();
-        $listPostRandom = $this->postRepository->listPostRandom();
-        $postRandom = $this->postRepository->listPostRandom();
-        $listPostDESC = $this->postRepository->listPostDESC();
-        $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
-        $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
-
-        return view('page.post.posts', compact(
-            'listPost',
-            'listPostRandom',
-            'postRandom',
-            'listPostDESC',
-            'listCategory',
-            'listCategoryPost'
-        ));
-    }
-
-    public function postCategory($slug)
-    {
-        if (!isset($slug)) {
-            return redirect('/404');
-        }
-
-        $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
-        $listPostRandom = $this->postRepository->listPostRandom();
-        $postCategory = $this->categoryPostRepository->getCatePost($slug);
-        $postCateLimit = $postCategory->posts->take(3);
-        $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
-
-
-        return view('page.post.category-post', compact('listCategoryPost', 'postCategory', 'listPostRandom', 'listCategory', 'postCateLimit'));
-    }
+    
 
     public function viewLandingPage($slug)
     {

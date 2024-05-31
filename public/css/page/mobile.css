@@ -361,7 +361,11 @@
         display: none;
     }
 
-    .flash-sale-title-area {
+    .flash-sale-title-area , #list-post-home{
         flex-direction: column;
+    }
+
+    #post-column2 {
+        width: 98%!important;
     }
 }
