@@ -12,7 +12,7 @@
                                     @if(isset($layout->hot_sale_big_thumbnail))
                                     <img id="showImage9" class="show-avatar" src="{{ asset($layout->hot_sale_big_thumbnail) }}" alt="avatar">
                                     @else
-                                    <img id="showImage9" class="show-avatar" src="{{ asset('/images/layout/658x440.png') }}" alt="avatar">
+                                    <img id="showImage9" class="show-avatar" src="{{ asset('/images/layout/650x430.png') }}" alt="avatar">
                                     @endif
                                 </div>
                                 <div id="button-9">

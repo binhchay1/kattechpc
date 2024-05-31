@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Page;
 
 use App\Enums\Utility;
+use App\Models\Post;
 use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -90,7 +91,7 @@ class HomeController extends Controller
 
     public function viewPromotion()
     {
-    
+
         $listPromotion = $this->promotionRepository->promotionHome();
         $listPromotionRandom = $this->promotionRepository->promotionRandom();
         $promotionRandom = $this->promotionRepository->promotionRandom();
@@ -98,13 +99,15 @@ class HomeController extends Controller
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
-    
-        return view('page.promotion.index', compact('listPromotion',
-            'listPromotionRandom', 'promotionRandom','listPromotionDESC', 'listCategory',
-            'listCategoryPost'));
-        
-        
-      
+
+        return view('page.promotion.index', compact(
+            'listPromotion',
+            'listPromotionRandom',
+            'promotionRandom',
+            'listPromotionDESC',
+            'listCategory',
+            'listCategoryPost'
+        ));
     }
 
     public function promotionDetail()
@@ -112,14 +115,66 @@ class HomeController extends Controller
         if (!isset($slug)) {
             return redirect('/404');
         }
-    
+
         $listPromotion = $this->promotionRepository->index();
         $promotion = $this->promotionRepository->detail($slug);
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
-    
-        return view('page.promotion.promotion-detail', compact('promotion', 'listPromotion', 'listCategory'));
 
+        return view('page.promotion.promotion-detail', compact('promotion', 'listPromotion', 'listCategory'));
+    }
+    
+    public function viewPost()
+    {
+        $listPost = $this->postRepository->postHome();
+        $firstPosts1 = $this->postRepository->firstPost();
+        $secondPost = $this->postRepository->secondPost();
+        $postRandom3 = $listPost->splice(1, 3);
+        $postRandom4 = $listPost->splice(1, 8);
+        $postRandom5 = $this->postRepository->postRandom5();
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+        $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
+        
+        return view('page.post.posts', compact(
+            'listPost',
+            'firstPosts1',
+            'secondPost',
+            'postRandom3',
+            'postRandom4',
+            'postRandom5',
+            'listCategory',
+            'listCategoryPost'
+        ));
+    }
+    
+    public function postCategory($slug)
+    {
+        if (!isset($slug)) {
+            return redirect('/404');
+        }
+        $postCategory = $this->categoryPostRepository->getCatePost($slug);
+        $dataPostCategory = $this->categoryPostRepository->getCate($slug);
+        $getPosts = $postCategory->posts;
+        $firstPosts1 = $getPosts->splice(0,1);
+        $firstPosts2 = $getPosts->splice(1,1);
+        $postRandom3 = $getPosts->splice(1, 3);
+        $postRandom4 = $getPosts->splice(1, 8);
+        
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+        $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
+        
+        
+        return view('page.post.category-post', compact(
+            'listCategoryPost',
+            'firstPosts1',
+            'firstPosts2',
+            'postRandom3',
+            'postRandom4',
+            'postCategory',
+            'listCategory',
+            'dataPostCategory'));
     }
 
     public function rules()
@@ -240,38 +295,7 @@ class HomeController extends Controller
 
         return view('page.search', compact('listProducts', 'search', 'isList', 'listCategory', 'dataBrand'));
     }
-
-    public function viewPost()
-    {
-        $listPost = $this->postRepository->postHome();
-        $listPostRandom = $this->postRepository->listPostRandom();
-        $postRandom = $this->postRepository->listPostRandom();
-        $listPostDESC = $this->postRepository->listPostDESC();
-        $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
-        $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
-
-        return view('page.post.posts', compact('listPost',
-            'listPostRandom', 'postRandom','listPostDESC', 'listCategory',
-            'listCategoryPost'));
-    }
-
-    public function postCategory($slug)
-    {
-        if (!isset($slug)) {
-            return redirect('/404');
-        }
-
-        $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
-        $listPostRandom = $this->postRepository->listPostRandom();
-        $postCategory = $this->categoryPostRepository->getCatePost($slug);
-        $postCateLimit = $postCategory->posts->take(3);
-        $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
-
-
-        return view('page.post.category-post', compact('listCategoryPost','postCategory', 'listPostRandom','listCategory','postCateLimit'));
-    }
+    
 
     public function viewLandingPage($slug)
     {
@@ -325,17 +349,24 @@ class HomeController extends Controller
 
         if (isset($filters['price'])) {
             $listRangePrice = Product::RANGE_PRICE;
-            $listProductForRange = $dataCategory->productChildren;
             if (array_key_exists($filters['price'], $listRangePrice)) {
                 $rangePrice = $listRangePrice[$filters['price']];
-                $fromPrice = $rangePrice[0];
-                $toPrice = $rangePrice[1];
+                $fromPrice = $rangePrice['from'];
+                $toPrice = $rangePrice['to'];
+                $count = 0;
 
-                foreach ($listProductForRange as $key => $productRange) {
-                    $priceForCheck = str_replace('.', '', $productRange->price);
-                    $convertPrice = intval($priceForCheck);
+                foreach ($dataCategory->products as $key => $productRange) {
+                    if (isset($productRange->new_price)) {
+                        $priceForCheck = str_replace('.', '', $productRange->new_price);
+                        $convertPrice = intval($priceForCheck);
+                    } else {
+                        $priceForCheck = str_replace('.', '', $productRange->price);
+                        $convertPrice = intval($priceForCheck);
+                    }
+
                     if ($convertPrice < $fromPrice or $convertPrice > $toPrice) {
-                        $dataCategory->productChildren->forget($key);
+                        $dataCategory->products->forget($key);
+                        $count++;
                     }
                 }
             }

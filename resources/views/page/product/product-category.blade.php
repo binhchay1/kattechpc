@@ -5,7 +5,7 @@
 @endsection
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('/css/page/productCate.css') }}" />
+<link rel="stylesheet" href="{{ asset('/css/page/product-cate.css') }}" />
 @endsection
 
 @section('content')
@@ -26,7 +26,7 @@
                         <div class="product-item">
                             <a href="{{ route('productDetail', $product->slug) }}" class="product-image position-relative">
                                 @if(isset($product->image))
-                                <img src="{{ asset($product->image[0]) }}" width="210" height="164" class="lazy product-image">
+                                <img src="{{ asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="lazy product-image">
                                 @endif
                             </a>
                             <div class="product-info">
@@ -48,6 +48,10 @@
                                     {{ $product->price }} đ
                                 </div>
                                 @endif
+
+                                <div class="product-description">
+                                    {{ Str::limit($product->short_description, 100) }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -82,6 +86,10 @@
                                     {{ $product->price }} đ
                                 </div>
                                 @endif
+
+                                <div class="product-description">
+                                    {{ Str::limit($product->short_description, 100) }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -168,7 +176,7 @@
         </div>
     </div>
     <div class="row2">
-        <div class="flex " id="select-price">
+        <div class="flex" id="select-sort">
             <div data-id="new" data-type="sort" class="select button-filter">
                 <button>{{ __('Hàng mới về') }}</button>
             </div>
@@ -186,7 +194,7 @@
             @foreach($dataCategories as $product)
             <div class="product-item">
                 <a href="{{ route('productDetail', $product['slug']) }}" class="product-image">
-                    <img width="200" height="200" alt="{{ $product->name }}" class="lazy" src="{{ asset(json_decode($product->image, true)[0]) }}">
+                    <img width="200" height="150" alt="{{ $product->name }}" class="lazy" src="{{ asset(json_decode($product->image, true)[0]) }}">
                     <span class="p-type-holder">
                         @if($product->hot_status)
                         <i class="p-icon-type p-icon-hot"></i>
@@ -220,6 +228,10 @@
                         {{ $product->price }} đ
                     </div>
                     @endif
+
+                    <div class="product-description">
+                        {{ Str::limit($product->short_description, 50) }}
+                    </div>
                 </div>
             </div>
             @endforeach
@@ -249,10 +261,30 @@
     }
 
     $(document).ready(function() {
-        $('#select-price div').click(function(event) {
+        var keyPrice = 'price';
+        var keySort ='sort';
+
+        if (keyPrice in arrayParam) {
+            let priceCurrent = $("div").find("[data-id='" + arrayParam[keyPrice] + "']");
+            priceCurrent.append('<span class="btn-xmark-by-url">x</span>');
+            let btnPriceCurrent = priceCurrent.find("button");
+            btnPriceCurrent.addClass('border-btn-red');
+            btnPriceCurrent.prop("disabled", true);
+        }
+
+        if (keySort in arrayParam) {
+            let sortCurrent = $("div").find("[data-id='" + arrayParam[keySort] + "']");
+            sortCurrent.removeClass("button-filter");
+            sortCurrent.append('<span class="btn-xmark-by-url">x</span>');
+            let btnSortCurrent = sortCurrent.find("button");
+            btnSortCurrent.addClass('border-btn-red');
+            btnSortCurrent.prop("disabled", true);
+        }
+
+        $('#select-price div button').click(function(event) {
             event.preventDefault();
-            let type = $(this).data('type');
-            let id = $(this).data('id');
+            let type = $(this).parent().data('type');
+            let id = $(this).parent().data('id');
             let url = location.protocol + '//' + location.host + location.pathname;
 
             if (type == 'price') {
@@ -269,6 +301,75 @@
                         url += '?' + k + '=' + arrayParam[k];
                     } else {
                         url += '&' + k + '=' + arrayParam[k];
+                    }
+                }
+            }
+
+            window.location.href = url;
+        });
+
+        $('#select-sort div button').click(function(event) {
+            event.preventDefault();
+            let type = $(this).parent().data('type');
+            let id = $(this).parent().data('id');
+            let url = location.protocol + '//' + location.host + location.pathname;
+
+            if (type == 'price') {
+                arrayParam['price'] = id;
+            }
+
+            if (type == 'sort') {
+                arrayParam['sort'] = id;
+            }
+
+            for (var k in arrayParam) {
+                if (arrayParam.hasOwnProperty(k)) {
+                    if (k == Object.keys(arrayParam)[0]) {
+                        url += '?' + k + '=' + arrayParam[k];
+                    } else {
+                        url += '&' + k + '=' + arrayParam[k];
+                    }
+                }
+            }
+
+            window.location.href = url;
+        });
+
+        $('#select-price').on('click', '.btn-xmark-by-url', function(e) {
+            e.preventDefault();
+
+            let url = location.protocol + '//' + location.host + location.pathname;
+            let count = 0;
+            for (var k in arrayParam) {
+                if (k != 'price') {
+                    if (arrayParam.hasOwnProperty(k)) {
+                        if (count == 0) {
+                            url += '?' + k + '=' + arrayParam[k];
+                            count++;
+                        } else {
+                            url += '&' + k + '=' + arrayParam[k];
+                        }
+                    }
+                }
+            }
+
+            window.location.href = url;
+        });
+
+        $('#select-sort').on('click', '.btn-xmark-by-url', function(e) {
+            e.preventDefault();
+
+            let url = location.protocol + '//' + location.host + location.pathname;
+            let count = 0;
+            for (var k in arrayParam) {
+                if (k != 'sort') {
+                    if (arrayParam.hasOwnProperty(k)) {
+                        if (count == 0) {
+                            url += '?' + k + '=' + arrayParam[k];
+                            count++;
+                        } else {
+                            url += '&' + k + '=' + arrayParam[k];
+                        }
                     }
                 }
             }

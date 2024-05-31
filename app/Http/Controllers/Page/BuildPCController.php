@@ -66,8 +66,8 @@ class BuildPCController extends Controller
             $listRangePrice = Product::RANGE_PRICE_BUILD_PC;
             if (array_key_exists($price, $listRangePrice)) {
                 $rangePrice = $listRangePrice[$price];
-                $fromPrice = $rangePrice[0];
-                $toPrice = $rangePrice[1];
+                $fromPrice = $rangePrice['from'];
+                $toPrice = $rangePrice['to'];
 
                 foreach ($products as $key => $productPrice) {
                     $priceForCheck = str_replace('.', '', $productPrice->price);

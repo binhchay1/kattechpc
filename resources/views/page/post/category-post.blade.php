@@ -14,13 +14,20 @@
             <div class="column1">
                 <div class="top5 flex">
                     <div style="float: left; width: 60%;">
-                        @foreach($listPostRandom as $key => $random)
+                        @foreach($firstPosts1 as $key => $random)
                             @if($key == 0)
                                 <div class="">
                                     <div class="position-relative mb-3">
                                         <img class="img-fluid w-100" alt="{{ $random->title }}" src="{{ asset($random->thumbnail ?? 'images/page/no-image.png') }}" >
                                         <div class="content-top">
-                                            <h2><a href="{{ route('post.detail', $random['slug']) }}" class="h4" href="">{{ $random->title }}</a></h2>
+                                            <?php $text = strlen($random->title);
+                                            if($text < 80){
+                                                $post = $random->title;
+                                            }else{
+                                                $post = \Illuminate\Support\Str::limit($random->title, 80). "...";
+                                            }
+                                            ?>
+                                            <h2><a href="{{ route('post.detail', $random['slug']) }}" class="h4" href="">{{ $post }}</a></h2>
                                                 <?php $text = \Illuminate\Support\Str::limit($random->short_description, 120) ?>
                                         </div>
                                     </div>
@@ -29,13 +36,20 @@
                         @endforeach
                     </div>
                     <div style="float: right; width: 35%; margin-left: 10px">
-                        @foreach($postCategory->posts as $key => $random)
+                        @foreach($firstPosts2 as $key => $random)
                             @if($key == 0)
                                 <div class="">
                                     <div class="position-relative mb-3">
                                         <img class="img-fluid w-100" alt="{{ $random->title }}" src="{{ asset($random->thumbnail ?? 'images/page/no-image.png') }}" >
                                         <div class="content-top">
-                                            <h2><a href="{{ route('post.detail', $random['slug']) }}" class="h4" href="">{{ $random->title }}</a></h2>
+                                            <?php $text = strlen($random->title);
+                                            if($text < 80){
+                                                $post = $random->title;
+                                            }else{
+                                                $post = \Illuminate\Support\Str::limit($random->title, 80). "...";
+                                            }
+                                            ?>
+                                            <h2><a href="{{ route('post.detail', $random['slug']) }}" class="h4" href="">{{ $post }}</a></h2>
                                                 <?php $text = \Illuminate\Support\Str::limit($random->short_description, 500) ?>
                                             <p class="m-0">{{ $text. "..." }}</p>
                                         </div>
@@ -49,11 +63,18 @@
                 </div>
                 <div class=" top1">
                     <div class="parent">
-                        @foreach($postCateLimit as $postDESC)
+                        @foreach($postRandom3 as $postDESC)
                             <div class="child">
                                 <img class="img-fluid w-100" src="{{ asset($postDESC->thumbnail ?? 'images/page/no-image.png') }}" style="object-fit: cover;">
                                 <div class="">
-                                    <h2><a class="text-tech" href="">{{ $postDESC->title }}</a></h2>
+                                    <?php $text = strlen($postDESC->title);
+                                    if($text < 60){
+                                        $post = $postDESC->title;
+                                    }else{
+                                        $post = \Illuminate\Support\Str::limit($postDESC->title, 60). "...";
+                                    }
+                                    ?>
+                                    <h2><a class="text-tech" href="">{{ $post }}</a></h2>
                                 </div>
                             </div>
                         @endforeach
@@ -62,11 +83,20 @@
                 <hr>
                 <div class=" top1">
                     <div class="">
-                        @foreach($postCategory->posts as $postDESC)
+                        @foreach($postRandom4 as $postDESC)
                             <div class="child d-flex">
+                                <div style="width: 50%;">
                                 <img class="img-fluid w-100" src="{{ asset($postDESC->thumbnail ?? 'images/page/no-image.png') }} " style="object-fit: cover;">
-                                <div class="">
-                                    <h2><a class="text-tech" href="">{{ $postDESC->title }}</a></h2>
+                                </div>
+                                <div style="width: 50%; margin-left: 10px" class="">
+                                    <?php $text = strlen($postDESC->title);
+                                    if($text < 60){
+                                        $post = $postDESC->title;
+                                    }else{
+                                        $post = \Illuminate\Support\Str::limit($postDESC->title, 60). "...";
+                                    }
+                                    ?>
+                                    <h2><a class="text-tech" href="">{{ $post }}</a></h2>
                                     <div class="post_info">
                                     <span class="post_info_item date">
                                         <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,9 +115,9 @@
                 </div>
             </div>
 
-            <div class="column2">
+            <div class="column2"  id="post-column2">
                 <div class="row top1">
-                    <h2 class="text-title"> {{ __('Chủ đề nóng') }}</h2>
+                    <h2 class="text-title"> {{ __('CHỦ ĐỀ NÓNG') }}</h2>
                     <div class="parent1">
                         @foreach($listCategoryPost as $categoryPost)
                             <div class="child1">
@@ -101,14 +131,15 @@
                 </div>
 
                 <div class="row top2">
-                    <h2 class="text-title"> {{__('Xem nhanh')}}</h2>
-                    @foreach($postCategory->posts as $post)
+                    <h2 class="text-title"> {{__('TIN TỨC GẦN NHẤT')}}</h2>
+                    @foreach($dataPostCategory->posts as $post)
                         <div id="content">
                             <div id="left">
                                 <img src="{{ asset($post->thumbnail ??  'images/page/no-image.png') }}" alt="Image Alt" class="img-fluid2" />
                             </div>
                             <div id="content-right">
-                                <h4>{{ $post->title }}</h4>
+                                <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
+                                <h4> {{$text}}</h4>
                             </div>
                         </div>
                     @endforeach
