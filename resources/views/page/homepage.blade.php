@@ -330,7 +330,7 @@
             </div>
             <a href="{{ route('post') }}" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
-        <div class="list-article-group d-flex">
+        <div class="list-article-group d-flex" id="list-post-home">
             @foreach($listNews as $news)
             <div class="item-article d-flex gap-12">
                 <a href="{{ route('post.detail', $news['slug']) }}" class="img-article boder-radius-10 position-relative">

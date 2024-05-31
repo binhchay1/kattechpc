@@ -50,4 +50,8 @@ class CategoryPostRepository extends BaseRepository
     {
         return $this->model->with('posts')->where('slug', $slug)->first();
     }
+    public function getCate($slug)
+    {
+        return $this->model->with('posts')->where('slug', $slug)->first();
+    }
 }
