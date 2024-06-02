@@ -425,4 +425,23 @@ class HomeController extends Controller
 
         return getTopParent($this->categoryRepository->getParentWithKeyword($category->id));
     }
+<<<<<<< Updated upstream
+=======
+
+    public function introduction()
+    {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('page.other.introduction', compact('listCategory'));
+    }
+
+    public function contactBusiness()
+    {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('page.other.contact-business', compact('listCategory'));
+    }
+>>>>>>> Stashed changes
 }

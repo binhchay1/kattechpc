@@ -57,7 +57,7 @@
                 <p class="policy-title">{{__('Đối với sản phẩm bảo hành trên hộp: sản phẩm còn đầy đủ hộp.')}}</p>
                 <p class="policy-title">{{__('Sản phẩm không trầy xước, cấn móp, bể, vỡ, biến dạng so với ban đầu.')}}</p>
             </div>
-            <div  id="condition2">
+            <div  id="condition-policy" class="">
                 <h2>{{ __('NHỮNG SẢN PHẨM KHÔNG ĐỦ ĐIỀU KIỆN BẢO HÀNH') }}</h2>
                 <p class="policy-title">{{ __('Hết thời hạn bảo hành.') }}</p>
                 <p class="policy-title">{{ __('Không có tem niêm phong, hoặc bị tẩy xóa, không còn nguyên dạng ban đầu.') }}</p>
