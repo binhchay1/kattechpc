@@ -48,8 +48,8 @@
         <div class="footer-middle-content">
             <div class="footer-middle-item">
                 <span class="footer-middle-title">{{ __('GIỚI THIỆU') }} KATTECH</span>
-                <!-- <p><a href="">{{ __('Giới thiệu công ty') }}</a></p>
-                <p><a href="" target="_blank">{{ __('Liên hệ hợp tác kinh doanh') }}</a></p> -->
+                <p><a href="{{ route('introduction') }}">{{ __('Giới thiệu công ty') }}</a></p>
+                <p><a href="{{ route('contactBusiness') }}" target="_blank">{{ __('Liên hệ hợp tác kinh doanh') }}</a></p>
                 <p><a href="{{ route('post') }}" target="_blank">{{ __('Tin công nghệ') }}</a></p>
                 <span class="footer-middle-social">
                     <a href="" target="_blank"><i class="fab fa-facebook-f"></i></a>
