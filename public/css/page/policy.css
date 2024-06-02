@@ -64,8 +64,8 @@
     border-radius: 10px;
 }
 
-#condition2 {
-  float: right;
+#condition-policy{
+    float: right;
     padding: 10px;
     border:1px solid;
     border-radius: 10px;
@@ -105,3 +105,5 @@
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+
