@@ -123,7 +123,7 @@ class HomeController extends Controller
 
         return view('page.promotion.promotion-detail', compact('promotion', 'listPromotion', 'listCategory'));
     }
-    
+
     public function viewPost()
     {
         $listPost = $this->postRepository->postHome();
@@ -135,7 +135,7 @@ class HomeController extends Controller
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
-        
+
         return view('page.post.posts', compact(
             'listPost',
             'firstPosts1',
@@ -147,7 +147,7 @@ class HomeController extends Controller
             'listCategoryPost'
         ));
     }
-    
+
     public function postCategory($slug)
     {
         if (!isset($slug)) {
@@ -160,12 +160,12 @@ class HomeController extends Controller
         $firstPosts2 = $getPosts->splice(1,1);
         $postRandom3 = $getPosts->splice(1, 3);
         $postRandom4 = $getPosts->splice(1, 8);
-        
+
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
-        
-        
+
+
         return view('page.post.category-post', compact(
             'listCategoryPost',
             'firstPosts1',
@@ -295,7 +295,7 @@ class HomeController extends Controller
 
         return view('page.search', compact('listProducts', 'search', 'isList', 'listCategory', 'dataBrand'));
     }
-    
+
 
     public function viewLandingPage($slug)
     {
@@ -425,8 +425,6 @@ class HomeController extends Controller
 
         return getTopParent($this->categoryRepository->getParentWithKeyword($category->id));
     }
-<<<<<<< Updated upstream
-=======
 
     public function introduction()
     {
@@ -443,5 +441,4 @@ class HomeController extends Controller
 
         return view('page.other.contact-business', compact('listCategory'));
     }
->>>>>>> Stashed changes
 }

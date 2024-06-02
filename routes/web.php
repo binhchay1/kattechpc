@@ -75,11 +75,8 @@ Route::group(['middleware' => ['cache.menu', 'count.visitor']], function () {
     Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFacebookCallback']);
     Route::get('/collection/{slug}', [HomeController::class, 'showDataCategory'])->name('showDataCategory');
     Route::get('/promotion/{slug}', [HomeController::class, 'showPromotionDetail'])->name('showPromotionDetail');
-<<<<<<< Updated upstream
-=======
     Route::get('/gioi-thieu', [HomeController::class, 'introduction'])->name('introduction');
     Route::get('/lien-he-hop-tac-kinh-doanh', [HomeController::class, 'contactBusiness'])->name('contactBusiness');
->>>>>>> Stashed changes
     Route::get('/get-products-for-suggestions', [ProductPage::class, 'suggestionsProduct'])->name('suggestions.product');
 
     Route::group(['middleware' => 'user'], function () {
