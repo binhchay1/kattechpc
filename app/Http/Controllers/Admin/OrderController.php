@@ -31,7 +31,15 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $listOrders = $this->orderDetailRepository->index();
+        $listOrders = $this->orderRepository->index();
+        foreach ($listOrders as $order) {
+            $total = 0;
+            foreach ($order->orderDetails as $detail) {
+                $total += $detail->quantity * $detail->price;
+            }
+        
+            $order->total = $total;
+        }
         return view('admin.order.index', compact('listOrders'));
     }
 
