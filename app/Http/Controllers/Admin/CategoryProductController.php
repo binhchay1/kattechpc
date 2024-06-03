@@ -15,7 +15,7 @@ class CategoryProductController extends Controller
     private $categoryRepository;
 
     public function __construct(
-        CategoryRepository $categoryRepository,
+        CategoryRepository $categoryRepository
     ) {
         $this->categoryRepository = $categoryRepository;
     }

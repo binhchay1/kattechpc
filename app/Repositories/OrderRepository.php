@@ -13,7 +13,7 @@ class  OrderRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->orderBy('created_at', 'DESC')->paginate(10);
+        return $this->model->with('orderDetails')->orderBy('created_at', 'DESC')->paginate(10);
     }
 
     public function create($input)
@@ -23,7 +23,7 @@ class  OrderRepository extends BaseRepository
 
     public function show($id)
     {
-        return $this->model->where('id', $id)->first();
+        return $this->model->with('orderDetails')->where('id', $id)->first();
     }
 
     public function update($input, $id)
@@ -38,7 +38,7 @@ class  OrderRepository extends BaseRepository
 
     public function getOrderForStatic()
     {
-        return $this->model->with('orderDetails')->orderBy('created_at', 'DESC')->paginate();
+        return $this->model->with('orderDetails')->orderBy('created_at', 'DESC')->paginate(10);
     }
 
     public function getOrderForStaticIncome()

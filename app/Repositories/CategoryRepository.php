@@ -14,7 +14,7 @@ class CategoryRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->orderBy('created_at', 'DESC')->paginate(10);
+        return $this->model->orderBy('created_at', 'DESC')->paginate(5);
     }
 
     public function indexOnlyChild()

@@ -59,6 +59,19 @@ class AdminController extends Controller
 
         return view('admin.dashboard', compact('orderStatic', 'productStatic'));
     }
+    
+    public function detailDetail($id)
+    {
+        $orderDetail = $this->orderRepository->show($id);
+        $total = 0;
+        foreach ($orderDetail->orderDetails as $detail) {
+            $total += $detail->quantity * $detail->price;
+        }
+    
+        $orderDetail->total = $total;
+        
+        return view('admin.order.order-detail', compact('orderDetail'));
+    }
 
     public function lang($locale)
     {
