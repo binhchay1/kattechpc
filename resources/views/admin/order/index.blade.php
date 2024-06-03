@@ -40,9 +40,7 @@
 
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user">{{ __('Người đặt hàng') }}
                                 </th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="date">{{ __('Sản phẩm') }}
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="date">{{ __('Ngày đặt hàng') }}
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="quantity">{{ __('Số lượng') }}
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="quantity">{{ __('Tổng tiền') }}
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="address">{{ __('Địa chỉ') }}
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="phone">{{ __('Số điện thoại') }}
@@ -56,27 +54,23 @@
                             @foreach($listOrders as $order)
                             <tr class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
 
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->id }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->order_code }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->order->name }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->name }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->product->name ?? "" }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">  {{ date("d/m/Y", strtotime($order->order_date)) }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->order->order_date }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"> {{ number_format($order->total, 0, ',', '.') }} đ
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->quantity}}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->address }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ ($order->price)}} đ
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->phone }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->order->address }}
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->order->phone }}
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->order->note }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->notes }}
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 status">
-                                    <a href="{{route('activeOrder', $order->order['id'])}}" class="btn btn-{{$order->order->status == 1 ? 'success' : 'danger' }}">
-                                        {{$order->order->status == 1 ? "Xác nhận " : "Chưa xác nhận"}}
+                                    <a href="{{route('activeOrder', $order['id'])}}" class="btn btn-{{$order->status == 1 ? 'success' : 'danger' }}">
+                                        {{$order->status == 1 ? "Xác nhận " : "Chưa xác nhận"}}
                                     </a>
                                 </td>
                                 <td>

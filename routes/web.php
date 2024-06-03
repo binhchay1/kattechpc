@@ -77,7 +77,6 @@ Route::group(['middleware' => ['cache.menu', 'count.visitor']], function () {
     Route::get('/promotion/{slug}', [HomeController::class, 'showPromotionDetail'])->name('showPromotionDetail');
     Route::get('/gioi-thieu', [HomeController::class, 'introduction'])->name('introduction');
     Route::get('/lien-he-hop-tac-kinh-doanh', [HomeController::class, 'contactBusiness'])->name('contactBusiness');
-=======
     Route::get('/get-products-for-suggestions', [ProductPage::class, 'suggestionsProduct'])->name('suggestions.product');
 
     Route::group(['middleware' => 'user'], function () {
@@ -114,6 +113,7 @@ Route::group(['middleware' => ['cache.menu', 'count.visitor']], function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
+    Route::get('/order-detail/{id}', [AdminController::class, 'detailDetail'])->name('admin.detailDetail');
     Route::get('/custom-contact', [AdminController::class, 'listCustomContact'])->name('admin.custom.contact');
 
     Route::group(['prefix' => 'layout'], function () {
