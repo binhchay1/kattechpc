@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\promotionRequest;
-use App\Repositories\promotionRepository;
-use Illuminate\Http\Request;
+use App\Repositories\PromotionRepository;
 use Illuminate\Support\Str;
 
 class PromotionController extends Controller

@@ -55,7 +55,7 @@
                     <span class="total-price-config-2"></span>
                 </p>
             </div>
-            <div class="list-drive" id="build-pc-content-list-1" style="border: solid 1px #e1e1e1;">
+            <div class="list-drive" id="build-pc-content-list-2" style="border: solid 1px #e1e1e1;">
                 @foreach($menu as $key => $value)
                 <div class="item-drive d-flex">
                     <div class="name-item-drive">
@@ -267,6 +267,8 @@
             }
         }
         $(idArea).remove();
+        let idBtnAdd = '#category-js-' + id + '-' + currentArea;
+        $(idBtnAdd).show();
     }
 
     function changeProductHandle(userChose) {
@@ -427,7 +429,12 @@
         let over100m = 0;
 
         $.each(data.products, function(key, val) {
-            let price = val.price.replaceAll('.', '');
+            let price = 0;
+            if (val.new_price != null) {
+                price = val.new_price.replaceAll('.', '');
+            } else {
+                price = val.price.replaceAll('.', '');
+            }
 
             if (price < 1000000) {
                 under1m += 1;

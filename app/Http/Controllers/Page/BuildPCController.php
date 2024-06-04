@@ -70,6 +70,11 @@ class BuildPCController extends Controller
                 $toPrice = $rangePrice['to'];
 
                 foreach ($products as $key => $productPrice) {
+                    if (isset($productPrice->new_price)) {
+                        $priceForCheck = str_replace('.', '', $productPrice->new_price);
+                    } else {
+                        $priceForCheck = str_replace('.', '', $productPrice->price);
+                    }
                     $priceForCheck = str_replace('.', '', $productPrice->price);
                     $convertPrice = intval($priceForCheck);
                     if ($convertPrice < $fromPrice or $convertPrice > $toPrice) {
