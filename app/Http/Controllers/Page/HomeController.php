@@ -110,13 +110,13 @@ class HomeController extends Controller
         ));
     }
 
-    public function promotionDetail()
+    public function promotionDetail($slug)
     {
         if (!isset($slug)) {
             return redirect('/404');
         }
 
-        $listPromotion = $this->promotionRepository->index();
+        $listPromotion = $this->promotionRepository->promotionHome();
         $promotion = $this->promotionRepository->detail($slug);
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);

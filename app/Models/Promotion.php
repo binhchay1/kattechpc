@@ -15,7 +15,7 @@ class Promotion extends Model
     use Sluggable;
 
     protected $fillable = [
-        'title', 'slug', 'content'
+        'title', 'slug', 'content','start_date', 'end_date','image'
     ];
 
     public function sluggable(): array
