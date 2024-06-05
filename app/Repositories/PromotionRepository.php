@@ -43,7 +43,7 @@ class PromotionRepository extends BaseRepository
     
     public function promotionHome()
     {
-        return $this->model->orderBy('created_at', 'DESC')->take(10)->get();
+        return $this->model->orderBy('created_at', 'DESC')->get()->take(5);
     }
     
     public function promotionRandom()
@@ -53,7 +53,7 @@ class PromotionRepository extends BaseRepository
     
     public function promotionDESC()
     {
-        return $this->model->orderBy('created_at', 'DESC')->get()->take(3);
+        return $this->model->orderBy('created_at', 'DESC')->get();
     }
     
     public function detail($slug)

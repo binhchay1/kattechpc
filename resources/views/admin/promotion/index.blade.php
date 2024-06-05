@@ -40,8 +40,12 @@
 
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">
                                     {{__('Tiêu đề')}}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">
+                                    {{__('Hình ảnh')}}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">
+                                    {{__('Ngày bắt đầu')}}</th>
 
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{__('Tên miền')}}
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{__('Ngày kết thúc')}}
                                 </th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{__('Nội dung')}}
                                 </th>
@@ -55,9 +59,15 @@
 
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$promotion->title}}
                                     </td>
-
-
-                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$promotion->slug}}
+                                    <td>
+                                        <div class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
+                                            <img src="{{$promotion->image}}" class="h-10 rounded-full">
+                                        </div>
+                                    </td>
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$promotion->start_date}}
+                                    </td>
+                                    <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{$promotion->end_date}}
+                                    </td>
                                     </td>
                                     <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{!! Str::limit(strip_tags(html_entity_decode($promotion->content)), 30)!!}
                                     </td>
