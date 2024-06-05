@@ -103,7 +103,10 @@
                     @endforeach
                 </tbody>
             </table>
-            {!! $orderStatic->links() !!}
+            <div style="margin-top: 15px;">
+                {!! $orderStatic->links() !!}
+            </div>
+
         </div>
     </div>
 </div>
