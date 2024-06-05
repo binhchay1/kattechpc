@@ -52,7 +52,7 @@
                             <input type="text" id="fname" name="email" placeholder="{{__('Địa chỉ email')}}">
                         </div>
                         @if ($errors->has('email'))
-                            <span class="text-danger">{{ $errors->first('email') }}<span class="require-field">*</span></span>
+                        <span class="text-danger">{{ $errors->first('email') }}<span class="require-field">*</span></span>
                         @endif
                     </div>
                     <div class="row">
@@ -74,7 +74,7 @@
                             <option value="" selected>Chọn tỉnh thành</option>
                         </select>
                         @if ($errors->has('province'))
-                            <span class="text-danger">{{ $errors->first('province') }}</span>
+                        <span class="text-danger">{{ $errors->first('province') }}</span>
                         @endif
                     </div>
                     <div class="row">
@@ -85,7 +85,7 @@
                             <option value="" selected>Chọn quận huyện</option>
                         </select>
                         @if ($errors->has('district'))
-                            <span class="text-danger">{{ $errors->first('district') }}</span>
+                        <span class="text-danger">{{ $errors->first('district') }}</span>
                         @endif
                     </div>
                     <div class="row">
@@ -96,7 +96,7 @@
                             <option value="" selected>Chọn phường xã</option>
                         </select>
                         @if ($errors->has('ward'))
-                            <span class="text-danger">{{ $errors->first('ward') }}</span>
+                        <span class="text-danger">{{ $errors->first('ward') }}</span>
                         @endif
                     </div>
                     <div class="row">
@@ -138,7 +138,7 @@
                             <input type="text" id="fname" name="email" placeholder="{{__('Địa chỉ email')}}">
                         </div>
                         @if ($errors->has('email'))
-                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                        <span class="text-danger">{{ $errors->first('email') }}</span>
                         @endif
                     </div>
                     <div class="row">
@@ -182,7 +182,7 @@
                             <option value="" selected>Chọn phường xã</option>
                         </select>
                         @if ($errors->has('ward'))
-                            <span class="text-danger">{{ $errors->first('ward') }}</span>
+                        <span class="text-danger">{{ $errors->first('ward') }}</span>
                         @endif
                     </div>
                     <div class="row">
@@ -214,7 +214,7 @@
 
                 @foreach($dataCart as $product)
                 <div class="basket-product" id="item-cart">
-                    <div class="item" >
+                    <div class="item">
                         <div class="product-image">
                             <?php $image = json_decode($product->attributes->image, true); ?>
                             <img src="{{ asset($image[0])}}" alt="Placholder Image 2" class="product-frame">
@@ -224,7 +224,6 @@
                         </div>
                     </div>
 
-{{--                    <div class="price get-total">{{ number_format($product->price, 0, '.', '.') }} đ</div>--}}
                     <div class="quantity " id="quantity-cart">
                         <input type="number" value="{{ $product->quantity }}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{ $product->id }}')">
                     </div>
@@ -300,51 +299,50 @@
 
 @section('js')
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <script>
-        var citis = document.getElementById("city");
-        var districts = document.getElementById("district");
-        var wards = document.getElementById("ward");
-        var Parameter = {
-            url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
-            method: "GET",
-            responseType: "application/json",
-        };
-        var promise = axios(Parameter);
-        promise.then(function (result) {
-            renderCity(result.data);
-        });
-
-        function renderCity(data) {
-            for (const x of data) {
-                citis.options[citis.options.length] = new Option(x.Name, x.Name);
-            }
-            citis.onchange = function () {
-                district.length = 1;
-                ward.length = 1;
-                if(this.value != ""){
-                    const result = data.filter(n => n.Name === this.value);
-
-                    for (const k of result[0].Districts) {
-                        district.options[district.options.length] = new Option(k.Name, k.Name);
-                    }
-                }
-            };
-            district.onchange = function () {
-                ward.length = 1;
-                const dataCity = data.filter((n) => n.Name === citis.value);
-                if (this.value != "") {
-                    const dataWards = dataCity[0].Districts.filter(n => n.Name === this.value)[0].Wards;
-
-                    for (const w of dataWards) {
-                        wards.options[wards.options.length] = new Option(w.Name, w.Name);
-                    }
-                }
-            };
-        }
-    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script>
+    var citis = document.getElementById("city");
+    var districts = document.getElementById("district");
+    var wards = document.getElementById("ward");
+    var Parameter = {
+        url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+        method: "GET",
+        responseType: "application/json",
+    };
+    var promise = axios(Parameter);
+    promise.then(function(result) {
+        renderCity(result.data);
+    });
+
+    function renderCity(data) {
+        for (const x of data) {
+            citis.options[citis.options.length] = new Option(x.Name, x.Name);
+        }
+        citis.onchange = function() {
+            district.length = 1;
+            ward.length = 1;
+            if (this.value != "") {
+                const result = data.filter(n => n.Name === this.value);
+
+                for (const k of result[0].Districts) {
+                    district.options[district.options.length] = new Option(k.Name, k.Name);
+                }
+            }
+        };
+        district.onchange = function() {
+            ward.length = 1;
+            const dataCity = data.filter((n) => n.Name === citis.value);
+            if (this.value != "") {
+                const dataWards = dataCity[0].Districts.filter(n => n.Name === this.value)[0].Wards;
+
+                for (const w of dataWards) {
+                    wards.options[wards.options.length] = new Option(w.Name, w.Name);
+                }
+            }
+        };
+    }
+
     $(document).ready(function() {
         $(".btn-submit").click(function(e) {
             e.preventDefault();
@@ -396,5 +394,4 @@
         }
     }
 </script>
-
 @endsection
