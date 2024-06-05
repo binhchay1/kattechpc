@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\promotionRequest;
-use App\Repositories\promotionRepository;
-use Illuminate\Http\Request;
+use App\Repositories\PromotionRepository;
 use Illuminate\Support\Str;
 
 class PromotionController extends Controller
@@ -36,6 +35,11 @@ class PromotionController extends Controller
         $input = $request->except(['_token']);
         $input = $request->all();
         $input['slug'] =  Str::slug($input['title']);
+        if (isset($input['image'])) {
+            $input['image']->move(public_path('images/upload/promotion/'), $input['image']->getClientOriginalName());
+            $path = '/images/upload/promotion/' . $input['image']->getClientOriginalName();
+            $input['image'] = $path;
+        }
         $this->promotionRepository->create($input);
 
         return redirect()->route('admin.promotion.index')->with('success',  __('Bài quảng cáo được thêm thành công'));

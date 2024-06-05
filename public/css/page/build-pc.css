@@ -499,6 +499,11 @@ body {
     margin-top: 15px;
 }
 
+.fa-angle-right {
+    margin-left: 5px;
+    margin-top: 2px;
+}
+
 @media screen and (max-width: 992px) {
     .popup-select {
         width: 100%;

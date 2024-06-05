@@ -29,12 +29,13 @@
             <div class="title-c-ct input-address">{{ __('THÔNG TIN KHÁCH HÀNG') }}</div>
         </a>
         <div class="product-data">
+            <h3 style="font-style: italic; color: #e31223">{{ __('Các thông tin * bắt buộc nhập') }}</h3>
             @if(Auth::user())
             <div class="basket" id="info-user">
                 <div class="basket-module">
                     <div class="row">
                         <div class="col-25">
-                            <label for="fname" class="label">{{__('Họ tên')}}</label>
+                            <label for="fname" class="label">{{__('Họ tên')}}<span class="require-field">*</span></label>
                         </div>
                         <div class="col-75">
                             <input type="text" id="fname" name="name" value="{{Auth::user()->name}}" placeholder="{{ __('Họ và tên') }}">
@@ -45,18 +46,18 @@
                     </div>
                     <div class="row">
                         <div class="col-25">
-                            <label for="fname" class="label">{{__('Email')}}</label>
+                            <label for="fname" class="label">{{__('Email')}}<span class="require-field">*</span></label>
                         </div>
                         <div class="col-75">
                             <input type="text" id="fname" name="email" placeholder="{{__('Địa chỉ email')}}">
                         </div>
                         @if ($errors->has('email'))
-                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                        <span class="text-danger">{{ $errors->first('email') }}<span class="require-field">*</span></span>
                         @endif
                     </div>
                     <div class="row">
                         <div class="col-25">
-                            <label for="fname" class="label">{{__('Số điện thoại')}}</label>
+                            <label for="fname" class="label">{{__('Số điện thoại')}}<span class="require-field">*</span></label>
                         </div>
                         <div class="col-75">
                             <input type="text" id="fname" name="phone" value="{{Auth::user()->phone}}" placeholder="{{ __('Số điện thoại') }}">
@@ -67,40 +68,40 @@
                     </div>
                     <div class="row">
                         <div class="col-25">
-                            <label for="fname" class="label">{{__('Tỉnh/Thành phố')}}</label>
+                            <label for="fname" class="label">{{__('Tỉnh/Thành phố')}}<span class="require-field">*</span></label>
                         </div>
                         <select class="form-select form-select-sm mb-3 selected-name" id="city" aria-label=".form-select-sm" name="province">
                             <option value="" selected>Chọn tỉnh thành</option>
                         </select>
                         @if ($errors->has('province'))
-                            <span class="text-danger">{{ $errors->first('province') }}</span>
+                        <span class="text-danger">{{ $errors->first('province') }}</span>
                         @endif
                     </div>
                     <div class="row">
                         <div class="col-25">
-                            <label for="fname" class="label">{{__('Quận/huyện')}}</label>
+                            <label for="fname" class="label">{{__('Quận/huyện')}}<span class="require-field">*</span></label>
                         </div>
                         <select class="form-select form-select-sm mb-3 selected-name" id="district" aria-label=".form-select-sm" name="district">
                             <option value="" selected>Chọn quận huyện</option>
                         </select>
                         @if ($errors->has('district'))
-                            <span class="text-danger">{{ $errors->first('district') }}</span>
+                        <span class="text-danger">{{ $errors->first('district') }}</span>
                         @endif
                     </div>
                     <div class="row">
                         <div class="col-25">
-                            <label for="fname" class="label">{{__('Phường/xã')}}</label>
+                            <label for="fname" class="label">{{__('Phường/xã')}}<span class="require-field">*</span></label>
                         </div>
                         <select class="form-select form-select-sm selected-name" id="ward" aria-label=".form-select-sm" name="ward">
                             <option value="" selected>Chọn phường xã</option>
                         </select>
                         @if ($errors->has('ward'))
-                            <span class="text-danger">{{ $errors->first('ward') }}</span>
+                        <span class="text-danger">{{ $errors->first('ward') }}</span>
                         @endif
                     </div>
                     <div class="row">
                         <div class="col-25">
-                            <label for="fname" class="label">{{__('Địa chỉ')}}</label>
+                            <label for="fname" class="label">{{__('Địa chỉ')}}<span class="require-field">*</span></label>
                         </div>
                         <div class="col-75">
                             <input type="text" id="fname" name="address" value="{{Auth::user()->address}}" placeholder="{{ __('Địa chỉ') }}">
@@ -120,7 +121,7 @@
                 <div class="basket-module">
                     <div class="row">
                         <div class="col-25">
-                            <label for="fname" class="label">{{__('Họ tên')}}</label>
+                            <label for="fname" class="label">{{__('Họ tên')}}<span class="require-field">*</span></label>
                         </div>
                         <div class="col-75">
                             <input type="text" id="fname" name="name" placeholder="{{__('Họ và tên')}}">
@@ -131,18 +132,18 @@
                     </div>
                     <div class="row">
                         <div class="col-25">
-                            <label for="fname" class="label">{{__('Email')}}</label>
+                            <label for="fname" class="label">{{__('Email')}}<span class="require-field">*</span></label>
                         </div>
                         <div class="col-75">
                             <input type="text" id="fname" name="email" placeholder="{{__('Địa chỉ email')}}">
                         </div>
                         @if ($errors->has('email'))
-                            <span class="text-danger">{{ $errors->first('email') }}</span>
+                        <span class="text-danger">{{ $errors->first('email') }}</span>
                         @endif
                     </div>
                     <div class="row">
                         <div class="col-25">
-                            <label for="fname" class="label">{{__('Số điện thoại')}}</label>
+                            <label for="fname" class="label">{{__('Số điện thoại')}}<span class="require-field">*</span></label>
                         </div>
                         <div class="col-75">
                             <input type="text" id="fname" name="phone" placeholder="{{__('Số điện thoại')}}">
@@ -153,7 +154,7 @@
                     </div>
                     <div class="row">
                         <div class="col-25">
-                            <label for="fname" class="label">{{__('Tỉnh/Thành phố')}}</label>
+                            <label for="fname" class="label">{{__('Tỉnh/Thành phố')}}<span class="require-field">*</span></label>
                         </div>
                         <select class="form-select form-select-sm mb-3 selected-name" id="city" aria-label=".form-select-sm" name="province">
                             <option value="" selected>Chọn tỉnh thành</option>
@@ -164,7 +165,7 @@
                     </div>
                     <div class="row">
                         <div class="col-25">
-                            <label for="fname" class="label">{{__('Quận/huyện')}}</label>
+                            <label for="fname" class="label">{{__('Quận/huyện')}}<span class="require-field">*</span></label>
                         </div>
                         <select class="form-select form-select-sm mb-3 selected-name" id="district" aria-label=".form-select-sm" name="district">
                             <option value="" selected>Chọn quận huyện</option>
@@ -175,18 +176,18 @@
                     </div>
                     <div class="row">
                         <div class="col-25">
-                            <label for="fname" class="label">{{__('Phường/xã')}}</label>
+                            <label for="fname" class="label">{{__('Phường/xã')}}<span class="require-field">*</span></label>
                         </div>
                         <select class="form-select form-select-sm selected-name" id="ward" aria-label=".form-select-sm" name="ward">
                             <option value="" selected>Chọn phường xã</option>
                         </select>
                         @if ($errors->has('ward'))
-                            <span class="text-danger">{{ $errors->first('ward') }}</span>
+                        <span class="text-danger">{{ $errors->first('ward') }}</span>
                         @endif
                     </div>
                     <div class="row">
                         <div class="col-25">
-                            <label for="fname" class="label">{{__('Địa chỉ')}}</label>
+                            <label for="fname" class="label">{{__('Địa chỉ')}}<span class="require-field">*</span></label>
                         </div>
                         <div class="col-75">
                             <input type="text" id="fname" name="address" placeholder="{{__('Địa chỉ')}}">
@@ -213,7 +214,7 @@
 
                 @foreach($dataCart as $product)
                 <div class="basket-product" id="item-cart">
-                    <div class="item" >
+                    <div class="item">
                         <div class="product-image">
                             <?php $image = json_decode($product->attributes->image, true); ?>
                             <img src="{{ asset($image[0])}}" alt="Placholder Image 2" class="product-frame">
@@ -223,7 +224,6 @@
                         </div>
                     </div>
 
-{{--                    <div class="price get-total">{{ number_format($product->price, 0, '.', '.') }} đ</div>--}}
                     <div class="quantity " id="quantity-cart">
                         <input type="number" value="{{ $product->quantity }}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{ $product->id }}')">
                     </div>
@@ -299,51 +299,50 @@
 
 @section('js')
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <script>
-        var citis = document.getElementById("city");
-        var districts = document.getElementById("district");
-        var wards = document.getElementById("ward");
-        var Parameter = {
-            url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
-            method: "GET",
-            responseType: "application/json",
-        };
-        var promise = axios(Parameter);
-        promise.then(function (result) {
-            renderCity(result.data);
-        });
-
-        function renderCity(data) {
-            for (const x of data) {
-                citis.options[citis.options.length] = new Option(x.Name, x.Name);
-            }
-            citis.onchange = function () {
-                district.length = 1;
-                ward.length = 1;
-                if(this.value != ""){
-                    const result = data.filter(n => n.Name === this.value);
-
-                    for (const k of result[0].Districts) {
-                        district.options[district.options.length] = new Option(k.Name, k.Name);
-                    }
-                }
-            };
-            district.onchange = function () {
-                ward.length = 1;
-                const dataCity = data.filter((n) => n.Name === citis.value);
-                if (this.value != "") {
-                    const dataWards = dataCity[0].Districts.filter(n => n.Name === this.value)[0].Wards;
-
-                    for (const w of dataWards) {
-                        wards.options[wards.options.length] = new Option(w.Name, w.Name);
-                    }
-                }
-            };
-        }
-    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script>
+    var citis = document.getElementById("city");
+    var districts = document.getElementById("district");
+    var wards = document.getElementById("ward");
+    var Parameter = {
+        url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+        method: "GET",
+        responseType: "application/json",
+    };
+    var promise = axios(Parameter);
+    promise.then(function(result) {
+        renderCity(result.data);
+    });
+
+    function renderCity(data) {
+        for (const x of data) {
+            citis.options[citis.options.length] = new Option(x.Name, x.Name);
+        }
+        citis.onchange = function() {
+            district.length = 1;
+            ward.length = 1;
+            if (this.value != "") {
+                const result = data.filter(n => n.Name === this.value);
+
+                for (const k of result[0].Districts) {
+                    district.options[district.options.length] = new Option(k.Name, k.Name);
+                }
+            }
+        };
+        district.onchange = function() {
+            ward.length = 1;
+            const dataCity = data.filter((n) => n.Name === citis.value);
+            if (this.value != "") {
+                const dataWards = dataCity[0].Districts.filter(n => n.Name === this.value)[0].Wards;
+
+                for (const w of dataWards) {
+                    wards.options[wards.options.length] = new Option(w.Name, w.Name);
+                }
+            }
+        };
+    }
+
     $(document).ready(function() {
         $(".btn-submit").click(function(e) {
             e.preventDefault();
@@ -395,5 +394,4 @@
         }
     }
 </script>
-
 @endsection

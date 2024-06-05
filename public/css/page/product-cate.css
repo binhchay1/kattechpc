@@ -102,7 +102,7 @@
     line-height: 32px;
     margin-bottom: 12px;
     text-align: center;
-    color: white;
+    color: white !important;
 }
 
 .top-sale {
@@ -283,4 +283,66 @@
 
 .border-btn-red {
     border: 1px solid red !important;
+}
+
+@media screen and (max-width: 992px) {
+    .flex {
+        display: block !important;
+    }
+
+    .list-product-flex .product-item {
+        width: 100%;
+    }
+
+    .list-product-flex .product-item {
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+    }
+
+    #select-sort div {
+        margin-left: 10px !important;
+        margin-right: 10px !important;
+        margin-top: 10px;
+    }
+
+    .pagination {
+        padding: 0;
+    }
+
+    #select-price div {
+        margin-left: 10px !important;
+    }
+
+    #select-price {
+        display: flex !important;
+        flex-wrap: wrap;
+    }
+
+    #product-category-area button {
+        width: 10rem;
+    }
+
+    #select-price h2 {
+        margin-left: 10px;
+    }
+
+    #content-page .swiper-slide1 {
+        width: 100%;
+    }
+
+    #select-sort button {
+        width: 23rem;
+    }
+
+    #sort div {
+        margin-left: 10px;
+    }
+
+    #sort .flex-direction-column:not(:first-child) {
+        margin-top: 10px;
+    }
+
+    .sort div h2 {
+        margin-left: 10px;
+    }
 }

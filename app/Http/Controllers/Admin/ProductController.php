@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\Utility;
 use App\Enums\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
@@ -82,12 +81,6 @@ class ProductController extends Controller
 
         if (empty($input['title'])) {
             $input['title'] = $input['name'];
-        }
-
-        if (isset($input['status_guarantee'])) {
-            if (is_numeric($input['status_guarantee'])) {
-                $input['status_guarantee'] = $input['status_guarantee'] . ' tháng';
-            }
         }
 
         if (empty($input['short_description'])) {
@@ -210,12 +203,6 @@ class ProductController extends Controller
             }
 
             $input['detail_tech'] = json_encode($detail_tech);
-        }
-
-        if (isset($input['status_guarantee'])) {
-            if (is_numeric($input['status_guarantee'])) {
-                $input['status_guarantee'] = $input['status_guarantee'] . ' tháng';
-            }
         }
 
         if ($request->hasfile('image')) {
