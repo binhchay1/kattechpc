@@ -114,6 +114,15 @@
                         <input type="hidden" id="fname" name="order_date" value="{{$date}}" placeholder="{{ __('Địa chỉ') }}">
                         <input type="hidden" id="fname" name="status" value="0">
                     </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Ghi chú')}}<span class="require-field"></span></label>
+                        </div>
+                        <div class="col-75">
+                            <textarea type="text" id="fname" name="notes" value="" placeholder="{{ __('Ghi chú') }}"></textarea>
+                        </div>
+
+                    </div>
                 </div>
             </div>
             @else
@@ -198,6 +207,15 @@
                         <?php $date = date('Y-m-d H:i:s'); ?>
                         <input type="hidden" id="fname" name="order_date" value="{{$date}}" placeholder="{{__('Địa chỉ')}}">
                         <input type="hidden" id="fname" name="status" value="0" placeholder="{{__('Địa chỉ')}}">
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Ghi chú')}}<span class="require-field"></span></label>
+                        </div>
+                        <div class="col-75">
+                            <textarea type="text" id="fname" name="notes" value="" placeholder="{{ __('Ghi chú') }}"></textarea>
+                        </div>
+
                     </div>
                 </div>
             </div>
