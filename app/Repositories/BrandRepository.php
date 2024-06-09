@@ -36,4 +36,9 @@ class BrandRepository extends BaseRepository
     {
         return $this->model->where('id', $id)->delete();
     }
+
+    public function getBrandByName($name)
+    {
+        return $this->model->select('id')->where('name', $name)->first();
+    }
 }
