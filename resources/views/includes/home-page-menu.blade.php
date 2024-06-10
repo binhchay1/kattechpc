@@ -41,7 +41,7 @@
                     <p class="cat-2">{{ __('CHỌN THEO HÃNG') }}</p>
                     <div class="sub-cat-2-link">
                         @foreach($listCategory['brand'][$category->name] as $categoryBrand)
-                        <a href="">{{ $categoryBrand['name'] }}</a>
+                        <a href="{{ route('showDataCategory', $category->slug) }}?brand={{ $categoryBrand }}">{{ $categoryBrand }}</a>
                         @endforeach
                     </div>
                 </div>
@@ -62,10 +62,6 @@
                 @endforeach
                 @endif
                 @endif
-
-                <div class="sub-cat-2">
-                    <p class="cat-2">{{ __('PHỤ KIỆN') }} {{ strtoupper($category->name) }}</p>
-                </div>
             </div>
         </div>
         @endforeach

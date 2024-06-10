@@ -27,15 +27,16 @@ class CacheMenuDefined
             $listBrand = [];
             $listKeyword = [];
             $listCategory = $this->categoryRepository->getListCategory();
+
             foreach ($listCategory as $category) {
                 if (isset($category->products)) {
                     foreach ($category->products as $product) {
                         if (isset($product->brands)) {
                             if (!array_key_exists($category->name, $listBrand)) {
-                                $listBrand[$category->name][] = ['name' => $product->brands->name, 'slug' => $product->brands->slug];
+                                $listBrand[$category->name][] = $product->brands->name;
                             } else {
-                                if (!in_array($product->brands->name, $listBrand[$category->name])) {
-                                    $listBrand[$category->name][] = ['name' => $product->brands->name, 'slug' => $product->brands->slug];
+                                if(!in_array($product->brands->name, $listBrand[$category->name])) {
+                                    $listBrand[$category->name][] = $product->brands->name;
                                 }
                             }
                         }

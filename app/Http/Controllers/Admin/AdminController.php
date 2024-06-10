@@ -30,6 +30,18 @@ class AdminController extends Controller
         $this->visitorRepository = $visitorRepository;
     }
 
+    public function lang($locale)
+    {
+        if ($locale) {
+            App::setLocale($locale);
+            Session::put('lang', $locale);
+            Session::save();
+            return redirect()->back()->with('locale', $locale);
+        } else {
+            return redirect()->back();
+        }
+    }
+
     public function viewDashBoard()
     {
         $orderStatic = $this->orderRepository->getOrderForStatic();
@@ -59,7 +71,7 @@ class AdminController extends Controller
 
         return view('admin.dashboard', compact('orderStatic', 'productStatic'));
     }
-    
+
     public function detailDetail($id)
     {
         $orderDetail = $this->orderRepository->show($id);
@@ -67,22 +79,10 @@ class AdminController extends Controller
         foreach ($orderDetail->orderDetails as $detail) {
             $total += $detail->quantity * $detail->price;
         }
-    
-        $orderDetail->total = $total;
-        
-        return view('admin.order.order-detail', compact('orderDetail'));
-    }
 
-    public function lang($locale)
-    {
-        if ($locale) {
-            App::setLocale($locale);
-            Session::put('lang', $locale);
-            Session::save();
-            return redirect()->back()->with('locale', $locale);
-        } else {
-            return redirect()->back();
-        }
+        $orderDetail->total = $total;
+
+        return view('admin.order.order-detail', compact('orderDetail'));
     }
 
     public function listCustomContact()

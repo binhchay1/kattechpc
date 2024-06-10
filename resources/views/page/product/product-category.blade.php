@@ -146,7 +146,7 @@
                 @endif
                 <div class="d-flex flex-direction-column">
                     <label class="font-bold">{{ __('Thương hiệu') }}</label>
-                    <select class="mt-1">
+                    <select class="mt-1" id="brand-in-product-category">
                         <option value="all">{{ __('Tất cả') }}</option>
                         @foreach($dataBrand as $brand)
                         <option value="{{ $brand }}">{{ $brand }}</option>
@@ -259,6 +259,11 @@
             arrayParam[param] = val;
         }
     }
+
+    if(arrayParam['brand'] != undefined) {
+        $('#brand-in-product-category').val(arrayParam['brand']);
+    }
+
 
     $(document).ready(function() {
         var keyPrice = 'price';

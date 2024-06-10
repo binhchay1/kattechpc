@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Page;
 
 use App\Enums\Utility;
-use App\Models\Post;
 use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -17,6 +16,7 @@ use App\Repositories\PostRepository;
 use App\Repositories\PromotionRepository;
 use Illuminate\Http\Request;
 use App\Enums\Product;
+use App\Repositories\BrandRepository;
 use Cache;
 
 class HomeController extends Controller
@@ -29,6 +29,7 @@ class HomeController extends Controller
     protected $layoutRepository;
     protected $promotionRepository;
     protected $categoryPostRepository;
+    protected $brandRepository;
     protected $utility;
 
     public function __construct(
@@ -40,7 +41,8 @@ class HomeController extends Controller
         PostRepository $postRepository,
         LayoutRepository $layoutRepository,
         PromotionRepository $promotionRepository,
-        CategoryPostRepository $categoryPostRepository
+        CategoryPostRepository $categoryPostRepository,
+        BrandRepository $brandRepository
     ) {
         $this->utility = $utility;
         $this->productRepository = $productRepository;
@@ -51,6 +53,7 @@ class HomeController extends Controller
         $this->layoutRepository = $layoutRepository;
         $this->promotionRepository = $promotionRepository;
         $this->categoryPostRepository = $categoryPostRepository;
+        $this->brandRepository = $brandRepository;
     }
 
     public function lang($locale)
@@ -87,6 +90,70 @@ class HomeController extends Controller
         $listCategory = Cache::store('redis')->get($key);
 
         return view('page.other.payment', compact('listCategory'));
+    }
+
+    public function rules()
+    {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('page.other.rule', compact('listCategory'));
+    }
+
+    public function complaint()
+    {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('page.other.complaint', compact('listCategory'));
+    }
+
+    public function productPolicy()
+    {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('page.other.product-policy', compact('listCategory'));
+    }
+
+    public function businessPolicy()
+    {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('page.other.business-policy', compact('listCategory'));
+    }
+
+    public function electronicBill()
+    {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('page.other.electronic-bill', compact('listCategory'));
+    }
+
+    public function securityCustomer()
+    {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('page.other.security-customer', compact('listCategory'));
+    }
+
+    public function introduction()
+    {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('page.other.introduction', compact('listCategory'));
+    }
+
+    public function contactBusiness()
+    {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('page.other.contact-business', compact('listCategory'));
     }
 
     public function viewPromotion()
@@ -156,8 +223,8 @@ class HomeController extends Controller
         $postCategory = $this->categoryPostRepository->getCatePost($slug);
         $dataPostCategory = $this->categoryPostRepository->getCate($slug);
         $getPosts = $postCategory->posts;
-        $firstPosts1 = $getPosts->splice(0,1);
-        $firstPosts2 = $getPosts->splice(1,1);
+        $firstPosts1 = $getPosts->splice(0, 1);
+        $firstPosts2 = $getPosts->splice(1, 1);
         $postRandom3 = $getPosts->splice(1, 3);
         $postRandom4 = $getPosts->splice(1, 8);
 
@@ -174,55 +241,8 @@ class HomeController extends Controller
             'postRandom4',
             'postCategory',
             'listCategory',
-            'dataPostCategory'));
-    }
-
-    public function rules()
-    {
-        $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
-
-        return view('page.other.rule', compact('listCategory'));
-    }
-
-    public function complaint()
-    {
-        $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
-
-        return view('page.other.complaint', compact('listCategory'));
-    }
-
-    public function productPolicy()
-    {
-        $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
-
-        return view('page.other.product-policy', compact('listCategory'));
-    }
-
-    public function businessPolicy()
-    {
-        $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
-
-        return view('page.other.business-policy', compact('listCategory'));
-    }
-
-    public function electronicBill()
-    {
-        $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
-
-        return view('page.other.electronic-bill', compact('listCategory'));
-    }
-
-    public function securityCustomer()
-    {
-        $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
-
-        return view('page.other.security-customer', compact('listCategory'));
+            'dataPostCategory'
+        ));
     }
 
     public function viewHome()
@@ -347,6 +367,14 @@ class HomeController extends Controller
         $dataBrand = [];
         $dataCategories = [];
 
+        if ($isParent == 1) {
+            $dataComplete = $dataCategory->products;
+        } elseif ($isParent == 2) {
+            $dataComplete = $dataCategory->productChildren;
+        } else {
+            $dataComplete = [];
+        }
+
         if (isset($filters['price'])) {
             $listRangePrice = Product::RANGE_PRICE;
             if (array_key_exists($filters['price'], $listRangePrice)) {
@@ -355,7 +383,7 @@ class HomeController extends Controller
                 $toPrice = $rangePrice['to'];
                 $count = 0;
 
-                foreach ($dataCategory->products as $key => $productRange) {
+                foreach ($dataComplete as $key => $productRange) {
                     if (isset($productRange->new_price)) {
                         $priceForCheck = str_replace('.', '', $productRange->new_price);
                         $convertPrice = intval($priceForCheck);
@@ -365,48 +393,39 @@ class HomeController extends Controller
                     }
 
                     if ($convertPrice < $fromPrice or $convertPrice > $toPrice) {
-                        $dataCategory->products->forget($key);
+                        $dataComplete->forget($key);
                         $count++;
                     }
                 }
             }
         }
 
-        if ($isParent == 1) {
-            if (isset($dataCategory->products)) {
-                foreach ($dataCategory->products as $product) {
-                    if (isset($product->brands->name)) {
-                        if (!in_array($product->brands->name, $dataBrand)) {
-                            $dataBrand[] = $product->brands->name;
-                        }
+        if (isset($filters['brand'])) {
+            foreach ($dataComplete as $keyBrand => $productBrand) {
+                if ($productBrand->brands->name != $filters['brand']) {
+                    $dataComplete->forget($keyBrand);
+                }
+            }
+        }
+
+        if (isset($dataComplete)) {
+            foreach ($dataComplete as $product) {
+                if (isset($product->brands->name)) {
+                    if (!in_array($product->brands->name, $dataBrand)) {
+                        $dataBrand[] = $product->brands->name;
                     }
                 }
-
-                $dataCategories = $this->utility->paginate($dataCategory->products, 5);
-            } else {
-                $dataCategories = $this->utility->paginate([], 5);
             }
-        } elseif ($isParent == 2) {
-            if (isset($dataCategory->productChildren)) {
-                foreach ($dataCategory->productChildren as $product) {
-                    if (isset($product->brands->name)) {
-                        if (!in_array($product->brands->name, $dataBrand)) {
-                            $dataBrand[] = $product->brands->name;
-                        }
-                    }
-                }
 
-                $dataCategories = $this->utility->paginate($dataCategory->productChildren, 5);
-            } else {
-                $dataCategories = $this->utility->paginate([], 5);
-            }
+            $dataCategories = $this->utility->paginate($dataComplete, 15);
         } else {
-            $dataCategories = $this->utility->paginate([], 5);
+            $dataCategories = $this->utility->paginate([], 15);
         }
 
         $dataProducts = $this->categoryRepository->productSale($slug, $isParent);
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+
         if (count($dataCategories) > 0 and $isParent == 2) {
             $getParent = $this->getTopParent($this->categoryRepository->getParentWithKeyword($dataCategory->id));
             $listKeyWord = $getParent->categoryFilter;
@@ -423,22 +442,6 @@ class HomeController extends Controller
             return $category;
         }
 
-        return getTopParent($this->categoryRepository->getParentWithKeyword($category->id));
-    }
-
-    public function introduction()
-    {
-        $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
-
-        return view('page.other.introduction', compact('listCategory'));
-    }
-
-    public function contactBusiness()
-    {
-        $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
-
-        return view('page.other.contact-business', compact('listCategory'));
+        return $this->getTopParent($this->categoryRepository->getParentWithKeyword($category->parent));
     }
 }
