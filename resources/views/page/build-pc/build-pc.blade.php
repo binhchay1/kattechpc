@@ -133,6 +133,10 @@
                 }
             }
         };
+
+        // $('#js-holder-p_item').on('mouseover', '.p-item .p-img img', function() {
+        //     $('#tooltip-buildpc').show();
+        // });
     });
 
     function addToMenu(choose) {
