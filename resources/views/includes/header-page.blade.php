@@ -48,6 +48,25 @@
     </div>
 
     <div class="header-bottom">
+        <div class="container-hamburger">
+            <div class="row-hamburger">
+                <div class="menu-btn">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <nav class="navbar">
+                    <ul class="main-menu-category">
+                        <li class="list-items"><a href="">About</a></li>
+                        <li class="list-items"><a href="">Services</a></li>
+                        <li class="list-items"><a href="">Contact</a></li>
+                        <li class="list-items"><a href="">Blog</a></li>
+                    </ul>
+
+
+                </nav>
+            </div>
+
+        </div>
+
         <div class="header-bottom-container">
             <div class="logo">
                 <a href="/">
@@ -138,17 +157,123 @@
     </div>
 </div>
 
-<div class="sub-header-mobile">
-    <ul class="list-submenu list-submenu--mobile" id="menu-mb">
-        <li class="item-submenu sm-1">
-            @include('includes.home-page-menu')
-        </li>
-    </ul>
+{{--<div class="sub-header-mobile">--}}
+{{--    <ul class="list-submenu list-submenu--mobile" id="menu-mb">--}}
+{{--        <li class="item-submenu sm-1">--}}
+{{--            @include('includes.home-page-menu')--}}
+{{--        </li>--}}
+{{--    </ul>--}}
 
-    <div class="build-area build-area-mobile">
-        <a href="{{ route('buildPC') }}">
-            <i class="fa fa-screwdriver"></i>
-            <span>{{ __('Xây dựng cấu hình') }}</span>
-        </a>
-    </div>
-</div>
+{{--    <div class="build-area build-area-mobile">--}}
+{{--        <a href="{{ route('buildPC') }}">--}}
+{{--            <i class="fa fa-screwdriver"></i>--}}
+{{--            <span>{{ __('Xây dựng cấu hình') }}</span>--}}
+{{--        </a>--}}
+{{--    </div>--}}
+{{--</div>--}}
+
+
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: sans-serif;
+    }
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    ul {
+        list-style: none;
+    }
+    .row-hamburger {
+        width: 80%;
+        margin: auto;
+    }
+    .logo {
+        font-size: 1.5rem;
+    }
+    .navbar {
+        display: flex;
+
+        justify-content: space-between;
+        height: 50px;
+        align-items: center;
+    }
+    .navbar .main-menu-category {
+        display: flex;
+    }
+    .main-menu-category li a {
+        display: inline-block;
+        padding: 10px 20px;
+    }
+    li a:hover {
+        background-color: blue;
+    }
+    .menu-btn {
+        display: none;
+    }
+
+    .row-content h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .row-content p {
+        font-size: 1.2rem;
+        text-align: center;
+        line-height: 1.6;
+    }
+
+    @media screen and (max-width: 768px) {
+        .main-menu-category {
+            margin-top: 20px;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            background-color: #252525;
+            transition: 0.5s all ease;
+             /*visibility: hidden;*/
+            display: none;
+            transform: translateX(-800px);
+            padding-top: 60px;
+        }
+
+
+
+        .main-menu-category.show {
+            transform: translateX(0px);
+            transition: 0.5s all ease;
+        }
+        .main-menu-category li a {
+            margin-bottom: 10px;
+            display: block;
+            color: white;
+        }
+        .menu-btn {
+            display: block;
+            position: absolute;
+            color: black;
+            top: 35px;
+            right: 30px;
+            font-size: 2rem;
+            margin-left: 10px;
+            left: 0;
+        }
+    }
+
+</style>
+
+<script>
+    document.querySelector(".menu-btn").addEventListener("click", abc);
+    function abc() {
+        document.querySelector(".main-menu-category").classList.toggle("show");
+    }
+
+</script>
