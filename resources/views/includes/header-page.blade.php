@@ -48,6 +48,70 @@
     </div>
 
     <div class="header-bottom">
+        <div class="container-hamburger">
+            <div class="row-hamburger">
+                <div class="menu-btn">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <nav class="navbar">
+                    <ul class="main-menu-category">
+                        <li class="list-items">
+                            <div class="search-mobile ">
+                                <div class="input-search">
+                                    <form name="search" method="get" action="{{ route('search') }}">
+                                        <div class="input-text"><input type="text" name="q" class="inline-search1" placeholder="Tìm kiếm" autocomplete="off" field_signature="1012080445"></div>
+                                        <button type="submit" class="button-search"><i class="fa fa-search"></i></button>
+                                    </form>
+
+                                    <div class="autocomplete-suggestions list" id="js-search-result">
+                                        <div class="list">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        @foreach($listCategory['default'] as $category)
+                            @if($category->status == 0)
+                                @continue
+                            @endif
+                            <li class="list-items"><a href="">{{ $category->name }}</a></li>
+                        @endforeach
+                        <li class="list-items"><a href="{{ route('post') }}">{{__("Tin công nghệ")}}</a></li>
+                        <li class="list-items"><a href="{{ route('payment') }}">{{__("Hướng dẫn thanh toán")}}</a></li>
+                        <li class="list-items"><a href="{{ route('policy') }}">{{__("Chính sách bảo hành")}}</a></li>
+                        <li class="list-items">
+                        @if(Auth::check())
+                            <div class="ml-15px dropdown">
+                                <a href="" class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
+                                <div class="dropdown-content">
+                                    <a href="{{ route('profile') }}">{{ __('Tài khoản') }}</a>
+                                    <a href="{{ route('orderHistory') }}">{{ __('Lịch sử mua hàng') }}</a>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <a onclick="this.closest('form').submit();return false;">
+                                            {{__('Đăng xuất')}}
+                                        </a>
+                                    </form>
+                                </div>
+                            </div>
+                        @else
+                            <div class="">
+                                <a href="/register" class="sep-item-link" target="_blank"><i class="fa fa-address-book"></i> {{ __('Đăng ký') }}</a>
+                            </div>
+                            <div class="">
+                                <a href="/login" class="sep-item-link" target="_blank"><i class="fa fa-home"></i> {{ __('Đăng nhập') }}</a>
+                            </div>
+                        @endif
+                        </li>
+                    </ul>
+
+
+                </nav>
+            </div>
+
+        </div>
+
         <div class="header-bottom-container">
             <div class="logo">
                 <a href="/">
@@ -55,7 +119,7 @@
                 </a>
             </div>
 
-            <div class="search-area ml-40px">
+            <div class="search-area">
                 <div class="input-search">
                     <form name="search" method="get" action="{{ route('search') }}">
                         <div class="input-text"><input type="text" name="q" class="inline-search" placeholder="Nhập tên sản phẩm, từ khóa cần tìm" autocomplete="off" field_signature="1012080445"></div>
@@ -138,17 +202,146 @@
     </div>
 </div>
 
-<div class="sub-header-mobile">
-    <ul class="list-submenu list-submenu--mobile" id="menu-mb">
-        <li class="item-submenu sm-1">
-            @include('includes.home-page-menu')
-        </li>
-    </ul>
+{{--<div class="sub-header-mobile">--}}
+{{--    <ul class="list-submenu list-submenu--mobile" id="menu-mb">--}}
+{{--        <li class="item-submenu sm-1">--}}
+{{--            @include('includes.home-page-menu')--}}
+{{--        </li>--}}
+{{--    </ul>--}}
 
-    <div class="build-area build-area-mobile">
-        <a href="{{ route('buildPC') }}">
-            <i class="fa fa-screwdriver"></i>
-            <span>{{ __('Xây dựng cấu hình') }}</span>
-        </a>
-    </div>
-</div>
+{{--    <div class="build-area build-area-mobile">--}}
+{{--        <a href="{{ route('buildPC') }}">--}}
+{{--            <i class="fa fa-screwdriver"></i>--}}
+{{--            <span>{{ __('Xây dựng cấu hình') }}</span>--}}
+{{--        </a>--}}
+{{--    </div>--}}
+{{--</div>--}}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<style>
+
+    body {
+        font-family: sans-serif;
+    }
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    .main-menu-category .list-items{
+        display: none;
+    }
+
+    .row-hamburger {
+        width: 80%;
+        margin: auto;
+    }
+    .logo {
+        font-size: 1.5rem;
+    }
+    .navbar {
+        display: flex;
+
+        justify-content: space-between;
+        height: 50px;
+        align-items: center;
+    }
+    .navbar .main-menu-category {
+        display: flex;
+    }
+    .main-menu-category li a {
+        display: inline-block;
+        padding: 10px 20px;
+    }
+
+    .menu-btn {
+        display: none;
+    }
+
+    .row-content h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .row-content p {
+        font-size: 1.2rem;
+        text-align: center;
+        line-height: 1.6;
+    }
+
+    @media screen and (max-width: 768px) {
+        .main-menu-category {
+            margin-top: 20px;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 80%;
+            height: 100%;
+            flex-direction: column;
+            background-color: white;
+            transition: 0.5s all ease;
+             /*visibility: hidden;*/
+            display: none;
+            transform: translateX(-800px);
+            padding-top: 30px;
+        }
+
+        .show-search .search-mobile {
+            display: block;
+        }
+
+        .main-menu-category .list-items{
+            display: block;
+            list-style:none;
+        }
+
+        .inline-search1 {
+            height: 42px;
+            margin: 0;
+            padding: 0 40px;
+            font-size: 13px;
+            outline: 0;
+            border: 2px solid var(--color-primary);
+            border-radius: 95px 0 0 99px;
+        }
+
+
+        .main-menu-category.show {
+            transform: translateX(-36px);
+            transition: 0.5s all ease;
+        }
+        .main-menu-category li a {
+            margin-bottom: 10px;
+            display: block;
+            color: grey;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .menu-btn {
+            display: block;
+            position: absolute;
+            color: black;
+            top: 35px;
+            right: 30px;
+            font-size: 2rem;
+            margin-left: 10px;
+            left: 0;
+        }
+
+        .lock-scroll {
+            overflow: hidden;
+        }
+    }
+
+</style>
+
+<script>
+    document.querySelector(".menu-btn").addEventListener("click", abc);
+    function abc() {
+        document.querySelector(".main-menu-category").classList.toggle("show");
+        document.body.classList.toggle('lock-scroll');
+    }
+
+
+
+</script>
