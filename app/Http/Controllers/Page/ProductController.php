@@ -75,31 +75,31 @@ class ProductController extends Controller
                 }
             }
         }
-        
+
         $countRate = DB::table('ratings')
 //            ->where("rating_product", )
             ->where('product_id', $getProduct)->count();
-        
+
         $countRate1 = DB::table('ratings')
         ->where("rating_product", "=", 1 )
         ->where('product_id', $getProduct)->count();
-    
+
         $countRate2 = DB::table('ratings')
             ->where("rating_product", "=", 2 )
             ->where('product_id', $getProduct)->count();
-    
+
         $countRate3 = DB::table('ratings')
             ->where("rating_product", "=", 3 )
             ->where('product_id', $getProduct)->count();
-    
+
         $countRate4 = DB::table('ratings')
             ->where("rating_product", "=", 4 )
             ->where('product_id', $getProduct)->count();
-    
+
         $countRate5 = DB::table('ratings')
             ->where("rating_product", "=", 5 )
             ->where('product_id', $getProduct)->count();
-    
+
 
         $productRelated = $this->productRepository->getProductRelated($dataProduct->category_id, $dataProduct->id);
         $view = $dataProduct->views + 1;

@@ -204,17 +204,13 @@
 }
 
 .list-product-flex .product-item {
-    width: 29.4%;
+    width: 31.2%;
     display: flex;
     -webkit-box-pack: justify;
     justify-content: space-between;
     gap: 12px;
     min-height: auto;
     margin-top: 20px;
-}
-
-.list-product-flex .product-item:not(:first-child) {
-    margin-left: 20px;
 }
 
 .flex-wrap {
@@ -267,7 +263,13 @@
     margin-left: 10px;
 }
 
-#sort div:not(:first-child) {
+#sort {
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+#sort div {
+    margin-top: 10px;
     margin-left: 10px;
 }
 

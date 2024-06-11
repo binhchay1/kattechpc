@@ -132,7 +132,7 @@
                 <h2>{{ __('Lọc theo tiêu chí:') }}</h2>
             </div>
 
-            <div class="flex sort" id="sort" style="flex-wrap: wrap;">
+            <div class="flex sort" id="sort">
                 @if(isset($dataCategory->children))
                 <div class="d-flex flex-direction-column">
                     <label class="font-bold">{{ __('Nhu cầu') }}</label>
@@ -158,7 +158,7 @@
                 @foreach($listKeyWord as $item)
                 <div class="d-flex flex-direction-column">
                     <label class="font-bold">{{ $item->title }}</label>
-                    <select class="mt-1">
+                    <select class="mt-1 select-keyword" data-id="{{ $item->id }}" onchange="sortByKeyWord()">
                         <option value="all">{{ __('Tất cả') }}</option>
 
                         @php
@@ -263,7 +263,6 @@
     if (arrayParam['brand'] != undefined) {
         $('#brand-in-product-category').val(arrayParam['brand']);
     }
-
 
     $(document).ready(function() {
         var keyPrice = 'price';
@@ -382,5 +381,32 @@
             window.location.href = url;
         });
     });
+
+    function sortByKeyWord() {
+        let listKeyWord = $('.select-keyword');
+        let listValKeyWord = {};
+        for (let i = 0; i < listKeyWord.length; i++) {
+            let valKeyWord = listKeyWord[i].value;
+            let idKeyWord = listKeyWord[i].getAttribute('data-id');
+            listValKeyWord[idKeyWord] = valKeyWord;
+        }
+
+        let url = location.protocol + '//' + location.host + location.pathname;
+        let count = 0;
+        for (var k in arrayParam) {
+            if (k != 'price') {
+                if (arrayParam.hasOwnProperty(k)) {
+                    if (count == 0) {
+                        url += '?' + k + '=' + arrayParam[k];
+                        count++;
+                    } else {
+                        url += '&' + k + '=' + arrayParam[k];
+                    }
+                }
+            }
+        }
+
+        window.location.href = url;
+    }
 </script>
 @endsection

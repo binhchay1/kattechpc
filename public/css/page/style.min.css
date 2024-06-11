@@ -1575,3 +1575,7 @@ a {
 .addCart {
     cursor: pointer;
 }
+
+#js-search-result {
+    display: none;
+}
