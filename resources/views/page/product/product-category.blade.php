@@ -157,7 +157,7 @@
                 @if(isset($listKeyWord))
                 @foreach($listKeyWord as $item)
                 <div class="d-flex flex-direction-column">
-                    <label class="font-bold">{{ __($item->title) }}</label>
+                    <label class="font-bold">{{ $item->title }}</label>
                     <select class="mt-1">
                         <option value="all">{{ __('Tất cả') }}</option>
 
@@ -260,14 +260,14 @@
         }
     }
 
-    if(arrayParam['brand'] != undefined) {
+    if (arrayParam['brand'] != undefined) {
         $('#brand-in-product-category').val(arrayParam['brand']);
     }
 
 
     $(document).ready(function() {
         var keyPrice = 'price';
-        var keySort ='sort';
+        var keySort = 'sort';
 
         if (keyPrice in arrayParam) {
             let priceCurrent = $("div").find("[data-id='" + arrayParam[keyPrice] + "']");
