@@ -75,25 +75,10 @@ class ProductRepository extends BaseRepository
         })->orderBy('created_at', 'DESC')->get();
     }
 
-    public function getListProductForBuild($arrID, $filter)
+    public function getListProductForBuild($arrID)
     {
         $query = $this->model->with('category', 'productImages', 'brands')->whereIn('category_id', $arrID);
-        if (!empty($filter)) {
-            if (array_key_exists('sort', $filter)) {
-                $sort = $filter['sort'];
-                if ($sort == 'newest') {
-                    $query = $query->orderBy('created_at', 'desc');
-                }
 
-                if ($sort == 'price-asc') {
-                    $query = $query->orderBy('price', 'asc');
-                }
-
-                if ($sort == 'price-desc') {
-                    $query = $query->orderBy('created_at', 'desc');
-                }
-            }
-        }
         return $query->get();
     }
 

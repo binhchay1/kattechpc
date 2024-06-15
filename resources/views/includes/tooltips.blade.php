@@ -30,7 +30,7 @@
     <div class="box-tooltip-gift">
         <div class="tooltip-input tooltip-gift">
             <p class="icon-gift">
-                <i class="fa-solid fa-gift"></i>
+                <i class="fa fa-gift"></i>
                 {{ __('Khuyến mãi') }}
             </p>
         </div>

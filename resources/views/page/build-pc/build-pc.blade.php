@@ -133,6 +133,52 @@
                 }
             }
         };
+
+        $('#js-holder-p_item').on('mouseover', '.p-item .p-img img', function() {
+            let title = $(this).attr('data-title');
+            let price = $(this).attr('data-price');
+            let new_price = $(this).attr('data-new-price');
+            let sale_detail = $(this).attr('data-sale-detail');
+            let status_guarantee = $(this).attr('data-status-guarantee');
+            let status = $(this).attr('data-status');
+
+            if (new_price == '' || new_price == null) {
+                $('#title-new-price-buildpc').hide();
+                $('#tooltips-new-price-buildpc').hide();
+                $('#tooltips-sale-price-buildpc').hide();
+                $('#tooltips-price-buildpc').removeClass('price-with-new-price');
+            } else {
+                $('#title-new-price-buildpc').show();
+                $('#tooltips-new-price-buildpc').show();
+                $('#tooltips-sale-price-buildpc').show();
+                let priceCur = parseInt(price.replaceAll('.', ''));
+                let newPriceCur = parseInt(new_price.replaceAll('.', ''));
+                let calPriceCur = Math.floor(100 - ((newPriceCur / priceCur) * 100));
+                $('#tooltips-price-buildpc').addClass('price-with-new-price');
+                $('#tooltips-sale-price-buildpc').html('-' + calPriceCur + '%');
+            }
+
+            if (sale_detail == '' || sale_detail == null) {
+                $('.tooltip-list-gift-buildpc').hide();
+            } else {
+                $('.tooltip-list-gift-buildpc').show();
+            }
+
+            $('.tooltip-name-buildpc').html(title);
+            $('#tooltips-price-buildpc').html(price);
+            $('#tooltips-new-price-buildpc').html(new_price);
+            $('#tooltips-status-guarantee-buildpc').html(status_guarantee);
+            $('#tooltips-status-storage-buildpc').html(status);
+            $('.tooltip-list-gift-buildpc').html(sale_detail);
+
+            $('#tooltip-buildpc').show();
+            $('#tooltip-buildpc').css('left', $(this).offset().left + 225);
+            $('#tooltip-buildpc').css('top', $(this).offset().top - 10);
+        });
+
+        $('#js-holder-p_item').on('mouseout', '.p-item .p-img img', function() {
+            $('#tooltip-buildpc').hide();
+        });
     });
 
     function addToMenu(choose) {
@@ -317,8 +363,10 @@
             let dataSendToAdd = JSON.stringify(val);
             let name = val.name;
             let code = val.code;
+            let title = val.title;
             let new_price = val.new_price;
             let price = val.price;
+            let sale_detail = val.sale_detail;
             let slug = val.slug;
             let image = JSON.parse(val.image);
             let urlProduct = '/product/' + slug;
@@ -336,7 +384,13 @@
             let stringAppend = `<div class="p-item"><div class="row">
                         <div class="col-lg-3">
                             <a href="` + urlProduct + `" class="p-img">
-                                <img src="` + image[0] + `">
+                                <img src="` + image[0] + `"
+                                data-title="` + title + `"
+                                data-price="` + price + `"
+                                data-new-price="` + new_price + `"
+                                data-sale-detail="` + sale_detail + `"
+                                data-status-guarantee="` + status_guarantee + `"
+                                data-status="` + status + `">
                             </a>
                         </div>
                         <div class="col-lg-6 info">

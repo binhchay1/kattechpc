@@ -183,8 +183,6 @@ $(document).ready(function () {
     $(".inline-search").on('keyup', function (e) {
         suggestionForSearch(this);
     });
-
-    $('#js-search-result').hide();
 });
 
 $(document).scroll(function () {
@@ -212,8 +210,8 @@ function suggestionForSearch(input) {
             },
             url: urlSuggest,
             success: function (result) {
+                console.log(result.length);
                 if (result.length > 0) {
-
                     $('#js-search-result .list').empty();
                     for (let i = 0; i < result.length; i++) {
                         let price = result[i].price;
@@ -232,10 +230,10 @@ function suggestionForSearch(input) {
                         $('#js-search-result .list').append(stringAppend);
                     }
 
-                    $('#js-search-result').show();
+                    $('#js-search-result').css('display', 'block');
                 } else {
                     $('#js-search-result .list').empty();
-                    $('#js-search-result').hide();
+                    $('#js-search-result').css('display', 'none');
                 }
             }
         });

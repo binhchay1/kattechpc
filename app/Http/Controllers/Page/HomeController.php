@@ -408,6 +408,36 @@ class HomeController extends Controller
             }
         }
 
+        if (isset($filters['sort'])) {
+            if ($filters['sort'] == 'new') {
+                $dataComplete = $dataComplete->sortByDesc('created_at');
+            }
+
+            if ($filters['sort'] == 'name') {
+                $dataComplete = $dataComplete->sortBy('name');
+            }
+
+            if ($filters['sort'] == 'price-asc' or $filters['sort'] == 'price-desc') {
+                foreach ($dataComplete as $dataForSort) {
+                    if ($dataForSort->new_price != null) {
+                        $currentPrice = (int) str_replace('.', '', $dataForSort->new_price);
+                    } else {
+                        $currentPrice = (int) str_replace('.', '', $dataForSort->price);
+                    }
+
+                    $dataForSort->current_price = $currentPrice;
+                }
+
+                if ($filters['sort'] == 'price-asc') {
+                    $dataComplete = $dataComplete->sortBy('current_price');
+                }
+
+                if ($filters['sort'] == 'price-desc') {
+                    $dataComplete = $dataComplete->sortByDesc('current_price');
+                }
+            }
+        }
+
         if (isset($dataComplete)) {
             foreach ($dataComplete as $product) {
                 if (isset($product->brands->name)) {

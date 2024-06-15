@@ -56,11 +56,7 @@ class BuildPCController extends Controller
         $price = $request->get('price');
         $brand = $request->get('brand');
 
-        if (isset($sort)) {
-            $filter['sort'] = $sort;
-        }
-
-        $products = $this->productRepository->getListProductForBuild($arrID, $filter);
+        $products = $this->productRepository->getListProductForBuild($arrID);
 
         if (isset($price)) {
             $listRangePrice = Product::RANGE_PRICE_BUILD_PC;
@@ -88,6 +84,32 @@ class BuildPCController extends Controller
             foreach ($products as $index => $productBrand) {
                 if ($productBrand->brands->name != $brand) {
                     $products->forget($index);
+                }
+            }
+        }
+
+        if (isset($sort)) {
+            if ($sort == 'newest') {
+                $products = $products->sortByDesc('created_at');
+            }
+
+            if ($sort == 'price-asc' or $sort == 'price-desc') {
+                foreach ($products as $productSort) {
+                    if ($productSort->new_price != null) {
+                        $currentPrice = (int) str_replace('.', '', $productSort->new_price);
+                    } else {
+                        $currentPrice = (int) str_replace('.', '', $productSort->price);
+                    }
+
+                    $productSort->current_price = $currentPrice;
+                }
+
+                if ($sort == 'price-asc') {
+                    $products = $products->sortBy('current_price');
+                }
+
+                if ($sort == 'price-desc') {
+                    $products = $products->sortByDesc('current_price');
                 }
             }
         }

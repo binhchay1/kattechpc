@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Category;
+use DB;
 
 class CategoryRepository extends BaseRepository
 
@@ -70,84 +71,8 @@ class CategoryRepository extends BaseRepository
     {
         if ($isParent == 1) {
             $query = $this->model->with('children', 'products', 'children.products.productImages', 'products.brands', 'children.products.brands', 'categoryFilter')->where('slug', $slug);
-
-            if (isset($filter['sort'])) {
-                if ($filter['sort'] == 'new') {
-                    $query->whereRelation(
-                        'products',
-                        function ($query) {
-                            $query->orderBy('products.created_at', 'desc');
-                        }
-                    );
-                }
-
-                if ($filter['sort'] == 'price-asc') {
-                    $query->whereRelation(
-                        'products',
-                        function ($query) {
-                            $query->orderBy('products.price', 'asc');
-                        }
-                    );
-                }
-
-                if ($filter['sort'] == 'price-desc') {
-                    $query->whereRelation(
-                        'products',
-                        function ($query) {
-                            $query->orderBy('products.price', 'desc');
-                        }
-                    );
-                }
-
-                if ($filter['sort'] == 'name') {
-                    $query->whereRelation(
-                        'products',
-                        function ($query) {
-                            $query->orderBy('products.name', 'asc');
-                        }
-                    );
-                }
-            }
         } else {
             $query = $this->model->with('productChildren')->where('slug', $slug);
-
-            if (isset($filter['sort'])) {
-                if ($filter['sort'] == 'new') {
-                    $query->whereRelation(
-                        'productChildren',
-                        function ($query) {
-                            $query->orderBy('products.created_at', 'desc');
-                        }
-                    );
-                }
-
-                if ($filter['sort'] == 'price-asc') {
-                    $query->whereRelation(
-                        'productChildren',
-                        function ($query) {
-                            $query->orderBy('products.price', 'asc');
-                        }
-                    );
-                }
-
-                if ($filter['sort'] == 'price-desc') {
-                    $query->whereRelation(
-                        'productChildren',
-                        function ($query) {
-                            $query->orderBy('products.price', 'desc');
-                        }
-                    );
-                }
-
-                if ($filter['sort'] == 'name') {
-                    $query->whereRelation(
-                        'productChildren',
-                        function ($query) {
-                            $query->orderBy('products.name', 'asc');
-                        }
-                    );
-                }
-            }
         }
 
         foreach ($filter as $key => $value) {
