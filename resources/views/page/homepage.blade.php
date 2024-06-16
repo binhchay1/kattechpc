@@ -9,6 +9,7 @@
 @endsection
 
 @section('content')
+<h1 style="position: absolute;top: -99999px">Kattech PC - Cửa Hàng Máy Tính PC Đồ Hoạ - Gaming chuyên nghiệp</h1>
 <section class="slider-banner">
     <div class="slider-banner-main">
         <div class="news-main">

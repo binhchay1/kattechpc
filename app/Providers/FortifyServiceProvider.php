@@ -16,6 +16,7 @@ use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Contracts\LoginResponse;
+use Cache;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -36,6 +37,20 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
+
+        Fortify::loginView(function () {
+            $key = 'menu_homepage';
+            $listCategory = Cache::store('redis')->get($key);
+
+            return view('auth.login', compact('listCategory'));
+        });
+
+        Fortify::registerView(function () {
+            $key = 'menu_homepage';
+            $listCategory = Cache::store('redis')->get($key);
+
+            return view('auth.register', compact('listCategory'));
+        });
 
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())) . '|' . $request->ip());

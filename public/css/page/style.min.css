@@ -1579,3 +1579,7 @@ a {
 #js-search-result {
     display: none;
 }
+
+.list-breadcrumb {
+    list-style: none;
+}

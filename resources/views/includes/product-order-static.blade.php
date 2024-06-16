@@ -54,7 +54,7 @@
                     @foreach($orderStatic as $key => $order)
                     <?php if ($order->payment) {
                         $data = $order->payment;
-                        $data = "thanh toán trực tuyến";
+                        $data = "thanh toán khi nhận hàng";
                     } else {
                         $data = "";
                     }

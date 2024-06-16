@@ -1,12 +1,18 @@
-@extends('layouts.master-without-nav')
+@extends('layouts.page')
 
 @section('title')
-{{ __('t-login') }}
+<title>{{ __('Đăng nhập') }} | Kattech PC</title>
+@endsection
+
+@section('description', 'Share text and photos with your friends and have fun')
+@section('keywords', 'sharing, sharing text, text, sharing photo, photo,')
+
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/page/auth.css') }}" />
 @endsection
 
 @section('content')
-
-<body class="flex items-center justify-center min-h-screen px-4 py-16 bg-cover bg-auth-pattern dark:bg-auth-pattern-dark dark:text-zink-100 font-public">
+<div class="container">
     <div class="mb-0 border-none shadow-none xl:w-2/3 card bg-white/70 dark:bg-zink-500/70">
         <div class="grid grid-cols-1 gap-0 lg:grid-cols-12">
             <div class="lg:col-span-5">
@@ -67,11 +73,7 @@
                     </form>
                 </div>
             </div>
-            <div class="mx-2 mt-2 mb-2 border-none shadow-none lg:col-span-7 card bg-white/60 dark:bg-zink-500/60">
-                <div class="!px-10 !pt-10 h-full !pb-0 card-body flex" style="align-items: center;">
-                    <img src="{{ asset('/images/logo/logo.png') }}" class="md:max-w-[32rem] mx-auto">
-                </div>
-            </div>
         </div>
     </div>
-    @endsection
+</div>
+@endsection
