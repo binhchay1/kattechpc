@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container padding-left-80">
     <div class="mb-0 border-none shadow-none xl:w-2/3 card bg-white/70 dark:bg-zink-500/70">
         <div class="grid grid-cols-1 gap-0 lg:grid-cols-12">
             <div class="lg:col-span-5">

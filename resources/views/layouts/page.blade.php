@@ -35,6 +35,7 @@
     </div>
 
     <div id="content-page">
+        @if(!Route::is('home') )
         <div class="box-breadcrumb-global">
             <div class="container d-flex align-items-center box-breadcrumb">
                 <div class="global-breadcrumb d-flex justify-content-between align-items-center">
@@ -56,6 +57,7 @@
                 </div>
             </div>
         </div>
+        @endif
         @yield('content')
     </div>
     <div id="footer-page">

@@ -13,8 +13,8 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <div>
+<div class="container padding-left-80">
+    <div class="text-center">
         <h1>Đăng ký</h1>
     </div>
     <div class="mb-0 border-none shadow-none xl:w-2/3 card bg-white/70 dark:bg-zink-500/70">
