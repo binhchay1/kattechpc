@@ -4,8 +4,8 @@
 <title>{{ __('Đăng ký') }} | Kattech PC</title>
 @endsection
 
-@section('description', 'Share text and photos with your friends and have fun')
-@section('keywords', 'sharing, sharing text, text, sharing photo, photo,')
+@section('description', __('Đăng ký để trải nghiệm nhiều tính năng khác của chúng tôi'))
+@section('keywords', 'register, kattechpc, kattech')
 @section('breadcrumb', __('Đăng ký'))
 
 @section('css')

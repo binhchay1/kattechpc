@@ -4,6 +4,10 @@
 <title>{{ __('Chính sách hàng chính hãng') }} | Kattech PC</title>
 @endsection
 
+@section('description', __('Chính sách hàng chính hãng với Kattech PC'))
+@section('keywords', 'product policy, policy, genuine product policy, kattechpc, kattech')
+@section('breadcrumb', __('Chính sách hàng chính hãng'))
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/page/product-policy.css') }}" />
 @endsection

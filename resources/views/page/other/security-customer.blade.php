@@ -4,6 +4,10 @@
 <title>{{ __('Bảo mật thông tin khách hàng') }} | Kattech PC</title>
 @endsection
 
+@section('description', __('Bảo mật thông tin khách hàng với Kattech PC'))
+@section('keywords', 'secure customer information, secure, customer information kattechpc, kattech')
+@section('breadcrumb', __('Bảo mật thông tin khách hàng'))
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/page/security-customer.css') }}" />
 @endsection

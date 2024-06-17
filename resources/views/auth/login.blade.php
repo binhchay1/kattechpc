@@ -4,8 +4,9 @@
 <title>{{ __('Đăng nhập') }} | Kattech PC</title>
 @endsection
 
-@section('description', 'Share text and photos with your friends and have fun')
-@section('keywords', 'sharing, sharing text, text, sharing photo, photo,')
+@section('description', __('Đăng nhập để tiếp tục với Kattech PC'))
+@section('keywords', 'login, kattechpc, kattech')
+@section('breadcrumb', __('Đăng nhập'))
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/page/auth.css') }}" />

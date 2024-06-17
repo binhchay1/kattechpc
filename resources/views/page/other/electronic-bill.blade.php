@@ -4,6 +4,10 @@
 <title>{{ __('Tra cứu hóa đơn') }} | Kattech PC</title>
 @endsection
 
+@section('description', __('Tra cứu hóa đơn điện tử với Kattech PC'))
+@section('keywords', 'bill, electronic bill, electronic, kattechpc, kattech')
+@section('breadcrumb', __('Tra cứu hóa đơn'))
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/page/bill.css') }}" />
 @endsection

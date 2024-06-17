@@ -4,6 +4,10 @@
 <title>{{ __('Xây dựng cấu hình') }} | Kattech PC</title>
 @endsection
 
+@section('description', __('Xây dựng cấu hình với Kattech PC'))
+@section('keywords', 'build pc, build, kattechpc, kattech')
+@section('breadcrumb', __('Xây dựng cấu hình'))
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('/css/page/build-pc.css') }}" />
 @endsection

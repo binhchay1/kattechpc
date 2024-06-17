@@ -4,6 +4,10 @@
 <title>{{ __('Chính sách bảo hành') }} | Kattech PC</title>
 @endsection
 
+@section('description', __('Chính sách bảo hành với Kattech PC'))
+@section('keywords', 'policy, guarantee, kattechpc, kattech')
+@section('breadcrumb', __('Chính sách bảo hành'))
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('/plugins/owlcarousel/owl.theme.default.min.css') }}" />
 <link rel="stylesheet" href="{{ asset('css/page/policy.css') }}" />

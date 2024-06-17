@@ -4,6 +4,10 @@
 <title>{{ __('Hướng dẫn thanh toán') }} | Kattech PC</title>
 @endsection
 
+@section('description', __('Hướng dẫn thanh toán với Kattech PC'))
+@section('keywords', 'payment, kattechpc, kattech')
+@section('breadcrumb', __('Hướng dẫn thanh toán'))
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/page/payment.css') }}" />
 @endsection
