@@ -395,8 +395,6 @@
             listValKeyWord[idKeyWord] = valKeyWord;
         }
 
-        console.log(listValKeyWord);
-
         let url = location.protocol + '//' + location.host + location.pathname;
         let count = 0;
         for (var k in arrayParam) {

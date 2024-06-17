@@ -4,9 +4,10 @@
 <title>{{ __('Chi tiết sản phẩm') }} | Kattech PC</title>
 @endsection
 
-@section('description', __('Xây dựng cấu hình với Kattech PC'))
-@section('keywords', 'build pc, build, kattechpc, kattech')
-@section('breadcrumb', __('Xây dựng cấu hình'))
+@section('description', $dataProduct->short_description)
+@section('keywords', $dataProduct->keyword)
+@section('breadcrumb-parent', $dataProduct->category->name)
+@section('breadcrumb', $dataProduct->name)
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('/css/page/product-detail.css') }}" />
@@ -59,7 +60,7 @@
         </div>
 
         <div class="product-info" style="padding: 0">
-            <h3>{{ $dataProduct->name }}</h3>
+            <h1>{{ $dataProduct->name }}</h1>
             <div class="d-flex price-product">
                 @if($dataProduct->is_flash_sale == 0)
                 @if($dataProduct->new_price != null)
@@ -174,7 +175,7 @@
                         <i class="fas fa-handshake"></i>
                         <p class="gap-6-item">{{ __('Sản phẩm mới 100%.') }}</p>
                     </div>
-                    <div class="item d-flex align-items-center gap-6">
+                    <div class="item d-flex align-items-center gap-6 mt-10">
                         <i class="	fas fa-paper-plane"></i>
                         <p class="gap-6-item">{{ __('Lỗi 1 đổi 1 ngay lập tức.') }}</p>
                     </div>
