@@ -1592,3 +1592,46 @@ a {
 .padding-left-80 {
     padding-left: 80px;
 }
+
+.main-menu-category .list-items{
+    display: none;
+}
+
+.row-hamburger {
+    width: 80%;
+    margin: auto;
+}
+
+.logo {
+    font-size: 1.5rem;
+}
+
+.navbar {
+    display: flex;
+
+    justify-content: space-between;
+    height: 50px;
+    align-items: center;
+}
+.navbar .main-menu-category {
+    display: flex;
+}
+.main-menu-category li a {
+    display: inline-block;
+    padding: 10px 20px;
+}
+
+.menu-btn {
+    display: none;
+}
+
+.row-content h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.row-content p {
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 1.6;
+}

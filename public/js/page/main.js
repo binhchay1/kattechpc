@@ -186,6 +186,12 @@ $(document).ready(function () {
     $(".inline-search").on('keyup', function (e) {
         suggestionForSearch(this);
     });
+
+    document.querySelector(".menu-btn").addEventListener("click", abc);
+    function abc() {
+        document.querySelector(".main-menu-category").classList.toggle("show");
+        document.body.classList.toggle('lock-scroll');
+    }
 });
 
 $(document).scroll(function () {
@@ -213,7 +219,6 @@ function suggestionForSearch(input) {
             },
             url: urlSuggest,
             success: function (result) {
-                console.log(result.length);
                 if (result.length > 0) {
                     $('#js-search-result .list').empty();
                     for (let i = 0; i < result.length; i++) {
