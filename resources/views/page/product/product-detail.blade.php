@@ -381,32 +381,28 @@
                     </div>
 
                 </div>
-                <p class="text-danh-gia">Bạn đánh giá sao sản phẩm này</p>
-                <div class="button-review d-flex justify-content-center align-items-center" id="js-show-review">
-                    <a href="javascript:;" class="font-weight-500">Đánh giá ngay</a>
-                </div>
                 @if(Session::has('message'))
                 <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
                 @endif
                 <form id="feedbackForm" action="{{ route('rating') }}" class="menu" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
+                    <div class="rating">
+                        <input type="radio" id="star5" name="rating_product" value="5">
+                        <label for="star5">&#9733;</label>
+                        <input type="radio" id="star4" name="rating_product" value="4">
+                        <label for="star4">&#9733;</label>
+                        <input type="radio" id="star3" name="rating_product" value="3">
+                        <label for="star3">&#9733;</label>
+                        <input type="radio" id="star2" name="rating_product" value="2">
+                        <label for="star2">&#9733;</label>
+                        <input type="radio" id="star1" name="rating_product" value="1">
+                        <label for="star1">&#9733;</label>
+                    </div>
                     <div class="box-form-review" id="js-box-review" style="display: block;">
                         <textarea class="review_reply_content" id="rating-content" placeholder="Mời bạn để lại đánh giá..." name="content" spellcheck="false"></textarea>
                         @if ($errors->has('content'))
                         <span class="text-danger" style="color: red">{{ $errors->first('content') }}</span>
                         @endif
-                        <div class="rating">
-                            <input type="radio" id="star5" name="rating_product" value="5">
-                            <label for="star5">&#9733;</label>
-                            <input type="radio" id="star4" name="rating_product" value="4">
-                            <label for="star4">&#9733;</label>
-                            <input type="radio" id="star3" name="rating_product" value="3">
-                            <label for="star3">&#9733;</label>
-                            <input type="radio" id="star2" name="rating_product" value="2">
-                            <label for="star2">&#9733;</label>
-                            <input type="radio" id="star1" name="rating_product" value="1">
-                            <label for="star1">&#9733;</label>
-                        </div>
                     </div>
                     <input type="hidden" name="product_id" value="{{$dataProduct->id}}">
                     <input type="hidden" name="user_id" value="{{Auth::user()->id ?? ""}}">

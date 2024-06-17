@@ -657,6 +657,7 @@ tr:nth-child(even) {
 
 .rating {
     margin-bottom: 20px;
+    margin-left: 10px;
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
@@ -671,7 +672,7 @@ tr:nth-child(even) {
 }
 
 .rating label {
-    font-size: 24px;
+    font-size: 35px;
     cursor: pointer;
 }
 
@@ -717,8 +718,9 @@ tr:nth-child(even) {
 
 .review-info .avgRate {
     border-right: 1px solid #dedede;
-    width: 37%;
     color: #000;
+    text-align: center;
+    font-size: 20px;
 }
 
 .box-avg-rate-count {
