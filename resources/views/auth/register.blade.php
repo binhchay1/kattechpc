@@ -1,12 +1,22 @@
-@extends('layouts.master-without-nav')
+@extends('layouts.page')
 
 @section('title')
-{{ __('t-register') }}
+<title>{{ __('Đăng ký') }} | Kattech PC</title>
+@endsection
+
+@section('description', __('Đăng ký để trải nghiệm nhiều tính năng khác của chúng tôi'))
+@section('keywords', 'register, kattechpc, kattech')
+@section('breadcrumb', __('Đăng ký'))
+
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/page/auth.css') }}" />
 @endsection
 
 @section('content')
-
-<body class="flex items-center justify-center min-h-screen px-4 py-16 bg-cover bg-auth-pattern dark:bg-auth-pattern-dark dark:text-zink-100 font-public">
+<div class="container padding-left-80">
+    <div class="text-center">
+        <h1>Đăng ký</h1>
+    </div>
     <div class="mb-0 border-none shadow-none xl:w-2/3 card bg-white/70 dark:bg-zink-500/70">
         <div class="grid grid-cols-1 gap-0 lg:grid-cols-12">
             <div class="lg:col-span-5">
@@ -38,32 +48,7 @@
                                 <x-label for="password_confirmation" value="{{ __('Xác nhận mật khẩu') }}" />
                                 <x-input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="{{ __('Nhập xác nhận mật khẩu') }}" />
                             </div>
-                            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                            <div class="mt-4">
-                                <label for="terms">
-                                    <div class="flex items-center">
-                                        <x-checkbox name="terms" id="terms" required />
 
-                                        <div class="ms-2">
-                                            {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                            'terms_of_service' =>
-                                            '<a target="_blank" href="' .
-                                                        route('terms.show') .
-                                                        '" class="underline text-sm text-gray-600 dark:text-slate-400 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">' .
-                                                __('Terms of Service') .
-                                                '</a>',
-                                            'privacy_policy' =>
-                                            '<a target="_blank" href="' .
-                                                        route('policy.show') .
-                                                        '" class="underline text-sm text-gray-600 dark:text-slate-400 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">' .
-                                                __('Privacy Policy') .
-                                                '</a>',
-                                            ]) !!}
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                            @endif
                             <div class="mt-5">
                                 <button type="submit" class="w-full text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">
                                     {{ __('Đăng ký') }}</button>
@@ -84,13 +69,7 @@
                     </div>
                 </div>
             </div>
-            <div class="mx-2 mt-2 mb-2 border-none shadow-none lg:col-span-7 card bg-white/60 dark:bg-zink-500/60">
-                <div class="!px-10 !pt-10 h-full !pb-0 card-body flex">
-                    <div class="!px-10 !pt-10 h-full !pb-0 card-body flex" style="align-items: center;">
-                        <img src="{{ asset('/images/logo/logo.png') }}" class="md:max-w-[32rem] mx-auto">
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
-    @endsection
+</div>
+@endsection

@@ -8,6 +8,12 @@ final class Product
         'available', 'out of stock', 'order',
     ];
 
+    const STATUS_TEXT = [
+        'available' => 'Còn hàng',
+        'out of stock' => 'Hết hàng',
+        'order' => 'Đặt hàng',
+    ];
+
     const RANGE_PRICE = [
         'duoi-10trieu' => [
             'from' => 0,

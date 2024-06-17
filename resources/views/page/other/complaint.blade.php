@@ -4,6 +4,10 @@
 <title>{{ __('Giải quyết khiếu nại') }} | Kattech PC</title>
 @endsection
 
+@section('description', __('Giải quyết khiếu nại với Kattech PC'))
+@section('keywords', 'complaint policy, policy, complaint, kattechpc, kattech')
+@section('breadcrumb', __('Giải quyết khiếu nại'))
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/page/complaint.css') }}" />
 @endsection

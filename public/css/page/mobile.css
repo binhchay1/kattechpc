@@ -375,4 +375,65 @@
     #condition-contact-bussiness {
         width: 100% !important;
     }
+
+    .main-menu-category {
+        margin-top: 20px;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 80%;
+        height: 100%;
+        flex-direction: column;
+        background-color: white;
+        transition: 0.5s all ease;
+        display: none;
+        transform: translateX(-800px);
+        padding-top: 30px;
+    }
+
+    .show-search .search-mobile {
+        display: block;
+    }
+
+    .main-menu-category .list-items{
+        display: block;
+        list-style:none;
+    }
+
+    .inline-search1 {
+        height: 42px;
+        margin: 0;
+        padding: 0 40px;
+        font-size: 13px;
+        outline: 0;
+        border: 2px solid var(--color-primary);
+        border-radius: 95px 0 0 99px;
+    }
+
+
+    .main-menu-category.show {
+        transform: translateX(-36px);
+        transition: 0.5s all ease;
+    }
+    .main-menu-category li a {
+        margin-bottom: 10px;
+        display: block;
+        color: grey;
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .menu-btn {
+        display: block;
+        position: absolute;
+        color: black;
+        top: 35px;
+        right: 30px;
+        font-size: 2rem;
+        margin-left: 10px;
+        left: 0;
+    }
+
+    .lock-scroll {
+        overflow: hidden;
+    }
 }

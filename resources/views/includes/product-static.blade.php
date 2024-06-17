@@ -61,9 +61,19 @@
                         </td>
                         @endif
                         <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
-                            <span class="inline-flex items-center px-2.5 py-0.5 text-xs font-medium rounded border bg-green-100 border-transparent text-green-500 dark:bg-green-500/20 dark:border-transparent"><i data-lucide="check-circle-2" class="size-3 ltr:mr-1 rtl:ml-1"></i>
-                                {{ $product->status }}
+                            @if($product->status == 'available')
+                            <span class="inline-flex items-center px-2.5 py-0.5 text-xs font-medium rounded border bg-green-100 border-transparent text-green-500 dark:bg-green-500/20 dark:border-transparent"><i data-lucide="check" class="size-3 ltr:mr-1 rtl:ml-1"></i>
+                                {{ __('Còn hàng') }}
                             </span>
+                            @elseif( $product->status == 'out of stock')
+                            <span class="inline-flex items-center px-2.5 py-0.5 text-xs font-medium rounded border bg-red-100 border-transparent text-red-500 dark:bg-red-500/20 dark:border-transparent"><i data-lucide="x" class="size-3 ltr:mr-1 rtl:ml-1"></i>
+                                {{ __('Hết hàng') }}
+                            </span>
+                            @else
+                            <span class="inline-flex items-center px-2.5 py-0.5 text-xs font-medium rounded border bg-yellow-100 border-transparent text-yellow-500 dark:bg-yellow-500/20 dark:border-transparent"><i data-lucide="check-circle-2" class="size-3 ltr:mr-1 rtl:ml-1"></i>
+                                {{ __('Đặt hàng') }}
+                            </span>
+                            @endif
                         </td>
                     </tr>
                     @endforeach

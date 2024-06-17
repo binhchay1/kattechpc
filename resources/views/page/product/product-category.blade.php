@@ -1,8 +1,12 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ __('Sản phẩm') }} | Kattech PC</title>
+<title>{{ __('Danh mục sản phẩm') }} | Kattech PC</title>
 @endsection
+
+@section('description', __('Xây dựng cấu hình với Kattech PC'))
+@section('keywords', 'build pc, build, kattechpc, kattech')
+@section('breadcrumb', __('Xây dựng cấu hình'))
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('/css/page/product-cate.css') }}" />

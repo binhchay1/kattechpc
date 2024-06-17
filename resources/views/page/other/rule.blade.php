@@ -4,6 +4,10 @@
 <title>{{ __('Chính sách, quy định chung') }} | Kattech PC</title>
 @endsection
 
+@section('description', __('Chính sách, quy định chung với Kattech PC'))
+@section('keywords', 'policy, regulations, kattechpc, kattech')
+@section('breadcrumb', __('Chính sách, quy định chung'))
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/page/rule.css') }}" />
 @endsection

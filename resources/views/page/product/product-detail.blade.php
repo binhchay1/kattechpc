@@ -4,6 +4,11 @@
 <title>{{ __('Chi tiết sản phẩm') }} | Kattech PC</title>
 @endsection
 
+@section('description', $dataProduct->short_description)
+@section('keywords', $dataProduct->keyword)
+@section('breadcrumb-parent', $dataProduct->category->name)
+@section('breadcrumb', $dataProduct->name)
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('/css/page/product-detail.css') }}" />
 @endsection
@@ -55,7 +60,7 @@
         </div>
 
         <div class="product-info" style="padding: 0">
-            <h3>{{ $dataProduct->name }}</h3>
+            <h1>{{ $dataProduct->name }}</h1>
             <div class="d-flex price-product">
                 @if($dataProduct->is_flash_sale == 0)
                 @if($dataProduct->new_price != null)
@@ -170,7 +175,7 @@
                         <i class="fas fa-handshake"></i>
                         <p class="gap-6-item">{{ __('Sản phẩm mới 100%.') }}</p>
                     </div>
-                    <div class="item d-flex align-items-center gap-6">
+                    <div class="item d-flex align-items-center gap-6 mt-10">
                         <i class="	fas fa-paper-plane"></i>
                         <p class="gap-6-item">{{ __('Lỗi 1 đổi 1 ngay lập tức.') }}</p>
                     </div>
@@ -222,7 +227,7 @@
             <div class="product-info" id="product-info">
                 <h3>{{ __('Thông tin sản phẩm') }}</h3>
                 <div class="p-info1">
-                    {!! Str::limit($dataProduct->description, 1000, '')!!}
+                    {!! Str::limit($dataProduct->description, 260, '')!!}
                     @if (strlen($dataProduct->description) > 3)
                     <span id="dots-{{ $dataProduct->id }}">...</span>
                     @endif
@@ -292,8 +297,6 @@
             </div>
         </section>
 
-
-
         <div class="feedback-form">
             <h2>{{__('Đánh giá sản phẩm')}}</h2>
             <div class="review-info  boder-radius-10">
@@ -310,10 +313,8 @@
                     <div class="avg-rate-count">
                         <?php
                         $style = '';
-                        if(isset($countRate5) && $countRate5 > 0 )
-                        {
+                        if (isset($countRate5) && $countRate5 > 0) {
                             $style = 'style="background:red"';
-                            // Put your css style property here
                         }
                         ?>
                         <div class="avg-rate-item d-flex justify-content-center align-items-center">
@@ -324,14 +325,12 @@
                             <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate5}}</strong> {{ __('đánh giá') }}</span>
                         </div>
 
-                            <?php
-                            $style = '';
-                            if(isset($countRate4) && $countRate4 > 0 )
-                            {
-                                $style = 'style="background:red"';
-                                // Put your css style property here
-                            }
-                            ?>
+                        <?php
+                        $style = '';
+                        if (isset($countRate4) && $countRate4 > 0) {
+                            $style = 'style="background:red"';
+                        }
+                        ?>
                         <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
                             <span class="rate-number">4 <i class="fas fa-star checked-rating"></i></span>
                             <div class="nhan-xet-bar" <?php echo $style ?>>
@@ -339,14 +338,12 @@
                             </div>
                             <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate4}}</strong> {{ __('đánh giá') }}</span>
                         </div>
-                            <?php
-                            $style = '';
-                            if(isset($countRate3) && $countRate3 > 0 )
-                            {
-                                $style = 'style="background:red"';
-                                // Put your css style property here
-                            }
-                            ?>
+                        <?php
+                        $style = '';
+                        if (isset($countRate3) && $countRate3 > 0) {
+                            $style = 'style="background:red"';
+                        }
+                        ?>
                         <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
                             <span class="rate-number">3 <i class="fas fa-star checked-rating"></i></span>
                             <div class="nhan-xet-bar" <?php echo $style ?>>
@@ -354,14 +351,12 @@
                             </div>
                             <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate3}}</strong> {{ __('đánh giá') }}</span>
                         </div>
-                            <?php
-                            $style = '';
-                            if(isset($countRate2) && $countRate2 > 0 )
-                            {
-                                $style = 'style="background:red"';
-                                // Put your css style property here
-                            }
-                            ?>
+                        <?php
+                        $style = '';
+                        if (isset($countRate2) && $countRate2 > 0) {
+                            $style = 'style="background:red"';
+                        }
+                        ?>
                         <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
                             <span class="rate-number">2 <i class="fas fa-star checked-rating"></i></span>
                             <div class="nhan-xet-bar" <?php echo $style ?>>
@@ -369,14 +364,12 @@
                             </div>
                             <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate2}}</strong> {{ __('đánh giá') }}</span>
                         </div>
-                            <?php
-                            $style = '';
-                            if(isset($countRate1) && $countRate1 > 0 )
-                            {
-                                $style = 'style="background:red"';
-                                // Put your css style property here
-                            }
-                            ?>
+                        <?php
+                        $style = '';
+                        if (isset($countRate1) && $countRate1 > 0) {
+                            $style = 'style="background:red"';
+                        }
+                        ?>
                         <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
                             <span class="rate-number rate-number1">1 <i class="fas fa-star checked-rating"></i></span>
                             <div class="nhan-xet-bar" <?php echo $style ?>>
@@ -388,32 +381,28 @@
                     </div>
 
                 </div>
-                    <p class="text-danh-gia">Bạn đánh giá sao sản phẩm này</p>
-                    <div class="button-review d-flex justify-content-center align-items-center" id="js-show-review">
-                        <a href="javascript:;" class="font-weight-500">Đánh giá ngay</a>
-                    </div>
-                    @if(Session::has('message'))
-                        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
-                    @endif
+                @if(Session::has('message'))
+                <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+                @endif
                 <form id="feedbackForm" action="{{ route('rating') }}" class="menu" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
+                    <div class="rating">
+                        <input type="radio" id="star5" name="rating_product" value="5">
+                        <label for="star5">&#9733;</label>
+                        <input type="radio" id="star4" name="rating_product" value="4">
+                        <label for="star4">&#9733;</label>
+                        <input type="radio" id="star3" name="rating_product" value="3">
+                        <label for="star3">&#9733;</label>
+                        <input type="radio" id="star2" name="rating_product" value="2">
+                        <label for="star2">&#9733;</label>
+                        <input type="radio" id="star1" name="rating_product" value="1">
+                        <label for="star1">&#9733;</label>
+                    </div>
                     <div class="box-form-review" id="js-box-review" style="display: block;">
                         <textarea class="review_reply_content" id="rating-content" placeholder="Mời bạn để lại đánh giá..." name="content" spellcheck="false"></textarea>
                         @if ($errors->has('content'))
                         <span class="text-danger" style="color: red">{{ $errors->first('content') }}</span>
                         @endif
-                        <div class="rating">
-                            <input type="radio" id="star5" name="rating_product" value="5">
-                            <label for="star5">&#9733;</label>
-                            <input type="radio" id="star4" name="rating_product" value="4">
-                            <label for="star4">&#9733;</label>
-                            <input type="radio" id="star3" name="rating_product" value="3">
-                            <label for="star3">&#9733;</label>
-                            <input type="radio" id="star2" name="rating_product" value="2">
-                            <label for="star2">&#9733;</label>
-                            <input type="radio" id="star1" name="rating_product" value="1">
-                            <label for="star1">&#9733;</label>
-                        </div>
                     </div>
                     <input type="hidden" name="product_id" value="{{$dataProduct->id}}">
                     <input type="hidden" name="user_id" value="{{Auth::user()->id ?? ""}}">
@@ -488,177 +477,169 @@
             @include('page.product.comment-display', ['comments' => $dataProduct->comments, 'product_id' => $dataProduct->id])
         </div>
     </div>
-    @endsection
+</div>
+@endsection
 
-    @section('js')
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            //detail-product
-            $('#myModal').hide();
+@section('js')
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#myModal').hide();
 
-            $('#read-all-product-detail').on('click', function() {
-                $('#myModal').show();
-            });
-
-            $('.close').click(function() {
-                $('#myModal').hide();
-            });
-
-            //rating-product
-            // $('#js-show-review').on('click', function () {
-            //     $('#feedbackForm').css('display','block');
-            // })
-
-
-
-
-            $('.js-quantity-change').on('click', function() {
-                let value = $(this).data('value');
-                let quantity = $('.js-buy-quantity').val();
-                let new_quantity = 1;
-                if (value == -1) {
-                    if (quantity == 1) {
-                        return;
-                    } else {
-                        new_quantity = parseInt(quantity) + parseInt(value);
-
-                    }
-                } else {
-                    new_quantity = parseInt(quantity) + parseInt(value);
-                }
-
-                $('.js-buy-quantity').val(new_quantity);
-            });
-
-            $('#showmenu').click(function() {
-                $('.menu').slideToggle("fast");
-            });
-
-            $('.write_reply').click(function() {
-                $('.menu1').slideToggle("fast");
-            });
+        $('#read-all-product-detail').on('click', function() {
+            $('#myModal').show();
         });
 
-        function getImageCenter(image) {
-            let src = image.src;
-            indexImage = image.getAttribute('data-index');
-            $('#featured-image').attr('src', src);
-        }
+        $('.close').click(function() {
+            $('#myModal').hide();
+        });
 
-        function handleSlideImage(status) {
-            if (status == 'next') {
-                let maxIndex = $('.swiper-slide-image').length;
-                if (indexImage < maxIndex) {
-                    let nextIndex = parseInt(indexImage) + 1;
-                    $("[data-index=" + nextIndex + "]").click();
+        $('.js-quantity-change').on('click', function() {
+            let value = $(this).data('value');
+            let quantity = $('.js-buy-quantity').val();
+            let new_quantity = 1;
+            if (value == -1) {
+                if (quantity == 1) {
+                    return;
+                } else {
+                    new_quantity = parseInt(quantity) + parseInt(value);
+
                 }
-
             } else {
-                if (parseInt(indexImage) > 0) {
-                    let prevIndex = parseInt(indexImage) - 1;
-                    $("[data-index=" + prevIndex + "]").click();
-                }
+                new_quantity = parseInt(quantity) + parseInt(value);
+            }
+
+            $('.js-buy-quantity').val(new_quantity);
+        });
+
+        $('#showmenu').click(function() {
+            $('.menu').slideToggle("fast");
+        });
+
+        $('.write_reply').click(function() {
+            $('.menu1').slideToggle("fast");
+        });
+    });
+
+    function getImageCenter(image) {
+        let src = image.src;
+        indexImage = image.getAttribute('data-index');
+        $('#featured-image').attr('src', src);
+    }
+
+    function handleSlideImage(status) {
+        if (status == 'next') {
+            let maxIndex = $('.swiper-slide-image').length;
+            if (indexImage < maxIndex) {
+                let nextIndex = parseInt(indexImage) + 1;
+                $("[data-index=" + nextIndex + "]").click();
+            }
+
+        } else {
+            if (parseInt(indexImage) > 0) {
+                let prevIndex = parseInt(indexImage) - 1;
+                $("[data-index=" + prevIndex + "]").click();
             }
         }
+    }
 
-        setTimeout(function() {
-            $('.alert-add').remove();
-        }, 5000);
+    setTimeout(function() {
+        $('.alert-add').remove();
+    }, 5000);
 
-        function loadMore(id) {
-            var dots = document.getElementById("dots-" + id);
-            var moreText = document.getElementById("more-" + id);
-            if (moreText.style.display === "none") {
-                moreText.style.display = "inline";
-                dots.style.display = "none";
-                $('#hide-all-product').removeClass('d-none');
-                $('#read-all-product').addClass('d-none');
-            } else {
-                moreText.style.display = "none";
-                dots.style.display = "inline";
-                $('#read-all-product').removeClass('d-none');
-                $('#hide-all-product').addClass('d-none');
+    function loadMore(id) {
+        var dots = document.getElementById("dots-" + id);
+        var moreText = document.getElementById("more-" + id);
+        if (moreText.style.display === "none") {
+            moreText.style.display = "inline";
+            dots.style.display = "none";
+            $('#hide-all-product').removeClass('d-none');
+            $('#read-all-product').addClass('d-none');
+        } else {
+            moreText.style.display = "none";
+            dots.style.display = "inline";
+            $('#read-all-product').removeClass('d-none');
+            $('#hide-all-product').addClass('d-none');
+        }
+    }
+
+    function updateCart(quantity, id) {
+        $.get(
+            '{{ asset("/cart/update-cart") }}', {
+                quantity: quantity,
+                id: id
+            },
+            function() {
+                location.reload()
             }
-        }
+        )
+    }
 
-        function updateCart(quantity, id) {
-            $.get(
-                '{{ asset("/cart/update-cart") }}', {
-                    quantity: quantity,
-                    id: id
-                },
-                function() {
-                    location.reload()
-                }
-            )
-        }
+    function addToCart() {
+        let slug = $('#product-to-cart').val();
+        let total = $('#quantity-to-cart').val();
+        let baseUrl = '/cart/add-to-cart/' + slug + '?total=' + total;
 
-        function addToCart() {
-            let slug = $('#product-to-cart').val();
-            let total = $('#quantity-to-cart').val();
-            let baseUrl = '/cart/add-to-cart/' + slug + '?total=' + total;
+        window.location.href = baseUrl;
+    }
 
-            window.location.href = baseUrl;
-        }
+    <?php if (isset($dataProduct->flash_sale_time)) { ?>
+        let countTimeSale = `<?php echo $dataProduct->flash_sale_time ?>`;
 
-        <?php if (isset($dataProduct->flash_sale_time)) { ?>
-            let countTimeSale = `<?php echo $dataProduct->flash_sale_time ?>`;
+        var countDownDate = new Date(countTimeSale).getTime();
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            var countDownDate = new Date(countTimeSale).getTime();
-            var x = setInterval(function() {
-                var now = new Date().getTime();
-                var distance = countDownDate - now;
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            if (days == 0) {
+                days = '00';
+            }
 
-                if (days == 0) {
-                    days = '00';
-                }
+            if (hours == 0) {
+                hours = '00';
+            }
 
-                if (hours == 0) {
-                    hours = '00';
-                }
+            if (minutes == 0) {
+                minutes = '00';
+            }
 
-                if (minutes == 0) {
-                    minutes = '00';
-                }
+            if (days < 10 && days != '00') {
+                days = '0' + days;
+            }
 
-                if (days < 10 && days != '00') {
-                    days = '0' + days;
-                }
+            if (hours < 10 && hours != '00') {
+                hours = '0' + hours;
+            }
 
-                if (hours < 10 && hours != '00') {
-                    hours = '0' + hours;
-                }
+            if (minutes < 10 && minutes != '00') {
+                minutes = '0' + minutes;
+            }
 
-                if (minutes < 10 && minutes != '00') {
-                    minutes = '0' + minutes;
-                }
+            if (seconds < 10 && seconds != '00') {
+                seconds = '0' + seconds;
+            }
 
-                if (seconds < 10 && seconds != '00') {
-                    seconds = '0' + seconds;
-                }
+            $('#date-count-sale b').empty();
+            $('#date-count-sale b').append(days);
 
-                $('#date-count-sale b').empty();
-                $('#date-count-sale b').append(days);
+            $('#hours-count-sale b').empty();
+            $('#hours-count-sale b').append(hours);
 
-                $('#hours-count-sale b').empty();
-                $('#hours-count-sale b').append(hours);
+            $('#min-count-sale b').empty();
+            $('#min-count-sale b').append(minutes);
 
-                $('#min-count-sale b').empty();
-                $('#min-count-sale b').append(minutes);
+            $('#second-count-sale b').empty();
+            $('#second-count-sale b').append(seconds);
 
-                $('#second-count-sale b').empty();
-                $('#second-count-sale b').append(seconds);
-
-                if (distance < 0) {
-                    clearInterval(x);
-                    $('.box-flash-sale').remove();
-                }
-            }, 1000);
-        <?php } ?>
-    </script>
-    @endsection
+            if (distance < 0) {
+                clearInterval(x);
+                $('.box-flash-sale').remove();
+            }
+        }, 1000);
+    <?php } ?>
+</script>
+@endsection

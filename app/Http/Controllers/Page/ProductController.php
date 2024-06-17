@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RatingRequest;
-use App\Models\Rating;
 use App\Repositories\CategoryRepository;
 use App\Repositories\RatingRepository;
 use App\Repositories\CommentRepository;
@@ -77,7 +76,6 @@ class ProductController extends Controller
         }
 
         $countRate = DB::table('ratings')
-//            ->where("rating_product", )
             ->where('product_id', $getProduct)->count();
 
         $countRate1 = DB::table('ratings')

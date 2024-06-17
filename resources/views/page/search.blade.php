@@ -4,6 +4,10 @@
 <title>{{ __('Tìm kiếm') }} | Kattech PC</title>
 @endsection
 
+@section('description', __('Tìm kiếm tất cả linh kiện của PC với Kattech PC'))
+@section('keywords', 'search, kattechpc, kattech')
+@section('breadcrumb', __('Tìm kiếm'))
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('/css/page/productCate.css') }}" />
 @endsection
