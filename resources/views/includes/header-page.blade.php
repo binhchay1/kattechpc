@@ -50,30 +50,45 @@
     <div class="header-bottom">
         <div class="container-hamburger">
             <div class="row-hamburger">
+                <div id="main">
+                    <div>
+                        <div class="search-mobile ">
+                            <div class="input-search">
+                                <form name="search" method="get" action="{{ route('search') }}">
+                                    <div class="input-text"><input type="text" name="q" id="get_search" class="inline-search1" placeholder="Tìm kiếm" autocomplete="off" field_signature="1012080445"></div>
+                                    <button type="submit" id="search_button" class="button-search1"><i class="fa fa-search"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-area ml-20px">
+                        <a href="{{ route('showCart') }}">
+                            <i class="fa badge" value="{{ count(Cart::getContent()) }}">&#xf07a;</i> <span></span>
+                        </a
+                        ></div>
+                </div>
+{{--                <div>--}}
+{{--                    <div class="menu-btn">--}}
+{{--                        <i class="fa fa-bars"></i>--}}
+{{--                    </div>--}}
+
+
+
+{{--                </div>--}}
                 <div class="menu-btn">
-                    <i class="fa fa-bars"></i>
+                    <i class="fa fa-bars" id="btn-toggle"></i>
                 </div>
                 <nav class="navbar">
                     <ul class="main-menu-category">
-                        <li class="list-items">
-                            <div class="search-mobile ">
-                                <div class="input-search">
-                                    <form name="search" method="get" action="{{ route('search') }}">
-                                        <div class="input-text"><input type="text" name="q" class="inline-search1" placeholder="Tìm kiếm" autocomplete="off" field_signature="1012080445"></div>
-                                        <button type="submit" class="button-search"><i class="fa fa-search"></i></button>
-                                    </form>
-                                </div>
-                            </div>
-                        </li>
                         @foreach($listCategory['default'] as $category)
                             @if($category->status == 0)
                                 @continue
                             @endif
-                            <li class="list-items"><a href="">{{ $category->name }}</a></li>
+                            <li class="list-items"><a href="">{{ $category->name }}</a>Danh mục sản phẩm</li>
                         @endforeach
-                        <li class="list-items"><a href="{{ route('post') }}">{{__("Tin công nghệ")}}</a></li>
-                        <li class="list-items"><a href="{{ route('payment') }}">{{__("Hướng dẫn thanh toán")}}</a></li>
-                        <li class="list-items"><a href="{{ route('policy') }}">{{__("Chính sách bảo hành")}}</a></li>
+                        <li class="list-items"><a href="{{ route('post') }}"><i class="fa fa-newspaper"></i>{{__("Tin công nghệ")}}</a></li>
+                        <li class="list-items"><a href="{{ route('payment') }}"><i class="fa fa-money-check"></i>{{__("Hướng dẫn thanh toán")}}</a></li>
+                        <li class="list-items"><a href="{{ route('policy') }}"><i class="fa fa-shield-alt"></i>{{__("Chính sách bảo hành")}}</a></li>
                         <li class="list-items">
                         @if(Auth::check())
                             <div class="ml-15px dropdown">
@@ -99,7 +114,6 @@
                         @endif
                         </li>
                     </ul>
-
 
                 </nav>
             </div>
@@ -195,3 +209,179 @@
         </div>
     </div>
 </div>
+
+
+{{--<div class="sub-header-mobile">--}}
+{{--    <ul class="list-submenu list-submenu--mobile" id="menu-mb">--}}
+{{--        <li class="item-submenu sm-1">--}}
+{{--            @include('includes.home-page-menu')--}}
+{{--        </li>--}}
+{{--    </ul>--}}
+
+{{--    <div class="build-area build-area-mobile">--}}
+{{--        <a href="{{ route('buildPC') }}">--}}
+{{--            <i class="fa fa-screwdriver"></i>--}}
+{{--            <span>{{ __('Xây dựng cấu hình') }}</span>--}}
+{{--        </a>--}}
+{{--    </div>--}}
+{{--</div>--}}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<style>
+
+    #main {
+        display: none;
+    }
+
+    body {
+        font-family: sans-serif;
+    }
+    a {
+        color: white;
+        text-decoration: none;
+    }
+    .main-menu-category .list-items{
+        display: none;
+    }
+
+    .row-hamburger {
+        width: 100%;
+        margin: auto;
+    }
+    .logo {
+        font-size: 1.5rem;
+    }
+    .navbar {
+        display: flex;
+
+        justify-content: space-between;
+        height: 50px;
+        align-items: center;
+    }
+    .navbar .main-menu-category {
+        display: flex;
+    }
+    .main-menu-category li a {
+        display: inline-block;
+        padding: 10px 20px;
+    }
+
+    .menu-btn {
+        display: none;
+    }
+
+    .row-content h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .row-content p {
+        font-size: 1.2rem;
+        text-align: center;
+        line-height: 1.6;
+    }
+
+    @media screen and (max-width: 768px) {
+        .main-menu-category {
+            margin-top: 40px;
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            background-color: white;
+            transition: 0.5s all ease;
+             /*visibility: hidden;*/
+            display: none;
+            transform: translateX(-800px);
+            padding-top: 30px;
+        }
+
+        .show-search .search-mobile {
+            display: block;
+        }
+
+        .main-menu-category .list-items{
+            display: block;
+            list-style:none;
+        }
+
+        #get_search {
+            height: 42px;
+            margin: 0;
+            padding: 0 40px;
+            font-size: 13px;
+            outline: 0;
+            border: 2px solid var(--color-primary);
+            border-radius: 25px;
+        }
+
+
+        .main-menu-category.show {
+            transform: translateX(-36px);
+            transition: 0.5s all ease;
+        }
+        .main-menu-category li a {
+            margin-bottom: 10px;
+            display: block;
+            color: grey;
+            font-size: 15px;
+            font-weight: 600;
+        }
+        .menu-btn {
+            display: block;
+            position: absolute;
+            color: black;
+            top: 40px;
+            right: 30px;
+            font-size: 2rem;
+            margin-left: 10px;
+            left: 0;
+            margin-top: 5px;
+            width: 30px;
+        }
+
+        .lock-scroll {
+            overflow: hidden;
+        }
+
+        #main {
+            display: block;
+            width: 420px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+        }
+
+        #search_button {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            border: none;
+            color: #fff;
+            font-weight: 400;
+            outline: 0;
+            background: var(--color-primary);
+            padding: 0 20px;
+            font-size: 22px;
+            cursor: pointer;
+            border-radius: 24px;
+        }
+    }
+
+</style>
+
+<script>
+    document.querySelector("#btn-toggle").addEventListener("click", abc);
+    function abc() {
+        document.querySelector(".main-menu-category").classList.toggle("show");
+        document.body.classList.toggle('lock-scroll');
+    }
+
+
+
+</script>
