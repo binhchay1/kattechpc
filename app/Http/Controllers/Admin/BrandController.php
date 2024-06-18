@@ -13,7 +13,7 @@ class BrandController extends Controller
     private $brandRepository;
 
     public function __construct(
-        BrandRepository $brandRepository,
+        BrandRepository $brandRepository
     ) {
         $this->brandRepository = $brandRepository;
     }
