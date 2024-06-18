@@ -51,13 +51,14 @@ class CategoryProductController extends Controller
 
     public function editCategory($id)
     {
+        $statusCategory = \App\Enums\Category::STATUS;
         $categoryProduct = $this->categoryRepository->show($id);
         $listCategory = $this->categoryRepository->getListCategoryExcludeId($id);
         if (empty($categoryProduct)) {
             return redirect('/404');
         }
 
-        return view('admin.category-product.edit', compact('categoryProduct', 'listCategory'));
+        return view('admin.category-product.edit', compact('categoryProduct', 'listCategory', 'statusCategory'));
     }
 
     public function updateCategory(CategoryUpdateRequest $request,  $id)
