@@ -1635,3 +1635,11 @@ a {
     text-align: center;
     line-height: 1.6;
 }
+
+.global-breadcrumb li{
+    font-size: 17px;
+}
+
+.global-breadcrumb ol li i {
+    cursor: auto;
+}
