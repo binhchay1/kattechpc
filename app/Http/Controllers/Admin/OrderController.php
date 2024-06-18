@@ -76,8 +76,15 @@ class OrderController extends Controller
      */
     public function editOrder($id)
     {
-        $order = $this->orderRepository->show($id);
-        return view('admin.order.edit', compact('order'));
+        $orderDetail = $this->orderRepository->show($id);
+        $total = 0;
+        foreach ($orderDetail->orderDetails as $detail) {
+            $total += $detail->quantity * $detail->price;
+        }
+    
+        $orderDetail->total = $total;
+        $statusOrder = \App\Enums\Order::STATUS;
+        return view('admin.order.edit', compact('orderDetail', 'statusOrder'));
     }
 
     /**
@@ -85,12 +92,10 @@ class OrderController extends Controller
      */
     public function updateOrder(OrderRequest $request,  $id)
     {
-
         $input = $request->except(['_token']);
-
         $input = $this->orderRepository->update($input, $id);
 
-        return redirect()->route('admin.order.index')->with('success', 'Order successfully updated.');
+        return redirect()->route('admin.order.index')->with('success', 'Đơn hàng được thay đổi thành công.');
     }
 
     /**
@@ -102,7 +107,7 @@ class OrderController extends Controller
         if (empty($order)) {
             return redirect('/404');
         }
-        return back()->with('success', 'Order successfully updated.');
+        return back()->with('success', 'Đơn hàng được xóa thành công.');
     }
 
     public function export(Request $request)
