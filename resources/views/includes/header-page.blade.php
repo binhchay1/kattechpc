@@ -80,12 +80,12 @@
                 </div>
                 <nav class="navbar">
                     <ul class="main-menu-category">
-                        @foreach($listCategory['default'] as $category)
-                            @if($category->status == 0)
-                                @continue
-                            @endif
-                            <li class="list-items"><a href="">{{ $category->name }}</a>Danh mục sản phẩm</li>
-                        @endforeach
+{{--                        <li class="list-items"><a href="">{{ $category->name }}</a></li>--}}
+{{--                        @foreach($listCategory['default'] as $category)--}}
+{{--                            @if($category->status == 0)--}}
+{{--                                @continue--}}
+{{--                            @endif--}}
+{{--                        @endforeach--}}
                         <li class="list-items"><a href="{{ route('post') }}"><i class="fa fa-newspaper"></i>{{__("Tin công nghệ")}}</a></li>
                         <li class="list-items"><a href="{{ route('payment') }}"><i class="fa fa-money-check"></i>{{__("Hướng dẫn thanh toán")}}</a></li>
                         <li class="list-items"><a href="{{ route('policy') }}"><i class="fa fa-shield-alt"></i>{{__("Chính sách bảo hành")}}</a></li>
@@ -106,7 +106,7 @@
                             </div>
                         @else
                             <div class="">
-                                <a href="/register" class="sep-item-link" target="_blank"><i class="fa fa-address-book"></i> {{ __('Đăng ký') }}</a>
+                                <a href="" class="sep-item-link" target="_blank"><i class="fa fa-address-book"></i> {{ __('Đăng ký') }}</a>
                             </div>
                             <div class="">
                                 <a href="/login" class="sep-item-link" target="_blank"><i class="fa fa-home"></i> {{ __('Đăng nhập') }}</a>

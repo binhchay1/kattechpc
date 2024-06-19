@@ -95,7 +95,6 @@
 
                             </div>
 
-
                             <div class="xl:col-span-4">
                                 <label for="productStatus" class="inline-block mb-2 text-base font-medium">{{ __('Trạng thái: ') }}</label>
                                 <a  class=" btn-{{$orderDetail->status == 1 ? 'success' : 'danger' }}">
