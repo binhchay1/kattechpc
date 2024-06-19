@@ -437,3 +437,14 @@
         overflow: hidden;
     }
 }
+
+
+@media screen and (max-width: 1805px) {
+    .fixed-left {
+        display: none;
+    }
+
+    .fixed-right {
+        display: none;
+    }
+}

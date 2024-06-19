@@ -321,3 +321,27 @@
 .mt-10 {
     margin-top: 10px;
 }
+
+.m-b-20 {
+    margin-bottom: 20px;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.ml-5 {
+    margin-left: 5px;
+}

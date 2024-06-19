@@ -44,14 +44,17 @@
 
                     <ol itemscope="" itemtype="http://schema.org/BreadcrumbList" class="list-breadcrumb clearfix d-flex align-items-center flex-wrap">
                         <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                            <a href="/" itemprop="item" class="nopad-l">
+                            <a href="{{ route('home') }}" itemprop="item">
                                 <span itemprop="name">{{ __('Trang chủ') }} </span> <i class="fa fa-angle-right" style="margin: 0 10px;"></i>
                             </a>
                             <meta itemprop="position" content="1">
                         </li>
 
                         <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                            <span itemprop="name"> @yield('breadcrumb-parent') </span><i class="fa fa-angle-right" style="margin: 0 10px;"></i>
+                            <a href="@yield('breadcrumb-parent-url')">
+                                <span itemprop="name"> @yield('breadcrumb-parent') </span><i class="fa fa-angle-right" style="margin: 0 10px;"></i>
+                            </a>
+
                             <meta itemprop="position" content="2">
                         </li>
 
@@ -68,10 +71,9 @@
         <div class="box-breadcrumb-global">
             <div class="container d-flex align-items-center box-breadcrumb">
                 <div class="global-breadcrumb d-flex justify-content-between align-items-center">
-
                     <ol itemscope="" itemtype="http://schema.org/BreadcrumbList" class="list-breadcrumb clearfix d-flex align-items-center flex-wrap">
                         <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                            <a href="/" itemprop="item" class="nopad-l">
+                            <a href="{{ route('home') }}" itemprop="item" class="nopad-l">
                                 <span itemprop="name">{{ __('Trang chủ') }} </span> <i class="fa fa-angle-right" style="margin: 0 10px;"></i>
                             </a>
                             <meta itemprop="position" content="1">
