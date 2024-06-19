@@ -256,6 +256,11 @@ img {
     border-radius: 16px 16px 0 0;
     position: relative;
 }
+
+#img-icon-hot {
+    width: 40px;
+    margin-top: -20px;
+    margin-left: 20px;
 }
 
 a:hover {
