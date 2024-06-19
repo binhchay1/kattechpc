@@ -106,9 +106,9 @@
 
         <div class="column2" id="post-column2">
             <div class="row top1">
-                <h2 class="text-title1"> {{ __('Chủ đề nóng') }}
-                    <span class="icon" >
-                        <img style="width: 35px; margin-top: 10px" src="https://file.hstatic.net/200000636033/file/icon-blog-1_8b6add82876c457ba582b628c32266e5.png"></span></h2>
+                <h2 class="text-title"> {{ __('Chủ đề nóng') }}
+                    <span class="icon" style="position: absolute;">
+                        <img id="img-icon-hot"  src="https://file.hstatic.net/200000636033/file/icon-blog-1_8b6add82876c457ba582b628c32266e5.png"></span></h2>
                 <div class="parent1">
                     @foreach($listCategoryPost as $categoryPost)
                     <div class="child1">
