@@ -157,7 +157,7 @@
     font-size: 16px;
     display: block;
     width: 100%;
-    background: transparent;
+    background: light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4)) !important;
     height: 35px;
     padding: 10px 20px;
     border: none;

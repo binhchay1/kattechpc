@@ -45,7 +45,7 @@
                         Email
                     </span>
                 </div>
-                <div class="wrap-input100 validate-input" data-validate="Username is required">
+                <div class="wrap-input100 validate-input">
                     <input class="input100" id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="{{ __('Nhập email của bạn') }}">
                     <span class="focus-input100"></span>
                 </div>
@@ -56,7 +56,7 @@
                     </span>
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate="Password is required">
+                <div class="wrap-input100 validate-input">
                     <input class="input100" type="password" id="password" class="block mt-1 w-full" name="password" required autocomplete="current-password" placeholder="{{ __('Nhập mật khẩu của bạn') }}">
                     <span class="focus-input100"></span>
                 </div>
