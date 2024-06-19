@@ -40,7 +40,10 @@
                     <div class="name-item-drive">
                         <h3 class="d-name d-name-277" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">{{ $key + 1 }}. {{ $value->name }}</h3>
                         @if(isset($value->offers))
-                        <h5 style="color: red; font-style: italic; font-weight: bold">{{ $value->offers }}</h5>
+                        <div class="d-flex">
+                            <i class="fa fa-gift"></i>
+                            <h5 class="offers-build-pc">{{ $value->offers }}</h5>
+                        </div>
                         @endif
                     </div>
                     <div class="drive-checked" style="margin-left:0;">
@@ -87,6 +90,7 @@
 
 @include('includes.modal-build-pc')
 @include('includes.tooltips-buildpc')
+@include('includes.modal-no-item-print')
 @endsection
 
 @section('js')

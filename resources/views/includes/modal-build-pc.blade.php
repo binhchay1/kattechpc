@@ -6,7 +6,7 @@
             <div class="col-lg-4 title-popup">
                 <h4>{{ __('Chọn linh kiện') }}</h4>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 no-max-flex-none">
                 <div class="wrap">
                     <div class="search">
                         <input type="text" class="searchTerm" placeholder="{{ __('Bạn cần link kiện gì?') }}" id="search-in-modal">
@@ -93,10 +93,11 @@
                         </ul>
                     </div>
 
+                    <!--
                     <div class="gr-filter" id="js-attr-filter">
                         <h5 class="title-filter"> </h5>
                         <div id="js-attr-list" class="ul-filter">
-                            <!--
+
                             <h5 class="title-filter"> Loại CPU </h5>
                             <ul id="js-attr-list" class="ul-filter">
                                 <li>
@@ -106,9 +107,10 @@
                                     </label>
                                 </li>
                             </ul>
-                            -->
+
                         </div>
                     </div>
+                     -->
                 </div>
             </div>
 

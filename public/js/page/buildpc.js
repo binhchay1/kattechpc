@@ -92,6 +92,10 @@ $(document).ready(function () {
     $('#js-holder-p_item').on('mouseout', '.p-item .p-img img', function () {
         $('#tooltip-buildpc').hide();
     });
+
+    $('#modal-no-item-print .close').on('click', function () {
+        $('#modal-no-item-print').css('display', 'none');
+    });
 });
 
 function addToMenu(choose) {
@@ -100,6 +104,13 @@ function addToMenu(choose) {
     let status = product.status;
     let image = JSON.parse(product.image);
     let split = idMenu.split('-');
+    let price = '';
+    if (product.new_price != '') {
+        price = product.new_price;
+    } else {
+        price = product.price;
+    }
+
     let idSelected = '#category-js-selected-' + split[2] + '-' + currentArea;
     if (status == 'available') {
         textStatus = 'Còn hàng';
@@ -116,29 +127,17 @@ function addToMenu(choose) {
                                 Bảo hành: ` + product.status_guarantee + ` <br>
                                 Kho hàng: <span style="color: red">` + textStatus + `</span> | Mã SP: <span style="color: red">` + product.code + `</span>
                             </span>
-                            <span class="d-price">` + product.price + `</span>
+                            <span class="d-price">` + price + `</span>
                             <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50" disabled><i>=</i>
-                            <span class="sum_price">` + product.price + `</span>
+                            <span class="sum_price">` + price + `</span>
                             <span class="btn-action_seclect show-popup_select" onclick="changeProductHandle('` + idMenu + `')"><i class="fa fa-edit edit-item"></i></span>
-                            <span class="btn-action_seclect delete_select" data-id="` + product.id + `" data-price="` + product.price + `" onclick="deleteProductHandle(this)"><i class="fa fa-trash remove-item"></i></span>
+                            <span class="btn-action_seclect delete_select" data-id="` + product.id + `" data-price="` + price + `" onclick="deleteProductHandle(this)"><i class="fa fa-trash remove-item"></i></span>
                             </div>`;
     $('#' + idMenu).hide();
     if ($(idSelected + ' .sum_price') != undefined) {
         if (currentArea == 1) {
-            if (currentPrice1 != 0) {
-                currentPrice1 -= parseInt($(idSelected + ' .sum_price').html().replaceAll('.', ''));
-            }
-
-            $('.total-price-in-hud-1').html(priceWithCommas(currentPrice1));
-
             currentArrayProduct.listArea1.push(product.id);
         } else {
-            if (currentPrice2 != 0) {
-                currentPrice2 -= parseInt($(idSelected + ' .sum_price').html().replaceAll('.', ''));
-            }
-
-            $('.total-price-in-hud-2').html(priceWithCommas(currentPrice2));
-
             currentArrayProduct.listArea2.push(product.id);
         }
     }
@@ -146,7 +145,8 @@ function addToMenu(choose) {
     $(idSelected).empty();
     $(idSelected).append(stringAppend);
     $('#js-modal-popup').hide();
-    countTotalPrice(product.price);
+    countTotalPrice(price, 'plus');
+    handleSessionBuild();
 }
 
 function changeBuild(tabSelect) {
@@ -187,16 +187,28 @@ function resetBuildPC() {
                 let idBtnAdd = '#category-js-' + result[k].id + '-' + currentArea;
                 $(idBtnAdd).show();
             }
+
+            handleSessionBuild();
         }
     });
 }
 
-function countTotalPrice(priceUpdate) {
+function countTotalPrice(priceUpdate, status) {
     if (currentArea == 1) {
-        currentPrice1 += parseInt(priceUpdate.replaceAll('.', ''));
+        if (status == 'plus') {
+            currentPrice1 += parseInt(priceUpdate.replaceAll('.', ''));
+        } else {
+            currentPrice1 -= parseInt(priceUpdate.replaceAll('.', ''));
+        }
+
         $('.total-price-in-hud-1').html(priceWithCommas(currentPrice1));
     } else {
-        currentPrice2 += parseInt(priceUpdate.replaceAll('.', ''));
+        if (status == 'plus') {
+            currentPrice2 += parseInt(priceUpdate.replaceAll('.', ''));
+        } else {
+            currentPrice2 -= parseInt(priceUpdate.replaceAll('.', ''));
+        }
+
         $('.total-price-in-hud-2').html(priceWithCommas(currentPrice2));
     }
 }
@@ -210,23 +222,22 @@ function deleteProductHandle(button) {
     let idArea = '#product-item-in-list-' + currentArea + '-' + id;
     let price = button.getAttribute('data-price');
     if (currentArea == 1) {
-        currentPrice1 -= parseInt(price.replaceAll('.', ''));
-        $('.total-price-in-hud-1').html(priceWithCommas(currentPrice1));
         var index = currentArrayProduct.listArea1.indexOf(id);
         if (index !== -1) {
             currentArrayProduct.listArea1.splice(index, 1);
         }
     } else {
-        currentPrice2 -= parseInt(price.replaceAll('.', ''));
-        $('.total-price-in-hud-2').html(priceWithCommas(currentPrice2));
         var index = currentArrayProduct.listArea2.indexOf(id);
         if (index !== -1) {
             currentArrayProduct.listArea2.splice(index, 1);
         }
     }
+
     $(idArea).remove();
     let idBtnAdd = '#category-js-' + id + '-' + currentArea;
     $(idBtnAdd).show();
+    countTotalPrice(price, 'minus');
+    handleSessionBuild();
 }
 
 function changeProductHandle(userChose) {
@@ -552,22 +563,35 @@ function handleSortPrice(price) {
     });
 }
 
+function handleSessionBuild() {
+    let urlSession = '/handle-session-build-pc';
+    let data = {
+        data: currentArrayProduct
+    };
+    $.ajax({
+        type: "POST",
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        url: urlSession,
+        data: data,
+        success: function (result) {
+
+        }
+    });
+}
+
 function printPage() {
-    var w = window.open();
+    let listCheck = [];
+    if (currentArea == 1) {
+        listCheck = currentArrayProduct.listArea1
+    } else {
+        listCheck = currentArrayProduct.listArea2
+    }
 
-    var headers = $("#headers").html();
-    var field = $("#field1").html();
-    var field2 = $("#field2").html();
+    if (listCheck.length == 0) {
+        $('#modal-no-item-print').css('display', 'flex');
+    } else {
 
-    var html = "<!DOCTYPE HTML>";
-    html += '<html lang="en-us">';
-    html += '<head><style></style></head>';
-    html += "<body>";
-
-    html += "</body>";
-    w.document.write(html);
-    w.window.print();
-    w.document.close();
+    }
 };
 
 function exportExcel() {

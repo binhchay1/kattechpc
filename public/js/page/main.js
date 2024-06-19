@@ -145,7 +145,6 @@ $(document).ready(function () {
     $('.global-menu-container').hover(function () {
         $('.global-menu-holder').show();
     }, function () {
-        console.log($(".global-menu-holder .sub-menu-list").css("display") != "flex" && $('.global-menu-holder').is(':visible'));
         if ($(".global-menu-holder .sub-menu-list").css("display") != "flex" && $('.global-menu-holder').is(':visible')) {
             $('.global-menu-holder').hide();
         }

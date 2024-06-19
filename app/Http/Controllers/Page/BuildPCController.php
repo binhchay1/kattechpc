@@ -7,6 +7,7 @@ use App\Enums\Product;
 use App\Http\Controllers\Controller;
 use App\Repositories\ProductRepository;
 use App\Repositories\BuildPcRepository;
+use App\Repositories\SessionBuildPCRepository;
 use Cart;
 use Cache;
 
@@ -15,13 +16,16 @@ class BuildPCController extends Controller
 
     private $productRepository;
     private $buildPcRepository;
+    private $sessionBuildPcRepository;
 
     public function __construct(
         ProductRepository $productRepository,
-        BuildPcRepository $buildPcRepository
+        BuildPcRepository $buildPcRepository,
+        SessionBuildPCRepository $sessionBuildPcRepository
     ) {
         $this->productRepository = $productRepository;
         $this->buildPcRepository = $buildPcRepository;
+        $this->sessionBuildPcRepository = $sessionBuildPcRepository;
     }
 
     public function buildPC(Request $request)
@@ -30,8 +34,15 @@ class BuildPCController extends Controller
         $listCategory = Cache::store('redis')->get($key);
         $getProductByKey = $request->get('key');
         $menu = $this->buildPcRepository->index();
+        $getSessionBuildPC = $request->session()->get('buildID');
+        if ($getSessionBuildPC != null) {
+            $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
+            $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
+        } else {
+            $dataBuild = [];
+        }
 
-        return view('page.build-pc.build-pc', compact('listCategory', 'menu'));
+        return view('page.build-pc.build-pc', compact('listCategory', 'menu', 'dataBuild'));
     }
 
     public function getProduct(Request $request)
@@ -155,6 +166,31 @@ class BuildPCController extends Controller
                 1,
                 ['image' => $product->image]
             );
+        }
+
+        return 'success';
+    }
+
+    public function handleSessionBuildPC(Request $request)
+    {
+        $data = $request->get('data');
+
+        $getSession = $request->session()->get('buildID');
+        if (empty($getSession)) {
+            $buildID = bin2hex(date('Y-m-d H:i:s'));
+            $request->session()->put('buildID', $buildID);
+            $dataSessionBuild = [
+                'build_id' => $buildID,
+                'data_build' => json_encode($data)
+            ];
+
+            $this->sessionBuildPcRepository->create($dataSessionBuild);
+        } else {
+            $dataSessionBuild = [
+                'data_build' => json_encode($data)
+            ];
+
+            $this->sessionBuildPcRepository->updateByBuildID($buildID, $dataSessionBuild);
         }
 
         return 'success';
