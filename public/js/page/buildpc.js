@@ -182,7 +182,6 @@ function resetBuildPC() {
             }
 
             $('#build-pc-content-list-' + currentArea + ' .category-selected-row').empty();
-            let currentAreaID = '#build-pc-content-area-' + currentArea + ' .drive-checked';
 
             for (let k = 0; k < result.length; k++) {
                 let idBtnAdd = '#category-js-' + result[k].id + '-' + currentArea;
@@ -283,7 +282,6 @@ function renderProductToModal(data) {
         let slug = val.slug;
         let image = JSON.parse(val.image);
         let urlProduct = '/product/' + slug;
-        let urlAddToBuild = '/add-build-pc/' + slug;
         let status_guarantee = val.status_guarantee;
         let status = val.status;
         if (status == 'available') {
@@ -566,10 +564,12 @@ function printPage() {
     html += '<head><style></style></head>';
     html += "<body>";
 
-
-
     html += "</body>";
     w.document.write(html);
     w.window.print();
     w.document.close();
 };
+
+function exportExcel() {
+
+}
