@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Repositories\ProductRepository;
 use App\Repositories\BuildPcRepository;
 use App\Repositories\SessionBuildPCRepository;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExportBuildPC;
 use Cart;
 use Cache;
 
@@ -194,5 +196,12 @@ class BuildPCController extends Controller
         }
 
         return 'success';
+    }
+
+    public function exportExcelBuildPC(Request $request)
+    {
+        $getSession = $request->session()->get('buildID');
+        $nameFile = 'buildpc_' . date('d-m-Y') . '_' . $getSession;
+        return Excel::download(new ExportBuildPC(), $nameFile);
     }
 }

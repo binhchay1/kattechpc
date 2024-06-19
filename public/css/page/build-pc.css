@@ -58,6 +58,8 @@
 .d-name {
     font-size: 15px;
     color: #000000;
+    border-bottom: none;
+    margin-bottom: 10px;
 }
 
 span.d-name {
@@ -129,7 +131,7 @@ span .p-name {
 .total-price {
     font-size: 18px;
     color: #d00;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .build-pc_content {
@@ -603,7 +605,6 @@ body {
     margin: 0 0 0 10px;
     font-size: 14px;
 }
-
 
 @media screen and (max-width: 992px) {
     .popup-select {

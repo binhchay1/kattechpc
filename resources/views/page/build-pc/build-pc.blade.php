@@ -35,10 +35,11 @@
                 <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
             </div>
             <div class="list-drive" id="build-pc-content-list-1" style="border: solid 1px #e1e1e1;">
+                @if(!array_key_exists('listArea1', $dataBuild))
                 @foreach($menu as $key => $value)
                 <div class="item-drive d-flex">
                     <div class="name-item-drive">
-                        <h3 class="d-name d-name-277" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">{{ $key + 1 }}. {{ $value->name }}</h3>
+                        <h3 class="d-name d-name-277">{{ $key + 1 }}. {{ $value->name }}</h3>
                         @if(isset($value->offers))
                         <div class="d-flex">
                             <i class="fa fa-gift"></i>
@@ -52,6 +53,25 @@
                     </div>
                 </div>
                 @endforeach
+                @else
+                @foreach($menu as $key => $value)
+                <div class="item-drive d-flex">
+                    <div class="name-item-drive">
+                        <h3 class="d-name d-name-277">{{ $key + 1 }}. {{ $value->name }}</h3>
+                        @if(isset($value->offers))
+                        <div class="d-flex">
+                            <i class="fa fa-gift"></i>
+                            <h5 class="offers-build-pc">{{ $value->offers }}</h5>
+                        </div>
+                        @endif
+                    </div>
+                    <div class="drive-checked" style="margin-left:0;">
+                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-1"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
+                        <div id="category-js-selected-{{ $value->id }}-1" class="js-item-row category-selected-row"></div>
+                    </div>
+                </div>
+                @endforeach
+                @endif
             </div>
             <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">0</span><span class="total-price-config-1"></span></p>
         </div>
@@ -63,10 +83,11 @@
                 </p>
             </div>
             <div class="list-drive" id="build-pc-content-list-2" style="border: solid 1px #e1e1e1;">
+                @if(!array_key_exists('listArea2', $dataBuild))
                 @foreach($menu as $key => $value)
                 <div class="item-drive d-flex">
                     <div class="name-item-drive">
-                        <h3 class="d-name d-name-277" style="font-size: 15px;border-bottom: none;margin-bottom:10px;">{{ $key + 1 }}. {{ $value->name }}</h3>
+                        <h3 class="d-name d-name-277">{{ $key + 1 }}. {{ $value->name }}</h3>
                         @if(isset($value->offers))
                         <h5 style="color: red; font-style: italic; font-weight: bold">{{ $value->offers }}</h5>
                         @endif
@@ -77,13 +98,31 @@
                     </div>
                 </div>
                 @endforeach
+                @else
+                @foreach($menu as $key => $value)
+                <div class="item-drive d-flex">
+                    <div class="name-item-drive">
+                        <h3 class="d-name d-name-277">{{ $key + 1 }}. {{ $value->name }}</h3>
+                        @if(isset($value->offers))
+                        <h5 style="color: red; font-style: italic; font-weight: bold">{{ $value->offers }}</h5>
+                        @endif
+                    </div>
+                    <div class="drive-checked" style="margin-left:0;">
+                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-2"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
+                        <div id="category-js-selected-{{ $value->id }}-2" class="js-item-row category-selected-row"></div>
+                    </div>
+                </div>
+                @endforeach
+                @endif
             </div>
             <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-2">0</span><span class="total-price-config-2"></span></p>
         </div>
 
         <ul class="list-btn-action" id="js-buildpc-action">
-            <li onclick="addToCart()"><span>{{ __('Thêm vào giỏ hàng') }}<i class="fa fa-shopping-cart"></i></span></li>
-            <li onclick="printPage()"><span>{{ __('Xem và in') }}<i class="fa fa-shopping-cart"></i></span></li>
+            <li onclick="addToCart()"><span>{{ __('THÊM VÀO GIỎ HÀNG') }}<i class="fa fa-shopping-cart"></i></span></li>
+            <li onclick="printPage()"><span>{{ __('XEM VÀ IN') }}<i class="fa fa-print"></i></span></li>
+            <li onclick="exportExcel()"><span>{{ __('TẢI FILE EXCEL') }}<i class="fa fa-file"></i></span></li>
+            <li onclick="exportExcel()"><span>{{ __('TẢI ẢNH') }}<i class="fa fa-image"></i></span></li>
         </ul>
     </div>
 </div>

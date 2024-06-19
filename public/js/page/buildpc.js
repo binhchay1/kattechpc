@@ -595,5 +595,13 @@ function printPage() {
 };
 
 function exportExcel() {
+    let urlExport = '/export-excel-build-pc';
 
+    $.ajax({
+        type: "GET",
+        url: urlExport,
+        success: function (result) {
+
+        }
+    });
 }
