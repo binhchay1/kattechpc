@@ -581,6 +581,7 @@ function handleSessionBuild() {
 
 function printPage() {
     let listCheck = [];
+    let urlPrint = '/print-build-pc?a=' + currentArea;
     if (currentArea == 1) {
         listCheck = currentArrayProduct.listArea1
     } else {
@@ -590,18 +591,77 @@ function printPage() {
     if (listCheck.length == 0) {
         $('#modal-no-item-print').css('display', 'flex');
     } else {
-
+        window.location.href = urlPrint;
     }
 };
 
 function exportExcel() {
     let urlExport = '/export-excel-build-pc';
+    let listCheck = [];
+    let fileName = 'buildpc-kattech.xlsx';
+    if (currentArea == 1) {
+        listCheck = currentArrayProduct.listArea1
+    } else {
+        listCheck = currentArrayProduct.listArea2
+    }
 
-    $.ajax({
-        type: "GET",
-        url: urlExport,
-        success: function (result) {
+    if (listCheck.length == 0) {
+        $('#modal-no-item-print').css('display', 'flex');
+    } else {
+        $.ajax({
+            type: "GET",
+            url: urlExport,
+            data: {
+                a: currentArea
+            },
+            cache: false,
+            xhr: function () {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 2) {
+                        if (xhr.status == 200) {
+                            xhr.responseType = "blob";
+                        } else {
+                            xhr.responseType = "text";
+                        }
+                    }
+                };
 
-        }
-    });
+                return xhr;
+            },
+            success: function (data) {
+                var blob = new Blob([data], { type: "application/octetstream" });
+
+                var isIE = false || !!document.documentMode;
+                if (isIE) {
+                    window.navigator.msSaveBlob(blob, fileName);
+                } else {
+                    var url = window.URL || window.webkitURL;
+                    link = url.createObjectURL(blob);
+                    var a = $("<a />");
+                    a.attr("download", fileName);
+                    a.attr("href", link);
+                    $("body").append(a);
+                    a[0].click();
+                    $("body").remove(a);
+                }
+            }
+        });
+    }
+}
+
+function exportImage() {
+    let listCheck = [];
+    let urlExportImage = '/export-image-build-pc?a=' + currentArea;
+    if (currentArea == 1) {
+        listCheck = currentArrayProduct.listArea1
+    } else {
+        listCheck = currentArrayProduct.listArea2
+    }
+
+    if (listCheck.length == 0) {
+        $('#modal-no-item-print').css('display', 'flex');
+    } else {
+        window.location.href = urlExportImage;
+    }
 }

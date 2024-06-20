@@ -39,7 +39,11 @@ class BuildPCController extends Controller
         $getSessionBuildPC = $request->session()->get('buildID');
         if ($getSessionBuildPC != null) {
             $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
-            $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
+            if (isset($getDataBySessionBuildPC)) {
+                $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
+            } else {
+                $dataBuild = [];
+            }
         } else {
             $dataBuild = [];
         }
@@ -57,7 +61,6 @@ class BuildPCController extends Controller
         $explode = explode('-', $getProductByKey);
         $buildId = $explode[2];
         $arrID = [];
-        $filter = [];
 
         $getListCategory = $this->buildPcRepository->getListCategory($buildId);
         $decode = json_decode($getListCategory->category_id, true);
@@ -192,7 +195,7 @@ class BuildPCController extends Controller
                 'data_build' => json_encode($data)
             ];
 
-            $this->sessionBuildPcRepository->updateByBuildID($buildID, $dataSessionBuild);
+            $this->sessionBuildPcRepository->updateByBuildID($getSession, $dataSessionBuild);
         }
 
         return 'success';
@@ -200,8 +203,90 @@ class BuildPCController extends Controller
 
     public function exportExcelBuildPC(Request $request)
     {
-        $getSession = $request->session()->get('buildID');
-        $nameFile = 'buildpc_' . date('d-m-Y') . '_' . $getSession;
-        return Excel::download(new ExportBuildPC(), $nameFile);
+        $area = $request->get('a');
+
+        if (empty($area)) {
+            abort(404);
+        }
+
+        if ($area != '1' and $area != '2') {
+            abort(404);
+        }
+
+        $getSessionBuildPC = $request->session()->get('buildID');
+        $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
+        $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
+        if ($area == 1) {
+            $arrProductID = $dataBuild['listArea1'];
+        } else {
+            $arrProductID = $dataBuild['listArea2'];
+        }
+
+        $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
+        $nameFile = 'buildpc_' . date('d-m-Y') . '_' . $getSessionBuildPC . '.xlsx';
+
+        return Excel::download(new ExportBuildPC($getProduct), $nameFile);
+    }
+
+    public function exportImageBuildPC(Request $request)
+    {
+        $area = $request->get('a');
+
+        if (empty($area)) {
+            abort(404);
+        }
+
+        if ($area != '1' and $area != '2') {
+            abort(404);
+        }
+
+        $getSessionBuildPC = $request->session()->get('buildID');
+        $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
+        $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
+
+        if ($area == 1) {
+            $arrProductID = $dataBuild['listArea1'];
+        } else {
+            $arrProductID = $dataBuild['listArea2'];
+        }
+
+        $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
+
+        return view('page.exports.build-pc-image', compact('getProduct'));
+    }
+
+    public function printBuildPC(Request $request)
+    {
+        $area = $request->get('a');
+
+        if (empty($area)) {
+            abort(404);
+        }
+
+        if ($area != '1' and $area != '2') {
+            abort(404);
+        }
+
+        $getSessionBuildPC = $request->session()->get('buildID');
+        $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
+        $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
+
+        if ($area == 1) {
+            $arrProductID = $dataBuild['listArea1'];
+        } else {
+            $arrProductID = $dataBuild['listArea2'];
+        }
+
+        $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
+        $total = 0;
+        foreach ($getProduct as $product) {
+            if ($product->new_price != null) {
+                $total += (int) str_replace('.', '', $product->new_price);
+            } else {
+                $total += (int) str_replace('.', '', $product->price);
+            }
+        }
+
+        return view('page.build-pc.print', compact('getProduct', 'total'));
     }
 }

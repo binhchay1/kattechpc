@@ -97,6 +97,8 @@ Route::group(['middleware' => ['cache.menu', 'count.visitor']], function () {
     Route::get('/build-pc-checkout',  [BuildPCController::class, 'addToCartBuildPC'])->name('checkout.in.build');
     Route::post('/handle-session-build-pc',  [BuildPCController::class, 'handleSessionBuildPC'])->name('handle.session.build');
     Route::get('/export-excel-build-pc',  [BuildPCController::class, 'exportExcelBuildPC'])->name('export.excel.build');
+    Route::get('/print-build-pc',  [BuildPCController::class, 'printBuildPC'])->name('print.build');
+    Route::get('/export-image-build-pc',  [BuildPCController::class, 'exportImageBuildPC'])->name('export.image.build');
 
     Route::group(['prefix' => 'cart'], function () {
         Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
