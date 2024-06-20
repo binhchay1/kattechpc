@@ -127,11 +127,16 @@
     </div>
 </div>
 
+<div id="area-export-image"></div>
+
 @include('includes.modal-build-pc')
 @include('includes.tooltips-buildpc')
 @include('includes.modal-no-item-print')
 @endsection
 
 @section('js')
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script src="{{ asset('/js/page/buildpc.js') }}"></script>
 @endsection

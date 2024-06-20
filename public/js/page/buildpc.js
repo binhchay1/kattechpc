@@ -652,7 +652,7 @@ function exportExcel() {
 
 function exportImage() {
     let listCheck = [];
-    let urlExportImage = '/export-image-build-pc?a=' + currentArea;
+    let urlExportImage = '/export-image-build-pc';
     if (currentArea == 1) {
         listCheck = currentArrayProduct.listArea1
     } else {
@@ -662,6 +662,35 @@ function exportImage() {
     if (listCheck.length == 0) {
         $('#modal-no-item-print').css('display', 'flex');
     } else {
-        window.location.href = urlExportImage;
+        $.ajax({
+            type: "GET",
+            url: urlExportImage,
+            data: {
+                a: currentArea
+            },
+            success: function (data) {
+                $('#area-export-image').html(data);
+                capture();
+            }
+        });
     }
+}
+
+function capture() {
+    const captureElement = document.querySelector('#capture')
+    html2canvas(captureElement)
+        .then(canvas => {
+            canvas.style.display = 'none';
+            document.body.appendChild(canvas);
+            return canvas;
+        })
+        .then(canvas => {
+            const image = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+            const a = document.createElement('a');
+            a.setAttribute('download', 'my-image.png');
+            a.setAttribute('href', image);
+            a.click();
+            canvas.remove();
+            window.open('', '_self').close();
+        })
 }

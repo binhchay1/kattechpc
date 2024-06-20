@@ -605,6 +605,12 @@ body {
     font-size: 14px;
 }
 
+#area-export-image {
+    position: absolute;
+    z-index: -1;
+    bottom: -1000%;
+}
+
 @media screen and (max-width: 992px) {
     .popup-select {
         width: 100%;

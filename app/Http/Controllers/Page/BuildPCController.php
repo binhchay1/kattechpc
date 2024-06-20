@@ -252,7 +252,7 @@ class BuildPCController extends Controller
 
         $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
 
-        return view('page.exports.build-pc-image', compact('getProduct'));
+        return view('page.exports.build-pc-image', compact('getProduct'))->render();
     }
 
     public function printBuildPC(Request $request)
