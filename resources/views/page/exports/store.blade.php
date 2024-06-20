@@ -4,7 +4,7 @@
             @for($i = 0; $i < 5 ; $i++)
             <td></td>
             @endfor
-            <td colspan="2" rowspan="11" style="border-left: 1px solid; border-right: 1px solid"></td>
+            <td colspan="2" rowspan="11" style="border-left: 1px solid; border-right: 1px solid"><img src="{{ asset('/images/logo/logo.png') }}"></td>
         </tr>
         <tr></tr>
         <tr>
@@ -31,7 +31,7 @@
         <tr></tr>
         @endfor
         <tr>
-            <td colspan="7" rowspan="2"><h1 style="text-align: center; font-size: 23px; font-weight: bold;">BÁO GIÁ CHI TIẾT</h1></td>
+            <td colspan="7" rowspan="2"><h1 style="text-align: center;">BÁO GIÁ CHI TIẾT</h1></td>
         </tr>
         <tr></tr>
         <tr>
@@ -58,30 +58,29 @@
         <tr></tr>
         <tr>
             <td></td>
-            <td style="background-color: #f3070f; border: 1px solid #fff;">STT</td>
-            <td style="background-color: #f3070f; border: 1px solid #fff;">Tên sản phẩm</td>
-            <td style="background-color: #f3070f; border: 1px solid #fff;">Bảo hành</td>
-            <td style="background-color: #f3070f; border: 1px solid #fff;">Số lượng</td>
-            <td style="background-color: #f3070f; border: 1px solid #fff;">Đơn giá</td>
-            <td style="background-color: #f3070f; border: 1px solid #fff;">Thành tiền</td>
+            <td style="background-color: #f3070f; border: 1px solid;">STT</td>
+            <td style="background-color: #f3070f; border: 1px solid;">Tên sản phẩm</td>
+            <td style="background-color: #f3070f; border: 1px solid;">Bảo hành</td>
+            <td style="background-color: #f3070f; border: 1px solid;">Số lượng</td>
+            <td style="background-color: #f3070f; border: 1px solid;">Đơn giá</td>
+            <td style="background-color: #f3070f; border: 1px solid;">Thành tiền</td>
         </tr>
         @foreach($products as $key => $product)
         <tr>
-            <td></td>
-            <td style="border: 1px solid #fff;">{{ $key + 1 }}</td>
-            <td style="border: 1px solid #fff;">{{ $product->name }}</td>
-            <td style="border: 1px solid #fff;">{{ $product->status_guarantee }}</td>
-            <td style="border: 1px solid #fff; text-align: start;">1</td>
+            <td style="border: 1px solid;">{{ $key + 1 }}</td>
+            <td style="border: 1px solid;">{{ $product->name }}</td>
+            <td style="border: 1px solid;">{{ $product->status_guarantee }}</td>
+            <td style="border: 1px solid;">1</td>
             @if($product->new_price != null)
-            <td style="border: 1px solid #fff;">{{ $product->new_price }}</td>
+            <td style="border: 1px solid;">{{ $product->new_price }}</td>
             @else
-            <td style="border: 1px solid #fff;">{{ $product->price }}</td>
+            <td style="border: 1px solid;">{{ $product->price }}</td>
             @endif
 
             @if($product->new_price != null)
-            <td style="border: 1px solid #fff;">{{ $product->new_price }}</td>
+            <td style="border: 1px solid;">{{ $product->new_price }}</td>
             @else
-            <td style="border: 1px solid #fff;">{{ $product->price }}</td>
+            <td style="border: 1px solid;">{{ $product->price }}</td>
             @endif
         </tr>
         @endforeach
@@ -89,21 +88,21 @@
         <tr>
             <td></td>
             @for($m = 0; $m < 6; $m++)
-            <td style="border: 1px solid #fff;"></td>
+            <td style="border: 1px solid;"></td>
             @endfor
         </tr>
         <tr>
             <td></td>
             @for($h = 0; $h < 6; $h++)
-            <td style="border: 1px solid #fff;"></td>
+            <td style="border: 1px solid;"></td>
             @endfor
         </tr>
         <tr>
             <td></td>
-            <td colspan="3" style="border: 1px solid #fff;"></td>
-            <td style="border: 1px solid #fff;"></td>
-            <td style="border: 1px solid #fff;"></td>
-            <td style="border: 1px solid #fff;"></td>
+            <td colspan="3" style="border: 1px solid;"></td>
+            <td style="border: 1px solid;"></td>
+            <td style="border: 1px solid;"></td>
+            <td style="border: 1px solid;"></td>
         </tr>
         <tr>
             <td></td>
@@ -117,24 +116,6 @@ Một lần nữa KATTECH PC cảm ơn quý khách!</td>
             <td></td>
             <td style="text-align: center; background-color: #f77e7e;">Chi phí khác</td>
             <td>0</td>
-        </tr>
-
-        <tr>
-            <td></td>
-            <td style="text-align: center; background-color: #f77e7e;">Tổng tiền đơn hàng</td>
-            <td>{{ $total }}</td>
-        </tr>
-
-        <tr>
-            <td></td>
-            <td style="text-align: center; background-color: #f77e7e;">Được giảm tiền mặt</td>
-            <td style="text-align: end;">-</td>
-        </tr>
-
-        <tr>
-            <td></td>
-            <td style="text-align: center; background-color: #f77e7e;">Tổng tiền đơn hàng</td>
-            <td>{{ $total }}</td>
         </tr>
     </tbody>
 </table>

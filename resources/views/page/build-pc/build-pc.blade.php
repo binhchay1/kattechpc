@@ -35,11 +35,11 @@
                 <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
             </div>
             <div class="list-drive" id="build-pc-content-list-1" style="border: solid 1px #e1e1e1;">
-                @if(!array_key_exists('listArea1', $dataBuild))
-                @foreach($menu as $key => $value)
+                @if(array_key_exists('listArea1', $dataBuild))
+                @foreach($menu as $key1 => $value)
                 <div class="item-drive d-flex">
                     <div class="name-item-drive">
-                        <h3 class="d-name d-name-277">{{ $key + 1 }}. {{ $value->name }}</h3>
+                        <h3 class="d-name d-name-277">{{ $key1 + 1 }}. {{ $value->name }}</h3>
                         @if(isset($value->offers))
                         <div class="d-flex">
                             <i class="fa fa-gift"></i>
@@ -48,8 +48,46 @@
                         @endif
                     </div>
                     <div class="drive-checked" style="margin-left:0;">
-                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-1"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
-                        <div id="category-js-selected-{{ $value->id }}-1" class="js-item-row category-selected-row"></div>
+                        @if($key1 + 1 <= count($dataPreSession['listArea1'])) <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-1" style="display: none"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
+                            @else
+                            <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-1"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
+                            @endif
+                            <div id="category-js-selected-{{ $value->id }}-1" class="js-item-row category-selected-row">
+                                @foreach($dataPreSession['listArea1'] as $stt1 => $productSession1)
+                                @if($stt1 == $key1)
+                                @php
+                                if($productSession1->new_price != null) {
+                                $price1 = $productSession1->new_price;
+                                } else {
+                                $price1 = $productSession1->price;
+                                }
+
+                                if ($productSession1->status == 'available') {
+                                $textStatus1 = 'Còn hàng';
+                                } else if ($productSession1->status == 'out of stock') {
+                                $textStatus1 = 'Hết hàng';
+                                } else {
+                                $textStatus1 = 'Đang về hàng';
+                                }
+
+                                $image1 = json_decode($productSession1->image, true);
+                                @endphp
+                                <div class="contain-item-drive" id="product-item-in-list-2-{{ $productSession1->id }}">
+                                    <a target="_blank" href="{{ route('productDetail', $productSession1->slug) }}" class="d-img"><img src="{{ $image1[0] }}"></a>
+                                    <span class="d-name">
+                                        <a target="_blank" href="{{ route('productDetail', $productSession1->slug) }}"> {{ $productSession1->name }} </a> <br>
+                                        Bảo hành: {{ $productSession1->status_guarantee }} <br>
+                                        Kho hàng: <span style="color: red">{{ $textStatus1 }}</span> | Mã SP: <span style="color: red">{{ $productSession1->code }}</span>
+                                    </span>
+                                    <span class="d-price">{{ $price1 }}</span>
+                                    <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50" disabled><i>=</i>
+                                    <span class="sum_price">{{ $price1 }}</span>
+                                    <span class="btn-action_seclect show-popup_select" onclick="changeProductHandle('category-js-{{ $value->id }}-2')"><i class="fa fa-edit edit-item"></i></span>
+                                    <span class="btn-action_seclect delete_select" data-id="{{ $productSession1->id }}" data-price="{{ $price1 }}" onclick="deleteProductHandle(this)"><i class="fa fa-trash remove-item"></i></span>
+                                </div>
+                                @endif
+                                @endforeach
+                            </div>
                     </div>
                 </div>
                 @endforeach
@@ -83,18 +121,56 @@
                 </p>
             </div>
             <div class="list-drive" id="build-pc-content-list-2" style="border: solid 1px #e1e1e1;">
-                @if(!array_key_exists('listArea2', $dataBuild))
-                @foreach($menu as $key => $value)
+                @if(array_key_exists('listArea2', $dataBuild))
+                @foreach($menu as $key2 => $value)
                 <div class="item-drive d-flex">
                     <div class="name-item-drive">
-                        <h3 class="d-name d-name-277">{{ $key + 1 }}. {{ $value->name }}</h3>
+                        <h3 class="d-name d-name-277">{{ $key2 + 1 }}. {{ $value->name }}</h3>
                         @if(isset($value->offers))
                         <h5 style="color: red; font-style: italic; font-weight: bold">{{ $value->offers }}</h5>
                         @endif
                     </div>
                     <div class="drive-checked" style="margin-left:0;">
-                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-2"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
-                        <div id="category-js-selected-{{ $value->id }}-2" class="js-item-row category-selected-row"></div>
+                        @if($key2 + 1 <= count($dataPreSession['listArea2'])) <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-2" style="display: none"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
+                            @else
+                            <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-2"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
+                            @endif
+                            <div id="category-js-selected-{{ $value->id }}-2" class="js-item-row category-selected-row">
+                                @foreach($dataPreSession['listArea2'] as $stt2 => $productSession2)
+                                @if($stt2 == $key2)
+                                @php
+                                if($productSession2->new_price != null) {
+                                $price2 = $productSession2->new_price;
+                                } else {
+                                $price2 = $productSession2->price;
+                                }
+
+                                if ($productSession2->status == 'available') {
+                                $textStatus2 = 'Còn hàng';
+                                } else if ($productSession2->status == 'out of stock') {
+                                $textStatus2 = 'Hết hàng';
+                                } else {
+                                $textStatus2 = 'Đang về hàng';
+                                }
+
+                                $image2 = json_decode($productSession2->image, true);
+                                @endphp
+                                <div class="contain-item-drive" id="product-item-in-list-2-{{ $productSession2->id }}">
+                                    <a target="_blank" href="{{ route('productDetail', $productSession2->slug) }}" class="d-img"><img src="{{ $image2[0] }}"></a>
+                                    <span class="d-name">
+                                        <a target="_blank" href="{{ route('productDetail', $productSession2->slug) }}"> {{ $productSession2->name }} </a> <br>
+                                        Bảo hành: {{ $productSession2->status_guarantee }} <br>
+                                        Kho hàng: <span style="color: red">{{ $textStatus2 }}</span> | Mã SP: <span style="color: red">{{ $productSession2->code }}</span>
+                                    </span>
+                                    <span class="d-price">{{ $price2 }}</span>
+                                    <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50" disabled><i>=</i>
+                                    <span class="sum_price">{{ $price2 }}</span>
+                                    <span class="btn-action_seclect show-popup_select" onclick="changeProductHandle('category-js-{{ $value->id }}-2')"><i class="fa fa-edit edit-item"></i></span>
+                                    <span class="btn-action_seclect delete_select" data-id="{{ $productSession2->id }}" data-price="{{ $price2 }}" onclick="deleteProductHandle(this)"><i class="fa fa-trash remove-item"></i></span>
+                                </div>
+                                @endif
+                                @endforeach
+                            </div>
                     </div>
                 </div>
                 @endforeach
@@ -138,5 +214,28 @@
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+@if(empty($dataBuild))
+<script>
+    var currentArrayProduct = {
+        'listArea1': [],
+        'listArea2': []
+    };
+</script>
+@else
+<script>
+    var currentArrayProduct = {
+        'listArea1': [],
+        'listArea2': []
+    };
+
+    <?php if (array_key_exists('listArea1', $dataBuild)) { ?>
+        currentArrayProduct.listArea1 = JSON.parse('<?php echo json_encode($dataBuild['listArea1']); ?>');
+    <?php } ?>
+
+    <?php if (array_key_exists('listArea2', $dataBuild)) { ?>
+        currentArrayProduct.listArea2 = JSON.parse('<?php echo json_encode($dataBuild['listArea2']); ?>');
+    <?php } ?>
+</script>
+@endif
 <script src="{{ asset('/js/page/buildpc.js') }}"></script>
 @endsection

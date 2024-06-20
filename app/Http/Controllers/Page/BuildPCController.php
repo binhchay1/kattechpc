@@ -48,7 +48,19 @@ class BuildPCController extends Controller
             $dataBuild = [];
         }
 
-        return view('page.build-pc.build-pc', compact('listCategory', 'menu', 'dataBuild'));
+        $dataPreSession = [
+            'listArea1' => [],
+            'listArea2' => [],
+        ];
+
+        if (!empty($dataBuild)) {
+            foreach ($dataBuild as $key => $area) {
+                $getPrBySession = $this->productRepository->getProductByArrayID($area);
+                $dataPreSession[$key] = $getPrBySession;
+            }
+        }
+
+        return view('page.build-pc.build-pc', compact('listCategory', 'menu', 'dataBuild', 'dataPreSession'));
     }
 
     public function getProduct(Request $request)
@@ -224,8 +236,16 @@ class BuildPCController extends Controller
 
         $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
         $nameFile = 'buildpc_' . date('d-m-Y') . '_' . $getSessionBuildPC . '.xlsx';
+        $total = 0;
+        foreach ($getProduct as $product) {
+            if ($product->new_price != null) {
+                $total += (int) str_replace('.', '', $product->new_price);
+            } else {
+                $total += (int) str_replace('.', '', $product->price);
+            }
+        }
 
-        return Excel::download(new ExportBuildPC($getProduct), $nameFile);
+        return Excel::download(new ExportBuildPC($getProduct, $total), $nameFile);
     }
 
     public function exportImageBuildPC(Request $request)

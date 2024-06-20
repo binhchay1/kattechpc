@@ -118,7 +118,7 @@
                 <tr>
                     <td>{{ $key + 1 }}</td>
                     <td colspan="2">
-                        <a href="https://nguyencongpc.vn/gia-do-man-hinh-gaming-e-dra-eam7301">{{ $product->name }}</a> <br>
+                        <a href="{{ route('productDetail', $product->slug) }}">{{ $product->name }}</a> <br>
                         Mã sp: {{ $product->code }} <br>
                     </td>
                     <td>{{ $product->status_guarantee }} </td>

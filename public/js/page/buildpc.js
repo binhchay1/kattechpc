@@ -8,10 +8,6 @@ var currentParam = {
     'sort': ''
 };
 var urlCurrent = location.href;
-var currentArrayProduct = {
-    'listArea1': [],
-    'listArea2': []
-};
 
 $(document).ready(function () {
     $(".open-selection").click(function () {
@@ -187,6 +183,11 @@ function resetBuildPC() {
                 let idBtnAdd = '#category-js-' + result[k].id + '-' + currentArea;
                 $(idBtnAdd).show();
             }
+
+            currentArrayProduct = {
+                'listArea1': [],
+                'listArea2': []
+            };
 
             handleSessionBuild();
         }
