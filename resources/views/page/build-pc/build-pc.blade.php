@@ -79,11 +79,13 @@
                                         Bảo hành: {{ $productSession1->status_guarantee }} <br>
                                         Kho hàng: <span style="color: red">{{ $textStatus1 }}</span> | Mã SP: <span style="color: red">{{ $productSession1->code }}</span>
                                     </span>
-                                    <span class="d-price">{{ $price1 }}</span>
-                                    <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50" disabled><i>=</i>
-                                    <span class="sum_price">{{ $price1 }}</span>
-                                    <span class="btn-action_seclect show-popup_select" onclick="changeProductHandle('category-js-{{ $value->id }}-2')"><i class="fa fa-edit edit-item"></i></span>
-                                    <span class="btn-action_seclect delete_select" data-id="{{ $productSession1->id }}" data-price="{{ $price1 }}" onclick="deleteProductHandle(this)"><i class="fa fa-trash remove-item"></i></span>
+                                    <div class="price-in-mobile">
+                                        <span class="d-price">{{ $price1 }}</span>
+                                        <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50" disabled><i>=</i>
+                                        <span class="sum_price">{{ $price1 }}</span>
+                                        <span class="btn-action_seclect show-popup_select" onclick="changeProductHandle('category-js-{{ $value->id }}-2')"><i class="fa fa-edit edit-item"></i></span>
+                                        <span class="btn-action_seclect delete_select" data-id="{{ $productSession1->id }}" data-price="{{ $price1 }}" onclick="deleteProductHandle(this)"><i class="fa fa-trash remove-item"></i></span>
+                                    </div>
                                 </div>
                                 @endif
                                 @endforeach
@@ -162,11 +164,13 @@
                                         Bảo hành: {{ $productSession2->status_guarantee }} <br>
                                         Kho hàng: <span style="color: red">{{ $textStatus2 }}</span> | Mã SP: <span style="color: red">{{ $productSession2->code }}</span>
                                     </span>
-                                    <span class="d-price">{{ $price2 }}</span>
-                                    <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50" disabled><i>=</i>
-                                    <span class="sum_price">{{ $price2 }}</span>
-                                    <span class="btn-action_seclect show-popup_select" onclick="changeProductHandle('category-js-{{ $value->id }}-2')"><i class="fa fa-edit edit-item"></i></span>
-                                    <span class="btn-action_seclect delete_select" data-id="{{ $productSession2->id }}" data-price="{{ $price2 }}" onclick="deleteProductHandle(this)"><i class="fa fa-trash remove-item"></i></span>
+                                    <div class="price-in-mobile">
+                                        <span class="d-price">{{ $price2 }}</span>
+                                        <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50" disabled><i>=</i>
+                                        <span class="sum_price">{{ $price2 }}</span>
+                                        <span class="btn-action_seclect show-popup_select" onclick="changeProductHandle('category-js-{{ $value->id }}-2')"><i class="fa fa-edit edit-item"></i></span>
+                                        <span class="btn-action_seclect delete_select" data-id="{{ $productSession2->id }}" data-price="{{ $price2 }}" onclick="deleteProductHandle(this)"><i class="fa fa-trash remove-item"></i></span>
+                                    </div>
                                 </div>
                                 @endif
                                 @endforeach
@@ -200,6 +204,49 @@
             <li onclick="exportExcel()"><span>{{ __('TẢI FILE EXCEL') }}<i class="fa fa-file"></i></span></li>
             <li onclick="exportImage()"><span>{{ __('TẢI ẢNH') }}<i class="fa fa-image"></i></span></li>
         </ul>
+
+        <div>
+            <h3 style="text-align: center;">{{ __('Video hướng dẫn xây dựng cấu hình') }}</h3>
+
+            <div class="link-youtube-area">
+                <iframe width="560" height="315" class="link-youtube-item" src="https://www.youtube.com/embed/4clNHIl89to?si=mFlBFOjQYD8EznoX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                </iframe>
+
+                <iframe style="margin-left: 30px" class="link-youtube-item" width="560" height="315" src="https://www.youtube.com/embed/4clNHIl89to?si=mFlBFOjQYD8EznoX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                </iframe>
+
+                <iframe style="margin-left: 30px" class="link-youtube-item" width="560" height="315" src="https://www.youtube.com/embed/4clNHIl89to?si=mFlBFOjQYD8EznoX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+
+        @if(count($theme) > 0)
+        @if(isset($theme[0]->content))
+        <div class="build-pc-content-tutorial">
+            <h3 style="text-align: center;">{{ __('Hướng dẫn xây dựng cấu hình máy tính PC dễ dàng nhất') }}</h3>
+            <div class="p-info1">
+                {!! Str::limit($theme[0]->content, 1000, '')!!}
+                @if (strlen($theme[0]->content) > 10)
+                <span id="dots-content">...</span>
+                @endif
+            </div>
+
+            <div class="p-info1">
+                <span id="more-content" style="display: none;">{!! $theme[0]->content !!}</span>
+            </div>
+
+            <a href="javascript:" onclick="loadMore()" id="read-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
+                {{ __('Xem tất cả') }}
+                <i class="fas fa-angle-down" style="margin-left: 5px;"></i>
+            </a>
+
+            <a href="javascript:" onclick="loadMore()" id="hide-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center d-none">
+                {{ __('Thu gọn') }}
+                <i class="fas fa-angle-up" style="margin-left: 5px;"></i>
+            </a>
+        </div>
+        @endif
+        @endif
     </div>
 </div>
 

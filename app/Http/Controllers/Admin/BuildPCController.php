@@ -6,21 +6,26 @@ use App\Http\Controllers\Controller;
 use App\Repositories\BuildPcRepository;
 use App\Enums\Utility;
 use App\Http\Requests\BuildPCRequest;
+use App\Repositories\BuildPCThemeRepository;
 use App\Repositories\CategoryRepository;
+use Illuminate\Http\Request;
 
 class BuildPCController extends Controller
 {
     private $buildPcRepository;
     private $categoryRepository;
+    private $buildPcThemeRepository;
     private $utility;
 
     public function __construct(
         BuildPcRepository $buildPcRepository,
         CategoryRepository $categoryRepository,
+        BuildPCThemeRepository $buildPcThemeRepository,
         Utility $utility
     ) {
         $this->buildPcRepository = $buildPcRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->buildPcThemeRepository = $buildPcThemeRepository;
         $this->utility = $utility;
     }
 
@@ -75,5 +80,44 @@ class BuildPCController extends Controller
         $this->buildPcRepository->destroy($id);
 
         return back()->with('success', __('Cấu hình  được xóa đổi thành công'));
+    }
+
+    public function theme()
+    {
+        $theme = $this->buildPcThemeRepository->index();
+        if (isset($theme[0]->youtube)) {
+            $arrLinkYoutube = json_decode($theme[0]->youtube, true);
+        } else {
+            $arrLinkYoutube = [
+                'link_youtube_1' => '',
+                'link_youtube_2' => '',
+                'link_youtube_3' => ''
+            ];
+        }
+
+        return view('admin.build-pc.theme', compact('theme', 'arrLinkYoutube'));
+    }
+
+    public function themeUpdate(Request $request)
+    {
+        $theme = $this->buildPcThemeRepository->index();
+        $arrLinkYoutube = [
+            'link_youtube_1' => $request->get('link_youtube_1'),
+            'link_youtube_2' => $request->get('link_youtube_2'),
+            'link_youtube_3' => $request->get('link_youtube_3')
+        ];
+
+        $data = [
+            'youtube' => json_encode($arrLinkYoutube),
+            'content' => $request->get('content')
+        ];
+
+        if (count($theme) == 0) {
+            $this->buildPcThemeRepository->create($data);
+        } else {
+            $this->buildPcThemeRepository->updateItemTheme($data);
+        }
+
+        return redirect()->route('admin.buildPC.theme');
     }
 }

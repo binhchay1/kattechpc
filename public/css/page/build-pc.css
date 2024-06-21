@@ -192,7 +192,7 @@ span .p-name {
 }
 
 .name-item-drive .fa-gift {
-    color: red;
+    color: f3070f;
 }
 
 .build-pc_content h3 {
@@ -269,7 +269,7 @@ span .p-name {
 
 #form-header {
     margin: 0;
-    background: red;
+    background: #f3070f;
     padding: 10px;
     align-items: center;
 }
@@ -298,7 +298,7 @@ span .p-name {
 }
 
 #buy-product {
-    background: red;
+    background: #f3070f;
     border-radius: 10px;
     color: white;
     padding: 10px;
@@ -598,7 +598,7 @@ body {
 }
 
 .offers-build-pc {
-    color: red;
+    color: f3070f;
     font-style: italic;
     font-weight: bold;
     margin: 0 0 0 10px;
@@ -609,6 +609,31 @@ body {
     position: absolute;
     z-index: -1;
     bottom: -1000%;
+}
+
+.build-pc-content-tutorial {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.build-pc-content-tutorial img {
+    max-width: 1345px;
+}
+
+.btn-article-col {
+    text-align: center;
+    color: #f3070f;
+    border: 1px solid #f3070f;
+    border-radius: 50px;
+    line-height: 38px;
+    width: 154px;
+    margin: 20px auto auto;
+}
+
+.link-youtube-area {
+    display: flex;
+    margin-bottom: 30px;
 }
 
 @media screen and (max-width: 992px) {
@@ -633,5 +658,50 @@ body {
 
     #popup-main h4 {
         font-size: 1rem !important;
+    }
+
+    .build-pc-content-tutorial img {
+        max-width: 100%;
+    }
+
+    #js-buildpc-action {
+        flex-direction: column;
+    }
+
+    #js-buildpc-action li {
+        width: 95%;
+        margin-top: 10px;
+    }
+
+    .link-youtube-area {
+        flex-direction: column;
+    }
+
+    .link-youtube-item {
+        margin-left: 0 !important;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    span.d-name {
+        padding-left: 0;
+    }
+
+    .contain-item-drive {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .contain-item-drive .d-name {
+        width: 100%;
+    }
+
+    .name-item-drive {
+        width: 100%;
+        border-bottom: 1px solid #efefef;
+    }
+
+    .item-drive {
+        flex-direction: column;
     }
 }

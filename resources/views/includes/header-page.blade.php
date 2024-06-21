@@ -350,7 +350,6 @@
         #main {
             display: block;
             width: 420px;
-            height: 100px;
             display: flex;
             justify-content: center;
             margin-top: 5px;

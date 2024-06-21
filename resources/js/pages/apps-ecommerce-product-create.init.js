@@ -9,7 +9,6 @@ File: apps ecommerce create init Js File
 
 // Dropzone
 var dropzonePreviewNode = document.querySelector("#dropzone-preview-list2");
-dropzonePreviewNode.id = "";
 if (dropzonePreviewNode) {
     var previewTemplate = dropzonePreviewNode.parentNode.innerHTML;
     dropzonePreviewNode.parentNode.removeChild(dropzonePreviewNode);

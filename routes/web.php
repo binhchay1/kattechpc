@@ -260,6 +260,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         Route::get('/update/{id}', [BuildPCAdmin::class, 'edit'])->name('admin.buildPC.edit');
         Route::post('/update/{id}', [BuildPCAdmin::class, 'update'])->name('admin.buildPC.update');
         Route::get('/delete/{id}', [BuildPCAdmin::class, 'delete'])->name('admin.buildPC.delete');
+        Route::get('/theme', [BuildPCAdmin::class, 'theme'])->name('admin.buildPC.theme');
+        Route::post('/theme-update', [BuildPCAdmin::class, 'themeUpdate'])->name('admin.buildPC.theme.update');
     });
 
     Route::group(['prefix' => 'category-filter'], function () {

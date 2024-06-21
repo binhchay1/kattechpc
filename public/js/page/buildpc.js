@@ -123,11 +123,13 @@ function addToMenu(choose) {
                                 Bảo hành: ` + product.status_guarantee + ` <br>
                                 Kho hàng: <span style="color: red">` + textStatus + `</span> | Mã SP: <span style="color: red">` + product.code + `</span>
                             </span>
+                            <div class="price-in-mobile">
                             <span class="d-price">` + price + `</span>
                             <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50" disabled><i>=</i>
                             <span class="sum_price">` + price + `</span>
                             <span class="btn-action_seclect show-popup_select" onclick="changeProductHandle('` + idMenu + `')"><i class="fa fa-edit edit-item"></i></span>
                             <span class="btn-action_seclect delete_select" data-id="` + product.id + `" data-price="` + price + `" onclick="deleteProductHandle(this)"><i class="fa fa-trash remove-item"></i></span>
+                            </div>
                             </div>`;
     $('#' + idMenu).hide();
     if ($(idSelected + ' .sum_price') != undefined) {
@@ -694,4 +696,20 @@ function capture() {
             canvas.remove();
             window.open('', '_self').close();
         })
+}
+
+function loadMore() {
+    var dots = document.getElementById("dots-content");
+    var moreText = document.getElementById("more-content");
+    if (moreText.style.display === "none") {
+        moreText.style.display = "inline";
+        dots.style.display = "none";
+        $('#hide-all-product').removeClass('d-none');
+        $('#read-all-product').addClass('d-none');
+    } else {
+        moreText.style.display = "none";
+        dots.style.display = "inline";
+        $('#read-all-product').removeClass('d-none');
+        $('#hide-all-product').addClass('d-none');
+    }
 }

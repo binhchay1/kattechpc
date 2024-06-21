@@ -10,6 +10,7 @@ use App\Repositories\BuildPcRepository;
 use App\Repositories\SessionBuildPCRepository;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ExportBuildPC;
+use App\Repositories\BuildPCThemeRepository;
 use Cart;
 use Cache;
 
@@ -19,15 +20,18 @@ class BuildPCController extends Controller
     private $productRepository;
     private $buildPcRepository;
     private $sessionBuildPcRepository;
+    private $buildPcThemeRepository;
 
     public function __construct(
         ProductRepository $productRepository,
         BuildPcRepository $buildPcRepository,
-        SessionBuildPCRepository $sessionBuildPcRepository
+        SessionBuildPCRepository $sessionBuildPcRepository,
+        BuildPCThemeRepository $buildPcThemeRepository
     ) {
         $this->productRepository = $productRepository;
         $this->buildPcRepository = $buildPcRepository;
         $this->sessionBuildPcRepository = $sessionBuildPcRepository;
+        $this->buildPcThemeRepository = $buildPcThemeRepository;
     }
 
     public function buildPC(Request $request)
@@ -37,6 +41,17 @@ class BuildPCController extends Controller
         $getProductByKey = $request->get('key');
         $menu = $this->buildPcRepository->index();
         $getSessionBuildPC = $request->session()->get('buildID');
+        $theme = $this->buildPcThemeRepository->index();
+        if (isset($theme[0]->youtube)) {
+            $arrLinkYoutube = json_decode($theme[0]->youtube, true);
+        } else {
+            $arrLinkYoutube = [
+                'link_youtube_1' => '',
+                'link_youtube_2' => '',
+                'link_youtube_3' => ''
+            ];
+        }
+
         if ($getSessionBuildPC != null) {
             $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
             if (isset($getDataBySessionBuildPC)) {
@@ -60,7 +75,7 @@ class BuildPCController extends Controller
             }
         }
 
-        return view('page.build-pc.build-pc', compact('listCategory', 'menu', 'dataBuild', 'dataPreSession'));
+        return view('page.build-pc.build-pc', compact('listCategory', 'menu', 'dataBuild', 'dataPreSession', 'arrLinkYoutube', 'theme'));
     }
 
     public function getProduct(Request $request)
