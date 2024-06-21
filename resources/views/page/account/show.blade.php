@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="{{ asset('css/page/profile.css') }}" />
 @endsection
 
+@section('description', __('Tài khoản với Kattech PC'))
+@section('keywords', 'user, profile, kattech, kattech pc')
+@section('breadcrumb', __('Tài khoản'))
+
 @section('content')
 <div class="row" id="content-profile">
     @include('includes.left-menu-profile')

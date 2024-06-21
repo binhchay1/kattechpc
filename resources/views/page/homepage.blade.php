@@ -198,11 +198,10 @@
             </div>
         </div>
     </div>
-    </div>
 </section>
 
 <section class="category">
-    <div class="">
+    <div>
         <div class="d-flex align-items-center justify-content-between">
             <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
                 <h2 class="flash-sale-title">{{ __('Danh mục nổi bật') }}</h2>
@@ -436,25 +435,25 @@
             var strMinutes = '';
             var strSeconds = '';
 
-            if(days < 10) {
+            if (days < 10) {
                 strDays = '0' + days;
             } else {
                 strDays = days;
             }
 
-            if(hours < 10) {
+            if (hours < 10) {
                 strHours = '0' + hours;
             } else {
                 strHours = hours;
             }
 
-            if(minutes < 10) {
+            if (minutes < 10) {
                 strMinutes = '0' + minutes;
             } else {
                 strMinutes = minutes;
             }
 
-            if(seconds < 10) {
+            if (seconds < 10) {
                 strSeconds = '0' + seconds;
             } else {
                 strSeconds = seconds;

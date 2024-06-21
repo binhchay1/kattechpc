@@ -9,6 +9,10 @@
 <link rel="stylesheet" href="{{ asset('css/page/order-history.css') }}" />
 @endsection
 
+@section('description', __('Lịch sử mua hàng của khách hàng với Kattech PC'))
+@section('keywords', 'history, history customer, kattech, kattech pc')
+@section('breadcrumb', __('Lịch sử mua hàng'))
+
 @section('content')
 <div class="row">
     @include('includes.left-menu-profile')
@@ -55,6 +59,7 @@
             url: urlGetDetail,
             success: function(result) {
                 $('#table-body-detail').empty();
+                $('#modalDetail').attr('style', 'display: flex !important');
                 for (let i = 0; i < result.length; i++) {
                     let strAppend = `<tr>
                             <td class="column1">` + result[i].order.order_date + `</td>
