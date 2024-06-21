@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\CustomContactRepository;
+use App\Repositories\MaintenanceModeRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\VisitorRepository;
@@ -17,29 +18,20 @@ class AdminController extends Controller
     private $orderRepository;
     private $productRepository;
     private $visitorRepository;
+    private $maintenanceModeRepository;
 
     public function __construct(
         CustomContactRepository $customContactRepository,
         OrderRepository $orderRepository,
         ProductRepository $productRepository,
-        VisitorRepository $visitorRepository
+        VisitorRepository $visitorRepository,
+        MaintenanceModeRepository $maintenanceModeRepository,
     ) {
         $this->customContactRepository = $customContactRepository;
         $this->orderRepository = $orderRepository;
         $this->productRepository = $productRepository;
         $this->visitorRepository = $visitorRepository;
-    }
-
-    public function lang($locale)
-    {
-        if ($locale) {
-            App::setLocale($locale);
-            Session::put('lang', $locale);
-            Session::save();
-            return redirect()->back()->with('locale', $locale);
-        } else {
-            return redirect()->back();
-        }
+        $this->maintenanceModeRepository = $maintenanceModeRepository;
     }
 
     public function changeLocate($locale)
@@ -168,5 +160,32 @@ class AdminController extends Controller
         }
 
         return response()->json($data);
+    }
+
+    public function changeMaintenance()
+    {
+        $statusMode = $this->maintenanceModeRepository->index();
+        if (empty($statusMode)) {
+            $dataCreate = [
+                'status' => 'on'
+            ];
+            $this->maintenanceModeRepository->create($dataCreate);
+
+            return redirect()->back();
+        }
+
+        if ($statusMode->status == 'off') {
+            $dataUpdate = [
+                'status' => 'on'
+            ];
+        } else {
+            $dataUpdate = [
+                'status' => 'off'
+            ];
+        }
+
+        $this->maintenanceModeRepository->update($dataUpdate);
+
+        return redirect()->back();
     }
 }

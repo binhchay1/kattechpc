@@ -70,5 +70,7 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\IsAdmin::class,
         'cache.menu' => \App\Http\Middleware\CacheMenuDefined::class,
         'count.visitor' => \App\Http\Middleware\CountVisitor::class,
+        'maintenance' => \App\Http\Middleware\MaintenanceMode::class,
+        'session-maintenance-mode' => \App\Http\Middleware\SessionMaintenanceMode::class,
     ];
 }

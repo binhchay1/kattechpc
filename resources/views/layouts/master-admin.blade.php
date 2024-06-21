@@ -13,7 +13,13 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css">
 
+    <style>
+        .jc-bs3-container {
+            max-width: 300px !important;
+        }
+    </style>
     @include('layouts.head-css')
     @yield('css')
     @livewireStyles
@@ -43,6 +49,9 @@
 <script src="{{ URL::asset('build/js/app.js') }}"></script>
 <script src="{{ URL::asset('build/libs/list.js/list.min.js') }}"></script>
 <script src="{{ URL::asset('build/libs/list.pagination.js/list.pagination.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js"></script>
+<script src="{{ URL::asset('js/admin/main-admin.js') }}"></script>
+
 </body>
 
 </html>

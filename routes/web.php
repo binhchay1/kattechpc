@@ -47,8 +47,10 @@ Route::get('/419', [ErrorController::class, 'view419'])->name('error.419');
 Route::get('/429', [ErrorController::class, 'view429'])->name('error.429');
 Route::get('/500', [ErrorController::class, 'view500'])->name('error.500');
 Route::get('/503', [ErrorController::class, 'view503'])->name('error.503');
+Route::get('/maintenance', [ErrorController::class, 'viewMaintenance'])->name('maintenance.user');
+Route::get('/staff-login', [HomeController::class, 'staffLogin'])->name('staff.login');
 
-Route::group(['middleware' => ['cache.menu', 'count.visitor']], function () {
+Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], function () {
     Route::get('/', [HomeController::class, 'viewHome'])->name('home');
     Route::get('/search', [HomeController::class, 'viewSearch'])->name('search');
     Route::get('/chinh-sach-bao-hanh', [HomeController::class, 'viewPolicy'])->name('policy');
@@ -116,11 +118,12 @@ Route::group(['middleware' => ['cache.menu', 'count.visitor']], function () {
     Route::get('/post-category/{slug}', [HomeController::class, 'postCategory'])->name('post.category');
 });
 
-Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenance-mode']], function () {
     Route::get('/change-locate/{locale}', [AdminController::class, 'changeLocate'])->name('change.locate.admin');
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
     Route::get('/order-detail/{id}', [AdminController::class, 'detailDetail'])->name('admin.detailDetail');
     Route::get('/custom-contact', [AdminController::class, 'listCustomContact'])->name('admin.custom.contact');
+    Route::get('/change-maintenance', [AdminController::class, 'changeMaintenance'])->name('change.maintenance');
 
     Route::group(['prefix' => 'layout'], function () {
         Route::get('/', [LayoutController::class, 'viewCustomLayout'])->name('admin.custom.layout');
