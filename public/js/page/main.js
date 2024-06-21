@@ -140,8 +140,6 @@ $(document).ready(function () {
         }, 3000);
     }
 
-    $('.global-menu-holder').hide();
-
     $('.global-menu-container').hover(function () {
         $('.global-menu-holder').show();
     }, function () {

@@ -1275,6 +1275,7 @@ a {
 }
 
 .global-menu-container .global-menu-holder {
+    display: none;
     visibility: visible;
     z-index: 1;
     position: absolute;
