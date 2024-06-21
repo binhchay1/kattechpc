@@ -19,7 +19,7 @@ class CategoryPostController extends Controller
 
     public function index()
     {
-        $listCategory = $this->categoryPostRepository->index();
+        $listCategory = $this->categoryPostRepository->getListWithSortParent();
 
         return view('admin.category-post.index', compact('listCategory'));
     }

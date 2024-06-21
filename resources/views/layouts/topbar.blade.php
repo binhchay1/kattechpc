@@ -44,19 +44,26 @@
                     <div class="relative flex items-center dropdown h-header">
                         <button type="button" class="inline-flex justify-center items-center p-0 text-topbar-item transition-all w-[37.5px] h-[37.5px] duration-200 ease-linear bg-topbar rounded-md dropdown-toggle btn hover:bg-topbar-item-bg-hover hover:text-topbar-item-hover group-data-[topbar=dark]:bg-topbar-dark group-data-[topbar=dark]:hover:bg-topbar-item-bg-hover-dark group-data-[topbar=dark]:hover:text-topbar-item-hover-dark group-data-[topbar=brand]:bg-topbar-brand group-data-[topbar=brand]:hover:bg-topbar-item-bg-hover-brand group-data-[topbar=brand]:hover:text-topbar-item-hover-brand group-data-[topbar=dark]:dark:bg-zink-700 group-data-[topbar=dark]:dark:hover:bg-zink-600 group-data-[topbar=dark]:dark:text-zink-500 group-data-[topbar=dark]:dark:hover:text-zink-50" id="flagsDropdown" data-bs-toggle="dropdown">
                             @switch(Session::get('lang'))
-                            @case('us')
-                            <img src="{{ URL::asset('build/images/flags/20/us.svg') }}" alt="" id="header-lang-img" class="h-5 rounded-sm">
+                            @case('en')
+                            <img src="{{ URL::asset('build/images/flags/20/us.svg') }}" class="h-5 rounded-sm">
                             @break
 
                             @default
-                            <img src="{{ URL::asset('build/images/flags/20/vi.svg') }}" alt="" id="header-lang-img" class="h-5 rounded-sm">
+                            <img src="{{ URL::asset('build/images/flags/20/vi.svg') }}" class="h-5 rounded-sm">
                             @endswitch
                         </button>
                         <div class="absolute z-50 hidden p-4 ltr:text-left rtl:text-right bg-white rounded-md shadow-md !top-4 dropdown-menu min-w-[10rem] flex flex-col gap-4 dark:bg-zink-600" aria-labelledby="flagsDropdown">
-                            <a href="{{ url('index/en') }}" class="flex items-center gap-3 group/items language" data-lang="en" title="English">
+                            @if(Session::get('lang') != 'en')
+                            <a href="{{ route('change.locate.admin', 'en') }}" class="flex items-center gap-3 group/items language" data-lang="en" title="English">
                                 <img src="{{ URL::asset('build/images/flags/20/us.svg') }}" alt="" class="object-cover h-4 rounded-full">
                                 <h6 class="transition-all duration-200 ease-linear font-15medium text- text-slate-600 dark:text-zink-200 group-hover/items:text-custom-500">English</h6>
                             </a>
+                            @else
+                            <a href="{{ route('change.locate.admin', 'vi') }}" class="flex items-center gap-3 group/items language" data-lang="en" title="Vietnamese">
+                                <img src="{{ URL::asset('build/images/flags/20/vi.svg') }}" alt="" class="object-cover h-4 rounded-full">
+                                <h6 class="transition-all duration-200 ease-linear font-15medium text- text-slate-600 dark:text-zink-200 group-hover/items:text-custom-500">Vietnamese</h6>
+                            </a>
+                            @endif
                         </div>
                     </div>
 
@@ -64,36 +71,6 @@
                         <button type="button" class="inline-flex relative justify-center items-center p-0 text-topbar-item transition-all w-[37.5px] h-[37.5px] duration-200 ease-linear bg-topbar rounded-md btn hover:bg-topbar-item-bg-hover hover:text-topbar-item-hover group-data-[topbar=dark]:bg-topbar-dark group-data-[topbar=dark]:hover:bg-topbar-item-bg-hover-dark group-data-[topbar=dark]:hover:text-topbar-item-hover-dark group-data-[topbar=brand]:bg-topbar-brand group-data-[topbar=brand]:hover:bg-topbar-item-bg-hover-brand group-data-[topbar=brand]:hover:text-topbar-item-hover-brand group-data-[topbar=dark]:dark:bg-zink-700 group-data-[topbar=dark]:dark:hover:bg-zink-600 group-data-[topbar=brand]:text-topbar-item-brand group-data-[topbar=dark]:dark:hover:text-zink-50 group-data-[topbar=dark]:dark:text-zink-200 group-data-[topbar=dark]:text-topbar-item-dark" id="light-dark-mode">
                             <i data-lucide="sun" class="inline-block w-5 h-5 stroke-1 fill-slate-100 group-data-[topbar=dark]:fill-topbar-item-bg-hover-dark group-data-[topbar=brand]:fill-topbar-item-bg-hover-brand"></i>
                         </button>
-                    </div>
-
-                    <div class="relative flex items-center dropdown h-header">
-                        <button type="button" class="inline-flex justify-center relative items-center p-0 text-topbar-item transition-all w-[37.5px] h-[37.5px] duration-200 ease-linear bg-topbar rounded-md dropdown-toggle btn hover:bg-topbar-item-bg-hover hover:text-topbar-item-hover group-data-[topbar=dark]:bg-topbar-dark group-data-[topbar=dark]:hover:bg-topbar-item-bg-hover-dark group-data-[topbar=dark]:hover:text-topbar-item-hover-dark group-data-[topbar=brand]:bg-topbar-brand group-data-[topbar=brand]:hover:bg-topbar-item-bg-hover-brand group-data-[topbar=brand]:hover:text-topbar-item-hover-brand group-data-[topbar=dark]:dark:bg-zink-700 group-data-[topbar=dark]:dark:hover:bg-zink-600 group-data-[topbar=brand]:text-topbar-item-brand group-data-[topbar=dark]:dark:hover:text-zink-50 group-data-[topbar=dark]:dark:text-zink-200 group-data-[topbar=dark]:text-topbar-item-dark" id="notificationDropdown" data-bs-toggle="dropdown">
-                            <i data-lucide="bell-ring" class="inline-block w-5 h-5 stroke-1 fill-slate-100 group-data-[topbar=dark]:fill-topbar-item-bg-hover-dark group-data-[topbar=brand]:fill-topbar-item-bg-hover-brand"></i>
-                            <span class="absolute top-0 right-0 flex w-1.5 h-1.5">
-                                <span class="absolute inline-flex w-full h-full rounded-full opacity-75 animate-ping bg-sky-400"></span>
-                                <span class="relative inline-flex w-1.5 h-1.5 rounded-full bg-sky-500"></span>
-                            </span>
-                        </button>
-                        <div class="absolute z-50 hidden ltr:text-left rtl:text-right bg-white rounded-md shadow-md !top-4 dropdown-menu min-w-[20rem] lg:min-w-[26rem] dark:bg-zink-600" aria-labelledby="notificationDropdown">
-                            <div data-simplebar class="max-h-[350px]">
-                                <div class="flex flex-col gap-1" id="notification-list">
-                                    <a href="#!" class="flex gap-3 p-4 product-item hover:bg-slate-50 dark:hover:bg-zink-500 follower">
-                                        <div class="w-10 h-10 rounded-md shrink-0 bg-slate-100">
-                                            <img src="{{ URL::asset('build/images/users/avatar-3.png') }}" alt="" class="rounded-md">
-                                        </div>
-                                        <div class="grow">
-                                            <h6 class="mb-1 font-medium"><b>@willie_passem</b> followed you</h6>
-                                            <p class="mb-0 text-sm text-slate-500 dark:text-zink-300"><i data-lucide="clock" class="inline-block w-3.5 h-3.5 mr-1"></i>
-                                                <span class="align-middle">Wednesday 03:42 PM</span>
-                                            </p>
-                                        </div>
-                                        <div class="flex items-center self-start gap-2 text-xs text-slate-500 shrink-0 dark:text-zink-300">
-                                            <div class="w-1.5 h-1.5 bg-custom-500 rounded-full"></div> 4 sec
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <div class="relative flex items-center dropdown h-header">

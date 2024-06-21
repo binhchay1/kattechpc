@@ -31,7 +31,7 @@
         <tr></tr>
         @endfor
         <tr>
-            <td colspan="7" rowspan="2"><h1 style="text-align: center; font-size: 23px; font-weight: bold;">BÁO GIÁ CHI TIẾT</h1></td>
+            <td colspan="7" rowspan="2" align="center" valign="middle" style="font-size: 20px; font-weight: bold;">BÁO GIÁ CHI TIẾT</td>
         </tr>
         <tr></tr>
         <tr>
@@ -68,10 +68,10 @@
         @foreach($products as $key => $product)
         <tr>
             <td></td>
-            <td style="border: 1px solid #fff;">{{ $key + 1 }}</td>
+            <td style="border: 1px solid #fff;" align="left">{{ $key + 1 }}</td>
             <td style="border: 1px solid #fff;">{{ $product->name }}</td>
             <td style="border: 1px solid #fff;">{{ $product->status_guarantee }}</td>
-            <td style="border: 1px solid #fff; text-align: start;">1</td>
+            <td style="border: 1px solid #fff;" align="left">1</td>
             @if($product->new_price != null)
             <td style="border: 1px solid #fff;">{{ $product->new_price }}</td>
             @else
@@ -107,33 +107,40 @@
         </tr>
         <tr>
             <td></td>
-            <td colspan="3" rowspan="7">Quý khách lưu ý: Giá bán, khuyến mại của sản phẩm và tình trạng còn hàng có thể bị thay đổi bất cứ lúc nào mà không kịp báo trước
-Để biết thêm chi tiết, Quý khách vui lòng liên hệ KATTECH PC qua Hotline: 097.9999.191 (8h30-18h30 tất cả các ngày trong tuần) hoặc email: info@kattechpc.vn
-Một lần nữa KATTECH PC cảm ơn quý khách!</td>
-            <td style="text-align: center; background-color: #f77e7e;">Phí vận chuyển</td>
+            <td colspan="3" rowspan="7" valign="middle">
+                Quý khách lưu ý: Giá bán, khuyến mại của sản phẩm và tình trạng còn hàng có thể bị thay đổi bất cứ lúc nào mà không kịp báo trước<br>
+                Để biết thêm chi tiết, Quý khách vui lòng liên hệ KATTECH PC qua Hotline: 097.9999.191 (8h30-18h30 tất cả các ngày trong tuần) hoặc email: info@kattechpc.vn<br>
+                Một lần nữa KATTECH PC cảm ơn quý khách!
+            </td>
+            <td></td>
+            <td style="background-color: #f77e7e;">Phí vận chuyển</td>
             <td>0</td>
         </tr>
         <tr>
             <td></td>
-            <td style="text-align: center; background-color: #f77e7e;">Chi phí khác</td>
+            <td></td>
+            <td style="background-color: #f77e7e;">Chi phí khác</td>
             <td>0</td>
         </tr>
 
         <tr>
             <td></td>
-            <td style="text-align: center; background-color: #f77e7e;">Tổng tiền đơn hàng</td>
+            <td></td>
+            <td style="background-color: #f77e7e;">Tổng tiền đơn hàng</td>
             <td>{{ $total }}</td>
         </tr>
 
         <tr>
             <td></td>
-            <td style="text-align: center; background-color: #f77e7e;">Được giảm tiền mặt</td>
-            <td style="text-align: end;">-</td>
+            <td></td>
+            <td style="background-color: #f77e7e;">Được giảm tiền mặt</td>
+            <td align="right">-</td>
         </tr>
 
         <tr>
             <td></td>
-            <td style="text-align: center; background-color: #f77e7e;">Tổng tiền đơn hàng</td>
+            <td></td>
+            <td style="background-color: #f77e7e;">Tổng tiền đơn hàng</td>
             <td>{{ $total }}</td>
         </tr>
     </tbody>

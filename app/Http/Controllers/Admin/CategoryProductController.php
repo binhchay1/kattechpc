@@ -22,7 +22,7 @@ class CategoryProductController extends Controller
 
     public function index()
     {
-        $listCategory = $this->categoryRepository->index();
+        $listCategory = $this->categoryRepository->getListWithSortParent();
 
         return view('admin.category-product.index', compact('listCategory'));
     }

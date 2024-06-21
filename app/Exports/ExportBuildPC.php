@@ -5,8 +5,10 @@ namespace App\Exports;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
+use Maatwebsite\Excel\Concerns\WithDrawings;
+use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
-class ExportBuildPC implements FromView, WithColumnWidths
+class ExportBuildPC implements FromView, WithColumnWidths, WithDrawings
 {
     protected $products;
     protected $total;
@@ -30,35 +32,48 @@ class ExportBuildPC implements FromView, WithColumnWidths
         $alphas = range('A', 'Z');
         $arrColumn = array();
         foreach ($alphas as $character) {
-            if($character == 'A') {
+            if ($character == 'A') {
                 $arrColumn[$character] = 5;
             }
 
-            if($character == 'B') {
+            if ($character == 'B') {
                 $arrColumn[$character] = 10;
             }
 
-            if($character == 'C') {
+            if ($character == 'C') {
                 $arrColumn[$character] = 60;
             }
 
-            if($character == 'D') {
+            if ($character == 'D') {
                 $arrColumn[$character] = 20;
             }
 
-            if($character == 'E') {
+            if ($character == 'E') {
                 $arrColumn[$character] = 20;
             }
 
-            if($character == 'F') {
+            if ($character == 'F') {
                 $arrColumn[$character] = 20;
             }
 
-            if($character == 'G') {
+            if ($character == 'G') {
                 $arrColumn[$character] = 20;
             }
         }
 
         return $arrColumn;
+    }
+
+    public function drawings()
+    {
+        $drawing = new Drawing();
+        $drawing->setName('Logo');
+        $drawing->setDescription('Kattech PC Logo');
+        $drawing->setPath(public_path('/images/logo/logo.png'));
+        $drawing->setHeight(200);
+        $drawing->setOffsetX(40);
+        $drawing->setCoordinates('F2');
+
+        return $drawing;
     }
 }

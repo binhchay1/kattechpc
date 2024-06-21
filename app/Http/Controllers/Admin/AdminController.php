@@ -10,6 +10,7 @@ use App\Repositories\OrderRepository;
 use App\Repositories\VisitorRepository;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Config;
 
 class AdminController extends Controller
 {
@@ -40,6 +41,21 @@ class AdminController extends Controller
         } else {
             return redirect()->back();
         }
+    }
+
+    public function changeLocate($locale)
+    {
+        if ($locale) {
+            if (in_array($locale, Config::get('app.locales'))) {
+                App::setLocale($locale);
+                Session::put('lang', $locale);
+                Session::save();
+
+                return redirect()->back()->with('locale', $locale);
+            }
+        }
+
+        return redirect()->back();
     }
 
     public function viewDashBoard()

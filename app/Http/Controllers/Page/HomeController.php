@@ -17,6 +17,7 @@ use App\Repositories\PromotionRepository;
 use Illuminate\Http\Request;
 use App\Enums\Product;
 use App\Repositories\BrandRepository;
+use Illuminate\Support\Facades\Config;
 use Cache;
 
 class HomeController extends Controller
@@ -56,16 +57,19 @@ class HomeController extends Controller
         $this->brandRepository = $brandRepository;
     }
 
-    public function lang($locale)
+    public function changeLocate($locale)
     {
         if ($locale) {
-            App::setLocale($locale);
-            Session::put('lang', $locale);
-            Session::save();
-            return redirect()->back()->with('locale', $locale);
-        } else {
-            return redirect()->back();
+            if (in_array($locale, Config::get('app.locale'))) {
+                App::setLocale($locale);
+                Session::put('lang', $locale);
+                Session::save();
+
+                return redirect()->back()->with('locale', $locale);
+            }
         }
+
+        return redirect()->back();
     }
 
     public function viewPolicy()

@@ -78,6 +78,7 @@ Route::group(['middleware' => ['cache.menu', 'count.visitor']], function () {
     Route::get('/gioi-thieu', [HomeController::class, 'introduction'])->name('introduction');
     Route::get('/lien-he-hop-tac-kinh-doanh', [HomeController::class, 'contactBusiness'])->name('contactBusiness');
     Route::get('/get-products-for-suggestions', [ProductPage::class, 'suggestionsProduct'])->name('suggestions.product');
+    Route::get('/change-locate/{locale}', [HomeController::class, 'changeLocate'])->name('change.locate');
 
     Route::group(['middleware' => 'user'], function () {
         Route::get('/get-order-detail/{order_id}', [AccountController::class, 'getOrderDetail']);
@@ -116,6 +117,7 @@ Route::group(['middleware' => ['cache.menu', 'count.visitor']], function () {
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
+    Route::get('/change-locate/{locale}', [AdminController::class, 'changeLocate'])->name('change.locate.admin');
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
     Route::get('/order-detail/{id}', [AdminController::class, 'detailDetail'])->name('admin.detailDetail');
     Route::get('/custom-contact', [AdminController::class, 'listCustomContact'])->name('admin.custom.contact');
