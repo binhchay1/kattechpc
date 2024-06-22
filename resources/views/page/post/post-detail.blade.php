@@ -4,6 +4,12 @@
 <title>{{ $post->title }} | Kattech PC</title>
 @endsection
 
+@section('description', __('Nghiên cứu, theo dõi các tin tức về công nghệ với Kattech PC'))
+@section('keywords', 'tech, tech pc, post, news, kattech')
+@section('breadcrumb-parent', $post->category->name)
+@section('breadcrumb-parent-url', route('post.category', $post->category->slug))
+@section('breadcrumb', $post->title)
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/page/post-detail.css') }}" />
 @endsection

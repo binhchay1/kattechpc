@@ -441,6 +441,14 @@
     .global-fixed-right {
         display: none !important;
     }
+
+    .slider-banner {
+        display: none !important;
+    }
+
+    .container-hamburger {
+        display: block;
+    }
 }
 
 

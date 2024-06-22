@@ -4,9 +4,13 @@
 <title>{{ __('Danh mục sản phẩm') }} | Kattech PC</title>
 @endsection
 
-@section('description', __('Xây dựng cấu hình với Kattech PC'))
-@section('keywords', 'build pc, build, kattechpc, kattech')
-@section('breadcrumb', __('Xây dựng cấu hình'))
+@section('description', __('Thỏa sức với linh kiện máy tính với Kattech PC'))
+@section('keywords', 'vga, tech pc, post, news, kattech')
+@if($dataCategory->parent != 0)
+@section('breadcrumb-parent', $dataCategory->parent->name)
+@section('breadcrumb-parent-url', route('showDataCategory', $dataCategory->category->slug))
+@endif
+@section('breadcrumb', $dataCategory->name)
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('/css/page/product-cate.css') }}" />

@@ -1726,6 +1726,18 @@ a {
     border-radius: 50% !important;
 }
 
+.breadcrumb-parent-url {
+    cursor: pointer;
+}
+
+.breadcrumb-parent-url:hover {
+    text-decoration: underline;
+}
+
+.container-hamburger {
+    display: none;
+}
+
 @keyframes uptocallmini_offline {
     0% {
         -webkit-box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0),

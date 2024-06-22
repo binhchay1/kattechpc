@@ -38,7 +38,7 @@
     <div id="content-page">
 
         @if(!Route::is('home'))
-        @if(Route::is('showDataCategory') or Route::is('showPromotionDetail') or Route::is('productDetail'))
+        @if(Route::is('showDataCategory') or Route::is('showPromotionDetail') or Route::is('productDetail') or Route::is('post.detail'))
         <div class="box-breadcrumb-global">
             <div class="container d-flex align-items-center box-breadcrumb">
                 <div class="global-breadcrumb d-flex justify-content-between align-items-center">
@@ -53,8 +53,8 @@
                         </li>
 
                         <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                            <a href="@yield('breadcrumb-parent-url')">
-                                <span itemprop="name"> @yield('breadcrumb-parent') </span><i class="fa fa-angle-right" style="margin: 0 10px;"></i>
+                            <a href="@yield('breadcrumb-parent-url')" class="breadcrumb-parent-url">
+                                <span itemprop="name" style="font-weight: bold;"> @yield('breadcrumb-parent') </span><i class="fa fa-angle-right" style="margin: 0 10px;"></i>
                             </a>
 
                             <meta itemprop="position" content="2">
@@ -112,13 +112,13 @@
         <a href="https://m.me/kattechpc.vn" target="_blank" class="messenger d-flex align-items-center">
             <img width="40" height="40" alt="mes" src="{{ asset('images/logo/facebook_messenger.png') }}">
             <div class="contact-info">
-                <b class="d-block">Chat Facebook</b><span>(8h-22h30)</span>
+                <b class="d-block">Chat Facebook</b><br><span>(8h-22h30)</span>
             </div>
         </a>
         <a href="https://zalo.me/2360590838383636184" target="_blank" class="zalo d-flex align-items-center">
             <img width="40" height="40" alt="zalo" src="{{ asset('images/logo/zalo.png') }}">
             <div class="contact-info">
-                <b class="d-block">Chat Zalo</b><span>(8h-22h30)</span>
+                <b class="d-block">Chat Zalo</b><br><span>(8h-22h30)</span>
             </div>
         </a>
     </div>
