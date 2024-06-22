@@ -23,6 +23,14 @@
                             <div>
                                 <input type="text" name="permarklink_small_thumbnail_1" value="{{ isset($layout->permarklink_small_thumbnail_1) ? $layout->permarklink_small_thumbnail_1 : old('permarklink_small_thumbnail_1') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Nhập đường dẫn') }}">
                             </div>
+                            <div class="area-action-layout">
+                                <div>
+                                    <input type="checkbox" id="hide_small_thumbnail_1" onchange="handleHideInput('hide_small_thumbnail_1')">
+                                    <label>{{ __('Ẩn') }}</label>
+                                </div>
+
+                                <button type="button" class="btn-delete-layout" onclick="deleteThumb('small_thumbnail_1')">{{ __('Xóa') }}</button>
+                            </div>
                             @if ($errors->has('small_thumbnail_1'))
                             <span class="text-danger">{{ $errors->first('small_thumbnail_1') }}</span>
                             @endif
@@ -51,6 +59,14 @@
                             </div>
                             <div>
                                 <input type="text" name="permarklink_small_thumbnail_2" value="{{ isset($layout->permarklink_small_thumbnail_2) ? $layout->permarklink_small_thumbnail_2 : old('permarklink_small_thumbnail_2') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Nhập đường dẫn') }}">
+                            </div>
+                            <div class="area-action-layout">
+                                <div>
+                                    <input type="checkbox" id="hide_small_thumbnail_2" onchange="handleHideInput('hide_small_thumbnail_2')">
+                                    <label>{{ __('Ẩn') }}</label>
+                                </div>
+
+                                <button type="button" class="btn-delete-layout" onclick="deleteThumb('small_thumbnail_2')">{{ __('Xóa') }}</button>
                             </div>
                             @if ($errors->has('small_thumbnail_2'))
                             <span class="text-danger">{{ $errors->first('small_thumbnail_2') }}</span>
@@ -81,6 +97,14 @@
                             <div>
                                 <input type="text" name="permarklink_small_thumbnail_3" value="{{ isset($layout->permarklink_small_thumbnail_3) ? $layout->permarklink_small_thumbnail_3 : old('permarklink_small_thumbnail_3') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Nhập đường dẫn') }}">
                             </div>
+                            <div class="area-action-layout">
+                                <div>
+                                    <input type="checkbox" id="hide_small_thumbnail_3" onchange="handleHideInput('hide_small_thumbnail_3')">
+                                    <label>{{ __('Ẩn') }}</label>
+                                </div>
+
+                                <button type="button" class="btn-delete-layout" onclick="deleteThumb('small_thumbnail_3')">{{ __('Xóa') }}</button>
+                            </div>
                             @if ($errors->has('small_thumbnail_3'))
                             <span class="text-danger">{{ $errors->first('small_thumbnail_3') }}</span>
                             @endif
@@ -109,6 +133,14 @@
                             </div>
                             <div>
                                 <input type="text" name="permarklink_small_thumbnail_4" value="{{ isset($layout->permarklink_small_thumbnail_4) ? $layout->permarklink_small_thumbnail_4 : old('permarklink_small_thumbnail_4') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Nhập đường dẫn') }}">
+                            </div>
+                            <div class="area-action-layout">
+                                <div>
+                                    <input type="checkbox" name="hide_small_thumbnail_4" onchange="handleHideInput('hide_small_thumbnail_4')">
+                                    <label>{{ __('Ẩn') }}</label>
+                                </div>
+
+                                <button type="button" class="btn-delete-layout" onclick="deleteThumb('small_thumbnail_4')">{{ __('Xóa') }}</button>
                             </div>
                             @if ($errors->has('small_thumbnail_4'))
                             <span class="text-danger">{{ $errors->first('small_thumbnail_4') }}</span>
@@ -139,6 +171,14 @@
                             <div>
                                 <input type="text" name="permarklink_small_thumbnail_5" value="{{ isset($layout->permarklink_small_thumbnail_5) ? $layout->permarklink_small_thumbnail_5 : old('permarklink_small_thumbnail_5') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Nhập đường dẫn') }}">
                             </div>
+                            <div class="area-action-layout">
+                                <div>
+                                    <input type="checkbox" name="hide_small_thumbnail_5" onchange="handleHideInput('hide_small_thumbnail_5')">
+                                    <label>{{ __('Ẩn') }}</label>
+                                </div>
+
+                                <button type="button" class="btn-delete-layout" onclick="deleteThumb('small_thumbnail_5')">{{ __('Xóa') }}</button>
+                            </div>
                             @if ($errors->has('small_thumbnail_5'))
                             <span class="text-danger">{{ $errors->first('small_thumbnail_5') }}</span>
                             @endif
@@ -167,6 +207,14 @@
                             </div>
                             <div>
                                 <input type="text" name="permarklink_small_thumbnail_6" value="{{ isset($layout->permarklink_small_thumbnail_6) ? $layout->permarklink_small_thumbnail_6 : old('permarklink_small_thumbnail_6') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Nhập đường dẫn') }}">
+                            </div>
+                            <div class="area-action-layout">
+                                <div>
+                                    <input type="checkbox" id="hide_small_thumbnail_6" onchange="handleHideInput('hide_small_thumbnail_6')">
+                                    <label>{{ __('Ẩn') }}</label>
+                                </div>
+
+                                <button type="button" class="btn-delete-layout" onclick="deleteThumb('small_thumbnail_6')">{{ __('Xóa') }}</button>
                             </div>
                             @if ($errors->has('small_thumbnail_6'))
                             <span class="text-danger">{{ $errors->first('small_thumbnail_6') }}</span>
@@ -197,6 +245,14 @@
                             <div>
                                 <input type="text" name="permarklink_small_banner_thumbnail_left" value="{{ isset($layout->permarklink_small_banner_thumbnail_left) ? $layout->permarklink_small_banner_thumbnail_left : old('permarklink_small_banner_thumbnail_left') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Nhập đường dẫn') }}">
                             </div>
+                            <div class="area-action-layout">
+                                <div>
+                                    <input type="checkbox" id="hide_small_banner_thumbnail_left" onchange="handleHideInput('hide_small_banner_thumbnail_left')">
+                                    <label>{{ __('Ẩn') }}</label>
+                                </div>
+
+                                <button type="button" class="btn-delete-layout" onclick="deleteThumb('small_banner_thumbnail_left')">{{ __('Xóa') }}</button>
+                            </div>
                             @if ($errors->has('small_banner_thumbnail_left'))
                             <span class="text-danger">{{ $errors->first('small_banner_thumbnail_left') }}</span>
                             @endif
@@ -226,6 +282,14 @@
                             <div>
                                 <input type="text" name="permarklink_small_banner_thumbnail_right" value="{{ isset($layout->permarklink_small_banner_thumbnail_right) ? $layout->permarklink_small_banner_thumbnail_right : old('permarklink_small_banner_thumbnail_right') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Nhập đường dẫn') }}">
                             </div>
+                            <div class="area-action-layout">
+                                <div>
+                                    <input type="checkbox" id="hide_small_banner_thumbnail_right" onchange="handleHideInput('hide_small_banner_thumbnail_right')">
+                                    <label>{{ __('Ẩn') }}</label>
+                                </div>
+
+                                <button type="button" class="btn-delete-layout" onclick="deleteThumb('small_banner_thumbnail_right')">{{ __('Xóa') }}</button>
+                            </div>
                             @if ($errors->has('small_banner_thumbnail_right'))
                             <span class="text-danger">{{ $errors->first('small_banner_thumbnail_right') }}</span>
                             @endif
@@ -233,6 +297,15 @@
                     </div>
                 </div>
             </div>
+
+            <input type="hidden" name="hide_small_thumbnail_1" value="{{ $layout->hide_small_thumbnail_1 ?? 0 }}">
+            <input type="hidden" name="hide_small_thumbnail_2" value="{{ $layout->hide_small_thumbnail_2 ?? 0 }}">
+            <input type="hidden" name="hide_small_thumbnail_3" value="{{ $layout->hide_small_thumbnail_3 ?? 0 }}">
+            <input type="hidden" name="hide_small_thumbnail_4" value="{{ $layout->hide_small_thumbnail_4 ?? 0 }}">
+            <input type="hidden" name="hide_small_thumbnail_5" value="{{ $layout->hide_small_thumbnail_5 ?? 0 }}">
+            <input type="hidden" name="hide_small_thumbnail_6" value="{{ $layout->hide_small_thumbnail_6 ?? 0 }}">
+            <input type="hidden" name="hide_small_banner_thumbnail_left" value="{{ $layout->hide_small_banner_thumbnail_left ?? 0 }}">
+            <input type="hidden" name="hide_small_banner_thumbnail_right" value="{{ $layout->hide_small_banner_thumbnail_right ?? 0 }}">
         </div>
 
         <button type="submit" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20" style="margin-top: 10px;">{{__('Thêm ảnh')}}</button>

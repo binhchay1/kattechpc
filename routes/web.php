@@ -132,6 +132,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
         Route::post('/store-hot-sale', [LayoutController::class, 'storeHotSale'])->name('admin.store.hot.sale');
         Route::post('/store-slide', [LayoutController::class, 'storeSlide'])->name('admin.store.slide');
         Route::get('/delete-slide/{index}', [LayoutController::class, 'deleteSlide'])->name('admin.delete.slide');
+        Route::get('/delete-thumb-layout', [LayoutController::class, 'deleteThumbLayout']);
     });
 
     Route::group(['prefix' => 'promotion'], function () {

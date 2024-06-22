@@ -51,3 +51,8 @@ function readURL(input, id) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
+function deleteThumb(idThumb) {
+    let urlDelete = '/delete-thumb-layout?id=' + idThumb;
+    window.location.href = urlDelete;
+}

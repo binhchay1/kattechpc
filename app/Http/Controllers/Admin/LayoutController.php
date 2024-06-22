@@ -225,4 +225,17 @@ class LayoutController extends Controller
 
         return back()->with('success', __('Flash sale thêm thành công'));
     }
+
+    public function deleteThumbLayout(Request $request)
+    {
+        $id = $request->get('id');
+
+        if (!isset($id)) {
+            abort(404);
+        }
+
+        $this->layoutRepository->deleteByIdThumb($id);
+
+        return back()->with('success', __('Xóa ảnh thành công'));
+    }
 }
