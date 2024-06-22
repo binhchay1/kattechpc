@@ -285,6 +285,17 @@ button.close {
     justify-content: space-between;
 }
 
+.basket-product .item-action button {
+    text-align: center;
+    color: #f3070f;
+    border: 1px solid #f3070f;
+    border-radius: 50px;
+    line-height: 38px;
+    width: 154px;
+    margin: auto;
+    cursor: pointer;
+}
+
 #content-table-order-history {
     * {
         margin: 0;

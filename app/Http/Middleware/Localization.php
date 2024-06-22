@@ -18,7 +18,10 @@ class Localization
     {
         if (session()->has('lang')) {
             App::setLocale(session()->get('lang'));
+        } else {
+            App::setLocale('vi');
         }
+
         return $next($request);
     }
 }

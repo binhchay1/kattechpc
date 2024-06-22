@@ -8,6 +8,7 @@
 @section('keywords', $dataProduct->keyword)
 @section('breadcrumb-parent', $dataProduct->category->name)
 @section('breadcrumb', $dataProduct->name)
+@endsection
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('/css/page/product-detail.css') }}" />
