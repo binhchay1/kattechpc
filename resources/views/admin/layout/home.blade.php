@@ -25,7 +25,7 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
-                                    <input type="checkbox" id="hide_small_thumbnail_1" onchange="handleHideInput('hide_small_thumbnail_1')">
+                                    <input type="checkbox" id="hide_small_thumbnail_1" onchange="handleHideInput('hide_small_thumbnail_1')" {{ $layout->hide_small_thumbnail_1 == 1 ? 'checked' : '' }}>
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
@@ -62,7 +62,7 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
-                                    <input type="checkbox" id="hide_small_thumbnail_2" onchange="handleHideInput('hide_small_thumbnail_2')">
+                                    <input type="checkbox" id="hide_small_thumbnail_2" onchange="handleHideInput('hide_small_thumbnail_2')" {{ $layout->hide_small_thumbnail_2 == 1 ? 'checked' : '' }}>
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
@@ -99,7 +99,7 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
-                                    <input type="checkbox" id="hide_small_thumbnail_3" onchange="handleHideInput('hide_small_thumbnail_3')">
+                                    <input type="checkbox" id="hide_small_thumbnail_3" onchange="handleHideInput('hide_small_thumbnail_3')" {{ $layout->hide_small_thumbnail_3 == 1 ? 'checked' : '' }}>
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
@@ -136,7 +136,7 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
-                                    <input type="checkbox" name="hide_small_thumbnail_4" onchange="handleHideInput('hide_small_thumbnail_4')">
+                                    <input type="checkbox" name="hide_small_thumbnail_4" onchange="handleHideInput('hide_small_thumbnail_4')" {{ $layout->hide_small_thumbnail_4 == 1 ? 'checked' : '' }}>
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
@@ -173,7 +173,7 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
-                                    <input type="checkbox" name="hide_small_thumbnail_5" onchange="handleHideInput('hide_small_thumbnail_5')">
+                                    <input type="checkbox" name="hide_small_thumbnail_5" onchange="handleHideInput('hide_small_thumbnail_5')" {{ $layout->hide_small_thumbnail_5 == 1 ? 'checked' : '' }}>
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
@@ -210,7 +210,7 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
-                                    <input type="checkbox" id="hide_small_thumbnail_6" onchange="handleHideInput('hide_small_thumbnail_6')">
+                                    <input type="checkbox" id="hide_small_thumbnail_6" onchange="handleHideInput('hide_small_thumbnail_6')" {{ $layout->hide_small_thumbnail_6 == 1 ? 'checked' : '' }}>
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
@@ -247,7 +247,7 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
-                                    <input type="checkbox" id="hide_small_banner_thumbnail_left" onchange="handleHideInput('hide_small_banner_thumbnail_left')">
+                                    <input type="checkbox" id="hide_small_banner_thumbnail_left" onchange="handleHideInput('hide_small_banner_thumbnail_left')" {{ $layout->hide_small_banner_thumbnail_left == 1 ? 'checked' : '' }}>
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
@@ -284,7 +284,7 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
-                                    <input type="checkbox" id="hide_small_banner_thumbnail_right" onchange="handleHideInput('hide_small_banner_thumbnail_right')">
+                                    <input type="checkbox" id="hide_small_banner_thumbnail_right" onchange="handleHideInput('hide_small_banner_thumbnail_right')" {{ $layout->hide_small_banner_thumbnail_right == 1 ? 'checked' : '' }}>
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
@@ -298,14 +298,14 @@
                 </div>
             </div>
 
-            <input type="hidden" name="hide_small_thumbnail_1" value="{{ $layout->hide_small_thumbnail_1 ?? 0 }}">
-            <input type="hidden" name="hide_small_thumbnail_2" value="{{ $layout->hide_small_thumbnail_2 ?? 0 }}">
-            <input type="hidden" name="hide_small_thumbnail_3" value="{{ $layout->hide_small_thumbnail_3 ?? 0 }}">
-            <input type="hidden" name="hide_small_thumbnail_4" value="{{ $layout->hide_small_thumbnail_4 ?? 0 }}">
-            <input type="hidden" name="hide_small_thumbnail_5" value="{{ $layout->hide_small_thumbnail_5 ?? 0 }}">
-            <input type="hidden" name="hide_small_thumbnail_6" value="{{ $layout->hide_small_thumbnail_6 ?? 0 }}">
-            <input type="hidden" name="hide_small_banner_thumbnail_left" value="{{ $layout->hide_small_banner_thumbnail_left ?? 0 }}">
-            <input type="hidden" name="hide_small_banner_thumbnail_right" value="{{ $layout->hide_small_banner_thumbnail_right ?? 0 }}">
+            <input type="hidden" name="hide_small_thumbnail_1" value="{{ $layout->hide_small_thumbnail_1 }}">
+            <input type="hidden" name="hide_small_thumbnail_2" value="{{ $layout->hide_small_thumbnail_2 }}">
+            <input type="hidden" name="hide_small_thumbnail_3" value="{{ $layout->hide_small_thumbnail_3 }}">
+            <input type="hidden" name="hide_small_thumbnail_4" value="{{ $layout->hide_small_thumbnail_4 }}">
+            <input type="hidden" name="hide_small_thumbnail_5" value="{{ $layout->hide_small_thumbnail_5 }}">
+            <input type="hidden" name="hide_small_thumbnail_6" value="{{ $layout->hide_small_thumbnail_6 }}">
+            <input type="hidden" name="hide_small_banner_thumbnail_left" value="{{ $layout->hide_small_banner_thumbnail_left }}">
+            <input type="hidden" name="hide_small_banner_thumbnail_right" value="{{ $layout->hide_small_banner_thumbnail_right }}">
         </div>
 
         <button type="submit" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20" style="margin-top: 10px;">{{__('Thêm ảnh')}}</button>

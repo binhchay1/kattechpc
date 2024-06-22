@@ -100,6 +100,37 @@
         @include('includes.footer-page')
     </div>
 
+    <div class="global-fixed-right">
+        <a href="https://www.facebook.com/kattechpc" aria-label="Face Book" target="_blank" class="fix-face d-flex align-items-center justify-content-center">
+            <img width="25" height="25" alt="mes" src="{{ asset('images/logo/icon-facebook.png') }}">
+        </a>
+
+        <a href="https://www.youtube.com/c/kattechpc" aria-label="Youtube" target="_blank" class="fix-youtube d-flex align-items-center justify-content-center">
+            <img width="40" height="40" alt="mes" src="{{ asset('images/logo/icon-youtube.png') }}">
+        </a>
+
+        <a href="https://m.me/kattechpc.vn" target="_blank" class="messenger d-flex align-items-center">
+            <img width="40" height="40" alt="mes" src="{{ asset('images/logo/facebook_messenger.png') }}">
+            <div class="contact-info">
+                <b class="d-block">Chat Facebook</b><span>(8h-22h30)</span>
+            </div>
+        </a>
+        <a href="https://zalo.me/2360590838383636184" target="_blank" class="zalo d-flex align-items-center">
+            <img width="40" height="40" alt="zalo" src="{{ asset('images/logo/zalo.png') }}">
+            <div class="contact-info">
+                <b class="d-block">Chat Zalo</b><span>(8h-22h30)</span>
+            </div>
+        </a>
+    </div>
+
+    <div class="global-fixed-left">
+        <div class="sale">
+            <a href="{{ route('promotion') }}">
+                <img width="56" height="64" alt="khuyen-mai" src="{{ asset('images/sale.png') }}" data-was-processed="true">
+            </a>
+        </div>
+    </div>
+
     <script src="{{ asset('/plugins/jquery/jquery-3.4.1.min.js') }}"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.plugins.min.js"></script>

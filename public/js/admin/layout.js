@@ -56,3 +56,12 @@ function deleteThumb(idThumb) {
     let urlDelete = '/delete-thumb-layout?id=' + idThumb;
     window.location.href = urlDelete;
 }
+
+function handleHideInput(idInput) {
+    let inputValue = '0';
+    if ($('#' + idInput).is(":checked")) {
+        inputValue = '1';
+    }
+
+    $('input[name="' + idInput + '"]').val(inputValue);
+}

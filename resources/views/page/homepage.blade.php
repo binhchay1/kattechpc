@@ -41,16 +41,20 @@
             <div class="news-main-right">
                 <div class="news-main-right-1">
                     @if(isset($layout->small_thumbnail_1))
+                    @if($layout->hide_small_thumbnail_1 == 0)
                     <a href="{{ isset($layout->permarklink_small_thumbnail_1) ? $layout->permarklink_small_thumbnail_1 : '#' }}">
                         <img src="{{ asset($layout->small_thumbnail_1) }}" width="500" class="lazy">
                     </a>
                     @endif
+                    @endif
                 </div>
                 <div class="news-main-right-2">
                     @if(isset($layout->small_thumbnail_2))
+                    @if($layout->hide_small_thumbnail_2 == 0)
                     <a href="{{ isset($layout->permarklink_small_thumbnail_2) ? $layout->permarklink_small_thumbnail_2 : '#' }}">
                         <img src="{{ asset($layout->small_thumbnail_2) }}" width="500" class="lazy">
                     </a>
+                    @endif
                     @endif
                 </div>
             </div>
@@ -59,30 +63,38 @@
     <div class="news-main-under">
         <div class="news-main-right-1">
             @if(isset($layout->small_thumbnail_3))
+            @if($layout->hide_small_thumbnail_3 == 0)
             <a href="{{ isset($layout->permarklink_small_thumbnail_3) ? $layout->permarklink_small_thumbnail_3 : '#' }}">
                 <img src="{{ asset($layout->small_thumbnail_3) }}" width="350" class="lazy">
             </a>
             @endif
+            @endif
         </div>
         <div class="news-main-right-2" style="margin-left: 10px;">
             @if(isset($layout->small_thumbnail_4))
+            @if($layout->hide_small_thumbnail_4 == 0)
             <a href="{{ isset($layout->permarklink_small_thumbnail_4) ? $layout->permarklink_small_thumbnail_4 : '#' }}">
                 <img src="{{ asset($layout->small_thumbnail_4) }}" width="350" class="lazy">
             </a>
             @endif
+            @endif
         </div>
         <div class="news-main-right-2" style="margin-left: 10px;">
             @if(isset($layout->small_thumbnail_5))
+            @if($layout->hide_small_thumbnail_5 == 0)
             <a href="{{ isset($layout->permarklink_small_thumbnail_5) ? $layout->permarklink_small_thumbnail_5 : '#' }}">
                 <img src="{{ asset($layout->small_thumbnail_5) }}" width="350" class="lazy">
             </a>
             @endif
+            @endif
         </div>
         <div class="news-main-right-2" style="margin-left: 10px;">
             @if(isset($layout->small_thumbnail_6))
+            @if($layout->hide_small_thumbnail_6 == 0)
             <a href="{{ isset($layout->permarklink_small_thumbnail_6) ? $layout->permarklink_small_thumbnail_6 : '#' }}">
                 <img src="{{ asset($layout->small_thumbnail_6) }}" width="350" class="lazy">
             </a>
+            @endif
             @endif
         </div>
     </div>
