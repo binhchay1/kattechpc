@@ -154,7 +154,7 @@ span .p-name {
     font-size: 16px;
     color: #fff;
     font-weight: bold;
-    width: 200px;
+    width: 215px;
     float: left;
     text-align: center;
     padding: 0 2px;
@@ -192,7 +192,7 @@ span .p-name {
 }
 
 .name-item-drive .fa-gift {
-    color: f3070f;
+    color: #f3070f;
 }
 
 .build-pc_content h3 {
@@ -598,7 +598,7 @@ body {
 }
 
 .offers-build-pc {
-    color: f3070f;
+    color: #f3070f;
     font-style: italic;
     font-weight: bold;
     margin: 0 0 0 10px;
