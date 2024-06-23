@@ -144,17 +144,17 @@
                 @if(isset($dataCategory->children))
                 <div class="d-flex flex-direction-column">
                     <label class="font-bold">{{ __('Nhu cầu') }}</label>
-                    <select class="mt-1">
+                    <select class="mt-1" id="category-in-product-category" onchange="sortByCategoryChild($(this))">
                         <option value="all">{{ __('Tất cả') }}</option>
                         @foreach($dataCategory->children as $children)
-                        <option value="{{ $children->name }}">{{ $children->name }}</option>
+                        <option value="{{ $children->id }}">{{ $children->name }}</option>
                         @endforeach
                     </select>
                 </div>
                 @endif
                 <div class="d-flex flex-direction-column">
                     <label class="font-bold">{{ __('Thương hiệu') }}</label>
-                    <select class="mt-1" id="brand-in-product-category">
+                    <select class="mt-1" id="brand-in-product-category" onchange="sortByBrand($(this))">
                         <option value="all">{{ __('Tất cả') }}</option>
                         @foreach($dataBrand as $brand)
                         <option value="{{ $brand }}">{{ $brand }}</option>
@@ -270,6 +270,10 @@
 
     if (arrayParam['brand'] != undefined) {
         $('#brand-in-product-category').val(arrayParam['brand']);
+    }
+
+    if (arrayParam['brand'] != undefined) {
+        $('#category-in-product-category').val(arrayParam['category']);
     }
 
     $(document).ready(function() {
@@ -398,6 +402,50 @@
             let idKeyWord = listKeyWord[i].getAttribute('data-id');
             listValKeyWord[idKeyWord] = valKeyWord;
         }
+
+        let url = location.protocol + '//' + location.host + location.pathname;
+        let count = 0;
+        for (var k in arrayParam) {
+            if (k != 'price') {
+                if (arrayParam.hasOwnProperty(k)) {
+                    if (count == 0) {
+                        url += '?' + k + '=' + arrayParam[k];
+                        count++;
+                    } else {
+                        url += '&' + k + '=' + arrayParam[k];
+                    }
+                }
+            }
+        }
+
+        window.location.href = url;
+    }
+
+    function sortByCategoryChild(select) {
+        let valueCategoryChild = select.val();
+        arrayParam['category'] = valueCategoryChild;
+
+        let url = location.protocol + '//' + location.host + location.pathname;
+        let count = 0;
+        for (var k in arrayParam) {
+            if (k != 'price') {
+                if (arrayParam.hasOwnProperty(k)) {
+                    if (count == 0) {
+                        url += '?' + k + '=' + arrayParam[k];
+                        count++;
+                    } else {
+                        url += '&' + k + '=' + arrayParam[k];
+                    }
+                }
+            }
+        }
+
+        window.location.href = url;
+    }
+
+    function sortByBrand(select) {
+        let valueBrand = select.val();
+        arrayParam['brand'] = valueBrand;
 
         let url = location.protocol + '//' + location.host + location.pathname;
         let count = 0;

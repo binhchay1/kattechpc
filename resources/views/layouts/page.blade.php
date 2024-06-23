@@ -38,7 +38,7 @@
     <div id="content-page">
 
         @if(!Route::is('home'))
-        @if(Route::is('showDataCategory') or Route::is('showPromotionDetail') or Route::is('productDetail') or Route::is('post.detail'))
+        @if(Route::is('showDataCategory') or Route::is('showPromotionDetail') or Route::is('productDetail') or Route::is('post.detail') or Route::is('post.category'))
         <div class="box-breadcrumb-global">
             <div class="container d-flex align-items-center box-breadcrumb">
                 <div class="global-breadcrumb d-flex justify-content-between align-items-center">
@@ -52,6 +52,8 @@
                             <meta itemprop="position" content="1">
                         </li>
 
+                        @if(Route::is('showDataCategory') or Route::is('post.category'))
+                        @if(isset($isParent) and !$isParent)
                         <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                             <a href="@yield('breadcrumb-parent-url')" class="breadcrumb-parent-url">
                                 <span itemprop="name" style="font-weight: bold;"> @yield('breadcrumb-parent') </span><i class="fa fa-angle-right" style="margin: 0 10px;"></i>
@@ -59,6 +61,8 @@
 
                             <meta itemprop="position" content="2">
                         </li>
+                        @endif
+                        @endif
 
                         <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                             <span itemprop="name"> @yield('breadcrumb') </span>

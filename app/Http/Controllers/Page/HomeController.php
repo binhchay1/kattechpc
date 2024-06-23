@@ -236,6 +236,11 @@ class HomeController extends Controller
         $listCategory = Cache::store('redis')->get($key);
         $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
 
+        if($postCategory->parent == 0) {
+            $isParent = true;
+        } else {
+            $isParent = false;
+        }
 
         return view('page.post.category-post', compact(
             'listCategoryPost',
@@ -245,7 +250,8 @@ class HomeController extends Controller
             'postRandom4',
             'postCategory',
             'listCategory',
-            'dataPostCategory'
+            'dataPostCategory',
+            'isParent'
         ));
     }
 
@@ -412,6 +418,14 @@ class HomeController extends Controller
             }
         }
 
+        if (isset($filters['category'])) {
+            foreach ($dataComplete as $keyCategory => $productCategory) {
+                if ($productBrand->category_id != $filters['category']) {
+                    $dataComplete->forget($keyBrand);
+                }
+            }
+        }
+
         if (isset($filters['sort'])) {
             if ($filters['sort'] == 'new') {
                 $dataComplete = $dataComplete->sortByDesc('created_at');
@@ -467,7 +481,13 @@ class HomeController extends Controller
             $listKeyWord = $dataCategory->categoryFilter;
         }
 
-        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'listKeyWord'));
+        if($dataCategory->parent == 0) {
+            $isParent = true;
+        } else {
+            $isParent = false;
+        }
+
+        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'listKeyWord', 'isParent'));
     }
 
     function getTopParent($category)
