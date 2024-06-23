@@ -18,7 +18,7 @@ class Category extends Model
     protected $fillable = [
         'name', 'slug', 'parent', 'image', 'status'
 
-        
+
     ];
 
     public function sluggable(): array
@@ -65,5 +65,10 @@ class Category extends Model
     public function productChildren()
     {
         return $this->hasMany(Product::class, 'category_id', 'id');
+    }
+
+    public function parent()
+    {
+        return $this->hasOne(Category::class, 'parent', 'id');
     }
 }

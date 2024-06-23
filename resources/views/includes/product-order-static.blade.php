@@ -85,9 +85,15 @@
                         </td>
 
                         <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 status">
-                            <a href="{{route('activeOrder', $order['id'])}}" class="btn btn-{{$order->status == 1 ? 'success' : 'danger' }}">
-                                {{$order->status == 1 ? "Xác nhận " : "Chưa xác nhận"}}
-                            </a>
+                            @if($order->status == 1)
+                                <span class="inline-flex items-center px-2.5 py-0.5 text-xs font-medium rounded border bg-green-100 border-transparent text-green-500 dark:bg-green-500/20 dark:border-transparent"><i data-lucide="check" class="size-3 ltr:mr-1 rtl:ml-1"></i>
+                                {{ __('Xác nhận') }}
+                                </span>
+                            @elseif( $order->status == 0)
+                                <span class="delivery_status px-2.5 py-0.5 text-xs inline-block font-medium rounded border bg-yellow-100 border-yellow-200 text-yellow-500 dark:bg-yellow-500/20 dark:border-yellow-500/20">
+                                             {{ __('Chưa xác nhận') }}</span>
+                                </span>
+                            @endif
                         </td>
                         <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
                             <div class="relative dropdown">

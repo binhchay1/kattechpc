@@ -65,7 +65,7 @@
                                 $post = \Illuminate\Support\Str::limit($random->title, 60). "...";
                             }
                             ?>
-                            <h2><a class="text-tech" href="">{{ $post }}</a></h2>
+                            <h2><a class="text-tech" href="">{{ $random->title }}</a></h2>
                         </div>
                     </div>
                     @endforeach
@@ -76,11 +76,11 @@
                 <div class="">
                     @foreach($postRandom4 as $postDESC)
                         <div class="child d-flex">
-                            <div style="width: 50%;">
+                            <div style="width: 30%;">
                                 <img class="img-fluid w-100" src="{{ $postDESC->thumbnail ?? asset('images/page/no-image.png') }}" style="object-fit: cover;">
 
                             </div>
-                            <div class="" style="margin-left: 20px; width: 50%;">
+                            <div class="" style="margin-left: 20px; width: 70%;">
                                 <?php $text = strlen($postDESC->title);
                                 if($text < 60){
                                     $post = $postDESC->title;
@@ -88,7 +88,7 @@
                                     $post = \Illuminate\Support\Str::limit($postDESC->title, 60);
                                 }
                                 ?>
-                                <h2><a class="text-tech" href="">{{ $post }}</a></h2>
+                                <h2><a class="text-tech" href="">{{ $postDESC->title }}</a></h2>
                                 <div class="post_info">
                                     <span class="post_info_item-date">
                                         <?php $date =  $postDESC->created_at->format('M d, Y') ?? ""?>

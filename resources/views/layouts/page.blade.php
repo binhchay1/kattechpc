@@ -13,11 +13,13 @@
     <meta name="revisit-after" content="7 days">
     <meta name="coverage" content="Worldwide">
     <meta name="distribution" content="Global">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('/images/logo/favicon.ico') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('/css/page/style.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/page/lib.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/page/mobile.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/page/ckeditor.css') }}" type="text/css">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="HandheldFriendly" content="true">
@@ -44,7 +46,8 @@
 
                     <ol itemscope="" itemtype="http://schema.org/BreadcrumbList" class="list-breadcrumb clearfix d-flex align-items-center flex-wrap">
                         <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                            <a href="{{ route('home') }}" itemprop="item">
+                            <i class="fa fa-home"></i>
+                            <a href="{{ route('home') }}" itemprop="item" class="breadcrumb-home">
                                 <span itemprop="name">{{ __('Trang chủ') }} </span> <i class="fa fa-angle-right" style="margin: 0 10px;"></i>
                             </a>
                             <meta itemprop="position" content="1">
@@ -73,7 +76,8 @@
                 <div class="global-breadcrumb d-flex justify-content-between align-items-center">
                     <ol itemscope="" itemtype="http://schema.org/BreadcrumbList" class="list-breadcrumb clearfix d-flex align-items-center flex-wrap">
                         <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                            <a href="{{ route('home') }}" itemprop="item" class="nopad-l">
+                            <i class="fa fa-home"></i>
+                            <a href="{{ route('home') }}" itemprop="item" class="breadcrumb-home">
                                 <span itemprop="name">{{ __('Trang chủ') }} </span> <i class="fa fa-angle-right" style="margin: 0 10px;"></i>
                             </a>
                             <meta itemprop="position" content="1">

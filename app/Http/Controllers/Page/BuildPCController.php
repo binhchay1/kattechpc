@@ -7,6 +7,10 @@ use App\Enums\Product;
 use App\Http\Controllers\Controller;
 use App\Repositories\ProductRepository;
 use App\Repositories\BuildPcRepository;
+use App\Repositories\SessionBuildPCRepository;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExportBuildPC;
+use App\Repositories\BuildPCThemeRepository;
 use Cart;
 use Cache;
 
@@ -15,13 +19,19 @@ class BuildPCController extends Controller
 
     private $productRepository;
     private $buildPcRepository;
+    private $sessionBuildPcRepository;
+    private $buildPcThemeRepository;
 
     public function __construct(
         ProductRepository $productRepository,
-        BuildPcRepository $buildPcRepository
+        BuildPcRepository $buildPcRepository,
+        SessionBuildPCRepository $sessionBuildPcRepository,
+        BuildPCThemeRepository $buildPcThemeRepository
     ) {
         $this->productRepository = $productRepository;
         $this->buildPcRepository = $buildPcRepository;
+        $this->sessionBuildPcRepository = $sessionBuildPcRepository;
+        $this->buildPcThemeRepository = $buildPcThemeRepository;
     }
 
     public function buildPC(Request $request)
@@ -30,8 +40,42 @@ class BuildPCController extends Controller
         $listCategory = Cache::store('redis')->get($key);
         $getProductByKey = $request->get('key');
         $menu = $this->buildPcRepository->index();
+        $getSessionBuildPC = $request->session()->get('buildID');
+        $theme = $this->buildPcThemeRepository->index();
+        if (isset($theme[0]->youtube)) {
+            $arrLinkYoutube = json_decode($theme[0]->youtube, true);
+        } else {
+            $arrLinkYoutube = [
+                'link_youtube_1' => '',
+                'link_youtube_2' => '',
+                'link_youtube_3' => ''
+            ];
+        }
 
-        return view('page.build-pc.build-pc', compact('listCategory', 'menu'));
+        if ($getSessionBuildPC != null) {
+            $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
+            if (isset($getDataBySessionBuildPC)) {
+                $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
+            } else {
+                $dataBuild = [];
+            }
+        } else {
+            $dataBuild = [];
+        }
+
+        $dataPreSession = [
+            'listArea1' => [],
+            'listArea2' => [],
+        ];
+
+        if (!empty($dataBuild)) {
+            foreach ($dataBuild as $key => $area) {
+                $getPrBySession = $this->productRepository->getProductByArrayID($area);
+                $dataPreSession[$key] = $getPrBySession;
+            }
+        }
+
+        return view('page.build-pc.build-pc', compact('listCategory', 'menu', 'dataBuild', 'dataPreSession', 'arrLinkYoutube', 'theme'));
     }
 
     public function getProduct(Request $request)
@@ -44,7 +88,6 @@ class BuildPCController extends Controller
         $explode = explode('-', $getProductByKey);
         $buildId = $explode[2];
         $arrID = [];
-        $filter = [];
 
         $getListCategory = $this->buildPcRepository->getListCategory($buildId);
         $decode = json_decode($getListCategory->category_id, true);
@@ -158,5 +201,127 @@ class BuildPCController extends Controller
         }
 
         return 'success';
+    }
+
+    public function handleSessionBuildPC(Request $request)
+    {
+        $data = $request->get('data');
+
+        $getSession = $request->session()->get('buildID');
+        if (empty($getSession)) {
+            $buildID = bin2hex(date('Y-m-d H:i:s'));
+            $request->session()->put('buildID', $buildID);
+            $dataSessionBuild = [
+                'build_id' => $buildID,
+                'data_build' => json_encode($data)
+            ];
+
+            $this->sessionBuildPcRepository->create($dataSessionBuild);
+        } else {
+            $dataSessionBuild = [
+                'data_build' => json_encode($data)
+            ];
+
+            $this->sessionBuildPcRepository->updateByBuildID($getSession, $dataSessionBuild);
+        }
+
+        return 'success';
+    }
+
+    public function exportExcelBuildPC(Request $request)
+    {
+        $area = $request->get('a');
+
+        if (empty($area)) {
+            abort(404);
+        }
+
+        if ($area != '1' and $area != '2') {
+            abort(404);
+        }
+
+        $getSessionBuildPC = $request->session()->get('buildID');
+        $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
+        $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
+        if ($area == 1) {
+            $arrProductID = $dataBuild['listArea1'];
+        } else {
+            $arrProductID = $dataBuild['listArea2'];
+        }
+
+        $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
+        $nameFile = 'buildpc_' . date('d-m-Y') . '_' . $getSessionBuildPC . '.xlsx';
+        $total = 0;
+        foreach ($getProduct as $product) {
+            if ($product->new_price != null) {
+                $total += (int) str_replace('.', '', $product->new_price);
+            } else {
+                $total += (int) str_replace('.', '', $product->price);
+            }
+        }
+
+        return Excel::download(new ExportBuildPC($getProduct, $total), $nameFile);
+    }
+
+    public function exportImageBuildPC(Request $request)
+    {
+        $area = $request->get('a');
+
+        if (empty($area)) {
+            abort(404);
+        }
+
+        if ($area != '1' and $area != '2') {
+            abort(404);
+        }
+
+        $getSessionBuildPC = $request->session()->get('buildID');
+        $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
+        $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
+
+        if ($area == 1) {
+            $arrProductID = $dataBuild['listArea1'];
+        } else {
+            $arrProductID = $dataBuild['listArea2'];
+        }
+
+        $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
+
+        return view('page.exports.build-pc-image', compact('getProduct'))->render();
+    }
+
+    public function printBuildPC(Request $request)
+    {
+        $area = $request->get('a');
+
+        if (empty($area)) {
+            abort(404);
+        }
+
+        if ($area != '1' and $area != '2') {
+            abort(404);
+        }
+
+        $getSessionBuildPC = $request->session()->get('buildID');
+        $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
+        $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
+
+        if ($area == 1) {
+            $arrProductID = $dataBuild['listArea1'];
+        } else {
+            $arrProductID = $dataBuild['listArea2'];
+        }
+
+        $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
+        $total = 0;
+        foreach ($getProduct as $product) {
+            if ($product->new_price != null) {
+                $total += (int) str_replace('.', '', $product->new_price);
+            } else {
+                $total += (int) str_replace('.', '', $product->price);
+            }
+        }
+
+        return view('page.build-pc.print', compact('getProduct', 'total'));
     }
 }

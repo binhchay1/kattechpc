@@ -113,4 +113,8 @@ class CategoryRepository extends BaseRepository
     {
         return $this->model->with('categoryFilter')->where('id', $id)->first();
     }
+
+    public function getListWithSortParent() {
+        return $this->model->with('children')->where('parent', 0)->paginate(30);
+    }
 }

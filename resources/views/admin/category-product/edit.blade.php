@@ -52,6 +52,7 @@
                                 </div>
                             </div>
                         </div>
+                        @if($categoryProduct->parent == 0)
                         <div class="xl:col-span-6">
                             <label for="productStatus" class="inline-block mb-2 text-base font-medium">{{ __('Trạng thái danh mục: ') }}</label>
                             <select style="width: 50%; " class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500
@@ -66,6 +67,7 @@
                                 <span class="text-danger">{{ $errors->first('status') }}</span>
                             @endif
                         </div>
+                        @endif
                         <input type="hidden" name="slug" class="form-control" id="name" placeholder="Enter name" value="{{ $categoryProduct->slug }}">
                     </div>
                     <div class="flex justify-end gap-2 mt-4">

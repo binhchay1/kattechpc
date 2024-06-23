@@ -6,6 +6,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/page/post-detail.css') }}" />
+<link rel="stylesheet" href="{{ asset('/css/page/ckeditor.css') }}" type="text/css">
 @endsection
 
 @section('content')
@@ -27,21 +28,21 @@
             <p class="">{!! $post->content !!}</p>
         </div>
     </div>
-    <div class="rightcolumn">
-        <div class="card">
-            <h2>{{ __("Bài viết liên quan") }}</h2>
-            @foreach($listPost as $post)
-            <div>
-                <div>
-                    <img class="image-post" src="{{ asset($post->thumbnail) }}">
-                </div>
-                <a href="{{ route('post.detail', $post['slug']) }}">
-                    <p>{{ $post->title }}</p>
-                </a>
-            </div>
-            <br>
-            @endforeach
-        </div>
-    </div>
+{{--    <div class="rightcolumn">--}}
+{{--        <div class="card">--}}
+{{--            <h2>{{ __("Bài viết liên quan") }}</h2>--}}
+{{--            @foreach($listPost as $post)--}}
+{{--            <div>--}}
+{{--                <div>--}}
+{{--                    <img class="image-post" src="{{ asset($post->thumbnail) }}">--}}
+{{--                </div>--}}
+{{--                <a href="{{ route('post.detail', $post['slug']) }}">--}}
+{{--                    <p>{{ $post->title }}</p>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--            <br>--}}
+{{--            @endforeach--}}
+{{--        </div>--}}
+{{--    </div>--}}
 </div>
 @endsection

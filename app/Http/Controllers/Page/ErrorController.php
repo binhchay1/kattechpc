@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Page;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ErrorController extends Controller
@@ -45,5 +44,10 @@ class ErrorController extends Controller
     public function view503()
     {
         return view('errors.503');
+    }
+
+    public function viewMaintenance()
+    {
+        return view('errors.maintenance');
     }
 }

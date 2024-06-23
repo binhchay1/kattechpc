@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Page;
 
+use App\Enums\Role;
+use App\Enums\User;
 use App\Enums\Utility;
+use App\Http\Requests\LoginRequest;
 use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
@@ -17,6 +20,7 @@ use App\Repositories\PromotionRepository;
 use Illuminate\Http\Request;
 use App\Enums\Product;
 use App\Repositories\BrandRepository;
+use Illuminate\Support\Facades\Config;
 use Cache;
 
 class HomeController extends Controller
@@ -56,16 +60,19 @@ class HomeController extends Controller
         $this->brandRepository = $brandRepository;
     }
 
-    public function lang($locale)
+    public function changeLocate($locale)
     {
         if ($locale) {
-            App::setLocale($locale);
-            Session::put('lang', $locale);
-            Session::save();
-            return redirect()->back()->with('locale', $locale);
-        } else {
-            return redirect()->back();
+            if (in_array($locale, Config::get('app.locale'))) {
+                App::setLocale($locale);
+                Session::put('lang', $locale);
+                Session::save();
+
+                return redirect()->back()->with('locale', $locale);
+            }
         }
+
+        return redirect()->back();
     }
 
     public function viewPolicy()
@@ -473,5 +480,38 @@ class HomeController extends Controller
         }
 
         return $this->getTopParent($this->categoryRepository->getParentWithKeyword($category->parent));
+    }
+
+    public function staffLogin()
+    {
+
+        return view('auth.login-staff');
+
+    }
+
+    public function postStaffLogin(LoginRequest $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (\Auth::attempt($credentials)) {
+            $request->session()->put('email', $credentials['email']);
+
+            if (\Auth::user()->role == Role::STAFF) {
+                return redirect()->route('admin.dashboard');
+            } else {
+                if ($request->get('return_url')) {
+                    $return_url = $request->get('return_url');
+                    return redirect($return_url);
+                }
+
+                return redirect()->route('staff.login')->withErrors([
+                    'custom' => __('Bạn không có quền truy cập!')
+                ]);;
+            }
+        } else {
+            return back()->withErrors([
+                'custom' => __('Email hoặc mật khẩu không chính xác')
+            ]);
+        }
     }
 }

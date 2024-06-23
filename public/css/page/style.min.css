@@ -4,7 +4,7 @@
 }
 
 body {
-    font-family: "Open Sans", Arial, sans-serif;
+    font-family: "SF Pro Display", sans-serif !important;
     color: #333e48;
     font-size: 13px;
     margin: 0;
@@ -895,7 +895,8 @@ body a {
     overflow: hidden;
 }
 
-.tooltip-name, .tooltip-name-buildpc {
+.tooltip-name,
+.tooltip-name-buildpc {
     -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
     border-radius: 10px 10px 0 0;
@@ -915,13 +916,15 @@ body a {
     text-transform: uppercase;
 }
 
-.tooltip-descreption, .tooltip-descreption-buildpc {
+.tooltip-descreption,
+.tooltip-descreption-buildpc {
     margin-top: 16px;
     display: flex;
     padding: 0 8px;
 }
 
-.tooltip-input, .tooltip-input-buildpc {
+.tooltip-input,
+.tooltip-input-buildpc {
     -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
     margin-top: 12px;
@@ -950,7 +953,8 @@ body a {
     margin: 5px 10px 10px;
 }
 
-.tooltip-list-gift, .tooltip-list-gift-buildpc {
+.tooltip-list-gift,
+.tooltip-list-gift-buildpc {
     margin-top: 1px;
     margin-bottom: 10px;
 }
@@ -1271,6 +1275,7 @@ a {
 }
 
 .global-menu-container .global-menu-holder {
+    display: none;
     visibility: visible;
     z-index: 1;
     position: absolute;
@@ -1324,9 +1329,8 @@ a {
     position: absolute;
     left: 200px;
     top: 0;
-    height: 664px;
     overflow: auto;
-    width: 800px;
+    width: calc(100% + 180px);
     -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
     border-radius: 0 10px 10px 0;
@@ -1336,7 +1340,6 @@ a {
 }
 
 .global-menu-holder .sub-menu-list .sub-cat-2 {
-    width: 20%;
     padding: 0 10px 10px 0;
 }
 
@@ -1512,12 +1515,12 @@ a {
     width: 100%;
 }
 
-
 .toolbar-menu-mobile {
     background: #fff;
     bottom: 0;
     border-top: 2px solid #e10b24;
-    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.1), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.1),
+        0 2px 6px 2px rgba(60, 64, 67, 0.15);
     display: flex;
     left: 0;
     width: 100%;
@@ -1593,7 +1596,7 @@ a {
     padding-left: 80px;
 }
 
-.main-menu-category .list-items{
+.main-menu-category .list-items {
     display: none;
 }
 
@@ -1636,10 +1639,18 @@ a {
     line-height: 1.6;
 }
 
-.global-breadcrumb li{
+.global-breadcrumb li {
     font-size: 17px;
 }
 
 .global-breadcrumb ol li i {
     cursor: auto;
+}
+
+.breadcrumb-home {
+    font-weight: bold;
+}
+
+.breadcrumb-home:hover {
+    text-decoration: underline;
 }

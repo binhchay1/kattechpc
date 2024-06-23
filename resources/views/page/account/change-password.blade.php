@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="{{ asset('css/page/profile.css') }}" />
 @endsection
 
+@section('description', __('Thay đổi mật khẩu của khách hàng với Kattech PC'))
+@section('keywords', 'password, change password, kattech, kattech pc')
+@section('breadcrumb', __('Thay đổi mật khẩu'))
+
 @section('content')
 <div class="row">
     @include('includes.left-menu-profile')

@@ -270,12 +270,33 @@ button.close {
 .hidden {
     display: none !important;
 }
+
 .affix {
     position: fixed;
 }
 
-#content-table-order-history {
+#modalDetail {
+    justify-content: center;
+    align-items: center;
+}
 
+#modalDetail .modal-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.basket-product .item-action button {
+    text-align: center;
+    color: #f3070f;
+    border: 1px solid #f3070f;
+    border-radius: 50px;
+    line-height: 38px;
+    width: 154px;
+    margin: auto;
+    cursor: pointer;
+}
+
+#content-table-order-history {
     * {
         margin: 0;
         padding: 0;
@@ -559,8 +580,7 @@ button.close {
         .column5,
         .column6 {
             text-align: left;
-
-       }
+        }
 
         .column4,
         .column5,

@@ -79,11 +79,11 @@
                     @endforeach
                 </tbody>
             </table>
-            <div style="margin-top: 15px;">
-                {!! $productStatic->links() !!}
-            </div>
-        </div>
 
+        </div>
+            <div style="margin-top: 15px;">
+            {!! $productStatic->links() !!}
+        </div>
     </div>
 
 </div>
