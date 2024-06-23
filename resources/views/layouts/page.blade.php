@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('/css/page/style.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/page/lib.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/page/mobile.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/page/ckeditor.css') }}" type="text/css">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="HandheldFriendly" content="true">
