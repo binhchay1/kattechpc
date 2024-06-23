@@ -239,7 +239,7 @@ class HomeController extends Controller
         $listCategory = Cache::store('redis')->get($key);
         $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
 
-        if($postCategory->parent == 0) {
+        if ($postCategory->parent == 0) {
             $isParent = true;
         } else {
             $isParent = false;
@@ -459,6 +459,22 @@ class HomeController extends Controller
             }
         }
 
+        foreach ($filters as $keyLast => $filterLast) {
+            if ($keyLast == 'sort' or $keyLast == 'brand' or $keyLast == 'price' or $keyLast == 'category') {
+                continue;
+            }
+
+            if($filterLast == 'all') {
+                continue;
+            }
+
+            foreach ($dataComplete as $key => $dataLast) {
+                if (strpos($dataLast->key_word, $filterLast) === false) {
+                    $dataComplete->forget($key);
+                }
+            }
+        }
+
         if (isset($dataComplete)) {
             foreach ($dataComplete as $product) {
                 if (isset($product->brands->name)) {
@@ -484,7 +500,7 @@ class HomeController extends Controller
             $listKeyWord = $dataCategory->categoryFilter;
         }
 
-        if($dataCategory->parent == 0) {
+        if ($dataCategory->parent == 0) {
             $isParent = true;
         } else {
             $isParent = false;
@@ -506,7 +522,6 @@ class HomeController extends Controller
     {
 
         return view('auth.login-staff');
-
     }
 
     public function postStaffLogin(LoginRequest $request)
