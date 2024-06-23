@@ -51,7 +51,7 @@
 
 .product-info {
     padding: 15px;
-    width: 60%;
+    width: 150%;
     float: right;
     border-radius: 10px;
     padding: 15px;
@@ -387,7 +387,6 @@ tr:nth-child(even) {
 
     .product-info {
         width: 100%;
-        padding: 0;
     }
 }
 

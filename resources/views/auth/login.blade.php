@@ -24,20 +24,20 @@
 
                 <div class="btn-login-social">
                     <a href="{{ route('auth.facebook') }}" class="btn-face">
-                        <img src="{{ asset('images/logo/icon-facebook.png') }}" width="30" height="31"/>
+                        <img src="{{ asset('images/logo/icon-facebook.png') }}" width="30" height="31" />
                         Facebook
                     </a>
 
                     <a href="{{ route('auth.google') }}" class="btn-google">
-                        <img src="{{ asset('images/logo/icon-google.png') }}" width="30" height="31"/>
+                        <img src="{{ asset('images/logo/icon-google.png') }}" width="30" height="31" />
                         Google
                     </a>
                 </div>
 
-                @if (session('status'))
-                <div class="">
-                    {{ session('status') }}
-                </div>
+                @if(isset($errors))
+                @foreach ($errors->all() as $error)
+                <div style="color: red; margin: 10px">{{ $error }}</div>
+                @endforeach
                 @endif
 
                 <div class="p-t-31 p-b-9">
@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="mt-10 mb-10">
-                        <a href="{{ route('staff.login') }}" style="color: #0a59da" class="txt2 bo1">{{ __('Staff?') }}</a>
+                    <a class="btn-staff" href="{{ route('staff.login') }}">{{ __('Quản lý') }}</a>
                 </div>
 
                 <div class="container-login100-form-btn m-t-17">

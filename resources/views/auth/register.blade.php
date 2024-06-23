@@ -22,10 +22,10 @@
                     <h1>{{ __('Đăng ký') }}</h1>
                 </span>
 
-                @if (session('status'))
-                <div class="">
-                    {{ session('status') }}
-                </div>
+                @if(isset($errors))
+                @foreach ($errors->all() as $error)
+                <div style="color: red; margin: 10px">{{ $error }}</div>
+                @endforeach
                 @endif
 
                 <div class="p-t-31 p-b-9">

@@ -1,10 +1,10 @@
 @extends('layouts.master-without-nav')
 @section('title')
-    {{ __('staff-login') }}
+{{ __('staff-login') }}
 @endsection
 @section('content')
 
-    <body class="flex items-center justify-center min-h-screen px-4 py-16 bg-cover bg-auth-pattern dark:bg-auth-pattern-dark dark:text-zink-100 font-public">
+<body class="flex items-center justify-center min-h-screen px-4 py-16 bg-cover bg-auth-pattern dark:bg-auth-pattern-dark dark:text-zink-100 font-public">
     <div class="mb-0 border-none shadow-none xl:w-2/3 card bg-white/70 dark:bg-zink-500/70">
         <div class="grid grid-cols-1 gap-0 lg:grid-cols-12">
             <div class="lg:col-span-5">
@@ -12,18 +12,18 @@
 
                     <div class="text-center">
                         <h4 class="mb-2 text-purple-500 dark:text-purple-500">{{ __('Xin chào!') }}</h4>
-                        <p class="text-slate-500 dark:text-zink-200">{{ __('Đăng nhập để tiếp tục với Kattech PC') }}</p>
+                        <p class="text-slate-500 dark:text-zink-200">{{ __('Đăng nhập với tư cách quản lý') }}</p>
                     </div>
 
                     @if (session('status'))
-                        <div class="font-medium text-sm text-green-600 border border-transparent rounded-md bg-green-50 px-4 py-3 mt-4">
-                            {{ session('status') }}
-                        </div>
+                    <div class="font-medium text-sm text-green-600 border border-transparent rounded-md bg-green-50 px-4 py-3 mt-4">
+                        {{ session('status') }}
+                    </div>
                     @endif
                     @if(isset($errors))
-                        @foreach ($errors->all() as $error)
-                            <div style="color: red; margin: 10px">{{ $error }}</div>
-                        @endforeach
+                    @foreach ($errors->all() as $error)
+                    <div style="color: red; margin: 10px">{{ $error }}</div>
+                    @endforeach
                     @endif
                     <form method="POST" action="{{ route('post.staff.login') }}" class="mt-10" id="signInForm">
                         @csrf
@@ -39,7 +39,7 @@
                                 </div>
                                 <div>
                                     @if (Route::has('password.request'))
-                                        <a href="{{ route('password.request') }}" class="text-gray-500 dark:text-gray-100 text-sm">{{ __('Quên mật khẩu?') }}</a>
+                                    <a href="{{ route('password.request') }}" class="text-gray-500 dark:text-gray-100 text-sm">{{ __('Quên mật khẩu?') }}</a>
                                     @endif
                                 </div>
                             </div>
@@ -56,30 +56,11 @@
                         <div class="mt-5">
                             <button type="submit" class="w-full text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">{{ __('Đăng nhập') }}</button>
                         </div>
-
-                        <div class="relative text-center my-9 before:absolute before:top-3 before:left-0 before:right-0 before:border-t before:border-t-slate-200 dark:before:border-t-zink-500">
-                            <h5 class="inline-block px-2 py-0.5 text-sm bg-white text-slate-500 dark:bg-zink-600 dark:text-zink-200 rounded relative">{{ __('Đăng nhập với') }}</h5>
-                        </div>
-
-
-                        <div class="mt-10 text-center">
-                            <p class="mb-0 text-slate-500 dark:text-zink-200">{{ __('Bạn chưa có tài khoản') }} <a href="{{ route('register') }}" class="font-semibold underline transition-all duration-150 ease-linear text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500">{{ __('Đăng ký') }}</a> </p>
-                        </div>
                     </form>
                 </div>
             </div>
             <div class="mx-2 mt-2 mb-2 border-none shadow-none lg:col-span-7 card bg-white/60 dark:bg-zink-500/60">
                 <div class="!px-10 !pt-10 h-full !pb-0 card-body flex flex-col">
-                    <div class="flex items-center justify-between gap-3">
-                        <div class="grow">
-                            <a href="{{ url('index') }}">
-                                <x-application-logo />
-                            </a>
-                        </div>
-                        <div class="shrink-0">
-                            <x-language />
-                        </div>
-                    </div>
                     <div style="margin-top: 20%;">
                         <img src="{{ asset('/images/logo/logo.png') }}" alt="" class="md:max-w-[32rem] mx-auto">
                     </div>

@@ -4,6 +4,10 @@
 <title>{{ __('Cám ơn') }} | Kattech PC</title>
 @endsection
 
+@section('description', __('Cám ơn đã trải nghiệm mua hàng cùng Kattech PC'))
+@section('keywords', 'cart, thank, kattechpc, kattech')
+@section('breadcrumb', __('Cám ơn'))
+
 @section('css')
 <link rel="stylesheet" href="{{ asset('/css/page/cart.css') }}" />
 @endsection

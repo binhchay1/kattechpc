@@ -319,14 +319,14 @@ body a {
 
 .fixed-left {
     position: fixed;
-    top: 110px;
-    left: 35px;
+    top: 28%;
+    left: 4.1%;
 }
 
 .fixed-right {
     position: fixed;
-    top: 110px;
-    right: 35px;
+    top: 28%;
+    right: 4.1%;
 }
 
 .slider-banner-main {
@@ -1652,11 +1652,11 @@ a {
 }
 
 .breadcrumb-home:hover {
-    text-decoration: underline;
+    text-decoration: underline !important;
 }
 
 .global-fixed-right .fix-face {
-    bottom: 300px;
+    bottom: 30%;
     background: #4267b2;
 }
 
@@ -1675,7 +1675,7 @@ a {
 }
 
 .global-fixed-right .fix-youtube {
-    bottom: 250px;
+    bottom: 24%;
     border: 1px solid red;
 }
 
@@ -1736,6 +1736,24 @@ a {
 
 .container-hamburger {
     display: none;
+}
+
+.btn-staff {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 20px !important;
+}
+
+.header-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    min-width: 1224px;
+    right: 0;
+    -webkit-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    transition: 0.5s all;
 }
 
 @keyframes uptocallmini_offline {

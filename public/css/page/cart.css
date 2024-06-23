@@ -337,6 +337,11 @@ aside {
     border-radius: 10px;
     width: 100%;
     margin: 10px;
+    cursor: pointer;
+}
+
+.sep-item-link {
+    cursor: pointer;
 }
 
 .text-center {
@@ -353,7 +358,7 @@ aside {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 25% !important;
 }
 
 .col-25 {
