@@ -41,7 +41,7 @@
                     <p class="cat-2">{{ __('CHỌN THEO HÃNG') }}</p>
                     <div class="sub-cat-2-link">
                         @foreach($listCategory['brand'][$category->name] as $categoryBrand)
-{{--                        <a href="{{ route('showDataCategory', $category->slug) }}?brand={{ $categoryBrand }}">{{ $categoryBrand }}</a>--}}
+                        <a href="{{ route('showDataCategory', $category->slug) }}?brand={{ $categoryBrand }}">{{ $categoryBrand }}</a>
                         @endforeach
                     </div>
                 </div>

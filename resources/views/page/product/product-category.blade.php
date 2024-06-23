@@ -4,9 +4,13 @@
 <title>{{ __('Danh mục sản phẩm') }} | Kattech PC</title>
 @endsection
 
-@section('description', __('Xây dựng cấu hình với Kattech PC'))
-@section('keywords', 'build pc, build, kattechpc, kattech')
-@section('breadcrumb', __('Xây dựng cấu hình'))
+@section('description', __('Thỏa sức với linh kiện máy tính với Kattech PC'))
+@section('keywords', 'vga, tech pc, post, news, kattech')
+@if($dataCategory->parent != 0)
+@section('breadcrumb-parent', $dataCategory->parent->name)
+@section('breadcrumb-parent-url', route('showDataCategory', $dataCategory->category->slug))
+@endif
+@section('breadcrumb', $dataCategory->name)
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('/css/page/product-cate.css') }}" />
@@ -139,18 +143,18 @@
             <div class="flex sort" id="sort">
                 @if(isset($dataCategory->children))
                 <div class="d-flex flex-direction-column">
-                    <label class="font-bold">{{ __('Nhu cầu') }}</label>
-                    <select class="mt-1">
+                    <label class="font-bold">{{ __('Thể loại') }}</label>
+                    <select class="mt-1" id="category-in-product-category" onchange="sortByCategoryChild($(this))">
                         <option value="all">{{ __('Tất cả') }}</option>
                         @foreach($dataCategory->children as $children)
-                        <option value="{{ $children->name }}">{{ $children->name }}</option>
+                        <option value="{{ $children->id }}">{{ $children->name }}</option>
                         @endforeach
                     </select>
                 </div>
                 @endif
                 <div class="d-flex flex-direction-column">
                     <label class="font-bold">{{ __('Thương hiệu') }}</label>
-                    <select class="mt-1" id="brand-in-product-category">
+                    <select class="mt-1" id="brand-in-product-category" onchange="sortByBrand($(this))">
                         <option value="all">{{ __('Tất cả') }}</option>
                         @foreach($dataBrand as $brand)
                         <option value="{{ $brand }}">{{ $brand }}</option>
@@ -162,7 +166,7 @@
                 @foreach($listKeyWord as $item)
                 <div class="d-flex flex-direction-column">
                     <label class="font-bold">{{ $item->title }}</label>
-                    <select class="mt-1 select-keyword" data-id="{{ $item->id }}" onchange="sortByKeyWord()">
+                    <select class="mt-1 select-keyword" data-id="{{ $item->id }}" onchange="sortByKeyWord($(this))">
                         <option value="all">{{ __('Tất cả') }}</option>
 
                         @php
@@ -251,166 +255,5 @@
 
 @section('js')
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script>
-    var url = location.href;
-    var arrayParam = [];
-
-    if (url.indexOf('?') != -1) {
-        var ary = url.split('?')[1].split('&');
-        for (i = 0; i <= ary.length - 1; i++) {
-            var val = ary[i].split('=')[1];
-            var param = ary[i].split('=')[0];
-            arrayParam[param] = val;
-        }
-    }
-
-    if (arrayParam['brand'] != undefined) {
-        $('#brand-in-product-category').val(arrayParam['brand']);
-    }
-
-    $(document).ready(function() {
-        var keyPrice = 'price';
-        var keySort = 'sort';
-
-        if (keyPrice in arrayParam) {
-            let priceCurrent = $("div").find("[data-id='" + arrayParam[keyPrice] + "']");
-            priceCurrent.append('<span class="btn-xmark-by-url">x</span>');
-            let btnPriceCurrent = priceCurrent.find("button");
-            btnPriceCurrent.addClass('border-btn-red');
-            btnPriceCurrent.prop("disabled", true);
-        }
-
-        if (keySort in arrayParam) {
-            let sortCurrent = $("div").find("[data-id='" + arrayParam[keySort] + "']");
-            sortCurrent.removeClass("button-filter");
-            sortCurrent.append('<span class="btn-xmark-by-url">x</span>');
-            let btnSortCurrent = sortCurrent.find("button");
-            btnSortCurrent.addClass('border-btn-red');
-            btnSortCurrent.prop("disabled", true);
-        }
-
-        $('#select-price div button').click(function(event) {
-            event.preventDefault();
-            let type = $(this).parent().data('type');
-            let id = $(this).parent().data('id');
-            let url = location.protocol + '//' + location.host + location.pathname;
-
-            if (type == 'price') {
-                arrayParam['price'] = id;
-            }
-
-            if (type == 'sort') {
-                arrayParam['sort'] = id;
-            }
-
-            for (var k in arrayParam) {
-                if (arrayParam.hasOwnProperty(k)) {
-                    if (k == Object.keys(arrayParam)[0]) {
-                        url += '?' + k + '=' + arrayParam[k];
-                    } else {
-                        url += '&' + k + '=' + arrayParam[k];
-                    }
-                }
-            }
-
-            window.location.href = url;
-        });
-
-        $('#select-sort div button').click(function(event) {
-            event.preventDefault();
-            let type = $(this).parent().data('type');
-            let id = $(this).parent().data('id');
-            let url = location.protocol + '//' + location.host + location.pathname;
-
-            if (type == 'price') {
-                arrayParam['price'] = id;
-            }
-
-            if (type == 'sort') {
-                arrayParam['sort'] = id;
-            }
-
-            for (var k in arrayParam) {
-                if (arrayParam.hasOwnProperty(k)) {
-                    if (k == Object.keys(arrayParam)[0]) {
-                        url += '?' + k + '=' + arrayParam[k];
-                    } else {
-                        url += '&' + k + '=' + arrayParam[k];
-                    }
-                }
-            }
-
-            window.location.href = url;
-        });
-
-        $('#select-price').on('click', '.btn-xmark-by-url', function(e) {
-            e.preventDefault();
-
-            let url = location.protocol + '//' + location.host + location.pathname;
-            let count = 0;
-            for (var k in arrayParam) {
-                if (k != 'price') {
-                    if (arrayParam.hasOwnProperty(k)) {
-                        if (count == 0) {
-                            url += '?' + k + '=' + arrayParam[k];
-                            count++;
-                        } else {
-                            url += '&' + k + '=' + arrayParam[k];
-                        }
-                    }
-                }
-            }
-
-            window.location.href = url;
-        });
-
-        $('#select-sort').on('click', '.btn-xmark-by-url', function(e) {
-            e.preventDefault();
-
-            let url = location.protocol + '//' + location.host + location.pathname;
-            let count = 0;
-            for (var k in arrayParam) {
-                if (k != 'sort') {
-                    if (arrayParam.hasOwnProperty(k)) {
-                        if (count == 0) {
-                            url += '?' + k + '=' + arrayParam[k];
-                            count++;
-                        } else {
-                            url += '&' + k + '=' + arrayParam[k];
-                        }
-                    }
-                }
-            }
-
-            window.location.href = url;
-        });
-    });
-
-    function sortByKeyWord() {
-        let listKeyWord = $('.select-keyword');
-        let listValKeyWord = {};
-        for (let i = 0; i < listKeyWord.length; i++) {
-            let valKeyWord = listKeyWord[i].value;
-            let idKeyWord = listKeyWord[i].getAttribute('data-id');
-            listValKeyWord[idKeyWord] = valKeyWord;
-        }
-
-        let url = location.protocol + '//' + location.host + location.pathname;
-        let count = 0;
-        for (var k in arrayParam) {
-            if (k != 'price') {
-                if (arrayParam.hasOwnProperty(k)) {
-                    if (count == 0) {
-                        url += '?' + k + '=' + arrayParam[k];
-                        count++;
-                    } else {
-                        url += '&' + k + '=' + arrayParam[k];
-                    }
-                }
-            }
-        }
-
-        window.location.href = url;
-    }
-</script>
+<script src="{{ asset('/js/page/product-category.js') }}"></script>
 @endsection

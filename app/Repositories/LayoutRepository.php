@@ -51,4 +51,9 @@ class LayoutRepository extends BaseRepository
     {
         return $this->model->where('id', $id)->update(['flash_sale_list_product_id' => $data]);
     }
+
+    public function deleteByIdThumb($id)
+    {
+        return $this->model->where('id', 1)->update([$id => null]);
+    }
 }

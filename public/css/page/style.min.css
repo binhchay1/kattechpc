@@ -1654,3 +1654,109 @@ a {
 .breadcrumb-home:hover {
     text-decoration: underline;
 }
+
+.global-fixed-right .fix-face {
+    bottom: 300px;
+    background: #4267b2;
+}
+
+.global-fixed-right a {
+    font-size: 22px;
+    width: 45px;
+    height: 45px;
+    position: fixed;
+    border-radius: 50%;
+    z-index: 999;
+    -webkit-transition: 0.4s all;
+    -o-transition: 0.4s all;
+    transition: 0.4s all;
+    right: 10px;
+    color: #fff;
+}
+
+.global-fixed-right .fix-youtube {
+    bottom: 250px;
+    border: 1px solid red;
+}
+
+.global-fixed-right .messenger {
+    background: #fff;
+    bottom: 50px;
+    width: 170px;
+    padding: 10px;
+    border-radius: 15px;
+    -webkit-box-shadow: 0 1px 2px 1px #01010133;
+    box-shadow: 0 1px 2px 1px #01010133;
+    color: #007bff;
+    font-size: 14px;
+}
+
+.global-fixed-right .zalo {
+    background: #fff;
+    bottom: 125px;
+    width: 170px;
+    padding: 10px;
+    border-radius: 15px;
+    -webkit-box-shadow: 0 1px 2px 1px #01010133;
+    box-shadow: 0 1px 2px 1px #01010133;
+    color: #007bff;
+    font-size: 14px;
+}
+
+.global-fixed-right .contact-info {
+    margin-left: 15px;
+}
+
+.global-fixed-left {
+    position: fixed;
+    left: 20px;
+    bottom: 50px;
+    width: 80px;
+    z-index: 9999;
+}
+
+.global-fixed-left .sale {
+    width: 56px;
+    height: 56px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 3px 10px 0 rgb(0 0 0 / 45%);
+    animation: uptocallmini_offline 2s 0s cubic-bezier(0.42, 0, 0.2, 0.8)
+        infinite;
+    border-radius: 50% !important;
+}
+
+.breadcrumb-parent-url {
+    cursor: pointer;
+}
+
+.breadcrumb-parent-url:hover {
+    text-decoration: underline;
+}
+
+.container-hamburger {
+    display: none;
+}
+
+@keyframes uptocallmini_offline {
+    0% {
+        -webkit-box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0),
+            0 0 0 0 transparent, 0 0 0 0 rgba(53, 161, 32, 0);
+        box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0), 0 0 0 0 transparent,
+            0 0 0 0 rgba(53, 161, 32, 0);
+    }
+
+    10% {
+        -webkit-box-shadow: 0 0 8px 6px #1cb2ed, 0 0 12px 10px transparent,
+            0 0 12px 14px #1cb2ed;
+        box-shadow: 0 0 8px 6px #1cb2ed, 0 0 12px 10px transparent,
+            0 0 12px 14px #1cb2ed;
+    }
+
+    100% {
+        -webkit-box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0),
+            0 0 0 40px transparent, 0 0 0 40px rgba(53, 161, 32, 0);
+        box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0), 0 0 0 40px transparent,
+            0 0 0 40px rgba(53, 161, 32, 0);
+    }
+}
