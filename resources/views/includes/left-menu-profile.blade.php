@@ -1,5 +1,5 @@
 <div class="leftcolumn">
-    <div class="card">
+    <div class="card" id="profile-user">
         <h2>{{ $dataUser->name }}</h2>
         <a href="{{ route('profile') }}">
             <div class="hover menu-profile">
