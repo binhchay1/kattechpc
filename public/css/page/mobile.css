@@ -392,6 +392,10 @@
         display: block;
     }
 
+    #rep-comment {
+        width: 50%!important;
+    }
+
     .main-menu-category .list-items{
         display: block;
         list-style:none;
