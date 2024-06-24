@@ -22,7 +22,7 @@
                     @endif
                     @if(isset($errors))
                     @foreach ($errors->all() as $error)
-                    <div style="color: red; margin: 10px">{{ $error }}</div>
+                    <div class="text-center" style="color: red; margin: 10px">{{ $error }}</div>
                     @endforeach
                     @endif
                     <form method="POST" action="{{ route('post.staff.login') }}" class="mt-10" id="signInForm">
