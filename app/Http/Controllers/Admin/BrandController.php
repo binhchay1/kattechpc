@@ -74,6 +74,6 @@ class BrandController extends Controller
     {
         $this->brandRepository->destroy($id);
 
-        return back()->with('success', __('Thương hiệu  được xóa đổi thành công'));
+        return back()->with('success', __('Thương hiệu  được xóa  thành công'));
     }
 }

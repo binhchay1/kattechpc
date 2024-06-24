@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\LayoutController;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Page\ErrorController;
+use App\Http\Controllers\Admin\YoutubeChannelController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -69,7 +70,7 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     Route::get('/gop-y-khieu-nai', [HomeController::class, 'complaint'])->name('complaint');
     Route::get('/chinh-sach-hang-chinh-hang', [HomeController::class, 'productPolicy'])->name('productPolicy');
     Route::get('/chinh-sach-doanh-nghiep', [HomeController::class, 'businessPolicy'])->name('businessPolicy');
-    Route::get('/landing/{slug}', [HomeController::class, 'viewLandingPage'])->name('landing.page');
+    // Route::get('/landing/{slug}', [HomeController::class, 'viewLandingPage'])->name('landing.page');
     Route::get('/custom-contact', [HomeController::class, 'storeCustomContact'])->name('custom.contact');
     Route::get('/lich-su-mua-hang', [AccountController::class, 'orderHistory'])->name('orderHistory');
     Route::get('/auth/google/', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
@@ -234,8 +235,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
         Route::get('/list', [LandingPageController::class, 'index'])->name('admin.landing.page.index');
         Route::get('/add', [LandingPageController::class, 'createLandingPage'])->name('admin.landing.page.create');
         Route::post('/store', [LandingPageController::class, 'storeLandingPage'])->name('admin.landing.page.store');
-        Route::get('/update/{role}', [LandingPageController::class, 'editLandingPage'])->name('admin.landing.page.edit');
-        Route::post('/update/{role}', [LandingPageController::class, 'updateLandingPage'])->name('admin.landing.page.update');
+        Route::get('/update/{id}', [LandingPageController::class, 'editLandingPage'])->name('admin.landing.page.edit');
+        Route::post('/update/{id}', [LandingPageController::class, 'updateLandingPage'])->name('admin.landing.page.update');
         Route::get('/delete/{id}', [LandingPageController::class, 'deleteLandingPage'])->name('admin.landing.page.delete');
     });
 
@@ -276,6 +277,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
         Route::get('/update/{id}', [CategoryFilterController::class, 'edit'])->name('admin.category-filter.edit');
         Route::post('/update/{id}', [CategoryFilterController::class, 'update'])->name('admin.category-filter.update');
         Route::get('/delete/{id}', [CategoryFilterController::class, 'delete'])->name('admin.category-filter.delete');
+    });
+
+    Route::group(['prefix' => 'youtube'], function () {
+        Route::get('/list', [YoutubeChannelController::class, 'index'])->name('admin.youtube.index');
+        Route::get('/add', [YoutubeChannelController::class, 'createYoutubeChannel'])->name('admin.youtube.create');
+        Route::post('/store', [YoutubeChannelController::class, 'storeYoutubeChannel'])->name('admin.youtube.store');
+        Route::get('/update/{id}', [YoutubeChannelController::class, 'editYoutubeChannel'])->name('admin.youtube.edit');
+        Route::post('/update/{id}', [YoutubeChannelController::class, 'updateYoutubeChannel'])->name('admin.youtube.update');
+        Route::get('/delete/{id}', [YoutubeChannelController::class, 'deleteYoutubeChannel'])->name('admin.youtube.delete');
     });
 
     Route::get('/products/{productId}/upload', [ProductImageController::class, 'index']);

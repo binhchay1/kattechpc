@@ -14,7 +14,7 @@ if (arrayParam['brand'] != undefined) {
     $('#brand-in-product-category').val(arrayParam['brand']);
 }
 
-if (arrayParam['brand'] != undefined) {
+if (arrayParam['category'] != undefined) {
     $('#category-in-product-category').val(arrayParam['category']);
 }
 

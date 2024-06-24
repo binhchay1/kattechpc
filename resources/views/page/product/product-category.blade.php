@@ -7,8 +7,8 @@
 @section('description', __('Thỏa sức với linh kiện máy tính với Kattech PC'))
 @section('keywords', 'vga, tech pc, post, news, kattech')
 @if($dataCategory->parent != 0)
-@section('breadcrumb-parent', $dataCategory->parent->name)
-@section('breadcrumb-parent-url', route('showDataCategory', $dataCategory->category->slug))
+@section('breadcrumb-parent', $dataCategory->parent_name)
+@section('breadcrumb-parent-url', route('showDataCategory', $dataCategory->parent_slug))
 @endif
 @section('breadcrumb', $dataCategory->name)
 

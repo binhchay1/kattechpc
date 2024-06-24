@@ -189,6 +189,10 @@ $(document).ready(function () {
         document.querySelector(".main-menu-category").classList.toggle("show");
         document.body.classList.toggle('lock-scroll');
     }
+
+    $('#modal-youtube-play .close').on('click', function () {
+        $('#modal-youtube-play').css('display', 'none');
+    });
 });
 
 $(document).scroll(function () {
@@ -199,6 +203,13 @@ $(document).scroll(function () {
         } else {
             $('.bottomMenu').fadeOut();
         }
+    }
+
+    var x = $(this).scrollTop();
+    if (x > 400) {
+        $('.sub-header').addClass('header-fixed');
+    } else {
+        $('.sub-header').removeClass('header-fixed');
     }
 });
 
@@ -246,4 +257,14 @@ function suggestionForSearch(input) {
         $('#js-search-result .list').empty();
         $('#js-search-result').hide();
     }
+}
+
+function watchYoutubeVideo(youtube) {
+    let getUrl = youtube.attr('data-url');
+    var urlParams = new URL(getUrl);
+    var idUrl = urlParams.searchParams.get('v');
+    let urlYoutube = 'https://www.youtube.com/embed/' + idUrl + '?autoplay=true';
+
+    $('#modal-youtube-play iframe').attr('src', urlYoutube);
+    $('#modal-youtube-play').css('display', 'flex');
 }
