@@ -35,12 +35,10 @@
                             @endif
                         </div>
 
-                        <div class="xl:col-span-6">
-                            <label for="content" class="inline-block mb-2 text-base font-medium">{{ __('Nội dung') }}
+                        <div class="xl:col-span-12">
+                            <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Nội dung bài viết')}}
                             </label>
-                            <div class="ckeditor-classic text-slate-800">
-                            </div>
-
+                            <textarea class=" form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="editor" name="content" placeholder="{{__('Nội dung bài viết')}}" rows="5">{{ old('content') }}</textarea>
                             @if ($errors->has('content'))
                             <span class="text-danger">{{ $errors->first('content') }}</span>
                             @endif
@@ -61,4 +59,17 @@
 @push('scripts')
 <script src="{{ URL::asset('build/libs/@ckeditor/ckeditor5-build-classic/build/ckeditor.js') }}"></script>
 <script src="{{ URL::asset('build/js/pages/form-editor-classic.init.js') }}"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'), {
+            height: 500,
+            ckfinder: {
+                uploadUrl: '<?php route('admin.post.uploadMedia') . '?_token=' . csrf_token() ?>',
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
 @endpush

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LandingPageRequest;
 use App\Repositories\LandingPageRepository;
+use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
 {
@@ -28,7 +29,7 @@ class LandingPageController extends Controller
         return view('admin.landing-page.create');
     }
 
-    public function storeLandingPage(LandingPageRequest $request)
+    public function storeLandingPage(Request $request)
     {
         $input = $request->except(['_token']);
         $input['content'] = html_entity_decode($input['content']);
@@ -43,7 +44,7 @@ class LandingPageController extends Controller
         return view('admin.landing-page.edit', compact('landingPage'));
     }
 
-    public function updateLandingPage(LandingPageRequest $request,  $id)
+    public function updateLandingPage(Request $request,  $id)
     {
         $input = $request->except(['_token']);
         $input['content'] = html_entity_decode($input['content']);
