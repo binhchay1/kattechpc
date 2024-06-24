@@ -228,7 +228,7 @@
             <div class="product-info" id="product-info">
                 <h3>{{ __('Thông tin sản phẩm') }}</h3>
                 <div class="p-info1">
-                    {!! Str::limit($dataProduct->description, 260, '')!!}
+                    {!! Str::limit($dataProduct->description, 350, '')!!}
                     @if (strlen($dataProduct->description) > 3)
                     <span id="dots-{{ $dataProduct->id }}">...</span>
                     @endif

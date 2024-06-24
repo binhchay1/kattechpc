@@ -156,10 +156,6 @@
         flex-direction: column;
     }
 
-    .product-info {
-        width: 100%;
-    }
-
     .product-related  {
         border-collapse: collapse;
         border-spacing: 0;
@@ -448,6 +444,11 @@
 
     .container-hamburger {
         display: block;
+        height: 50px;
+    }
+
+    .global-fixed-left {
+        display: none;
     }
 }
 

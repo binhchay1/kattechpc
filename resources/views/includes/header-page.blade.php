@@ -23,13 +23,13 @@
 
                 @if(Auth::check())
                 <div class="ml-15px dropdown">
-                    <a href="" class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
+                    <a class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
                     <div class="dropdown-content">
                         <a href="{{ route('profile') }}">{{ __('Tài khoản') }}</a>
                         <a href="{{ route('orderHistory') }}">{{ __('Lịch sử mua hàng') }}</a>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <a onclick="this.closest('form').submit();return false;">
+                            <a class="sep-item-link" onclick="this.closest('form').submit();return false;">
                                 {{__('Đăng xuất')}}
                             </a>
                         </form>
@@ -79,13 +79,13 @@
                         <li class="list-items">
                         @if(Auth::check())
                             <div class="ml-15px dropdown">
-                                <a href="" class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
+                                <a class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
                                 <div class="dropdown-content">
                                     <a href="{{ route('profile') }}">{{ __('Tài khoản') }}</a>
                                     <a href="{{ route('orderHistory') }}">{{ __('Lịch sử mua hàng') }}</a>
                                     <form method="POST" action="{{ route('logout') }}">
                                         @csrf
-                                        <a onclick="this.closest('form').submit();return false;">
+                                        <a class="sep-item-link" onclick="this.closest('form').submit();return false;">
                                             {{__('Đăng xuất')}}
                                         </a>
                                     </form>

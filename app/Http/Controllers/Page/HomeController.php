@@ -531,7 +531,7 @@ class HomeController extends Controller
         if (\Auth::attempt($credentials)) {
             $request->session()->put('email', $credentials['email']);
 
-            if (\Auth::user()->role == Role::STAFF) {
+            if (\Auth::user()->role == Role::STAFF || \Auth::user()->role == Role::ADMIN) {
                 return redirect()->route('admin.dashboard');
             } else {
                 if ($request->get('return_url')) {
@@ -541,7 +541,7 @@ class HomeController extends Controller
 
                 return redirect()->route('staff.login')->withErrors([
                     'custom' => __('Bạn không có quền truy cập!')
-                ]);;
+                ]);
             }
         } else {
             return back()->withErrors([

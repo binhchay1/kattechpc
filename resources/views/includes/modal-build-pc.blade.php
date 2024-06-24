@@ -93,7 +93,8 @@
                         </ul>
                     </div>
 
-                    <!--
+                    @if(isset($listKeyWord))
+                    @foreach($listKeyWord as $item)
                     <div class="gr-filter" id="js-attr-filter">
                         <h5 class="title-filter"> </h5>
                         <div id="js-attr-list" class="ul-filter">
@@ -110,7 +111,8 @@
 
                         </div>
                     </div>
-                     -->
+                    @endforeach
+                    @endif
                 </div>
             </div>
 
