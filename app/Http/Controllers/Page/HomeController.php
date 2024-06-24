@@ -19,6 +19,7 @@ use App\Repositories\PromotionRepository;
 use Illuminate\Http\Request;
 use App\Enums\Product;
 use App\Repositories\BrandRepository;
+use App\Repositories\CustomerReviewRepository;
 use App\Repositories\YoutubeChannelRepository;
 use Illuminate\Support\Facades\Config;
 use Cache;
@@ -35,6 +36,7 @@ class HomeController extends Controller
     protected $categoryPostRepository;
     protected $brandRepository;
     protected $youtubeChannelRepository;
+    protected $customerReviewRepository;
     protected $utility;
 
     public function __construct(
@@ -48,7 +50,8 @@ class HomeController extends Controller
         PromotionRepository $promotionRepository,
         CategoryPostRepository $categoryPostRepository,
         BrandRepository $brandRepository,
-        YoutubeChannelRepository $youtubeChannelRepository
+        YoutubeChannelRepository $youtubeChannelRepository,
+        CustomerReviewRepository $customerReviewRepository,
     ) {
         $this->utility = $utility;
         $this->productRepository = $productRepository;
@@ -61,6 +64,7 @@ class HomeController extends Controller
         $this->categoryPostRepository = $categoryPostRepository;
         $this->brandRepository = $brandRepository;
         $this->youtubeChannelRepository = $youtubeChannelRepository;
+        $this->customerReviewRepository = $customerReviewRepository;
     }
 
     public function changeLocate($locale)
@@ -281,6 +285,7 @@ class HomeController extends Controller
         $getSlide = $this->layoutRepository->getSlide();
         $getFlashSale = $this->layoutRepository->getFlashSale();
         $listYoutube = $this->youtubeChannelRepository->getListYoutube();
+        $listCustomerReview = $this->customerReviewRepository->getListCustomerReview();
         $listFlashSale = [];
         $listSlide = [];
 
@@ -321,7 +326,8 @@ class HomeController extends Controller
             'listPromotion',
             'listCategoryProduct',
             'getFlashSale',
-            'listYoutube'
+            'listYoutube',
+            'listCustomerReview',
         ));
     }
 

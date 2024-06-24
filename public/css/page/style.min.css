@@ -815,6 +815,17 @@ body a {
     position: relative;
     border-radius: 10px;
     padding: 17px 22px 34px 12px;
+    border: 1px solid #ebebeb;
+}
+
+.left-review::before {
+    content: "";
+    position: absolute;
+    background: url("../../images/icon-que.png");
+    left: 10px;
+    top: 5px;
+    width: 17px;
+    height: 14px;
 }
 
 .box-review-from-customer .item-review-customer-hompage::before {
@@ -1808,6 +1819,73 @@ a {
     background: none;
     font-size: 50px;
     color: white;
+}
+
+.swiper-pagination {
+    position: relative;
+    bottom: 0;
+    margin-top: 14px;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+}
+
+.swiper-pagination {
+    display: flex;
+    justify-content: center;
+    transition: 0.3s opacity;
+    transform: translate3d(0, 0, 0);
+    z-index: 10;
+}
+
+.swiper-pagination-bullet {
+    display: block;
+    cursor: pointer;
+    width: 12px !important;
+    height: 12px !important;
+    background: #0009 !important;
+    opacity: 1 !important;
+    border-radius: 10px;
+    margin-top: 15px;
+    transition-property: transform;
+    box-sizing: content-box;
+    transition-duration: 1000ms;
+}
+
+.swiper-pagination-bullet:not(:first-child) {
+    margin-left: 10px;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--color-primary) !important;
+    width: 42px !important;
+    height: 12px !important;
+    border-radius: 10px !important;
+}
+
+.swiper-review-customer .swiper-wrapper .swiper-slide {
+    width: 345px !important;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.swiper-review-customer {
+    min-height: inherit;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+    transition-duration: 1000ms;
+    overflow: visible;
+}
+
+.list-review-customer-homepage {
+    overflow: hidden;
 }
 
 @keyframes uptocallmini_offline {
