@@ -518,6 +518,9 @@ class HomeController extends Controller
             $isParent = true;
         } else {
             $isParent = false;
+            $getNameParent = $this->categoryRepository->getNameAndSlugParentByID($dataCategory->parent);
+            $dataCategory->parent_name = $getNameParent->name;
+            $dataCategory->parent_slug = $getNameParent->slug;
         }
 
         return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'listKeyWord', 'isParent'));
