@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\CateogryPostRequest;
 use App\Repositories\CategoryPostRepository;
 use Illuminate\Support\Str;
 
@@ -56,7 +57,7 @@ class CategoryPostController extends Controller
         return view('admin.category-post.edit', compact('categoryPost', 'listCategory'));
     }
 
-    public function updateCategory(CategoryRequest $request,  $id)
+    public function updateCategory(CateogryPostRequest $request,  $id)
     {
         $input = $request->except(['_token']);
         $input['slug'] =  Str::slug($input['name']);
@@ -74,6 +75,6 @@ class CategoryPostController extends Controller
     public function deleteCategory($id)
     {
         $this->categoryPostRepository->destroy($id);
-        return back()->with('success', __('Danh mục sản phẩm  được xóa đổi thành công'));
+        return back()->with('success', __('Danh mục sản phẩm  được xóa  thành công'));
     }
 }

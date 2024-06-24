@@ -19,6 +19,10 @@
         .jc-bs3-container {
             max-width: 300px !important;
         }
+
+        .text-danger {
+            color: red;
+        }
     </style>
     @include('layouts.head-css')
     @yield('css')
@@ -35,7 +39,15 @@
 
         <div class="container-fluid group-data-[content=boxed]:max-w-boxed mx-auto">
             <div id="message">
-                @include('layouts.flash-message')
+                @if(Session::has('success'))
+                    <script>
+                        toastr.optiona = {
+                            "progressBar" :true,
+                            "closeButton" : true
+                        }
+                        toastr.success("{{Session::get('success')}}", 'Success!',{timeout:12000000})
+                    </script>
+                    @endif
             </div>
             @yield('content')
         </div>
@@ -51,7 +63,8 @@
 <script src="{{ URL::asset('build/libs/list.pagination.js/list.pagination.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js"></script>
 <script src="{{ URL::asset('js/admin/main-admin.js') }}"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </body>
 
 </html>

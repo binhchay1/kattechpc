@@ -68,6 +68,6 @@ class CategoryFilterController extends Controller
     {
         $this->categoryFilterRepository->destroy($id);
 
-        return back()->with('success', __('Từ khóa danh mục sản phẩm được xóa đổi thành công'));
+        return back()->with('success', __('Từ khóa danh mục sản phẩm được xóa  thành công'));
     }
 }
