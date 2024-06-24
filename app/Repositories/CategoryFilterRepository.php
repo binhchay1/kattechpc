@@ -35,4 +35,9 @@ class CategoryFilterRepository extends BaseRepository
     {
         return $this->model->select('category_id')->where('id', $id)->first();
     }
+
+    public function show($id)
+    {
+        return $this->model->where('id', $id)->first();
+    }
 }

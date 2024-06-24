@@ -72,10 +72,6 @@
                     @endif
                 </div>
 
-                <div class="mt-10 mb-10">
-                    <a class="btn-staff" href="{{ route('staff.login') }}">{{ __('Quản lý') }}</a>
-                </div>
-
                 <div class="container-login100-form-btn m-t-17">
                     <button class="login100-form-btn">
                         {{ __('Đăng nhập') }}

@@ -93,25 +93,10 @@
                         </ul>
                     </div>
 
-                    @if(isset($listKeyWord))
-                    @foreach($listKeyWord as $item)
-                    <div class="gr-filter" id="js-attr-filter">
-                        <h5 class="title-filter"> </h5>
-                        <div id="js-attr-list" class="ul-filter">
 
-                            <h5 class="title-filter"> Loại CPU </h5>
-                            <ul id="js-attr-list" class="ul-filter">
-                                <li>
-                                    <label style="cursor: pointer;">
-                                        <input type="checkbox">
-                                        <span class="value-filter">SERVER (27)</span>
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="gr-filter" id="gr-filter">
+
                     </div>
-                    @endforeach
-                    @endif
                 </div>
             </div>
 

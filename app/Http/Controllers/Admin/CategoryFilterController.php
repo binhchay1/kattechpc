@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryFilterRequest;
 use App\Repositories\CategoryFilterRepository;
 use App\Repositories\CategoryRepository;
-use Illuminate\Http\Request;
 use Cache;
 
 class CategoryFilterController extends Controller

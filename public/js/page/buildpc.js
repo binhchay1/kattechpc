@@ -154,14 +154,12 @@ function changeBuild(tabSelect) {
         $('#build-pc-set-item-1').addClass('active');
         $('#build-pc-set-item-2').removeClass('active');
         currentArea = 1;
-        currentArrayProduct.listArea1 = [];
     } else {
         $('#build-pc-content-area-2').removeClass('d-none');
         $('#build-pc-content-area-1').addClass('d-none');
         $('#build-pc-set-item-1').removeClass('active');
         $('#build-pc-set-item-2').addClass('active');
         currentArea = 2;
-        currentArrayProduct.listArea2 = [];
     }
 }
 
@@ -255,6 +253,7 @@ function changeProductHandle(userChose) {
             $('#js-brand-filter').empty();
             renderBrandToModal(data);
             renderCountWithPrice(data);
+            renderKeywordsToModal(data);
         }
     });
 
@@ -480,6 +479,31 @@ function renderPriceToModal() {
 
 }
 
+function renderKeywordsToModal(data) {
+    $('#gr-filter').empty();
+
+    $.each(data.keyword, function (keyWord, valKeyWord) {
+        let strAppend = `<div class="ul-filter">
+            <h5 class="title-filter">Loại `+ keyWord + `</h5>
+            <ul id="js-attr-list" class="ul-filter">`;
+        $.each(valKeyWord, function (keyInKeyWord, valInKeyWord) {
+
+            let itemStrAppend = `<li>
+                    <label style="cursor: pointer;">
+                        <input type="checkbox">
+                        <span class="value-filter"> `+ valInKeyWord + ` </span>
+                    </label>
+                </li>`;
+            strAppend = strAppend + itemStrAppend;
+        });
+
+        strAppend = strAppend + `</ul></div>`;
+
+        $('#gr-filter').append(strAppend);
+    });
+
+}
+
 function handelSortProduct(sort) {
     currentParam.sort = sort;
     var url = "get-product?key=" + currentParam.choice + "&sort=" + sort;
@@ -564,6 +588,10 @@ function handleSortPrice(price) {
             renderPriceToModal();
         }
     });
+}
+
+function handleSortKeyword(keyword) {
+
 }
 
 function handleSessionBuild() {

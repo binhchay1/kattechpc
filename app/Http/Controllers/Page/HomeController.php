@@ -537,7 +537,6 @@ class HomeController extends Controller
 
     public function staffLogin()
     {
-
         return view('auth.login-staff');
     }
 
@@ -557,7 +556,7 @@ class HomeController extends Controller
                 }
 
                 return redirect()->route('staff.login')->withErrors([
-                    'custom' => __('Bạn không có quền truy cập!')
+                    'custom' => __('Bạn không có quyền truy cập!')
                 ]);
             }
         } else {
