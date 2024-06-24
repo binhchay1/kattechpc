@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Page;
 
 use App\Enums\Role;
-use App\Enums\User;
 use App\Enums\Utility;
 use App\Http\Requests\LoginRequest;
 use App\Repositories\ProductRepository;
@@ -20,6 +19,7 @@ use App\Repositories\PromotionRepository;
 use Illuminate\Http\Request;
 use App\Enums\Product;
 use App\Repositories\BrandRepository;
+use App\Repositories\YoutubeChannelRepository;
 use Illuminate\Support\Facades\Config;
 use Cache;
 
@@ -34,6 +34,7 @@ class HomeController extends Controller
     protected $promotionRepository;
     protected $categoryPostRepository;
     protected $brandRepository;
+    protected $youtubeChannelRepository;
     protected $utility;
 
     public function __construct(
@@ -46,7 +47,8 @@ class HomeController extends Controller
         LayoutRepository $layoutRepository,
         PromotionRepository $promotionRepository,
         CategoryPostRepository $categoryPostRepository,
-        BrandRepository $brandRepository
+        BrandRepository $brandRepository,
+        YoutubeChannelRepository $youtubeChannelRepository
     ) {
         $this->utility = $utility;
         $this->productRepository = $productRepository;
@@ -58,6 +60,7 @@ class HomeController extends Controller
         $this->promotionRepository = $promotionRepository;
         $this->categoryPostRepository = $categoryPostRepository;
         $this->brandRepository = $brandRepository;
+        $this->youtubeChannelRepository = $youtubeChannelRepository;
     }
 
     public function changeLocate($locale)
@@ -165,7 +168,6 @@ class HomeController extends Controller
 
     public function viewPromotion()
     {
-
         $listPromotion = $this->promotionRepository->promotionHome();
         $listPromotionRandom = $this->promotionRepository->promotionRandom();
         $promotionRandom = $this->promotionRepository->promotionRandom();
@@ -278,6 +280,7 @@ class HomeController extends Controller
         $layout = $this->layoutRepository->getListLayout();
         $getSlide = $this->layoutRepository->getSlide();
         $getFlashSale = $this->layoutRepository->getFlashSale();
+        $listYoutube = $this->youtubeChannelRepository->getListYoutube();
         $listFlashSale = [];
         $listSlide = [];
 
@@ -308,7 +311,18 @@ class HomeController extends Controller
             }
         }
 
-        return view('page.homepage', compact('listCategory', 'listNews', 'listHotSale', 'layout', 'listSlide', 'listFlashSale', 'listPromotion', 'listCategoryProduct', 'getFlashSale'));
+        return view('page.homepage', compact(
+            'listCategory',
+            'listNews',
+            'listHotSale',
+            'layout',
+            'listSlide',
+            'listFlashSale',
+            'listPromotion',
+            'listCategoryProduct',
+            'getFlashSale',
+            'listYoutube'
+        ));
     }
 
     public function viewSearch(Request $request)
@@ -464,7 +478,7 @@ class HomeController extends Controller
                 continue;
             }
 
-            if($filterLast == 'all') {
+            if ($filterLast == 'all') {
                 continue;
             }
 

@@ -103,7 +103,6 @@
 @push('scripts')
 <script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
 <script src="{{ URL::asset('build/js/pages/apps-ecommerce-product-create.init.js') }}"></script>
-
 <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
 <script>
     ClassicEditor

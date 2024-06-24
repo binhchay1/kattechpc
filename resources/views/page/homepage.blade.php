@@ -213,22 +213,20 @@
 </section>
 
 <section class="category">
-    <div>
-        <div class="d-flex align-items-center justify-content-between">
-            <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
-                <h2 class="flash-sale-title">{{ __('Danh mục nổi bật') }}</h2>
-            </div>
+    <div class="d-flex align-items-center justify-content-between">
+        <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
+            <h2 class="flash-sale-title">{{ __('Danh mục nổi bật') }}</h2>
         </div>
-        <div class="flex-container">
-            @foreach($listCategoryProduct as $category)
-            @if($category->status == 1)
-            <a href="{{ route('showDataCategory', $category->slug) }}" class="d-flex flex-column text-center category-home-page">
-                <img src="{{ asset($category->image) }}" class="item-hot lazy" width="300" height="300">
-                <span class="policy-title">{{ $category->name }}</span>
-            </a>
-            @endif
-            @endforeach
-        </div>
+    </div>
+    <div class="flex-container">
+        @foreach($listCategoryProduct as $category)
+        @if($category->status == 1)
+        <a href="{{ route('showDataCategory', $category->slug) }}" class="d-flex flex-column text-center category-home-page">
+            <img src="{{ asset($category->image) }}" class="item-hot lazy" width="300" height="300">
+            <span class="policy-title">{{ $category->name }}</span>
+        </a>
+        @endif
+        @endforeach
     </div>
 </section>
 
@@ -357,6 +355,34 @@
                         <span>{{ date_format($news->created_at, "F j, Y, g:i a") }}</span>
                     </p>
                     <p class="descreption-article line-clamp-2">{!! Str::limit(($news->short_description), 150)!!}</p>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+</section>
+@endif
+
+@if(count($listYoutube) > 0)
+<section class="content-news">
+    <div class="box-videos-group box-article-group position-relative boder-radius-10">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="title-box">
+                <h2 class="title-box font-weight-600">{{ __('Youtube Channel') }}</h2>
+            </div>
+            <a href="https://www.youtube.com/@kattechpc" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
+        </div>
+        <div class="list-article-group d-flex" id="list-post-home">
+            @foreach($listYoutube as $youtube)
+            <div class="item-article d-flex gap-12">
+                <div class="content-article content-article-item d-flex flex-column flex-1">
+                    <a class="img-article boder-radius-10 position-relative" data-url="{{ $youtube->link }}" onclick="watchYoutubeVideo($(this))">
+                        <img class="boder-radius-10" src="{{ asset($youtube->thumbnail) }}" alt="{{ $youtube->title }}">
+                        <i class="sprite sprite-play-youtube incon-play-youtube"></i>
+                    </a>
+                    <a class="title-article" data-url="{{ $youtube->link }}" onclick="watchYoutubeVideo($(this))">
+                        <p style="font-size: 14px;">{{ $youtube->title }}</p>
+                    </a>
                 </div>
             </div>
             @endforeach

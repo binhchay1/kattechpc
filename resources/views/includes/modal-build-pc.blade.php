@@ -108,7 +108,6 @@
                                     </label>
                                 </li>
                             </ul>
-
                         </div>
                     </div>
                     @endforeach
