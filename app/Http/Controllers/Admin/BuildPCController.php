@@ -79,7 +79,7 @@ class BuildPCController extends Controller
     {
         $this->buildPcRepository->destroy($id);
 
-        return back()->with('success', __('Cấu hình  được xóa đổi thành công'));
+        return back()->with('success', __('Cấu hình  được xóa  thành công'));
     }
 
     public function theme()
