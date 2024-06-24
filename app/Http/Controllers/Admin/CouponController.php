@@ -57,6 +57,6 @@ class CouponController extends Controller
     public function delete($id)
     {
         $this->couponRepository->destroy($id);
-        return back()->with('success', __('Danh mục sản phẩm  được xóa đổi thành công'));
+        return back()->with('success', __('Danh mục sản phẩm  được xóa  thành công'));
     }
 }

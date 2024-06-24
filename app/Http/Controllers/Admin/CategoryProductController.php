@@ -46,7 +46,7 @@ class CategoryProductController extends Controller
         $this->categoryRepository->create($input);
         Cache::store('redis')->forget('menu_homepage');
 
-        return redirect()->route('admin.categoryProduct.index')->with('success',  __('Danh mục sản phẩm được thêm thành công'));
+        return redirect()->route('admin.categoryProduct.index')->session()->flash('success',  __('Danh mục sản phẩm được thêm thành công'));
     }
 
     public function editCategory($id)
@@ -72,16 +72,17 @@ class CategoryProductController extends Controller
         }
         $input = $this->categoryRepository->update($input, $id);
         Cache::store('redis')->forget('menu_homepage');
-
+  
         return redirect()->route('admin.categoryProduct.index')->with('success',  __('Danh mục sản phẩm được thay đổi thành công'));
     }
 
     public function deleteCategory($id)
     {
+        dd($id);
         $this->categoryRepository->destroy($id);
         Cache::store('redis')->forget('menu_homepage');
 
-        return back()->with('success', __('Danh mục sản phẩm  được xóa đổi thành công'));
+        return back()->with('success', __('Danh mục sản phẩm  được xóa thành công'));
     }
 
     public function activeCate($id)
