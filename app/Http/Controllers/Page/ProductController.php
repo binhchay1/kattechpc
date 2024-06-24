@@ -9,6 +9,7 @@ use App\Repositories\RatingRepository;
 use App\Repositories\CommentRepository;
 use App\Repositories\LayoutRepository;
 use App\Repositories\ProductRepository;
+use App\Repositories\SessionProductViewedRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cache;
@@ -21,22 +22,25 @@ class ProductController extends Controller
     protected $categoryRepository;
     protected $ratingRepository;
     protected $layoutRepository;
+    protected $sessionProductViewedRepository;
 
     public function __construct(
         ProductRepository $productRepository,
         RatingRepository $ratingRepository,
         CommentRepository $commentRepository,
         CategoryRepository $categoryRepository,
-        LayoutRepository $layoutRepository
+        LayoutRepository $layoutRepository,
+        SessionProductViewedRepository $sessionProductViewedRepository
     ) {
         $this->productRepository = $productRepository;
         $this->ratingRepository = $ratingRepository;
         $this->commentRepository = $commentRepository;
         $this->categoryRepository = $categoryRepository;
         $this->layoutRepository = $layoutRepository;
+        $this->sessionProductViewedRepository = $sessionProductViewedRepository;
     }
 
-    public function productDetail($slug)
+    public function productDetail(Request $request, $slug)
     {
         $dataProduct = $this->productRepository->productDetail($slug);
         $getProduct = $dataProduct['id'];
@@ -79,31 +83,64 @@ class ProductController extends Controller
             ->where('product_id', $getProduct)->count();
 
         $countRate1 = DB::table('ratings')
-        ->where("rating_product", "=", 1 )
-        ->where('product_id', $getProduct)->count();
+            ->where("rating_product", "=", 1)
+            ->where('product_id', $getProduct)->count();
 
         $countRate2 = DB::table('ratings')
-            ->where("rating_product", "=", 2 )
+            ->where("rating_product", "=", 2)
             ->where('product_id', $getProduct)->count();
 
         $countRate3 = DB::table('ratings')
-            ->where("rating_product", "=", 3 )
+            ->where("rating_product", "=", 3)
             ->where('product_id', $getProduct)->count();
 
         $countRate4 = DB::table('ratings')
-            ->where("rating_product", "=", 4 )
+            ->where("rating_product", "=", 4)
             ->where('product_id', $getProduct)->count();
 
         $countRate5 = DB::table('ratings')
-            ->where("rating_product", "=", 5 )
+            ->where("rating_product", "=", 5)
             ->where('product_id', $getProduct)->count();
 
         $productRelated = $this->productRepository->getProductRelated($dataProduct->category_id, $dataProduct->id);
         $view = $dataProduct->views + 1;
         $this->productRepository->update(['views' => $view], $dataProduct->id);
 
-        return view('page.product.product-detail',
-            compact('countRate','countRate1','countRate2','countRate3','countRate4','countRate5','dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue'));
+        $getSessionProductViewed = $request->session()->get('pvID');
+
+        if ($getSessionProductViewed != null) {
+            $getDataBySessionProductViewed = $this->sessionProductViewedRepository->getDataBySessionID($getSessionProductViewed);
+            if (isset($getDataBySessionProductViewed)) {
+                $dataProductViewed = json_decode($getDataBySessionProductViewed->list_products, true);
+                if (!in_array($dataProduct->id, $dataProductViewed)) {
+                    $dataProductViewed[] = $dataProduct->id;
+                    $dataUpdateSessionProductViewed = [
+                        'list_products' => json_encode($dataProductViewed)
+                    ];
+                    $this->sessionProductViewedRepository->updateBySessionID($getSessionProductViewed, $dataUpdateSessionProductViewed);
+                }
+
+                $productViewed = $this->productRepository->getProductByArrayID($dataProductViewed);
+            } else {
+                $productViewed = [];
+            }
+        } else {
+            $session_id = bin2hex(date('Y-m-d H:i:s') . 'product-viewed');
+            $productViewed = [];
+            $dataCreateForProductViewed = [];
+            $dataCreateForProductViewed[] = $dataProduct->id;
+            $dataCreateProductViewed = [
+                'session_id' => $session_id,
+                'list_products' => json_encode($dataCreateForProductViewed)
+            ];
+            $this->sessionProductViewedRepository->create($dataCreateProductViewed);
+            $request->session()->put('pvID', $session_id);
+        }
+
+        return view(
+            'page.product.product-detail',
+            compact('countRate', 'countRate1', 'countRate2', 'countRate3', 'countRate4', 'countRate5', 'dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue', 'productViewed')
+        );
     }
 
     public function storeComment(RatingRequest $request)

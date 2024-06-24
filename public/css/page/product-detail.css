@@ -393,6 +393,7 @@ tr:nth-child(even) {
 .alert-info {
     color: red;
     font-size: 15px;
+    text-align: center;
 }
 
 .content-comment {
@@ -659,7 +660,7 @@ tr:nth-child(even) {
     margin-left: 10px;
     display: flex;
     flex-direction: row-reverse;
-    justify-content: flex-end;
+    justify-content: center;
 }
 .rating1 {
     margin-bottom: 20px;
@@ -1031,4 +1032,8 @@ tr:nth-child(even) {
 .text-danh-gia {
     text-align: center;
     margin-top: 12px;
+}
+
+.swiper-product-related .swiper-slide1 {
+    width: 227px !important;
 }

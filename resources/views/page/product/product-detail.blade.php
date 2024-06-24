@@ -188,7 +188,7 @@
     <div>
         <h3 class="productRelated">{{ __('Sản phẩm liên quan') }}</h3>
         <div class="swiper d-flex">
-            <div class="swiper-wrapper swiper-top-sale">
+            <div class="swiper-wrapper swiper-product-related">
                 @foreach($productRelated as $product)
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
@@ -449,7 +449,6 @@
                 </div>
             </div>
 
-            <!----BOX COMMENT-->
             <div class="box-comment">
                 <p class="title-comment font-weight-600">{{ __('Hỏi và đáp') }}</p>
                 <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data">
@@ -477,12 +476,51 @@
 
             @include('page.product.comment-display', ['comments' => $dataProduct->comments, 'product_id' => $dataProduct->id])
         </div>
+
+        <h3 class="productRelated">{{ __('Sản phẩm đã xem') }}</h3>
+        <div class="swiper d-flex" style="margin-bottom: 20px;">
+            <div class="swiper-wrapper swiper-product-viewed">
+                @foreach($productViewed as $product)
+                <div class="swiper-slide1" role="group">
+                    <div class="product-item">
+                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
+                            @if(isset($product->image))
+                            <img src="{{ asset($dataProduct->image[0]) }}" width="210" height="164" class="lazy product-image">
+                            @endif
+                        </a>
+                        <div>
+                            <a href="{{ route('productDetail', $product['slug']) }}">
+                                <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
+                            </a>
+
+                            @if($product->new_price != null)
+                            <div class="product-martket-main d-flex align-items-center">
+                                <del class="product-market-price">{{ $product->price }} ₫</del>
+                                <?php $new_price = floor(100 - (((int)$product->new_price / (int)$product->price) * 100)) ?>
+
+                                <div class="product-percent-price">-{{ $new_price }} %</div>
+                            </div>
+                            <div class="product-price-main font-weight-600">
+                                {{ $product->new_price }} đ
+                            </div>
+                            @else
+                            <div class="product-price-main font-weight-600">
+                                {{ $product->price }} đ
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
     </div>
 </div>
 @endsection
 
 @section('js')
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('js/page/product.js') }}"></script>
 <script>
     $(document).ready(function() {
         $('#myModal').hide();
