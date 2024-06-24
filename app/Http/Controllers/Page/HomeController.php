@@ -437,8 +437,8 @@ class HomeController extends Controller
 
         if (isset($filters['category'])) {
             foreach ($dataComplete as $keyCategory => $productCategory) {
-                if ($productBrand->category_id != $filters['category']) {
-                    $dataComplete->forget($keyBrand);
+                if ($productCategory->category_id != $filters['category']) {
+                    $dataComplete->forget($keyCategory);
                 }
             }
         }

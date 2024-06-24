@@ -98,7 +98,6 @@ class ProductController extends Controller
             ->where("rating_product", "=", 5 )
             ->where('product_id', $getProduct)->count();
 
-
         $productRelated = $this->productRepository->getProductRelated($dataProduct->category_id, $dataProduct->id);
         $view = $dataProduct->views + 1;
         $this->productRepository->update(['views' => $view], $dataProduct->id);
