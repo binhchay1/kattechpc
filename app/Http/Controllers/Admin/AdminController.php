@@ -25,7 +25,7 @@ class AdminController extends Controller
         OrderRepository $orderRepository,
         ProductRepository $productRepository,
         VisitorRepository $visitorRepository,
-        MaintenanceModeRepository $maintenanceModeRepository,
+        MaintenanceModeRepository $maintenanceModeRepository
     ) {
         $this->customContactRepository = $customContactRepository;
         $this->orderRepository = $orderRepository;
