@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Page;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RatingRequest;
 use App\Repositories\CategoryRepository;
+use App\Repositories\PostRepository;
 use App\Repositories\RatingRepository;
 use App\Repositories\CommentRepository;
 use App\Repositories\LayoutRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\SessionProductViewedRepository;
+use App\Repositories\YoutubeChannelRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cache;
@@ -23,27 +25,39 @@ class ProductController extends Controller
     protected $ratingRepository;
     protected $layoutRepository;
     protected $sessionProductViewedRepository;
+    protected $postRepository;
+    protected $youtubeChannelRepository;
 
     public function __construct(
         ProductRepository $productRepository,
+        PostRepository $postRepository,
         RatingRepository $ratingRepository,
         CommentRepository $commentRepository,
         CategoryRepository $categoryRepository,
         LayoutRepository $layoutRepository,
-        SessionProductViewedRepository $sessionProductViewedRepository
+        SessionProductViewedRepository $sessionProductViewedRepository,
+        YoutubeChannelRepository $youtubeChannelRepository
     ) {
+        $this->postRepository = $postRepository;
         $this->productRepository = $productRepository;
         $this->ratingRepository = $ratingRepository;
         $this->commentRepository = $commentRepository;
         $this->categoryRepository = $categoryRepository;
         $this->layoutRepository = $layoutRepository;
         $this->sessionProductViewedRepository = $sessionProductViewedRepository;
+        $this->youtubeChannelRepository = $youtubeChannelRepository;
     }
 
     public function productDetail(Request $request, $slug)
     {
+        $postRandom5 = $this->postRepository->postRandom6();
+        $youtubeRandom = $this->youtubeChannelRepository->index();
         $dataProduct = $this->productRepository->productDetail($slug);
+        if (empty($dataProduct)) {
+            return redirect('/404');
+        }
         $getProduct = $dataProduct['id'];
+        
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         if (isset($dataProduct->detail)) {
@@ -139,14 +153,16 @@ class ProductController extends Controller
 
         return view(
             'page.product.product-detail',
-            compact('countRate', 'countRate1', 'countRate2', 'countRate3', 'countRate4', 'countRate5', 'dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue', 'productViewed')
+            compact('youtubeRandom','postRandom5','countRate', 'countRate1', 'countRate2', 'countRate3', 'countRate4', 'countRate5', 'dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue', 'productViewed')
         );
     }
 
     public function storeComment(RatingRequest $request)
     {
         if (!Auth::check()) {
-            return redirect()->back()->with('message', __('Bạn cần đăng nhập để bình luận!'));
+            return back()->withErrors([
+                'custom' => __('Bạn cần đăng nhập để bình luận!')
+            ]);
         }
 
         $input = $request->except(['_token']);

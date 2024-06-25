@@ -24,7 +24,7 @@
             <img src="{{ URL::asset('build/images/auth/maintenance.png') }}" alt="" class="h-64 mx-auto">
         </div>
         <div class="mt-8 text-center">
-            <h4 class="mb-2 text-purple-500">{{ __(Xin lỗi, Dịch vụ không tồn tại) }}</h4>
+            <h4 class="mb-2 text-purple-500">{{ __('Xin lỗi, Dịch vụ không tồn tại') }}</h4>
             <p class="mb-6 text-slate-500 dark:text-zink-200">{{ __('Dịch vụ bạn yêu cầu không tồn tại. Vui lòng kiểm tra lại!') }}</p>
             <form action="{{ route('admin.toggleMaintenanceMode') }}" method="POST">
                 <div class="relative flex items-center h-header" style="text-align:center">

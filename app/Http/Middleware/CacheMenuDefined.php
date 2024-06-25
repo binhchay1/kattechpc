@@ -35,7 +35,7 @@ class CacheMenuDefined
                             if (!array_key_exists($category->name, $listBrand)) {
                                 $listBrand[$category->name][] = $product->brands->name;
                             } else {
-                                if(!in_array($product->brands->name, $listBrand[$category->name])) {
+                                if (!in_array($product->brands->name, $listBrand[$category->name])) {
                                     $listBrand[$category->name][] = $product->brands->name;
                                 }
                             }
@@ -43,15 +43,11 @@ class CacheMenuDefined
                     }
                 }
 
-                if (isset($category->children)) {
-                    foreach ($category->children as $children) {
-                        if (isset($children->categoryFilter)) {
-                            foreach ($children->categoryFilter as $filter) {
-                                $explodeKeyWord = explode(PHP_EOL, $filter->keyword);
-                                foreach ($explodeKeyWord as $explode) {
-                                    $listKeyword[$category->name][$filter->title][] = $explode;
-                                }
-                            }
+                if (isset($category->categoryFilter)) {
+                    foreach ($category->categoryFilter as $filter) {
+                        $explodeKeyWord = explode(PHP_EOL, $filter->keyword);
+                        foreach ($explodeKeyWord as $explode) {
+                            $listKeyword[$category->name][$filter->title][] = $explode;
                         }
                     }
                 }

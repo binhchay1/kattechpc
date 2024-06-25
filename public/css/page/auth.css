@@ -306,6 +306,35 @@
     margin-bottom: 15px;
 }
 
+#get-email {
+    text-align: center;
+    color: #249782;
+    padding: 10px;
+    background-color: #a0e8db;
+    border-radius: 10px;
+}
+
+.input-email {
+    margin-top: 10px;
+}
+
+#remember-pass{
+    font-family: serif;
+    font-size: 17px;
+}
+
+#get-remember-pass {
+    font-family: serif;
+    font-size: 17px;
+    color: #0a76e4;
+
+}
+
+.validate-input-email {
+    margin-top: 5px;
+}
+
+
 @media (max-width: 992px) {
     .alert-validate::before {
         visibility: visible;

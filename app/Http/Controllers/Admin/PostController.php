@@ -18,7 +18,7 @@ class PostController extends Controller
 
     public function __construct(
         CategoryPostRepository $categoryPostRepository,
-        PostRepository $postRepository,
+        PostRepository $postRepository
     )
     {
         $this->categoryPostRepository = $categoryPostRepository;

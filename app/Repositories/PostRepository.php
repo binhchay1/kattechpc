@@ -26,17 +26,21 @@ class PostRepository extends BaseRepository
     {
         return $this->model->with('user', 'category')->orderBy('id', 'DESC')->first();
     }
-    
+
     public function secondPost() {
         return $this->model->with('user', 'category')->orderBy('id', 'ASC')->first();
     }
-    
+
     public function postRandom5() {
         return $this->model->with('user', 'category')->orderBy('created_at', 'ASC')->get()->take(10);
     }
-    
-    
-    
+
+    public function postRandom6()
+    {
+        return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->get()->take(5);
+
+    }
+
     public function listRandom()
     {
         return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->get();

@@ -23,7 +23,7 @@
                     </div>
                 </div>
 
-                <div class="info_feeback d-flex align-items-center gap-6" style="float: right; width: 10%">
+                <div class="info_feeback  align-items-center gap-6" id="rep-comment" style="float: right; width: 20%">
                     <i class="fa fa-reply" style="font-size:20px; margin-right: 5px"></i>
                     <a href="javascript:" class="write_reply font-weight-500">{{ __('Trả lời') }}</a>
                 </div>

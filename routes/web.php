@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\LandingPageController;
 use App\Http\Controllers\Admin\LayoutController;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\CustomerReviewController;
 use App\Http\Controllers\Page\ErrorController;
 use App\Http\Controllers\Admin\YoutubeChannelController;
 use Illuminate\Support\Facades\Route;
@@ -286,6 +287,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
         Route::get('/update/{id}', [YoutubeChannelController::class, 'editYoutubeChannel'])->name('admin.youtube.edit');
         Route::post('/update/{id}', [YoutubeChannelController::class, 'updateYoutubeChannel'])->name('admin.youtube.update');
         Route::get('/delete/{id}', [YoutubeChannelController::class, 'deleteYoutubeChannel'])->name('admin.youtube.delete');
+    });
+
+    Route::group(['prefix' => 'customer-review'], function () {
+        Route::get('/list', [CustomerReviewController::class, 'index'])->name('admin.customer.review.index');
+        Route::get('/add', [CustomerReviewController::class, 'createCustomerReview'])->name('admin.customer.review.create');
+        Route::post('/store', [CustomerReviewController::class, 'storeCustomerReview'])->name('admin.customer.review.store');
+        Route::get('/update/{id}', [CustomerReviewController::class, 'editCustomerReview'])->name('admin.customer.review.edit');
+        Route::post('/update/{id}', [CustomerReviewController::class, 'updateCustomerReview'])->name('admin.customer.review.update');
+        Route::get('/delete/{id}', [CustomerReviewController::class, 'deleteCustomerReview'])->name('admin.customer.review.delete');
     });
 
     Route::get('/products/{productId}/upload', [ProductImageController::class, 'index']);

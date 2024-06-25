@@ -11,6 +11,7 @@ use App\Repositories\SessionBuildPCRepository;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ExportBuildPC;
 use App\Repositories\BuildPCThemeRepository;
+use App\Repositories\CategoryRepository;
 use Cart;
 use Cache;
 
@@ -21,17 +22,20 @@ class BuildPCController extends Controller
     private $buildPcRepository;
     private $sessionBuildPcRepository;
     private $buildPcThemeRepository;
+    private $categoryRepository;
 
     public function __construct(
         ProductRepository $productRepository,
         BuildPcRepository $buildPcRepository,
         SessionBuildPCRepository $sessionBuildPcRepository,
-        BuildPCThemeRepository $buildPcThemeRepository
+        BuildPCThemeRepository $buildPcThemeRepository,
+        CategoryRepository $categoryRepository
     ) {
         $this->productRepository = $productRepository;
         $this->buildPcRepository = $buildPcRepository;
         $this->sessionBuildPcRepository = $sessionBuildPcRepository;
         $this->buildPcThemeRepository = $buildPcThemeRepository;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function buildPC(Request $request)
@@ -93,6 +97,14 @@ class BuildPCController extends Controller
         $decode = json_decode($getListCategory->category_id, true);
         foreach ($decode as $category) {
             $arrID[] = $category;
+        }
+
+        $getParent = $this->getTopParent($this->categoryRepository->getParentWithKeyword($arrID[0]));
+        $listFilter = $getParent->categoryFilter;
+        $listKeyWord = [];
+        foreach($listFilter as $filter) {
+            $explodeKeyWord = explode(PHP_EOL, $filter->keyword);
+            $listKeyWord[$filter->title] = $explodeKeyWord;
         }
 
         $sort = $request->get('sort');
@@ -159,7 +171,8 @@ class BuildPCController extends Controller
 
         $data = [
             'products' => $products,
-            'menu' => $getProductByKey
+            'menu' => $getProductByKey,
+            'keyword' => $listKeyWord
         ];
 
         return \response()->json($data);
@@ -323,5 +336,14 @@ class BuildPCController extends Controller
         }
 
         return view('page.build-pc.print', compact('getProduct', 'total'));
+    }
+
+    function getTopParent($category)
+    {
+        if ($category->parent === 0) {
+            return $category;
+        }
+
+        return $this->getTopParent($this->categoryRepository->getParentWithKeyword($category->parent));
     }
 }

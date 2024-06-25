@@ -397,54 +397,47 @@
             <h2 class="title-box font-weight-600">{{ __('Đánh giá từ khách hàng') }}</h2>
         </div>
         <div class="list-review-customer-homepage">
-            <div class="swiper swiper-review-customer swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden" style="min-height: inherit;">
-                <div class="swiper-wrapper" style="display: flex; justify-content: center;">
-                    <div class="swiper-slide" style="width: 384px; margin-right: 12px;" role="group">
+            <div class="swiper swiper-review-customer swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+                @foreach($listCustomerReview as $customerReview)
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide" role="group">
                         <div class="item-review-customer-hompage d-flex align-items-center">
                             <div class="left-review position-relative">
-                                <img src="{{ asset('/images/review/team-1.jpg') }}" width="88" height="93" class="lazy" alt="avatar">
+                                <img src="{{ asset($customerReview->thumbnail) }}" width="88" height="93" class="lazy" alt="avatar">
                             </div>
                             <div class="right-review">
                                 <p class="text-review line-clamp-2">
-                                    Đến Kattech build PC là 1 lựa chọn cực kì hoàn hảo
+                                    {{ $customerReview->customer_review }}
                                 </p>
-                                <b class="author-review font-weight-500">- Nguyễn An -</b>
-                                <img src="{{ asset('/images/page/5star-customer.png') }}" width="80" height="15" class="lazy" alt="avatar">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide" style="width: 384px; margin-right: 12px;" role="group">
-                        <div class="item-review-customer-hompage d-flex align-items-center">
-                            <div class="left-review position-relative">
-                                <img src="{{ asset('/images/review/testimonial-1.jpg') }}" width="88" height="93" class="lazy" alt="avatar">
-                            </div>
-                            <div class="right-review">
-                                <p class="text-review line-clamp-2">
-                                    Không cần lo về giá vì đã có Kattech PC
-                                </p>
-                                <b class="author-review font-weight-500">- Trần Ngọc -</b>
-                                <img src="{{ asset('/images/page/5star-customer.png') }}" width="80" height="15" class="lazy" alt="avatar">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide" style="width: 384px; margin-right: 12px;" role="group">
-                        <div class="item-review-customer-hompage d-flex align-items-center">
-                            <div class="left-review position-relative">
-                                <img src="{{ asset('/images/review/testimonial-2.jpg') }}" width="88" height="93" class="lazy" alt="avatar">
-                            </div>
-                            <div class="right-review">
-                                <p class="text-review line-clamp-2">
-                                    Tôi được bạn bè giới thiệu và tôi hoàn toàn hài lòng về Kattech PC
-                                </p>
-                                <b class="author-review font-weight-500">- Nhà thiết kế Hoàng Anh -</b>
+                                <b class="author-review font-weight-500">- {{ $customerReview->customer_name }} -</b>
                                 <img src="{{ asset('/images/page/5star-customer.png') }}" width="80" height="15" class="lazy" alt="avatar">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 1"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 3" aria-current="true"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 4"></span></div>
-                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                @endforeach
             </div>
+
+            <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
+                @if(count($listCustomerReview) > 4)
+
+                @php
+                $totalPag = count($listCustomerReview) - 4 + 1;
+                @endphp
+
+                @for($i = 0; $i < $totalPag; $i++) @if($i==0)
+                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
+                @else
+                <span class="swiper-pagination-bullet" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
+                @endif
+                @endfor
+
+                @else
+                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span>
+                @endif
+            </div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
         </div>
     </div>
 </section>

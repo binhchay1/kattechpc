@@ -2,13 +2,13 @@
 
 namespace App\Repositories;
 
-use App\Models\CategoryFilter;
+use App\Models\CustomerReview;
 
-class CategoryFilterRepository extends BaseRepository
+class CustomerReviewRepository extends BaseRepository
 {
     public function model()
     {
-        return CategoryFilter::class;
+        return CustomerReview::class;
     }
 
     public function index()
@@ -16,9 +16,14 @@ class CategoryFilterRepository extends BaseRepository
         return $this->model->orderBy('created_at', 'DESC')->paginate(10);
     }
 
-    public function create($input)
+    public function store($input)
     {
         return $this->model->create($input);
+    }
+
+    public function show($id)
+    {
+        return $this->model->where('id', $id)->first();
     }
 
     public function update($input, $id)
@@ -31,13 +36,8 @@ class CategoryFilterRepository extends BaseRepository
         return $this->model->where('id', $id)->delete();
     }
 
-    public function getListCategory($id)
+    public function getListCustomerReview()
     {
-        return $this->model->select('category_id')->where('id', $id)->first();
-    }
-
-    public function show($id)
-    {
-        return $this->model->where('id', $id)->first();
+        return $this->model->orderBy('created_at', 'DESC')->get();
     }
 }
