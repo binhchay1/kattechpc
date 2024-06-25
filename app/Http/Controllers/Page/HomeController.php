@@ -349,7 +349,6 @@ class HomeController extends Controller
         return view('page.search', compact('listProducts', 'search', 'isList', 'listCategory', 'dataBrand'));
     }
 
-
     public function viewLandingPage($slug)
     {
         $getLandingPage = $this->landingPageRepository->getBySlug($slug);

@@ -95,7 +95,7 @@ $(document).ready(function () {
         for (let k = 0; k < listCategory.default.length; k++) {
             let transProduct = 0;
             let defaultProduct = 6;
-            let perTransProduct = 238;
+            let perTransProduct = 236;
             let idElementProduct = '.swiper-product-' + listCategory.default[k].slug;
             let listChildProduct = $(idElementProduct).children();
 
