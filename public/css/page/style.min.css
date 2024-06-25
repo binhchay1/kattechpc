@@ -1888,6 +1888,19 @@ a {
     overflow: hidden;
 }
 
+.sub-header-scroll {
+    display: none;
+    background: #ffffff;
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    background: #000000;
+    color: var(--color-primary);
+}
+
+.sub-header-scroll i {
+    color: black;
+}
+
 @keyframes uptocallmini_offline {
     0% {
         -webkit-box-shadow: 0 0 8px 6px rgba(53, 161, 32, 0),

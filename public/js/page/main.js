@@ -240,9 +240,13 @@ $(document).scroll(function () {
 
     var x = $(this).scrollTop();
     if (x > 400) {
-        $('.sub-header').addClass('header-fixed');
+        $('.sub-header').addClass('d-none');
+        $('.sub-header-scroll').addClass('d-block');
+        $('.sub-header-scroll').addClass('header-fixed');
     } else {
-        $('.sub-header').removeClass('header-fixed');
+        $('.sub-header').removeClass('d-none');
+        $('.sub-header-scroll').removeClass('d-block');
+        $('.sub-header-scroll').removeClass('header-fixed');
     }
 });
 

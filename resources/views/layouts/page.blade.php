@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="utf-8">
-    @yield('title')
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="@yield('description')">
     <meta name="keywords" content="@yield('keywords')">
@@ -14,16 +13,18 @@
     <meta name="coverage" content="Worldwide">
     <meta name="distribution" content="Global">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    @yield('title')
+
     <link rel="shortcut icon" href="{{ asset('/images/logo/favicon.ico') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('/css/page/style.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/page/lib.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/page/mobile.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/page/ckeditor.css') }}" type="text/css">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="HandheldFriendly" content="true">
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     @yield('css')
 </head>
 
@@ -37,13 +38,11 @@
     </div>
 
     <div id="content-page">
-
         @if(!Route::is('home'))
         @if(Route::is('showDataCategory') or Route::is('showPromotionDetail') or Route::is('productDetail') or Route::is('post.detail') or Route::is('post.category'))
         <div class="box-breadcrumb-global">
             <div class="container d-flex align-items-center box-breadcrumb">
                 <div class="global-breadcrumb d-flex justify-content-between align-items-center">
-
                     <ol itemscope="" itemtype="http://schema.org/BreadcrumbList" class="list-breadcrumb clearfix d-flex align-items-center flex-wrap">
                         <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                             <i class="fa fa-home"></i>
@@ -70,7 +69,6 @@
                             <meta itemprop="position" content="3">
                         </li>
                     </ol>
-
                 </div>
             </div>
         </div>
@@ -92,7 +90,6 @@
                             <meta itemprop="position" content="2">
                         </li>
                     </ol>
-
                 </div>
             </div>
         </div>
