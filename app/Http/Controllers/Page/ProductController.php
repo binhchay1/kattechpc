@@ -53,7 +53,11 @@ class ProductController extends Controller
         $postRandom5 = $this->postRepository->postRandom6();
         $youtubeRandom = $this->youtubeChannelRepository->index();
         $dataProduct = $this->productRepository->productDetail($slug);
+        if (empty($dataProduct)) {
+            return redirect('/404');
+        }
         $getProduct = $dataProduct['id'];
+        
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         if (isset($dataProduct->detail)) {

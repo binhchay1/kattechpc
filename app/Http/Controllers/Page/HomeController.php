@@ -51,7 +51,7 @@ class HomeController extends Controller
         CategoryPostRepository $categoryPostRepository,
         BrandRepository $brandRepository,
         YoutubeChannelRepository $youtubeChannelRepository,
-        CustomerReviewRepository $customerReviewRepository,
+        CustomerReviewRepository $customerReviewRepository
     ) {
         $this->utility = $utility;
         $this->productRepository = $productRepository;
