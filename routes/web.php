@@ -84,6 +84,7 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     Route::get('/lien-he-hop-tac-kinh-doanh', [HomeController::class, 'contactBusiness'])->name('contactBusiness');
     Route::get('/get-products-for-suggestions', [ProductPage::class, 'suggestionsProduct'])->name('suggestions.product');
     Route::get('/change-locate/{locale}', [HomeController::class, 'changeLocate'])->name('change.locate');
+    Route::get('/export-excel-cart', [HomeController::class, 'exportExcel'])->name('export.excel.cart');
 
     Route::group(['middleware' => 'user'], function () {
         Route::get('/get-order-detail/{order_id}', [AccountController::class, 'getOrderDetail']);

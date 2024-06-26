@@ -91,13 +91,96 @@ function deleteSales(url) {
 }
 
 function downloadCartExcel() {
+    let urlExport = '/export-excel-cart';
+    let fileName = 'cart-kattech.xlsx';
 
+    $.ajax({
+        type: "GET",
+        url: urlExport,
+        data: {
+            a: currentArea
+        },
+        cache: false,
+        xhr: function () {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 2) {
+                    if (xhr.status == 200) {
+                        xhr.responseType = "blob";
+                    } else {
+                        xhr.responseType = "text";
+                    }
+                }
+            };
+
+            return xhr;
+        },
+        success: function (data) {
+            var blob = new Blob([data], { type: "application/octetstream" });
+
+            var isIE = false || !!document.documentMode;
+            if (isIE) {
+                window.navigator.msSaveBlob(blob, fileName);
+            } else {
+                var url = window.URL || window.webkitURL;
+                link = url.createObjectURL(blob);
+                var a = $("<a />");
+                a.attr("download", fileName);
+                a.attr("href", link);
+                $("body").append(a);
+                a[0].click();
+                $("body").remove(a);
+            }
+        }
+    });
 }
 
 function downloadCartImage() {
+    let urlExportImage = '/export-image-build-pc';
+    if (currentArea == 1) {
+        listCheck = currentArrayProduct.listArea1
+    } else {
+        listCheck = currentArrayProduct.listArea2
+    }
 
+    if (listCheck.length == 0) {
+        $('#modal-no-item-print').css('display', 'flex');
+    } else {
+        $.ajax({
+            type: "GET",
+            url: urlExportImage,
+            data: {
+                a: currentArea
+            },
+            success: function (data) {
+                $('#area-export-image').html(data);
+                capture();
+                $('#area-export-image').empty();
+            }
+        });
+    }
+}
+
+function capture() {
+    const captureElement = document.querySelector('#capture')
+    html2canvas(captureElement)
+        .then(canvas => {
+            canvas.style.display = 'none';
+            document.body.appendChild(canvas);
+            return canvas;
+        })
+        .then(canvas => {
+            const image = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
+            const a = document.createElement('a');
+            a.setAttribute('download', 'my-image.png');
+            a.setAttribute('href', image);
+            a.click();
+            canvas.remove();
+            window.open('', '_self').close();
+        })
 }
 
 function printCart() {
-
+    let urlPrint = '/print-build-pc?a=' + currentArea;
+    window.location.href = urlPrint;
 }
