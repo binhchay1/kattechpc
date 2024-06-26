@@ -28,10 +28,7 @@
     @else
     <form action="{{ route('checkout') }}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
-        <div class="title-c-ct"> {{ __('Địa chỉ giao hàng') }}</div>
-        <a href="#">
-            <div class="title-c-ct input-address">{{ __('THÔNG TIN KHÁCH HÀNG') }}</div>
-        </a>
+        <div class="title-c-ct input-address">{{ __('THÔNG TIN KHÁCH HÀNG') }}</div>
         <div class="product-data">
             <h3 style="font-style: italic; color: #e31223">{{ __('Các thông tin * bắt buộc nhập') }}</h3>
             @if(Auth::user())
@@ -223,8 +220,8 @@
                     </div>
                 </div>
             </div>
-
             @endif
+
             <div class="basket">
                 <div class="basket-labels" id="cart-basket">
                     <ul>
@@ -265,7 +262,7 @@
                 </div>
                 @endforeach
 
-                <div class="basket">
+                <div>
                     <div class="summary1">
                         <h3 class="input-address">{{__('Hình thức thanh toán')}}</h3>
                         <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" checked disabled>{{__('Thanh toán sau khi nhận hàng')}}<br>
@@ -279,41 +276,48 @@
                             </div>
                         </form>
                     </div>
-                    <div class="summary">
-                        <div class=" input-address summary-total-items total-title">{{ __('Tổng cộng:') }} </div>
-                        <div class="total-value final-value get-total" id="basket-total">{{ number_format($totalCart, 0, '.', '.') }} đ</div>
+                    <div class="summary summary-area">
+                        <div class="input-address summary-total-items total-title">{{ __('Tổng cộng') }} </div>
                     </div>
-                    <div class=" input-address total-value final-value summary-total " id="basket-total">{{__('Giảm giá:')}}
-                        @if(Session::get('discount'))
-                        <?php $getDiscount = Session::get('discount')->discount_amount ?>
-                        {{($getDiscount)}} đ
-                        @endif
+                    <div class="summary summary-area">
+                        <div class="total-value final-value summary-total" style="margin: 0;">{{__('Giảm giá')}}</div>
+                        <div class="total-value final-value get-total" style="text-transform: inherit">
+                            @if(Session::get('discount'))
+                            <?php $getDiscount = Session::get('discount')->discount_amount ?>
+                            {{ $getDiscount }} đ
+                            @else
+                            0 đ
+                            @endif
+                        </div>
                     </div>
                     @if(Session::get('discount'))
                     <?php $getDiscount = Session::get('discount')->discount_amount ?>
-                    <div class="summary-total">
-                        <div class="input-address total-title">{{ __('Thành tiền') }}</div>
+                    <div class="summary-total summary-area">
+                        <div class="total-title">{{ __('Thành tiền') }}</div>
                         <?php $money = $totalCart - $getDiscount ?>
-                        <div class="total-value final-value get-total" id="basket-total">{{ number_format($money, 0, '.', '.') }} đ
+                        <div class="total-value final-value get-total">{{ number_format($money, 0, '.', '.') }} đ
                             <input hidden name="" value="{{ $money }}">
                         </div>
                     </div>
                     @else
-                    <div class="summary-total">
-                        <div class="input-address total-title">{{ __('Thành tiền') }}</div>
-                        <div class="total-value final-value get-total" id="basket-total">{{ number_format($totalCart, 0, '.', '.') }} đ
+                    <div class="summary-total summary-area">
+                        <div class="total-title">{{ __('Thành tiền') }}</div>
+                        <div class="total-value final-value get-total">{{ number_format($totalCart, 0, '.', '.') }} đ
                             <input hidden name="" value="{{ $totalCart }}">
                         </div>
                     </div>
                     @endif
                     <div class="summary-checkout">
                         <button class="checkout-cta">{{ __('Đặt hàng') }}</button>
+                        <div class="d-flex action-cart">
+                            <a onclick="downloadCartExcel()" target="_blank">{{ __('Tải file excel') }}</a>
+                            <a onclick="downloadCartImage()" target="_blank">{{ __('Tải ảnh báo giá') }}</a>
+                            <a onclick="printCart()" target="_blank">{{ __('In báo giá') }}</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-
     </form>
     @endif
 </main>
@@ -323,97 +327,5 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script>
-    var citis = document.getElementById("city");
-    var districts = document.getElementById("district");
-    var wards = document.getElementById("ward");
-    var Parameter = {
-        url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
-        method: "GET",
-        responseType: "application/json",
-    };
-    var promise = axios(Parameter);
-    promise.then(function(result) {
-        renderCity(result.data);
-    });
-
-    function renderCity(data) {
-        for (const x of data) {
-            citis.options[citis.options.length] = new Option(x.Name, x.Name);
-        }
-        citis.onchange = function() {
-            district.length = 1;
-            ward.length = 1;
-            if (this.value != "") {
-                const result = data.filter(n => n.Name === this.value);
-
-                for (const k of result[0].Districts) {
-                    district.options[district.options.length] = new Option(k.Name, k.Name);
-                }
-            }
-        };
-        district.onchange = function() {
-            ward.length = 1;
-            const dataCity = data.filter((n) => n.Name === citis.value);
-            if (this.value != "") {
-                const dataWards = dataCity[0].Districts.filter(n => n.Name === this.value)[0].Wards;
-
-                for (const w of dataWards) {
-                    wards.options[wards.options.length] = new Option(w.Name, w.Name);
-                }
-            }
-        };
-    }
-
-    $(document).ready(function() {
-        $(".btn-submit").click(function(e) {
-            e.preventDefault();
-
-            var _token = $("input[name='_token']").val();
-            var discount_amount = $("input[name='discount_amount']").val();
-            $.ajax({
-                    url: "{{ route('apply.coupon') }}",
-                    type: 'POST',
-                    data: {
-                        _token: _token,
-                        discount_amount: discount_amount
-                    },
-                    success: function(data) {
-                        if ($.isEmptyObject(data.errors)) {
-                            $(".error_msg").html(data.success);
-                        } else {
-                            let resp = data.errors;
-                            $(".error_msg").html(resp);
-                        }
-                    },
-                },
-                setTimeout(window.location.reload.bind(window.location), 1000));
-
-        });
-    });
-
-    function updateCart(quantity, id) {
-        $.get(
-            '{{ asset("/cart/update-cart") }}', {
-                quantity: quantity,
-                id: id
-            },
-            function() {
-                location.reload()
-            }
-        )
-    }
-
-    function deleteSales(url) {
-        if (confirm('Are you sure?')) {
-            $.ajax({
-                type: "get",
-                url: url,
-                success: function(result) {
-                    location.reload()
-                }
-            });
-        }
-    }
-</script>
+<script src="{{ asset('js/page/cart.js') }}"></script>
 @endsection
