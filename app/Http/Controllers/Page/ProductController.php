@@ -50,14 +50,19 @@ class ProductController extends Controller
 
     public function productDetail(Request $request, $slug)
     {
+        if (!isset($slug)) {
+            return redirect('/404');
+        }
+
         $postRandom5 = $this->postRepository->postRandom6();
         $youtubeRandom = $this->youtubeChannelRepository->index();
         $dataProduct = $this->productRepository->productDetail($slug);
         if (empty($dataProduct)) {
             return redirect('/404');
         }
+
         $getProduct = $dataProduct['id'];
-        
+
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         if (isset($dataProduct->detail)) {
@@ -151,9 +156,27 @@ class ProductController extends Controller
             $request->session()->put('pvID', $session_id);
         }
 
+        $dataBreadcrumb = [];
+        $getCategoryProduct = $this->categoryRepository->show($dataProduct->category_id);
+        $currentCateID = $getCategoryProduct->id;
+
+        if ($currentCateID != 0) {
+            $dataBreadcrumb[$getCategoryProduct->name] = $getCategoryProduct->slug;
+            $endWhile = false;
+            while (!$endWhile) {
+                $getParent = $this->categoryRepository->show($currentCateID);
+                if ($getParent->parent == 0) {
+                    $endWhile = true;
+                }
+
+                $currentCateID = $getParent->parent;
+                $dataBreadcrumb[$getParent->name] = $getParent->slug;
+            }
+        }
+
         return view(
             'page.product.product-detail',
-            compact('youtubeRandom','postRandom5','countRate', 'countRate1', 'countRate2', 'countRate3', 'countRate4', 'countRate5', 'dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue', 'productViewed')
+            compact('youtubeRandom', 'postRandom5', 'countRate', 'countRate1', 'countRate2', 'countRate3', 'countRate4', 'countRate5', 'dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue', 'productViewed', 'dataBreadcrumb')
         );
     }
 
@@ -202,5 +225,184 @@ class ProductController extends Controller
         $products = $this->productRepository->getProductBySearchSuggestion($search);
 
         return response()->json($products);
+    }
+
+    public function showDataCategory(Request $request, $slug)
+    {
+        if (!isset($slug)) {
+            return redirect('/404');
+        }
+
+        $filters = [];
+        $input = $request->except(['price', 'sort']);
+
+        foreach ($input as $key => $value) {
+            $filters[$key] = $value;
+        }
+
+        if (isset($request->price)) {
+            $filters['price'] = $request->price;
+        }
+
+        if (isset($request->sort)) {
+            $filters['sort'] = $request->sort;
+        }
+
+        $isParent = $this->categoryRepository->checkIsParent($slug);
+        if ($isParent == 0) {
+            return redirect('/404');
+        }
+
+        $dataCategory = $this->categoryRepository->productByCategory($slug, $isParent, $filters);
+        $dataBrand = [];
+        $dataCategories = [];
+
+        if ($isParent == 1) {
+            $dataComplete = $dataCategory->products;
+        } elseif ($isParent == 2) {
+            $dataComplete = $dataCategory->productChildren;
+        } else {
+            $dataComplete = [];
+        }
+
+        if (isset($filters['price'])) {
+            $listRangePrice = Product::RANGE_PRICE;
+            if (array_key_exists($filters['price'], $listRangePrice)) {
+                $rangePrice = $listRangePrice[$filters['price']];
+                $fromPrice = $rangePrice['from'];
+                $toPrice = $rangePrice['to'];
+                $count = 0;
+
+                foreach ($dataComplete as $key => $productRange) {
+                    if (isset($productRange->new_price)) {
+                        $priceForCheck = str_replace('.', '', $productRange->new_price);
+                        $convertPrice = intval($priceForCheck);
+                    } else {
+                        $priceForCheck = str_replace('.', '', $productRange->price);
+                        $convertPrice = intval($priceForCheck);
+                    }
+
+                    if ($convertPrice < $fromPrice or $convertPrice > $toPrice) {
+                        $dataComplete->forget($key);
+                        $count++;
+                    }
+                }
+            }
+        }
+
+        if (isset($filters['brand'])) {
+            foreach ($dataComplete as $keyBrand => $productBrand) {
+                if ($productBrand->brands->name != $filters['brand']) {
+                    $dataComplete->forget($keyBrand);
+                }
+            }
+        }
+
+        if (isset($filters['category'])) {
+            foreach ($dataComplete as $keyCategory => $productCategory) {
+                if ($productCategory->category_id != $filters['category']) {
+                    $dataComplete->forget($keyCategory);
+                }
+            }
+        }
+
+        if (isset($filters['sort'])) {
+            if ($filters['sort'] == 'new') {
+                $dataComplete = $dataComplete->sortByDesc('created_at');
+            }
+
+            if ($filters['sort'] == 'name') {
+                $dataComplete = $dataComplete->sortBy('name');
+            }
+
+            if ($filters['sort'] == 'price-asc' or $filters['sort'] == 'price-desc') {
+                foreach ($dataComplete as $dataForSort) {
+                    if ($dataForSort->new_price != null) {
+                        $currentPrice = (int) str_replace('.', '', $dataForSort->new_price);
+                    } else {
+                        $currentPrice = (int) str_replace('.', '', $dataForSort->price);
+                    }
+
+                    $dataForSort->current_price = $currentPrice;
+                }
+
+                if ($filters['sort'] == 'price-asc') {
+                    $dataComplete = $dataComplete->sortBy('current_price');
+                }
+
+                if ($filters['sort'] == 'price-desc') {
+                    $dataComplete = $dataComplete->sortByDesc('current_price');
+                }
+            }
+        }
+
+        foreach ($filters as $keyLast => $filterLast) {
+            if ($keyLast == 'sort' or $keyLast == 'brand' or $keyLast == 'price' or $keyLast == 'category') {
+                continue;
+            }
+
+            if ($filterLast == 'all') {
+                continue;
+            }
+
+            foreach ($dataComplete as $key => $dataLast) {
+                if (strpos($dataLast->key_word, $filterLast) === false) {
+                    $dataComplete->forget($key);
+                }
+            }
+        }
+
+        if (isset($dataComplete)) {
+            foreach ($dataComplete as $product) {
+                if (isset($product->brands->name)) {
+                    if (!in_array($product->brands->name, $dataBrand)) {
+                        $dataBrand[] = $product->brands->name;
+                    }
+                }
+            }
+
+            $dataCategories = $this->utility->paginate($dataComplete, 15);
+        } else {
+            $dataCategories = $this->utility->paginate([], 15);
+        }
+
+        $dataProducts = $this->categoryRepository->productSale($slug, $isParent);
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        if (count($dataCategories) > 0 and $isParent == 2) {
+            $getParent = $this->getTopParent($this->categoryRepository->getParentWithKeyword($dataCategory->id));
+            $listKeyWord = $getParent->categoryFilter;
+        } else {
+            $listKeyWord = $dataCategory->categoryFilter;
+        }
+
+        $currentCateID = $dataCategory->parent;
+        $dataBreadcrumb = [];
+
+        if ($currentCateID != 0) {
+            $dataBreadcrumb[$dataCategory->name] = $dataCategory->slug;
+            $endWhile = false;
+            while (!$endWhile) {
+                $getParent = $this->categoryRepository->show($currentCateID);
+                if ($getParent->parent == 0) {
+                    $endWhile = true;
+                }
+
+                $currentCateID = $getParent->parent;
+                $dataBreadcrumb[$getParent->name] = $getParent->slug;
+            }
+        }
+
+        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'listKeyWord', 'dataBreadcrumb'));
+    }
+
+    function getTopParent($category)
+    {
+        if ($category->parent === 0) {
+            return $category;
+        }
+
+        return $this->getTopParent($this->categoryRepository->getParentWithKeyword($category->parent));
     }
 }

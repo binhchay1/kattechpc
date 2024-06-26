@@ -4,10 +4,8 @@
 <title>{{ $post->title }} | Kattech PC</title>
 @endsection
 
-@section('description', __('Nghiên cứu, theo dõi các tin tức về công nghệ với Kattech PC'))
+@section('description', $post->short_description)
 @section('keywords', 'tech, tech pc, post, news, kattech')
-@section('breadcrumb-parent', $post->category->name)
-@section('breadcrumb-parent-url', route('post.category', $post->category->slug))
 @section('breadcrumb', $post->title)
 
 @section('css')
@@ -34,21 +32,5 @@
             <p class="">{!! $post->content !!}</p>
         </div>
     </div>
-{{--    <div class="rightcolumn">--}}
-{{--        <div class="card">--}}
-{{--            <h2>{{ __("Bài viết liên quan") }}</h2>--}}
-{{--            @foreach($listPost as $post)--}}
-{{--            <div>--}}
-{{--                <div>--}}
-{{--                    <img class="image-post" src="{{ asset($post->thumbnail) }}">--}}
-{{--                </div>--}}
-{{--                <a href="{{ route('post.detail', $post['slug']) }}">--}}
-{{--                    <p>{{ $post->title }}</p>--}}
-{{--                </a>--}}
-{{--            </div>--}}
-{{--            <br>--}}
-{{--            @endforeach--}}
-{{--        </div>--}}
-{{--    </div>--}}
 </div>
 @endsection

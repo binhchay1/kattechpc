@@ -1739,6 +1739,7 @@ a {
 
 .breadcrumb-parent-url {
     cursor: pointer;
+    font-weight: bold;
 }
 
 .breadcrumb-parent-url:hover {

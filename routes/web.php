@@ -78,7 +78,7 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     Route::get('/auth/google/callback/', [SocialLoginController::class, 'handleGoogleCallback']);
     Route::get('/auth/facebook/', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
     Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFacebookCallback']);
-    Route::get('/collection/{slug}', [HomeController::class, 'showDataCategory'])->name('showDataCategory');
+    Route::get('/collection/{slug}', [ProductPage::class, 'showDataCategory'])->name('showDataCategory');
     Route::get('/promotion/{slug}', [HomeController::class, 'showPromotionDetail'])->name('showPromotionDetail');
     Route::get('/gioi-thieu', [HomeController::class, 'introduction'])->name('introduction');
     Route::get('/lien-he-hop-tac-kinh-doanh', [HomeController::class, 'contactBusiness'])->name('contactBusiness');
@@ -118,7 +118,7 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     });
 
     Route::get('/post-detail/{slug}', [PostPage::class, 'postDetail'])->name('post.detail');
-    Route::get('/post-category/{slug}', [HomeController::class, 'postCategory'])->name('post.category');
+    Route::get('/post-category/{slug}', [PostPage::class, 'postCategory'])->name('post.category');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenance-mode']], function () {
