@@ -13,7 +13,7 @@ class CouponUpdateRequest extends FormRequest
     {
         return true;
     }
-    
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,10 +24,9 @@ class CouponUpdateRequest extends FormRequest
         return [
             'code' =>'required|max:50|unique:coupons,code,' .$this->id,
             'discount_amount' =>'required'
-        
         ];
     }
-    
+
     public function messages()
     {
         return [

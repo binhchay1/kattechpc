@@ -9,7 +9,7 @@
 @section('breadcrumb', __('Tìm kiếm'))
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('/css/page/productCate.css') }}" />
+<link rel="stylesheet" href="{{ asset('/css/page/product-cate.css') }}" />
 @endsection
 
 @section('content')

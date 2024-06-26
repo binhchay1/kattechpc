@@ -349,7 +349,6 @@ class HomeController extends Controller
         return view('page.search', compact('listProducts', 'search', 'isList', 'listCategory', 'dataBrand'));
     }
 
-
     public function viewLandingPage($slug)
     {
         $getLandingPage = $this->landingPageRepository->getBySlug($slug);
@@ -570,5 +569,12 @@ class HomeController extends Controller
                 'custom' => __('Email hoặc mật khẩu không chính xác')
             ]);
         }
+    }
+    
+    public function registerSuccess()
+    {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+        return view('auth.register-success', compact('listCategory'));
     }
 }

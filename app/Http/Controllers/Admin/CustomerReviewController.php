@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Repositories\CustomerReviewRepository;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\CustomerReviewRequest;
+use App\Http\Requests\CustomerReviewUpdateRequest;
 
 class CustomerReviewController extends Controller
 {
@@ -28,7 +29,7 @@ class CustomerReviewController extends Controller
         return view('admin.customer-review.create');
     }
 
-    public function storeCustomerReview(Request $request)
+    public function storeCustomerReview(CustomerReviewRequest $request)
     {
         $input = $request->except(['_token']);
         if ($request->hasfile('thumbnail')) {
@@ -48,7 +49,7 @@ class CustomerReviewController extends Controller
         return view('admin.customer-review.edit', compact('customerReview'));
     }
 
-    public function updateCustomerReview(Request $request,  $id)
+    public function updateCustomerReview(CustomerReviewUpdateRequest $request,  $id)
     {
         $input = $request->except(['_token']);
         if ($request->hasfile('thumbnail')) {

@@ -482,26 +482,25 @@ function renderPriceToModal() {
 function renderKeywordsToModal(data) {
     $('#gr-filter').empty();
 
-    // $.each(data.keyword, function (keyWord, valKeyWord) {
-    //     let strAppend = `<div class="ul-filter">
-    //         <h5 class="title-filter">Loại `+ keyWord + `</h5>
-    //         <ul id="js-attr-list" class="ul-filter">`;
-    //     $.each(valKeyWord, function (keyInKeyWord, valInKeyWord) {
+    $.each(data.keyword, function (keyWord, valKeyWord) {
+        let strAppend = `<div class="ul-filter">
+            <h5 class="title-filter">Loại `+ keyWord + `</h5>
+            <ul id="js-attr-list" class="ul-filter">`;
+        $.each(valKeyWord, function (keyInKeyWord, valInKeyWord) {
 
-    //         let itemStrAppend = `<li>
-    //                 <label style="cursor: pointer;">
-    //                     <input type="checkbox">
-    //                     <span class="value-filter"> `+ valInKeyWord + ` </span>
-    //                 </label>
-    //             </li>`;
-    //         strAppend = strAppend + itemStrAppend;
-    //     });
+            let itemStrAppend = `<li>
+                    <label style="cursor: pointer;">
+                        <input type="checkbox">
+                        <span class="value-filter"> `+ valInKeyWord + ` </span>
+                    </label>
+                </li>`;
+            strAppend = strAppend + itemStrAppend;
+        });
 
-    //     strAppend = strAppend + `</ul></div>`;
+        strAppend = strAppend + `</ul></div>`;
 
-    //     $('#gr-filter').append(strAppend);
-    // });
-
+        $('#gr-filter').append(strAppend);
+    });
 }
 
 function handelSortProduct(sort) {
