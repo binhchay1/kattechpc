@@ -126,7 +126,7 @@ class BuildPCController extends Controller
                     } else {
                         $priceForCheck = str_replace('.', '', $productPrice->price);
                     }
-                    $priceForCheck = str_replace('.', '', $productPrice->price);
+
                     $convertPrice = intval($priceForCheck);
                     if ($convertPrice < $fromPrice or $convertPrice > $toPrice) {
                         $products->forget($key);
@@ -160,11 +160,11 @@ class BuildPCController extends Controller
                 }
 
                 if ($sort == 'price-asc') {
-                    $products = $products->sortBy('current_price');
+                    $products = $products->sortBy('current_price')->values();
                 }
 
                 if ($sort == 'price-desc') {
-                    $products = $products->sortByDesc('current_price');
+                    $products = $products->sortByDesc('current_price')->values();
                 }
             }
         }

@@ -262,6 +262,13 @@ function changeProductHandle(userChose) {
 
 function addToCart() {
     let url = '/build-pc-checkout';
+    let listCheck = [];
+    if (currentArea == 1) {
+        listCheck = currentArrayProduct.listArea1
+    } else {
+        listCheck = currentArrayProduct.listArea2
+    }
+
     let data = '';
     if (currentArea == 1) {
         data = currentArrayProduct.listArea1;
@@ -269,18 +276,22 @@ function addToCart() {
         data = currentArrayProduct.listArea2;
     }
 
-    $.ajax({
-        type: "get",
-        data: {
-            data: data
-        },
-        url: url,
-        success: function (result) {
-            if (result == 'success') {
-                window.location.href = '/show-cart';
+    if (listCheck.length == 0) {
+        $('#modal-no-item-print').css('display', 'flex');
+    } else {
+        $.ajax({
+            type: "get",
+            data: {
+                data: data
+            },
+            url: url,
+            success: function (result) {
+                if (result == 'success') {
+                    window.location.href = '/cart/show-cart';
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 function renderProductToModal(data) {
@@ -418,31 +429,31 @@ function renderCountWithPrice(data) {
             under1m += 1;
         }
 
-        if (price > 1000000 && price < 10000000) {
+        if (price >= 1000000 && price < 10000000) {
             to10m += 1;
         }
 
-        if (price > 10000000 && price < 15000000) {
+        if (price >= 10000000 && price < 15000000) {
             to15m += 1;
         }
 
-        if (price > 15000000 && price < 20000000) {
+        if (price >= 15000000 && price < 20000000) {
             to20m += 1;
         }
 
-        if (price > 20000000 && price < 30000000) {
+        if (price >= 20000000 && price < 30000000) {
             to30m += 1;
         }
 
-        if (price > 30000000 && price < 50000000) {
+        if (price >= 30000000 && price < 50000000) {
             to50m += 1;
         }
 
-        if (price > 50000000 && price < 100000000) {
+        if (price >= 50000000 && price < 100000000) {
             to100m += 1;
         }
 
-        if (price > 100000000) {
+        if (price >= 100000000) {
             over100m += 1;
         }
     });
@@ -480,27 +491,27 @@ function renderPriceToModal() {
 }
 
 function renderKeywordsToModal(data) {
-    $('#gr-filter').empty();
+    // $('#gr-filter').empty();
 
-    $.each(data.keyword, function (keyWord, valKeyWord) {
-        let strAppend = `<div class="ul-filter">
-            <h5 class="title-filter">Loại `+ keyWord + `</h5>
-            <ul id="js-attr-list" class="ul-filter">`;
-        $.each(valKeyWord, function (keyInKeyWord, valInKeyWord) {
+    // $.each(data.keyword, function (keyWord, valKeyWord) {
+    //     let strAppend = `<div class="ul-filter">
+    //         <h5 class="title-filter">Loại `+ keyWord + `</h5>
+    //         <ul id="js-attr-list" class="ul-filter">`;
+    //     $.each(valKeyWord, function (keyInKeyWord, valInKeyWord) {
 
-            let itemStrAppend = `<li>
-                    <label style="cursor: pointer;">
-                        <input type="checkbox">
-                        <span class="value-filter"> `+ valInKeyWord + ` </span>
-                    </label>
-                </li>`;
-            strAppend = strAppend + itemStrAppend;
-        });
+    //         let itemStrAppend = `<li>
+    //                 <label style="cursor: pointer;">
+    //                     <input type="checkbox">
+    //                     <span class="value-filter"> `+ valInKeyWord + ` </span>
+    //                 </label>
+    //             </li>`;
+    //         strAppend = strAppend + itemStrAppend;
+    //     });
 
-        strAppend = strAppend + `</ul></div>`;
+    //     strAppend = strAppend + `</ul></div>`;
 
-        $('#gr-filter').append(strAppend);
-    });
+    //     $('#gr-filter').append(strAppend);
+    // });
 }
 
 function handelSortProduct(sort) {
@@ -521,9 +532,6 @@ function handelSortProduct(sort) {
         success: function (data) {
             $(".list-product-select").empty();
             renderProductToModal(data);
-            $('#js-brand-filter').empty();
-            renderBrandToModal(data);
-            renderPriceToModal();
         }
     });
 }
@@ -701,6 +709,7 @@ function exportImage() {
             success: function (data) {
                 $('#area-export-image').html(data);
                 capture();
+                $('#area-export-image').empty();
             }
         });
     }

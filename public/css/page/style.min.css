@@ -1875,6 +1875,10 @@ a {
     flex-shrink: 0;
 }
 
+.swiper-review-customer .swiper-wrapper {
+    width: auto !important;
+}
+
 .swiper-review-customer {
     min-height: inherit;
     display: flex;

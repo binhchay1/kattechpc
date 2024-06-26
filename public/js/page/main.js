@@ -156,16 +156,16 @@ $(document).ready(function () {
                 countCustomerReview = 0;
                 countPagination = 1;
 
-                $("span[data-id='swiper-pagination-bullet-" + currentCountPagination +"']").removeClass('swiper-pagination-bullet-active');
-                $("span[data-id='swiper-pagination-bullet-" + countPagination +"']").addClass('swiper-pagination-bullet-active');
+                $("span[data-id='swiper-pagination-bullet-" + currentCountPagination + "']").removeClass('swiper-pagination-bullet-active');
+                $("span[data-id='swiper-pagination-bullet-" + countPagination + "']").addClass('swiper-pagination-bullet-active');
                 $('.swiper-review-customer').css('transform', 'translate3d(' + transCustomerReview + 'px, 0px, 0px)');
             } else {
                 transCustomerReview = transCustomerReview - perTransCustomerReview;
                 countCustomerReview += 1;
                 let nextCountPagination = countPagination + 1;
 
-                $("span[data-id='swiper-pagination-bullet-" + countPagination +"']").removeClass('swiper-pagination-bullet-active');
-                $("span[data-id='swiper-pagination-bullet-" + nextCountPagination +"']").addClass('swiper-pagination-bullet-active');
+                $("span[data-id='swiper-pagination-bullet-" + countPagination + "']").removeClass('swiper-pagination-bullet-active');
+                $("span[data-id='swiper-pagination-bullet-" + nextCountPagination + "']").addClass('swiper-pagination-bullet-active');
                 $('.swiper-review-customer').css('transform', 'translate3d(' + transCustomerReview + 'px, 0px, 0px)');
                 currentCountPagination = countPagination += 1;
             }
@@ -239,12 +239,12 @@ $(document).scroll(function () {
     }
 
     var x = $(this).scrollTop();
-    if (x > 400) {
-        $('.sub-header').addClass('d-none');
+    if (x >= 300) {
+
         $('.sub-header-scroll').addClass('d-block');
         $('.sub-header-scroll').addClass('header-fixed');
     } else {
-        $('.sub-header').removeClass('d-none');
+
         $('.sub-header-scroll').removeClass('d-block');
         $('.sub-header-scroll').removeClass('header-fixed');
     }
