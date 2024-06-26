@@ -197,9 +197,10 @@ aside {
     border: 1px solid #aaa;
     border-radius: 4px;
     font-size: 1rem;
-    padding: 2px;
+    padding: 5px;
     width: 3.75rem;
     height: 20px;
+    text-align: center;
 }
 
 #content-page aside {

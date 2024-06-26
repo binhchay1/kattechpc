@@ -102,7 +102,7 @@ class BuildPCController extends Controller
         $getParent = $this->getTopParent($this->categoryRepository->getParentWithKeyword($arrID[0]));
         $listFilter = $getParent->categoryFilter;
         $listKeyWord = [];
-        foreach($listFilter as $filter) {
+        foreach ($listFilter as $filter) {
             $explodeKeyWord = explode(PHP_EOL, $filter->keyword);
             $listKeyWord[$filter->title] = $explodeKeyWord;
         }
@@ -178,19 +178,6 @@ class BuildPCController extends Controller
         return \response()->json($data);
     }
 
-    public function addBuildPC($slug)
-    {
-        $dataProduct = $this->productRepository->productDetail($slug);
-        Cart::add(
-            $dataProduct->id,
-            $dataProduct->name,
-            $dataProduct->new_price ??  $dataProduct->price,
-            1,
-            ['image' => $dataProduct->image]
-        );
-        return redirect()->route('buildPC');
-    }
-
     public function getListMenu()
     {
         $menu = $this->buildPcRepository->index();
@@ -204,10 +191,16 @@ class BuildPCController extends Controller
         $dataProduct = $this->productRepository->getProductByArrayID($data);
 
         foreach ($dataProduct as $product) {
+            if ($product->new_price != null) {
+                $priceCart = str_replace('.', '', $product->new_price);
+            } else {
+                $priceCart = str_replace('.', '', $product->price);
+            }
+
             Cart::add(
                 $product->id,
                 $product->name,
-                $product->price,
+                $priceCart,
                 1,
                 ['image' => $product->image]
             );

@@ -75,7 +75,7 @@
                             <label for="fname" class="label">{{__('Tỉnh/Thành phố')}}<span class="require-field">*</span></label>
                         </div>
                         <select class="form-select form-select-sm mb-3 selected-name" id="city" aria-label=".form-select-sm" name="province">
-                            <option value="" selected>Chọn tỉnh thành</option>
+                            <option value="" selected>{{ __('Chọn tỉnh thành') }}</option>
                         </select>
                         @if ($errors->has('province'))
                         <span class="text-danger">{{ $errors->first('province') }}</span>
@@ -86,7 +86,7 @@
                             <label for="fname" class="label">{{__('Quận/huyện')}}<span class="require-field">*</span></label>
                         </div>
                         <select class="form-select form-select-sm mb-3 selected-name" id="district" aria-label=".form-select-sm" name="district">
-                            <option value="" selected>Chọn quận huyện</option>
+                            <option value="" selected>{{ __('Chọn quận huyện') }}</option>
                         </select>
                         @if ($errors->has('district'))
                         <span class="text-danger">{{ $errors->first('district') }}</span>
@@ -97,7 +97,7 @@
                             <label for="fname" class="label">{{__('Phường/xã')}}<span class="require-field">*</span></label>
                         </div>
                         <select class="form-select form-select-sm selected-name" id="ward" aria-label=".form-select-sm" name="ward">
-                            <option value="" selected>Chọn phường xã</option>
+                            <option value="" selected>{{ __('Chọn phường xã') }}</option>
                         </select>
                         @if ($errors->has('ward'))
                         <span class="text-danger">{{ $errors->first('ward') }}</span>
@@ -170,7 +170,7 @@
                             <label for="fname" class="label">{{__('Tỉnh/Thành phố')}}<span class="require-field">*</span></label>
                         </div>
                         <select class="form-select form-select-sm mb-3 selected-name" id="city" aria-label=".form-select-sm" name="province">
-                            <option value="" selected>Chọn tỉnh thành</option>
+                            <option value="" selected>{{ __('Chọn tỉnh thành') }}</option>
                         </select>
                         @if ($errors->has('province'))
                         <span class="text-danger">{{ $errors->first('province') }}</span>
@@ -192,7 +192,7 @@
                             <label for="fname" class="label">{{__('Phường/xã')}}<span class="require-field">*</span></label>
                         </div>
                         <select class="form-select form-select-sm selected-name" id="ward" aria-label=".form-select-sm" name="ward">
-                            <option value="" selected>Chọn phường xã</option>
+                            <option value="" selected>{{ __('Chọn phường xã') }}</option>
                         </select>
                         @if ($errors->has('ward'))
                         <span class="text-danger">{{ $errors->first('ward') }}</span>
@@ -268,7 +268,7 @@
                 <div class="basket">
                     <div class="summary1">
                         <h3 class="input-address">{{__('Hình thức thanh toán')}}</h3>
-                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" checked>{{__('Thanh toán sau khi nhận hàng')}}<br>
+                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" checked disabled>{{__('Thanh toán sau khi nhận hàng')}}<br>
                         <form>
                             <div class="basket-module">
                                 <label for="promo-code">{{__('Nhập mã khuyến mãi')}}</label>

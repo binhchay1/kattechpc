@@ -95,10 +95,6 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
 
     Route::get('/build-pc',  [BuildPCController::class, 'buildPC'])->name('buildPC');
     Route::get('/get-product',  [BuildPCController::class, 'getProduct'])->name('getProduct');
-    Route::get('/add-build-pc/{slug}',  [BuildPCController::class, 'addBuildPC'])->name('addBuildPC');
-    Route::get('/add-to-build-pc/{slug}', [BuildPCController::class, 'addBuildPC'])->name('add_to_BuildPC');
-    Route::get('/delete-build-pc/{id}',  [BuildPCController::class, 'deleteBuildPC'])->name('deleteBuildPC');
-    Route::get('/update-build-pc',  [BuildPCController::class, 'updateBuildPC'])->name('updateBuildPC');
     Route::get('/get-list-menu', [BuildPCController::class, 'getListMenu'])->name('get.list.menu');
     Route::get('/build-pc-checkout',  [BuildPCController::class, 'addToCartBuildPC'])->name('checkout.in.build');
     Route::post('/handle-session-build-pc',  [BuildPCController::class, 'handleSessionBuildPC'])->name('handle.session.build');
