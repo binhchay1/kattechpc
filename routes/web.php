@@ -105,7 +105,7 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     Route::get('/export-excel-build-pc',  [BuildPCController::class, 'exportExcelBuildPC'])->name('export.excel.build');
     Route::get('/print-build-pc',  [BuildPCController::class, 'printBuildPC'])->name('print.build');
     Route::get('/export-image-build-pc',  [BuildPCController::class, 'exportImageBuildPC'])->name('export.image.build');
-
+    Route::get('/cam-on',  [HomeController::class, 'registerSuccess'])->name('registerSuccess');
     Route::group(['prefix' => 'cart'], function () {
         Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
         Route::get('/add-to-cart/{slug}', [CartController::class, 'addToCart'])->name('add_to_cart');

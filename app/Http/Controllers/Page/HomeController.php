@@ -570,4 +570,11 @@ class HomeController extends Controller
             ]);
         }
     }
+    
+    public function registerSuccess()
+    {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+        return view('auth.register-success', compact('listCategory'));
+    }
 }
