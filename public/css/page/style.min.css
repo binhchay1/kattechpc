@@ -21,14 +21,6 @@ body a {
     color: #333e48;
 }
 
-img {
-    transition: transform 0.2s;
-}
-
-img:hover {
-    transform: scale(1);
-}
-
 .header {
     background: #fff;
 }
@@ -534,15 +526,7 @@ img:hover {
 }
 
 .flex-container a {
-    margin-left: 15px;
-}
-
-.flex-container > div {
-    background-color: #f1f1f1;
-    width: 200px;
-    margin: 10px;
-    text-align: center;
-    font-size: 30px;
+    margin-left: 30px;
 }
 
 .item-hot {
@@ -604,6 +588,10 @@ img:hover {
     height: 100%;
     position: relative;
     transition-property: transform;
+}
+
+.swiper-top-sale {
+    left: 48%;
 }
 
 .swiper-slide-image {
@@ -1378,8 +1366,9 @@ a {
     position: absolute;
     left: 200px;
     top: 0;
+    height: 464px;
     overflow: auto;
-    width: calc(100% + 180px);
+    width: 1000px;
     -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
     border-radius: 0 10px 10px 0;
@@ -1389,7 +1378,8 @@ a {
 }
 
 .global-menu-holder .sub-menu-list .sub-cat-2 {
-    padding: 0 10px 10px 0;
+    width: 22%;
+    padding: 0 15px 20px 0;
 }
 
 .global-menu-holder .sub-menu-list .cat-2 {
@@ -2079,6 +2069,14 @@ a {
     padding: 0 20px;
     line-height: 22px;
     font-size: 15px;
+}
+
+.scale-img img {
+    transition: transform 0.2s;
+}
+
+.scale-img:hover img {
+    transform: scale(1);
 }
 
 @media screen and (max-width: 768px) {

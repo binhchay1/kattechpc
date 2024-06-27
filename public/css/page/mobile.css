@@ -60,6 +60,7 @@
 
     .product-slide-main {
         width: 100%;
+        padding-left: 0;
     }
 
     .content-sale {
@@ -473,6 +474,24 @@
 
     .row-hamburger .search-mobile {
         margin-left: 15px;
+    }
+
+    .swiper-top-sale .swiper-slide1 {
+        width: 100%;
+    }
+
+    .swiper-slide {
+        width: 100%;
+        margin-right: 10px;
+    }
+
+    .product-item .product-image {
+        display: flex;
+        justify-content: center;
+    }
+
+    .box-banner-collection {
+        display: none;
     }
 }
 

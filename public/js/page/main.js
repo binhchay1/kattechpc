@@ -1,7 +1,13 @@
+var isMobileDetected = false;
+
 $(document).ready(function () {
     var modal = document.getElementById("submitGetNews");
     var btn = document.getElementById("news-button-summit");
     var span = document.getElementsByClassName("close")[0];
+
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        isMobileDetected = true;
+    }
 
     btn.onclick = function () {
         modal.style.display = "block";
@@ -42,10 +48,10 @@ $(document).ready(function () {
             currentPrice = new_price;
         }
 
-        if(status == 'available') {
+        if (status == 'available') {
             status = 'Còn hàng';
             $('#tooltips-status-storage').css('color', 'green');
-        } else if(status == 'out of stock') {
+        } else if (status == 'out of stock') {
             status = 'Hết hàng';
             $('#tooltips-status-storage').css('color', 'red');
         } else {
@@ -109,6 +115,10 @@ $(document).ready(function () {
             let idElementProduct = '.swiper-product-' + listCategory.default[k].slug;
             let listChildProduct = $(idElementProduct).children();
 
+            if(isMobileDetected) {
+                perTransProduct = window.innerWidth + 12;
+            }
+
             if (listChildProduct.length > defaultProduct) {
                 let stopProduct = listChildProduct.length - defaultProduct;
                 let countProduct = 0;
@@ -132,6 +142,10 @@ $(document).ready(function () {
     let defaultTopSale = 3;
     let perTransTopSale = 249;
 
+    if(isMobileDetected) {
+        perTransTopSale = window.innerWidth - 10;
+    }
+
     let listChildTopSale = $(".swiper-top-sale").children();
     if (listChildTopSale.length > defaultTopSale) {
         let stopTopSale = listChildTopSale.length - defaultTopSale;
@@ -150,23 +164,23 @@ $(document).ready(function () {
         }, 3000);
     }
 
-    let transTopSale1 = 0;
-    let defaultTopSale1 = 4;
-    let perTransTopSale1 = 285;
+    let transFooterSlide = 0;
+    let defaultFooterSlide = 5;
+    let perTransFooterSlide = 285;
 
-    let listChildTopSale1 = $(".swiper-top-sale1").children();
-    if (listChildTopSale1.length > defaultTopSale1) {
-        let stopTopSale1 = listChildTopSale1.length - defaultTopSale1;
-        let countTopSale1 = 0;
+    let listChildFooterSlide = $(".swiper-footer-slide").children();
+    if (listChildFooterSlide.length > defaultFooterSlide) {
+        let stopFooterSlide = listChildFooterSlide.length - defaultFooterSlide;
+        let countFooterSlide = 0;
         setInterval(function () {
-            if (countTopSale1 == stopTopSale1) {
-                transTopSale1 = 0;
-                countTopSale1 = 0;
-                $('.swiper-top-sale1').css('transform', 'translate3d(' + transTopSale1 + 'px, 0px, 0px)');
+            if (countFooterSlide == stopFooterSlide) {
+                transFooterSlide = 0;
+                countFooterSlide = 0;
+                $('.swiper-footer-slide').css('transform', 'translate3d(' + transFooterSlide + 'px, 0px, 0px)');
             } else {
-                transTopSale1 = transTopSale1 - perTransTopSale1;
-                countTopSale1 += 1;
-                $('.swiper-top-sale1').css('transform', 'translate3d(' + transTopSale1 + 'px, 0px, 0px)');
+                transFooterSlide = transFooterSlide - perTransFooterSlide;
+                countFooterSlide += 1;
+                $('.swiper-footer-slide').css('transform', 'translate3d(' + transFooterSlide + 'px, 0px, 0px)');
             }
 
         }, 3000);
