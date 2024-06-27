@@ -1359,8 +1359,9 @@ a {
     position: absolute;
     left: 200px;
     top: 0;
+    height: 464px;
     overflow: auto;
-    width: calc(100% + 180px);
+    width: 1000px;
     -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
     border-radius: 0 10px 10px 0;
@@ -1370,7 +1371,8 @@ a {
 }
 
 .global-menu-holder .sub-menu-list .sub-cat-2 {
-    padding: 0 10px 10px 0;
+    width: 22%;
+    padding: 0 15px 20px 0;
 }
 
 .global-menu-holder .sub-menu-list .cat-2 {

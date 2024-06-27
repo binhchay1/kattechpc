@@ -440,11 +440,12 @@
         </div>
     </div>
 </section>
+
 @if($listSlideFooter)
 <section class="top-sale" id="slide-footer">
     <div class="flash-sale-area">
         <div class="swiper">
-            <div class="swiper-wrapper swiper-top-sale1 ">
+            <div class="swiper-wrapper swiper-footer-slide">
                 @foreach($listSlideFooter as $slide)
                 <div class="swiper-slide2" role="group" style="width: 286px;">
                     <div class="product-item1" style="min-height: 0 !important;">
