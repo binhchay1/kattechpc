@@ -1,7 +1,13 @@
+var isMobileDetected = false;
+
 $(document).ready(function () {
     var modal = document.getElementById("submitGetNews");
     var btn = document.getElementById("news-button-summit");
     var span = document.getElementsByClassName("close")[0];
+
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        isMobileDetected = true;
+    }
 
     btn.onclick = function () {
         modal.style.display = "block";
@@ -42,10 +48,10 @@ $(document).ready(function () {
             currentPrice = new_price;
         }
 
-        if(status == 'available') {
+        if (status == 'available') {
             status = 'Còn hàng';
             $('#tooltips-status-storage').css('color', 'green');
-        } else if(status == 'out of stock') {
+        } else if (status == 'out of stock') {
             status = 'Hết hàng';
             $('#tooltips-status-storage').css('color', 'red');
         } else {
@@ -109,6 +115,10 @@ $(document).ready(function () {
             let idElementProduct = '.swiper-product-' + listCategory.default[k].slug;
             let listChildProduct = $(idElementProduct).children();
 
+            if(isMobileDetected) {
+                perTransProduct = window.innerWidth + 12;
+            }
+
             if (listChildProduct.length > defaultProduct) {
                 let stopProduct = listChildProduct.length - defaultProduct;
                 let countProduct = 0;
@@ -131,6 +141,10 @@ $(document).ready(function () {
     let transTopSale = 0;
     let defaultTopSale = 3;
     let perTransTopSale = 249;
+
+    if(isMobileDetected) {
+        perTransTopSale = window.innerWidth - 10;
+    }
 
     let listChildTopSale = $(".swiper-top-sale").children();
     if (listChildTopSale.length > defaultTopSale) {

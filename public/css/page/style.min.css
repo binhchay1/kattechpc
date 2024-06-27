@@ -515,15 +515,7 @@ body a {
 }
 
 .flex-container a {
-    margin-left: 15px;
-}
-
-.flex-container > div {
-    background-color: #f1f1f1;
-    width: 200px;
-    margin: 10px;
-    text-align: center;
-    font-size: 30px;
+    margin-left: 30px;
 }
 
 .item-hot {
@@ -585,6 +577,10 @@ body a {
     height: 100%;
     position: relative;
     transition-property: transform;
+}
+
+.swiper-top-sale {
+    left: 48%;
 }
 
 .swiper-slide-image {
