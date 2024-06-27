@@ -115,7 +115,7 @@ $(document).ready(function () {
             let idElementProduct = '.swiper-product-' + listCategory.default[k].slug;
             let listChildProduct = $(idElementProduct).children();
 
-            if(isMobileDetected) {
+            if (isMobileDetected) {
                 perTransProduct = window.innerWidth + 12;
             }
 
@@ -142,7 +142,7 @@ $(document).ready(function () {
     let defaultTopSale = 3;
     let perTransTopSale = 249;
 
-    if(isMobileDetected) {
+    if (isMobileDetected) {
         perTransTopSale = window.innerWidth - 10;
     }
 
@@ -186,38 +186,74 @@ $(document).ready(function () {
         }, 3000);
     }
 
-    let transCustomerReview = 0;
-    let defaultCustomerReview = 4;
-    let perTransCustomerReview = 350;
-    let currentCountPagination = 1;
+    if (isMobileDetected) {
+        let transCustomerReview = 0;
+        let defaultCustomerReview = 1;
+        let perTransCustomerReview = 380;
+        let currentCountPagination = 1;
 
-    let listChildCustomerReview = $(".swiper-review-customer").children();
-    if (listChildCustomerReview.length > defaultCustomerReview) {
-        let stopCustomerReview = listChildCustomerReview.length - defaultCustomerReview;
-        let countCustomerReview = 0;
-        let countPagination = 1;
-        setInterval(function () {
-            if (countCustomerReview == stopCustomerReview) {
-                transCustomerReview = 0;
-                countCustomerReview = 0;
-                countPagination = 1;
+        let listChildCustomerReview = $(".swiper-review-customer").children();
+        if (listChildCustomerReview.length > defaultCustomerReview) {
+            let stopCustomerReview = listChildCustomerReview.length - defaultCustomerReview;
+            let countCustomerReview = 0;
+            let countPagination = 1;
+            setInterval(function () {
+                if (countCustomerReview == stopCustomerReview) {
+                    transCustomerReview = 0;
+                    countCustomerReview = 0;
+                    countPagination = 1;
 
-                $("span[data-id='swiper-pagination-bullet-" + currentCountPagination + "']").removeClass('swiper-pagination-bullet-active');
-                $("span[data-id='swiper-pagination-bullet-" + countPagination + "']").addClass('swiper-pagination-bullet-active');
-                $('.swiper-review-customer').css('transform', 'translate3d(' + transCustomerReview + 'px, 0px, 0px)');
-            } else {
-                transCustomerReview = transCustomerReview - perTransCustomerReview;
-                countCustomerReview += 1;
-                let nextCountPagination = countPagination + 1;
+                    $("span[data-id='swiper-pagination-bullet-" + currentCountPagination + "']").removeClass('swiper-pagination-bullet-active');
+                    $("span[data-id='swiper-pagination-bullet-" + countPagination + "']").addClass('swiper-pagination-bullet-active');
+                    $('.swiper-review-customer').css('transform', 'translate3d(' + transCustomerReview + 'px, 0px, 0px)');
+                } else {
+                    transCustomerReview = transCustomerReview - perTransCustomerReview;
+                    countCustomerReview += 1;
+                    let nextCountPagination = countPagination + 1;
 
-                $("span[data-id='swiper-pagination-bullet-" + countPagination + "']").removeClass('swiper-pagination-bullet-active');
-                $("span[data-id='swiper-pagination-bullet-" + nextCountPagination + "']").addClass('swiper-pagination-bullet-active');
-                $('.swiper-review-customer').css('transform', 'translate3d(' + transCustomerReview + 'px, 0px, 0px)');
-                currentCountPagination = countPagination += 1;
-            }
+                    $("span[data-id='swiper-pagination-bullet-" + countPagination + "']").removeClass('swiper-pagination-bullet-active');
+                    $("span[data-id='swiper-pagination-bullet-" + nextCountPagination + "']").addClass('swiper-pagination-bullet-active');
+                    $('.swiper-review-customer').css('transform', 'translate3d(' + transCustomerReview + 'px, 0px, 0px)');
+                    currentCountPagination = countPagination += 1;
+                }
 
-        }, 3000);
+            }, 3000);
+        }
+    } else {
+        let transCustomerReview = 0;
+        let defaultCustomerReview = 4;
+        let perTransCustomerReview = 350;
+        let currentCountPagination = 1;
+
+        let listChildCustomerReview = $(".swiper-review-customer").children();
+        if (listChildCustomerReview.length > defaultCustomerReview) {
+            let stopCustomerReview = listChildCustomerReview.length - defaultCustomerReview;
+            let countCustomerReview = 0;
+            let countPagination = 1;
+            setInterval(function () {
+                if (countCustomerReview == stopCustomerReview) {
+                    transCustomerReview = 0;
+                    countCustomerReview = 0;
+                    countPagination = 1;
+
+                    $("span[data-id='swiper-pagination-bullet-" + currentCountPagination + "']").removeClass('swiper-pagination-bullet-active');
+                    $("span[data-id='swiper-pagination-bullet-" + countPagination + "']").addClass('swiper-pagination-bullet-active');
+                    $('.swiper-review-customer').css('transform', 'translate3d(' + transCustomerReview + 'px, 0px, 0px)');
+                } else {
+                    transCustomerReview = transCustomerReview - perTransCustomerReview;
+                    countCustomerReview += 1;
+                    let nextCountPagination = countPagination + 1;
+
+                    $("span[data-id='swiper-pagination-bullet-" + countPagination + "']").removeClass('swiper-pagination-bullet-active');
+                    $("span[data-id='swiper-pagination-bullet-" + nextCountPagination + "']").addClass('swiper-pagination-bullet-active');
+                    $('.swiper-review-customer').css('transform', 'translate3d(' + transCustomerReview + 'px, 0px, 0px)');
+                    currentCountPagination = countPagination += 1;
+                }
+
+            }, 3000);
+        }
     }
+
 
     $('.global-menu-container').hover(function () {
         $('.global-menu-holder').show();

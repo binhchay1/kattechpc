@@ -476,6 +476,10 @@
         margin-left: 15px;
     }
 
+    .swiper-top-sale {
+        left: 0;
+    }
+
     .swiper-top-sale .swiper-slide1 {
         width: 100%;
     }
@@ -492,6 +496,10 @@
 
     .box-banner-collection {
         display: none;
+    }
+
+    .swiper-review-customer .swiper-wrapper .swiper-slide {
+        width: 380px !important;
     }
 }
 

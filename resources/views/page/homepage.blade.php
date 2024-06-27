@@ -182,7 +182,7 @@
                 </a>
                 @endif
             </div>
-            <div class="swiper-wrapper swiper-top-sale" style="left: 48%;">
+            <div class="swiper-wrapper swiper-top-sale">
                 @foreach($listHotSale as $product)
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
