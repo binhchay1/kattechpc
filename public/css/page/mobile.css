@@ -1,4 +1,7 @@
 @media screen and (max-width: 992px) {
+    #slide-footer{
+        display: none;
+    }
     body {
         min-width: 100% !important;
     }

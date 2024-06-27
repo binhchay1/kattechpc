@@ -20,11 +20,16 @@ class LayoutController extends Controller
     {
         $layout = $this->layoutRepository->getListLayout();
         $listSlide = [];
+        $listSlideFooter = [];
         $listFlashSale = [];
         $listHotSale = [];
         if (!empty($layout)) {
             if (isset($layout->slide_thumbnail)) {
                 $listSlide = json_decode($layout->slide_thumbnail, true);
+            }
+    
+            if (isset($layout->footer_slide_thumbnail)) {
+                $listSlideFooter = json_decode($layout->footer_slide_thumbnail, true);
             }
 
             if (isset($layout->flash_sale_list_product_id)) {
@@ -41,7 +46,7 @@ class LayoutController extends Controller
             }
         }
 
-        return view('admin.layout.index', compact('layout', 'listSlide', 'listFlashSale', 'listHotSale'));
+        return view('admin.layout.index', compact('layout', 'listSlide', 'listFlashSale', 'listHotSale', 'listSlideFooter'));
     }
 
     public function storeLayout(Request $request)
@@ -162,6 +167,65 @@ class LayoutController extends Controller
             $this->layoutRepository->store($data);
         }
 
+        return back()->with('success', __('Ảnh được xóa thành công'));
+    }
+    
+    public function footerSlide(Request $request)
+    {
+        $input = $request->except(['_token']);
+        if (isset($input['slide_image_footer'])) {
+            $input['slide_image_footer']->move(public_path('images/upload/layout/'), $input['slide_image_footer']->getClientOriginalName());
+            $getSlideFooter = $this->layoutRepository->getSlideFooter();
+            if (empty($getSlideFooter)) {
+                $arrSlide[] = [
+                    'image_footer' => '/images/upload/layout/' . $input['slide_image_footer']->getClientOriginalName(),
+                    'url_footer' => $input['slide_url_footer']
+                ];
+            } else {
+                $arrSlide = json_decode($getSlideFooter->footer_slide_thumbnail, true);
+                $arrSlide[] = [
+                    'image_footer' => '/images/upload/layout/' . $input['slide_image_footer']->getClientOriginalName(),
+                    'url_footer' => $input['slide_url_footer']
+                ];
+            }
+            
+            $data = [
+                'footer_slide_thumbnail' => json_encode($arrSlide)
+            ];
+            
+            $getLayout = $this->layoutRepository->getListLayout();
+            if (!empty($getLayout)) {
+                $this->layoutRepository->update($getLayout->id, $data);
+            } else {
+                $this->layoutRepository->store($data);
+            }
+        }
+        
+        return back()->with('success', __('Ảnh được thêm thành công'));
+    }
+    
+    public function deleteSlideFooter($index)
+    {
+        $getSlide = $this->layoutRepository->getSlide();
+        $arrSlide = json_decode($getSlide->slide_thumbnail, true);
+        $arrNew = [];
+        foreach ($arrSlide as $key => $value) {
+            if ($key == $index) {
+                continue;
+            }
+            $arrNew[] = $value;
+        }
+        
+        $data = [
+            'slide_thumbnail' => json_encode($arrNew)
+        ];
+        $getLayout = $this->layoutRepository->getListLayout();
+        if (!empty($getLayout)) {
+            $this->layoutRepository->update($getLayout->id, $data);
+        } else {
+            $this->layoutRepository->store($data);
+        }
+        
         return back()->with('success', __('Ảnh được xóa thành công'));
     }
 

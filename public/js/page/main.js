@@ -140,6 +140,28 @@ $(document).ready(function () {
         }, 3000);
     }
 
+    let transTopSale1 = 0;
+    let defaultTopSale1 = 4;
+    let perTransTopSale1 = 285;
+
+    let listChildTopSale1 = $(".swiper-top-sale1").children();
+    if (listChildTopSale1.length > defaultTopSale1) {
+        let stopTopSale1 = listChildTopSale1.length - defaultTopSale1;
+        let countTopSale1 = 0;
+        setInterval(function () {
+            if (countTopSale1 == stopTopSale1) {
+                transTopSale1 = 0;
+                countTopSale1 = 0;
+                $('.swiper-top-sale1').css('transform', 'translate3d(' + transTopSale1 + 'px, 0px, 0px)');
+            } else {
+                transTopSale1 = transTopSale1 - perTransTopSale1;
+                countTopSale1 += 1;
+                $('.swiper-top-sale1').css('transform', 'translate3d(' + transTopSale1 + 'px, 0px, 0px)');
+            }
+
+        }, 3000);
+    }
+
     let transCustomerReview = 0;
     let defaultCustomerReview = 4;
     let perTransCustomerReview = 350;
