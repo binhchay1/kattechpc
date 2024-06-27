@@ -499,6 +499,17 @@ body a {
     margin-top: 50px;
 }
 
+#slide-footer {
+    width: var(--flex-width);
+    margin: 0 auto;
+    border-radius: 10px;
+    margin-top: 50px;
+    background: repeating-linear-gradient(to right, #fd7272 0, var(--color-primary) 50%, #f50c0c 100%);
+    animation: 2s linear infinite forwards gradient;
+    background-size: 200% auto;
+    background-position: 0 100%;
+}
+
 .category {
     width: var(--flex-width);
     margin: 0 auto;

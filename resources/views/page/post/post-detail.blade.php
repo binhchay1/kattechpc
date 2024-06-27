@@ -14,7 +14,7 @@
 @endsection
 
 @section('content')
-<div class="row" id="content-post">
+<div class="row " id="content-post">
     <div class="leftcolumn">
         <div class="card d-flex" style="flex-direction: column;">
             <div class="d-flex flex-direction-column">
@@ -38,28 +38,25 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="data-post">
             <p class="">{!! $post->content !!}</p>
         </div>
     </div>
 
-    <div class="post-related ">
-        <span class="post-detail">{{__("Bài viết liên quan")}}</span>
-    </div>
-
-    <div class="grid-container">
+    <div class="product-related">
+        <h3 style="font-size: 25px"> {{ __('Tin tức liên quan') }}</h3>
         @foreach($listPost as $post)
-        <div class="item d-flex">
-            <div>
-                <img class="image-post" src="{{ asset($post->thumbnail) }}">
+            <div id="content" class="d-flex">
+                <div id="left">
+                    <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="image-post" />
+                </div>
+                <div id="content-right">
+                    <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
+                    <h3> {{$text}}</h3>
+                </div>
             </div>
-            <div>
-                <a href="{{ route('post.detail', $post['slug']) }}">
-                    <p>{{ $post->title }}</p>
-                </a>
-            </div>
-        </div>
         @endforeach
+
     </div>
 
 </div>

@@ -442,7 +442,7 @@
 </section>
 
 @if($listSlideFooter)
-<section class="top-sale" id="slide-footer">
+<section class="" id="slide-footer">
     <div class="flash-sale-area">
         <div class="swiper">
             <div class="swiper-wrapper swiper-footer-slide">
