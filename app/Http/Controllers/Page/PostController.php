@@ -31,7 +31,6 @@ class PostController extends Controller
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
 
-        $listPost = $this->postRepository->index();
         $post = $this->postRepository->detail($slug);
 
         $getCategory = $this->categoryPostRepository->show($post->category_id);

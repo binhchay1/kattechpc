@@ -179,13 +179,11 @@ class LayoutController extends Controller
             if (empty($getSlideFooter)) {
                 $arrSlide[] = [
                     'image_footer' => '/images/upload/layout/' . $input['slide_image_footer']->getClientOriginalName(),
-                    'url_footer' => $input['slide_url_footer']
                 ];
             } else {
                 $arrSlide = json_decode($getSlideFooter->footer_slide_thumbnail, true);
                 $arrSlide[] = [
                     'image_footer' => '/images/upload/layout/' . $input['slide_image_footer']->getClientOriginalName(),
-                    'url_footer' => $input['slide_url_footer']
                 ];
             }
             
