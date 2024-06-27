@@ -906,6 +906,18 @@ body a {
     overflow: hidden;
 }
 
+.global-tooltip table {
+    width: 100%;
+    padding: 0 20px;
+    margin-top: 20px;
+}
+
+#tooltips-price {
+    color: var(--color-primary);
+    font-size: 14px;
+    font-weight: bold;
+}
+
 .tooltip-name,
 .tooltip-name-buildpc {
     -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
@@ -968,6 +980,9 @@ body a {
 .tooltip-list-gift-buildpc {
     margin-top: 1px;
     margin-bottom: 10px;
+    padding: 0 20px;
+    font-size: 16px;
+    line-height: 23px;
 }
 
 #tooltips-status-storage {
@@ -2009,6 +2024,39 @@ a {
     -webkit-transition: 0.5s all;
     -o-transition: 0.5s all;
     transition: 0.5s all;
+}
+
+.hover_name {
+    display: block;
+    padding: 15px 10px;
+    font-size: 15px;
+    overflow: hidden;
+    line-height: 18px;
+    background: linear-gradient(to right, #5d2323, var(--color-primary));
+    color: #fff;
+    word-break: break-word;
+    border-radius: 8px 8px 0 0;
+    margin: 1px;
+    font-weight: 600;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.tooltip-title {
+    display: inline-block;
+    background: var(--color-primary);
+    color: #fff;
+    border-radius: 3px;
+    padding: 5px 12px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    line-height: 16px;
+}
+
+#tooltip-detail {
+    padding: 0 20px;
+    line-height: 22px;
+    font-size: 15px;
 }
 
 @media screen and (max-width: 768px) {

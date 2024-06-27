@@ -261,7 +261,7 @@
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
-                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
+                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                             @if($product->hot_status == 1)
                             <span class="p-type-holder">
                                 <i class="p-icon-type p-icon-hot"></i>
@@ -426,16 +426,15 @@
                 $totalPag = count($listCustomerReview) - 4 + 1;
                 @endphp
 
-                @for($i = 0; $i < $totalPag; $i++) @if($i==0)
-                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
-                @else
-                <span class="swiper-pagination-bullet" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
-                @endif
-                @endfor
+                @for($i = 0; $i < $totalPag; $i++) @if($i==0) <span class="swiper-pagination-bullet swiper-pagination-bullet-active" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
+                    @else
+                    <span class="swiper-pagination-bullet" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
+                    @endif
+                    @endfor
 
-                @else
-                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span>
-                @endif
+                    @else
+                    <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span>
+                    @endif
             </div>
             <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
         </div>
@@ -445,13 +444,13 @@
 <section class="top-sale" id="slide-footer">
     <div class="flash-sale-area">
         <div class="swiper">
-            <div class="swiper-wrapper swiper-top-sale1 " >
+            <div class="swiper-wrapper swiper-top-sale1 ">
                 @foreach($listSlideFooter as $slide)
-                    <div class="swiper-slide2" role="group" style="width: 286px;">
-                        <div class="product-item1" style="min-height: 0 !important;">
-                                <img src="{{ $slide['image_footer'] }}" width="275" height="300" class="lazy">
-                        </div>
+                <div class="swiper-slide2" role="group" style="width: 286px;">
+                    <div class="product-item1" style="min-height: 0 !important;">
+                        <img src="{{ $slide['image_footer'] }}" width="275" height="300" class="lazy">
                     </div>
+                </div>
                 @endforeach
             </div>
         </div>

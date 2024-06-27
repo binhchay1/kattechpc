@@ -33,21 +33,24 @@ $(document).ready(function () {
         let sale_detail = $(this).attr('data-sale-detail');
         let status_guarantee = $(this).attr('data-status-guarantee');
         let status = $(this).attr('data-status');
+        let detail = JSON.parse($(this).attr('data-detail'));
+        let currentPrice = '';
 
         if (new_price == '' || new_price == null) {
-            $('#title-new-price').hide();
-            $('#tooltips-new-price').hide();
-            $('#tooltips-sale-price').hide();
-            $('#tooltips-price').removeClass('price-with-new-price');
+            currentPrice = price;
         } else {
-            $('#title-new-price').show();
-            $('#tooltips-new-price').show();
-            $('#tooltips-sale-price').show();
-            let priceCur = parseInt(price.replaceAll('.', ''));
-            let newPriceCur = parseInt(new_price.replaceAll('.', ''));
-            let calPriceCur = Math.floor(100 - ((newPriceCur / priceCur) * 100));
-            $('#tooltips-price').addClass('price-with-new-price');
-            $('#tooltips-sale-price').html('-' + calPriceCur + '%');
+            currentPrice = new_price;
+        }
+
+        if(status == 'available') {
+            status = 'Còn hàng';
+            $('#tooltips-status-storage').css('color', 'green');
+        } else if(status == 'out of stock') {
+            status = 'Hết hàng';
+            $('#tooltips-status-storage').css('color', 'red');
+        } else {
+            status = 'Đặt hàng';
+            $('#tooltips-status-storage').css('color', 'yellow');
         }
 
         if (sale_detail == '' || sale_detail == null) {
@@ -56,9 +59,16 @@ $(document).ready(function () {
             $('.tooltip-list-gift').show();
         }
 
+        $('#tooltip-detail').empty();
+        for (let i in detail) {
+            let stringAppend = `- ` + i + `: ` + detail[i] + `<br>`;
+
+            $('#tooltip-detail').append(stringAppend);
+        }
+
         $('.global-tooltip .tooltip-name').html(title);
         $('#tooltips-price').html(price);
-        $('#tooltips-new-price').html(new_price);
+        $('#tooltips-price').html(currentPrice);
         $('#tooltips-status-guarantee').html(status_guarantee);
         $('#tooltips-status-storage').html(status);
         $('.tooltip-list-gift').html(sale_detail);
