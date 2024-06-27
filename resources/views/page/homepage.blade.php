@@ -441,6 +441,23 @@
         </div>
     </div>
 </section>
+@if($listSlideFooter)
+<section class="top-sale" id="slide-footer">
+    <div class="flash-sale-area">
+        <div class="swiper">
+            <div class="swiper-wrapper swiper-top-sale1 " >
+                @foreach($listSlideFooter as $slide)
+                    <div class="swiper-slide2" role="group" style="width: 286px;">
+                        <div class="product-item1" style="min-height: 0 !important;">
+                                <img src="{{ $slide['image_footer'] }}" width="275" height="300" class="lazy">
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</section>
+@endif
 
 @include('includes.tooltips')
 @endsection
