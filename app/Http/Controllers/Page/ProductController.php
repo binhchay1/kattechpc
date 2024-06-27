@@ -14,6 +14,7 @@ use App\Repositories\SessionProductViewedRepository;
 use App\Repositories\YoutubeChannelRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Enums\Utility;
 use Cache;
 use Illuminate\Support\Facades\DB;
 
@@ -27,6 +28,7 @@ class ProductController extends Controller
     protected $sessionProductViewedRepository;
     protected $postRepository;
     protected $youtubeChannelRepository;
+    protected $utility;
 
     public function __construct(
         ProductRepository $productRepository,
@@ -36,7 +38,8 @@ class ProductController extends Controller
         CategoryRepository $categoryRepository,
         LayoutRepository $layoutRepository,
         SessionProductViewedRepository $sessionProductViewedRepository,
-        YoutubeChannelRepository $youtubeChannelRepository
+        YoutubeChannelRepository $youtubeChannelRepository,
+        Utility $utility
     ) {
         $this->postRepository = $postRepository;
         $this->productRepository = $productRepository;
@@ -46,6 +49,7 @@ class ProductController extends Controller
         $this->layoutRepository = $layoutRepository;
         $this->sessionProductViewedRepository = $sessionProductViewedRepository;
         $this->youtubeChannelRepository = $youtubeChannelRepository;
+        $this->utility = $utility;
     }
 
     public function productDetail(Request $request, $slug)

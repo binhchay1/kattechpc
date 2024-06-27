@@ -17,7 +17,6 @@ use App\Repositories\LayoutRepository;
 use App\Repositories\PostRepository;
 use App\Repositories\PromotionRepository;
 use Illuminate\Http\Request;
-use App\Enums\Product;
 use App\Repositories\BrandRepository;
 use App\Repositories\CustomerReviewRepository;
 use App\Repositories\YoutubeChannelRepository;
@@ -369,7 +368,7 @@ class HomeController extends Controller
             ]);
         }
     }
-    
+
     public function registerSuccess()
     {
         $key = 'menu_homepage';

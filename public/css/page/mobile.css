@@ -377,11 +377,11 @@
     }
 
     .main-menu-category {
-        margin-top: 20px;
+        margin-top: 40px;
         position: absolute;
         top: 50px;
         left: 0;
-        width: 80%;
+        width: 100%;
         height: 100%;
         flex-direction: column;
         background-color: white;
@@ -430,7 +430,7 @@
         display: block;
         position: absolute;
         color: black;
-        top: 35px;
+        top: 40px;
         right: 30px;
         font-size: 2rem;
         margin-left: 10px;
@@ -456,6 +456,10 @@
 
     .global-fixed-left {
         display: none;
+    }
+
+    .row-hamburger .search-mobile {
+        margin-left: 15px;
     }
 }
 
