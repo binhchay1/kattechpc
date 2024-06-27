@@ -64,13 +64,26 @@
                             <i class="fa badge" value="{{ count(Cart::getContent()) }}">&#xf07a;</i> <span></span>
                         </a>
                     </div>
+
+                    <div class="menu-btn">
+                        <i class="fa fa-bars" id="btn-toggle"></i>
+                    </div>
                 </div>
 
-                <div class="menu-btn">
-                    <i class="fa fa-bars" id="btn-toggle"></i>
-                </div>
                 <nav class="navbar">
                     <ul class="main-menu-category">
+                        @foreach($listCategory['default'] as $category)
+                        @if($category->status == 0)
+                        @continue
+                        @endif
+                        <li class="list-items">
+                            <a href="{{ route('showDataCategory', $category->slug) }}" class="cat-1">
+                                <img class="lazy icon-menu entered loaded" alt="{{ $category->name }}" width="1" height="1" src="{{ asset($category->image) }}">
+                                <span class="cat-title line-clamp-1">{{ $category->name }}</span>
+                            </a>
+                        </li>
+                        @endforeach
+                        <hr>
                         <li class="list-items"><a href="{{ route('post') }}"><i class="fa fa-newspaper"></i>{{__("Tin công nghệ")}}</a></li>
                         <li class="list-items"><a href="{{ route('payment') }}"><i class="fa fa-money-check"></i>{{__("Hướng dẫn thanh toán")}}</a></li>
                         <li class="list-items"><a href="{{ route('policy') }}"><i class="fa fa-shield-alt"></i>{{__("Chính sách bảo hành")}}</a></li>
@@ -97,9 +110,6 @@
                                 <a href="/login" class="sep-item-link" target="_blank"><i class="fa fa-home"></i> {{ __('Đăng nhập') }}</a>
                             </div>
                             @endif
-                        </li>
-                        <li>
-                            @include('includes.home-page-menu')
                         </li>
                     </ul>
                 </nav>

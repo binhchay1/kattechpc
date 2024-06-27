@@ -404,6 +404,19 @@
         list-style:none;
     }
 
+    .main-menu-category hr {
+        border: 1px solid #f3070f;
+        width: 90%;
+    }
+
+    .main-menu-category .list-items i {
+        margin-right: 10px;
+    }
+
+    .main-menu-category .list-items img {
+        margin-right: 10px;
+    }
+
     .inline-search1 {
         height: 42px;
         margin: 0;
