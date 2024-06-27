@@ -42,14 +42,10 @@
             <p class="">{!! $post->content !!}</p>
         </div>
     </div>
-<<<<<<< Updated upstream
-=======
 
     <div class="post-related ">
         <span class="post-detail">{{__("Bài viết liên quan")}}</span>
     </div>
-
-
 
     <div class="grid-container">
         @foreach($listPost as $post)
@@ -66,6 +62,5 @@
         @endforeach
     </div>
 
->>>>>>> Stashed changes
 </div>
 @endsection
