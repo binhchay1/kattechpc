@@ -507,11 +507,15 @@ body a {
 
 .flex-container {
     display: flex;
-    background-color: #eee;
     border-radius: 5px;
-    justify-content: space-around;
+    justify-content: start;
     padding-top: 15px;
     padding-bottom: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.flex-container a {
+    margin-left: 15px;
 }
 
 .flex-container > div {
@@ -1435,7 +1439,6 @@ a {
 
 .category-home-page .policy-title {
     margin-top: 10px;
-    margin-left: 10px;
 }
 
 .global-menu-holder .cat-title {
