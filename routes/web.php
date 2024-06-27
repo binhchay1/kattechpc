@@ -101,7 +101,7 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     Route::get('/export-excel-build-pc',  [BuildPCController::class, 'exportExcelBuildPC'])->name('export.excel.build');
     Route::get('/print-build-pc',  [BuildPCController::class, 'printBuildPC'])->name('print.build');
     Route::get('/export-image-build-pc',  [BuildPCController::class, 'exportImageBuildPC'])->name('export.image.build');
-
+    Route::get('/cam-on',  [HomeController::class, 'registerSuccess'])->name('registerSuccess');
     Route::group(['prefix' => 'cart'], function () {
         Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
         Route::get('/add-to-cart/{slug}', [CartController::class, 'addToCart'])->name('add_to_cart');
@@ -134,6 +134,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
         Route::post('/store-hot-sale', [LayoutController::class, 'storeHotSale'])->name('admin.store.hot.sale');
         Route::post('/store-slide', [LayoutController::class, 'storeSlide'])->name('admin.store.slide');
         Route::get('/delete-slide/{index}', [LayoutController::class, 'deleteSlide'])->name('admin.delete.slide');
+        Route::post('/store-footer-slide', [LayoutController::class, 'footerSlide'])->name('admin.store.footerSlide');
+        Route::get('/delete-slide-footer/{index}', [LayoutController::class, 'deleteSlideFooter'])->name('admin.delete.footerSlide');
         Route::get('/delete-thumb-layout', [LayoutController::class, 'deleteThumbLayout']);
     });
 

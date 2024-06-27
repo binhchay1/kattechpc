@@ -36,6 +36,10 @@ class LayoutRepository extends BaseRepository
     {
         return $this->model->select('slide_thumbnail')->first();
     }
+    public function getSlideFooter()
+    {
+        return $this->model->select('footer_slide_thumbnail')->first();
+    }
 
     public function getFlashSale()
     {

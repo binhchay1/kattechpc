@@ -247,14 +247,19 @@ class HomeController extends Controller
         $listPromotion = $this->promotionRepository->getListPromotionHomePage();
         $layout = $this->layoutRepository->getListLayout();
         $getSlide = $this->layoutRepository->getSlide();
+        $getSlideFooter = $this->layoutRepository->getSlideFooter();
         $getFlashSale = $this->layoutRepository->getFlashSale();
         $listYoutube = $this->youtubeChannelRepository->getListYoutube();
         $listCustomerReview = $this->customerReviewRepository->getListCustomerReview();
         $listFlashSale = [];
         $listSlide = [];
+        $listSlideFooter = [];
 
         if (isset($getSlide->slide_thumbnail)) {
             $listSlide = json_decode($getSlide->slide_thumbnail, true);
+        }
+        if (isset($getSlideFooter->footer_slide_thumbnail)) {
+            $listSlideFooter = json_decode($getSlideFooter->footer_slide_thumbnail, true);
         }
 
         if (!empty($getFlashSale)) {
@@ -292,6 +297,7 @@ class HomeController extends Controller
             'getFlashSale',
             'listYoutube',
             'listCustomerReview',
+            'listSlideFooter'
         ));
     }
 
@@ -362,5 +368,12 @@ class HomeController extends Controller
                 'custom' => __('Email hoặc mật khẩu không chính xác')
             ]);
         }
+    }
+    
+    public function registerSuccess()
+    {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+        return view('auth.register-success', compact('listCategory'));
     }
 }
