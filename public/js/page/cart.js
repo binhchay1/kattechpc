@@ -91,15 +91,12 @@ function deleteSales(url) {
 }
 
 function downloadCartExcel() {
-    let urlExport = '/export-excel-cart';
+    let urlExport = '/cart/export-excel-cart';
     let fileName = 'cart-kattech.xlsx';
 
     $.ajax({
         type: "GET",
         url: urlExport,
-        data: {
-            a: currentArea
-        },
         cache: false,
         xhr: function () {
             var xhr = new XMLHttpRequest();
@@ -136,29 +133,17 @@ function downloadCartExcel() {
 }
 
 function downloadCartImage() {
-    let urlExportImage = '/export-image-build-pc';
-    if (currentArea == 1) {
-        listCheck = currentArrayProduct.listArea1
-    } else {
-        listCheck = currentArrayProduct.listArea2
-    }
+    let urlExportImage = '/cart/export-image-cart';
 
-    if (listCheck.length == 0) {
-        $('#modal-no-item-print').css('display', 'flex');
-    } else {
-        $.ajax({
-            type: "GET",
-            url: urlExportImage,
-            data: {
-                a: currentArea
-            },
-            success: function (data) {
-                $('#area-export-image').html(data);
-                capture();
-                $('#area-export-image').empty();
-            }
-        });
-    }
+    $.ajax({
+        type: "GET",
+        url: urlExportImage,
+        success: function (data) {
+            $('#area-export-image').html(data);
+            capture();
+            $('#area-export-image').empty();
+        }
+    });
 }
 
 function capture() {
@@ -181,6 +166,6 @@ function capture() {
 }
 
 function printCart() {
-    let urlPrint = '/print-build-pc?a=' + currentArea;
+    let urlPrint = '/cart/print-cart';
     window.location.href = urlPrint;
 }

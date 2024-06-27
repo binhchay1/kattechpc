@@ -13,7 +13,7 @@
         </tr>
         <tr>
             <td></td>
-            <td colspan="2">{{ __('Trụ sở chính:') }} {{ config('company.headquarters') }}</td>
+            <td colspan="2">Trụ sở chính: {{ config('company.headquarters') }}</td>
         </tr>
         <tr>
             <td></td>
@@ -31,7 +31,7 @@
         <tr></tr>
         @endfor
         <tr>
-            <td colspan="7" rowspan="2" align="center" valign="middle" style="font-size: 20px; font-weight: bold;">{{ __('BÁO GIÁ CHI TIẾT') }}</td>
+            <td colspan="7" rowspan="2" align="center" valign="middle" style="font-size: 20px; font-weight: bold;">BÁO GIÁ CHI TIẾT</td>
         </tr>
         <tr></tr>
         <tr>
@@ -58,7 +58,7 @@
         <tr></tr>
         <tr>
             <td></td>
-            <td style="background-color: #f3070f; border: 1px solid #fff;">STT</td>
+            <td style="background-color: #f3070f; border: 1px solid #fff;">{{ __('STT') }}</td>
             <td style="background-color: #f3070f; border: 1px solid #fff;">{{ __('Tên sản phẩm') }}</td>
             <td style="background-color: #f3070f; border: 1px solid #fff;">{{ __('Bảo hành') }}</td>
             <td style="background-color: #f3070f; border: 1px solid #fff;">{{ __('Số lượng') }}</td>
@@ -109,7 +109,7 @@
             <td></td>
             <td colspan="3" rowspan="7" valign="middle">
                 {{ __('Quý khách lưu ý: Giá bán, khuyến mại của sản phẩm và tình trạng còn hàng có thể bị thay đổi bất cứ lúc nào mà không kịp báo trước') }}<br>
-                {{ __('Để biết thêm chi tiết, Quý khách vui lòng liên hệ KATTECH PC qua Hotline:') }} {{ config('company.hotline') }} (8h30-18h30 tất cả các ngày trong tuần) {{ __('hoặc') }} email: {{ config('company.email') }}<br>
+                {{ __('Để biết thêm chi tiết, Quý khách vui lòng liên hệ KATTECH PC qua Hotline:') }} {{ config('company.hotline') }} {{ __('(8h30-18h30 tất cả các ngày trong tuần)') }} {{ __('hoặc') }} email: {{ config('company.email') }}<br>
                 {{ __('Một lần nữa KATTECH PC cảm ơn quý khách!') }}
             </td>
             <td></td>

@@ -84,7 +84,6 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     Route::get('/lien-he-hop-tac-kinh-doanh', [HomeController::class, 'contactBusiness'])->name('contactBusiness');
     Route::get('/get-products-for-suggestions', [ProductPage::class, 'suggestionsProduct'])->name('suggestions.product');
     Route::get('/change-locate/{locale}', [HomeController::class, 'changeLocate'])->name('change.locate');
-    Route::get('/export-excel-cart', [HomeController::class, 'exportExcel'])->name('export.excel.cart');
 
     Route::group(['middleware' => 'user'], function () {
         Route::get('/get-order-detail/{order_id}', [AccountController::class, 'getOrderDetail']);
@@ -112,6 +111,9 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
         Route::post('/checkout',  [CartController::class, 'checkout'])->name('checkout');
         Route::post('/apply-coupon',  [CartController::class, 'addCoupon'])->name('apply.coupon');
         Route::get('/thank-you',  [CartController::class, 'thank'])->name('thank');
+        Route::get('/export-excel-cart',  [CartController::class, 'exportExcel'])->name('export.excel.cart');
+        Route::get('/export-image-cart',  [CartController::class, 'exportImage'])->name('export.image.cart');
+        Route::get('/print-cart',  [CartController::class, 'printCart'])->name('print.cart');
     });
 
     Route::get('/post-detail/{slug}', [PostPage::class, 'postDetail'])->name('post.detail');

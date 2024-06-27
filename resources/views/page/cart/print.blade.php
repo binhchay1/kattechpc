@@ -64,7 +64,7 @@
                     </td>
                     <td colspan="5" align="right" style="line-height: 19px;">
                         <b style="color: #007bff;font-size: 20px;">CÔNG TY TNHH MÁY TÍNH KATTECH PC</b><br>
-                        Trụ sở chính: {{ config('company.headquarters') }}<br>
+                        {{ __('Trụ sở chính:') }} {{ config('company.headquarters') }}<br>
                         Website: <a style="text-decoration: none;" href="{{ route('home') }}">kattechpc.vn</a>
                     </td>
                 </tr>
