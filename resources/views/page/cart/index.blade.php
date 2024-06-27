@@ -243,22 +243,26 @@
                         </div>
                     </div>
 
-                    <div class="quantity " id="quantity-cart">
-                        <input type="number" value="{{ $product->quantity }}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{ $product->id }}')">
-                    </div>
+                    <div class="in-mobile">
+                        <div class="quantity " id="quantity-cart">
+                            <input type="number" value="{{ $product->quantity }}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{ $product->id }}')">
+                        </div>
 
-                    <?php
-                    $total = (int) $product->quantity * (int) str_replace('.', '',  $product->price);
+                        <?php
+                        $total = (int) $product->quantity * (int) str_replace('.', '',  $product->price);
 
-                    ?>
-                    <div id="get-total" class="subtotal get-total inline" id="total_cart">{{ number_format($total, 0, '.', '.') }} đ
-                        <input hidden name="total_cart" value="{{ $total }}">
-                        <div class="delete" id="delete-cart">
-                            <a>
-                                <button type="button" onclick="deleteSales(`{{ route('deleteCart', $product['id']) }}`)">{{ __('Xóa') }}</button>
-                            </a>
+                        ?>
+                        <div id="get-total" class="subtotal get-total inline" id="total_cart">
+                            <span>{{ number_format($total, 0, '.', '.') }} đ</span>
+                            <input hidden name="total_cart" value="{{ $total }}">
+                            <div class="delete" id="delete-cart">
+                                <a>
+                                    <button type="button" onclick="deleteSales(`{{ route('deleteCart', $product['id']) }}`)">{{ __('Xóa') }}</button>
+                                </a>
+                            </div>
                         </div>
                     </div>
+
                 </div>
                 @endforeach
 

@@ -180,7 +180,7 @@
         </table>
 
         <div class="screen-only" style="text-align: center;padding: 20px 0;">
-            <a href="{{ route('buildPC') }}" class="btn_cyan" style="width:150px;display:inline-block;border:1px solid #dcdcdc;border-radius:3px;padding:5px">{{ __('Xây lại cấu hình') }}</a>
+            <a href="{{ route('home') }}" class="btn_cyan" style="width:150px;display:inline-block;border:1px solid #dcdcdc;border-radius:3px;padding:5px">{{ __('Tiếp tục mua sắm') }}</a>
             <a href="javascript:window.print()" style="width:100px;display:inline-block;border:1px solid #dcdcdc;border-radius:3px;padding:5px" class="btn_orange">{{ __('In đơn hàng') }}</a>
         </div>
     </div>

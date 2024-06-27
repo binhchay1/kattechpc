@@ -568,4 +568,29 @@ textarea {
     .col-75 {
         float: inherit;
     }
+
+    .product-details {
+        width: 100%;
+        padding: 0;
+    }
+
+    .item {
+        display: block !important;
+    }
+
+    .in-mobile {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .get-total {
+        margin-left: 15px;
+        display: flex;
+        width: 100%;
+        align-items: center;
+    }
+
+    .get-total span {
+        width: 100%;
+    }
 }
