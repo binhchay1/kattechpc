@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Page;
 
+use App\Exports\ExportCart;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Jobs\SendMailByGoogle;
@@ -12,6 +13,7 @@ use App\Repositories\ProductRepository;
 use App\Repositories\LayoutRepository;
 use Illuminate\Http\Request;
 use App\Mail\OrderDetail;
+use Maatwebsite\Excel\Facades\Excel;
 use Session;
 use Cart;
 use Cache;
@@ -203,7 +205,6 @@ class CartController extends Controller
                 $orderDetailMail = new OrderDetail($dataSendEmail);
                 SendMailByGoogle::dispatch($orderDetailMail, $input['email'], $dataSendEmail)->onQueue('order-detail');
             }
-
         } catch (Exception $e) {
             echo $e->getMessage();
         }
@@ -270,5 +271,50 @@ class CartController extends Controller
         Session::put('discount', $coupon);
 
         return response()->json(['success' => __('Mã giảm giá được thêm thành công')]);
+    }
+
+    public function exportExcel()
+    {
+        $cartInfor =  Cart::getContent();
+
+        $nameFile = 'cart_' . date('d-m-Y') . '.xlsx';
+        $total = 0;
+        $arrProductID = [];
+        foreach ($cartInfor as $product) {
+            $total += (int) $product->price * $product->quantity;
+            $arrProductID[] = $product->id;
+        }
+
+        $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
+
+        return Excel::download(new ExportCart($getProduct, $total), $nameFile);
+    }
+
+    public function exportImage()
+    {
+        $cartInfor =  Cart::getContent();
+        $arrProductID = [];
+        $total = 0;
+        foreach ($cartInfor as $product) {
+            $total += (int) $product->price * $product->quantity;
+            $arrProductID[] = $product->id;
+        }
+        $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
+
+        return view('page.exports.cart-image', compact('getProduct'))->render();
+    }
+
+    public function printCart(Request $request)
+    {
+        $cartInfor =  Cart::getContent();
+        $arrProductID = [];
+        $total = 0;
+        foreach ($cartInfor as $product) {
+            $total += (int) $product->price * $product->quantity;
+            $arrProductID[] = $product->id;
+        }
+        $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
+
+        return view('page.cart.print', compact('getProduct', 'total'));
     }
 }

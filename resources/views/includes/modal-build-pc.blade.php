@@ -93,9 +93,9 @@
                         </ul>
                     </div>
 
-                    <div class="gr-filter" id="gr-filter">
+                    <!-- <div class="gr-filter" id="gr-filter">
 
-                    </div>
+                    </div> -->
                 </div>
             </div>
 

@@ -16,6 +16,11 @@ class PostRepository extends BaseRepository
     {
         return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->paginate(10);
     }
+    
+    public function getPostLimit()
+    {
+        return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->get()->take(6);
+    }
 
     public function postHome()
     {

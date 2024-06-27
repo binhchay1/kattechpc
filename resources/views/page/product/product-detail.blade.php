@@ -6,7 +6,6 @@
 
 @section('description', $dataProduct->short_description)
 @section('keywords', $dataProduct->keyword)
-@section('breadcrumb-parent', $dataProduct->category->name)
 @section('breadcrumb', $dataProduct->name)
 @endsection
 

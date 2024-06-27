@@ -64,13 +64,26 @@
                             <i class="fa badge" value="{{ count(Cart::getContent()) }}">&#xf07a;</i> <span></span>
                         </a>
                     </div>
+
+                    <div class="menu-btn">
+                        <i class="fa fa-bars" id="btn-toggle"></i>
+                    </div>
                 </div>
 
-                <div class="menu-btn">
-                    <i class="fa fa-bars" id="btn-toggle"></i>
-                </div>
                 <nav class="navbar">
                     <ul class="main-menu-category">
+                        @foreach($listCategory['default'] as $category)
+                        @if($category->status == 0)
+                        @continue
+                        @endif
+                        <li class="list-items">
+                            <a href="{{ route('showDataCategory', $category->slug) }}" class="cat-1">
+                                <img class="lazy icon-menu entered loaded" alt="{{ $category->name }}" width="1" height="1" src="{{ asset($category->image) }}">
+                                <span class="cat-title line-clamp-1">{{ $category->name }}</span>
+                            </a>
+                        </li>
+                        @endforeach
+                        <hr>
                         <li class="list-items"><a href="{{ route('post') }}"><i class="fa fa-newspaper"></i>{{__("Tin công nghệ")}}</a></li>
                         <li class="list-items"><a href="{{ route('payment') }}"><i class="fa fa-money-check"></i>{{__("Hướng dẫn thanh toán")}}</a></li>
                         <li class="list-items"><a href="{{ route('policy') }}"><i class="fa fa-shield-alt"></i>{{__("Chính sách bảo hành")}}</a></li>
@@ -284,153 +297,9 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
 <style>
-    #main {
-        display: none;
-    }
 
-    .main-menu-category .list-items {
-        display: none;
-    }
-
-    .row-hamburger {
-        width: 100%;
-        margin: auto;
-    }
-
-    .logo {
-        font-size: 1.5rem;
-    }
-
-    .navbar {
-        display: flex;
-
-        justify-content: space-between;
-        height: 50px;
-        align-items: center;
-    }
-
-    .navbar .main-menu-category {
-        display: flex;
-    }
-
-    .main-menu-category li a {
-        display: inline-block;
-        padding: 10px 20px;
-    }
-
-    .menu-btn {
-        display: none;
-    }
-
-    .row-content h2 {
-        font-size: 2rem;
-        margin-bottom: 10px;
-        text-align: center;
-    }
-
-    .row-content p {
-        font-size: 1.2rem;
-        text-align: center;
-        line-height: 1.6;
-    }
-
-    @media screen and (max-width: 768px) {
-        .main-menu-category {
-            margin-top: 40px;
-            position: absolute;
-            top: 50px;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            flex-direction: column;
-            background-color: white;
-            transition: 0.5s all ease;
-            display: none;
-            transform: translateX(-800px);
-            padding-top: 30px;
-        }
-
-        .show-search .search-mobile {
-            display: block;
-        }
-
-        .main-menu-category .list-items {
-            display: block;
-            list-style: none;
-        }
-
-        #get_search {
-            height: 42px;
-            margin: 0;
-            padding: 0 40px;
-            font-size: 13px;
-            outline: 0;
-            border: 2px solid var(--color-primary);
-            border-radius: 25px;
-        }
-
-
-        .main-menu-category.show {
-            transform: translateX(-36px);
-            transition: 0.5s all ease;
-        }
-
-        .main-menu-category li a {
-            margin-bottom: 10px;
-            display: block;
-            color: grey;
-            font-size: 15px;
-            font-weight: 600;
-        }
-
-        .menu-btn {
-            display: block;
-            position: absolute;
-            color: black;
-            top: 40px;
-            right: 30px;
-            font-size: 2rem;
-            margin-left: 10px;
-            left: 0;
-            margin-top: 5px;
-            width: 30px;
-        }
-
-        .lock-scroll {
-            overflow: hidden;
-        }
-
-        #main {
-            display: block;
-            width: 420px;
-            display: flex;
-            justify-content: center;
-            margin-top: 5px;
-        }
-
-        #search_button {
-            position: absolute;
-            right: 0;
-            top: 0;
-            height: 100%;
-            border: none;
-            color: #fff;
-            font-weight: 400;
-            outline: 0;
-            background: var(--color-primary);
-            padding: 0 20px;
-            font-size: 22px;
-            cursor: pointer;
-            border-radius: 24px;
-        }
-    }
 </style>
 
 <script>
-    document.querySelector("#btn-toggle").addEventListener("click", abc);
 
-    function abc() {
-        document.querySelector(".main-menu-category").classList.toggle("show");
-        document.body.classList.toggle('lock-scroll');
-    }
 </script>

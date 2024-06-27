@@ -24,6 +24,7 @@ body {
     font-weight: normal;
     margin: 0;
     padding: 0;
+    line-height: 25px;
 }
 
 #content-page input,
@@ -197,9 +198,10 @@ aside {
     border: 1px solid #aaa;
     border-radius: 4px;
     font-size: 1rem;
-    padding: 2px;
+    padding: 5px;
     width: 3.75rem;
     height: 20px;
+    text-align: center;
 }
 
 #content-page aside {
@@ -215,6 +217,7 @@ aside {
     box-sizing: border-box;
     border-radius: 5px;
 }
+
 .summary1 {
     width: 100%;
     -webkit-box-sizing: border-box;
@@ -228,7 +231,12 @@ aside {
     clear: both;
     margin: 1rem 0;
     overflow: hidden;
-    padding: 0.5rem 0;
+}
+
+.summary-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .subtotal-title,
@@ -506,7 +514,9 @@ aside {
     font-weight: bold;
 }
 
-.product-data input, select {
+.product-data input,
+select,
+textarea {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
@@ -514,6 +524,32 @@ aside {
     cursor: pointer;
     padding: 5px 15px;
     margin-top: 10px;
+}
+
+.action-cart a {
+    border: 1px solid #f3070f !important;
+    color: #f3070f;
+    width: 100%;
+    background: #fff;
+    outline: 0;
+    text-transform: uppercase;
+    font-size: 18px;
+    line-height: 22px;
+    padding: 11px 0;
+    border-radius: 5px;
+    margin-bottom: 12px;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+}
+
+.action-cart a:hover {
+    background: #f3070f;
+    color: #fff;
+}
+
+.action-cart a:not(:first-child) {
+    margin-left: 15px;
 }
 
 @media screen and (max-width: 992px) {
@@ -531,5 +567,30 @@ aside {
 
     .col-75 {
         float: inherit;
+    }
+
+    .product-details {
+        width: 100%;
+        padding: 0;
+    }
+
+    .item {
+        display: block !important;
+    }
+
+    .in-mobile {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .get-total {
+        margin-left: 15px;
+        display: flex;
+        width: 100%;
+        align-items: center;
+    }
+
+    .get-total span {
+        width: 100%;
     }
 }

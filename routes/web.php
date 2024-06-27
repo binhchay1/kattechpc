@@ -78,7 +78,7 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     Route::get('/auth/google/callback/', [SocialLoginController::class, 'handleGoogleCallback']);
     Route::get('/auth/facebook/', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
     Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFacebookCallback']);
-    Route::get('/collection/{slug}', [HomeController::class, 'showDataCategory'])->name('showDataCategory');
+    Route::get('/collection/{slug}', [ProductPage::class, 'showDataCategory'])->name('showDataCategory');
     Route::get('/promotion/{slug}', [HomeController::class, 'showPromotionDetail'])->name('showPromotionDetail');
     Route::get('/gioi-thieu', [HomeController::class, 'introduction'])->name('introduction');
     Route::get('/lien-he-hop-tac-kinh-doanh', [HomeController::class, 'contactBusiness'])->name('contactBusiness');
@@ -95,10 +95,6 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
 
     Route::get('/build-pc',  [BuildPCController::class, 'buildPC'])->name('buildPC');
     Route::get('/get-product',  [BuildPCController::class, 'getProduct'])->name('getProduct');
-    Route::get('/add-build-pc/{slug}',  [BuildPCController::class, 'addBuildPC'])->name('addBuildPC');
-    Route::get('/add-to-build-pc/{slug}', [BuildPCController::class, 'addBuildPC'])->name('add_to_BuildPC');
-    Route::get('/delete-build-pc/{id}',  [BuildPCController::class, 'deleteBuildPC'])->name('deleteBuildPC');
-    Route::get('/update-build-pc',  [BuildPCController::class, 'updateBuildPC'])->name('updateBuildPC');
     Route::get('/get-list-menu', [BuildPCController::class, 'getListMenu'])->name('get.list.menu');
     Route::get('/build-pc-checkout',  [BuildPCController::class, 'addToCartBuildPC'])->name('checkout.in.build');
     Route::post('/handle-session-build-pc',  [BuildPCController::class, 'handleSessionBuildPC'])->name('handle.session.build');
@@ -115,10 +111,13 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
         Route::post('/checkout',  [CartController::class, 'checkout'])->name('checkout');
         Route::post('/apply-coupon',  [CartController::class, 'addCoupon'])->name('apply.coupon');
         Route::get('/thank-you',  [CartController::class, 'thank'])->name('thank');
+        Route::get('/export-excel-cart',  [CartController::class, 'exportExcel'])->name('export.excel.cart');
+        Route::get('/export-image-cart',  [CartController::class, 'exportImage'])->name('export.image.cart');
+        Route::get('/print-cart',  [CartController::class, 'printCart'])->name('print.cart');
     });
 
     Route::get('/post-detail/{slug}', [PostPage::class, 'postDetail'])->name('post.detail');
-    Route::get('/post-category/{slug}', [HomeController::class, 'postCategory'])->name('post.category');
+    Route::get('/post-category/{slug}', [PostPage::class, 'postCategory'])->name('post.category');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenance-mode']], function () {
