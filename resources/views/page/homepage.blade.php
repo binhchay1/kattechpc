@@ -126,7 +126,7 @@
                 @foreach($listFlashSale['flash_sale_list_product_id'] as $product)
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
-                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
+                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative scale-img">
                             <img width="164" height="164" alt="{{ $product->name }}" class="lazy" src="{{ asset(json_decode($product->image, true)[0]) }}">
                         </a>
                         <div class="product-info">
@@ -177,7 +177,7 @@
         <div class="swiper d-flex">
             <div class="box-banner-collection">
                 @if(isset($layout->hot_sale_big_thumbnail))
-                <a href="{{ isset($layout->permarklink_hot_sale_big_thumbnail) ? $layout->permarklink_hot_sale_big_thumbnail : '#' }}" class="banner-collection boder-radius-10">
+                <a href="{{ isset($layout->permarklink_hot_sale_big_thumbnail) ? $layout->permarklink_hot_sale_big_thumbnail : '#' }}" class="banner-collection boder-radius-10 scale-img">
                     <img src="{{ asset($layout->hot_sale_big_thumbnail) }}" width="650" height="430" class="boder-radius-10 lazy" alt="" data-was-processed="true" data-ll-status="loaded">
                 </a>
                 @endif
@@ -221,7 +221,7 @@
     <div class="flex-container">
         @foreach($listCategoryProduct as $category)
         @if($category->status == 1)
-        <a href="{{ route('showDataCategory', $category->slug) }}" class="d-flex flex-column text-center category-home-page">
+        <a href="{{ route('showDataCategory', $category->slug) }}" class="d-flex flex-column text-center category-home-page scale-img">
             <img src="{{ asset($category->image) }}" class="item-hot lazy" width="70" height="70">
             <span class="policy-title">{{ $category->name }}</span>
         </a>
@@ -260,7 +260,7 @@
                 @foreach($category->products as $product)
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
-                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
+                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative scale-img">
                             <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                             @if($product->hot_status == 1)
                             <span class="p-type-holder">

@@ -21,14 +21,6 @@ body a {
     color: #333e48;
 }
 
-img {
-    transition: transform 0.2s;
-}
-
-img:hover {
-    transform: scale(1);
-}
-
 .header {
     background: #fff;
 }
@@ -2068,6 +2060,14 @@ a {
     padding: 0 20px;
     line-height: 22px;
     font-size: 15px;
+}
+
+.scale-img img {
+    transition: transform 0.2s;
+}
+
+.scale-img:hover img {
+    transform: scale(1);
 }
 
 @media screen and (max-width: 768px) {
