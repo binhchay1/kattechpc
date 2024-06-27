@@ -1,4 +1,4 @@
-<div id="tooltip" class="global-tooltip" style="left: 390px; top: 2600px; display: block;">
+<div id="tooltip" class="global-tooltip">
     <a class="hover_name tooltip-name"></a>
     <table>
         <tbody>
