@@ -25,13 +25,9 @@ class PostController extends Controller
         if (!isset($slug)) {
             return redirect('/404');
         }
-        
 
-<<<<<<< Updated upstream
-=======
         $listPost = $this->postRepository->getPostLimit();
         $post = $this->postRepository->detail($slug);
->>>>>>> Stashed changes
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
 
