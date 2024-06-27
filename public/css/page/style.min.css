@@ -1928,3 +1928,24 @@ a {
             0 0 0 40px rgba(53, 161, 32, 0);
     }
 }
+
+#slide-footer {
+    margin-bottom: 20px;
+}
+
+.product-item1 {
+    position: relative;
+    border-radius: 5px;
+    /* background: #fff; */
+    -webkit-box-shadow: 0 -1px 9px 0 rgba(164, 164, 164, 0.25);
+    box-shadow: 0 -1px 9px 0 rgba(164, 164, 164, 0.25);
+    min-width: 0;
+}
+
+.swiper-slide2 {
+    width: 235px;
+    flex-shrink: 0;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+}
