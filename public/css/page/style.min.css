@@ -21,6 +21,14 @@ body a {
     color: #333e48;
 }
 
+img {
+    transition: transform 0.2s;
+}
+
+img:hover {
+    transform: scale(1);
+}
+
 .header {
     background: #fff;
 }
