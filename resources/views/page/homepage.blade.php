@@ -419,6 +419,7 @@
                 @endforeach
             </div>
 
+            @if(!$isMobile)
             <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
                 @if(count($listCustomerReview) > 4)
 
@@ -437,6 +438,26 @@
                     @endif
             </div>
             <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+            @else
+            <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
+                @if(count($listCustomerReview) >= 2)
+
+                @php
+                $totalPag = count($listCustomerReview);
+                @endphp
+
+                @for($i = 0; $i < $totalPag; $i++) @if($i==0) <span class="swiper-pagination-bullet swiper-pagination-bullet-active" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
+                    @else
+                    <span class="swiper-pagination-bullet" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
+                    @endif
+                    @endfor
+
+                    @else
+                    <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span>
+                    @endif
+            </div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+            @endif
         </div>
     </div>
 </section>

@@ -189,7 +189,7 @@ $(document).ready(function () {
     if (isMobileDetected) {
         let transCustomerReview = 0;
         let defaultCustomerReview = 1;
-        let perTransCustomerReview = 380;
+        let perTransCustomerReview = 392;
         let currentCountPagination = 1;
 
         let listChildCustomerReview = $(".swiper-review-customer").children();
