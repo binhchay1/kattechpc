@@ -21,6 +21,7 @@ use App\Repositories\BrandRepository;
 use App\Repositories\CustomerReviewRepository;
 use App\Repositories\YoutubeChannelRepository;
 use Illuminate\Support\Facades\Config;
+use Detection\MobileDetect;
 use Cache;
 
 class HomeController extends Controller
@@ -284,6 +285,9 @@ class HomeController extends Controller
             }
         }
 
+        $detect = new MobileDetect();
+        $isMobile = $detect->isMobile();
+
         return view('page.homepage', compact(
             'listCategory',
             'listNews',
@@ -296,7 +300,8 @@ class HomeController extends Controller
             'getFlashSale',
             'listYoutube',
             'listCustomerReview',
-            'listSlideFooter'
+            'listSlideFooter',
+            'isMobile'
         ));
     }
 
