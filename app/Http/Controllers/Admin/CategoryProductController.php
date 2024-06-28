@@ -72,13 +72,12 @@ class CategoryProductController extends Controller
         }
         $input = $this->categoryRepository->update($input, $id);
         Cache::store('redis')->forget('menu_homepage');
-  
+
         return redirect()->route('admin.categoryProduct.index')->with('success',  __('Danh mục sản phẩm được thay đổi thành công'));
     }
 
     public function deleteCategory($id)
     {
-        dd($id);
         $this->categoryRepository->destroy($id);
         Cache::store('redis')->forget('menu_homepage');
 
