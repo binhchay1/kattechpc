@@ -93,7 +93,13 @@
                                     </ul>
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 status">
-                                    <span class="status px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-orange-100 border-transparent text-orange-500 dark:bg-orange-500/20 dark:border-transparent">{{ $product->status }}</span>
+                                    @if($product->status == 'available')
+                                    <span class="status px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-green-100 border-transparent text-green-500 dark:bg-green-500/20 dark:border-transparent">{{ __('Còn hàng') }}</span>
+                                    @elseif($product->status == 'out of stock')
+                                    <span class="status px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-red-100 border-transparent text-red-500 dark:bg-red-500/20 dark:border-transparent">{{ __('Hết hàng') }}</span>
+                                    @else
+                                    <span class="status px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-yellow-100 border-transparent text-yellow-500 dark:bg-yellow-500/20 dark:border-transparent">{{ __('Còn hàng') }}</span>
+                                    @endif
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
                                     <div class="relative dropdown">
