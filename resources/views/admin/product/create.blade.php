@@ -26,7 +26,6 @@
                                 <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{ __('Bán chạy') }}</label>
                             </div>
                         </div>
-                        @dd($errors)
 
                         <div class="xl:col-span-4">
                             <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{ __('Tên sản phẩm') }}</label>
