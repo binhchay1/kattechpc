@@ -25,8 +25,10 @@ class PostController extends Controller
         if (!isset($slug)) {
             return redirect('/404');
         }
-
-        $listPost = $this->postRepository->getPostLimit();
+        $firstPosts1 = $this->postRepository->firstPost();
+        $listPost = $this->postRepository->postHome();
+        $postRandom = $listPost->splice(3, 8);
+        $postNews = $listPost->splice(1, 3);
         $post = $this->postRepository->detail($slug);
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
@@ -51,7 +53,7 @@ class PostController extends Controller
             }
         }
 
-        return view('page.post.post-detail', compact('post', 'listPost', 'listCategory', 'dataBreadcrumb'));
+        return view('page.post.post-detail', compact('firstPosts1','postNews','post', 'postRandom', 'listCategory', 'dataBreadcrumb'));
     }
 
     public function postCategory($slug)
