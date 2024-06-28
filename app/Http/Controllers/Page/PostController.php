@@ -26,6 +26,9 @@ class PostController extends Controller
             return redirect('/404');
         }
         $firstPosts1 = $this->postRepository->firstPost();
+        if (empty($firstPosts1)) {
+            return redirect('/404');
+        }
         $listPost = $this->postRepository->postHome();
         $postRandom = $listPost->splice(3, 8);
         $postNews = $listPost->splice(1, 3);
