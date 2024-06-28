@@ -46,7 +46,7 @@ class CategoryProductController extends Controller
         $this->categoryRepository->create($input);
         Cache::store('redis')->forget('menu_homepage');
 
-        return redirect()->route('admin.categoryProduct.index')->session()->flash('success',  __('Danh mục sản phẩm được thêm thành công'));
+        return redirect()->route('admin.categoryProduct.index')->with('success',  __('Danh mục sản phẩm được thêm thành công'));
     }
 
     public function editCategory($id)
