@@ -1,3 +1,95 @@
+<style>
+
+    @media screen and (max-width: 400px) {
+        .wrap{
+            top: 24%;
+            width: 90%;
+            position: absolute;
+            left: 48%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    .columna {
+        float: left;
+        width: 20%;
+        padding: 10px;
+    }
+    .columnb {
+        float: left;
+        width: 40%;
+        padding: 10px;
+    }
+    .columnc {
+        float: right;
+        width: 20%;
+        padding: 10px;
+    }
+
+    /* Clear floats after the columns */
+    .test:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .test {
+        background: white;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        height: 70px;
+    }
+
+    .search {
+        width: 100%;
+        position: relative;
+        display: flex;
+    }
+
+    .searchTerm {
+        width: 100%;
+        border-right: none;
+        padding: 5px;
+        height: 23px;
+        border-radius: 5px 0 0 5px;
+        outline: none;
+        color: #9DBFAF;
+    }
+
+    .searchTerm:focus{
+        color: #0d0e0e;
+    }
+
+    .searchButton {
+        width: 40px;
+        height: 36px;
+        border: 1px solid #888e8e;
+        background: #7d8586;
+        text-align: center;
+        color: #fff;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    /*Resize the wrap to see the search bar change!*/
+    .wrap{
+        top: 24%;
+        width: 90%;
+        position: absolute;
+        left: 48%;
+        transform: translate(-50%, -50%);
+    }
+
+    .wrap1{
+        margin-top: 28px;
+        display: none;
+        width: 60%;
+        position: absolute;
+        left: 49%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+
+
 <div class="header">
     <div class="header-top">
         <div class="header-top-container">
@@ -50,28 +142,50 @@
     <div class="header-bottom">
         <div class="container-hamburger">
             <div class="row-hamburger">
-                <div id="main">
-                    <div class="search-mobile">
-                        <div class="input-search">
-                            <form name="search" method="get" action="{{ route('search') }}">
-                                <div class="input-text"><input type="text" name="q" id="get_search" class="inline-search1" placeholder="Tìm kiếm" autocomplete="off" field_signature="1012080445"></div>
-                                <button type="submit" id="search_button" class="button-search1"><i class="fa fa-search"></i></button>
-                            </form>
+
+                <div class="test">
+                    <div class="columna" >
+                        <div class="menu-btn">
+                            <i class="fa fa-bars" id="btn-toggle"></i>
                         </div>
                     </div>
-                    <div class="cart-area ml-20px">
-                        <a href="{{ route('showCart') }}">
-                            <i class="fa badge" value="{{ count(Cart::getContent()) }}">&#xf07a;</i> <span></span>
-                        </a>
+                    <div class="columnb" >
+                        <div class="wrap1">
+                            <form method="get" action="{{ route('search') }}">
+                            <div class="search">
+                                <input type="text" name="q" class="searchTerm" placeholder="Nhập  sản phẩm, từ khóa cần tìm">
+                                <button type="submit" class="searchButton">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                            </form>
+                        </div>
+                        <div class="logo" id="scroll-logo">
+                            <a href="/">
+                                <img style="width: 120px;margin-top: -30px;margin-left: 20px;" src="{{ asset('/images/logo/logo.png') }}" alt="logo Kattech PC" class="loading">
+                            </a>
+                        </div>
                     </div>
-
-                    <div class="menu-btn">
-                        <i class="fa fa-bars" id="btn-toggle"></i>
+                    <div class="columnc" >
+                        <div class="cart-area ml-20px" style="float: right; margin-top: 5px">
+                            <a href="{{ route('showCart') }}">
+                                <i style="width: 40px;" class="fa badge" value="{{ count(Cart::getContent()) }}">&#xf07a;</i> <span></span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-
+                <div class="wrap">
+                    <form method="get" action="{{ route('search') }}">
+                    <div class="search">
+                        <input type="text" name="q" class="searchTerm"  placeholder="Nhập sản phẩm, từ khóa cần tìm">
+                        <button type="submit" class="searchButton">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                    </form>
+                </div>
                 <nav class="navbar">
-                    <ul class="main-menu-category">
+                    <ul class="main-menu-category" style="margin-top: 57px;">
                         @foreach($listCategory['default'] as $category)
                         @if($category->status == 0)
                         @continue
@@ -84,6 +198,7 @@
                         </li>
                         @endforeach
                         <hr>
+                        <li class="list-items"><a href="{{ route('home') }}"><i class="fa fa-home"></i>{{__("Trang chủ")}}</a></li>
                         <li class="list-items"><a href="{{ route('post') }}"><i class="fa fa-newspaper"></i>{{__("Tin công nghệ")}}</a></li>
                         <li class="list-items"><a href="{{ route('payment') }}"><i class="fa fa-money-check"></i>{{__("Hướng dẫn thanh toán")}}</a></li>
                         <li class="list-items"><a href="{{ route('policy') }}"><i class="fa fa-shield-alt"></i>{{__("Chính sách bảo hành")}}</a></li>
@@ -104,10 +219,10 @@
                             </div>
                             @else
                             <div class="">
-                                <a href="" class="sep-item-link" target="_blank"><i class="fa fa-address-book"></i> {{ __('Đăng ký') }}</a>
+                                <a href="" class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Đăng ký') }}</a>
                             </div>
                             <div class="">
-                                <a href="/login" class="sep-item-link" target="_blank"><i class="fa fa-home"></i> {{ __('Đăng nhập') }}</a>
+                                <a href="/login" class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Đăng nhập') }}</a>
                             </div>
                             @endif
                         </li>
@@ -117,7 +232,7 @@
         </div>
 
         <div class="header-bottom-container">
-            <div class="logo">
+            <div class="logo" id="hidden-logo">
                 <a href="/">
                     <img src="{{ asset('/images/logo/logo.png') }}" alt="logo Kattech PC" width="150" height="150" class="loading">
                 </a>
@@ -301,5 +416,19 @@
 </style>
 
 <script>
+    $(window).scroll(function() {
 
+        if ($(this).scrollTop()>0)
+        {
+            $('#scroll-logo').fadeOut();
+            $('.wrap').fadeOut();
+            $('.wrap1').fadeIn();
+        }
+        else
+        {
+            $('#scroll-logo').fadeIn();
+            $('.wrap').fadeIn();
+            $('.wrap1').fadeOut();
+        }
+    });
 </script>

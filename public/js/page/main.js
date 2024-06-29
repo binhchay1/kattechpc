@@ -313,8 +313,6 @@ $(document).scroll(function () {
             $('.bottomMenu').fadeIn();
             $('.container-hamburger').addClass('header-fixed-menu-mobile');
             $('.menu-btn').css('top', '5px');
-            $('.main-menu-category').css('height', '700px');
-            $('.main-menu-category').css('margin-top', '1px');
         } else {
             $('.bottomMenu').fadeOut();
             $('.container-hamburger').removeClass('header-fixed-menu-mobile');
