@@ -53,6 +53,8 @@ class AdminController extends Controller
     {
         $orderStatic = $this->orderRepository->getOrderForStatic();
         $productStatic = $this->productRepository->getProductForStatic();
+        $orderStatic->setPageName('order_page');
+        $productStatic->setPageName('product_page');
 
         foreach ($orderStatic as $order) {
             $total = 0;
