@@ -27,7 +27,7 @@
                     <div class="dropdown-content">
                         <a href="{{ route('profile') }}">{{ __('Tài khoản') }}</a>
                         <a href="{{ route('orderHistory') }}">{{ __('Lịch sử mua hàng') }}</a>
-                        <form method="POST" action="{{ route('logout') }}">
+                        <form method="POST" action="{{ route('logout') }}" style="cursor: pointer;">
                             @csrf
                             <a class="sep-item-link" onclick="this.closest('form').submit();return false;">
                                 {{__('Đăng xuất')}}
@@ -117,7 +117,7 @@
                                 <div class="dropdown-content">
                                     <a href="{{ route('profile') }}">{{ __('Tài khoản') }}</a>
                                     <a href="{{ route('orderHistory') }}">{{ __('Lịch sử mua hàng') }}</a>
-                                    <form method="POST" action="{{ route('logout') }}">
+                                    <form method="POST" action="{{ route('logout') }}" style="cursor: pointer;">
                                         @csrf
                                         <a class="sep-item-link" onclick="this.closest('form').submit();return false;">
                                             {{__('Đăng xuất')}}

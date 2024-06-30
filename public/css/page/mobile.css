@@ -383,7 +383,7 @@
 
     .main-menu-category {
         margin-top: 58px;
-        position: absolute;
+        position: fixed;
         top: 50px;
         left: 0;
         width: 100%;
@@ -392,7 +392,6 @@
         background-color: white;
         transition: 0.5s all ease;
         display: none;
-        transform: translateX(-800px);
         padding-top: 30px;
     }
 

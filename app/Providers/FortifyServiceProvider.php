@@ -17,6 +17,7 @@ use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Contracts\LoginResponse;
 use Cache;
+use Laravel\Fortify\Contracts\RegisterResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -84,7 +85,7 @@ class FortifyServiceProvider extends ServiceProvider
                 if (Auth::user()->role == Role::ADMIN) {
                     return redirect()->route('admin.dashboard');
                 } else {
-                    return redirect()->route('viewThankRegister');
+                    return redirect()->route('home');
                 }
             }
         });
