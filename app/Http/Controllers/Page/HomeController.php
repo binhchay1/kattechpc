@@ -170,6 +170,13 @@ class HomeController extends Controller
         return view('page.other.contact-business', compact('listCategory'));
     }
 
+    public function viewThankRegister($slug) {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('auth.register-success', compact('listCategory'));
+    }
+
     public function viewPromotion()
     {
         $listPromotion = $this->promotionRepository->promotionHome();

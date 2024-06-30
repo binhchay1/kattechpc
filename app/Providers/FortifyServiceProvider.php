@@ -51,11 +51,11 @@ class FortifyServiceProvider extends ServiceProvider
 
             return view('auth.register', compact('listCategory'));
         });
-    
+
         Fortify::requestPasswordResetLinkView(function () {
             $key = 'menu_homepage';
             $listCategory = Cache::store('redis')->get($key);
-        
+
             return view('auth.forgot-password', compact('listCategory'));
         });
 
@@ -84,7 +84,7 @@ class FortifyServiceProvider extends ServiceProvider
                 if (Auth::user()->role == Role::ADMIN) {
                     return redirect()->route('admin.dashboard');
                 } else {
-                    return redirect()->route('home');
+                    return redirect()->route('viewThankRegister');
                 }
             }
         });
