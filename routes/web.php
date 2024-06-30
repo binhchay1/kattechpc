@@ -71,7 +71,7 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     Route::get('/gop-y-khieu-nai', [HomeController::class, 'complaint'])->name('complaint');
     Route::get('/chinh-sach-hang-chinh-hang', [HomeController::class, 'productPolicy'])->name('productPolicy');
     Route::get('/chinh-sach-doanh-nghiep', [HomeController::class, 'businessPolicy'])->name('businessPolicy');
-    // Route::get('/landing/{slug}', [HomeController::class, 'viewLandingPage'])->name('landing.page');
+    Route::get('/landing/{slug}', [HomeController::class, 'viewLandingPage'])->name('landing.page');
     Route::get('/custom-contact', [HomeController::class, 'storeCustomContact'])->name('custom.contact');
     Route::get('/lich-su-mua-hang', [AccountController::class, 'orderHistory'])->name('orderHistory');
     Route::get('/auth/google/', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
