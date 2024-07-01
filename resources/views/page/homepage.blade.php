@@ -157,8 +157,8 @@
                 @endforeach
                 @endif
             </div>
-            <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
-            <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
+            <div class="swiper-button-next-flash-sale" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
+            <div class="swiper-button-prev-flash-sale" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
             <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
         </div>
     </div>

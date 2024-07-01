@@ -39,8 +39,12 @@ $(document).ready(function () {
         let sale_detail = $(this).attr('data-sale-detail');
         let status_guarantee = $(this).attr('data-status-guarantee');
         let status = $(this).attr('data-status');
-        let detail = JSON.parse($(this).attr('data-detail'));
+        let detail = '';
         let currentPrice = '';
+
+        if ($(this).attr('data-detail') != null) {
+            detail = JSON.parse($(this).attr('data-detail'));
+        }
 
         if (new_price == '' || new_price == null) {
             currentPrice = price;
@@ -89,15 +93,15 @@ $(document).ready(function () {
     let transFlash = 0;
     let defaultFlash = 7;
     let perTransFlash = 198;
+    let countFlash = 0;
 
     if (isMobileDetected) {
-        perTransFlash = window.innerWidth;
+        perTransFlash = window.innerWidth - 5;
     }
 
     let listChildFlash = $(".swiper-flash-sale").children();
     if (listChildFlash.length > defaultFlash) {
         let stopFlash = listChildFlash.length - defaultFlash;
-        let countFlash = 0;
         setInterval(function () {
             if (countFlash == stopFlash) {
                 transFlash = 0;
@@ -111,6 +115,29 @@ $(document).ready(function () {
         }, 3000);
     }
 
+    $('.swiper-button-next-flash-sale').on('click', function () {
+        if (countFlash == stopFlash) {
+            transFlash = 0;
+            countFlash = 0;
+            $('.swiper-flash-sale').css('transform', 'translate3d(' + transFlash + 'px, 0px, 0px)');
+        } else {
+            transFlash = transFlash - perTransFlash;
+            countFlash += 1;
+            $('.swiper-flash-sale').css('transform', 'translate3d(' + transFlash + 'px, 0px, 0px)');
+        }
+    });
+
+    $('.swiper-button-prev-flash-sale').on('click', function () {
+        if (countFlash == 0) {
+            transFlash = 0;
+            $('.swiper-flash-sale').css('transform', 'translate3d(' + transFlash + 'px, 0px, 0px)');
+        } else {
+            transFlash = transFlash + perTransFlash;
+            countFlash -= 1;
+            $('.swiper-flash-sale').css('transform', 'translate3d(' + transFlash + 'px, 0px, 0px)');
+        }
+    });
+
     if (typeof (listCategory) != 'undefined' && listCategory !== null) {
         for (let k = 0; k < listCategory.default.length; k++) {
             let transProduct = 0;
@@ -120,7 +147,8 @@ $(document).ready(function () {
             let listChildProduct = $(idElementProduct).children();
 
             if (isMobileDetected) {
-                perTransProduct = window.innerWidth;
+                defaultProduct = 1;
+                perTransProduct = window.innerWidth + 3;
             }
 
             if (listChildProduct.length > defaultProduct) {
@@ -147,7 +175,8 @@ $(document).ready(function () {
     let perTransTopSale = 249;
 
     if (isMobileDetected) {
-        perTransTopSale = window.innerWidth;
+        defaultTopSale = 1;
+        perTransTopSale = window.innerWidth - 5;
     }
 
     let listChildTopSale = $(".swiper-top-sale").children();

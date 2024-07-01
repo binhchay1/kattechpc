@@ -494,6 +494,14 @@
     #marquee-header {
         display: none;
     }
+
+    .product-martket-main {
+        margin-top: 35px;
+    }
+
+    #content-page {
+        margin-top: 50px;
+    }
 }
 
 @media screen and (max-width: 1805px) {
