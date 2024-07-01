@@ -37,7 +37,7 @@
                 </div>
 
                 @if(Auth::check())
-                <div class="dropdown">
+                <div class="ml-15px dropdown">
                     <a class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
                     <div class="dropdown-content">
                         <a href="{{ route('profile') }}">{{ __('Tài khoản') }}</a>
