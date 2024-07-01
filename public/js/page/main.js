@@ -90,6 +90,10 @@ $(document).ready(function () {
     let defaultFlash = 7;
     let perTransFlash = 198;
 
+    if (isMobileDetected) {
+        perTransFlash = window.innerWidth;
+    }
+
     let listChildFlash = $(".swiper-flash-sale").children();
     if (listChildFlash.length > defaultFlash) {
         let stopFlash = listChildFlash.length - defaultFlash;
@@ -116,7 +120,7 @@ $(document).ready(function () {
             let listChildProduct = $(idElementProduct).children();
 
             if (isMobileDetected) {
-                perTransProduct = window.innerWidth + 12;
+                perTransProduct = window.innerWidth;
             }
 
             if (listChildProduct.length > defaultProduct) {
@@ -143,7 +147,7 @@ $(document).ready(function () {
     let perTransTopSale = 249;
 
     if (isMobileDetected) {
-        perTransTopSale = window.innerWidth - 10;
+        perTransTopSale = window.innerWidth;
     }
 
     let listChildTopSale = $(".swiper-top-sale").children();

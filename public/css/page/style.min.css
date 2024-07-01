@@ -2189,7 +2189,7 @@ a {
 
 @media screen and (max-width: 400px) {
     .wrap {
-        top: 24%;
+        top: 150px;
         width: 90%;
         position: absolute;
         left: 48%;
@@ -2257,7 +2257,7 @@ a {
 }
 
 .wrap {
-    top: 18%;
+    top: 150px;
     width: 90%;
     position: absolute;
     left: 50%;

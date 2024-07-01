@@ -82,6 +82,16 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="wrap">
+                            <form method="get" action="{{ route('search') }}">
+                                <div class="search">
+                                    <input type="text" name="q" class="searchTerm" placeholder="Nhập  sản phẩm, từ khóa cần tìm">
+                                    <button type="submit" class="searchButton">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                         <div class="logo" id="scroll-logo">
                             <a href="/">
                                 <img style="width: 120px;margin-top: -30px;margin-left: 20px;" src="{{ asset('/images/logo/logo.png') }}" alt="logo Kattech PC" class="loading">
@@ -97,16 +107,16 @@
                     </div>
                 </div>
 
-{{--                <div class="wrap">--}}
-{{--                    <form method="get" action="{{ route('search') }}">--}}
-{{--                    <div class="search">--}}
-{{--                        <input type="text" name="q" class="searchTerm"  placeholder="Nhập sản phẩm, từ khóa cần tìm">--}}
-{{--                        <button type="submit" class="searchButton">--}}
-{{--                            <i class="fa fa-search"></i>--}}
-{{--                        </button>--}}
-{{--                    </div>--}}
-{{--                    </form>--}}
-{{--                </div>--}}
+                {{-- <div class="wrap">--}}
+                {{-- <form method="get" action="{{ route('search') }}">--}}
+                {{-- <div class="search">--}}
+                {{-- <input type="text" name="q" class="searchTerm"  placeholder="Nhập sản phẩm, từ khóa cần tìm">--}}
+                {{-- <button type="submit" class="searchButton">--}}
+                {{-- <i class="fa fa-search"></i>--}}
+                {{-- </button>--}}
+                {{-- </div>--}}
+                {{-- </form>--}}
+                {{-- </div>--}}
 
                 <nav class="navbar">
                     <ul class="main-menu-category" style="margin-top: 57px;">
@@ -342,12 +352,12 @@
             $('#scroll-logo').fadeOut();
             $('.wrap').fadeOut();
             $('.wrap1').fadeIn();
-            $('.main-menu-category').css({"margin-top":"58px"});
+            $('.main-menu-category').css({
+                "margin-top": "58px"
+            });
             $('#bar-scroll').css(' margin-top', '22px');
 
-        }
-        else
-        {
+        } else {
             $('#scroll-logo').fadeIn();
             $('.wrap').fadeIn();
             $('.wrap1').fadeOut();

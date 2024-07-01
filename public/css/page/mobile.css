@@ -51,6 +51,7 @@
     }
 
     .flash-sale-banner {
+        margin-top: 50px;
         width: 100%;
     }
 
@@ -467,6 +468,10 @@
     .swiper-slide {
         width: 100%;
         margin-right: 10px;
+    }
+
+    .swiper-flash-sale .swiper-slide{
+        width: 100%;
     }
 
     .product-item .product-image {
