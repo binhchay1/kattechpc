@@ -2317,6 +2317,13 @@ a {
     margin-right: 5px;
 }
 
+.global-fixed-right .scroll-top-btn {
+    bottom: 200px;
+    background: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    color: #fff;
+}
+
 @media screen and (max-width: 768px) {
     .main-menu-category {
         margin-top: 40px;

@@ -393,6 +393,7 @@
         transition: 0.5s all ease;
         display: none;
         padding-top: 30px;
+        z-index: 36;
     }
 
     .show-search .search-mobile {
