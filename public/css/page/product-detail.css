@@ -1030,6 +1030,10 @@ tr:nth-child(even) {
     .box-flash-sale .box-right {
         margin-top: 0;
     }
+
+    .box-flash-sale .box-left .title-deal {
+        font-size: 17px;
+    }
 }
 
 
