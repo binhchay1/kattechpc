@@ -1059,7 +1059,7 @@ tr:nth-child(even) {
 }
 
 .swiper-product-related .swiper-slide1 {
-    width: 227px !important;
+    width: 100% !important;
 }
 
 #content {

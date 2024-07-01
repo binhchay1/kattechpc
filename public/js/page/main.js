@@ -96,7 +96,8 @@ $(document).ready(function () {
     let countFlash = 0;
 
     if (isMobileDetected) {
-        perTransFlash = window.innerWidth - 5;
+        defaultFlash = 1;
+        perTransFlash = window.innerWidth + 5;
     }
 
     let listChildFlash = $(".swiper-flash-sale").children();
