@@ -2,9 +2,11 @@
 
 namespace App\Actions\Fortify;
 
+use App\Mail\WelcomeEmail;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
@@ -29,13 +31,18 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         return DB::transaction(function () use ($input) {
-            return User::create([
+            $user =  User::create([
                 'name' => $input['name'],
                 'email' => $input['email'],
                 'password' => Hash::make($input['password']),
                 'role' => Role::USER,
                 'title' => Role::USER,
             ]);
+
+// Send email
+            Mail::to($user->email)->send(new WelcomeEmail($user));
+            dd(1);
+            return $user;
         });
     }
 }
