@@ -28,13 +28,19 @@
                 <div class="swiper d-flex align-items-center" style="min-height: auto;">
                     <div class="swiper-wrapper swiper-image">
                         @foreach ($dataProduct->image as $key => $image)
+                        @if($key == 0)
+                        <div class="swiper-slide-image" role="group">
+                            <img src="{{ asset($image) }}" data-index="{{ $key }}" class="small-Img border-image" onclick="getImageCenter(this)">
+                        </div>
+                        @else
                         <div class="swiper-slide-image" role="group">
                             <img src="{{ asset($image) }}" data-index="{{ $key }}" class="small-Img" onclick="getImageCenter(this)">
                         </div>
+                        @endif
                         @endforeach
                     </div>
-                    <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide" onclick="handleSlideImage('next')"></div>
-                    <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide" onclick="handleSlideImage('prev')"></div>
+                    <div class="swiper-button-next product-image-next" tabindex="0" role="button" aria-label="Next slide" onclick="handleSlideImage('next')"></div>
+                    <div class="swiper-button-prev product-image-prev" tabindex="0" role="button" aria-label="Previous slide" onclick="handleSlideImage('prev')"></div>
                     <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                 </div>
             </div>
@@ -272,7 +278,7 @@
                 <a href="javascript:" id="read-all-product-detail" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
                     {{ __('Xem tất cả') }}
                 </a>
-                <div id="myModal" class="modal">
+                <div id="modalDetail" class="modal">
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <table>
@@ -297,16 +303,16 @@
             </div>
         </section>
 
-        <section class="product-container set-background1" >
+        <section class="product-container set-background1">
             <div id="product-info" class="product-info feedback-form">
                 <h3>{{__('Đánh giá sản phẩm')}}</h3>
                 <div class="review-info  boder-radius-10">
 
                     <div class="avgRate justify-content-center align-items-center flex-column">
                         @if($countRate > 0)
-                            <p style="padding: 10px;font-size: 15px" class="mt-12">{{$countRate}} đánh giá và nhận xét</p>
+                        <p style="padding: 10px;font-size: 15px" class="mt-12">{{$countRate}} đánh giá và nhận xét</p>
                         @else
-                            <p class="mt-12">Chưa có đánh giá và nhận xét</p>
+                        <p class="mt-12">Chưa có đánh giá và nhận xét</p>
                         @endif
                     </div>
 
@@ -383,7 +389,7 @@
 
                     </div>
                     @if(Session::has('message'))
-                        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+                    <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
                     @endif
                     <form id="feedbackForm" action="{{ route('rating') }}" class="menu" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
@@ -402,7 +408,7 @@
                         <div class="box-form-review" id="js-box-review" style="display: block;">
                             <textarea class="review_reply_content" id="rating-content" placeholder="Mời bạn để lại đánh giá..." name="content" spellcheck="false"></textarea>
                             @if ($errors->has('content'))
-                                <span class="text-danger" style="color: red">{{ $errors->first('content') }}</span>
+                            <span class="text-danger" style="color: red">{{ $errors->first('content') }}</span>
                             @endif
                         </div>
                         <input type="hidden" name="product_id" value="{{$dataProduct->id}}">
@@ -415,35 +421,35 @@
                     <div class="list-review">
                         <div id="js-review-holder">
                             @foreach($listRatings as $rating)
-                                <div class="item-comment">
-                                    <div class="form-reply-comment">
-                                        <div class="comment-name d-flex align-items-center justify-content-between">
-                                            <div class="comment-form-left d-flex align-items-center gap-6">
-                                                <b class="user-name d-flex align-items-center gap-6">
-                                                    {{$rating->user->name}}
-                                                </b>
-                                            </div>
-                                            <div class="comment-form-right d-flex align-items-center gap-4">
-                                                <i class="fa fa-clock-o" style="font-size:15px; margin-right: 5px"></i>
-                                                    <?php $date = date_format($rating->created_at, "d/m/Y") ?>
-                                                <span style="color:#787878;font-size: 12px;margin-right: 4px;font-weight: 700">{{$date}}</span>
-                                            </div>
+                            <div class="item-comment">
+                                <div class="form-reply-comment">
+                                    <div class="comment-name d-flex align-items-center justify-content-between">
+                                        <div class="comment-form-left d-flex align-items-center gap-6">
+                                            <b class="user-name d-flex align-items-center gap-6">
+                                                {{$rating->user->name}}
+                                            </b>
                                         </div>
-                                        <div class="comment-content d-flex align-items-center justify-content-between">
-                                            <div class="text-review d-flex flex-column gap-12" id="rating-review">
-                                                @php $ratenum = number_format($rating->rating_product) @endphp
-                                                <div class="rating1">
-                                                    @for($i = 1; $i <= $ratenum; $i++) <i class=" checked-rating fa fa-star "></i>
-                                                    @endfor
-                                                    @for($j = $ratenum + 1; $j <= 5; $j++) <i class="fa fa-star "></i>
-                                                    @endfor
-                                                </div>
-                                                <p class="d-flex aligin-items-center"><b>{{ __('Nhận xét:') }}</b>{{$rating->content}}</p>
-                                            </div>
-
+                                        <div class="comment-form-right d-flex align-items-center gap-4">
+                                            <i class="fa fa-clock-o" style="font-size:15px; margin-right: 5px"></i>
+                                            <?php $date = date_format($rating->created_at, "d/m/Y") ?>
+                                            <span style="color:#787878;font-size: 12px;margin-right: 4px;font-weight: 700">{{$date}}</span>
                                         </div>
                                     </div>
+                                    <div class="comment-content d-flex align-items-center justify-content-between">
+                                        <div class="text-review d-flex flex-column gap-12" id="rating-review">
+                                            @php $ratenum = number_format($rating->rating_product) @endphp
+                                            <div class="rating1">
+                                                @for($i = 1; $i <= $ratenum; $i++) <i class=" checked-rating fa fa-star "></i>
+                                                    @endfor
+                                                    @for($j = $ratenum + 1; $j <= 5; $j++) <i class="fa fa-star "></i>
+                                                        @endfor
+                                            </div>
+                                            <p class="d-flex aligin-items-center"><b>{{ __('Nhận xét:') }}</b>{{$rating->content}}</p>
+                                        </div>
+
+                                    </div>
                                 </div>
+                            </div>
                             @endforeach
                         </div>
                     </div>
@@ -453,27 +459,27 @@
             <div class="product-related">
                 <h3> {{ __('Tin tức liên quan') }}</h3>
                 @foreach($postRandom5 as $post)
-                    <div id="content">
-                        <div id="left">
-                            <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="img-fluid2" />
-                        </div>
-                        <div id="content-right">
-                                <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
-                            <h3> {{$text}}</h3>
-                        </div>
+                <div id="content">
+                    <div id="left">
+                        <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="img-fluid2" />
                     </div>
+                    <div id="content-right">
+                        <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
+                        <h3> {{$text}}</h3>
+                    </div>
+                </div>
                 @endforeach
             </div>
         </section>
 
-        <section class="product-container set-background1" >
+        <section class="product-container set-background1">
             <div id="product-info" class="product-info feedback-form">
                 <div class="box-comment">
                     <p class="title-comment font-weight-600">{{ __('Hỏi và đáp') }}</p>
                     @if(isset($errors))
-                        @foreach ($errors->all() as $error)
-                            <div  style="color: red; margin: 10px; font-size: 18px" >{{ $error }}</div>
-                        @endforeach
+                    @foreach ($errors->all() as $error)
+                    <div style="color: red; margin: 10px; font-size: 18px">{{ $error }}</div>
+                    @endforeach
                     @endif
                     <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
@@ -482,7 +488,7 @@
                                 <div style="width: 80%;">
                                     <textarea class="comment_reply_content boder-radius-10" id="content0" name="content" placeholder="Xin mời để lại câu hỏi"></textarea>
                                     @if ($errors->has('content'))
-                                        <span class="text-danger" style="color: red;white-space: nowrap;">{{ $errors->first('content') }}</span>
+                                    <span class="text-danger" style="color: red;white-space: nowrap;">{{ $errors->first('content') }}</span>
                                     @endif
                                     <input type="hidden" value="{{ $dataProduct->id }}" name="product_id">
                                 </div>
@@ -503,15 +509,15 @@
             <div class="product-related">
                 <h3> {{ __('Video nổi bật ') }}</h3>
                 @foreach($youtubeRandom as $post)
-                    <div id="content">
-                        <div id="left">
-                            <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="img-fluid2" />
-                        </div>
-                        <div id="content-right">
-
-                            <h3> {{$post->title}}</h3>
-                        </div>
+                <div id="content">
+                    <div id="left">
+                        <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="img-fluid2" />
                     </div>
+                    <div id="content-right">
+
+                        <h3> {{$post->title}}</h3>
+                    </div>
+                </div>
                 @endforeach
             </div>
         </section>
@@ -563,15 +569,17 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('js/page/product.js') }}"></script>
 <script>
+    var indexImage = 0;
     $(document).ready(function() {
-        $('#myModal').hide();
+        $('#modalDetail').hide();
+        $(".product-image-prev").addClass('d-none');
 
         $('#read-all-product-detail').on('click', function() {
-            $('#myModal').show();
+            $('#modalDetail').show();
         });
 
         $('.close').click(function() {
-            $('#myModal').hide();
+            $('#modalDetail').hide();
         });
 
         $('.js-quantity-change').on('click', function() {
@@ -608,17 +616,40 @@
     }
 
     function handleSlideImage(status) {
+        let maxIndex = $('.swiper-slide-image').length;
         if (status == 'next') {
-            let maxIndex = $('.swiper-slide-image').length;
-            if (indexImage < maxIndex) {
+            if (parseInt(indexImage) < maxIndex) {
                 let nextIndex = parseInt(indexImage) + 1;
+                $("[data-index=" + indexImage + "]").removeClass('border-image');
+                $("[data-index=" + nextIndex + "]").addClass('border-image');
                 $("[data-index=" + nextIndex + "]").click();
             }
 
+            if (indexImage > maxIndex - 2) {
+                $(".product-image-next").addClass('d-none');
+            } else {
+                $(".product-image-next").removeClass('d-none');
+            }
+
+            if (indexImage > 0) {
+                $(".product-image-prev").removeClass('d-none');
+            }
         } else {
             if (parseInt(indexImage) > 0) {
                 let prevIndex = parseInt(indexImage) - 1;
+                $("[data-index=" + indexImage + "]").removeClass('border-image');
+                $("[data-index=" + prevIndex + "]").addClass('border-image');
                 $("[data-index=" + prevIndex + "]").click();
+            }
+
+            if (indexImage > 0) {
+                $(".product-image-prev").removeClass('d-none');
+            } else {
+                $(".product-image-prev").addClass('d-none');
+            }
+
+            if (indexImage < maxIndex) {
+                $(".product-image-next").removeClass('d-none');
             }
         }
     }

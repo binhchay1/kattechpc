@@ -610,6 +610,11 @@ body a {
     left: 48%;
 }
 
+.border-image {
+    border: 1px solid var(--color-primary);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 .swiper-slide-image {
     width: 104px;
     margin-right: 12px;
@@ -617,6 +622,7 @@ body a {
     height: 100%;
     position: relative;
     transition-property: transform;
+    padding: 8px;
 }
 
 .product-item {
