@@ -23,7 +23,7 @@
             </div>
 
             <div class="swiper d-flex">
-                <div class="swiper-wrapper swiper-top-sale">
+                <div class="swiper-wrapper">
                     @if(isset($dataProducts->products))
                     @foreach($dataProducts->products as $product)
                     <div class="swiper-slide1" role="group">

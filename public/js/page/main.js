@@ -381,8 +381,8 @@ function suggestionForSearch(input) {
 
 function watchYoutubeVideo(youtube) {
     let getUrl = youtube.attr('data-url');
-    var urlParams = new URL(getUrl);
-    var idUrl = urlParams.searchParams.get('v');
+    let urlParams = new URL(getUrl);
+    let idUrl = urlParams.searchParams.get('v');
     let urlYoutube = 'https://www.youtube.com/embed/' + idUrl + '?autoplay=true';
 
     $('#modal-youtube-play iframe').attr('src', urlYoutube);
