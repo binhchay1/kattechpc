@@ -611,8 +611,23 @@
 
     function getImageCenter(image) {
         let src = image.src;
+        let maxIndex = $('.swiper-slide-image').length;
         indexImage = image.getAttribute('data-index');
+        $('.swiper-image').find('.border-image').removeClass('border-image');
+        $("[data-index=" + indexImage + "]").addClass('border-image');
         $('#featured-image').attr('src', src);
+
+        if(parseInt(indexImage) != 0) {
+            $(".product-image-prev").removeClass('d-none');
+        } else {
+            $(".product-image-prev").addClass('d-none');
+        }
+
+        if(parseInt(indexImage) > maxIndex - 2) {
+            $(".product-image-next").addClass('d-none');
+        } else {
+            $(".product-image-next").removeClass('d-none');
+        }
     }
 
     function handleSlideImage(status) {

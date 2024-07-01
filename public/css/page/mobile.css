@@ -500,7 +500,15 @@
     }
 
     #content-page {
-        margin-top: 50px;
+        margin-top: 50px !important;
+    }
+
+    .global-breadcrumb ol {
+        padding: 0;
+    }
+
+    .box-breadcrumb-global .box-breadcrumb {
+        justify-content: center !important;
     }
 }
 
