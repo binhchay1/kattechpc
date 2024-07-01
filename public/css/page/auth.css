@@ -37,7 +37,7 @@
 }
 
 .txt1 {
-
+    font-weight: 550;
     font-size: 16px;
     color: #121212;
     line-height: 1.5;
@@ -159,7 +159,9 @@
     height: 35px;
     padding: 10px 20px;
     border-radius: 5px;
+    border: none;
     background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .input100:focus + .focus-input100 {
