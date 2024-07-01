@@ -52,6 +52,7 @@ Route::get('/503', [ErrorController::class, 'view503'])->name('error.503');
 Route::get('/maintenance', [ErrorController::class, 'viewMaintenance'])->name('maintenance.user');
 Route::get('/staff-login', [HomeController::class, 'staffLogin'])->name('staff.login');
 Route::post('/post-staff-login', [HomeController::class, 'postStaffLogin'])->name('post.staff.login');
+Route::get('/send-mail', [HomeController::class, 'sendMail'])->name('sendMail');
 
 Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], function () {
     Route::get('/', [HomeController::class, 'viewHome'])->name('home');

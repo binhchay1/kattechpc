@@ -6,6 +6,7 @@ use App\Exports\ExportCart;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Jobs\SendMailByGoogle;
+use App\Mail\OrderPlacedEmail;
 use App\Models\Coupon;
 use App\Repositories\OrderDetailRepository;
 use App\Repositories\OrderRepository;
@@ -13,6 +14,7 @@ use App\Repositories\ProductRepository;
 use App\Repositories\LayoutRepository;
 use Illuminate\Http\Request;
 use App\Mail\OrderDetail;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 use Session;
 use Cart;
@@ -153,6 +155,15 @@ class CartController extends Controller
             $input['order_code'] = $unique;
             $input['payment'] = 'thanh-toan-truc-tuyen';
             $order = $this->orderRepository->create($input);
+            $user = [
+                'name' => $input['name'],
+                'email' => $input['email'],
+                'phone' => $input['phone'],
+                'province' => $input['province'],
+                'district' => $input['district'],
+                'address' => $input['address'],
+                'payment' => $input['payment'],
+            ];
             $dataSendEmail = [
                 'order' => [],
                 'order_code' => $unique,
@@ -179,8 +190,9 @@ class CartController extends Controller
                             'quantity' => $item->quantity,
                             'price' => $request->total_cart
                         ];
-
+                        dd($data);
                         $this->orderDetailRepository->create($data);
+                        Mail::to($input['email'])->send(new OrderPlacedEmail($input, $data));
                     }
 
                     $listProductFlashSale = json_encode($listProductFlashSale);
@@ -196,11 +208,13 @@ class CartController extends Controller
                         ];
 
                         $this->orderDetailRepository->create($data);
+                        dd($user['email']);
+                        Mail::to($user['email'])->send(new OrderPlacedEmail($user, $data));
                     }
                     Cart::clear();
                 }
             }
-
+            
             if (isset($input['email'])) {
                 $orderDetailMail = new OrderDetail($dataSendEmail);
                 SendMailByGoogle::dispatch($orderDetailMail, $input['email'], $dataSendEmail)->onQueue('order-detail');

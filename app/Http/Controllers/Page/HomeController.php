@@ -390,4 +390,9 @@ class HomeController extends Controller
         $listCategory = Cache::store('redis')->get($key);
         return view('auth.register-success', compact('listCategory'));
     }
+    
+    public function sendMail()
+    {
+        return view('mail.send-mail-order');
+    }
 }
