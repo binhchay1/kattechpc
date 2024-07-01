@@ -510,6 +510,10 @@
     .box-breadcrumb-global .box-breadcrumb {
         justify-content: center !important;
     }
+
+    .swiper-slide-image {
+        width: 157px;
+    }
 }
 
 @media screen and (max-width: 1805px) {

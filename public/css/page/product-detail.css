@@ -364,7 +364,7 @@ tr:nth-child(even) {
         flex-direction: column;
     }
     .small-Card img {
-        width: 80px;
+        width: 140px;
     }
     .product-info {
         width: 100%;
@@ -993,7 +993,7 @@ tr:nth-child(even) {
     }
 
     .img-card img {
-        height: auto;
+        height: 142px;
     }
 
     .small-Card .swiper-wrapper {
