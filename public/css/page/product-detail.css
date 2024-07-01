@@ -1008,6 +1008,10 @@ tr:nth-child(even) {
     #featured-image {
         height: 300px;
     }
+
+    .swiper-image {
+        flex-wrap: wrap;
+    }
 }
 
 
