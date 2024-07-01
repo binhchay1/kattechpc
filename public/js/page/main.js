@@ -254,7 +254,6 @@ $(document).ready(function () {
         }
     }
 
-
     $('.global-menu-container').hover(function () {
         $('.global-menu-holder').show();
     }, function () {
@@ -317,6 +316,15 @@ $(document).ready(function () {
 
     $('.fa-map-marker-alt').on('click', function () {
         $('#modal-map').css('display', 'flex');
+    });
+
+    $('.header-top-hotline').hover(function () {
+        $('.header-top-left .sub').addClass('d-block');
+    }, function () {
+        $('.header-top-left .sub').hover(function () {
+        }, function () {
+            $('.header-top-left .sub').removeClass('d-block');
+        });
     });
 });
 

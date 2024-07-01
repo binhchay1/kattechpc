@@ -3,6 +3,13 @@
         <div class="header-top-container">
             <div class="header-top-left">
                 <span class="header-top-hotline"> {{ __('Gọi mua hàng:') }} <span class="hotline"><a href="tel:1900.1903">1900.1903</a></span> <i class="fa fa-phone"></i></span>
+                <div class="sub">
+                    <div class="item"><span class="hotline-number">Line 1</span><span>{{ __('Khách hàng Doanh nghiệp') }} (8h-24h)</span></div>
+                    <div class="item"><span class="hotline-number">Line 2</span><span>{{ __('Khách hàng Cá nhân') }} (8h-24h)</span></div>
+                    <div class="item"><span class="hotline-number">Line 3</span><span>{{ __('Hỗ trợ Kỹ thuật') }} (8h-21h)</span></div>
+                    <div class="item"><span class="hotline-number">Line 4</span><span>{{ __('Hỗ trợ Bảo hành') }} (8h-17h30)</span></div>
+                    <div class="item"><span class="hotline-number">Line 0</span><span>{{ __('Chăm sóc Khách hàng') }} (8h-19h)</span></div>
+                </div>
                 <span class="header-map-marker" id="open-modal-map">
                     <i class="fa fa-map-marker-alt"></i>
                 </span>
@@ -284,7 +291,8 @@
                 </li>
                 <li class="item-submenu">
                     <a href="{{ route('payment') }}">
-                        <span class="icon"><svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <span class="icon">
+                            <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect x="1" y="0.5" width="18" height="13" rx="2.5" stroke="currentcolor"></rect>
                                 <rect x="1.25" y="3" width="18" height="2" fill="currentcolor"></rect>
                             </svg>
