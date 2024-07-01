@@ -32,12 +32,12 @@
                         <a href="{{ route('complaint') }}">{{ __('Khiếu nại') }}</a>
                     </div>
                 </div>
-                <div class="ml-15px ">
+                <div class="ml-15px">
                     <a href="{{ route('promotion') }}" class="sep-item-link" target="_blank"><i class="fa fa-tag"></i> {{ __('Khuyến mại') }}</a>
                 </div>
 
                 @if(Auth::check())
-                <div class="ml-15px dropdown">
+                <div class="dropdown">
                     <a class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
                     <div class="dropdown-content">
                         <a href="{{ route('profile') }}">{{ __('Tài khoản') }}</a>
@@ -119,7 +119,7 @@
                 {{-- </div>--}}
 
                 <nav class="navbar">
-                    <ul class="main-menu-category" style="margin-top: 57px;">
+                    <ul class="main-menu-category">
                         @foreach($listCategory['default'] as $category)
                         @if($category->status == 0)
                         @continue
@@ -138,7 +138,7 @@
                         <li class="list-items"><a href="{{ route('policy') }}"><i class="fa fa-shield-alt"></i>{{__("Chính sách bảo hành")}}</a></li>
                         <li class="list-items">
                             @if(Auth::check())
-                            <div class="ml-15px dropdown">
+                            <div class="dropdown">
                                 <a class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
                                 <div class="dropdown-content">
                                     <a href="{{ route('profile') }}">{{ __('Tài khoản') }}</a>
@@ -352,9 +352,6 @@
             $('#scroll-logo').fadeOut();
             $('.wrap').fadeOut();
             $('.wrap1').fadeIn();
-            $('.main-menu-category').css({
-                "margin-top": "58px"
-            });
             $('#bar-scroll').css(' margin-top', '22px');
 
         } else {

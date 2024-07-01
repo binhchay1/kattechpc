@@ -474,6 +474,8 @@
                     </div>
                 </div>
                 @endforeach
+                <div class="swiper-button-next swiper-button-next-footer-slide" tabindex="0" role="button" aria-label="Next slide"></div>
+                <div class="swiper-button-prev swiper-button-prev-footer-slide" tabindex="0" role="button" aria-label="Previous slide"></div>
             </div>
         </div>
     </div>
