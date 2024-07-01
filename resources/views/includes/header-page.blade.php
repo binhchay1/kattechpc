@@ -7,6 +7,11 @@
                     <i class="fa fa-map-marker-alt"></i>
                 </span>
             </div>
+            <span>
+                <marquee width="600" id="marquee-header">
+                    {{ __('Đến với Kattech PC chúng tôi đảm bảo sản phẩm luôn có giá tốt nhất thị trường') }}
+                </marquee>
+            </span>
             <div class="header-top-right">
                 <div>
                     <a href="{{ route('policy') }}" class="sep-item-link" target="_blank"><i class="fa fa-pen"></i> {{ __('Chính sách bảo hành') }}</a>
