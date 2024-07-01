@@ -97,7 +97,7 @@ $(document).ready(function () {
 
     if (isMobileDetected) {
         defaultFlash = 1;
-        perTransFlash = window.innerWidth + 5;
+        perTransFlash = window.innerWidth;
     }
 
     let listChildFlash = $(".swiper-flash-sale").children();
@@ -214,7 +214,7 @@ $(document).ready(function () {
 
     if (isMobileDetected) {
         defaultTopSale = 1;
-        perTransTopSale = window.innerWidth - 5;
+        perTransTopSale = window.innerWidth;
     }
 
     let listChildTopSale = $(".swiper-top-sale").children();
