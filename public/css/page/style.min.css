@@ -330,13 +330,13 @@ body a {
 
 .fixed-left {
     position: fixed;
-    top: 28%;
+    top: 30%;
     left: 4.1%;
 }
 
 .fixed-right {
     position: fixed;
-    top: 28%;
+    top: 30%;
     right: 4.1%;
 }
 
@@ -1744,13 +1744,13 @@ a {
 }
 
 .global-fixed-right .fix-youtube {
-    bottom: 25%;
+    bottom: 24.5%;
     border: 1px solid red;
 }
 
 .global-fixed-right .messenger {
     background: #fff;
-    bottom: 50px;
+    bottom: 30px;
     width: 170px;
     padding: 10px;
     border-radius: 15px;
@@ -1762,7 +1762,7 @@ a {
 
 .global-fixed-right .zalo {
     background: #fff;
-    bottom: 125px;
+    bottom: 100px;
     width: 170px;
     padding: 10px;
     border-radius: 15px;
@@ -2275,7 +2275,7 @@ a {
 
 .header-map-marker {
     margin-left: 15px;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .fa-map-marker-alt {
@@ -2290,7 +2290,7 @@ a {
     position: absolute;
     background: #fff;
     z-index: 9999;
-    top: 8.2%;
+    top: 6%;
     transform: translateY(7px);
     transition: visibility 0.2s, transform 0.2s;
     border: 1px solid #ccc;
@@ -2319,7 +2319,7 @@ a {
 }
 
 .global-fixed-right .scroll-top-btn {
-    bottom: 200px;
+    bottom: 180px;
     background: var(--color-primary);
     border: 1px solid var(--color-primary);
     color: #fff;

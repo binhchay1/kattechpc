@@ -191,7 +191,7 @@
                 @foreach($productRelated as $product)
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
-                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
+                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative hover-for-tooltips" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                             @if(isset($product->image))
                             <img src="{{ asset($dataProduct->image[0]) }}" width="210" height="164" class="lazy product-image">
                             @endif
@@ -463,9 +463,7 @@
                         </div>
                     </div>
                 @endforeach
-
             </div>
-
         </section>
 
         <section class="product-container set-background1" >
@@ -525,7 +523,7 @@
                 @foreach($productViewed as $product)
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
-                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
+                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative hover-for-tooltips" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                             @if(isset($product->image))
                             <img src="{{ asset($dataProduct->image[0]) }}" width="210" height="164" class="lazy product-image">
                             @endif
@@ -558,6 +556,7 @@
         </div>
     </div>
 </div>
+@include('includes.tooltips')
 @endsection
 
 @section('js')
