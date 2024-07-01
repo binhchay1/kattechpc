@@ -157,8 +157,8 @@
                 @endforeach
                 @endif
             </div>
-            <div class="swiper-button-next-flash-sale" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
-            <div class="swiper-button-prev-flash-sale" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
+            <div class="swiper-button-next swiper-button-next-flash-sale" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
+            <div class="swiper-button-prev swiper-button-prev-flash-sale" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
             <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
         </div>
     </div>
@@ -300,8 +300,8 @@
                 </div>
                 @endforeach
             </div>
-            <div class="swiper-button-next" tabindex="0" role="button" aria-label="Next slide"></div>
-            <div class="swiper-button-prev" tabindex="0" role="button" aria-label="Previous slide"></div>
+            <div class="swiper-button-next swiper-button-next-product-{{ $category->slug }}" tabindex="0" role="button" aria-label="Next slide"></div>
+            <div class="swiper-button-prev swiper-button-prev-product-{{ $category->slug }}" tabindex="0" role="button" aria-label="Previous slide"></div>
             <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
         </div>
     </div>
@@ -427,15 +427,15 @@
                 $totalPag = count($listCustomerReview) - 4 + 1;
                 @endphp
 
-                @for($i = 0; $i < $totalPag; $i++) @if($i==0) <span class="swiper-pagination-bullet swiper-pagination-bullet-active" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
-                    @else
-                    <span class="swiper-pagination-bullet" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
-                    @endif
-                    @endfor
-
-                    @else
-                    <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span>
-                    @endif
+                @for($i = 0; $i < $totalPag; $i++) @if($i==0)
+                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
+                @else
+                <span class="swiper-pagination-bullet" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
+                @endif
+                @endfor
+                @else
+                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span>
+                @endif
             </div>
             <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
             @else
@@ -446,15 +446,15 @@
                 $totalPag = count($listCustomerReview);
                 @endphp
 
-                @for($i = 0; $i < $totalPag; $i++) @if($i==0) <span class="swiper-pagination-bullet swiper-pagination-bullet-active" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
-                    @else
-                    <span class="swiper-pagination-bullet" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
-                    @endif
-                    @endfor
-
-                    @else
-                    <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span>
-                    @endif
+                @for($i = 0; $i < $totalPag; $i++) @if($i==0)
+                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
+                @else
+                <span class="swiper-pagination-bullet" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
+                @endif
+                @endfor
+                @else
+                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span>
+                @endif
             </div>
             <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
             @endif
