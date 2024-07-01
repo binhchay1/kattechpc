@@ -257,7 +257,7 @@ $(document).ready(function () {
         }, 3000);
 
         $('.swiper-button-next-footer-slide').on('click', function () {
-            if (countFooterSlide == stopProduct) {
+            if (countFooterSlide == stopFooterSlide) {
                 transFooterSlide = 0;
                 countFooterSlide = 0;
                 $('.swiper-footer-slide').css('transform', 'translate3d(' + transFooterSlide + 'px, 0px, 0px)');
