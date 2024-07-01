@@ -505,6 +505,14 @@
     .swiper-review-customer .swiper-wrapper .swiper-slide {
         width: 380px !important;
     }
+
+    .header-map-marker {
+        display: none;
+    }
+
+    #marquee-header {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 1805px) {
