@@ -119,6 +119,17 @@ body a {
     border-radius: 95px 0 0 99px;
 }
 
+.inline-search-scroll {
+    width: 90%;
+    height: 42px;
+    margin: 0;
+    padding: 0 20px;
+    font-size: 13px;
+    outline: 0;
+    border: 2px solid var(--color-primary);
+    border-radius: 95px 0 0 99px;
+}
+
 .button-search {
     position: absolute;
     right: 0;
@@ -1927,12 +1938,17 @@ a {
         linear,
         left top,
         left bottom,
-        from(#3343da),
-        to(#85b6e3)
+        from(#da3333),
+        to(#e38585)
     );
-    background: -o-linear-gradient(#3343da, #85b6e3);
-    background: linear-gradient(#3343da, #85b6e3);
+    background: -o-linear-gradient(#da3333, #e38585);
+    background: linear-gradient(#da3333, #e38585);
     color: #fff;
+}
+
+#marquee-header {
+    font-size: 17px;
+    font-weight: bold;
 }
 
 .popup-showrom-container .item .item-title {

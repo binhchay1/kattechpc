@@ -7,6 +7,11 @@
                     <i class="fa fa-map-marker-alt"></i>
                 </span>
             </div>
+            <span>
+                <marquee width="600" id="marquee-header">
+                    {{ __('Đến với Kattech PC chúng tôi đảm bảo sản phẩm luôn có giá tốt nhất thị trường') }}
+                </marquee>
+            </span>
             <div class="header-top-right">
                 <div>
                     <a href="{{ route('policy') }}" class="sep-item-link" target="_blank"><i class="fa fa-pen"></i> {{ __('Chính sách bảo hành') }}</a>
@@ -53,7 +58,6 @@
     <div class="header-bottom">
         <div class="container-hamburger">
             <div class="row-hamburger">
-
                 <div class="test">
                     <div class="columna">
                         <div class="menu-btn">
@@ -246,11 +250,11 @@
                     <div class="search-area">
                         <div class="input-search">
                             <form name="search" method="get" action="{{ route('search') }}">
-                                <div class="input-text"><input type="text" name="q" class="inline-search" placeholder="Nhập tên sản phẩm, từ khóa cần tìm" autocomplete="off" field_signature="1012080445"></div>
+                                <div class="input-text"><input type="text" name="q" class="inline-search-scroll" placeholder="Nhập tên sản phẩm, từ khóa cần tìm" autocomplete="off" field_signature="1012080445"></div>
                                 <button type="submit" class="button-search"><i class="fa fa-search" style="color: #fff"></i></button>
                             </form>
 
-                            <div class="autocomplete-suggestions list" id="js-search-result">
+                            <div class="autocomplete-suggestions list" id="js-search-result-scroll">
                                 <div class="list">
 
                                 </div>
