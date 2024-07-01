@@ -1007,10 +1007,28 @@ tr:nth-child(even) {
 
     #featured-image {
         height: 300px;
+        width: 100%;
     }
 
     .swiper-image {
         flex-wrap: wrap;
+    }
+
+    .box-flash-sale {
+        height: 100px;
+    }
+
+    .time-count b {
+        display: block;
+        width: 100%;
+    }
+
+    .time-count p {
+        display: none;
+    }
+
+    .box-flash-sale .box-right {
+        margin-top: 0;
     }
 }
 

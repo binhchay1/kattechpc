@@ -505,6 +505,8 @@
 
     .global-breadcrumb ol {
         padding: 0;
+        justify-content: center;
+        line-height: 30px;
     }
 
     .box-breadcrumb-global .box-breadcrumb {
