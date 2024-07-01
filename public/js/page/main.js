@@ -304,6 +304,14 @@ $(document).ready(function () {
     $('#modal-youtube-play .close').on('click', function () {
         $('#modal-youtube-play').css('display', 'none');
     });
+
+    $('#modal-map .close').on('click', function () {
+        $('#modal-map').css('display', 'none');
+    });
+
+    $('.fa-map-marker-alt').on('click', function () {
+        $('#modal-map').css('display', 'flex');
+    });
 });
 
 $(document).scroll(function () {

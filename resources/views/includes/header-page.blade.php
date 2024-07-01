@@ -3,6 +3,9 @@
         <div class="header-top-container">
             <div class="header-top-left">
                 <span class="header-top-hotline"> {{ __('Gọi mua hàng:') }} <span class="hotline"><a href="tel:1900.1903">1900.1903</a></span> <i class="fa fa-phone"></i></span>
+                <span class="header-map-marker" id="open-modal-map">
+                    <i class="fa fa-map-marker-alt"></i>
+                </span>
             </div>
             <div class="header-top-right">
                 <div>
@@ -52,20 +55,20 @@
             <div class="row-hamburger">
 
                 <div class="test">
-                    <div class="columna" >
+                    <div class="columna">
                         <div class="menu-btn">
                             <i class="fa fa-bars" id="btn-toggle"></i>
                         </div>
                     </div>
-                    <div class="columnb" >
+                    <div class="columnb">
                         <div class="wrap1">
                             <form method="get" action="{{ route('search') }}">
-                            <div class="search">
-                                <input type="text" name="q" class="searchTerm" placeholder="Nhập  sản phẩm, từ khóa cần tìm">
-                                <button type="submit" class="searchButton">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
+                                <div class="search">
+                                    <input type="text" name="q" class="searchTerm" placeholder="Nhập  sản phẩm, từ khóa cần tìm">
+                                    <button type="submit" class="searchButton">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
                             </form>
                         </div>
                         <div class="logo" id="scroll-logo">
@@ -74,7 +77,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="columnc" >
+                    <div class="columnc">
                         <div class="cart-area ml-20px" style="float: right; margin-top: 5px">
                             <a href="{{ route('showCart') }}">
                                 <i style="width: 40px;" class="fa badge" value="{{ count(Cart::getContent()) }}">&#xf07a;</i> <span></span>
@@ -84,12 +87,12 @@
                 </div>
                 <div class="wrap">
                     <form method="get" action="{{ route('search') }}">
-                    <div class="search">
-                        <input type="text" name="q" class="searchTerm"  placeholder="Nhập sản phẩm, từ khóa cần tìm">
-                        <button type="submit" class="searchButton">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </div>
+                        <div class="search">
+                            <input type="text" name="q" class="searchTerm" placeholder="Nhập sản phẩm, từ khóa cần tìm">
+                            <button type="submit" class="searchButton">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
                     </form>
                 </div>
                 <nav class="navbar">
@@ -326,14 +329,11 @@
 <script>
     $(window).scroll(function() {
 
-        if ($(this).scrollTop()>0)
-        {
+        if ($(this).scrollTop() > 0) {
             $('#scroll-logo').fadeOut();
             $('.wrap').fadeOut();
             $('.wrap1').fadeIn();
-        }
-        else
-        {
+        } else {
             $('#scroll-logo').fadeIn();
             $('.wrap').fadeIn();
             $('.wrap1').fadeOut();
