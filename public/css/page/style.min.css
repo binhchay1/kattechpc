@@ -119,6 +119,17 @@ body a {
     border-radius: 95px 0 0 99px;
 }
 
+.inline-search-scroll {
+    width: 90%;
+    height: 42px;
+    margin: 0;
+    padding: 0 20px;
+    font-size: 13px;
+    outline: 0;
+    border: 2px solid var(--color-primary);
+    border-radius: 95px 0 0 99px;
+}
+
 .button-search {
     position: absolute;
     right: 0;

@@ -58,7 +58,6 @@
     <div class="header-bottom">
         <div class="container-hamburger">
             <div class="row-hamburger">
-
                 <div class="test">
                     <div class="columna">
                         <div class="menu-btn">
@@ -251,11 +250,11 @@
                     <div class="search-area">
                         <div class="input-search">
                             <form name="search" method="get" action="{{ route('search') }}">
-                                <div class="input-text"><input type="text" name="q" class="inline-search" placeholder="Nhập tên sản phẩm, từ khóa cần tìm" autocomplete="off" field_signature="1012080445"></div>
+                                <div class="input-text"><input type="text" name="q" class="inline-search-scroll" placeholder="Nhập tên sản phẩm, từ khóa cần tìm" autocomplete="off" field_signature="1012080445"></div>
                                 <button type="submit" class="button-search"><i class="fa fa-search" style="color: #fff"></i></button>
                             </form>
 
-                            <div class="autocomplete-suggestions list" id="js-search-result">
+                            <div class="autocomplete-suggestions list" id="js-search-result-scroll">
                                 <div class="list">
 
                                 </div>

@@ -299,6 +299,12 @@ $(document).ready(function () {
         suggestionForSearch(this);
     });
 
+    $('.inline-search-scroll').unbind('keyup');
+    $('.inline-search-scroll').bind('keyup', function () { });
+    $(".inline-search-scroll").on('keyup', function (e) {
+        suggestionForSearchScroll(this);
+    });
+
     document.querySelector(".menu-btn").addEventListener("click", toggleMenuBar);
 
     $('#modal-youtube-play .close').on('click', function () {
@@ -335,9 +341,11 @@ $(document).scroll(function () {
     if (x >= 300) {
         $('.sub-header-scroll').addClass('d-block');
         $('.sub-header-scroll').addClass('header-fixed');
+        isScroll = true;
     } else {
         $('.sub-header-scroll').removeClass('d-block');
         $('.sub-header-scroll').removeClass('header-fixed');
+        isScroll = false;
     }
 });
 
@@ -384,6 +392,48 @@ function suggestionForSearch(input) {
     } else {
         $('#js-search-result .list').empty();
         $('#js-search-result').hide();
+    }
+}
+
+function suggestionForSearchScroll(input) {
+    let urlSuggest = '/get-products-for-suggestions';
+    if (input.value != '') {
+        $.ajax({
+            type: "get",
+            data: {
+                search: input.value
+            },
+            url: urlSuggest,
+            success: function (result) {
+                if (result.length > 0) {
+                    $('#js-search-result-scroll .list').empty();
+                    for (let i = 0; i < result.length; i++) {
+                        let price = result[i].price;
+                        let name = result[i].name;
+                        let slug = result[i].slug;
+                        let image = JSON.parse(result[i].image);
+
+                        let stringAppend = `<a href="/product/` + slug + `">
+                                    <img src="`+ image[0] + `" alt="` + name + `">
+                                    <span class="info">
+                                    <span class="name">`+ name + `</span>
+                                    <span class="price">`+ price + `</span>
+                                    </span>
+                                </a>`;
+
+                        $('#js-search-result-scroll .list').append(stringAppend);
+                    }
+
+                    $('#js-search-result-scroll').css('display', 'block');
+                } else {
+                    $('#js-search-result-scroll .list').empty();
+                    $('#js-search-result-scroll').css('display', 'none');
+                }
+            }
+        });
+    } else {
+        $('#js-search-result-scroll .list').empty();
+        $('#js-search-result-scroll').hide();
     }
 }
 
