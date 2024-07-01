@@ -22,8 +22,6 @@
                     <h1>{{ __('ĐĂNG NHẬP') }}</h1>
                 </span>
 
-
-
                 @if(isset($errors))
                 @foreach ($errors->all() as $error)
                 <div style="color: red; margin: 10px">{{ $error }}</div>

@@ -333,14 +333,8 @@
 </div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-
-<style>
-
-</style>
-
 <script>
     $(window).scroll(function() {
-
         if ($(this).scrollTop() > 0) {
             $('#scroll-logo').fadeOut();
             $('.wrap').fadeOut();
