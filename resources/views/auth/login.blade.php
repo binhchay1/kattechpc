@@ -19,20 +19,10 @@
             <form class="login100-form validate-form flex-sb flex-w" method="POST" action="{{ route('login') }}">
                 @csrf
                 <span class="login100-form-title p-b-53">
-                    <h1>{{ __('Đăng nhập') }}</h1>
+                    <h1>{{ __('ĐĂNG NHẬP') }}</h1>
                 </span>
 
-                <div class="btn-login-social">
-                    <a href="{{ route('auth.facebook') }}" class="btn-face">
-                        <img src="{{ asset('images/logo/icon-facebook.png') }}" width="30" height="31" />
-                        Facebook
-                    </a>
 
-                    <a href="{{ route('auth.google') }}" class="btn-google">
-                        <img src="{{ asset('images/logo/icon-google.png') }}" width="30" height="31" />
-                        Google
-                    </a>
-                </div>
 
                 @if(isset($errors))
                 @foreach ($errors->all() as $error)
@@ -74,8 +64,20 @@
 
                 <div class="container-login100-form-btn m-t-17">
                     <button class="login100-form-btn">
-                        {{ __('Đăng nhập') }}
+                        {{ __('ĐĂNG NHẬP') }}
                     </button>
+                </div>
+
+                <div class="btn-login-social">
+                    <a href="{{ route('auth.facebook') }}" class="btn-face">
+                        <img src="{{ asset('images/logo/icon-facebook.png') }}" width="30" height="31" />
+                        Facebook
+                    </a>
+
+                    <a href="{{ route('auth.google') }}" class="btn-google">
+                        <img src="{{ asset('images/logo/icon-google.png') }}" width="30" height="31" />
+                        Google
+                    </a>
                 </div>
 
                 <div class="w-full text-center p-t-55">
