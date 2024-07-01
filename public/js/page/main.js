@@ -92,7 +92,7 @@ $(document).ready(function () {
 
     let transFlash = 0;
     let defaultFlash = 7;
-    let perTransFlash = 200;
+    let perTransFlash = 195;
     let countFlash = 0;
 
     if (isMobileDetected) {
@@ -210,7 +210,7 @@ $(document).ready(function () {
 
     let transTopSale = 0;
     let defaultTopSale = 3;
-    let perTransTopSale = 249;
+    let perTransTopSale = 255;
 
     if (isMobileDetected) {
         defaultTopSale = 1;
