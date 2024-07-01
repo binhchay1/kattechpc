@@ -126,7 +126,7 @@
                 @foreach($listFlashSale['flash_sale_list_product_id'] as $product)
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
-                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
+                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative scale-img">
                             <img width="164" height="164" alt="{{ $product->name }}" class="lazy" src="{{ asset(json_decode($product->image, true)[0]) }}">
                         </a>
                         <div class="product-info">
@@ -177,12 +177,12 @@
         <div class="swiper d-flex">
             <div class="box-banner-collection">
                 @if(isset($layout->hot_sale_big_thumbnail))
-                <a href="{{ isset($layout->permarklink_hot_sale_big_thumbnail) ? $layout->permarklink_hot_sale_big_thumbnail : '#' }}" class="banner-collection boder-radius-10">
+                <a href="{{ isset($layout->permarklink_hot_sale_big_thumbnail) ? $layout->permarklink_hot_sale_big_thumbnail : '#' }}" class="banner-collection boder-radius-10 scale-img">
                     <img src="{{ asset($layout->hot_sale_big_thumbnail) }}" width="650" height="430" class="boder-radius-10 lazy" alt="" data-was-processed="true" data-ll-status="loaded">
                 </a>
                 @endif
             </div>
-            <div class="swiper-wrapper swiper-top-sale" style="left: 48%;">
+            <div class="swiper-wrapper swiper-top-sale">
                 @foreach($listHotSale as $product)
                 <div class="swiper-slide1" role="group">
                     <div class="product-item">
@@ -215,14 +215,14 @@
 <section class="category">
     <div class="d-flex align-items-center justify-content-between">
         <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
-            <h2 class="flash-sale-title">{{ __('Danh mục nổi bật') }}</h2>
+            <h2 class="flash-sale-title">{{ __('Danh mục sản phẩm') }}</h2>
         </div>
     </div>
     <div class="flex-container">
         @foreach($listCategoryProduct as $category)
         @if($category->status == 1)
-        <a href="{{ route('showDataCategory', $category->slug) }}" class="d-flex flex-column text-center category-home-page">
-            <img src="{{ asset($category->image) }}" class="item-hot lazy" width="300" height="300">
+        <a href="{{ route('showDataCategory', $category->slug) }}" class="d-flex flex-column text-center category-home-page scale-img">
+            <img src="{{ asset($category->image) }}" class="item-hot lazy" width="70" height="70">
             <span class="policy-title">{{ $category->name }}</span>
         </a>
         @endif
@@ -260,8 +260,8 @@
                 @foreach($category->products as $product)
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
-                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative">
-                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
+                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative scale-img">
+                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                             @if($product->hot_status == 1)
                             <span class="p-type-holder">
                                 <i class="p-icon-type p-icon-hot"></i>
@@ -419,6 +419,7 @@
                 @endforeach
             </div>
 
+            @if(!$isMobile)
             <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
                 @if(count($listCustomerReview) > 4)
 
@@ -426,32 +427,52 @@
                 $totalPag = count($listCustomerReview) - 4 + 1;
                 @endphp
 
-                @for($i = 0; $i < $totalPag; $i++) @if($i==0)
-                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
-                @else
-                <span class="swiper-pagination-bullet" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
-                @endif
-                @endfor
+                @for($i = 0; $i < $totalPag; $i++) @if($i==0) <span class="swiper-pagination-bullet swiper-pagination-bullet-active" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
+                    @else
+                    <span class="swiper-pagination-bullet" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
+                    @endif
+                    @endfor
 
-                @else
-                <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span>
-                @endif
+                    @else
+                    <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span>
+                    @endif
             </div>
             <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+            @else
+            <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal">
+                @if(count($listCustomerReview) >= 2)
+
+                @php
+                $totalPag = count($listCustomerReview);
+                @endphp
+
+                @for($i = 0; $i < $totalPag; $i++) @if($i==0) <span class="swiper-pagination-bullet swiper-pagination-bullet-active" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
+                    @else
+                    <span class="swiper-pagination-bullet" data-id="swiper-pagination-bullet-{{ $i + 1 }}" tabindex="0" role="button" aria-label="Go to slide {{ $i + 1 }}"></span>
+                    @endif
+                    @endfor
+
+                    @else
+                    <span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span>
+                    @endif
+            </div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+            @endif
         </div>
     </div>
 </section>
+
 @if($listSlideFooter)
-<section class="top-sale" id="slide-footer">
+<section class="" id="slide-footer">
     <div class="flash-sale-area">
         <div class="swiper">
-            <div class="swiper-wrapper swiper-top-sale1 " >
+            <div class="swiper-wrapper swiper-footer-slide">
                 @foreach($listSlideFooter as $slide)
-                    <div class="swiper-slide2" role="group" style="width: 286px;">
-                        <div class="product-item1" style="min-height: 0 !important;">
-                                <img src="{{ $slide['image_footer'] }}" width="275" height="300" class="lazy">
-                        </div>
+                <div class="swiper-slide2" role="group" style="width: 286px;">
+                    <div class="product-item1" style="min-height: 0 !important;">
+                        <img src="{{ $slide['image_footer'] }}" width="275" height="300" class="lazy">
                     </div>
+                </div>
                 @endforeach
             </div>
         </div>

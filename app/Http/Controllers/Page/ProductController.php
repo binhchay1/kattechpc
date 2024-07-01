@@ -341,7 +341,7 @@ class ProductController extends Controller
         }
 
         foreach ($filters as $keyLast => $filterLast) {
-            if ($keyLast == 'sort' or $keyLast == 'brand' or $keyLast == 'price' or $keyLast == 'category') {
+            if ($keyLast == 'sort' or $keyLast == 'brand' or $keyLast == 'price' or $keyLast == 'category' or $keyLast == 'page') {
                 continue;
             }
 

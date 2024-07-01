@@ -17,6 +17,7 @@ use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Contracts\LoginResponse;
 use Cache;
+use Laravel\Fortify\Contracts\RegisterResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -51,11 +52,11 @@ class FortifyServiceProvider extends ServiceProvider
 
             return view('auth.register', compact('listCategory'));
         });
-    
+
         Fortify::requestPasswordResetLinkView(function () {
             $key = 'menu_homepage';
             $listCategory = Cache::store('redis')->get($key);
-        
+
             return view('auth.forgot-password', compact('listCategory'));
         });
 

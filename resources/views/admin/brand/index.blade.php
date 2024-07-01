@@ -91,14 +91,13 @@
                                     </div>
                                 </div>
                             </div>
-
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $listBrands->links() !!}
                 </div>
             </div>
         </div>
+        {!! $listBrands->links() !!}
     </div>
 </div>
 @endsection

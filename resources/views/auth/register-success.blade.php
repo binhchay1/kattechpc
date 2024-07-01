@@ -21,7 +21,6 @@
             <p class="tks">{{__('Cảm ơn các bạn đã đăng kí và sử dụng KATTECH.')}}</p>
 
             <img class="image-cart" style="width: 50% !important;" src="{{asset('images/logo/logo.png')}}">
-
         </div>
     </main>
 

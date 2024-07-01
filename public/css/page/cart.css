@@ -349,7 +349,7 @@ aside {
 }
 
 .sep-item-link {
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .text-center {

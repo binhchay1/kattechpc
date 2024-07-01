@@ -94,14 +94,13 @@
                                     </div>
                                 </div>
                             </div>
-
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $listCategoryFilters->links() !!}
                 </div>
             </div>
         </div>
+        {!! $listCategoryFilters->links() !!}
     </div>
 </div>
 @endsection

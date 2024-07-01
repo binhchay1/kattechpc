@@ -29,7 +29,7 @@ class ProductRequest extends FormRequest
             'code' =>'required|max:255|unique:products,code',
             'price' =>'required|max:255',
             'image' =>'required',
-            'image.*' => 'mimes:jpg,jpeg|max:2048'
+            'image.*' => 'mimes:jpg,jpeg,png|max:2048'
         ];
     }
 

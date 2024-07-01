@@ -21,6 +21,7 @@ use App\Repositories\BrandRepository;
 use App\Repositories\CustomerReviewRepository;
 use App\Repositories\YoutubeChannelRepository;
 use Illuminate\Support\Facades\Config;
+use Detection\MobileDetect;
 use Cache;
 
 class HomeController extends Controller
@@ -169,6 +170,13 @@ class HomeController extends Controller
         return view('page.other.contact-business', compact('listCategory'));
     }
 
+    public function viewThankRegister($slug) {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('auth.register-success', compact('listCategory'));
+    }
+
     public function viewPromotion()
     {
         $listPromotion = $this->promotionRepository->promotionHome();
@@ -207,6 +215,9 @@ class HomeController extends Controller
     {
         $listPost = $this->postRepository->postHome();
         $firstPosts1 = $this->postRepository->firstPost();
+        if (empty($firstPosts1)) {
+            return redirect('/404');
+        }
         $secondPost = $this->postRepository->secondPost();
         $postRandom3 = $listPost->splice(1, 3);
         $postRandom4 = $listPost->splice(1, 8);
@@ -284,6 +295,9 @@ class HomeController extends Controller
             }
         }
 
+        $detect = new MobileDetect();
+        $isMobile = $detect->isMobile();
+
         return view('page.homepage', compact(
             'listCategory',
             'listNews',
@@ -296,7 +310,8 @@ class HomeController extends Controller
             'getFlashSale',
             'listYoutube',
             'listCustomerReview',
-            'listSlideFooter'
+            'listSlideFooter',
+            'isMobile'
         ));
     }
 
@@ -374,5 +389,10 @@ class HomeController extends Controller
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         return view('auth.register-success', compact('listCategory'));
+    }
+    
+    public function sendMail()
+    {
+        return view('mail.send-mail-order');
     }
 }
