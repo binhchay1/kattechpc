@@ -37,9 +37,9 @@
 }
 
 .txt1 {
-    font-family: Montserrat-SemiBold;
+
     font-size: 16px;
-    color: #555555;
+    color: #121212;
     line-height: 1.5;
 }
 
@@ -77,8 +77,7 @@
 .login100-form-title {
     width: 100%;
     display: block;
-    font-family: Montserrat-Medium;
-    font-size: 30px;
+    font-size: 20px;
     color: #555555;
     line-height: 1.2;
     text-align: center;
@@ -87,7 +86,7 @@
 
 .btn-face,
 .btn-google {
-    font-family: Montserrat-SemiBold;
+
     font-size: 18px;
     line-height: 1.2;
 
@@ -157,11 +156,10 @@
     font-size: 16px;
     display: block;
     width: 100%;
-    background: light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4)) !important;
     height: 35px;
     padding: 10px 20px;
-    border: none;
-    border-radius: 15px;
+    border-radius: 5px;
+    background-color: white;
 }
 
 .input100:focus + .focus-input100 {
@@ -209,9 +207,8 @@
     height: 60px;
     background-color: #333333;
     border-radius: 10px;
-
-    font-family: Poppins-Medium;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 18px;
     color: #fff;
     line-height: 1.2;
 
@@ -233,11 +230,11 @@
     border-radius: 10px;
     top: 0;
     left: 0;
-    background: #f44b4b;
-    background: -webkit-linear-gradient(45deg, #590101, #ff0000);
-    background: -o-linear-gradient(45deg, #590101, #ff0000);
-    background: -moz-linear-gradient(45deg, #590101, #ff0000);
-    background: linear-gradient(45deg, #590101, #ff0000);
+    background: RED;
+    /*background: -webkit-linear-gradient(45deg, #590101, #ff0000);*/
+    /*background: -o-linear-gradient(45deg, #590101, #ff0000);*/
+    /*background: -moz-linear-gradient(45deg, #590101, #ff0000);*/
+    /*background: linear-gradient(45deg, #590101, #ff0000);*/
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
     -moz-transition: all 0.4s;
@@ -301,7 +298,16 @@
     opacity: 1;
 }
 
+.validate-input {
+    margin-top: 10px;
+}
+
+.p-b-9 {
+    margin-top: 10px;
+}
+
 .btn-login-social {
+    margin-top: 15px;
     display: flex;
     margin-bottom: 15px;
 }
@@ -310,7 +316,6 @@
     text-align: center;
     color: #249782;
     padding: 10px;
-    background-color: #a0e8db;
     border-radius: 10px;
 }
 

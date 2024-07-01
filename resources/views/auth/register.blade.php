@@ -19,7 +19,7 @@
             <form class="login100-form validate-form flex-sb flex-w" method="POST" action="{{ route('register') }}">
                 @csrf
                 <span class="login100-form-title p-b-53">
-                    <h1>{{ __('Đăng ký') }}</h1>
+                    <h1>{{ __('ĐĂNG KÍ') }}</h1>
                 </span>
 
                 @if(isset($errors))
@@ -68,7 +68,7 @@
 
                 <div class="container-login100-form-btn mt-15">
                     <button class="login100-form-btn">
-                        {{ __('Đăng ký') }}
+                        {{ __('ĐĂNG KÍ') }}
                     </button>
                 </div>
 
