@@ -111,6 +111,10 @@
             <img width="40" height="40" alt="mes" src="{{ asset('images/logo/icon-youtube.png') }}">
         </a>
 
+        <a href="javascript:window.scrollTo({ top: 0, behavior: 'smooth' });" class="scroll-top-btn align-items-center justify-content-center d-none" title="Di chuyển lên đầu trang!" style="display: flex;">
+            <i class="fa fa-angle-up"></i>
+        </a>
+
         <a href="https://m.me/kattechpc.vn" target="_blank" class="messenger d-flex align-items-center">
             <img width="40" height="40" alt="mes" src="{{ asset('images/logo/facebook_messenger.png') }}">
             <div class="contact-info">
@@ -134,6 +138,7 @@
     </div>
 
     @include('includes.modal-youtube-play')
+    @include('includes.modal-location')
 
     <script src="{{ asset('/plugins/jquery/jquery-3.4.1.min.js') }}"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>

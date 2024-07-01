@@ -106,10 +106,10 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $listPosts->links() !!}
                 </div>
             </div>
         </div>
+        {!! $listPosts->links() !!}
     </div>
 </div>
 

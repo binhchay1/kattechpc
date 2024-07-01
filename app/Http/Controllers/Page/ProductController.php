@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Enums\Utility;
 use Cache;
 use Illuminate\Support\Facades\DB;
+use App\Enums\Product;
 
 class ProductController extends Controller
 {
@@ -165,7 +166,7 @@ class ProductController extends Controller
         $currentCateID = $getCategoryProduct->id;
 
         if ($currentCateID != 0) {
-            $dataBreadcrumb[$getCategoryProduct->name] = $getCategoryProduct->slug;
+            $dataBreadcrumb[$getCategoryProduct->name] = route('showDataCategory', $getCategoryProduct->slug);
             $endWhile = false;
             while (!$endWhile) {
                 $getParent = $this->categoryRepository->show($currentCateID);
@@ -174,7 +175,7 @@ class ProductController extends Controller
                 }
 
                 $currentCateID = $getParent->parent;
-                $dataBreadcrumb[$getParent->name] = $getParent->slug;
+                $dataBreadcrumb[$getParent->name] = route('showDataCategory', $getParent->slug);
             }
         }
 
@@ -341,7 +342,7 @@ class ProductController extends Controller
         }
 
         foreach ($filters as $keyLast => $filterLast) {
-            if ($keyLast == 'sort' or $keyLast == 'brand' or $keyLast == 'price' or $keyLast == 'category') {
+            if ($keyLast == 'sort' or $keyLast == 'brand' or $keyLast == 'price' or $keyLast == 'category' or $keyLast == 'page') {
                 continue;
             }
 
@@ -385,7 +386,7 @@ class ProductController extends Controller
         $dataBreadcrumb = [];
 
         if ($currentCateID != 0) {
-            $dataBreadcrumb[$dataCategory->name] = $dataCategory->slug;
+            $dataBreadcrumb[$dataCategory->name] = route('showDataCategory', $dataCategory->slug);
             $endWhile = false;
             while (!$endWhile) {
                 $getParent = $this->categoryRepository->show($currentCateID);
@@ -394,7 +395,7 @@ class ProductController extends Controller
                 }
 
                 $currentCateID = $getParent->parent;
-                $dataBreadcrumb[$getParent->name] = $getParent->slug;
+                $dataBreadcrumb[$getParent->name] = route('showDataCategory', $getParent->slug);
             }
         }
 

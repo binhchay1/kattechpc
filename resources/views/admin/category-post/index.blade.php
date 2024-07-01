@@ -195,10 +195,10 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $listCategory->links() !!}
                 </div>
             </div>
         </div>
+        {!! $listCategory->links() !!}
     </div>
 </div>
 @endsection

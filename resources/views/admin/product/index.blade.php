@@ -138,10 +138,11 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $listProducts->links() !!}
                 </div>
             </div>
         </div>
+
+        {!! $listProducts->links() !!}
     </div>
 </div>
 @endsection

@@ -52,6 +52,7 @@ Route::get('/503', [ErrorController::class, 'view503'])->name('error.503');
 Route::get('/maintenance', [ErrorController::class, 'viewMaintenance'])->name('maintenance.user');
 Route::get('/staff-login', [HomeController::class, 'staffLogin'])->name('staff.login');
 Route::post('/post-staff-login', [HomeController::class, 'postStaffLogin'])->name('post.staff.login');
+Route::get('/send-mail', [HomeController::class, 'sendMail'])->name('sendMail');
 
 Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], function () {
     Route::get('/', [HomeController::class, 'viewHome'])->name('home');
@@ -71,7 +72,7 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     Route::get('/gop-y-khieu-nai', [HomeController::class, 'complaint'])->name('complaint');
     Route::get('/chinh-sach-hang-chinh-hang', [HomeController::class, 'productPolicy'])->name('productPolicy');
     Route::get('/chinh-sach-doanh-nghiep', [HomeController::class, 'businessPolicy'])->name('businessPolicy');
-    // Route::get('/landing/{slug}', [HomeController::class, 'viewLandingPage'])->name('landing.page');
+    Route::get('/landing/{slug}', [HomeController::class, 'viewLandingPage'])->name('landing.page');
     Route::get('/custom-contact', [HomeController::class, 'storeCustomContact'])->name('custom.contact');
     Route::get('/lich-su-mua-hang', [AccountController::class, 'orderHistory'])->name('orderHistory');
     Route::get('/auth/google/', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
@@ -84,6 +85,7 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     Route::get('/lien-he-hop-tac-kinh-doanh', [HomeController::class, 'contactBusiness'])->name('contactBusiness');
     Route::get('/get-products-for-suggestions', [ProductPage::class, 'suggestionsProduct'])->name('suggestions.product');
     Route::get('/change-locate/{locale}', [HomeController::class, 'changeLocate'])->name('change.locate');
+    Route::get('cam-on', [HomeController::class, 'viewThankRegister'])->name('view.thank.register');
 
     Route::group(['middleware' => 'user'], function () {
         Route::get('/get-order-detail/{order_id}', [AccountController::class, 'getOrderDetail']);

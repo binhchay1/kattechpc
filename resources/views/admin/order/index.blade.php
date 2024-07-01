@@ -117,10 +117,11 @@
                             @endforeach
                         </tbody>
                     </table>
-                    {!! $listOrders->links() !!}
                 </div>
             </div>
         </div>
+
+        {!! $listOrders->links() !!}
     </div>
 </div>
 

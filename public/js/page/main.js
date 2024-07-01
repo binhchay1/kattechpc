@@ -254,7 +254,6 @@ $(document).ready(function () {
         }
     }
 
-
     $('.global-menu-container').hover(function () {
         $('.global-menu-holder').show();
     }, function () {
@@ -299,10 +298,33 @@ $(document).ready(function () {
         suggestionForSearch(this);
     });
 
+    $('.inline-search-scroll').unbind('keyup');
+    $('.inline-search-scroll').bind('keyup', function () { });
+    $(".inline-search-scroll").on('keyup', function (e) {
+        suggestionForSearchScroll(this);
+    });
+
     document.querySelector(".menu-btn").addEventListener("click", toggleMenuBar);
 
     $('#modal-youtube-play .close').on('click', function () {
         $('#modal-youtube-play').css('display', 'none');
+    });
+
+    $('#modal-map .close').on('click', function () {
+        $('#modal-map').css('display', 'none');
+    });
+
+    $('.fa-map-marker-alt').on('click', function () {
+        $('#modal-map').css('display', 'flex');
+    });
+
+    $('.header-top-hotline').hover(function () {
+        $('.header-top-left .sub').addClass('d-block');
+    }, function () {
+        $('.header-top-left .sub').hover(function () {
+        }, function () {
+            $('.header-top-left .sub').removeClass('d-block');
+        });
     });
 });
 
@@ -329,9 +351,11 @@ $(document).scroll(function () {
     if (x >= 300) {
         $('.sub-header-scroll').addClass('d-block');
         $('.sub-header-scroll').addClass('header-fixed');
+        $('.scroll-top-btn').removeClass('d-none');
     } else {
         $('.sub-header-scroll').removeClass('d-block');
         $('.sub-header-scroll').removeClass('header-fixed');
+        $('.scroll-top-btn').addClass('d-none');
     }
 });
 
@@ -381,10 +405,52 @@ function suggestionForSearch(input) {
     }
 }
 
+function suggestionForSearchScroll(input) {
+    let urlSuggest = '/get-products-for-suggestions';
+    if (input.value != '') {
+        $.ajax({
+            type: "get",
+            data: {
+                search: input.value
+            },
+            url: urlSuggest,
+            success: function (result) {
+                if (result.length > 0) {
+                    $('#js-search-result-scroll .list').empty();
+                    for (let i = 0; i < result.length; i++) {
+                        let price = result[i].price;
+                        let name = result[i].name;
+                        let slug = result[i].slug;
+                        let image = JSON.parse(result[i].image);
+
+                        let stringAppend = `<a href="/product/` + slug + `">
+                                    <img src="`+ image[0] + `" alt="` + name + `">
+                                    <span class="info">
+                                    <span class="name">`+ name + `</span>
+                                    <span class="price">`+ price + `</span>
+                                    </span>
+                                </a>`;
+
+                        $('#js-search-result-scroll .list').append(stringAppend);
+                    }
+
+                    $('#js-search-result-scroll').css('display', 'block');
+                } else {
+                    $('#js-search-result-scroll .list').empty();
+                    $('#js-search-result-scroll').css('display', 'none');
+                }
+            }
+        });
+    } else {
+        $('#js-search-result-scroll .list').empty();
+        $('#js-search-result-scroll').hide();
+    }
+}
+
 function watchYoutubeVideo(youtube) {
     let getUrl = youtube.attr('data-url');
-    var urlParams = new URL(getUrl);
-    var idUrl = urlParams.searchParams.get('v');
+    let urlParams = new URL(getUrl);
+    let idUrl = urlParams.searchParams.get('v');
     let urlYoutube = 'https://www.youtube.com/embed/' + idUrl + '?autoplay=true';
 
     $('#modal-youtube-play iframe').attr('src', urlYoutube);
@@ -393,5 +459,4 @@ function watchYoutubeVideo(youtube) {
 
 function toggleMenuBar() {
     document.querySelector(".main-menu-category").classList.toggle("show");
-    document.body.classList.toggle('lock-scroll');
 }
