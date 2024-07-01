@@ -107,17 +107,6 @@
                     </div>
                 </div>
 
-                {{-- <div class="wrap">--}}
-                {{-- <form method="get" action="{{ route('search') }}">--}}
-                {{-- <div class="search">--}}
-                {{-- <input type="text" name="q" class="searchTerm"  placeholder="Nhập sản phẩm, từ khóa cần tìm">--}}
-                {{-- <button type="submit" class="searchButton">--}}
-                {{-- <i class="fa fa-search"></i>--}}
-                {{-- </button>--}}
-                {{-- </div>--}}
-                {{-- </form>--}}
-                {{-- </div>--}}
-
                 <nav class="navbar">
                     <ul class="main-menu-category">
                         @foreach($listCategory['default'] as $category)
