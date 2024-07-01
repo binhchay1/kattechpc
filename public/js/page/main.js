@@ -347,11 +347,11 @@ $(document).scroll(function () {
     if (x >= 300) {
         $('.sub-header-scroll').addClass('d-block');
         $('.sub-header-scroll').addClass('header-fixed');
-        $('.scroll-top-btn').addClass('d-block');
+        $('.scroll-top-btn').removeClass('d-none');
     } else {
         $('.sub-header-scroll').removeClass('d-block');
         $('.sub-header-scroll').removeClass('header-fixed');
-        $('.scroll-top-btn').removeClass('d-block');
+        $('.scroll-top-btn').addClass('d-none');
     }
 });
 

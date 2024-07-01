@@ -1740,10 +1740,11 @@ a {
     transition: 0.4s all;
     right: 10px;
     color: #fff;
+    background: white;
 }
 
 .global-fixed-right .fix-youtube {
-    bottom: 24%;
+    bottom: 25%;
     border: 1px solid red;
 }
 
