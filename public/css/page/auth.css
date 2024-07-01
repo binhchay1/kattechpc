@@ -12,18 +12,33 @@
     margin: 0;
 }
 
-.form-auth a {
-    font-size: 14px;
+.txt2-register {
+    font-size: 17px;
     line-height: 1.7;
-    color: #666666;
+    color: #337ab7;
     transition: all 0.4s;
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
     -moz-transition: all 0.4s;
+    text-decoration: none !important;
+    font-weight: 555;
+}
+
+.txt2-password{
+    font-size: 17px;
+    line-height: 1.7;
+    color: #888e8e;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    text-decoration: none !important;
+    font-style: italic;
 }
 
 .form-auth label {
     display: block;
+    font-size: 18px;
 }
 
 .form-auth button {
@@ -44,15 +59,12 @@
 }
 
 .txt2 {
-    font-family: Poppins-Regular;
     font-size: 18px;
-    color: #999999;
+    color: #333;
     line-height: 1.5;
 }
 
-.bo1 {
-    border-bottom: 1px solid #999999;
-}
+
 
 .container-login100 {
     width: 100%;
@@ -220,6 +232,7 @@
     transition: all 0.4s;
     position: relative;
     z-index: 1;
+
 }
 
 .login100-form-btn::before {
@@ -315,8 +328,9 @@
 }
 
 #get-email {
-    text-align: center;
-    color: #249782;
+    font-size: 15px;
+    text-align: left;
+    color: #333;
     padding: 10px;
     border-radius: 10px;
 }
@@ -326,14 +340,12 @@
 }
 
 #remember-pass{
-    font-family: serif;
     font-size: 17px;
 }
 
 #get-remember-pass {
-    font-family: serif;
     font-size: 17px;
-    color: #0a76e4;
+    color: #1982F9;
 
 }
 

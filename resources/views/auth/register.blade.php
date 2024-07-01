@@ -77,7 +77,7 @@
                         {{ __('Bạn đã có tài khoản') }}
                     </span>
 
-                    <a href="{{ route('login') }}" class="txt2 bo1">
+                    <a href="{{ route('login') }}" class="txt2-register bo1">
                         {{ __('Đăng nhập ngay') }}
                     </a>
                 </div>

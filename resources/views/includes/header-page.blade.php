@@ -96,16 +96,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="wrap">
-                    <form method="get" action="{{ route('search') }}">
-                        <div class="search">
-                            <input type="text" name="q" class="searchTerm" placeholder="Nhập sản phẩm, từ khóa cần tìm">
-                            <button type="submit" class="searchButton">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+
+{{--                <div class="wrap">--}}
+{{--                    <form method="get" action="{{ route('search') }}">--}}
+{{--                    <div class="search">--}}
+{{--                        <input type="text" name="q" class="searchTerm"  placeholder="Nhập sản phẩm, từ khóa cần tìm">--}}
+{{--                        <button type="submit" class="searchButton">--}}
+{{--                            <i class="fa fa-search"></i>--}}
+{{--                        </button>--}}
+{{--                    </div>--}}
+{{--                    </form>--}}
+{{--                </div>--}}
+
                 <nav class="navbar">
                     <ul class="main-menu-category" style="margin-top: 57px;">
                         @foreach($listCategory['default'] as $category)
@@ -340,10 +342,17 @@
             $('#scroll-logo').fadeOut();
             $('.wrap').fadeOut();
             $('.wrap1').fadeIn();
-        } else {
+            $('.main-menu-category').css({"margin-top":"58px"});
+            $('#bar-scroll').css(' margin-top', '22px');
+
+        }
+        else
+        {
             $('#scroll-logo').fadeIn();
             $('.wrap').fadeIn();
             $('.wrap1').fadeOut();
+            $('#bar-scroll').css(' margin-top', '22px');
         }
+
     });
 </script>

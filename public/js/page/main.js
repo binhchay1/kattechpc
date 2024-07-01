@@ -335,11 +335,15 @@ $(document).scroll(function () {
             $('.bottomMenu').fadeIn();
             $('.container-hamburger').addClass('header-fixed-menu-mobile');
             $('.menu-btn').css('top', '5px');
+            $('.list-items').css(' background', 'white');
+
+            $('.main-menu-category').css(' margin-top', '0');
         } else {
             $('.bottomMenu').fadeOut();
             $('.container-hamburger').removeClass('header-fixed-menu-mobile');
             $('.menu-btn').css('top', '40px');
-            $('.main-menu-category').css('margin-top', '40px');
+
+
         }
     }
 

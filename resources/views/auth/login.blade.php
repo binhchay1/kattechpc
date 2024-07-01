@@ -56,7 +56,7 @@
 
                 <div class="mt-10 mb-10">
                     @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}" class="txt2 bo1">{{ __('Quên mật khẩu?') }}</a>
+                    <a href="{{ route('password.request') }}" class="txt2-password bo1">{{ __('Quên mật khẩu?') }}</a>
                     @endif
                 </div>
 
@@ -83,7 +83,7 @@
                         {{ __('Bạn chưa có tài khoản') }}
                     </span>
 
-                    <a href="{{ route('register') }}" class="txt2 bo1">
+                    <a href="{{ route('register') }}" class="txt2-register  bo1">
                         {{ __('Đăng ký ngay') }}
                     </a>
                 </div>
