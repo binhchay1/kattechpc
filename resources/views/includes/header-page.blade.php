@@ -2,7 +2,7 @@
     <div class="header-top">
         <div class="header-top-container">
             <div class="header-top-left">
-                <span class="header-top-hotline"> {{ __('Gọi mua hàng:') }} <span class="hotline"><a href="tel:{{ str_replace('.', '',config(company.hotline)) }}">{{ config(company.hotline) }}</a></span> <i class="fa fa-phone"></i></span>
+                <span class="header-top-hotline"> {{ __('Gọi mua hàng:') }} <span class="hotline"><a href="tel:{{ str_replace('.', '',config('company.hotline')) }}">{{ config('company.hotline') }}</a></span> <i class="fa fa-phone"></i></span>
                 <div class="sub">
                     <div class="item"><span class="hotline-number">Line 1</span><span>{{ __('Khách hàng Doanh nghiệp') }} (8h-24h)</span></div>
                     <div class="item"><span class="hotline-number">Line 2</span><span>{{ __('Khách hàng Cá nhân') }} (8h-24h)</span></div>
