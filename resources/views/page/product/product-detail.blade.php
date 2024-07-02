@@ -11,6 +11,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('/css/page/product-detail.css') }}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 
 @section('content')
@@ -444,7 +445,7 @@
                                                     @for($j = $ratenum + 1; $j <= 5; $j++) <i class="fa fa-star "></i>
                                                         @endfor
                                             </div>
-                                            <p class="d-flex aligin-items-center"><b>{{ __('Nhận xét:') }}</b>{{$rating->content}}</p>
+                                            <p style="font-size: 16px" class="d-flex aligin-items-center"><b>{{ __('Nhận xét:') }}</b>{{$rating->content}}</p>
                                         </div>
 
                                     </div>
@@ -473,9 +474,9 @@
         </section>
 
         <section class="product-container set-background1">
-            <div id="product-info" class="product-info feedback-form">
+            <div id="product-info" class="product-info feedback-form" style="background-color: #f5f5f5;">
                 <div class="box-comment">
-                    <p class="title-comment font-weight-600">{{ __('Hỏi và đáp') }}</p>
+                    <p class="title-comment font-weight-600" style="font-size: 16px">{{ __('Hỏi và đáp') }}</p>
                     @if(isset($errors))
                     @foreach ($errors->all() as $error)
                     <div style="color: red; margin: 10px; font-size: 18px">{{ $error }}</div>
