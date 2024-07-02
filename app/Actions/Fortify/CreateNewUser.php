@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
 use App\Enums\Role;
+use App\Jobs\SendMailByGoogle;
+use App\Rules\ReCaptcha;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -28,6 +30,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
+            'g-recaptcha-response' => ['required', new ReCaptcha]
         ])->validate();
 
         return DB::transaction(function () use ($input) {
@@ -39,9 +42,8 @@ class CreateNewUser implements CreatesNewUsers
                 'title' => Role::USER,
             ]);
 
-// Send email
-            Mail::to($user->email)->send(new WelcomeEmail($user));
-            dd(1);
+            SendMailByGoogle::dispatch(new WelcomeEmail($user), $user->email, $user)->onQueue('email-register');
+
             return $user;
         });
     }

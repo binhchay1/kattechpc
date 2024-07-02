@@ -43,7 +43,6 @@ class PostController extends Controller
         $dataBreadcrumb = [];
 
         if ($currentCateID != 0) {
-            $dataBreadcrumb[$getCategory->name] = route('post.category', $getCategory->slug);
             $endWhile = false;
             while (!$endWhile) {
                 $getParent = $this->categoryPostRepository->show($currentCateID);
@@ -54,6 +53,8 @@ class PostController extends Controller
                 $currentCateID = $getParent->parent;
                 $dataBreadcrumb[$getParent->name] = route('post.category', $getParent->slug);
             }
+
+            $dataBreadcrumb[$getCategory->name] = route('post.category', $getCategory->slug);
         }
 
         return view('page.post.post-detail', compact('firstPosts1','postNews','post', 'postRandom', 'listCategory', 'dataBreadcrumb'));
@@ -81,7 +82,6 @@ class PostController extends Controller
         $dataBreadcrumb = [];
 
         if ($currentCateID != 0) {
-            $dataBreadcrumb[$postCategory->name] = route('post.category', $postCategory->slug);
             $endWhile = false;
             while (!$endWhile) {
                 $getParent = $this->categoryPostRepository->show($currentCateID);
@@ -92,6 +92,8 @@ class PostController extends Controller
                 $currentCateID = $getParent->parent;
                 $dataBreadcrumb[$getParent->name] = route('post.category', $getParent->slug);
             }
+
+            $dataBreadcrumb[$postCategory->name] = route('post.category', $postCategory->slug);
         }
 
         return view('page.post.category-post', compact(

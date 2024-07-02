@@ -500,7 +500,7 @@ function suggestionForSearch(input) {
                         let slug = result[i].slug;
                         let image = JSON.parse(result[i].image);
 
-                        let stringAppend = `<a href="/product/` + slug + `">
+                        let stringAppend = `<a href="/san-pham/` + slug + `">
                                     <img src="`+ image[0] + `" alt="` + name + `">
                                     <span class="info">
                                     <span class="name">`+ name + `</span>
@@ -542,7 +542,7 @@ function suggestionForSearchScroll(input) {
                         let slug = result[i].slug;
                         let image = JSON.parse(result[i].image);
 
-                        let stringAppend = `<a href="/product/` + slug + `">
+                        let stringAppend = `<a href="/san-pham/` + slug + `">
                                     <img src="`+ image[0] + `" alt="` + name + `">
                                     <span class="info">
                                     <span class="name">`+ name + `</span>

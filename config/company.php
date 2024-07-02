@@ -2,6 +2,6 @@
 
 return [
     'headquarters' => 'Hải Phòng',
-    'hotline' => '097.0124.113',
+    'hotline' => '092.8918.123',
     'email' => 'infor@kattechpc.vn'
 ];

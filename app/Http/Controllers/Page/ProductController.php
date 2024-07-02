@@ -166,7 +166,6 @@ class ProductController extends Controller
         $currentCateID = $getCategoryProduct->id;
 
         if ($currentCateID != 0) {
-            $dataBreadcrumb[$getCategoryProduct->name] = route('showDataCategory', $getCategoryProduct->slug);
             $endWhile = false;
             while (!$endWhile) {
                 $getParent = $this->categoryRepository->show($currentCateID);
@@ -177,6 +176,8 @@ class ProductController extends Controller
                 $currentCateID = $getParent->parent;
                 $dataBreadcrumb[$getParent->name] = route('showDataCategory', $getParent->slug);
             }
+
+            $dataBreadcrumb[$getCategoryProduct->name] = route('showDataCategory', $getCategoryProduct->slug);
         }
 
         return view(
@@ -386,7 +387,6 @@ class ProductController extends Controller
         $dataBreadcrumb = [];
 
         if ($currentCateID != 0) {
-            $dataBreadcrumb[$dataCategory->name] = route('showDataCategory', $dataCategory->slug);
             $endWhile = false;
             while (!$endWhile) {
                 $getParent = $this->categoryRepository->show($currentCateID);
@@ -397,6 +397,8 @@ class ProductController extends Controller
                 $currentCateID = $getParent->parent;
                 $dataBreadcrumb[$getParent->name] = route('showDataCategory', $getParent->slug);
             }
+
+            $dataBreadcrumb[$dataCategory->name] = route('showDataCategory', $dataCategory->slug);
         }
 
         return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'listKeyWord', 'dataBreadcrumb'));

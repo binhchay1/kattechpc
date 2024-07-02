@@ -2,6 +2,7 @@
 
 @section('title')
 <title>{{ __('Đăng ký') }} | Kattech PC</title>
+<script async src="https://www.google.com/recaptcha/api.js"></script>
 @endsection
 
 @section('description', __('Đăng ký để trải nghiệm nhiều tính năng khác của chúng tôi'))
@@ -64,6 +65,10 @@
 
                 <div class="wrap-input100 validate-input">
                     <input class="input100" id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="{{ __('Nhập xác nhận mật khẩu') }}">
+                </div>
+
+                <div>
+                    <div name="g-recaptcha" class="g-recaptcha mt-4" data-sitekey="{{ config('services.recaptcha.key') }}"></div>
                 </div>
 
                 <div class="container-login100-form-btn mt-15">
