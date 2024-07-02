@@ -19,14 +19,15 @@
             <div class="comment-content1 boder-radius-10 mt-12 position-relative">
                 <div class="d-flex align-items-center" style="float: left; width: 90%">
                     <div class="d-flex jd-img-review flex-column gap-8">
-                        <p>{{ $comment->content }}</p>
+                        <p style="font-size: 15px">{{ $comment->content }}</p>
                     </div>
                 </div>
-
-                <div class="info_feeback  align-items-center gap-6" id="rep-comment" style="float: right; width: 20%">
-                    <i class="fa fa-reply" style="font-size:20px; margin-right: 5px"></i>
+                @if($comment->parent_id == null)
+                <div class="info_feeback  align-items-center gap-6" id="rep-comment" style="text-align: right; width: 20%">
+                    <i class="far fa-comments" style="font-size:20px; margin-right: 5px"></i>
                     <a href="javascript:" class="write_reply font-weight-500">{{ __('Trả lời') }}</a>
                 </div>
+                    @endif
             </div>
             <div class="reply-list-container js-replyList-item" id="reply_list_473" data-item-id="473"></div>
         </div>
@@ -37,7 +38,7 @@
             <div class="comment-detail">
                 <div class="form-comment gap-10 d-flex justify-content-between">
                     <div style="width: 80%;">
-                        <textarea class="comment_reply_content boder-radius-10" id="content0" name="content" placeholder="Xin mời để lại câu hỏi"></textarea>
+                        <textarea class="reply_content-data boder-radius-10" id="content0" name="content" placeholder="Xin mời để lại câu trả lời"></textarea>
                         <input type="hidden" value="{{ $dataProduct->id }}" name="product_id">
                         <input type="hidden" name="parent_id" value="{{ $comment->id }}" />
                     </div>
