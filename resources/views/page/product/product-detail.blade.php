@@ -523,7 +523,6 @@
         </div>
     </section>
 
-
     <section>
         <h3 class="productRelated">{{ __('Sản phẩm đã xem') }}</h3>
         <div class="swiper d-flex" style="margin-bottom: 20px;">

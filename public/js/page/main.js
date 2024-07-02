@@ -82,7 +82,7 @@ $(document).ready(function () {
     });
 
     let transFlash = 0;
-    let defaultFlash = 7;
+    let defaultFlash = 5;
     let perTransFlash = 195;
     let countFlash = 0;
 

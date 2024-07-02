@@ -915,7 +915,9 @@ tr:nth-child(even) {
 }
 
 .box-flash-sale .box-middle {
-    width: 165px;
+    width: 180px;
+    padding: 0;
+    margin-top: 45px;
 }
 
 .box-flash-sale .box-right {
@@ -944,6 +946,7 @@ tr:nth-child(even) {
 
 .time-count {
     text-align: center;
+    width: 30px;
 }
 
 .time-count p {
@@ -972,6 +975,10 @@ tr:nth-child(even) {
     display: block;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    width: 210px;
 }
 
 @media screen and (max-width: 992px) {
@@ -1041,6 +1048,10 @@ tr:nth-child(even) {
 
     .box-flash-sale .box-left .title-deal {
         font-size: 17px;
+    }
+
+    .product-image {
+        width: 100%;
     }
 }
 
