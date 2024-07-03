@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Cohensive\Embed\Facades\Embed;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -31,7 +31,8 @@ class Product extends Model
         'brand_id',
         'status_guarantee',
         'detail_tech',
-        'views'
+        'views',
+        'link_youtube'
     ];
 
     public function category()
@@ -89,5 +90,17 @@ class Product extends Model
 
             $product->slug = $slug;
         });
+    }
+    
+    public function getVideoHtmlAttribute()
+    {
+        $embed = Embed::make($this->video)->parseUrl();
+        
+        if (!$embed)
+            return '';
+        
+        $embed->setAttribute(['width' => 104,
+            'height' => 104]);
+        return $embed->getHtml();
     }
 }

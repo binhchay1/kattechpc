@@ -25,7 +25,10 @@
                 <img src="{{ asset($dataProduct->image[0]) }}" id="featured-image">
             </div>
 
-            <div class="small-Card">
+            <div class="small-Card d-flex">
+                <div class="media-body">
+                    {!! Embed::make($dataProduct->link_you)->parseUrl()->getIframe() !!}
+                </div>
                 <div class="swiper d-flex align-items-center" style="min-height: auto;">
                     <div class="swiper-wrapper swiper-image">
                         @foreach ($dataProduct->image as $key => $image)
