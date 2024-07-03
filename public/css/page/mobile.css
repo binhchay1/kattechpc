@@ -1,5 +1,14 @@
 @media screen and (max-width: 992px) {
 
+    .box-side-left {
+        width: 90% !important;
+        padding: 0 !important;
+    }
+
+    .box-side-right {
+        width: 100% !important;
+    }
+
     #hidden-logo {
         display: none;
     }
