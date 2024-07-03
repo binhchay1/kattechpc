@@ -119,6 +119,17 @@ body a {
     border-radius: 95px 0 0 99px;
 }
 
+.inline-search-scroll {
+    width: 90%;
+    height: 42px;
+    margin: 0;
+    padding: 0 20px;
+    font-size: 13px;
+    outline: 0;
+    border: 2px solid var(--color-primary);
+    border-radius: 95px 0 0 99px;
+}
+
 .button-search {
     position: absolute;
     right: 0;
@@ -319,13 +330,13 @@ body a {
 
 .fixed-left {
     position: fixed;
-    top: 28%;
+    top: 30%;
     left: 4.1%;
 }
 
 .fixed-right {
     position: fixed;
-    top: 28%;
+    top: 30%;
     right: 4.1%;
 }
 
@@ -599,6 +610,11 @@ body a {
     left: 48%;
 }
 
+.border-image {
+    border: 1px solid var(--color-primary);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
 .swiper-slide-image {
     width: 104px;
     margin-right: 12px;
@@ -606,6 +622,7 @@ body a {
     height: 100%;
     position: relative;
     transition-property: transform;
+    padding: 8px;
 }
 
 .product-item {
@@ -1287,7 +1304,7 @@ body a {
 }
 
 .swiper-flash-sale .swiper-slide {
-    width: 187px;
+    width: 267px;
 }
 
 a {
@@ -1319,7 +1336,7 @@ a {
 .global-menu-container .global-menu-holder {
     display: none;
     visibility: visible;
-    z-index: 1;
+    z-index: 59;
     position: absolute;
     -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
@@ -1700,6 +1717,10 @@ a {
     cursor: auto;
 }
 
+.global-breadcrumb ol {
+    flex-wrap: wrap;
+}
+
 .breadcrumb-home {
     font-weight: bold;
 }
@@ -1725,16 +1746,17 @@ a {
     transition: 0.4s all;
     right: 10px;
     color: #fff;
+    background: white;
 }
 
 .global-fixed-right .fix-youtube {
-    bottom: 24%;
+    bottom: 24.5%;
     border: 1px solid red;
 }
 
 .global-fixed-right .messenger {
     background: #fff;
-    bottom: 50px;
+    bottom: 30px;
     width: 170px;
     padding: 10px;
     border-radius: 15px;
@@ -1746,7 +1768,7 @@ a {
 
 .global-fixed-right .zalo {
     background: #fff;
-    bottom: 125px;
+    bottom: 100px;
     width: 170px;
     padding: 10px;
     border-radius: 15px;
@@ -1852,10 +1874,21 @@ a {
     background-color: rgba(0, 0, 0, 0.81);
 }
 
+#modal-map {
+    height: 100%;
+    z-index: 99999999999 !important;
+    background-color: rgba(0, 0, 0, 0.81);
+}
+
 #modal-youtube-play .modal-header {
     position: absolute;
     top: 0;
     right: 0;
+}
+
+#map {
+    width: 800px;
+    height: 400px;
 }
 
 #modal-youtube-play .modal-header button {
@@ -1865,10 +1898,70 @@ a {
     color: white;
 }
 
-.swiper-pagination {
-    position: relative;
-    bottom: 0;
-    margin-top: 14px;
+#modal-map .modal-dialog {
+    width: 800px;
+}
+
+#modal-map .modal-header {
+    display: flex;
+    justify-content: space-between;
+    background: white;
+    border-bottom: 1px solid;
+    padding: 10px;
+}
+
+#modal-map .close {
+    border: none;
+    background: none;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#modal-map .close:hover {
+    color: #000;
+}
+
+.title-header-map p {
+    color: #000;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 0;
+}
+
+.popup-showrom-container {
+    background: #fff;
+    padding: 15px;
+}
+
+.popup-showrom-container .item {
+    padding: 15px;
+    font-size: 16px;
+    line-height: 1.6;
+    width: calc(50% - 10px);
+    margin-bottom: 20px;
+    border-radius: 12px;
+    background: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        from(#da3333),
+        to(#e38585)
+    );
+    background: -o-linear-gradient(#da3333, #e38585);
+    background: linear-gradient(#da3333, #e38585);
+    color: #fff;
+}
+
+#marquee-header {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.popup-showrom-container .item .item-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
 }
 
 .swiper-horizontal > .swiper-pagination-bullets,
@@ -1885,7 +1978,10 @@ a {
     justify-content: center;
     transition: 0.3s opacity;
     transform: translate3d(0, 0, 0);
-    z-index: 10;
+    z-index: 9;
+    position: relative;
+    bottom: 0;
+    margin-top: 14px;
 }
 
 .swiper-pagination-bullet {
@@ -2096,7 +2192,7 @@ a {
 
 @media screen and (max-width: 400px) {
     .wrap {
-        top: 24%;
+        top: 150px;
         width: 90%;
         position: absolute;
         left: 48%;
@@ -2119,7 +2215,6 @@ a {
     padding: 10px;
 }
 
-/* Clear floats after the columns */
 .test:after {
     content: "";
     display: table;
@@ -2165,7 +2260,7 @@ a {
 }
 
 .wrap {
-    top: 30%;
+    top: 150px;
     width: 90%;
     position: absolute;
     left: 50%;
@@ -2181,10 +2276,62 @@ a {
     transform: translate(-50%, -50%);
 }
 
+.header-map-marker {
+    margin-left: 15px;
+    font-size: 15px;
+}
+
+.fa-map-marker-alt {
+    cursor: pointer;
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.header-top-container .sub {
+    display: none;
+    position: absolute;
+    background: #fff;
+    z-index: 9999;
+    top: 6%;
+    transform: translateY(7px);
+    transition: visibility 0.2s, transform 0.2s;
+    border: 1px solid #ccc;
+    border-radius: 0 0 3px 3px;
+}
+
+.header-top-container .sub .item {
+    display: block;
+    color: #333e48;
+    padding: 10px;
+    border-top: 1px solid #e8e8e8;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.header-top-container .sub .hotline-number {
+    display: inline-block;
+    height: 20px;
+    padding: 0 10px;
+    color: #fff;
+    background: #233974;
+    line-height: 18px;
+    text-align: center;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.global-fixed-right .scroll-top-btn {
+    bottom: 180px;
+    background: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    color: #fff;
+}
+
 @media screen and (max-width: 768px) {
     .main-menu-category {
-        margin-top: 40px;
-        position: absolute;
+        position: fixed;
+        margin-top: 57px;
         top: 50px;
         left: 0;
         width: 100%;
@@ -2195,6 +2342,7 @@ a {
         display: none;
         transform: translateX(-800px);
         padding-top: 30px;
+        overflow:scroll;
     }
 
     .show-search .search-mobile {
@@ -2204,6 +2352,7 @@ a {
     .main-menu-category .list-items {
         display: block;
         list-style: none;
+        background: white;
     }
 
     #get_search {

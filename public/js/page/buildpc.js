@@ -117,9 +117,9 @@ function addToMenu(choose) {
     }
 
     let stringAppend = `<div class="contain-item-drive" id="product-item-in-list-` + currentArea + `-` + product.id + `">
-                            <a target="_blank" href="/product/` + product.slug + `" class="d-img"><img src="` + image[0] + `"></a>
+                            <a target="_blank" href="/san-pham/` + product.slug + `" class="d-img"><img src="` + image[0] + `"></a>
                             <span class="d-name">
-                                <a target="_blank" href="/product/` + product.slug + `"> ` + product.name + `  </a> <br>
+                                <a target="_blank" href="/san-pham/` + product.slug + `"> ` + product.name + `  </a> <br>
                                 Bảo hành: ` + product.status_guarantee + ` <br>
                                 Kho hàng: <span style="color: red">` + textStatus + `</span> | Mã SP: <span style="color: red">` + product.code + `</span>
                             </span>
@@ -305,7 +305,7 @@ function renderProductToModal(data) {
         let sale_detail = val.sale_detail;
         let slug = val.slug;
         let image = JSON.parse(val.image);
-        let urlProduct = '/product/' + slug;
+        let urlProduct = '/san-pham/' + slug;
         let status_guarantee = val.status_guarantee;
         let status = val.status;
         if (status == 'available') {

@@ -30,10 +30,9 @@ class OrderRequest extends FormRequest
             'district' =>'required|max:100',
             'ward' =>'required|max:100',
             'email' =>'required|email',
-        
         ];
     }
-    
+
     public function messages()
     {
         return [

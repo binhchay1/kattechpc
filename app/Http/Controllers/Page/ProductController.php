@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Enums\Utility;
 use Cache;
 use Illuminate\Support\Facades\DB;
+use App\Enums\Product;
 
 class ProductController extends Controller
 {
@@ -61,6 +62,8 @@ class ProductController extends Controller
         $postRandom5 = $this->postRepository->postRandom6();
         $youtubeRandom = $this->youtubeChannelRepository->index();
         $dataProduct = $this->productRepository->productDetail($slug);
+    
+        $videoId = $this->getYoutubeVideoId($dataProduct->link_youtube);
         if (empty($dataProduct)) {
             return redirect('/404');
         }
@@ -165,7 +168,6 @@ class ProductController extends Controller
         $currentCateID = $getCategoryProduct->id;
 
         if ($currentCateID != 0) {
-            $dataBreadcrumb[$getCategoryProduct->name] = $getCategoryProduct->slug;
             $endWhile = false;
             while (!$endWhile) {
                 $getParent = $this->categoryRepository->show($currentCateID);
@@ -174,14 +176,23 @@ class ProductController extends Controller
                 }
 
                 $currentCateID = $getParent->parent;
-                $dataBreadcrumb[$getParent->name] = $getParent->slug;
+                $dataBreadcrumb[$getParent->name] = route('showDataCategory', $getParent->slug);
             }
+
+            $dataBreadcrumb[$getCategoryProduct->name] = route('showDataCategory', $getCategoryProduct->slug);
         }
 
         return view(
             'page.product.product-detail',
-            compact('youtubeRandom', 'postRandom5', 'countRate', 'countRate1', 'countRate2', 'countRate3', 'countRate4', 'countRate5', 'dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue', 'productViewed', 'dataBreadcrumb')
+            compact('videoId','youtubeRandom', 'postRandom5', 'countRate', 'countRate1', 'countRate2', 'countRate3', 'countRate4', 'countRate5', 'dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue', 'productViewed', 'dataBreadcrumb')
         );
+    }
+    
+    private function getYoutubeVideoId($url)
+    {
+        $queryString = parse_url($url, PHP_URL_QUERY);
+        parse_str($queryString, $params);
+        return isset($params['v']) ? $params['v'] : null;
     }
 
     public function storeComment(RatingRequest $request)
@@ -385,7 +396,6 @@ class ProductController extends Controller
         $dataBreadcrumb = [];
 
         if ($currentCateID != 0) {
-            $dataBreadcrumb[$dataCategory->name] = $dataCategory->slug;
             $endWhile = false;
             while (!$endWhile) {
                 $getParent = $this->categoryRepository->show($currentCateID);
@@ -394,11 +404,13 @@ class ProductController extends Controller
                 }
 
                 $currentCateID = $getParent->parent;
-                $dataBreadcrumb[$getParent->name] = $getParent->slug;
+                $dataBreadcrumb[$getParent->name] = route('showDataCategory', $getParent->slug);
             }
+
+            $dataBreadcrumb[$dataCategory->name] = route('showDataCategory', $dataCategory->slug);
         }
 
-        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'listKeyWord', 'dataBreadcrumb'));
+        return view('page.product.product-category', compact('videoId','dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'listKeyWord', 'dataBreadcrumb'));
     }
 
     function getTopParent($category)

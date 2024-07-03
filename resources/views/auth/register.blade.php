@@ -2,6 +2,7 @@
 
 @section('title')
 <title>{{ __('Đăng ký') }} | Kattech PC</title>
+<script async src="https://www.google.com/recaptcha/api.js"></script>
 @endsection
 
 @section('description', __('Đăng ký để trải nghiệm nhiều tính năng khác của chúng tôi'))
@@ -19,7 +20,7 @@
             <form class="login100-form validate-form flex-sb flex-w" method="POST" action="{{ route('register') }}">
                 @csrf
                 <span class="login100-form-title p-b-53">
-                    <h1>{{ __('Đăng ký') }}</h1>
+                    <h1>{{ __('ĐĂNG KÍ') }}</h1>
                 </span>
 
                 @if(isset($errors))
@@ -66,9 +67,13 @@
                     <input class="input100" id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="{{ __('Nhập xác nhận mật khẩu') }}">
                 </div>
 
+                <div>
+                    <div name="g-recaptcha" class="g-recaptcha mt-4" data-sitekey="{{ config('services.recaptcha.key') }}"></div>
+                </div>
+
                 <div class="container-login100-form-btn mt-15">
                     <button class="login100-form-btn">
-                        {{ __('Đăng ký') }}
+                        {{ __('ĐĂNG KÍ') }}
                     </button>
                 </div>
 
@@ -77,7 +82,7 @@
                         {{ __('Bạn đã có tài khoản') }}
                     </span>
 
-                    <a href="{{ route('login') }}" class="txt2 bo1">
+                    <a href="{{ route('login') }}" class="txt2-register bo1">
                         {{ __('Đăng nhập ngay') }}
                     </a>
                 </div>

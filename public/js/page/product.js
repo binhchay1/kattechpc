@@ -1,10 +1,19 @@
+var isMobileDetected = false;
 $(document).ready(function () {
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        isMobileDetected = true;
+    }
+
     let transProductRelated = 0;
     let defaultProductRelated = 6;
     let perTransProductRelated = 235;
 
+    if(isMobileDetected){
+        defaultProductRelated = 1;
+        perTransProductRelated = window.innerWidth + 5;
+    }
+
     let listChildProductRelated = $(".swiper-product-related").children();
-    console
     if (listChildProductRelated.length > defaultProductRelated) {
         let stopProductRelated = listChildProductRelated.length - defaultProductRelated;
         let countProductRelated = 0;
@@ -25,6 +34,11 @@ $(document).ready(function () {
     let transProductViewed = 0;
     let defaultProductViewed = 6;
     let perTransProductViewed = 235;
+
+    if(isMobileDetected){
+        defaultProductViewed = 1;
+        perTransProductViewed = window.innerWidth + 5;
+    }
 
     let listChildProductViewed = $(".swiper-product-viewed").children();
     if (listChildProductViewed.length > defaultProductViewed) {

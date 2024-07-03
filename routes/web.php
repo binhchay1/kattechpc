@@ -60,8 +60,8 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     Route::get('/chinh-sach-bao-hanh', [HomeController::class, 'viewPolicy'])->name('policy');
     Route::get('/thanh-toan-truc-tuyen', [HomeController::class, 'paymentOnline'])->name('paymentOnline');
     Route::get('/huong-dan-thanh-toan', [HomeController::class, 'payment'])->name('payment');
-    Route::get('/post', [HomeController::class, 'viewPost'])->name('post');
-    Route::get('/product/{slug}', [ProductPage::class, 'productDetail'])->name('productDetail');
+    Route::get('/bai-viet', [HomeController::class, 'viewPost'])->name('post');
+    Route::get('/san-pham/{slug}', [ProductPage::class, 'productDetail'])->name('productDetail');
     Route::post('/comment', [ProductPage::class, 'storeComment'])->name('storeComment');
     Route::post('/rating', [ProductPage::class, 'rating'])->name('rating');
     Route::get('/khuyen-mai', [HomeController::class, 'viewPromotion'])->name('promotion');

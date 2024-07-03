@@ -192,6 +192,7 @@ class CartController extends Controller
                         ];
                         dd($data);
                         $this->orderDetailRepository->create($data);
+                        SendMailByGoogle::dispatch(new OrderPlacedEmail($user), $user->email, $user)->onQueue('email-order');
                         Mail::to($input['email'])->send(new OrderPlacedEmail($input, $data));
                     }
 
@@ -209,6 +210,7 @@ class CartController extends Controller
 
                         $this->orderDetailRepository->create($data);
                         dd($user['email']);
+                        SendMailByGoogle::dispatch(new OrderPlacedEmail($user), $user->email, $user)->onQueue('email-order');
                         Mail::to($user['email'])->send(new OrderPlacedEmail($user, $data));
                     }
                     Cart::clear();

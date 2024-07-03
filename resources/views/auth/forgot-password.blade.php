@@ -95,12 +95,11 @@
                     <form class="login100-form validate-form flex-sb flex-w" method="POST" action="{{ route('login') }}">
                         @csrf
                         <span class="login100-form-title p-b-53">
-                            <h1>{{ __('Quên mật khẩu') }}</h1>
-                            <p class="mb-8 text-slate-500 dark:text-zink-200">{{__('Đặt lại mật khẩu')}}</p>
+                            <h1>{{ __('QUÊN MẬT KHẨU') }}</h1>
                         </span>
                             <div
                                 class="px-4 py-3 mb-6 text-sm text-yellow-500 border border-transparent rounded-md bg-yellow-50 dark:bg-yellow-400/20" id="get-email">
-                                {{__('Cung cấp địa chỉ email của bạn và hướng dẫn sẽ được gửi cho bạn')}}
+                                {{__('Vui lòng nhập địa chỉ email đã đăng ký với chúng tôi để tạo mật khẩu mới. Chúng tôi sẽ gửi 1 email vào địa chỉ email cung cấp và yêu cầu xác minh trước khi có thể tạo mật khẩu mới')}}
                             </div>
                         @if(isset($errors))
                             @foreach ($errors->all() as $error)
@@ -118,16 +117,17 @@
                             <span class="focus-input100"></span>
                         </div>
 
-                        <div class="mt-4 text-center">
-                            <p class="mb-0" id="remember-pass">{{__('Đợi đã, tôi nhớ mật khẩu của mình...')}} <a href="{{ route('login') }}"
-                                    class="underline fw-medium text-custom-500" id="get-remember-pass"> {{__('Bấm vào đây')}} </a> </p>
-                        </div>
-
-                        <div class="container-login100-form-btn m-t-17">
+                        <div class="container-login100-form-btn m-t-17" style="margin-top: 20px">
                             <button class="login100-form-btn">
-                                {{ __('Send reset link') }}
+                                {{ __('KHÔI PHỤC') }}
                             </button>
                         </div>
+                        <div class="text-center" id="return-login">
+                            <p class="mb-0" id="remember-pass">{{__('Đợi đã, tôi nhớ mật khẩu của mình...')}} <a href="{{ route('login') }}"
+                                    class="underline fw-medium text-custom-500" id="get-remember-pass"> {{__('Trở về đăng nhập')}} </a> </p>
+                        </div>
+
+
                     </form>
                 </div>
             </div>

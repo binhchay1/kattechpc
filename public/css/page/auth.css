@@ -12,18 +12,33 @@
     margin: 0;
 }
 
-.form-auth a {
-    font-size: 14px;
+.txt2-register {
+    font-size: 17px;
     line-height: 1.7;
-    color: #666666;
+    color: #337ab7;
     transition: all 0.4s;
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
     -moz-transition: all 0.4s;
+    text-decoration: none !important;
+    font-weight: 555;
+}
+
+.txt2-password{
+    font-size: 17px;
+    line-height: 1.7;
+    color: #888e8e;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    text-decoration: none !important;
+    font-style: italic;
 }
 
 .form-auth label {
     display: block;
+    font-size: 18px;
 }
 
 .form-auth button {
@@ -37,22 +52,19 @@
 }
 
 .txt1 {
-    font-family: Montserrat-SemiBold;
+    font-weight: 550;
     font-size: 16px;
-    color: #555555;
+    color: #121212;
     line-height: 1.5;
 }
 
 .txt2 {
-    font-family: Poppins-Regular;
     font-size: 18px;
-    color: #999999;
+    color: #333;
     line-height: 1.5;
 }
 
-.bo1 {
-    border-bottom: 1px solid #999999;
-}
+
 
 .container-login100 {
     width: 100%;
@@ -77,8 +89,7 @@
 .login100-form-title {
     width: 100%;
     display: block;
-    font-family: Montserrat-Medium;
-    font-size: 30px;
+    font-size: 20px;
     color: #555555;
     line-height: 1.2;
     text-align: center;
@@ -87,7 +98,7 @@
 
 .btn-face,
 .btn-google {
-    font-family: Montserrat-SemiBold;
+
     font-size: 18px;
     line-height: 1.2;
 
@@ -157,11 +168,12 @@
     font-size: 16px;
     display: block;
     width: 100%;
-    background: light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4)) !important;
     height: 35px;
     padding: 10px 20px;
+    border-radius: 5px;
     border: none;
-    border-radius: 15px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .input100:focus + .focus-input100 {
@@ -209,9 +221,8 @@
     height: 60px;
     background-color: #333333;
     border-radius: 10px;
-
-    font-family: Poppins-Medium;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 18px;
     color: #fff;
     line-height: 1.2;
 
@@ -221,6 +232,7 @@
     transition: all 0.4s;
     position: relative;
     z-index: 1;
+
 }
 
 .login100-form-btn::before {
@@ -233,11 +245,11 @@
     border-radius: 10px;
     top: 0;
     left: 0;
-    background: #f44b4b;
-    background: -webkit-linear-gradient(45deg, #590101, #ff0000);
-    background: -o-linear-gradient(45deg, #590101, #ff0000);
-    background: -moz-linear-gradient(45deg, #590101, #ff0000);
-    background: linear-gradient(45deg, #590101, #ff0000);
+    background: RED;
+    /*background: -webkit-linear-gradient(45deg, #590101, #ff0000);*/
+    /*background: -o-linear-gradient(45deg, #590101, #ff0000);*/
+    /*background: -moz-linear-gradient(45deg, #590101, #ff0000);*/
+    /*background: linear-gradient(45deg, #590101, #ff0000);*/
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
     -moz-transition: all 0.4s;
@@ -301,16 +313,25 @@
     opacity: 1;
 }
 
+.validate-input {
+    margin-top: 10px;
+}
+
+.p-b-9 {
+    margin-top: 10px;
+}
+
 .btn-login-social {
+    margin-top: 15px;
     display: flex;
     margin-bottom: 15px;
 }
 
 #get-email {
-    text-align: center;
-    color: #249782;
+    font-size: 15px;
+    text-align: left;
+    color: #333;
     padding: 10px;
-    background-color: #a0e8db;
     border-radius: 10px;
 }
 
@@ -319,14 +340,12 @@
 }
 
 #remember-pass{
-    font-family: serif;
     font-size: 17px;
 }
 
 #get-remember-pass {
-    font-family: serif;
     font-size: 17px;
-    color: #0a76e4;
+    color: #1982F9;
 
 }
 
