@@ -18,19 +18,17 @@
         <div class="column1">
             <div class="top5 flex">
                 <div style="float: left; width: 60%;">
-                    <div class="">
-                        <div class="position-relative mb-3">
-                            <img class="img-fluid w-100" alt="{{ $firstPosts1->title }}" src="{{ $firstPosts1->thumbnail ?? asset('images/page/no-image.png') }}">
-                            <div class="content-top">
-                                <?php $text = strlen($firstPosts1->title);
-                                if ($text < 80) {
-                                    $post = $firstPosts1->title;
-                                } else {
-                                    $post = \Illuminate\Support\Str::limit($firstPosts1->title, 80);
-                                }
-                                ?>
-                                <h2><a href="{{ route('post.detail', $firstPosts1['slug']) }}" class="h4">{{ $post }}</a></h2>
-                            </div>
+                    <div class="position-relative mb-3">
+                        <img class="img-fluid w-100" alt="{{ $firstPosts1->title }}" src="{{ $firstPosts1->thumbnail ?? asset('images/page/no-image.png') }}">
+                        <div class="content-top">
+                            <?php $text = strlen($firstPosts1->title);
+                            if ($text < 80) {
+                                $post = $firstPosts1->title;
+                            } else {
+                                $post = \Illuminate\Support\Str::limit($firstPosts1->title, 80);
+                            }
+                            ?>
+                            <h2><a href="{{ route('post.detail', $firstPosts1['slug']) }}" class="h4">{{ $post }}</a></h2>
                         </div>
                     </div>
                 </div>
@@ -75,33 +73,31 @@
             </div>
             <hr>
             <div class="top1">
-                <div>
-                    @foreach($postRandom4 as $postDESC)
-                    <div class="child d-flex">
-                        <div style="width: 30%;">
-                            <img class="img-fluid w-100" src="{{ $postDESC->thumbnail ?? asset('images/page/no-image.png') }}" style="object-fit: cover;">
-                        </div>
-                        <div class="" style="margin-left: 20px; width: 70%;">
-                            <?php $text = strlen($postDESC->title);
-                            if ($text < 60) {
-                                $post = $postDESC->title;
-                            } else {
-                                $post = \Illuminate\Support\Str::limit($postDESC->title, 60);
-                            }
-                            ?>
-                            <h2><a class="text-tech" href="{{ route('post.detail', $postDESC->slug) }}">{{ $postDESC->title }}</a></h2>
-                            <div class="post_info">
-                                <span class="post_info_item-date">
-                                    <?php $date =  $postDESC->created_at->format('M d, Y') ?? "" ?>
-                                    {{__("Thời gian: ")}} {{ $date }}
-                                </span>
-                                <span class="post_info_item-author">{{ $postDESC->user->name ?? "" }}</span>
-                            </div>
+                @foreach($postRandom4 as $postDESC)
+                <div class="child d-flex">
+                    <div style="width: 30%;">
+                        <img class="img-fluid w-100" src="{{ $postDESC->thumbnail ?? asset('images/page/no-image.png') }}" style="object-fit: cover;">
+                    </div>
+                    <div class="" style="margin-left: 20px; width: 70%;">
+                        <?php $text = strlen($postDESC->title);
+                        if ($text < 60) {
+                            $post = $postDESC->title;
+                        } else {
+                            $post = \Illuminate\Support\Str::limit($postDESC->title, 60);
+                        }
+                        ?>
+                        <h2><a class="text-tech" href="{{ route('post.detail', $postDESC->slug) }}">{{ $postDESC->title }}</a></h2>
+                        <div class="post_info">
+                            <span class="post_info_item-date">
+                                <?php $date =  $postDESC->created_at->format('M d, Y') ?? "" ?>
+                                {{__("Thời gian: ")}} {{ $date }}
+                            </span>
+                            <span class="post_info_item-author">{{ $postDESC->user->name ?? "" }}</span>
                         </div>
                     </div>
-                    <hr>
-                    @endforeach
                 </div>
+                <hr>
+                @endforeach
             </div>
         </div>
 
