@@ -1304,7 +1304,7 @@ body a {
 }
 
 .swiper-flash-sale .swiper-slide {
-    width: 187px;
+    width: 267px;
 }
 
 a {
@@ -1336,7 +1336,7 @@ a {
 .global-menu-container .global-menu-holder {
     display: none;
     visibility: visible;
-    z-index: 1;
+    z-index: 59;
     position: absolute;
     -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);

@@ -14,28 +14,24 @@
     <div class="slider-banner-main">
         <div class="news-main">
             <div class="news-main-left">
-                <div id="header-carousel" class="carousel slide" data-ride="carousel">
+                <div id="header-carousel" class="owl-carousel slide">
                     <div class="carousel-inner">
-                        @foreach($listSlide as $slide)
+                        @foreach($listSlide as $keyOwl => $slide)
+                        @if($keyOwl == 0)
                         <div class="carousel-item active">
                             <a href="{{ $slide['url'] }}">
                                 <img src="{{ asset($slide['image']) }}" width="920" height="500" alt="Image" class="lazy">
                             </a>
                         </div>
+                        @else
+                        <div class="carousel-item">
+                            <a href="{{ $slide['url'] }}">
+                                <img src="{{ asset($slide['image']) }}" width="920" height="500" alt="Image" class="lazy">
+                            </a>
+                        </div>
+                        @endif
                         @endforeach
                     </div>
-                    @if(!empty($listSlide))
-                    <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
-                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
-                            <span class="carousel-control-prev-icon mb-n2"></span>
-                        </div>
-                    </a>
-                    <a class="carousel-control-next" href="#header-carousel" data-slide="next">
-                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
-                            <span class="carousel-control-next-icon mb-n2"></span>
-                        </div>
-                    </a>
-                    @endif
                 </div>
             </div>
             <div class="news-main-right">
@@ -540,5 +536,26 @@
     <?php } ?>
 
     const listCategory = <?php echo json_encode($listCategory) ?>;
+
+    let countOwl = 0;
+    let nextOwl = 0;
+    let listOwl = $('.carousel-inner .carousel-item');
+    setInterval(function() {
+        if (countOwl == listOwl.length - 1) {
+            listOwl[countOwl].classList.remove('active');
+            countOwl = 0;
+            nextOwl = countOwl;
+            listOwl[nextOwl].classList.add('active');
+
+        } else {
+            nextOwl = countOwl + 1;
+
+            listOwl[countOwl].classList.remove('active');
+            listOwl[nextOwl].classList.add('active');
+        }
+
+        countOwl++;
+
+    }, 3000);
 </script>
 @endsection
