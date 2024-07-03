@@ -29,34 +29,32 @@
                                     $post = \Illuminate\Support\Str::limit($firstPosts1->title, 80);
                                 }
                                 ?>
-                                <h2><a href="{{ route('post.detail', $firstPosts1['slug']) }}" class="h4" href="">{{ $post}}</a></h2>
+                                <h2><a href="{{ route('post.detail', $firstPosts1['slug']) }}" class="h4">{{ $post }}</a></h2>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div style="float: right; width: 35%; margin-left: 10px">
-                    <div class="">
-                        <div class="position-relative mb-3">
-                            <img class="img-fluid w-100" alt="{{ $secondPost->title }}" src="{{ $secondPost->thumbnail ?? asset('images/page/no-image.png') }}">
-                            <div class="content-top">
-                                <?php $text = strlen($secondPost->title);
-                                if ($text < 80) {
-                                    $post = $secondPost->title;
-                                } else {
-                                    $post = \Illuminate\Support\Str::limit($secondPost->title, 80);
-                                }
-                                ?>
-                                <h2><a href="{{ route('post.detail', $secondPost['slug']) }}" class="h4" href="">{{ $post}}</a></h2>
-                                <?php $text = \Illuminate\Support\Str::limit($secondPost->short_description, 550) ?>
-                                <p class="m-0">{{ $secondPost->short_description ."..." }}</p>
-                            </div>
+                    <div class="position-relative mb-3">
+                        <img class="img-fluid w-100" alt="{{ $secondPost->title }}" src="{{ $secondPost->thumbnail ?? asset('images/page/no-image.png') }}">
+                        <div class="content-top">
+                            <?php $text = strlen($secondPost->title);
+                            if ($text < 80) {
+                                $post = $secondPost->title;
+                            } else {
+                                $post = \Illuminate\Support\Str::limit($secondPost->title, 80);
+                            }
+                            ?>
+                            <h2><a href="{{ route('post.detail', $secondPost['slug']) }}" class="h4" href="">{{ $post}}</a></h2>
+                            <?php $text = \Illuminate\Support\Str::limit($secondPost->short_description, 550) ?>
+                            <p class="m-0">{{ $secondPost->short_description ."..." }}</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class=" top1">
+            <div class="top1">
                 <div class="parent">
                     @foreach($postRandom3 as $random)
                     <div class="child">
@@ -69,20 +67,19 @@
                                 $post = \Illuminate\Support\Str::limit($random->title, 60) . "...";
                             }
                             ?>
-                            <h2><a class="text-tech" href="">{{ $random->title }}</a></h2>
+                            <h2><a class="text-tech" href="{{ route('post.detail', $random['slug']) }}">{{ $random->title }}</a></h2>
                         </div>
                     </div>
                     @endforeach
                 </div>
             </div>
             <hr>
-            <div class=" top1">
-                <div class="">
+            <div class="top1">
+                <div>
                     @foreach($postRandom4 as $postDESC)
                     <div class="child d-flex">
                         <div style="width: 30%;">
                             <img class="img-fluid w-100" src="{{ $postDESC->thumbnail ?? asset('images/page/no-image.png') }}" style="object-fit: cover;">
-
                         </div>
                         <div class="" style="margin-left: 20px; width: 70%;">
                             <?php $text = strlen($postDESC->title);
@@ -92,7 +89,7 @@
                                 $post = \Illuminate\Support\Str::limit($postDESC->title, 60);
                             }
                             ?>
-                            <h2><a class="text-tech" href="">{{ $postDESC->title }}</a></h2>
+                            <h2><a class="text-tech" href="{{ route('post.detail', $postDESC->slug) }}">{{ $postDESC->title }}</a></h2>
                             <div class="post_info">
                                 <span class="post_info_item-date">
                                     <?php $date =  $postDESC->created_at->format('M d, Y') ?? "" ?>
@@ -112,7 +109,8 @@
             <div class="row top1">
                 <h2 class="text-title"> {{ __('Chủ đề nóng') }}
                     <span class="icon" style="position: absolute;">
-                        <img id="img-icon-hot" src="https://file.hstatic.net/200000636033/file/icon-blog-1_8b6add82876c457ba582b628c32266e5.png"></span>
+                        <img id="img-icon-hot" src="{{ asset('/images/icon-hot.png') }}">
+                    </span>
                 </h2>
                 <div class="parent1">
                     @foreach($listCategoryPost as $categoryPost)
@@ -127,7 +125,11 @@
             </div>
 
             <div class="row top2">
-                <h2 class="text-title" style="background-color: #03304b;"> {{__('TIN TỨC GẦN NHẤT')}}</h2>
+                <h2 class="text-title" style="background-color: #03304b;"> {{__('TIN TỨC GẦN NHẤT')}}
+                    <span class="icon" style="position: absolute;">
+                        <img id="img-icon-hot" src="{{ asset('/images/icon-blog.png') }}">
+                    </span>
+                </h2>
                 @foreach($postRandom5 as $post)
                 <div id="content">
                     <div id="left">
@@ -135,7 +137,7 @@
                     </div>
                     <div id="content-right">
                         <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
-                        <h4> {{$text}}</h4>
+                        <h4><a href="{{ route('post.detail', $postDESC->slug) }}"> {{ $text }} </a></h4>
                     </div>
                 </div>
                 @endforeach
@@ -143,9 +145,6 @@
         </div>
     </div>
 </div>
-
-</div>
-
 @endsection
 
 @section('js')

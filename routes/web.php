@@ -202,6 +202,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
         Route::get('/update/{id}', [ProductAdmin::class, 'editProduct'])->name('admin.product.edit');
         Route::post('/update/{id}', [ProductAdmin::class, 'updateProduct'])->name('admin.product.update');
         Route::get('/delete/{id}', [ProductAdmin::class, 'deleteProduct'])->name('admin.product.delete');
+        Route::get('/manager-sold', [ProductAdmin::class, 'managerSold'])->name('admin.product.manager.sold');
     });
 
     Route::group(['prefix' => 'brands'], function () {
