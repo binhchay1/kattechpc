@@ -83,7 +83,7 @@ $(document).ready(function () {
 
     let transFlash = 0;
     let defaultFlash = 5;
-    let perTransFlash = 195;
+    let perTransFlash = 279;
     let countFlash = 0;
 
     if (isMobileDetected) {

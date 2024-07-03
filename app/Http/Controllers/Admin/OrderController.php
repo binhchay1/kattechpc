@@ -37,7 +37,7 @@ class OrderController extends Controller
             foreach ($order->orderDetails as $detail) {
                 $total += $detail->quantity * $detail->price;
             }
-        
+
             $order->total = $total;
         }
         return view('admin.order.index', compact('listOrders'));
@@ -81,7 +81,7 @@ class OrderController extends Controller
         foreach ($orderDetail->orderDetails as $detail) {
             $total += $detail->quantity * $detail->price;
         }
-    
+
         $orderDetail->total = $total;
         $statusOrder = \App\Enums\Order::STATUS;
         return view('admin.order.edit', compact('orderDetail', 'statusOrder'));
@@ -90,7 +90,7 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function updateOrder(OrderRequest $request,  $id)
+    public function updateOrder(Request $request,  $id)
     {
         $input = $request->except(['_token']);
         $input = $this->orderRepository->update($input, $id);
