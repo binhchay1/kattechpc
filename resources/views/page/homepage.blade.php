@@ -101,7 +101,7 @@
 <section class="flash-sale-banner">
     <div class="flash-sale-area">
         <div class="d-flex align-items-center justify-content-between">
-            <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
+            <div class="flash-sale-title-area d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center justify-content-center">
                     <i class="fa fa-bolt"></i>
                     <h2 class="flash-sale-title">{{ __('Flash sale') }}</h2>
@@ -114,6 +114,10 @@
                     </div>
                 </div>
             </div>
+
+            <div>
+                <a href="{{ route('view.flash.sale') }}" class="view-more-flash-sale">{{ __('Xem thêm khuyến mãi') }} <i class="fa fa-caret-right"></i></a>
+            </div>
         </div>
 
         <div class="swiper box-list-item-deal swiper-box-deal swiper-initialized swiper-horizontal swiper-pointer-events">
@@ -123,7 +127,7 @@
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative scale-img">
-                            <img width="164" height="164" alt="{{ $product->name }}" class="lazy" src="{{ asset(json_decode($product->image, true)[0]) }}">
+                            <img width="164" height="164" alt="{{ $product->name }}" class="lazy hover-image" src="{{ asset(json_decode($product->image, true)[0]) }}">
                         </a>
                         <div class="product-info">
                             <a href="{{ route('productDetail', $product['slug']) }}">
@@ -145,7 +149,7 @@
                                 <div class="bg-gradient"></div>
                                 <?php $total_line = ($product->stock / $product->sale_quantity) * 100 ?>
                                 <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>"></p>
-                                <span>{{ __('Còn') }} {{ $product->stock }} / {{ $product->sale_quantity }} {{ __('sản phẩm') }}</span>
+                                <span style="font-size: 14px; font-weight: bold;">{{ __('Còn') }} {{ $product->stock }} / {{ $product->sale_quantity }} {{ __('sản phẩm') }}</span>
                             </div>
                         </div>
                     </div>
@@ -184,7 +188,7 @@
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product->slug) }}" class="product-image position-relative">
                             @if(isset($product->image))
-                            <img src="{{ asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="lazy">
+                            <img src="{{ asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="lazy hover-image">
                             @endif
                         </a>
                         <div class="product-info">
@@ -257,7 +261,7 @@
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative scale-img">
-                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
+                            <img src="{{  asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy hover-image" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                             @if($product->hot_status == 1)
                             <span class="p-type-holder">
                                 <i class="p-icon-type p-icon-hot"></i>

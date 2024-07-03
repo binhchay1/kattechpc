@@ -297,17 +297,21 @@ class ProductController extends Controller
         }
 
         if (isset($filters['brand'])) {
-            foreach ($dataComplete as $keyBrand => $productBrand) {
-                if ($productBrand->brands->name != $filters['brand']) {
-                    $dataComplete->forget($keyBrand);
+            if ($filters['brand'] != 'all') {
+                foreach ($dataComplete as $keyBrand => $productBrand) {
+                    if ($productBrand->brands->name != $filters['brand']) {
+                        $dataComplete->forget($keyBrand);
+                    }
                 }
             }
         }
 
         if (isset($filters['category'])) {
-            foreach ($dataComplete as $keyCategory => $productCategory) {
-                if ($productCategory->category_id != $filters['category']) {
-                    $dataComplete->forget($keyCategory);
+            if ($filters['category'] != 'all') {
+                foreach ($dataComplete as $keyCategory => $productCategory) {
+                    if ($productCategory->category_id != $filters['category']) {
+                        $dataComplete->forget($keyCategory);
+                    }
                 }
             }
         }

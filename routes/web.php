@@ -85,7 +85,8 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     Route::get('/lien-he-hop-tac-kinh-doanh', [HomeController::class, 'contactBusiness'])->name('contactBusiness');
     Route::get('/get-products-for-suggestions', [ProductPage::class, 'suggestionsProduct'])->name('suggestions.product');
     Route::get('/change-locate/{locale}', [HomeController::class, 'changeLocate'])->name('change.locate');
-    Route::get('cam-on', [HomeController::class, 'viewThankRegister'])->name('view.thank.register');
+    Route::get('/cam-on', [HomeController::class, 'viewThankRegister'])->name('view.thank.register');
+    Route::get('/flash-sale', [HomeController::class, 'viewFlashSale'])->name('view.flash.sale');
 
     Route::group(['middleware' => 'user'], function () {
         Route::get('/get-order-detail/{order_id}', [AccountController::class, 'getOrderDetail']);
