@@ -2369,6 +2369,11 @@ a {
     cursor: pointer;
 }
 
+.custom-mobile-flash-sale {
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
 @media screen and (max-width: 768px) {
     .main-menu-category {
         position: fixed;

@@ -38,7 +38,7 @@ class PromotionRepository extends BaseRepository
 
     public function getListPromotionHomePage()
     {
-        return $this->model->orderBy('created_at', 'desc')->get();
+        return $this->model->orderBy('created_at', 'desc')->get()->take(4);
     }
 
     public function promotionHome()

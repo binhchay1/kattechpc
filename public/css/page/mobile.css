@@ -79,6 +79,7 @@
 
     .content-sale {
         width: 100%;
+        padding: 5px;
     }
 
     .content-news {
@@ -95,6 +96,11 @@
 
     .box-article-group {
         margin-bottom: 0;
+        padding-left: 0;
+    }
+
+    .custom-mobile-promotion {
+        display: block !important;
     }
 
     #page-banner {

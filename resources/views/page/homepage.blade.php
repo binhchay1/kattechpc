@@ -100,7 +100,7 @@
 @if(strtotime($getFlashSale->flash_sale_timer) >= strtotime(date('Y-m-d H:i:s')))
 <section class="flash-sale-banner">
     <div class="flash-sale-area">
-        <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center justify-content-between custom-mobile-flash-sale">
             <div class="flash-sale-title-area d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center justify-content-center">
                     <i class="fa fa-bolt"></i>
@@ -318,7 +318,7 @@
             </div>
             <a href="{{ route('promotion') }}" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
-        <div class="list-article-group d-flex align-items-center">
+        <div class="list-article-group d-flex align-items-center custom-mobile-promotion">
             @foreach($listPromotion as $promotion)
             <div class="item-article d-flex gap-12">
                 <a href="{{ route('showPromotionDetail', $promotion->slug) }}" class="img-article boder-radius-10 position-relative">
