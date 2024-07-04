@@ -29,9 +29,10 @@
 
                 <div class="swiper d-flex align-items-center" style="min-height: auto;">
                     <div class="swiper-wrapper swiper-image">
-                        <iframe width="104" height="104" style="padding: 8px;" src="https://www.youtube.com/embed/{{ $videoId }}" frameborder="0" allowfullscreen></iframe>
-
-                    @foreach ($dataProduct->image as $key => $image)
+                        @if($dataProduct->link_youtube != null)
+                        <iframe width="104" height="104" style="padding: 8px;" src="https://www.youtube.com/embed/{{ $dataProduct->link_youtube }}" frameborder="0" allowfullscreen></iframe>
+                        @endif
+                            @foreach ($dataProduct->image as $key => $image)
                         @if($key == 0)
                         <div class="swiper-slide-image" role="group">
                             <img src="{{ asset($image) }}" data-index="{{ $key }}" class="small-Img border-image" onclick="getImageCenter(this)">
