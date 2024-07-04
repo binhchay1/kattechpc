@@ -201,7 +201,7 @@ $(document).ready(function () {
 
     let transTopSale = 0;
     let defaultTopSale = 3;
-    let perTransTopSale = 255;
+    let perTransTopSale = 247;
 
     if (isMobileDetected) {
         defaultTopSale = 1;
