@@ -28,7 +28,7 @@
             </div>
 
             <div>
-                <img class="boder-radius-10" src="{{ $promotion->image ?? asset('/images/test_post/2904-viettel-dau-gia-thanh-cong-bang-tan-5g-1.jpg') }}" alt="{{ $promotion->title }}" width="300" height="300">
+                <img class="boder-radius-10" src="{{ $promotion->image }}" alt="{{ $promotion->title }}" width="300" height="300">
             </div>
         </div>
 
