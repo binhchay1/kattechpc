@@ -892,8 +892,17 @@ tr:nth-child(even) {
 }
 
 .sprite-flashsale-detail {
-    width: 34px;
+    width: 23px;
     height: 33px;
+}
+
+.icon-sale-quantity {
+    position: absolute;
+    left: -9px;
+    bottom: -8px;
+    z-index: 2;
+    width: 30px;
+    height: 41px;
 }
 
 .box-flash-sale .box-left .title-deal {
@@ -905,9 +914,9 @@ tr:nth-child(even) {
 }
 
 .box-flash-sale .box-middle {
-    width: 180px;
+    width: 185px;
     padding: 0;
-    margin-top: 45px;
+    margin-top: 30px;
 }
 
 .box-flash-sale .box-right {
@@ -936,7 +945,7 @@ tr:nth-child(even) {
 
 .time-count {
     text-align: center;
-    width: 30px;
+    width: 36px;
 }
 
 .time-count p {
@@ -951,7 +960,7 @@ tr:nth-child(even) {
 }
 
 .box-right p {
-    font-size: 15px;
+    font-size: 13px;
     margin: 0;
 }
 
@@ -1142,7 +1151,7 @@ tr:nth-child(even) {
 }
 
 .img-card {
-    width: 65%;
+    width: 55%;
     float: left;
     border-radius: 10px;
 }
@@ -1150,7 +1159,7 @@ tr:nth-child(even) {
 
 .product-info-detail {
     flex-wrap: wrap;
-    width: 35%;
+    width: 45%;
     border-radius: 5px;
     float: right;
 }

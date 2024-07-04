@@ -21,6 +21,10 @@ body a {
     color: #333e48;
 }
 
+a:hover {
+    color: #f3070f;
+}
+
 .header {
     background: #fff;
 }
@@ -2328,6 +2332,39 @@ a {
     color: #fff;
 }
 
+.hover-image:hover {
+    transform: scale(1.6);
+}
+
+.p-quantity-sale i {
+    position: absolute;
+    left: -9px;
+    bottom: 1px;
+    z-index: 2;
+}
+
+.sprite-fire-deal {
+    width: 29px;
+    height: 29px;
+    background-position: -41px -85px;
+}
+
+.sprite {
+    background-image: url(/images/spritesheet1.png);
+    background-repeat: no-repeat;
+    display: block;
+    background-size: 366px 284px !important;
+}
+
+.view-more-flash-sale {
+    font-size: 18px;
+    color: white;
+}
+
+.view-more-flash-sale:hover {
+    color: var(--color-primary);
+}
+
 @media screen and (max-width: 768px) {
     .main-menu-category {
         position: fixed;
@@ -2342,7 +2379,7 @@ a {
         display: none;
         transform: translateX(-800px);
         padding-top: 30px;
-        overflow:scroll;
+        overflow: scroll;
     }
 
     .show-search .search-mobile {

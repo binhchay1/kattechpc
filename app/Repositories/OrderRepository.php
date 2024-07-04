@@ -45,4 +45,9 @@ class  OrderRepository extends BaseRepository
     {
         return $this->model->with('orderDetails')->whereYear('created_at', date('Y'))->paginate(10);
     }
+
+    public function getAllOrder()
+    {
+        return $this->model->with('orderDetails', 'orderDetails.product')->get();
+    }
 }

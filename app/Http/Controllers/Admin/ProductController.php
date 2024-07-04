@@ -9,6 +9,7 @@ use App\Http\Requests\ProductUpdateRequest;
 use App\Repositories\BrandRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\CategoryRepository;
+use App\Repositories\OrderRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Cache;
@@ -18,15 +19,18 @@ class ProductController extends Controller
     private $productRepository;
     private $categoryRepository;
     private $brandRepository;
+    private $orderRepository;
 
     public function __construct(
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository,
-        BrandRepository $brandRepository
+        BrandRepository $brandRepository,
+        OrderRepository $orderRepository
     ) {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
         $this->brandRepository = $brandRepository;
+        $this->orderRepository = $orderRepository;
     }
 
     public function index()
@@ -238,12 +242,19 @@ class ProductController extends Controller
         return back()->with('success', __('Sản phẩm được xóa thành công'));
     }
 
-    public function productSearch(Request $request)
+    public function managerSold()
     {
-        $filter['name'] = $request->name;
-        $products = $this->productRepository->getListProduct($filter);
-        $categories = $this->productRepository->getCategoriesAndCount();
+        $getOrder = $this->orderRepository->getAllOrder();
+        dd($getOrder);
+        $managerSold = [];
 
-        return view('pages.products', compact('products', 'categories'));
+        foreach ($getOrder as $order) {
+            $detail = [];
+            // $detail[]
+
+            $managerSold[] = $detail;
+        }
+
+        return view('admin.product.manager-sold', compact('managerSold'));
     }
 }
