@@ -65,7 +65,7 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     Route::post('/comment', [ProductPage::class, 'storeComment'])->name('storeComment');
     Route::post('/rating', [ProductPage::class, 'rating'])->name('rating');
     Route::get('/khuyen-mai', [HomeController::class, 'viewPromotion'])->name('promotion');
-    Route::get('/promotion-detail/{slug}', [HomeController::class, 'promotionDetail'])->name('promotion.detail');
+    Route::get('/khuyen-mai/{slug}', [HomeController::class, 'promotionDetail'])->name('promotion.detail');
     Route::get('/chinh-sach-quy-dinh-chung', [HomeController::class, 'rules'])->name('rules');
     Route::get('/tra-cuu-hoa-don', [HomeController::class, 'electronicBill'])->name('electronicBill');
     Route::get('/bao-mat-thong-tin-khach-hang', [HomeController::class, 'securityCustomer'])->name('securityCustomer');
@@ -80,7 +80,6 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     Route::get('/auth/facebook/', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
     Route::get('/auth/facebook/callback/', [SocialLoginController::class, 'handleFacebookCallback']);
     Route::get('/collection/{slug}', [ProductPage::class, 'showDataCategory'])->name('showDataCategory');
-    Route::get('/promotion/{slug}', [HomeController::class, 'showPromotionDetail'])->name('showPromotionDetail');
     Route::get('/gioi-thieu', [HomeController::class, 'introduction'])->name('introduction');
     Route::get('/lien-he-hop-tac-kinh-doanh', [HomeController::class, 'contactBusiness'])->name('contactBusiness');
     Route::get('/get-products-for-suggestions', [ProductPage::class, 'suggestionsProduct'])->name('suggestions.product');

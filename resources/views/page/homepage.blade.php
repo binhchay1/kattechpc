@@ -321,8 +321,8 @@
         <div class="list-article-group d-flex align-items-center custom-mobile-promotion">
             @foreach($listPromotion as $promotion)
             <div class="item-article d-flex gap-12">
-                <a href="{{ route('showPromotionDetail', $promotion->slug) }}" class="img-article boder-radius-10 position-relative">
-                    <img class="lazy" src="https://file.hstatic.net/200000722513/file/mua_kem_pc_1_30c838c753424ea3a9e1abb9d54c4ac2.png" alt="Banner" width="276px">
+                <a href="{{ route('promotion.detail', $promotion->slug) }}" class="img-article boder-radius-10 position-relative">
+                    <img class="lazy" src="{{ asset($promotion->image) }}" alt="Banner" width="276px">
                 </a>
             </div>
             @endforeach
