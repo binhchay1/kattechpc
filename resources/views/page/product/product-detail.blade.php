@@ -25,13 +25,13 @@
                 <img src="{{ asset($dataProduct->image[0]) }}" id="featured-image">
             </div>
 
-            <div class="small-Card d-flex">
-                <div class="media-body">
-                    {!! Embed::make($dataProduct->link_you)->parseUrl()->getIframe() !!}
-                </div>
+            <div class="small-Card">
+
                 <div class="swiper d-flex align-items-center" style="min-height: auto;">
                     <div class="swiper-wrapper swiper-image">
-                        @foreach ($dataProduct->image as $key => $image)
+                        <iframe width="104" height="104" style="padding: 8px;" src="https://www.youtube.com/embed/{{ $videoId }}" frameborder="0" allowfullscreen></iframe>
+
+                    @foreach ($dataProduct->image as $key => $image)
                         @if($key == 0)
                         <div class="swiper-slide-image" role="group">
                             <img src="{{ asset($image) }}" data-index="{{ $key }}" class="small-Img border-image" onclick="getImageCenter(this)">
@@ -147,7 +147,9 @@
                 <div class="box-right">
                     <div id="deal-line-detail" class="box-product-deal">
                         <p class="text-deal-detail">{{ __('Còn') }} {{ $dataProduct->sale_quantity }}/{{ $dataProduct->sale_stock }} {{ __('sản phẩm') }}</p>
-                        <div class="p-quantity-sale">
+                        <div class="p-quantity-sale d-flex" >
+                            <img class="icon-sale-quantity" src="{{ asset('images/sale_icon.png') }}">
+
                             <div>
                                 <?php $total_line = ($dataProduct->sale_stock / $dataProduct->sale_quantity) * 100 ?>
                                 <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>"></p>
