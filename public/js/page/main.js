@@ -33,7 +33,7 @@ $(document).ready(function () {
         let detail = '';
         let currentPrice = '';
 
-        if ($(this).attr('data-detail') != null || $(this).attr('data-detail') != '') {
+        if ($(this).attr('data-detail') != '') {
             detail = JSON.parse($(this).attr('data-detail'));
         }
 
@@ -54,7 +54,7 @@ $(document).ready(function () {
             $('#tooltips-status-storage').css('color', 'yellow');
         }
 
-        if (sale_detail == '' || sale_detail == null) {
+        if (sale_detail == '') {
             $('.tooltip-list-gift').hide();
         } else {
             $('.tooltip-list-gift').show();

@@ -334,14 +334,14 @@ a:hover {
 
 .fixed-left {
     position: fixed;
-    top: 30%;
-    left: 4.1%;
+    top: 280px;
+    left: 135px;
 }
 
 .fixed-right {
     position: fixed;
-    top: 30%;
-    right: 4.1%;
+    top: 280px;
+    right: 135px;
 }
 
 .slider-banner-main {
