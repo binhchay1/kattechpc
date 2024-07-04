@@ -22,7 +22,7 @@ body a {
 }
 
 a:hover {
-    color: #f3070f;
+    color: #f3070f !important;
 }
 
 .header {
@@ -334,14 +334,14 @@ a:hover {
 
 .fixed-left {
     position: fixed;
-    top: 30%;
-    left: 4.1%;
+    top: 280px;
+    left: 135px;
 }
 
 .fixed-right {
     position: fixed;
-    top: 30%;
-    right: 4.1%;
+    top: 280px;
+    right: 135px;
 }
 
 .slider-banner-main {
@@ -2333,7 +2333,7 @@ a {
 }
 
 .hover-image:hover {
-    transform: scale(1.6);
+    transform: translate(0, 10px);
 }
 
 .p-quantity-sale i {
@@ -2363,6 +2363,15 @@ a {
 
 .view-more-flash-sale:hover {
     color: var(--color-primary);
+}
+
+.title-article p:hover {
+    cursor: pointer;
+}
+
+.custom-mobile-flash-sale {
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 
 @media screen and (max-width: 768px) {

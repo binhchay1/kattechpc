@@ -31,8 +31,6 @@
     clear: both;
 }
 
-
-
 .col{
     float: left;
     width: 50%;
@@ -175,7 +173,7 @@
     width: 70%;
 }
 
-h4 {
+#content-page h4 {
     margin-top: 0;
 
 }
@@ -184,7 +182,7 @@ h4 {
     font-size: 21px;
 }
 
-h2 {
+#content-page h2 {
     font-size: 16px;
     line-height: 22px;
     position: relative;
@@ -196,7 +194,7 @@ h2 {
     margin-top: 70px;
 }
 
-img {
+#content-page img {
     border-radius: 5px;
 }
 
@@ -263,6 +261,6 @@ img {
     margin-left: 20px;
 }
 
-a:hover {
+#content-page a:hover {
     color: red;
 }

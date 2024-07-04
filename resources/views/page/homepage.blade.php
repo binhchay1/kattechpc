@@ -100,7 +100,7 @@
 @if(strtotime($getFlashSale->flash_sale_timer) >= strtotime(date('Y-m-d H:i:s')))
 <section class="flash-sale-banner">
     <div class="flash-sale-area">
-        <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center justify-content-between custom-mobile-flash-sale">
             <div class="flash-sale-title-area d-flex align-items-center justify-content-between">
                 <div class="d-flex align-items-center justify-content-center">
                     <i class="fa fa-bolt"></i>
@@ -178,7 +178,7 @@
             <div class="box-banner-collection">
                 @if(isset($layout->hot_sale_big_thumbnail))
                 <a href="{{ isset($layout->permarklink_hot_sale_big_thumbnail) ? $layout->permarklink_hot_sale_big_thumbnail : '#' }}" class="banner-collection boder-radius-10 scale-img">
-                    <img src="{{ asset($layout->hot_sale_big_thumbnail) }}" width="650" height="430" class="boder-radius-10 lazy" alt="" data-was-processed="true" data-ll-status="loaded">
+                    <img src="{{ asset($layout->hot_sale_big_thumbnail) }}" width="660" height="430" class="boder-radius-10 lazy" alt="" data-was-processed="true" data-ll-status="loaded">
                 </a>
                 @endif
             </div>
@@ -318,11 +318,11 @@
             </div>
             <a href="{{ route('promotion') }}" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
-        <div class="list-article-group d-flex align-items-center">
+        <div class="list-article-group d-flex align-items-center custom-mobile-promotion">
             @foreach($listPromotion as $promotion)
             <div class="item-article d-flex gap-12">
-                <a href="{{ route('showPromotionDetail', $promotion->slug) }}" class="img-article boder-radius-10 position-relative">
-                    <img class="lazy" src="https://file.hstatic.net/200000722513/file/mua_kem_pc_1_30c838c753424ea3a9e1abb9d54c4ac2.png" alt="Banner" width="276px">
+                <a href="{{ route('promotion.detail', $promotion->slug) }}" class="img-article boder-radius-10 position-relative">
+                    <img class="lazy" src="{{ asset($promotion->image) }}" alt="Banner" width="276px">
                 </a>
             </div>
             @endforeach

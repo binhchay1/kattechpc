@@ -8,13 +8,18 @@
 <link rel="stylesheet" href="{{ asset('css/page/post.css') }}" />
 @endsection
 
+@section('description', __('Tham gia khuyến mãi shock mỗi ngày với Kattech PC'))
+@section('keywords', 'promotion, sale, kattechpc, kattech')
+@section('breadcrumb', __('Khuyến mãi'))
+
 <style>
     .column {
         font-size: 16px;
-    @media (min-width: 360px) {
-        display: inline-block;
-        width: 33.33%;
-    }
+
+        @media (min-width: 360px) {
+            display: inline-block;
+            width: 33.33%;
+        }
     }
 
     .promotion h2 {
@@ -27,13 +32,13 @@
         margin-top: 10px;
     }
 
-    .promotion h2 a{
+    .promotion h2 a {
         color: #004B91;
         font-weight: 600;
         overflow: hidden;
     }
 
-    .promotion h2  a:hover {
+    .promotion h2 a:hover {
         color: dodgerblue;
     }
 
@@ -66,19 +71,24 @@
         max-width: 100%;
         margin: 20px auto;
     }
+
+    .row {
+        background: none;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
 </style>
+
 @section('content')
 <div class="container">
-    <div class="saleoff-heading" >
-        <a>Hãy thường xuyên theo dõi các chương trình khuyến mãi để có cơ hội mua HÀNG CHÍNH HÃNG GIÁ TỐT NHẤT</a>
+    <div class="saleoff-heading">
+        <a>{{ __('Hãy thường xuyên theo dõi các chương trình khuyến mãi để có cơ hội mua HÀNG CHÍNH HÃNG GIÁ TỐT NHẤT') }}</a>
     </div>
     <div class="row d-flex post-data">
         <div class="row1">
             @foreach($listPromotionDESC as $random)
-
-                <?php $start_date = date('d/m/Y', strtotime($random->start_date));
-                $end_date = date('d/m/Y', strtotime($random->end_date));
-                ?>
+            <?php $start_date = date('d/m/Y', strtotime($random->start_date));
+            $end_date = date('d/m/Y', strtotime($random->end_date));
+            ?>
             <div class="column">
                 <div class="parent">
                     <div class="child">
@@ -87,7 +97,7 @@
                             <h2><a href="{{ route('promotion.detail', $random['slug']) }}" class="text-tech" href="">{{ $random->title }}</a></h2>
                         </div>
                         <div class="pac-market_time">
-                            {{ __('Từ') }}: {{ $start_date }} -  {{ __('Kết thúc') }}: {{ $end_date }}
+                            {{ __('Từ') }}: {{ $start_date }} - {{ __('Kết thúc') }}: {{ $end_date }}
                         </div>
                     </div>
                 </div>
@@ -96,9 +106,6 @@
         </div>
     </div>
 </div>
-
-</div>
-
 @endsection
 
 @section('js')
