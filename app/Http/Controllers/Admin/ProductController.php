@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\Product;
+use App\Enums\Utility;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Http\Requests\ProductUpdateRequest;
@@ -20,17 +21,20 @@ class ProductController extends Controller
     private $categoryRepository;
     private $brandRepository;
     private $orderRepository;
+    private $utility;
 
     public function __construct(
         ProductRepository $productRepository,
         CategoryRepository $categoryRepository,
         BrandRepository $brandRepository,
-        OrderRepository $orderRepository
+        OrderRepository $orderRepository,
+        Utility $utility
     ) {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
         $this->brandRepository = $brandRepository;
         $this->orderRepository = $orderRepository;
+        $this->utility = $utility;
     }
 
     public function index()
@@ -245,15 +249,72 @@ class ProductController extends Controller
     public function managerSold()
     {
         $getOrder = $this->orderRepository->getAllOrder();
-        dd($getOrder);
+        // dd($getOrder);
         $managerSold = [];
 
         foreach ($getOrder as $order) {
             $detail = [];
-            // $detail[]
+            $detail['order_code'] = $order->order_code;
+            $detail['name'] = $order->name;
+            $detail['phone'] = $order->phone;
+            $detail['created_at'] = $order->created_at;
+
+            if (isset($order->orderDetails)) {
+                foreach ($order->orderDetails as $detailOrder) {
+                    if (isset($detailOrder->product)) {
+                        $guarantee = '';
+                        $statusDate = '';
+                        if ($detailOrder->product->status_guarantee_month != null) {
+                            $guarantee = $detailOrder->product->status_guarantee_month;
+                            $statusDate = 'month';
+                        } elseif ($detailOrder->product->status_guarantee_year != null) {
+                            $guarantee = $detailOrder->product->status_guarantee_year;
+                            $statusDate = 'year';
+                        } else {
+                        }
+
+                        $orderDate = $order->created_at;
+                        $now = date('Y-m-d H:i:s');
+                        if ($statusDate == 'month') {
+                            $strToTime = '+' . $detailOrder->product->status_guarantee_month . ' months';
+                            $date = strtotime($orderDate);
+                            $newDate = date('Y-m-d H:i:s', strtotime($strToTime, $date));
+                            $date1 = date_create($newDate);
+                            $date2 = date_create(date("Y-m-d H:i:s"));
+
+                            $diff = date_diff($date1, $date2);
+                            $guarantee = $diff->format("%a ngày");
+
+                        } elseif ($statusDate == 'year') {
+                            $strToTime = '+' . $detailOrder->product->status_guarantee_year . ' years';
+                            $date = strtotime($orderDate);
+                            $newDate = date('Y-m-d H:i:s', strtotime($strToTime, $date));
+                            $date1 = date_create($newDate);
+                            $date2 = date_create(date("Y-m-d H:i:s"));
+
+                            $diff = date_diff($date1, $date2);
+                            $guarantee = $diff->format("%a ngày");
+
+                        } else {
+                            $guarantee = $detailOrder->product->status_guarantee;
+                        }
+                        $detail['detail'][$detailOrder->product->name]['guarantee'] = $guarantee;
+                    }
+
+                    if (isset($detailOrder->quantity)) {
+                        $detail['detail'][$detailOrder->product->name]['quantity'] = $detailOrder->quantity;
+                    }
+
+                    if (isset($detailOrder->price)) {
+                        $detail['detail'][$detailOrder->product->name]['price'] = $detailOrder->price;
+                    }
+                }
+            }
 
             $managerSold[] = $detail;
         }
+
+        $managerSold = $this->utility->paginate($managerSold);
 
         return view('admin.product.manager-sold', compact('managerSold'));
     }

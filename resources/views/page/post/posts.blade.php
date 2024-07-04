@@ -4,7 +4,7 @@
 <title>{{ __('Bài viết') }} | Kattech PC</title>
 @endsection
 
-@section('description', __('Nghiên cứu, theo dõi các tin tức về công nghệ với Kattech PC'))
+@section('description', __($firstPosts1 . ' với Kattech PC'))
 @section('keywords', 'tech, tech pc, post, news, kattech')
 @section('breadcrumb', __('Tin công nghệ'))
 
