@@ -57,7 +57,7 @@
 
     .saleoff-heading {
         margin-top: 30px;
-        background: #d4eaf7 url(https://phucanh.vn/template/default/images/san-khuyen-mai.jpg) left top no-repeat;
+        background: #d4eaf7 url(/public/images/san-khuyen-mai.jpg) left top no-repeat;
         height: 39px;
         line-height: 39px;
         color: #004890;

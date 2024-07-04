@@ -7,18 +7,20 @@
 @section('content')
 <style>
     .select2 {
-        width:100%!important;
+        width: 100% !important;
         line-height: 31px !important;
     }
+
     .select2-container .select2-selection--single {
         height: 38px !important;
         border: 1px solid #e2e8f0;
     }
+
     .select2-container--default .select2-selection--single {
         border: 1px solid #e2e8f0 !important;
     }
 
-    .text-danger{
+    .text-danger {
         color: red;
     }
 </style>
@@ -32,16 +34,16 @@
                     {{ csrf_field() }}
                     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
                         <div class="xl:col-span-6">
-                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium" >{{ __('Thể loại') }}</label>
+                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Thể loại') }}</label>
                             <br>
                             <select id="select_page" style="width:200px;" class="operator" name="product_id">
-                            <option value="">{{__('Chọn sản phẩm')}}</option>
+                                <option value="">{{__('Chọn sản phẩm')}}</option>
                                 @foreach($listProducts as $product)
-                                    <option value="{{$product->id}}">{{$product->name}}</option>
+                                <option value="{{$product->id}}">{{$product->name}}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('product_id'))
-                                <span class="text-danger">{{ $errors->first('product_id') }}</span>
+                            <span class="text-danger">{{ $errors->first('product_id') }}</span>
                             @endif
                         </div>
 
@@ -67,16 +69,15 @@
 @endsection
 
 @push('scripts')
-    <script>
-        $(document).ready(function () {
-//change selectboxes to selectize mode to be searchable
-            $("select").select2();
-        });
-    </script>
+<script>
+    $(document).ready(function() {
+        //change selectboxes to selectize mode to be searchable
+        $("select").select2();
+    });
+</script>
 <script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
 <script src="{{ URL::asset('build/js/pages/apps-ecommerce-product-create.init.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 @endpush
-

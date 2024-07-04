@@ -87,7 +87,6 @@ class StorageController extends Controller
         $this->productStorageRepository->create($input);
 
         return redirect()->route('admin.storage.index')->with('success', __('Kho hàng được thay đổi thành công'));
-
     }
 
     public function listProduct()
@@ -98,7 +97,10 @@ class StorageController extends Controller
 
     public function export($id)
     {
-        return view('admin.storage.import');
+        $storage = $this->storageRepository->show($id);
+        $listProducts = $this->productRepository->index();
+
+        return view('admin.storage.import', compact('storage', 'listProducts'));
     }
 
     public function exportExcel(Request $request)

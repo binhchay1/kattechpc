@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-<section class="page-deal container page-hompage container" >
+<section class="page-deal container page-hompage container">
     <div class="box-product-deal">
         <div class="banner-deal-page">
             <a href="/ad.php?id=299" class="item-banner" style="display:block;margin-bottom:16px">
@@ -23,9 +23,8 @@
 
         <div class="flash-sale-content">
             @if(isset($listFlashSale['flash_sale_list_product_id']))
-                @foreach($listFlashSale['flash_sale_list_product_id'] as $product)
+            @foreach($listFlashSale['flash_sale_list_product_id'] as $product)
             <div class="column">
-
                 <div class="card">
                     <a href="{{route('productDetail', $product['slug']) }}" class="product-image position-relative">
                         <img class="image-sale" src="{{ asset(json_decode($product->image, true)[0]) }}" alt="BỘ PC MEOW (I5 13500 / RAM 16G DDR5 / VGA RTX 4060 8G)">
@@ -41,9 +40,9 @@
                         </div>
 
                         @if(isset($product->new_price))
-                            <div class="product-price-main font-weight-600">
-                                {{ number_format($product->new_price, 0, ',', '.') }} đ
-                            </div>
+                        <div class="product-price-main font-weight-600">
+                            {{ number_format($product->new_price, 0, ',', '.') }} đ
+                        </div>
                         @endif
                         <div class="p-quantity-sale">
                             <i class="sprite sprite-fire-deal"></i>
@@ -55,9 +54,8 @@
                     </div>
                 </div>
             </div>
-                @endforeach
+            @endforeach
             @endif
-
         </div>
     </div>
 </section>
