@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-<section class="page-deal container page-hompage container" >
+<section class="page-deal container page-hompage container">
     <div class="box-product-deal">
         <div class="banner-deal-page">
             <a href="/ad.php?id=299" class="item-banner" style="display:block;margin-bottom:16px">
@@ -42,9 +42,9 @@
                         </div>
 
                         @if(isset($product->new_price))
-                            <div class="product-price-main font-weight-600">
-                                {{ number_format($product->new_price, 0, ',', '.') }} đ
-                            </div>
+                        <div class="product-price-main font-weight-600">
+                            {{ number_format($product->new_price, 0, ',', '.') }} đ
+                        </div>
                         @endif
                         <div class="p-quantity-sale">
                             <i class="sprite sprite-fire-deal"></i>
@@ -61,9 +61,8 @@
                     </div>
                 </div>
             </div>
-                @endforeach
+            @endforeach
             @endif
-
         </div>
     </div>
 </section>

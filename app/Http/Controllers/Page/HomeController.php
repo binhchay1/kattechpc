@@ -183,22 +183,22 @@ class HomeController extends Controller
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         $getFlashSale = $this->layoutRepository->getFlashSale();
-        
+
         if (!empty($getFlashSale)) {
-            
+
             if (isset($getFlashSale->flash_sale_list_product_id)) {
                 $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
                 foreach ($listProductFlashSale as $key => $value) {
                     $arrCodeProduct[] = $key;
                 }
-            
+
                 $getProductFlashSale = $this->productRepository->getProductFlashSaleByCode($arrCodeProduct);
                 foreach ($getProductFlashSale as $product) {
                     $product->new_price = $listProductFlashSale[$product->code]['new_price'];
                     $product->sale_quantity = $listProductFlashSale[$product->code]['quantity'];
                     $product->stock = $listProductFlashSale[$product->code]['stock'];
                 }
-            
+
                 if (count($getProductFlashSale) > 0) {
                     $listFlashSale = [
                         'flash_sale_timer' => $getFlashSale->flash_sale_timer,
