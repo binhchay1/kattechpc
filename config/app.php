@@ -173,7 +173,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        Darryldecode\Cart\CartServiceProvider::class
+        Darryldecode\Cart\CartServiceProvider::class,
+        Cohensive\Embed\EmbedServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -189,8 +190,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-        'Cart' => Darryldecode\Cart\Facades\CartFacade::class
-        // 'Example' => App\Facades\Example::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+        'Embed' => Cohensive\Embed\Facades\Embed::class,
     ])->toArray(),
 
 ];

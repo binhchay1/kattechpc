@@ -35,6 +35,7 @@
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="name">{{ __('Thương hiệu') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="code">{{ __('Mã sản phẩm') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">{{ __('Ảnh sản phẩm') }}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">{{ __('Link Youtube') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="category">{{ __('Danh mục') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="description">{{ __('Mô tả') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="price">{{ __('Giá') }}</th>
@@ -69,6 +70,7 @@
                                         </div>
                                     </div>
                                 </td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $product->link_youtube ?? "" }}
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $product->category->name ?? "" }}
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 description">{!! Str::limit(strip_tags(html_entity_decode($product->description)), 100) !!}</td>
