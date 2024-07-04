@@ -7,13 +7,58 @@
 }
 
 .column {
+    width: calc(100% / 4 - 4px);
+    margin-top: 10px;
+}
+
+.column:first-child   {
+    width: calc(99% / 2 - 6px);
+    border-radius: 22px;
+    background: #0f5b9a;
+    padding: 10px 8px 28px;
+}
+
+.column:nth-child(2) {
+    width: calc(97% / 2 - 6px);
+    border-radius: 22px;
+    background: #0f5b9a;
+    padding: 10px 8px 28px;
+}
+
+
+.column:first-child .card {
+    display: flex;
+}
+
+.column:nth-child(2) .card {
+    display: flex;
+}
+
+.column:first-child .card .product-image-sale{
+     width: 50%;
+     float: left;
+ }
+
+.column:nth-child(2) .card .product-image-sale{
+    width: 50%;
     float: left;
-    width: 24%;
-    padding: 7px;
+}
+
+.column:first-child .card .product-info{
+    width: 50%;
+    float: right;
+}
+
+.column:nth-child(2) .card .product-info{
+    width: 50%;
+    float: right;
 }
 
 .flash-sale-content {
     margin: 0 -5px;
+    flex-wrap: wrap;
+    display: flex;
+    gap: 5px;
 }
 
 
@@ -28,6 +73,8 @@
     box-shadow: 0 -1px 9px 0 rgba(164, 164, 164, .25);
     min-width: 0;
     padding: 12px 11px;
+    background-color: white;
+    border-radius: 10px;
 }
 
 .image-sale {
@@ -36,6 +83,26 @@
 
 .image-flash-sale {
     width: 100%;
+}
+
+ .buy-now-deal {
+    border-radius: 5px;
+    background: #cb1c21;
+    font-size: 16px;
+    color: #fff;
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 7px 0;
+}
+
+.js-item-deal-time {
+    font-size: 13px;
+    border-radius: 3px;
+    border: .6px dashed #cb1c21;
+    color: #cb1c21;
+    text-align: center;
+    margin-bottom: 8px;
 }
 
 @media screen and (max-width: 600px) {
