@@ -178,7 +178,7 @@
             <div class="box-banner-collection">
                 @if(isset($layout->hot_sale_big_thumbnail))
                 <a href="{{ isset($layout->permarklink_hot_sale_big_thumbnail) ? $layout->permarklink_hot_sale_big_thumbnail : '#' }}" class="banner-collection boder-radius-10 scale-img">
-                    <img src="{{ asset($layout->hot_sale_big_thumbnail) }}" width="650" height="430" class="boder-radius-10 lazy" alt="" data-was-processed="true" data-ll-status="loaded">
+                    <img src="{{ asset($layout->hot_sale_big_thumbnail) }}" width="660" height="430" class="boder-radius-10 lazy" alt="" data-was-processed="true" data-ll-status="loaded">
                 </a>
                 @endif
             </div>

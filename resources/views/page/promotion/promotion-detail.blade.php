@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="{{ asset('css/page/post-detail.css') }}" />
 @endsection
 
+@section('description', __($promotion->short_description . 'với Kattech PC'))
+@section('keywords', 'promotion, flash sale, sale, kattechpc, kattech')
+@section('breadcrumb', __('Khuyến mãi'))
+
 <style>
     .promotion-releated {
         padding: 10px;
