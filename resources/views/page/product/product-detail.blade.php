@@ -117,7 +117,6 @@
                 <div class="save-price-detail">{{ __('Tiết kiệm:') }} {{ number_format((int) str_replace('.', '', $dataProduct->price) - (int) str_replace('.', '', $dataProduct->new_price) )}} đ</div>
                 @endif
             </div>
-
             @if($dataProduct->is_flash_sale != 0)
             <div class="box-flash-sale d-flex align-items-center boder-radius-10">
                 <div class="box-left position-relative d-flex align-items-center">
