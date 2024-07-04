@@ -11,7 +11,7 @@
             <div class="card-body">
                 <h6 class="mb-4 text-15">{{__('Sửa bài viết quảng cáo')}}</h6>
 
-                <form method="POST" action="{{route('admin.promotion.update', $promotion['id'])}}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('admin.promotion.update', $promotion['id']) }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
                         <div class="xl:col-span-6">
@@ -20,7 +20,7 @@
                             @if ($errors->has('title'))
                             <span class="text-danger">{{ $errors->first('title') }}</span>
                             @endif
-                        </div><!--end col-->
+                        </div>
 
                         <div class="xl:col-span-6">
                             <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{ __('Nội dung bài viết') }}

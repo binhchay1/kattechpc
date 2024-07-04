@@ -9,7 +9,7 @@
         </div>
         <div class="max-h-[calc(theme('height.screen')_-_180px)] p-4 overflow-y-auto">
             <h5 class="mb-3 text-16">{{ __('Chọn ảnh') }}</h5>
-            <form method="POST" action="{{route('admin.store.footerSlide')}}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.store.footerSlide') }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
                     <div class="xl:col-span-6">

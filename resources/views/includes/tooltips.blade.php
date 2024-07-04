@@ -21,11 +21,16 @@
 
         </tbody>
     </table>
-    <span class="tooltip-title"><i class="fa fa-layer-group"></i> {{ __('Thông số sản phẩm') }}</span>
-    <div class="hover_offer" id="tooltip-detail">
+    <div class="empty-hide-detail">
+        <span class="tooltip-title"><i class="fa fa-layer-group"></i> {{ __('Thông số sản phẩm') }}</span>
+        <div class="hover_offer" id="tooltip-detail">
+        </div>
     </div>
-    <span class="tooltip-title"><i class="fa fa-gift"></i> {{ __('Chương trình khuyến mại') }}</span>
-    <div class="hover_offer tooltip-list-gift">
+    <div class="empty-hide-gift">
+        <span class="tooltip-title"><i class="fa fa-gift"></i> {{ __('Chương trình khuyến mại') }}</span>
+        <div class="hover_offer tooltip-list-gift">
 
+        </div>
     </div>
+
 </div>
