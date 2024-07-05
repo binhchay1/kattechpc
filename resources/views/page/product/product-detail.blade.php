@@ -88,7 +88,7 @@
                             @else
                             0
                         @endif
-                    </span> |
+                    </span> | &nbsp;
                 </div>
                 <div class="item-basic">
                     Bình luận: <span class="color-primary">
@@ -96,7 +96,7 @@
                             {{$countComment}}
                         @else
                             0
-                        @endif</span> |
+                        @endif</span> | &nbsp;
                 </div>
                 <div class="item-basic last-item-basic position-relative">
                     Lượt xem: <span class="color-primary">970</span>
@@ -180,7 +180,7 @@
                 </div>
 
                 <div class="list-info-offter">
-                    <div class="item-offer">
+                    <div class="item-offer" style="font-weight: 600">
                         {!! $dataProduct->sale_detail !!}
                     </div>
                 </div>
@@ -397,9 +397,6 @@
                             </div>
                             <div class="box-form-review" id="js-box-review" style="display: block;">
                                 <textarea class="review_reply_content" id="rating-content" placeholder="Mời bạn để lại đánh giá..." name="content" spellcheck="false"></textarea>
-                                @if ($errors->has('content'))
-                                    <span class="text-danger" style="color: red">{{ $errors->first('content') }}</span>
-                                @endif
                             </div>
                             <input type="hidden" name="product_id" value="{{$dataProduct->id}}">
                             <input type="hidden" name="user_id" value="{{Auth::user()->id ?? ""}}">
@@ -451,7 +448,7 @@
                         <p class="title-comment font-weight-600" style="font-size: 16px">{{ __('Hỏi và đáp') }}</p>
                         @if(isset($errors))
                             @foreach ($errors->all() as $error)
-                                <div style="color: red; margin: 10px; font-size: 18px">{{ $error }}</div>
+                                <div style="color: red; margin: 10px; font-size: 16px">{{ $error }}</div>
                             @endforeach
                         @endif
                         <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data">
@@ -460,15 +457,12 @@
                                 <div class="form-comment gap-10 d-flex justify-content-between">
                                     <div style="width: 80%;">
                                         <textarea class="comment_reply_content boder-radius-10" id="content0" name="content" placeholder="Xin mời để lại câu hỏi"></textarea>
-                                        @if ($errors->has('content'))
-                                            <span class="text-danger" style="color: red;white-space: nowrap;">{{ $errors->first('content') }}</span>
-                                        @endif
                                         <input type="hidden" value="{{ $dataProduct->id }}" name="product_id">
                                     </div>
 
                                     <div>
-                                        <button type="submit" style="border: 0">
-                                            <a class="btn-send-form-comment d-flex align-items-center justify-content-center gap-6 send-comment-pc"> <i class="fa fa-send-o" style="font-size:24px"></i>Gửi</a>
+                                        <button type="submit" style="border: 0" id="submit-send">
+                                            <a class="btn-send-form-comment d-flex align-items-center justify-content-center gap-6 send-comment-pc"> <i class="fa fa-send-o" style="font-size:24px; "></i>Gửi</a>
                                         </button>
                                     </div>
                                 </div>

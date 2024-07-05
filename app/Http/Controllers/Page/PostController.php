@@ -73,6 +73,10 @@ class PostController extends Controller
         $postCategory = $this->categoryPostRepository->getCatePost($slug);
         $dataPostCategory = $this->categoryPostRepository->getCate($slug);
         $getPosts = $postCategory->posts;
+        if(count($getPosts)< 0)
+        {
+            return redirect('/404');
+        }
         $firstPosts1 = $getPosts->splice(0, 1);
         $firstPosts2 = $getPosts->splice(1, 1);
         $postRandom3 = $getPosts->splice(1, 3);

@@ -521,7 +521,7 @@ tr:nth-child(even) {
 
 .gap-6 {
     width: 50%;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .gap-6-item {
@@ -965,19 +965,20 @@ tr:nth-child(even) {
 }
 
 .image-container {
-    width: 90%;
-    max-width: 600px;
+    width: 100%;
 }
 
 #featured-image {
-    width: 800px;
     display: block;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .product-image {
     width: 210px;
+}
+
+#submit-send a:hover{
+    color: white !important;
 }
 
 @media screen and (max-width: 992px) {

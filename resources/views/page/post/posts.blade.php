@@ -51,7 +51,7 @@
                     </div>
                 </div>
             </div>
-
+            @if(count($postRandom3) >0)
             <div class="top1">
                 <div class="parent">
                     @foreach($postRandom3 as $random)
@@ -72,33 +72,36 @@
                 </div>
             </div>
             <hr>
+            @endif
+            @if(count($postRandom4) >0)
             <div class="top1">
-                @foreach($postRandom4 as $postDESC)
+                @foreach($postRandom4 as $random)
                 <div class="child d-flex">
                     <div style="width: 30%;">
-                        <img class="img-fluid w-100" src="{{ $postDESC->thumbnail ?? asset('images/page/no-image.png') }}" style="object-fit: cover;">
+                        <img class="img-fluid w-100" src="{{ $random->thumbnail ?? asset('images/page/no-image.png') }}" style="object-fit: cover;">
                     </div>
                     <div class="" style="margin-left: 20px; width: 70%;">
-                        <?php $text = strlen($postDESC->title);
+                        <?php $text = strlen($random->title);
                         if ($text < 60) {
-                            $post = $postDESC->title;
+                            $post = $random->title;
                         } else {
-                            $post = \Illuminate\Support\Str::limit($postDESC->title, 60);
+                            $post = \Illuminate\Support\Str::limit($random->title, 60) . "...";
                         }
                         ?>
-                        <h2><a class="text-tech" href="{{ route('post.detail', $postDESC->slug) }}">{{ $postDESC->title }}</a></h2>
+                        <h2><a class="text-tech" href="{{ route('post.detail', $random->slug) }}">{{$post}}</a></h2>
                         <div class="post_info">
                             <span class="post_info_item-date">
-                                <?php $date =  $postDESC->created_at->format('M d, Y') ?? "" ?>
+                                <?php $date =  $random->created_at->format('M d, Y') ?? "" ?>
                                 {{__("Thời gian: ")}} {{ $date }}
                             </span>
-                            <span class="post_info_item-author">{{ $postDESC->user->name ?? "" }}</span>
+                            <span class="post_info_item-author">{{ $random->user->name ?? "" }}</span>
                         </div>
                     </div>
                 </div>
                 <hr>
                 @endforeach
             </div>
+            @endif
         </div>
 
         <div class="column2" id="post-column2">
@@ -119,7 +122,7 @@
                     @endforeach
                 </div>
             </div>
-
+            @if(count($postRandom5) >0)
             <div class="row top2">
                 <h2 class="text-title" style="background-color: #03304b;"> {{__('TIN TỨC GẦN NHẤT')}}
                     <span class="icon" style="position: absolute;">
@@ -133,11 +136,12 @@
                     </div>
                     <div id="content-right">
                         <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
-                        <h4><a href="{{ route('post.detail', $postDESC->slug) }}"> {{ $text }} </a></h4>
+                        <h4><a href="{{ route('post.detail', $post->slug) }}"> {{ $text }} </a></h4>
                     </div>
                 </div>
                 @endforeach
             </div>
+            @endif
         </div>
     </div>
 </div>
