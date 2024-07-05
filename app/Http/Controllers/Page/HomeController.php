@@ -213,18 +213,12 @@ class HomeController extends Controller
 
     public function viewPromotion()
     {
-        $listPromotion = $this->promotionRepository->promotionHome();
-        $listPromotionRandom = $this->promotionRepository->promotionRandom();
-        $promotionRandom = $this->promotionRepository->promotionRandom();
         $listPromotionDESC = $this->promotionRepository->promotionDESC();
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
 
         return view('page.promotion.index', compact(
-            'listPromotion',
-            'listPromotionRandom',
-            'promotionRandom',
             'listPromotionDESC',
             'listCategory',
             'listCategoryPost'
@@ -236,13 +230,15 @@ class HomeController extends Controller
         if (!isset($slug)) {
             return redirect('/404');
         }
-
+        $firstPosts1 = $this->postRepository->firstPost();
+        $listPost = $this->postRepository->postHome();
+        $postRandom = $listPost->splice(3, 8);
         $listPromotion = $this->promotionRepository->promotionHome();
         $promotion = $this->promotionRepository->detail($slug);
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
 
-        return view('page.promotion.promotion-detail', compact('promotion', 'listPromotion', 'listCategory'));
+        return view('page.promotion.promotion-detail', compact('firstPosts1','postRandom','promotion', 'listPromotion', 'listCategory'));
     }
 
     public function viewPost()
