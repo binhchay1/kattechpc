@@ -566,7 +566,7 @@
 
         </section>
 
-
+        @if(count($productViewed) > 0)
         <h3 class="productRelated">{{ __('Sản phẩm đã xem') }}</h3>
         <div class="swiper d-flex" style="margin-bottom: 20px;">
             <div class="swiper-wrapper swiper-product-viewed">
@@ -604,6 +604,7 @@
                 @endforeach
             </div>
         </div>
+            @endif
     </div>
 </div>
 @include('includes.tooltips')
