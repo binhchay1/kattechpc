@@ -3,7 +3,11 @@
 @section('title')
 {{ __('Thêm bài viết quảng cáo') }}
 @endsection
-
+<style>
+    .ck-editor__editable_inline {
+        min-height: 400px;
+    }
+</style>
 @section('content')
 <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5 mt-4">
     <div class="xl:col-span-12">
@@ -59,10 +63,19 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="xl:col-span-6">
+                            <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Miêu tả')}}</label>
+                            <input type="text"  name="short_description" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" >
+                            @if ($errors->has('short_description'))
+                                <span class="text-danger">{{ $errors->first('short_description') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="xl:col-span-12">
                             <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Nội dung bài viết')}}
                             </label>
-                            <textarea class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="productDescription" name="content" placeholder="{{__('Nội dung bài viết')}}" rows="5">{{ old('content') }}</textarea>
+                            <textarea class="form-control" id="body" placeholder="Enter the Description" name="content"></textarea>
                             @if ($errors->has('content'))
                             <span class="text-danger">{{ $errors->first('content') }}</span>
                             @endif
@@ -84,12 +97,12 @@
 <script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
 <script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
 <script src="{{ URL::asset('build/js/pages/apps-ecommerce-product-create.init.js') }}"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('.ckeditor').ckeditor();
-    });
-    CKEDITOR.replace('productDescription', {
-        height: 500,
-    });
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#body' ) )
+        .catch( error => {
+            console.error( error );
+        });
 </script>
 @endpush
