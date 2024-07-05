@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\promotionRequest;
+use App\Http\Requests\PromotionUpdateRequest;
 use App\Repositories\PromotionRepository;
 use Illuminate\Support\Str;
 
@@ -54,7 +55,7 @@ class PromotionController extends Controller
         return view('admin.promotion.edit', compact('promotion'));
     }
 
-    public function updatePromotion(PromotionRequest $request,  $id)
+    public function updatePromotion(PromotionUpdateRequest $request,  $id)
     {
         $input = $request->except(['_token']);
         $input['slug'] =  Str::slug($input['title']);

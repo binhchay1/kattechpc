@@ -13,6 +13,18 @@
 @section('breadcrumb', __('Khuyến mãi'))
 
 <style>
+
+    .container-promotion {
+        width: 1200px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .row {
+        background: none;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
     .column {
         font-size: 16px;
 
@@ -66,44 +78,71 @@
         font-size: 13px;
     }
 
-    .row1 {
-        font-size: 0;
-        max-width: 100%;
-        margin: 20px auto;
+    .set-image-promotion {
+        width: 320px;
+        overflow: hidden;
+        padding: 0px 0px 0px 0px !important;
+        text-align: center;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    .row {
-        background: none;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    .image-promotion
+    {
+        border: none;
+        max-width: 100%;
+        height: auto;
     }
+
+    .column {
+        float: left;
+        width: 378px;
+        margin: 0px;
+        text-align: center;
+        border: 1px solid #ddd;
+        display: block;
+        padding: 10px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .column:hover {
+        border-color: red;
+    }
+
 </style>
 
 @section('content')
-<div class="container">
+<div class="container-promotion">
     <div class="saleoff-heading">
         <a>{{ __('Hãy thường xuyên theo dõi các chương trình khuyến mãi để có cơ hội mua HÀNG CHÍNH HÃNG GIÁ TỐT NHẤT') }}</a>
     </div>
-    <div class="row d-flex post-data">
-        <div class="row1">
+    <div class="row post-data">
+        <?php
+        $date = date('d/m/Y ');
+        $getCurrentDate = strtotime($date);
+        ?>
             @foreach($listPromotionDESC as $random)
-            <?php $start_date = date('d/m/Y', strtotime($random->start_date));
+            <?php
+                $start_date = date('d/m/Y', strtotime($random->start_date));
             $end_date = date('d/m/Y', strtotime($random->end_date));
+            $getEndDate = strtotime($end_date);
             ?>
+            @if($getCurrentDate < $getEndDate)
             <div class="column">
-                <div class="parent">
-                    <div class="child">
-                        <img class="img-fluid w-100" src="{{ $random->image ?? asset('images/page/no-image.png') }}" style="object-fit: cover;">
-                        <div class="promotion">
-                            <h2><a href="{{ route('promotion.detail', $random['slug']) }}" class="text-tech" href="">{{ $random->title }}</a></h2>
-                        </div>
-                        <div class="pac-market_time">
-                            {{ __('Từ') }}: {{ $start_date }} - {{ __('Kết thúc') }}: {{ $end_date }}
-                        </div>
+                <div class="set-image-promotion">
+                    <img class="image-promotion " src="{{ $random->image ?? asset('images/page/no-image.png') }}" style="object-fit: cover;">
+                </div>
+                <div class="promotion">
+                    <h2><a href="{{ route('promotion.detail', $random['slug']) }}" class="text-tech" href="">{{ $random->title }}</a></h2>
+                    <div class="pac-market_time">
+                        {{ __('Từ') }}: {{ $start_date }} - {{ __('Kết thúc') }}: {{ $end_date }}
                     </div>
                 </div>
             </div>
+            @endif
             @endforeach
-        </div>
     </div>
 </div>
 @endsection

@@ -127,7 +127,7 @@
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative scale-img">
-                            <img width="164" height="164" alt="{{ $product->name }}" class="lazy hover-image" src="{{ asset(json_decode($product->image, true)[0]) }}">
+                            <img width="245" height="164" alt="{{ $product->name }}" class="lazy hover-image" src="{{ asset(json_decode($product->image, true)[0]) }}">
                         </a>
                         <div class="product-info">
                             <a href="{{ route('productDetail', $product['slug']) }}">

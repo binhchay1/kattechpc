@@ -35,6 +35,9 @@ $(document).ready(function () {
 
         if ($(this).attr('data-detail') != '') {
             detail = JSON.parse($(this).attr('data-detail'));
+            $('.empty-hide-detail').show();
+        } else {
+            $('.empty-hide-detail').hide();
         }
 
         if (new_price == '' || new_price == null) {
@@ -77,7 +80,9 @@ $(document).ready(function () {
         $('.global-tooltip').css('display', 'block');
         $('.global-tooltip').css('left', $(this).offset().left + 225);
         $('.global-tooltip').css('top', $(this).offset().top - 10);
+        $(this).css('transform', 'translate(0, -10px)');
     }, function () {
+        $(this).css('transform', 'translate(0, 0)');
         $('.global-tooltip').css('display', 'none');
     });
 

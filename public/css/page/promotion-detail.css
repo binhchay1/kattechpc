@@ -1,0 +1,59 @@
+.content-promotion {
+    position: relative;
+    max-width: 1430px;
+    padding: 0 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    gap: 20px;
+}
+
+.leftColumn {
+    width: 70%;
+    float: left;
+}
+
+.rightColumn {
+    width: 30%;
+    float: right;
+}
+
+.image-post
+{
+    width: 100%;
+    height: auto;
+}
+
+#title-post {
+    font-size: 20px;
+    padding: 10px;
+    margin: 0;
+    margin-bottom: 20px;
+    color: white;
+    text-transform: uppercase;
+    background: #243a76;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+@media screen and (max-width: 992px) {
+    .content-promotion
+    {
+        flex-direction: column;
+    }
+
+    .rightColumn{
+        width: 100%;
+    }
+    .leftColumn {
+        width: 100%;
+    }
+}
+
+
+
+

@@ -335,13 +335,13 @@ a:hover {
 .fixed-left {
     position: fixed;
     top: 280px;
-    left: 135px;
+    left: calc(50% - 880px);
 }
 
 .fixed-right {
     position: fixed;
     top: 280px;
-    right: 135px;
+    right: calc(50% - 880px);
 }
 
 .slider-banner-main {
@@ -2333,7 +2333,7 @@ a {
 }
 
 .hover-image:hover {
-    transform: translate(0, 10px);
+    transform: translate(0, -10px);
 }
 
 .p-quantity-sale i {
