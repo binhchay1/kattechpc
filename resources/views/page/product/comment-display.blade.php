@@ -4,10 +4,13 @@
         <div class="form-reply-comment">
             <div class="comment-name d-flex align-items-center justify-content-between">
                 <div class="comment-form-left d-flex align-items-center gap-6">
-
-                    <b class="user-name d-flex align-items-center gap-6">
+                    <b class="user-name d-flex align-items-center ">
                         {{ $comment->user->name  }}
                     </b>
+
+                   @if($comment->user->role == 'admin' || $comment->user->role == 'staff')
+                     <p class="qtv-comment">QTV</p>
+                    @endif
                 </div>
                 <div class="comment-form-right d-flex align-items-center gap-4">
                     <i class="fa fa-clock-o" style="font-size:15px; margin-right: 5px"></i>

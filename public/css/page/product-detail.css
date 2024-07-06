@@ -1199,3 +1199,13 @@ tr:nth-child(even) {
 .list-basic-product-info {
     margin-top: 15px ;
 }
+
+.qtv-comment {
+    background-color: #1a6592;
+    font-weight: 600;
+    font-family: inherit;
+    font-size: 13px !important;
+    color: white !important;
+    padding: 2px !important;
+    width:8% !important;
+}
