@@ -190,13 +190,6 @@ class ProductController extends Controller
         );
     }
 
-    private function getYoutubeVideoId($url)
-    {
-        $queryString = parse_url($url, PHP_URL_QUERY);
-        parse_str($queryString, $params);
-        return isset($params['v']) ? $params['v'] : null;
-    }
-
     public function storeComment(RatingRequest $request)
     {
         if (!Auth::check()) {
