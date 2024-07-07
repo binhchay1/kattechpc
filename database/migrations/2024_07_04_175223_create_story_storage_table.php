@@ -17,6 +17,8 @@ return new class extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('storage_id');
             $table->string('quantity');
+            $table->string('code')->nullable();
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }

@@ -118,8 +118,8 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
         Route::get('/print-cart',  [CartController::class, 'printCart'])->name('print.cart');
     });
 
-    Route::get('/post-detail/{slug}', [PostPage::class, 'postDetail'])->name('post.detail');
-    Route::get('/post-category/{slug}', [PostPage::class, 'postCategory'])->name('post.category');
+    Route::get('/bai-viet/{slug}', [PostPage::class, 'postDetail'])->name('post.detail');
+    Route::get('/danh-muc-bai-viet/{slug}', [PostPage::class, 'postCategory'])->name('post.category');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenance-mode']], function () {

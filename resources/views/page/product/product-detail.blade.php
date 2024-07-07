@@ -30,9 +30,9 @@
                 <div class="swiper d-flex align-items-center" style="min-height: auto;">
                     <div class="swiper-wrapper swiper-image">
                         @if($dataProduct->link_youtube != null)
-                        <iframe width="104" height="104" style="padding: 8px;" src="https://www.youtube.com/embed/{{ $dataProduct->link_youtube }}" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="104" height="104" style="padding: 8px;" src="https://www.youtube.com/embed/{{ $dataProduct->id_youtube }}" frameborder="0" allowfullscreen></iframe>
                         @endif
-                            @foreach ($dataProduct->image as $key => $image)
+                        @foreach ($dataProduct->image as $key => $image)
                         @if($key == 0)
                         <div class="swiper-slide-image" role="group">
                             <img src="{{ asset($image) }}" data-index="{{ $key }}" class="small-Img border-image" onclick="getImageCenter(this)">
@@ -75,8 +75,8 @@
         <div class="product-info-detail" style="padding: 0">
             <h1>{{ $dataProduct->name }}</h1>
             <div class="list-basic-product-info d-flex align-items-center flex-wrap">
-                <?php   $countRating = $dataProduct->ratings->count();
-                        $countComment= $dataProduct->comments->count();
+                <?php $countRating = $dataProduct->ratings->count();
+                $countComment = $dataProduct->comments->count();
                 ?>
                 <div class="item-basic">
                     Mã SP: <span class="color-primary">{{ $dataProduct->code }}</span> |
@@ -84,18 +84,18 @@
                 <div class="item-basic">
                     Đánh giá: <span class="color-primary">
                         @if($countRating && $countRating > 0)
-                            {{$countRating}}
-                            @else
-                            0
+                        {{$countRating}}
+                        @else
+                        0
                         @endif
                     </span> | &nbsp;
                 </div>
                 <div class="item-basic">
                     Bình luận: <span class="color-primary">
                         @if($countComment && $countComment > 0)
-                            {{$countComment}}
+                        {{$countComment}}
                         @else
-                            0
+                        0
                         @endif</span> | &nbsp;
                 </div>
                 <div class="item-basic last-item-basic position-relative">
@@ -147,7 +147,7 @@
                 <div class="box-right">
                     <div id="deal-line-detail" class="box-product-deal">
                         <p class="text-deal-detail">{{ __('Còn') }} {{ $dataProduct->sale_quantity }}/{{ $dataProduct->sale_stock }} {{ __('sản phẩm') }}</p>
-                        <div class="p-quantity-sale d-flex" >
+                        <div class="p-quantity-sale d-flex">
                             <img class="icon-sale-quantity" src="{{ asset('images/sale_icon.png') }}">
 
                             <div>
@@ -275,7 +275,7 @@
                     <div class="p-info1">
                         {!! Str::limit($dataProduct->description, 350, '')!!}
                         @if (strlen($dataProduct->description) > 3)
-                            <span id="dots-{{ $dataProduct->id }}">...</span>
+                        <span id="dots-{{ $dataProduct->id }}">...</span>
                         @endif
                     </div>
 
@@ -300,9 +300,9 @@
 
                         <div class="avgRate justify-content-center align-items-center flex-column">
                             @if($countRate > 0)
-                                <p style="padding: 10px;font-size: 15px" class="mt-12">{{$countRate}} đánh giá và nhận xét</p>
+                            <p style="padding: 10px;font-size: 15px" class="mt-12">{{$countRate}} đánh giá và nhận xét</p>
                             @else
-                                <p class="mt-12">Chưa có đánh giá và nhận xét</p>
+                            <p class="mt-12">Chưa có đánh giá và nhận xét</p>
                             @endif
                         </div>
 
@@ -379,7 +379,7 @@
 
                         </div>
                         @if(Session::has('message'))
-                            <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+                        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
                         @endif
                         <form id="feedbackForm" action="{{ route('rating') }}" class="menu" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
@@ -408,35 +408,35 @@
                         <div class="list-review">
                             <div id="js-review-holder">
                                 @foreach($listRatings as $rating)
-                                    <div class="item-comment">
-                                        <div class="form-reply-comment">
-                                            <div class="comment-name d-flex align-items-center justify-content-between">
-                                                <div class="comment-form-left d-flex align-items-center gap-6">
-                                                    <b class="user-name d-flex align-items-center gap-6">
-                                                        {{$rating->user->name}}
-                                                    </b>
-                                                </div>
-                                                <div class="comment-form-right d-flex align-items-center gap-4">
-                                                    <i class="fa fa-clock-o" style="font-size:15px; margin-right: 5px"></i>
-                                                    <?php $date = date_format($rating->created_at, "d/m/Y") ?>
-                                                    <span style="color:#787878;font-size: 12px;margin-right: 4px;font-weight: 700">{{$date}}</span>
-                                                </div>
+                                <div class="item-comment">
+                                    <div class="form-reply-comment">
+                                        <div class="comment-name d-flex align-items-center justify-content-between">
+                                            <div class="comment-form-left d-flex align-items-center gap-6">
+                                                <b class="user-name d-flex align-items-center gap-6">
+                                                    {{$rating->user->name}}
+                                                </b>
                                             </div>
-                                            <div class="comment-content d-flex align-items-center justify-content-between">
-                                                <div class="text-review d-flex flex-column gap-12" id="rating-review">
-                                                    @php $ratenum = number_format($rating->rating_product) @endphp
-                                                    <div class="rating1">
-                                                        @for($i = 1; $i <= $ratenum; $i++) <i class=" checked-rating fa fa-star "></i>
-                                                        @endfor
-                                                        @for($j = $ratenum + 1; $j <= 5; $j++) <i class="fa fa-star "></i>
-                                                        @endfor
-                                                    </div>
-                                                    <p style="font-size: 16px" class="d-flex aligin-items-center"><b>{{ __('Nhận xét:') }}</b>{{$rating->content}}</p>
-                                                </div>
-
+                                            <div class="comment-form-right d-flex align-items-center gap-4">
+                                                <i class="fa fa-clock-o" style="font-size:15px; margin-right: 5px"></i>
+                                                <?php $date = date_format($rating->created_at, "d/m/Y") ?>
+                                                <span style="color:#787878;font-size: 12px;margin-right: 4px;font-weight: 700">{{$date}}</span>
                                             </div>
                                         </div>
+                                        <div class="comment-content d-flex align-items-center justify-content-between">
+                                            <div class="text-review d-flex flex-column gap-12" id="rating-review">
+                                                @php $ratenum = number_format($rating->rating_product) @endphp
+                                                <div class="rating1">
+                                                    @for($i = 1; $i <= $ratenum; $i++) <i class=" checked-rating fa fa-star "></i>
+                                                        @endfor
+                                                        @for($j = $ratenum + 1; $j <= 5; $j++) <i class="fa fa-star "></i>
+                                                            @endfor
+                                                </div>
+                                                <p style="font-size: 16px" class="d-flex aligin-items-center"><b>{{ __('Nhận xét:') }}</b>{{$rating->content}}</p>
+                                            </div>
+
+                                        </div>
                                     </div>
+                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -447,9 +447,9 @@
                     <div class="box-comment">
                         <p class="title-comment font-weight-600" style="font-size: 16px">{{ __('Hỏi và đáp') }}</p>
                         @if(isset($errors))
-                            @foreach ($errors->all() as $error)
-                                <div style="color: red; margin: 10px; font-size: 16px">{{ $error }}</div>
-                            @endforeach
+                        @foreach ($errors->all() as $error)
+                        <div style="color: red; margin: 10px; font-size: 16px">{{ $error }}</div>
+                        @endforeach
                         @endif
                         <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
@@ -484,17 +484,17 @@
                             <th></th>
                         </tr>
                         @if(isset($dataProduct->detail_tech))
-                            @php
-                                $dataProduct->detail_tech = json_decode($dataProduct->detail_tech, true);
-                            @endphp
-                            @if(is_array($dataProduct->detail_tech))
-                                @foreach(array_slice($dataProduct->detail_tech, 0, 4) as $key => $value)
-                                    <tr>
-                                        <td style="font-weight: 600; width: 20%;">{{ $key }}</td>
-                                        <td>{{ $value }}</td>
-                                    </tr>
-                                @endforeach
-                            @endif
+                        @php
+                        $dataProduct->detail_tech = json_decode($dataProduct->detail_tech, true);
+                        @endphp
+                        @if(is_array($dataProduct->detail_tech))
+                        @foreach(array_slice($dataProduct->detail_tech, 0, 4) as $key => $value)
+                        <tr>
+                            <td style="font-weight: 600; width: 20%;">{{ $key }}</td>
+                            <td>{{ $value }}</td>
+                        </tr>
+                        @endforeach
+                        @endif
                         @endif
                     </table>
                     <a href="javascript:" id="read-all-product-detail" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
@@ -509,14 +509,14 @@
                                     <th></th>
                                 </tr>
                                 @if(isset($dataProduct->detail_tech))
-                                    @if(is_array($dataProduct->detail_tech))
-                                        @foreach($dataProduct->detail_tech as $key => $value)
-                                            <tr>
-                                                <td style="font-weight: 600">{{ $key }}</td>
-                                                <td>{{ $value }}</td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
+                                @if(is_array($dataProduct->detail_tech))
+                                @foreach($dataProduct->detail_tech as $key => $value)
+                                <tr>
+                                    <td style="font-weight: 600">{{ $key }}</td>
+                                    <td>{{ $value }}</td>
+                                </tr>
+                                @endforeach
+                                @endif
                                 @endif
                             </table>
                         </div>
@@ -525,36 +525,36 @@
                 </div>
                 @endif
                 @if(count($postRandom5) > 0)
-                    <div class="product-related">
-                        <h3> {{ __('Tin tức liên quan') }}</h3>
-                        @foreach($postRandom5 as $post)
-                            <div id="content">
-                                <div id="left">
-                                    <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="img-fluid2" />
-                                </div>
-                                <div id="content-right">
-                                    <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
-                                    <h3> {{$text}}</h3>
-                                </div>
-                            </div>
-                        @endforeach
+                <div class="product-related">
+                    <h3> {{ __('Tin tức liên quan') }}</h3>
+                    @foreach($postRandom5 as $post)
+                    <div id="content">
+                        <div id="left">
+                            <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="img-fluid2" />
+                        </div>
+                        <div id="content-right">
+                            <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
+                            <h3> {{$text}}</h3>
+                        </div>
                     </div>
+                    @endforeach
+                </div>
                 @endif
                 @if(count($youtubeRandom) > 0)
-                    <div class="product-related">
-                        <h3> {{ __('Video nổi bật ') }}</h3>
-                        @foreach($youtubeRandom as $post)
-                            <div id="content">
-                                <div id="left">
-                                    <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="img-fluid2" />
-                                </div>
-                                <div id="content-right">
+                <div class="product-related">
+                    <h3> {{ __('Video nổi bật ') }}</h3>
+                    @foreach($youtubeRandom as $post)
+                    <div id="content">
+                        <div id="left">
+                            <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="img-fluid2" />
+                        </div>
+                        <div id="content-right">
 
-                                    <h3> {{$post->title}}</h3>
-                                </div>
-                            </div>
-                        @endforeach
+                            <h3> {{$post->title}}</h3>
+                        </div>
                     </div>
+                    @endforeach
+                </div>
                 @endif
             </div>
 
@@ -598,7 +598,7 @@
                 @endforeach
             </div>
         </div>
-            @endif
+        @endif
     </div>
 </div>
 @include('includes.tooltips')
@@ -656,13 +656,13 @@
         $("[data-index=" + indexImage + "]").addClass('border-image');
         $('#featured-image').attr('src', src);
 
-        if(parseInt(indexImage) != 0) {
+        if (parseInt(indexImage) != 0) {
             $(".product-image-prev").removeClass('d-none');
         } else {
             $(".product-image-prev").addClass('d-none');
         }
 
-        if(parseInt(indexImage) > maxIndex - 2) {
+        if (parseInt(indexImage) > maxIndex - 2) {
             $(".product-image-next").addClass('d-none');
         } else {
             $(".product-image-next").removeClass('d-none');

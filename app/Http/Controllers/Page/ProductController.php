@@ -62,7 +62,7 @@ class ProductController extends Controller
         $postRandom5 = $this->postRepository->postRandom6();
         $youtubeRandom = $this->youtubeChannelRepository->index();
         $dataProduct = $this->productRepository->productDetail($slug);
-        
+
         if (empty($dataProduct)) {
             return redirect('/404');
         }
@@ -177,16 +177,19 @@ class ProductController extends Controller
                 $currentCateID = $getParent->parent;
                 $dataBreadcrumb[$getParent->name] = route('showDataCategory', $getParent->slug);
             }
-
-            $dataBreadcrumb[$getCategoryProduct->name] = route('showDataCategory', $getCategoryProduct->slug);
         }
+
+        $dataBreadcrumb = array_reverse($dataBreadcrumb);
+        $parts = parse_url($dataProduct->link_youtube);
+        parse_str($parts['query'], $query);
+        $dataProduct->id_youtube = $query['v'];
 
         return view(
             'page.product.product-detail',
             compact('youtubeRandom', 'postRandom5', 'countRate', 'countRate1', 'countRate2', 'countRate3', 'countRate4', 'countRate5', 'dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue', 'productViewed', 'dataBreadcrumb')
         );
     }
-    
+
     private function getYoutubeVideoId($url)
     {
         $queryString = parse_url($url, PHP_URL_QUERY);
@@ -409,8 +412,6 @@ class ProductController extends Controller
                 $currentCateID = $getParent->parent;
                 $dataBreadcrumb[$getParent->name] = route('showDataCategory', $getParent->slug);
             }
-
-            $dataBreadcrumb[$dataCategory->name] = route('showDataCategory', $dataCategory->slug);
         }
 
         return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'listKeyWord', 'dataBreadcrumb'));

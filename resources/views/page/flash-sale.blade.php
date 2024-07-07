@@ -23,7 +23,7 @@
 
         <div class="flash-sale-content">
             @if(isset($listFlashSale['flash_sale_list_product_id'], $listFlashSale['flash_sale_timer'] ))
-                @foreach($listFlashSale['flash_sale_list_product_id'] as $product)
+            @foreach($listFlashSale['flash_sale_list_product_id'] as $k => $product)
             <div class="column">
                 <div class="card">
                     <div class="product-image-sale">
@@ -54,7 +54,7 @@
                             <span style="font-size: 14px; font-weight: bold;">{{ __('Còn') }} {{ $product->stock }} / {{ $product->sale_quantity }} {{ __('sản phẩm') }}</span>
                         </div>
                         <div class="js-item-deal-time js-item-time-26469">
-                            <p class="time-deal-page">Kết thúc sau <span id="date-count-sale"></span>:<span id="hours-count-sale"></span>:<span id="min-count-sale"></span>:<span id="second-count-sale"></span>
+                            <p class="time-deal-page">Kết thúc sau <span id="date-count-sale-{{ $k }}"></span>:<span id="hours-count-sale-{{ $k }}"></span>:<span id="min-count-sale-{{ $k }}"></span>:<span id="second-count-sale-{{ $k }}"></span>
                             </p>
                         </div>
                         <a href="{{ route('addCart', $product['slug']) }}" class="buy-now-deal">Mua giá sốc</a>
@@ -66,64 +66,67 @@
         </div>
     </div>
 </section>
-    <script>
-            <?php if (isset($listFlashSale['flash_sale_timer'])) { ?>
+<script>
+    <?php if (isset($listFlashSale['flash_sale_timer'])) { ?>
         let countTimeSale = `<?php echo $listFlashSale['flash_sale_timer'] ?>`;
+        let countListFlashSale = '<?php echo  count($listFlashSale['flash_sale_list_product_id']) ?>';
 
-        var countDownDate = new Date(countTimeSale).getTime();
-        var x = setInterval(function() {
-            var now = new Date().getTime();
-            var distance = countDownDate - now;
-            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        for (let k = 0; k < countListFlashSale; k++) {
+            var countDownDate = new Date(countTimeSale).getTime();
+            var x = setInterval(function() {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            if (days == 0) {
-                days = '00';
-            }
+                if (days == 0) {
+                    days = '00';
+                }
 
-            if (hours == 0) {
-                hours = '00';
-            }
+                if (hours == 0) {
+                    hours = '00';
+                }
 
-            if (minutes == 0) {
-                minutes = '00';
-            }
+                if (minutes == 0) {
+                    minutes = '00';
+                }
 
-            if (days < 10 && days != '00') {
-                days = '0' + days;
-            }
+                if (days < 10 && days != '00') {
+                    days = '0' + days;
+                }
 
-            if (hours < 10 && hours != '00') {
-                hours = '0' + hours;
-            }
+                if (hours < 10 && hours != '00') {
+                    hours = '0' + hours;
+                }
 
-            if (minutes < 10 && minutes != '00') {
-                minutes = '0' + minutes;
-            }
+                if (minutes < 10 && minutes != '00') {
+                    minutes = '0' + minutes;
+                }
 
-            if (seconds < 10 && seconds != '00') {
-                seconds = '0' + seconds;
-            }
+                if (seconds < 10 && seconds != '00') {
+                    seconds = '0' + seconds;
+                }
 
-            $('#date-count-sale').empty();
-            $('#date-count-sale').append(days);
+                $('#date-count-sale-' + k).empty();
+                $('#date-count-sale-' + k).append(days);
 
-            $('#hours-count-sale').empty();
-            $('#hours-count-sale').append(hours);
+                $('#hours-count-sale-' + k).empty();
+                $('#hours-count-sale-' + k).append(hours);
 
-            $('#min-count-sale').empty();
-            $('#min-count-sale ').append(minutes);
+                $('#min-count-sale-' + k).empty();
+                $('#min-count-sale -' + k).append(minutes);
 
-            $('#second-count-sale').empty();
-            $('#second-count-sale').append(seconds);
+                $('#second-count-sale-' + k).empty();
+                $('#second-count-sale-' + k).append(seconds);
 
-            if (distance < 0) {
-                clearInterval(x);
-                $('.box-flash-sale').remove();
-            }
-        }, 1000);
-        <?php } ?>
-    </script>
+                if (distance < 0) {
+                    clearInterval(x);
+                    $('.box-flash-sale').remove();
+                }
+            }, 1000);
+        }
+    <?php } ?>
+</script>
 @endsection

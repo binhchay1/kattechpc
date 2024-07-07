@@ -55,9 +55,11 @@ class PostController extends Controller
             }
 
             $dataBreadcrumb[$getCategory->name] = route('post.category', $getCategory->slug);
+        } else {
+            $dataBreadcrumb[$getCategory->name] = route('post.category', $getCategory->slug);
         }
 
-        return view('page.post.post-detail', compact('firstPosts1','postNews','post', 'postRandom', 'listCategory', 'dataBreadcrumb'));
+        return view('page.post.post-detail', compact('firstPosts1', 'postNews', 'post', 'postRandom', 'listCategory', 'dataBreadcrumb'));
     }
 
     public function postCategory($slug)
@@ -73,8 +75,7 @@ class PostController extends Controller
         $postCategory = $this->categoryPostRepository->getCatePost($slug);
         $dataPostCategory = $this->categoryPostRepository->getCate($slug);
         $getPosts = $postCategory->posts;
-        if(count($getPosts)< 0)
-        {
+        if (count($getPosts) < 0) {
             return redirect('/404');
         }
         $firstPosts1 = $getPosts->splice(0, 1);
