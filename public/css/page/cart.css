@@ -13,6 +13,11 @@ body {
     border: 0 none;
     outline: 0;
     text-decoration: none;
+    background-color: #4267b2;
+    color: white;
+}
+#content-page a :hover {
+    color: white ;
 }
 
 #content-page strong {
@@ -500,18 +505,30 @@ aside {
 }
 
 .item-heading {
-    width: 50%;
+    width: 70%;
 }
 
 .item-quan {
-    width: 32%;
-    text-align: right;
+    width: 10%;
+    text-align: center;
     margin-right: 35px;
 }
 
 .require-field {
     color: #e31223;
     font-weight: bold;
+}
+
+#item-cart .item {
+    width: 70%;
+}
+
+#item-cart .in-mobile {
+    width: 10%;
+}
+
+#item-cart #get-total {
+    width: 20%;
 }
 
 .product-data input,
@@ -583,14 +600,11 @@ textarea {
         justify-content: space-between;
     }
 
-    .get-total {
-        margin-left: 15px;
-        display: flex;
-        width: 100%;
-        align-items: center;
-    }
+
 
     .get-total span {
         width: 100%;
     }
+
+
 }
