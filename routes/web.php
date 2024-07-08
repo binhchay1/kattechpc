@@ -91,7 +91,7 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
         Route::get('/get-order-detail/{order_id}', [AccountController::class, 'getOrderDetail']);
         Route::get('/thong-tin-tai-khoan', [AccountController::class, 'show'])->name('profile');
         Route::post('/account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
-        Route::get('/change-password', [AccountController::class, 'changePassword'])->name('change-password');
+        Route::get('/doi-mat-khau', [AccountController::class, 'changePassword'])->name('change-password');
         Route::post('/change-password', [AccountController::class, 'updatePassword'])->name('update-password');
     });
 

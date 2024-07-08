@@ -22,15 +22,6 @@
                             <h3 class="inline-block mb-2 text-base font-medium text-title-area">{{ __('Thông tin chính sản phẩm') }}</h3>
                         </div>
 
-                        <div class="xl:col-span-12">
-                            <div class="xl:col-span-4">
-                                <input name="hot_status" id="checkboxDefault1" class="size-4 border rounded-sm appearance-none cursor-pointer bg-slate-100 border-slate-200 dark:bg-zink-600 dark:border-zink-500 checked:bg-custom-500 checked:border-custom-500 dark:checked:bg-custom-500 dark:checked:border-custom-500 checked:disabled:bg-custom-400 checked:disabled:border-custom-400" type="checkbox">
-                                <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{ __('Hot') }}</label><br>
-                                <input name="hot_sale_status" id="checkboxDefault1" class="size-4 border rounded-sm appearance-none cursor-pointer bg-slate-100 border-slate-200 dark:bg-zink-600 dark:border-zink-500 checked:bg-custom-500 checked:border-custom-500 dark:checked:bg-custom-500 dark:checked:border-custom-500 checked:disabled:bg-custom-400 checked:disabled:border-custom-400" type="checkbox">
-                                <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{ __('Bán chạy') }}</label>
-                            </div>
-                        </div>
-
                         <div class="xl:col-span-6">
                             <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{ __('Tên sản phẩm') }}</label>
                             <input type="text" id="productNameInput" name="name" value="{{ old('name') }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Tên sản phẩm') }}">
@@ -39,7 +30,7 @@
                             @endif
                         </div>
 
-                        <div class="xl:col-span-4">
+                        <div class="xl:col-span-6">
                             <label for="productCodeInput" class="inline-block mb-2 text-base font-medium"> {{ __('Mã sản phẩm') }}</label>
                             <input type="text" id="productCodeInput" name="code" value="{{ old('code') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Mã sản phẩm') }}">
                             @if ($errors->has('code'))
@@ -47,7 +38,7 @@
                             @endif
                         </div>
 
-                        <div class="xl:col-span-4">
+                        <div class="xl:col-span-6">
                             <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Danh mục') }}</label>
                             <select style="width: 50%" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500
                             disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500
@@ -62,7 +53,7 @@
                             @endif
                         </div>
 
-                        <div class="xl:col-span-4">
+                        <div class="xl:col-span-6">
                             <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Thương hiệu') }}</label>
                             <select style="width: 50%" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500
                             disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500
@@ -77,7 +68,7 @@
                             @endif
                         </div>
 
-                        <div class="xl:col-span-4">
+                        <div class="xl:col-span-6">
                             <label for="productPrice" class="inline-block mb-2 text-base font-medium">{{ __('Giá') }}</label>
                             <input type="text" id="productPrice" name="price" value="{{ old('price') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Giá') }}" onkeyup="onlyNumberAmount(this)">
                             @if ($errors->has('price'))
@@ -85,7 +76,7 @@
                             @endif
                         </div>
 
-                        <div class="xl:col-span-4">
+                        <div class="xl:col-span-6">
                             <label for="productNewPrice" class="inline-block mb-2 text-base font-medium">{{ __('Giá mới') }}</label>
                             <input type="text" id="productNewPrice" name="new_price" value="{{ old('new_price') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Giá mới') }}" onkeyup="onlyNumberAmount(this)">
                             @if ($errors->has('new_price'))
@@ -93,7 +84,7 @@
                             @endif
                         </div>
 
-                        <div class="xl:col-span-4">
+                        <div class="xl:col-span-6">
                             <label for="productStatus" class="inline-block mb-2 text-base font-medium">{{ __('Trạng thái') }}</label>
                             <select class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false id="productStatus" name="status">
                                 @foreach($statusProduct as $status => $value)
@@ -105,7 +96,7 @@
                             @endif
                         </div>
 
-                        <div class="xl:col-span-4">
+                        <div class="xl:col-span-6">
                             <label for="statusGuarantee" class="inline-block mb-2 text-base font-medium"> {{ __('Bảo hành') }}</label>
                             <div style="display: flex;">
                                 <input type="text" name="status_guarantee_month" value="{{ old('status_guarantee_month') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Tháng') }}">
@@ -145,6 +136,15 @@
 
                         <div class="xl:col-span-12">
                             <h3 class="inline-block mb-2 text-base font-medium text-title-area">{{ __('Thông tin bổ sung sản phẩm') }}</h3>
+                        </div>
+
+                        <div class="xl:col-span-12">
+                            <div class="xl:col-span-4" style="display: flex; align-items: center;">
+                                <input name="hot_status" id="checkboxDefault1" class="size-4 border rounded-sm appearance-none cursor-pointer bg-slate-100 border-slate-200 dark:bg-zink-600 dark:border-zink-500 checked:bg-custom-500 checked:border-custom-500 dark:checked:bg-custom-500 dark:checked:border-custom-500 checked:disabled:bg-custom-400 checked:disabled:border-custom-400" type="checkbox">
+                                <label for="productNameInput" class="inline-block ml-2 text-base">{{ __('Hot') }}</label><br>
+                                <input name="hot_sale_status" id="checkboxDefault1" class="ml-2 size-4 border rounded-sm appearance-none cursor-pointer bg-slate-100 border-slate-200 dark:bg-zink-600 dark:border-zink-500 checked:bg-custom-500 checked:border-custom-500 dark:checked:bg-custom-500 dark:checked:border-custom-500 checked:disabled:bg-custom-400 checked:disabled:border-custom-400" type="checkbox">
+                                <label for="productNameInput" class="inline-block ml-2 text-base">{{ __('Bán chạy') }}</label>
+                            </div>
                         </div>
 
                         <div class="lg:col-span-2 xl:col-span-12">
@@ -201,7 +201,7 @@
                             <h3 class="inline-block mb-2 text-base font-medium text-title-area">{{ __('SEO profile') }}</h3>
                         </div>
 
-                        <div class="xl:col-span-4">
+                        <div class="xl:col-span-12">
                             <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{ __('Tiêu đề') }}</label>
                             <input type="text" id="productNameInput" name="title" value="{{ old('title') }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Tiêu đề') }}">
                             @if ($errors->has('title'))
@@ -209,7 +209,7 @@
                             @endif
                         </div>
 
-                        <div class="xl:col-span-4">
+                        <div class="xl:col-span-12">
                             <label for="key_word" class="inline-block mb-2 text-base font-medium">{{ __('Từ khóa') }}</label>
                             <textarea class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="key_word" name="key_word" placeholder="{{ __('Từ khóa') }}" rows="5">{{ old('key_word') }}</textarea>
                             @if ($errors->has('key_word'))
@@ -218,7 +218,7 @@
                             <small style="font-style: italic;">{{ __('Mỗi từ khóa tương ứng với 1 dòng') }}</small>
                         </div>
 
-                        <div class="xl:col-span-4">
+                        <div class="xl:col-span-12">
                             <label for="productShortDescription" class="inline-block mb-2 text-base font-medium"> {{ __('Mô tả ngắn') }}</label>
                             <input type="text" id="productShortDescription" name="short_description" value="{{ old('short_description') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Mô tả ngắn') }}">
                             @if ($errors->has('short_description'))

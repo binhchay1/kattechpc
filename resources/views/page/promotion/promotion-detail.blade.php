@@ -6,21 +6,21 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/page/promotion-detail.css') }}" />
+<style>
+    .promotion-releated {
+        padding: 10px;
+    }
+</style>
 @endsection
 
 @section('description', __($promotion->short_description . 'với Kattech PC'))
 @section('keywords', 'promotion, flash sale, sale, kattechpc, kattech')
 @section('breadcrumb', $promotion->title)
 
-<style>
-    .promotion-releated {
-        padding: 10px;
-    }
-</style>
-@section('content')
-<div class=" content-promotion d-flex">
 
-    <div class="leftColumn" >
+@section('content')
+<div class="content-promotion d-flex">
+    <div class="leftColumn">
         <div class="card" style="flex-direction: column; justify-content: center;">
             <div class="flex-direction-column">
                 <p style="font-size: 24px; margin: 0;">{{ $promotion->title }}</p>
@@ -66,8 +66,26 @@
     </div>
 
     <div class="rightColumn">
+        <div class="new-read-late">
+            <h3 id="title-post"> {{ __('Quảng cáo gần đây') }}</h3>
+            @foreach($listPromotion as $promotion)
+            <div id="" style="margin-top: 30px">
+                <div id="">
+                    <img src="{{  asset( $promotion->image ?? 'images/page/no-image.png') }}" alt="Image Alt" class="image-post" />
+                </div>
+                <div id="">
+                    <a href="{{ route('promotion.detail', $promotion['slug']) }}">
+                        <h3> {{$promotion->title}}</h3>
+                    </a>
+
+                </div>
+                <span id="post-des">{{$promotion->short_description}}</span>
+            </div>
+            @endforeach
+        </div>
+
         <div class="new-relate">
-            <h3 id="title-post" > {{ __('Tin tức liên quan') }}</h3>
+            <h3 id="title-post"> {{ __('Tin công nghệ gần đây') }}</h3>
             @if($firstPosts1 != null)
             <div id="" style="margin-top: 30px">
                 <div id="">
@@ -80,37 +98,20 @@
             @endif
             @if($postRandom)
             @foreach($postRandom as $post)
-                <div id="content" >
-                    <div id="left">
-                        <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="image-post" />
-                    </div>
-                    <div id="content-right">
-                        <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
-                        <a href="{{ route('post.detail', $post['slug']) }}"><h3> {{$text}}</h3></a>
-                    </div>
+            <div id="content">
+                <div id="left">
+                    <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="image-post" />
                 </div>
+                <div id="content-right">
+                    <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
+                    <a href="{{ route('post.detail', $post['slug']) }}">
+                        <h3> {{$text}}</h3>
+                    </a>
+                </div>
+            </div>
             @endforeach
             @endif
         </div>
-
-        <div class="new-read-late">
-            <h3 id="title-post" > {{ __('Bài viết gần đây nhất') }}</h3>
-            @foreach($listPromotion as $promotion)
-                <div id="" style="margin-top: 30px">
-                    <div id="">
-                        <img src="{{  asset( $promotion->image ?? 'images/page/no-image.png') }}" alt="Image Alt" class="image-post" />
-                    </div>
-                    <div id="">
-                        <a href="{{ route('promotion.detail', $promotion['slug']) }}">
-                            <h3> {{$promotion->title}}</h3>
-                        </a>
-
-                    </div>
-                    <span id="post-des">{{$promotion->short_description}}</span>
-                </div>
-            @endforeach
-        </div>
-
     </div>
 </div>
 @endsection

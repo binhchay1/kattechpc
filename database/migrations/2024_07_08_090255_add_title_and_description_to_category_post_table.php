@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('category_post', function (Blueprint $table) {
+        Schema::table('category_posts', function (Blueprint $table) {
             $table->text('title')->nullable();
             $table->text('description')->nullable();
         });

@@ -525,7 +525,7 @@
                 @endif
                 @if(count($postRandom5) > 0)
                 <div class="product-related">
-                    <h3> {{ __('Tin tức liên quan') }}</h3>
+                    <h3> {{ __('Tin tức mới nhất') }}</h3>
                     @foreach($postRandom5 as $post)
                     <div id="content">
                         <div id="left">
