@@ -93,7 +93,17 @@ class StorageController extends Controller
     public function storeImportProduct(StorageProductRequest $request)
     {
         $input = $request->except(['_token']);
-        $this->storageProductRepository->create($input);
+        $getP = $this->storageProductRepository->getByProductAndStorage($input['product_id'], $input['storage_id']);
+        if (empty($getP)) {
+            $this->storageProductRepository->create($input);
+        } else {
+            $currentQuantity = $getP->quantity;
+            $newQuantity = $currentQuantity + $input['quantity'];
+            $dataQuantity = [
+                'quantity' => $newQuantity,
+            ];
+            $this->storageProductRepository->updateQuantity($input['product_id'], $input['storage_id'], $dataQuantity);
+        }
 
         $dataStory = [
             'product_id' => $input['product_id'],
@@ -144,6 +154,21 @@ class StorageController extends Controller
     public function exportImportProduct(StorageProductRequest $request)
     {
         $input = $request->except(['_token']);
+        $getP = $this->storageProductRepository->getByProductAndStorage($input['product_id'], $input['storage_id']);
+        if (empty($getP)) {
+            return redirect()->route('admin.storage.index')->with('success', __('Sản phẩm không chưa tồn tại trong kho'));
+        } else {
+            $currentQuantity = $getP->quantity;
+            $newQuantity = $currentQuantity - $input['quantity'];
+            if ($newQuantity < 0) {
+                return redirect()->route('admin.storage.index')->with('success', __('Không thể xuất kho vượt quá số lượng đang có trong kho. Số lượng trong kho : ' . $currentQuantity));
+            }
+            $dataQuantity = [
+                'quantity' => $newQuantity,
+            ];
+            $this->storageProductRepository->updateQuantity($input['product_id'], $input['storage_id'], $dataQuantity);
+        }
+
         $this->storageProductRepository->create($input);
 
         $dataStory = [
