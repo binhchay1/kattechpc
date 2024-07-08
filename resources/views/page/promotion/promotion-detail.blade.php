@@ -41,16 +41,16 @@
         <p><span style="font-size: 12pt;">- 100% sản phẩm chính hãng</span></p>
         <p><span style="font-size: 12pt;">- 100% giá cạnh tranh so với thị trường</span></p>
         <p><span style="font-size: 12pt;"><strong>Hình thức giao hàng, dịch vụ bảo hành và chăm sóc khách hàng tại Kattech</strong></span></p>
-        <p><span style="font-size: 12pt;">- <a href="https://www.phucanh.vn/page/chinh-sach-doi-tra-san-pham" target="_blank">Đổi mới sản phẩm đến 30 ngày</a></span></p>
+        <p><span style="font-size: 12pt;">- <a href="{{route('policy')}}" target="_blank">Đổi mới sản phẩm đến 30 ngày</a></span></p>
         <p><span style="font-size: 12pt;">- Khách hàng đặt hàng sẽ được nhân viên Kattech giao hàng hoặc nhận qua dịch vụ chuyển phát nhanh</span></p>
         <p><span style="font-size: 12pt;">- Giao hàng nhanh trong nội thành Hà Nội trong vòng 2H</span></p>
-        <p><span style="font-size: 12pt;">- <a href="https://www.phucanh.vn/page/chinh-sach-bao-hanh" target="_blank">Bảo hành chính hãng 100%, bảo hành tại nơi sử dụng</a></span></p>
+        <p><span style="font-size: 12pt;">- <a href="{{route('policy')}}" target="_blank">Bảo hành chính hãng 100%, bảo hành tại nơi sử dụng</a></span></p>
         <p><span style="font-size: 12pt;">- Đội ngũ chăm sóc khách hàng sẵn sàng giải đáp mọi thắc mắc</span></p>
         <p><span style="font-size: 12pt;">- Các sản phẩm sẽ có hướng dẫn lắp đặt, sử dụng từ đội ngũ kĩ thuật qua kênh tin tức, video</span></p>
         <p><span style="font-size: 12pt;">- Shipper luôn đeo khẩu trang đảm bảo an toàn</span></p>
-        <p><span style="font-size: 12pt;"><em>&gt;&gt;Xem thêm các chương trình khuyến mãi hấp dẫn khác </em><strong><a href="https://www.phucanh.vn/landing-page.html" target="_blank">tại đây</a></strong></span></p>
+        <p><span style="font-size: 12pt;"><em>&gt;&gt;Xem thêm các chương trình khuyến mãi hấp dẫn khác </em><strong><a href="{{route('promotion')}}" target="_blank">tại đây</a></strong></span></p>
         <p><span style="font-size: 12pt;"><strong>Để biết thêm thông tin chi tiết, Quý khách vui lòng xem chi tiết trên từng sản phẩm, tới hệ thống showroom Kattech hoặc liên hệ hotline 1900 2164 (ext 1)</strong></span></p>
-        <p><span style="font-size: 12pt;"><strong>Tới <a href="https://www.phucanh.vn/" target="_blank">Kattech</a> để được tư vấn và sở hữu các sản phẩm công nghệ, <a href="https://www.phucanh.vn/may-tinh-xach-tay-laptop.html" target="_blank">laptop</a>, <a href="https://www.phucanh.vn/may-tinh-de-ban.html" target="_blank">PC</a>, <a href="https://www.phucanh.vn/camera-giam-sat.html" target="_blank">camera</a>, <a href="https://www.phucanh.vn/linh-kien-pc-lap-rap.html" target="_blank">linh kiện máy tính</a>, <a href="https://www.phucanh.vn/thiet-bi-van-phong.html" target="_blank">thiết bị văn phòng</a>,... chính hãng, uy tín cùng chất lượng dịch vụ và nhiều chương trình <a href="https://www.phucanh.vn/landing-page.html" target="_blank">khuyến mãi</a> ưu đãi.</strong></span></p>
+        <p><span style="font-size: 12pt;"><strong>Tới <a href="{{route('home')}}" target="_blank">Kattech</a> để được tư vấn và sở hữu các sản phẩm công nghệ, <a href="https://www.phucanh.vn/may-tinh-xach-tay-laptop.html" target="_blank">laptop</a>, <a href="https://www.phucanh.vn/may-tinh-de-ban.html" target="_blank">PC</a>, <a href="https://www.phucanh.vn/camera-giam-sat.html" target="_blank">camera</a>, <a href="https://www.phucanh.vn/linh-kien-pc-lap-rap.html" target="_blank">linh kiện máy tính</a>, <a href="https://www.phucanh.vn/thiet-bi-van-phong.html" target="_blank">thiết bị văn phòng</a>,... chính hãng, uy tín cùng chất lượng dịch vụ và nhiều chương trình <a href="https://www.phucanh.vn/landing-page.html" target="_blank">khuyến mãi</a> ưu đãi.</strong></span></p>
         <p><span style="font-size: 12pt;"><strong>Kattech SMART WORLD - HÀNG CHÍNH HÃNG - GIÁ LUÔN TỐT NHẤT!!!</strong></span></p>
         <p><span style="font-size: 12pt;"><strong>HOTLINE: 1900 2164</strong></span></p>
         <p><span style="font-size: 12pt;"><strong>Hệ thống Showroom Kattech:</strong></span></p>

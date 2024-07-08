@@ -248,21 +248,21 @@
                             <input type="number" value="{{ $product->quantity }}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{ $product->id }}')">
                         </div>
 
-                        <?php
-                        $total = (int) $product->quantity * (int) str_replace('.', '',  $product->price);
 
-                        ?>
-                        <div id="get-total" class="subtotal get-total inline" id="total_cart">
-                            <span>{{ number_format($total, 0, '.', '.') }} đ</span>
-                            <input hidden name="total_cart" value="{{ $total }}">
-                            <div class="delete" id="delete-cart">
-                                <a>
-                                    <button type="button" onclick="deleteSales(`{{ route('deleteCart', $product['id']) }}`)">{{ __('Xóa') }}</button>
-                                </a>
-                            </div>
+                    </div>
+                    <?php
+                    $total = (int) $product->quantity * (int) str_replace('.', '',  $product->price);
+
+                    ?>
+                    <div id="get-total" class="subtotal get-total inline" id="total_cart">
+                        <span>{{ number_format($total, 0, '.', '.') }} đ</span>
+                        <input hidden name="total_cart" value="{{ $total }}">
+                        <div class="delete" id="delete-cart">
+                            <a>
+                                <button type="button" onclick="deleteSales(`{{ route('deleteCart', $product['id']) }}`)">{{ __('Xóa') }}</button>
+                            </a>
                         </div>
                     </div>
-
                 </div>
                 @endforeach
 
@@ -270,15 +270,13 @@
                     <div class="summary1">
                         <h3 class="input-address">{{__('Hình thức thanh toán')}}</h3>
                         <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" checked disabled>{{__('Thanh toán sau khi nhận hàng')}}<br>
-                        <form>
                             <div class="basket-module">
                                 <label for="promo-code">{{__('Nhập mã khuyến mãi')}}</label>
                                 <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                                 <input id="promo-code" type="text" name="discount_amount" class="promo-code-field">
                                 <p class="error_msg" id="promo-code" style="color: red"></p>
-                                <button type="button" class=" btn-submit promo-code-cta">Apply</button>
+                                <a type="button" class=" btn-submit promo-code-cta">Apply</a>
                             </div>
-                        </form>
                     </div>
                     <div class="summary summary-area">
                         <div class="input-address summary-total-items total-title">{{ __('Tổng cộng') }} </div>
