@@ -4,8 +4,8 @@
 <title>{{ __('Danh mục sản phẩm') }} | Kattech PC</title>
 @endsection
 
-@section('description', __('Thỏa sức với linh kiện máy tính ' . $dataCategory->name . ' với Kattech PC'))
-@section('keywords', $dataCategory->name . ', kattech')
+@section('description', $dataCategory->description)
+@section('keywords', $dataCategory->key_word)
 @section('breadcrumb', $dataCategory->name)
 
 @section('css')

@@ -4,8 +4,8 @@
 <title>{{ __('Danh mục') }} | Kattech PC</title>
 @endsection
 
-@section('description', __('Nghiên cứu, theo dõi các tin tức về công nghệ' . $postCategory->name . ' với Kattech PC'))
-@section('keywords', $postCategory->name. ', post, news, kattech')
+@section('description', $postCategory->description)
+@section('keywords', $postCategory->key_word)
 @section('breadcrumb', $postCategory->name)
 
 @section('css')

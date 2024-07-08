@@ -14,9 +14,13 @@
                 <form method="POST" action="{{route('admin.categoryProduct.update', $categoryProduct['id'])}}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
+                        <div class="xl:col-span-12">
+                            <h3 class="inline-block mb-2 text-base font-medium text-title-area">{{ __('Thông tin chính danh mục') }}</h3>
+                        </div>
+
                         <div class="xl:col-span-6">
                             <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{ __('Tên danh mục') }}</label>
-                            <input type="text" id="productNameInput" name="name" value="{{ old('title',$categoryProduct->name) }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Tên danh mục')}}">
+                            <input type="text" id="productNameInput" name="name" value="{{ old('title', $categoryProduct->name) }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Tên danh mục')}}">
                             @if ($errors->has('name'))
                             <span class="text-danger " style="color: red">{{ $errors->first('name') }}</span>
                             @endif
@@ -31,7 +35,8 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="xl:col-span-6">
+
+                        <div class="xl:col-span-12">
                             <div class="form-group">
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
                                 <div class="">
@@ -39,14 +44,14 @@
                                         <input value="" type="file" class="border-0 bg-light pl-0" name="image" id="image" hidden>
                                         <div class=" choose-avatar">
                                             <div id="btnimage">
-                                                <img id="showImage" class="show-avatar" src="{{ asset($categoryProduct->image ?? '/images/no-image.jpg') }}" alt="avatar"  style="width: 50%; height: auto">
+                                                <img id="showImage" class="show-avatar" src="{{ asset($categoryProduct->image ?? '/images/no-image.jpg') }}" alt="avatar" style="width: 50%; height: auto">
                                             </div>
                                             <div id="button">
                                                 <i id="btn_chooseImg" class="fas fa-camera"> {{ __('Chọn hình ảnh') }}</i>
                                             </div>
                                         </div>
                                         @if ($errors->has('image'))
-                                            <span class="text-danger" style="color: red">{{ $errors->first('image') }}</span>
+                                        <span class="text-danger" style="color: red">{{ $errors->first('image') }}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -60,14 +65,39 @@
                             dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:
                             border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false value="{{ $categoryProduct->status }}" id="brandSelect" name="status">
                                 @foreach($statusCategory as $type => $value)
-                                    <option id="type_of_league" value="{{ $type }}" {{$value == $categoryProduct->status  ? 'selected' : ''}}>{{ $value }}</option>
+                                <option id="type_of_league" value="{{ $type }}" {{$value == $categoryProduct->status  ? 'selected' : ''}}>{{ $value }}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('status'))
-                                <span class="text-danger">{{ $errors->first('status') }}</span>
+                            <span class="text-danger">{{ $errors->first('status') }}</span>
                             @endif
                         </div>
                         @endif
+
+                        <div class="xl:col-span-12">
+                            <hr style="width: 100%;">
+                        </div>
+
+                        <div class="xl:col-span-12">
+                            <h3 class="inline-block mb-2 text-base font-medium text-title-area">{{ __('SEO profile') }}</h3>
+                        </div>
+
+                        <div class="xl:col-span-12">
+                            <label for="key_word" class="inline-block mb-2 text-base font-medium">{{ __('Từ khóa') }}</label>
+                            <textarea class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="key_word" name="key_word" placeholder="{{ __('Từ khóa') }}" rows="5">{{ old('key_word', $categoryProduct->key_word) }}</textarea>
+                            @if ($errors->has('key_word'))
+                            <span class="text-danger">{{ $errors->first('key_word') }}</span><br>
+                            @endif
+                            <small style="font-style: italic;">{{ __('Mỗi từ khóa tương ứng với 1 dòng') }}</small>
+                        </div>
+
+                        <div class="xl:col-span-12">
+                            <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Mô tả') }}</label>
+                            <textarea type="text" id="categoryKeyWord" name="description" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Mô tả')}}">{{ old('description', $categoryProduct->description) }}</textarea>
+                            @if ($errors->has('description'))
+                            <span class="text-danger" style="color: red">{{ $errors->first('description') }}</span>
+                            @endif
+                        </div>
                         <input type="hidden" name="slug" class="form-control" id="name" placeholder="Enter name" value="{{ $categoryProduct->slug }}">
                     </div>
                     <div class="flex justify-end gap-2 mt-4">
@@ -81,5 +111,5 @@
 </div>
 @endsection
 @push('scripts')
-    <script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
+<script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
 @endpush

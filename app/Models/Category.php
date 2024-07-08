@@ -16,9 +16,7 @@ class Category extends Model
     protected $table = 'categories';
 
     protected $fillable = [
-        'name', 'slug', 'parent', 'image', 'status'
-
-
+        'name', 'slug', 'parent', 'image', 'status', 'key_word', 'title', 'description'
     ];
 
     public function sluggable(): array

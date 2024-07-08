@@ -14,7 +14,7 @@ class CategoryPost extends Model
 
 
     protected $fillable = [
-        'name', 'slug', 'parent', 'image'
+        'name', 'slug', 'parent', 'image', 'key_word', 'title', 'description'
     ];
 
     public function sluggable(): array
