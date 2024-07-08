@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Storage;
+use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
 use Maatwebsite\Excel\Concerns\WithDrawings;
@@ -10,17 +10,17 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
 class ExportStorage implements FromView, WithColumnWidths, WithDrawings
 {
-    protected $products;
+    protected $storage;
 
-    public function __construct($products)
+    public function __construct($storage)
     {
-        $this->products = $products;
+        $this->storage = $storage;
     }
 
     public function view(): View
     {
         return view('page.exports.story-storage', [
-            'products' => $this->products
+            'listStorage' => $this->storage
         ]);
     }
 
@@ -59,18 +59,5 @@ class ExportStorage implements FromView, WithColumnWidths, WithDrawings
         }
 
         return $arrColumn;
-    }
-
-    public function drawings()
-    {
-        $drawing = new Drawing();
-        $drawing->setName('Logo');
-        $drawing->setDescription('Kattech PC Logo');
-        $drawing->setPath(public_path('/images/logo/logo.png'));
-        $drawing->setHeight(200);
-        $drawing->setOffsetX(40);
-        $drawing->setCoordinates('F2');
-
-        return $drawing;
     }
 }

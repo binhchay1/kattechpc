@@ -172,7 +172,7 @@ class StorageController extends Controller
 
     public function exportExcel(Request $request)
     {
-        $products = $this->storyStorageRepository->getStoryProduct($request->id);
-        return Excel::download(new ExportStorage($products), 'storage.xlsx');
+        $storage = $this->storyStorageRepository->getStoryProduct($request->get('id'));
+        return Excel::download(new ExportStorage($storage), 'storage.xlsx');
     }
 }

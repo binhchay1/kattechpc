@@ -1,10 +1,25 @@
 @extends('layouts.master-admin')
+
 @section('title')
 {{ __('Danh sách kho hàng') }}
 @endsection
+
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/admin/storage.css') }}">
-<!-- page title -->
+<style>
+    #modalChooseStorage {
+        display: none;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-content {
+        margin: auto;
+        height: auto;
+    }
+</style>
+
 
 <div class="grid grid-cols-1 gap-x-5 xl:grid-cols-12 mt-4">
     <div class="xl:col-span-12">
@@ -16,7 +31,7 @@
                         <a href="{{route('admin.storage.create')}}" type="button" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20"><i data-lucide="plus" class="inline-block size-4"></i> <span class="align-middle">{{__('Thêm kho hàng')}}</span></a>
                     </div>
                     <div class="lg:col-span-2 ltr:lg:text-right rtl:lg:text-left xl:col-span-2 xl:col-start-11 button-excel" style="margin-left: 10px">
-                        <a class="btn btn-warning float-end" href="{{ route('admin.storage.export.excel') }}">{{ __('Xuất báo cáo') }}</a>
+                        <a class="btn btn-warning float-end" style="cursor: pointer;" onclick="openModal()">{{ __('Xuất báo cáo') }}</a>
                     </div>
                 </div>
             </div>
@@ -103,6 +118,7 @@
     </div>
 </div>
 
+@include('includes.modal-choose-storage')
 @endsection
 
 @push('scripts')
@@ -110,5 +126,19 @@
     setTimeout(function() {
         $('.alert-block').remove();
     }, 5000);
+
+    function openModal() {
+        $('#modalChooseStorage').attr('style', 'display: flex !important');
+    }
+
+    function closeModal() {
+        $('#modalChooseStorage').attr('style', 'display: none !important');
+    }
+
+    function exportExcel() {
+        let id = $('#select-choose-storage').val();
+        let url = '/admin/storages/export-excel?id=' + id;
+        window.location.href = url;
+    }
 </script>
 @endpush

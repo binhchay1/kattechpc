@@ -90,29 +90,21 @@
         <tbody>
             <tr style="color: #000;font-weight: bold;">
                 <td colspan="2">{{ __('Tên sản phẩm') }}</td>
-                <td width="100">{{ __('Bảo hành') }}</td>
-                <td width="100">{{ __('Đơn giá') }}</td>
-                <td width="120">{{ __('Thành tiền') }}</td>
+                <td width="100">{{ __('Mã') }}</td>
+                <td width="100">{{ __('Số lượng') }}</td>
+                <td width="120">{{ __('Ngày') }}</td>
+                <td width="120">{{ __('Tên nhân viên') }}</td>
             </tr>
 
-            @foreach($getProduct as $key => $product)
+            @foreach($listStorage as $storage)
             <tr>
                 <td colspan="2">
-                    <p class="p-name" href="{{ route('productDetail', $product->id) }}">{{ $product->name }}</p> <br>
-                    {{ __('Mã sp') }}: {{ $product->code }} <br>
+                    <p class="p-name">{{ $storage->products->name }}</p>
                 </td>
-                <td>{{ $product->status_guarantee }} </td>
-                @if($product->new_price != null)
-                <td>{{ $product->new_price }} đ</td>
-                @else
-                <td>{{ $product->price }} đ</td>
-                @endif
-
-                @if($product->new_price != null)
-                <td width="120">{{ $product->new_price }} đ</td>
-                @else
-                <td width="120">{{ $product->price }} đ</td>
-                @endif
+                <td>{{ $storage->code }} </td>
+                <td>{{ $storage->quantity }} </td>
+                <td>{{ $storage->created_at }} </td>
+                <td>{{ $storage->users->name }} </td>
             </tr>
             @endforeach
 

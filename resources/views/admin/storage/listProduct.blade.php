@@ -10,11 +10,11 @@
         display: none;
         width: 100%;
         height: 100%;
-        background: aquamarine;
+        background-color: rgba(0, 0, 0, 0.4);
     }
 
     .modal-content {
-        margin: 0 auto;
+        margin: auto;
         height: auto;
     }
 </style>
@@ -102,18 +102,23 @@
             }
         }).done(function(result) {
             $('#table-body-detail').empty();
-            $('#modalDetailImportExport').attr('style', 'display: block !important');
+            $('#modalDetailImportExport').attr('style', 'display: flex !important');
             for (let i = 0; i < result.length; i++) {
                 let strAppend = `<tr>
-                            <td class="column1">` + result[i].created_at + `</td>
-                            <td class="column2">` + result[i].code + `</td>
-                            <td class="column3">` + result[i].user.name + `</td>
-                            <td class="column4">` + result[i].quantity + `</td>
+                            <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">` + result[i].created_at + `</td>
+                            <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">` + result[i].code + `</td>
+                            <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">` + result[i].user.name + `</td>
+                            <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">` + result[i].quantity + `</td>
+                            <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">` + result[i].type + `</td>
                         </tr>`;
 
                 $('#table-body-detail').append(strAppend);
             }
         });
+    }
+
+    function closeModal() {
+        $('#modalDetailImportExport').attr('style', 'display: none !important');
     }
 </script>
 @endpush

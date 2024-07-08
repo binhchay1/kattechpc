@@ -39,6 +39,6 @@ class StoryStorageRepository extends BaseRepository
 
     public function getStoryProduct($product_id)
     {
-        return $this->model->with('user')->where('product_id', $product_id)->get();
+        return $this->model->with('users', 'products')->where('product_id', $product_id)->get();
     }
 }
