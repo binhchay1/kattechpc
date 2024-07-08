@@ -181,8 +181,12 @@ class ProductController extends Controller
 
         $dataBreadcrumb = array_reverse($dataBreadcrumb);
         $parts = parse_url($dataProduct->link_youtube);
-        parse_str($parts['query'], $query);
-        $dataProduct->id_youtube = $query['v'];
+        if (!empty($parts)) {
+            parse_str($parts['query'], $query);
+            $dataProduct->id_youtube = $query['v'];
+        } else {
+            $dataProduct->id_youtube = '';
+        }
 
         return view(
             'page.product.product-detail',
