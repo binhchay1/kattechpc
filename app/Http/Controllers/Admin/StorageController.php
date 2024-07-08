@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\Utility;
 use App\Exports\ExportStorage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorageProductRequest;
 use App\Http\Requests\StorageRequest;
 use App\Repositories\ProductRepository;
 use App\Repositories\StorageProductRepository;
+use App\Repositories\StoryStorageRepository;
 use App\Repositories\StorageRepository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -16,16 +19,22 @@ class StorageController extends Controller
 {
     private $storageRepository;
     private $productRepository;
-    private $productStorageRepository;
+    private $storageProductRepository;
+    private $storyStorageRepository;
+    private $utility;
 
     public function __construct(
         StorageRepository $storageRepository,
         ProductRepository $productRepository,
-        StorageProductRepository $productStorageRepository
+        StorageProductRepository $storageProductRepository,
+        StoryStorageRepository $storyStorageRepository,
+        Utility $utility
     ) {
         $this->storageRepository = $storageRepository;
         $this->productRepository = $productRepository;
-        $this->productStorageRepository = $productStorageRepository;
+        $this->storageProductRepository = $storageProductRepository;
+        $this->storyStorageRepository = $storyStorageRepository;
+        $this->utility = $utility;
     }
 
     public function index()
@@ -84,14 +93,43 @@ class StorageController extends Controller
     public function storeImportProduct(StorageProductRequest $request)
     {
         $input = $request->except(['_token']);
-        $this->productStorageRepository->create($input);
+        $this->storageProductRepository->create($input);
 
-        return redirect()->route('admin.storage.index')->with('success', __('Kho hàng được thay đổi thành công'));
+        $dataStory = [
+            'product_id' => $input['product_id'],
+            'user_id' => Auth::id(),
+            'storage_id' => $input['storage_id'],
+            'quantity' => $input['quantity'],
+            'note' => $input['note'],
+            'code' => base64_encode(date('Y-m-d H:i:s')),
+            'type' => 'import',
+        ];
+
+        $this->storyStorageRepository->create($dataStory);
+
+        return redirect()->route('admin.storage.index')->with('success', __('Nhập kho hàng thành công'));
     }
 
-    public function listProduct()
+    public function listProduct($id)
     {
-        $listProducts = $this->productRepository->index();
+        $listProductOfStorage = $this->storageProductRepository->getListProductById($id);
+        $listID = [];
+        foreach ($listProductOfStorage as $storage) {
+            $listID[] = $storage->product_id;
+        }
+
+        $listProducts = $this->productRepository->getProductByArrayID($listID);
+
+        foreach ($listProducts as $product) {
+            foreach ($listProductOfStorage as $productStorage) {
+                if ($product->id == $productStorage->id) {
+                    $product->quantity = $productStorage->quantity;
+                }
+            }
+        }
+
+        $listProducts = $this->utility->paginate($listProducts);
+
         return view('admin.storage.listProduct', compact('listProducts'));
     }
 
@@ -103,8 +141,38 @@ class StorageController extends Controller
         return view('admin.storage.import', compact('storage', 'listProducts'));
     }
 
+    public function exportImportProduct(StorageProductRequest $request)
+    {
+        $input = $request->except(['_token']);
+        $this->storageProductRepository->create($input);
+
+        $dataStory = [
+            'product_id' => $input['product_id'],
+            'user_id' => Auth::id(),
+            'storage_id' => $input['storage_id'],
+            'quantity' => $input['quantity'],
+            'note' => $input['note'],
+            'code' => base64_encode(date('Y-m-d H:i:s')),
+            'type' => 'export',
+        ];
+
+        $this->storyStorageRepository->create($dataStory);
+
+        return redirect()->route('admin.storage.index')->with('success', __('Xuất kho hàng thành công'));
+    }
+
+    public function getDetailImportExportHandle(Request $request)
+    {
+        $id = $request->get('id');
+
+        $getHistory = $this->storyStorageRepository->getStoryProduct($id);
+
+        return response()->json($getHistory);
+    }
+
     public function exportExcel(Request $request)
     {
-        return Excel::download(new ExportStorage(), 'storage.xlsx');
+        $products = $this->storyStorageRepository->getStoryProduct($request->id);
+        return Excel::download(new ExportStorage($products), 'storage.xlsx');
     }
 }

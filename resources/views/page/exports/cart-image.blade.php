@@ -98,7 +98,7 @@
             @foreach($getProduct as $key => $product)
             <tr>
                 <td colspan="2">
-                    <p class="p-name" href="https://nguyencongpc.vn/gia-do-man-hinh-gaming-e-dra-eam7301">{{ $product->name }}</p> <br>
+                    <p class="p-name" href="{{ route('productDetail', $product->id) }}">{{ $product->name }}</p> <br>
                     {{ __('Mã sp:') }} {{ $product->code }} <br>
                 </td>
                 <td>{{ $product->status_guarantee }} </td>

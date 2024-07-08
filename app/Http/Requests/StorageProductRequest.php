@@ -27,7 +27,7 @@ class StorageProductRequest extends FormRequest
             'storage_id' => 'required',
         ];
     }
-    
+
     public function messages()
     {
         return [

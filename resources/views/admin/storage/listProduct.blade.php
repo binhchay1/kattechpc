@@ -4,6 +4,14 @@
 {{ __('Danh sách sản phẩm') }}
 @endsection
 
+@section('css')
+<style>
+    #modalDetailImportExport {
+        display: none;
+    }
+</style>
+@endsection
+
 @section('content')
 <div class="grid grid-cols-1 gap-x-5 xl:grid-cols-12 mt-4">
     <div class="xl:col-span-12">
@@ -39,8 +47,8 @@
                             @foreach($listProducts as $product)
                             <tr class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 name"> {{ $product->name }}</td>
-                                </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 description">{!! Str::limit(strip_tags(html_entity_decode($product->description)), 100)!!}</td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 description">{{ $product->quantity }}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 status">
                                     @if($product->status == 'available')
                                     <span class="status px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-green-100 border-transparent text-green-500 dark:bg-green-500/20 dark:border-transparent">{{ __('Còn hàng') }}</span>
@@ -50,7 +58,7 @@
                                     <span class="status px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-yellow-100 border-transparent text-yellow-500 dark:bg-yellow-500/20 dark:border-transparent">{{ __('Đang về hàng') }}</span>
                                     @endif
                                 </td>
-                                <td><i data-lucide="eye" class="inline-block size-4 absolute ltr:left-2.5 rtl:right-2.5 top-2.5 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-600" title="{{ __('Xem chi tiết') }}"></i></td>
+                                <td class="text-center"><a onclick="detailImportExportHandle(this)" data-id="{{ $product->id }}"><i data-lucide="eye" class="inline-block size-4 ltr:left-2.5 rtl:right-2.5 top-2.5 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-600" aria-label="{{ __('Xem chi tiết') }}" title="{{ __('Xem chi tiết') }}"></i></a></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -61,6 +69,8 @@
         {!! $listProducts->links() !!}
     </div>
 </div>
+
+@include('includes.modal-detail-import-export')
 @endsection
 
 @push('scripts')
@@ -72,5 +82,30 @@
     setTimeout(function() {
         $('.alert-block').remove();
     }, 5000);
+
+    function detailImportExportHandle(storage) {
+        let id = storage.getAttribute('data-id');
+        let url = '/admin/storages/get-detail-import-export-handle';
+
+        $.ajax({
+            url: url,
+            data: {
+                'id': id
+            }
+        }).done(function(result) {
+            $('#table-body-detail').empty();
+            $('#modalDetailImportExport').attr('style', 'display: flex !important');
+            for (let i = 0; i < result.length; i++) {
+                let strAppend = `<tr>
+                            <td class="column1">` + result[i].created_at + `</td>
+                            <td class="column2">` + result[i].code + `</td>
+                            <td class="column3">` + result[i].user.name + `</td>
+                            <td class="column4">` + result[i].quantity + `</td>
+                        </tr>`;
+
+                $('#table-body-detail').append(strAppend);
+            }
+        });
+    }
 </script>
 @endpush

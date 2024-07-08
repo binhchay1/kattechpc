@@ -126,20 +126,4 @@
             </tr>
         </tbody>
     </table>
-
-    <table width="800">
-        <tbody>
-            <tr>
-                <td colspan="8"><b>{{ __('Quý khách lưu ý:') }}</b> {{ __('Giá bán, khuyến mại của sản phẩm và tình trạng còn hàng có thể bị thay đổi bất cứ lúc nào mà không kịp báo trước') }}</td>
-            </tr>
-            <tr>
-                <td colspan="7">
-                    {{ __('Để biết thêm chi tiết, Quý khách vui lòng liên hệ KATTECH PC qua hotline') }} {{ config('company.hotline') }} (8h30-18h30 {{ __('tất cả các ngày trong tuần') }}) {{ __('hoặc email') }}: <a href="mailto:{{ config('company.email') }}">{{ config('company.email') }}</a>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="7">{{ __('Một lần nữa KATTECH PC cảm ơn quý khách!') }}</td>
-            </tr>
-        </tbody>
-    </table>
 </div>
