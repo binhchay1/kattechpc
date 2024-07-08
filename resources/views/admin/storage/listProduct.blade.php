@@ -8,6 +8,14 @@
 <style>
     #modalDetailImportExport {
         display: none;
+        width: 100%;
+        height: 100%;
+        background: aquamarine;
+    }
+
+    .modal-content {
+        margin: 0 auto;
+        height: auto;
     }
 </style>
 @endsection
@@ -94,7 +102,7 @@
             }
         }).done(function(result) {
             $('#table-body-detail').empty();
-            $('#modalDetailImportExport').attr('style', 'display: flex !important');
+            $('#modalDetailImportExport').attr('style', 'display: block !important');
             for (let i = 0; i < result.length; i++) {
                 let strAppend = `<tr>
                             <td class="column1">` + result[i].created_at + `</td>
