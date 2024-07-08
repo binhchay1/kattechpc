@@ -5,10 +5,8 @@ namespace App\Exports;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithColumnWidths;
-use Maatwebsite\Excel\Concerns\WithDrawings;
-use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
-class ExportStorage implements FromView, WithColumnWidths, WithDrawings
+class ExportStorage implements FromView, WithColumnWidths
 {
     protected $storage;
 
