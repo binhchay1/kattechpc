@@ -1,9 +1,10 @@
 @extends('layouts.master-admin')
+
 @section('title')
 {{ __('Danh sách bài viết quảng cáo') }}
 @endsection
+
 @section('content')
-<!-- page title -->
 
 <div class="grid grid-cols-1 gap-x-5 xl:grid-cols-12 mt-4">
     <div class="xl:col-span-12">

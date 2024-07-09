@@ -1,9 +1,10 @@
 @extends('layouts.master-admin')
+
 @section('title')
 {{ __('Danh sách danh mục sản phẩm') }}
 @endsection
+
 @section('content')
-<!-- page title -->
 <style>
     .btn-success {
         background: green;

@@ -32,7 +32,8 @@ class Product extends Model
         'status_guarantee',
         'detail_tech',
         'views',
-        'link_youtube'
+        'link_youtube',
+        'warranty_package'
     ];
 
     public function category()
@@ -91,14 +92,14 @@ class Product extends Model
             $product->slug = $slug;
         });
     }
-    
+
     public function getVideoHtmlAttribute()
     {
         $embed = Embed::make($this->video)->parseUrl();
-        
+
         if (!$embed)
             return '';
-        
+
         $embed->setAttribute(['width' => 104,
             'height' => 104]);
         return $embed->getHtml();

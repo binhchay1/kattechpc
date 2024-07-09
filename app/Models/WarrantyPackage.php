@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class WarrantyPackage extends Model
 {
     use HasFactory;
+
+    protected $table = 'warranty_package';
+
+    protected $fillable = [
+        'title', 'device', 'description', 'type', 'time_on', 'price'
+    ];
 }

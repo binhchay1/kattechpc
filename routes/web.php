@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CustomerReviewController;
 use App\Http\Controllers\Page\ErrorController;
 use App\Http\Controllers\Admin\YoutubeChannelController;
+use App\Http\Controllers\Admin\WarrantyPackageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -292,6 +293,15 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
         Route::get('/update/{id}', [YoutubeChannelController::class, 'editYoutubeChannel'])->name('admin.youtube.edit');
         Route::post('/update/{id}', [YoutubeChannelController::class, 'updateYoutubeChannel'])->name('admin.youtube.update');
         Route::get('/delete/{id}', [YoutubeChannelController::class, 'deleteYoutubeChannel'])->name('admin.youtube.delete');
+    });
+
+    Route::group(['prefix' => 'warranty-package'], function () {
+        Route::get('/list', [WarrantyPackageController::class, 'index'])->name('admin.warranty.package.index');
+        Route::get('/add', [WarrantyPackageController::class, 'createWarrantyPackage'])->name('admin.warranty.package.create');
+        Route::post('/store', [WarrantyPackageController::class, 'storeWarrantyPackage'])->name('admin.warranty.package.store');
+        Route::get('/update/{id}', [WarrantyPackageController::class, 'editWarrantyPackage'])->name('admin.warranty.package.edit');
+        Route::post('/update/{id}', [WarrantyPackageController::class, 'updateWarrantyPackage'])->name('admin.warranty.package.update');
+        Route::get('/delete/{id}', [WarrantyPackageController::class, 'deleteWarrantyPackage'])->name('admin.warranty.package.delete');
     });
 
     Route::group(['prefix' => 'customer-review'], function () {

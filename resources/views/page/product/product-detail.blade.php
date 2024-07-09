@@ -148,7 +148,6 @@
                         <p class="text-deal-detail">{{ __('Còn') }} {{ $dataProduct->sale_quantity }}/{{ $dataProduct->sale_stock }} {{ __('sản phẩm') }}</p>
                         <div class="p-quantity-sale d-flex">
                             <img class="icon-sale-quantity" src="{{ asset('images/sale_icon.png') }}">
-
                             <div>
                                 <?php $total_line = ($dataProduct->sale_stock / $dataProduct->sale_quantity) * 100 ?>
                                 <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>"></p>

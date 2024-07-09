@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryRequest;
-use App\Http\Requests\WarrantyPackageRequest;
 use App\Repositories\WarrantyPackageRepository;
-use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class WarrantyPackageController extends Controller
 {
@@ -20,61 +18,45 @@ class WarrantyPackageController extends Controller
 
     public function index()
     {
-        $listCategory = $this->warrantyPackageRepository->getListWithSortParent();
+        $listWarrantyPackage = $this->warrantyPackageRepository->index();
 
-        return view('admin.warranty-package.index', compact('listCategory'));
+        return view('admin.warranty-package.index', compact('listWarrantyPackage'));
     }
 
-    public function createCategory()
+    public function createWarrantyPackage()
     {
-        $listCategory = $this->warrantyPackageRepository->index();
+        $listWarrantyPackage = $this->warrantyPackageRepository->index();
 
-        return view('admin.warranty-package.create', compact('listCategory'));
+        return view('admin.warranty-package.create', compact('listWarrantyPackage'));
     }
 
-    public function storeCategory(CategoryRequest $request)
+    public function storeWarrantyPackage(Request $request)
     {
         $input = $request->except(['_token']);
-        $input = $request->all();
-        $input['slug'] =  Str::slug($input['name']);
-        if (isset($input['image'])) {
-            $input['image']->move(public_path('images/upload/warranty-package/'), $input['image']->getClientOriginalName());
-            $path = '/images/upload/warranty-package/' . $input['image']->getClientOriginalName();
-            $input['image'] = $path;
-        }
+
         $this->warrantyPackageRepository->create($input);
 
-        return redirect()->route('admin.warrantyPackage.index')->with('success',  __('Danh mục sản phẩm được thêm thành công'));
+        return redirect()->route('admin.warranty.package.index')->with('success',  __('Gói bảo hành được thêm thành công'));
     }
 
-    public function editCategory($id)
+    public function editWarrantyPackage($id)
     {
         $warrantyPackage = $this->warrantyPackageRepository->show($id);
-        $listCategory = $this->warrantyPackageRepository->getListCategoryExcludeId($id);
-        if (empty($warrantyPackage)) {
-            return redirect('/404');
-        }
-        return view('admin.warranty-package.edit', compact('warrantyPackage', 'listCategory'));
+        return view('admin.warranty-package.edit', compact('warrantyPackage'));
     }
 
-    public function updateCategory(WarrantyPackageRequest $request,  $id)
+    public function updateWarrantyPackage(Request $request,  $id)
     {
         $input = $request->except(['_token']);
-        $input['slug'] =  Str::slug($input['name']);
-        if (isset($input['image'])) {
-            $input['image']->move(public_path('images/upload/warranty-package/'), $input['image']->getClientOriginalName());
-            $path = '/images/upload/warranty-package/' . $input['image']->getClientOriginalName();
-            $input['image'] = $path;
-        }
 
         $input = $this->warrantyPackageRepository->update($input, $id);
 
-        return redirect()->route('admin.warrantyPackage.index')->with('success',  __('Danh mục sản phẩm được thay đổi thành công'));
+        return redirect()->route('admin.warranty.package.index')->with('success',  __('Gói bảo hành được thay đổi thành công'));
     }
 
-    public function deleteCategory($id)
+    public function deleteWarrantyPackage($id)
     {
         $this->warrantyPackageRepository->destroy($id);
-        return back()->with('success', __('Danh mục sản phẩm  được xóa  thành công'));
+        return back()->with('success', __('Gói bảo hành  được xóa  thành công'));
     }
 }

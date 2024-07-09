@@ -18,31 +18,31 @@
                 <form method="POST" action="{{ route('admin.promotion.update', $promotion['id']) }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
-                        <div class="xl:col-span-4">
+                        <div class="xl:col-span-6">
                             <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Tiêu đề ')}}</label>
                             <input type="text" id="productNameInput" name="title" value="{{$promotion->title}}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Tiêu đề bài viết')}}">
                             @if ($errors->has('title'))
-                                <span class="text-danger">{{ $errors->first('title') }}</span>
-                            @endif
-                        </div>
-
-                        <div class="xl:col-span-4">
-                            <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Ngày bắt đầu')}}</label>
-                            <input type="date" id="productNameInput" name="start_date" value="{{$promotion->start_date}}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Tiêu đề bài viết')}}">
-                            @if ($errors->has('start_date'))
-                                <span class="text-danger">{{ $errors->first('start_date') }}</span>
-                            @endif
-                        </div>
-
-                        <div class="xl:col-span-4">
-                            <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Ngày kết thúc')}}</label>
-                            <input type="date" id="productNameInput" name="end_date" value="{{$promotion->end_date}}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Tiêu đề bài viết')}}">
-                            @if ($errors->has('end_date'))
-                                <span class="text-danger">{{ $errors->first('end_date') }}</span>
+                            <span class="text-danger">{{ $errors->first('title') }}</span>
                             @endif
                         </div>
 
                         <div class="xl:col-span-6">
+                            <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Ngày bắt đầu')}}</label>
+                            <input type="date" id="productNameInput" name="start_date" value="{{$promotion->start_date}}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Tiêu đề bài viết')}}">
+                            @if ($errors->has('start_date'))
+                            <span class="text-danger">{{ $errors->first('start_date') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="xl:col-span-6">
+                            <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Ngày kết thúc')}}</label>
+                            <input type="date" id="productNameInput" name="end_date" value="{{$promotion->end_date}}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Tiêu đề bài viết')}}">
+                            @if ($errors->has('end_date'))
+                            <span class="text-danger">{{ $errors->first('end_date') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="xl:col-span-12">
                             <div class="form-group">
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
                                 <div class="">
@@ -57,25 +57,27 @@
                                             </div>
                                         </div>
                                         @if ($errors->has('image'))
-                                            <span class="text-danger" style="color: red">{{ $errors->first('image') }}</span>
+                                        <span class="text-danger" style="color: red">{{ $errors->first('image') }}</span>
                                         @endif
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="xl:col-span-6">
+
+                        <div class="xl:col-span-12">
                             <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Miêu tả')}}</label>
-                            <input type="text" id="productNameInput" name="short_description" value="{{$promotion->short_description}}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" >
+                            <input type="text" id="productNameInput" name="short_description" value="{{$promotion->short_description}}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200">
                             @if ($errors->has('short_description'))
-                                <span class="text-danger">{{ $errors->first('short_description') }}</span>
+                            <span class="text-danger">{{ $errors->first('short_description') }}</span>
                             @endif
                         </div>
+
                         <div class="xl:col-span-12">
                             <label for="productCodeInput" class="inline-block mb-2 text-base font-medium">{{__('Nội dung bài viết')}}
                             </label>
                             <textarea class="form-control" id="body" placeholder="Enter the Description" name="content">{!!$promotion->content!!}</textarea>
                             @if ($errors->has('content'))
-                                <span class="text-danger">{{ $errors->first('content') }}</span>
+                            <span class="text-danger">{{ $errors->first('content') }}</span>
                             @endif
                         </div>
 
@@ -99,9 +101,9 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 <script>
     ClassicEditor
-        .create( document.querySelector( '#body' ) )
-        .catch( error => {
-            console.error( error );
+        .create(document.querySelector('#body'))
+        .catch(error => {
+            console.error(error);
         });
 </script>
 @endpush

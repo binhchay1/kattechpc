@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('warranty_package', function (Blueprint $table) {
             $table->id();
+            $table->text('title');
+            $table->text('device')->nullable();
+            $table->text('description')->nullable();
+            $table->text('type')->nullable();
+            $table->text('time_on')->nullable();
             $table->timestamps();
         });
     }

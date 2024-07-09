@@ -11,6 +11,7 @@ use App\Repositories\BrandRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\CategoryRepository;
 use App\Repositories\OrderRepository;
+use App\Repositories\WarrantyPackageRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Cache;
@@ -21,6 +22,7 @@ class ProductController extends Controller
     private $categoryRepository;
     private $brandRepository;
     private $orderRepository;
+    private $warrantyPackageRepository;
     private $utility;
 
     public function __construct(
@@ -28,12 +30,14 @@ class ProductController extends Controller
         CategoryRepository $categoryRepository,
         BrandRepository $brandRepository,
         OrderRepository $orderRepository,
+        WarrantyPackageRepository $warrantyPackageRepository,
         Utility $utility
     ) {
         $this->productRepository = $productRepository;
         $this->categoryRepository = $categoryRepository;
         $this->brandRepository = $brandRepository;
         $this->orderRepository = $orderRepository;
+        $this->warrantyPackageRepository = $warrantyPackageRepository;
         $this->utility = $utility;
     }
 
@@ -55,8 +59,9 @@ class ProductController extends Controller
         $statusProduct = Product::STATUS;
         $listCategories = $this->categoryRepository->indexOnlyChild();
         $listBrands = $this->brandRepository->index();
+        $warrantyPackageProduct = $this->warrantyPackageRepository->getListWarrantyPackage();
 
-        return view('admin.product.create', compact('listCategories', 'statusProduct', 'listBrands'));
+        return view('admin.product.create', compact('listCategories', 'statusProduct', 'listBrands', 'warrantyPackageProduct'));
     }
 
     public function storeProduct(ProductRequest $request)
@@ -143,11 +148,12 @@ class ProductController extends Controller
         $product->detail = json_decode($product->detail, true);
         $product->detail_tech = json_decode($product->detail_tech, true);
         $product->image = json_decode($product->image, true);
+        $warrantyPackageProduct = $this->warrantyPackageRepository->getListWarrantyPackage();
         if (empty($product)) {
             return redirect('/404');
         }
 
-        return view('admin.product.edit', compact('product', 'listCategories', 'statusProduct', 'listBrands'));
+        return view('admin.product.edit', compact('product', 'listCategories', 'statusProduct', 'listBrands', 'warrantyPackageProduct'));
     }
 
     public function updateProduct(ProductUpdateRequest $request, $id)
@@ -249,7 +255,6 @@ class ProductController extends Controller
     public function managerSold()
     {
         $getOrder = $this->orderRepository->getAllOrder();
-        // dd($getOrder);
         $managerSold = [];
 
         foreach ($getOrder as $order) {

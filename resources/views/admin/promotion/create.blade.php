@@ -18,7 +18,7 @@
                 <form method="POST" action="{{route('admin.promotion.store')}}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
-                        <div class="xl:col-span-4">
+                        <div class="xl:col-span-6">
                             <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Tiêu đề ')}}</label>
                             <input type="text" id="productNameInput" name="title" value="{{old('title')}}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Tiêu đề bài viết')}}">
                             @if ($errors->has('title'))
@@ -26,7 +26,7 @@
                             @endif
                         </div>
 
-                        <div class="xl:col-span-4">
+                        <div class="xl:col-span-6">
                             <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Ngày bắt đầu')}}</label>
                             <input type="date" id="productNameInput" name="start_date" value="{{old('title')}}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Tiêu đề bài viết')}}">
                             @if ($errors->has('start_date'))
@@ -34,7 +34,7 @@
                             @endif
                         </div>
 
-                        <div class="xl:col-span-4">
+                        <div class="xl:col-span-6">
                             <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Ngày kết thúc')}}</label>
                             <input type="date" id="productNameInput" name="end_date" value="{{old('end_date')}}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Tiêu đề bài viết')}}">
                             @if ($errors->has('end_date'))
@@ -42,7 +42,7 @@
                             @endif
                         </div>
 
-                        <div class="xl:col-span-6">
+                        <div class="xl:col-span-12">
                             <div class="form-group">
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{__('Hình ảnh')}}</label>
                                 <div class="">
@@ -64,7 +64,7 @@
                             </div>
                         </div>
 
-                        <div class="xl:col-span-6">
+                        <div class="xl:col-span-12">
                             <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{__('Miêu tả')}}</label>
                             <input type="text"  name="short_description" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" >
                             @if ($errors->has('short_description'))
