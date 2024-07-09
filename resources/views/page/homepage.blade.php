@@ -31,10 +31,10 @@
                         </div>
                         @endif
                         @endforeach
+                        <div class="swiper-button-next swiper-button-next-slide" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
+                        <div class="swiper-button-prev swiper-button-prev-slide" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                     </div>
-                    <div class="swiper-button-next swiper-button-next-slide" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
-                    <div class="swiper-button-prev swiper-button-prev-slide" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
-                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                 </div>
             </div>
             <div class="news-main-right">
@@ -553,7 +553,6 @@
     const listCategory = <?php echo json_encode($listCategory) ?>;
 
     let countOwl = 0;
-    let nextOwl = 0;
     let listOwl = $('.carousel-inner .carousel-item');
     let totalListOwl = listOwl.length;
 
@@ -578,33 +577,24 @@
 
         $('.swiper-button-next-slide').on('click', function() {
             if (countOwl == listOwl.length - 1) {
-                listOwl[countOwl].classList.remove('active');
-                countOwl = 0;
-                nextOwl = countOwl;
-                listOwl[nextOwl].classList.add('active');
+                return;
 
             } else {
-                nextOwl = countOwl + 1;
-
                 listOwl[countOwl].classList.remove('active');
-                listOwl[nextOwl].classList.add('active');
+                listOwl[countOwl + 1].classList.add('active');
+                countOwl++;
             }
 
             clearInterval(intervalOwl);
         });
 
         $('.swiper-button-prev-slide').on('click', function() {
-            if (countOwl == listOwl.length - 1) {
-                listOwl[countOwl].classList.remove('active');
-                countOwl = 0;
-                nextOwl = countOwl;
-                listOwl[nextOwl].classList.add('active');
-
+            if (countOwl == 0) {
+                return;
             } else {
-                nextOwl = countOwl - 1;
-
                 listOwl[countOwl].classList.remove('active');
-                listOwl[nextOwl].classList.add('active');
+                listOwl[countOwl - 1].classList.add('active');
+                countOwl--;
             }
 
             clearInterval(intervalOwl);
