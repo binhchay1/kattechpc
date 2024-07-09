@@ -234,15 +234,16 @@ class HomeController extends Controller
         if (!empty($getTopSale)) {
             if (isset($getTopSale->hot_sale_list_product_id)) {
                 $listProductTopSale = json_decode($getTopSale->hot_sale_list_product_id, true);
+
                 foreach ($listProductTopSale as $key => $value) {
                     $arrCodeProduct[] = $key;
                 }
 
-                $getProductFlashSale = $this->productRepository->getProductFlashSaleByCode($arrCodeProduct);
+                $getProductTopSale = $this->productRepository->getProductFlashSaleByCode($arrCodeProduct);
 
-                if (count($getProductFlashSale) > 0) {
+                if (count($getProductTopSale) > 0) {
                     $listTopSale = [
-                        'hot_sale_list_product_id' => $getProductFlashSale
+                        'hot_sale_list_product_id' => $getProductTopSale
                     ];
                 }
             }

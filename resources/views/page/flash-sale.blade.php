@@ -28,22 +28,26 @@
                 <div class="card">
                     <div class="product-image-sale">
                         <a href="{{route('productDetail', $product['slug']) }}" class="product-image position-relative">
-                            <img class="image-sale" src="{{ asset(json_decode($product->image, true)[0]) }}" alt="{{ $product->name }}">
+                            <img class="image-sale hover-for-tooltips hover-image" src="{{ asset(json_decode($product->image, true)[0]) }}" alt="{{ $product->name }}" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                         </a>
                     </div>
                     <div class="product-info">
                         <a href="{{ route('productDetail', $product['slug']) }}">
                             <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
                         </a>
+                        @if(isset($product->new_price))
                         <div class="product-martket-main d-flex align-items-center">
                             <p class="product-market-price">{{ $product->price }} ₫</p>
                             <?php $new_price = floor(100 - (((int) $product->new_price / (int) str_replace('.', '', $product->price)) * 100)) ?>
                             <div class="product-percent-price">-{{ ($new_price) }} %</div>
                         </div>
 
-                        @if(isset($product->new_price))
                         <div class="product-price-main font-weight-600">
-                            {{ number_format($product->new_price, 0, ',', '.') }} đ
+                            {{ $product->new_price }} đ
+                        </div>
+                        @else
+                        <div class="product-martket-main d-flex align-items-center">
+                            <p class="product-market-price-non-dat">{{ $product->price }} ₫</p>
                         </div>
                         @endif
                         <div class="p-quantity-sale">
@@ -129,4 +133,5 @@
         }
     <?php } ?>
 </script>
+@include('includes.tooltips')
 @endsection

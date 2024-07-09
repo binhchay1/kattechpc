@@ -232,7 +232,7 @@ $(document).ready(function () {
         }, 3000);
 
         $('.swiper-button-next-top-sale').on('click', function () {
-            if (countTopSale == stopFlash) {
+            if (countTopSale == stopTopSale) {
                 transTopSale = 0;
                 countTopSale = 0;
                 $('.swiper-top-sale').css('transform', 'translate3d(' + transTopSale + 'px, 0px, 0px)');
