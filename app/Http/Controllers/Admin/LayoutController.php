@@ -27,7 +27,7 @@ class LayoutController extends Controller
             if (isset($layout->slide_thumbnail)) {
                 $listSlide = json_decode($layout->slide_thumbnail, true);
             }
-    
+
             if (isset($layout->footer_slide_thumbnail)) {
                 $listSlideFooter = json_decode($layout->footer_slide_thumbnail, true);
             }
@@ -149,27 +149,30 @@ class LayoutController extends Controller
     {
         $getSlide = $this->layoutRepository->getSlide();
         $arrSlide = json_decode($getSlide->slide_thumbnail, true);
-        $arrNew = [];
-        foreach ($arrSlide as $key => $value) {
-            if ($key == $index) {
-                continue;
+        if ($arrSlide > 0) {
+            foreach ($arrSlide as $key => $value) {
+                if ($key == $index) {
+                    continue;
+                }
+                $arrNew[] = $value;
             }
-            $arrNew[] = $value;
+
+            $data = [
+                'slide_thumbnail' => json_encode($arrNew)
+            ];
+            $getLayout = $this->layoutRepository->getListLayout();
+            if (!empty($getLayout)) {
+                $this->layoutRepository->update($getLayout->id, $data);
+            } else {
+                $this->layoutRepository->store($data);
+            }
         }
 
-        $data = [
-            'slide_thumbnail' => json_encode($arrNew)
-        ];
-        $getLayout = $this->layoutRepository->getListLayout();
-        if (!empty($getLayout)) {
-            $this->layoutRepository->update($getLayout->id, $data);
-        } else {
-            $this->layoutRepository->store($data);
-        }
+
 
         return back()->with('success', __('Ảnh được xóa thành công'));
     }
-    
+
     public function footerSlide(Request $request)
     {
         $input = $request->except(['_token']);
@@ -186,11 +189,11 @@ class LayoutController extends Controller
                     'image_footer' => '/images/upload/layout/' . $input['slide_image_footer']->getClientOriginalName(),
                 ];
             }
-            
+
             $data = [
                 'footer_slide_thumbnail' => json_encode($arrSlide)
             ];
-            
+
             $getLayout = $this->layoutRepository->getListLayout();
             if (!empty($getLayout)) {
                 $this->layoutRepository->update($getLayout->id, $data);
@@ -198,32 +201,36 @@ class LayoutController extends Controller
                 $this->layoutRepository->store($data);
             }
         }
-        
+
         return back()->with('success', __('Ảnh được thêm thành công'));
     }
-    
-    public function deleteSlideFooter($index)
+
+    public function deleteSlideFooter($item)
     {
-        $getSlide = $this->layoutRepository->getSlide();
-        $arrSlide = json_decode($getSlide->slide_thumbnail, true);
+        $getSlide = $this->layoutRepository->getSlideFooter();
+        $arrSlide = json_decode($getSlide->footer_slide_thumbnail, true);
+
         $arrNew = [];
-        foreach ($arrSlide as $key => $value) {
-            if ($key == $index) {
-                continue;
+        if ($arrSlide > 0) {
+            foreach ($arrSlide as $key => $value) {
+                if ($key == $item) {
+                    continue;
+                }
+                $arrNew[] = $value;
             }
-            $arrNew[] = $value;
+
+            $data = [
+                'footer_slide_thumbnail' => json_encode($arrNew)
+            ];
+            $getLayout = $this->layoutRepository->getListLayout();
+            if (!empty($getLayout)) {
+                $this->layoutRepository->update($getLayout->id, $data);
+            } else {
+                $this->layoutRepository->store($data);
+            }
         }
-        
-        $data = [
-            'slide_thumbnail' => json_encode($arrNew)
-        ];
-        $getLayout = $this->layoutRepository->getListLayout();
-        if (!empty($getLayout)) {
-            $this->layoutRepository->update($getLayout->id, $data);
-        } else {
-            $this->layoutRepository->store($data);
-        }
-        
+
+
         return back()->with('success', __('Ảnh được xóa thành công'));
     }
 

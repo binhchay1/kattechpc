@@ -139,7 +139,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
         Route::post('/store-slide', [LayoutController::class, 'storeSlide'])->name('admin.store.slide');
         Route::get('/delete-slide/{index}', [LayoutController::class, 'deleteSlide'])->name('admin.delete.slide');
         Route::post('/store-footer-slide', [LayoutController::class, 'footerSlide'])->name('admin.store.footerSlide');
-        Route::get('/delete-slide-footer/{index}', [LayoutController::class, 'deleteSlideFooter'])->name('admin.delete.footerSlide');
+        Route::get('/delete-slide-footer/{item}', [LayoutController::class, 'deleteSlideFooter'])->name('admin.delete.footerSlide');
         Route::get('/delete-thumb-layout', [LayoutController::class, 'deleteThumbLayout']);
     });
 
