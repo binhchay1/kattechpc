@@ -221,7 +221,34 @@ class HomeController extends Controller
             }
         }
 
-        return view('page.flash-sale', compact('listCategory', 'getFlashSale','listFlashSale', 'layout'));
+        return view('page.flash-sale', compact('listCategory', 'getFlashSale', 'listFlashSale', 'layout'));
+    }
+
+    public function viewTopSale()
+    {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+        $getTopSale = $this->layoutRepository->listHotSale();
+        $layout = $this->layoutRepository->getListLayout();
+
+        if (!empty($getTopSale)) {
+            if (isset($getTopSale->hot_sale_list_product_id)) {
+                $listProductTopSale = json_decode($getTopSale->hot_sale_list_product_id, true);
+                foreach ($listProductTopSale as $key => $value) {
+                    $arrCodeProduct[] = $key;
+                }
+
+                $getProductFlashSale = $this->productRepository->getProductFlashSaleByCode($arrCodeProduct);
+
+                if (count($getProductFlashSale) > 0) {
+                    $listTopSale = [
+                        'hot_sale_list_product_id' => $getProductFlashSale
+                    ];
+                }
+            }
+        }
+
+        return view('page.top-sale', compact('listCategory', 'getTopSale', 'listTopSale', 'layout'));
     }
 
     public function viewPromotion()
@@ -254,7 +281,7 @@ class HomeController extends Controller
         $listCategory = Cache::store('redis')->get($key);
         $layout = $this->layoutRepository->getListLayout();
 
-        return view('page.promotion.promotion-detail', compact('firstPosts1','postRandom','promotion', 'listPromotion', 'listCategory', 'layout'));
+        return view('page.promotion.promotion-detail', compact('firstPosts1', 'postRandom', 'promotion', 'listPromotion', 'listCategory', 'layout'));
     }
 
     public function viewPost()

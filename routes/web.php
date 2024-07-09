@@ -87,6 +87,7 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     Route::get('/change-locate/{locale}', [HomeController::class, 'changeLocate'])->name('change.locate');
     Route::get('/cam-on', [HomeController::class, 'viewThankRegister'])->name('view.thank.register');
     Route::get('/flash-sale', [HomeController::class, 'viewFlashSale'])->name('view.flash.sale');
+    Route::get('/san-pham-ban-chay', [HomeController::class, 'viewTopSale'])->name('view.flash.sale');
 
     Route::group(['middleware' => 'user'], function () {
         Route::get('/get-order-detail/{order_id}', [AccountController::class, 'getOrderDetail']);

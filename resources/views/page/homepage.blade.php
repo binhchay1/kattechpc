@@ -32,6 +32,9 @@
                         @endif
                         @endforeach
                     </div>
+                    <div class="swiper-button-next swiper-button-next-slide" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
+                    <div class="swiper-button-prev swiper-button-prev-slide" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
+                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                 </div>
             </div>
             <div class="news-main-right">
@@ -172,6 +175,10 @@
             <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
                 <h2 class="flash-sale-title">{{ __('Sản phẩm bán chạy') }}</h2>
             </div>
+
+            <div>
+                <a href="{{ route('view.top.sale') }}" class="view-more-flash-sale">{{ __('Xem thêm sản phẩm bán chạy') }} <i class="fa fa-caret-right"></i></a>
+            </div>
         </div>
 
         <div class="swiper d-flex">
@@ -207,6 +214,10 @@
                     </div>
                 </div>
                 @endforeach
+
+                <div class="swiper-button-next swiper-button-next-top-sale" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
+                <div class="swiper-button-prev swiper-button-prev-top-sale" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
+                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
             </div>
         </div>
     </div>
@@ -544,22 +555,63 @@
     let countOwl = 0;
     let nextOwl = 0;
     let listOwl = $('.carousel-inner .carousel-item');
-    setInterval(function() {
-        if (countOwl == listOwl.length - 1) {
-            listOwl[countOwl].classList.remove('active');
-            countOwl = 0;
-            nextOwl = countOwl;
-            listOwl[nextOwl].classList.add('active');
+    let totalListOwl = listOwl.length;
 
-        } else {
-            nextOwl = countOwl + 1;
 
-            listOwl[countOwl].classList.remove('active');
-            listOwl[nextOwl].classList.add('active');
-        }
+    if (totalListOwl > 1) {
+        let intervalOwl = setInterval(function() {
+            if (countOwl == listOwl.length - 1) {
+                listOwl[countOwl].classList.remove('active');
+                countOwl = 0;
+                nextOwl = countOwl;
+                listOwl[nextOwl].classList.add('active');
 
-        countOwl++;
+            } else {
+                nextOwl = countOwl + 1;
 
-    }, 3000);
+                listOwl[countOwl].classList.remove('active');
+                listOwl[nextOwl].classList.add('active');
+            }
+
+            countOwl++;
+        }, 3000);
+
+        $('.swiper-button-next-slide').on('click', function() {
+            if (countOwl == listOwl.length - 1) {
+                listOwl[countOwl].classList.remove('active');
+                countOwl = 0;
+                nextOwl = countOwl;
+                listOwl[nextOwl].classList.add('active');
+
+            } else {
+                nextOwl = countOwl + 1;
+
+                listOwl[countOwl].classList.remove('active');
+                listOwl[nextOwl].classList.add('active');
+            }
+
+            clearInterval(intervalOwl);
+        });
+
+        $('.swiper-button-prev-slide').on('click', function() {
+            if (countOwl == listOwl.length - 1) {
+                listOwl[countOwl].classList.remove('active');
+                countOwl = 0;
+                nextOwl = countOwl;
+                listOwl[nextOwl].classList.add('active');
+
+            } else {
+                nextOwl = countOwl - 1;
+
+                listOwl[countOwl].classList.remove('active');
+                listOwl[nextOwl].classList.add('active');
+            }
+
+            clearInterval(intervalOwl);
+        });
+    } else {
+        $('.swiper-button-next-slide').addClass('d-none');
+        $('.swiper-button-prev-slide').addClass('d-none');
+    }
 </script>
 @endsection

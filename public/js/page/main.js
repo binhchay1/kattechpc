@@ -135,7 +135,7 @@ $(document).ready(function () {
                 $('.swiper-flash-sale').css('transform', 'translate3d(' + transFlash + 'px, 0px, 0px)');
             }
 
-            clearInterval(intervalProduct);
+            clearInterval(intervalFlash);
         });
     } else {
         $('.swiper-button-next-flash-sale').addClass('d-none');
@@ -143,6 +143,7 @@ $(document).ready(function () {
     }
 
     if (typeof (listCategory) != 'undefined' && listCategory !== null) {
+        let listInterval = {};
         for (let k = 0; k < listCategory.default.length; k++) {
             var transProduct = 0;
             var defaultProduct = 6;
@@ -158,7 +159,7 @@ $(document).ready(function () {
 
             if (listChildProduct.length > defaultProduct) {
                 var stopProduct = listChildProduct.length - defaultProduct;
-                let intervalProduct = setInterval(function () {
+                listInterval[k] = setInterval(function () {
                     if (countProduct == stopProduct) {
                         transProduct = 0;
                         countProduct = 0;
@@ -182,7 +183,7 @@ $(document).ready(function () {
                         $(idElementProduct).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
                     }
 
-                    clearInterval(intervalProduct);
+                    clearInterval(listInterval[k]);
                 });
 
                 $('.swiper-button-prev-product-' + listCategory.default[k].slug).on('click', function () {
@@ -195,7 +196,7 @@ $(document).ready(function () {
                         $(idElementProduct).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
                     }
 
-                    clearInterval(intervalProduct);
+                    clearInterval(listInterval[k]);
                 });
             } else {
                 $('.swiper-button-next-product-' + listCategory.default[k].slug).addClass('d-none');
@@ -217,7 +218,7 @@ $(document).ready(function () {
     if (listChildTopSale.length > defaultTopSale) {
         let stopTopSale = listChildTopSale.length - defaultTopSale;
         let countTopSale = 0;
-        setInterval(function () {
+        let intervalTopSale = setInterval(function () {
             if (countTopSale == stopTopSale) {
                 transTopSale = 0;
                 countTopSale = 0;
@@ -229,6 +230,36 @@ $(document).ready(function () {
             }
 
         }, 3000);
+
+        $('.swiper-button-next-top-sale').on('click', function () {
+            if (countTopSale == stopFlash) {
+                transTopSale = 0;
+                countTopSale = 0;
+                $('.swiper-top-sale').css('transform', 'translate3d(' + transTopSale + 'px, 0px, 0px)');
+            } else {
+                transTopSale = transTopSale - perTransTopSale;
+                countTopSale += 1;
+                $('.swiper-top-sale').css('transform', 'translate3d(' + transTopSale + 'px, 0px, 0px)');
+            }
+
+            clearInterval(intervalTopSale);
+        });
+
+        $('.swiper-button-prev-top-sale').on('click', function () {
+            if (countTopSale == 0) {
+                transTopSale = 0;
+                $('.swiper-top-sale').css('transform', 'translate3d(' + transTopSale + 'px, 0px, 0px)');
+            } else {
+                transTopSale = transTopSale + perTransTopSale;
+                countTopSale -= 1;
+                $('.swiper-top-sale').css('transform', 'translate3d(' + transTopSale + 'px, 0px, 0px)');
+            }
+
+            clearInterval(intervalTopSale);
+        });
+    } else {
+        $('.swiper-button-next-top-sale').addClass('d-none');
+        $('.swiper-button-prev-top-sale').addClass('d-none');
     }
 
     var transFooterSlide = 0;
@@ -468,10 +499,14 @@ $(document).scroll(function () {
         $('.sub-header-scroll').addClass('d-block');
         $('.sub-header-scroll').addClass('header-fixed');
         $('.scroll-top-btn').removeClass('d-none');
+        $('.fixed-left').css('top', '65px');
+        $('.fixed-right').css('top', '65px');
     } else {
         $('.sub-header-scroll').removeClass('d-block');
         $('.sub-header-scroll').removeClass('header-fixed');
         $('.scroll-top-btn').addClass('d-none');
+        $('.fixed-left').css('top', '280px');
+        $('.fixed-right').css('top', '280px');
     }
 });
 

@@ -1,12 +1,12 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ __('Flash sale') }} | Kattech PC</title>
+<title>{{ __('Sản phẩm bán chạy') }} | Kattech PC</title>
 @endsection
 
-@section('description', __('Săn linh kiện có giá cực tốt mỗi ngày với Kattech PC'))
-@section('keywords', 'sale, flash sale, kattechpc, kattech')
-@section('breadcrumb', __('Flash sale'))
+@section('description', __('Cùng khám phá các sản phẩm bán chạy với Kattech PC'))
+@section('keywords', 'sale, top sale, top kattechpc, kattech')
+@section('breadcrumb', __('Sản phẩm bán chạy'))
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/page/flash-sale.css') }}" />
@@ -22,8 +22,8 @@
         </div>
 
         <div class="flash-sale-content">
-            @if(isset($listFlashSale['flash_sale_list_product_id'], $listFlashSale['flash_sale_timer']))
-            @foreach($listFlashSale['flash_sale_list_product_id'] as $k => $product)
+            @if(isset($listFlashSale['hot_sale_list_product_id']))
+            @foreach($listFlashSale['hot_sale_list_product_id'] as $k => $product)
             <div class="column">
                 <div class="card">
                     <div class="product-image-sale">
@@ -46,17 +46,6 @@
                             {{ number_format($product->new_price, 0, ',', '.') }} đ
                         </div>
                         @endif
-                        <div class="p-quantity-sale">
-                            <i class="sprite sprite-fire-deal"></i>
-                            <div class="bg-gradient"></div>
-                            <?php $total_line = ($product->stock / $product->sale_quantity) * 100 ?>
-                            <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>"></p>
-                            <span style="font-size: 14px; font-weight: bold;">{{ __('Còn') }} {{ $product->stock }} / {{ $product->sale_quantity }} {{ __('sản phẩm') }}</span>
-                        </div>
-                        <div class="js-item-deal-time js-item-time-26469">
-                            <p class="time-deal-page">Kết thúc sau <span id="date-count-sale-{{ $k }}"></span>:<span id="hours-count-sale-{{ $k }}"></span>:<span id="min-count-sale-{{ $k }}"></span>:<span id="second-count-sale-{{ $k }}"></span>
-                            </p>
-                        </div>
                         <a href="{{ route('addCart', $product['slug']) }}" class="buy-now-deal">Mua giá sốc</a>
                     </div>
                 </div>
