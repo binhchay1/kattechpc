@@ -29,7 +29,12 @@
                 <div class="swiper d-flex align-items-center" style="min-height: auto;">
                     <div class="swiper-wrapper swiper-image">
                         @if($dataProduct->link_youtube != null)
-                        <iframe width="104" height="104" style="padding: 8px;" src="https://www.youtube.com/embed/{{ $dataProduct->id_youtube }}" frameborder="0" allowfullscreen></iframe>
+                        <div class="content-article content-article-item d-flex flex-column flex-1">
+                            <a class="img-article boder-radius-10 position-relative" data-url="{{ $dataProduct->link_youtube }}" onclick="watchYoutubeVideo($(this))">
+                                <img class="boder-radius-10" src="{{ asset($dataProduct->image[0]) }}" alt="{{ $dataProduct->name }}">
+                                <i class="sprite sprite-play-youtube incon-play-youtube"></i>
+                            </a>
+                        </div>
                         @endif
                         @foreach ($dataProduct->image as $key => $image)
                         @if($key == 0)
@@ -80,10 +85,10 @@
                 <div class="item-basic">
                     Mã SP: <span class="color-primary">{{ $dataProduct->code }}</span> |
                 </div>
-                <div class="item-basic">
+                <div class="item-basic" style="margin-left: 10px;">
                     Đánh giá: <span class="color-primary">
                         @if($countRating && $countRating > 0)
-                        {{$countRating}}
+                        {{ $countRating }}
                         @else
                         0
                         @endif
@@ -184,6 +189,20 @@
                 </div>
             </div>
             @endif
+
+            @if(isset($dataProduct->warrantyPackages))
+            <div class="pd-addon-group">
+                <p class="group-title"> DỊCH VỤ BẢO HÀNH MỞ RỘNG (BHMR) </p>
+                <div class="pd-addon-item">
+                    <input type="checkbox" data-price="{{ $dataProduct->warrantyPackages->price }}">
+                    <div class="item-title">
+                        <p> {{ $dataProduct->warrantyPackages->title }} </p>
+                        <p>👉 <a onclick="detailWarrantyPackage(this)" data-price="{{ $dataProduct->warrantyPackages->price }}" data-type="{{ $dataProduct->warrantyPackages->type }}" data-time-on="{{ $dataProduct->warrantyPackages->time_on }}" data-description="{{ $dataProduct->warrantyPackages->description }}" data-device="{{ $dataProduct->warrantyPackages->device }}" target="_blank" style="vertical-align: sub;font-size: 14px;color: #288ad6;text-decoration: underline">{{ __('Chi tiết gói bảo hành') }}</a></p>
+                    </div>
+                </div>
+            </div>
+            @endif
+
             <div class="product-buy-quantity d-flex align-items-center">
                 <span class="title-quantity">{{ __('Số lượng') }}:</span>
                 <div class="cart-quantity-select justify-content-center align-items-center d-flex">
@@ -401,8 +420,6 @@
                             <button type="submit" class="submit-btn" id="">{{__('Gửi đánh giá')}}</button>
                         </form>
 
-                        <!----BOX RATING-->
-
                         <div class="list-review">
                             <div id="js-review-holder">
                                 @foreach($listRatings as $rating)
@@ -600,6 +617,7 @@
     </div>
 </div>
 @include('includes.tooltips')
+@include('includes.modal-detail-warranty-package')
 @endsection
 
 @section('js')
@@ -704,6 +722,21 @@
                 $(".product-image-next").removeClass('d-none');
             }
         }
+    }
+
+    function detailWarrantyPackage(warranty) {
+        let price = warranty.getAttribute('data-price');
+        let type = warranty.getAttribute('data-type');
+        let description = warranty.getAttribute('data-description');
+        let time_on = warranty.getAttribute('data-time-on');
+        let device = warranty.getAttribute('data-device');
+
+        $('#modal-detail-warranty-package').css('display', 'flex');
+        $('#modal-warranty-price').html(price);
+        $('#modal-warranty-type').html(type);
+        $('#modal-warranty-description').html(description);
+        $('#modal-warranty-time-on').html(time_on);
+        $('#modal-warranty-device').html(device);
     }
 
     setTimeout(function() {

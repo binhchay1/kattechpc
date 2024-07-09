@@ -179,15 +179,6 @@ class ProductController extends Controller
             }
         }
 
-        $dataBreadcrumb = array_reverse($dataBreadcrumb);
-        $parts = parse_url($dataProduct->link_youtube);
-        if (array_key_exists('query', $parts)) {
-            parse_str($parts['query'], $query);
-            $dataProduct->id_youtube = $query['v'];
-        } else {
-            $dataProduct->id_youtube = '';
-        }
-
         $layout = $this->layoutRepository->getListLayout();
 
         return view(
@@ -331,8 +322,12 @@ class ProductController extends Controller
                 $dataComplete = $dataComplete->sortByDesc('created_at');
             }
 
-            if ($filters['sort'] == 'name') {
-                $dataComplete = $dataComplete->sortBy('name');
+            if ($filters['sort'] == 'name-desc' or $filters['sort'] == 'name-asc') {
+                if($filters['sort'] == 'name-desc') {
+                    $dataComplete = $dataComplete->sortBy('name', 'desc');
+                } else {
+                    $dataComplete = $dataComplete->sortBy('name');
+                }
             }
 
             if ($filters['sort'] == 'price-asc' or $filters['sort'] == 'price-desc') {

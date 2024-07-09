@@ -424,6 +424,7 @@ $(document).ready(function () {
     document.querySelector(".menu-btn").addEventListener("click", toggleMenuBar);
 
     $('#modal-youtube-play .close').on('click', function () {
+        $('#modal-youtube-play iframe').attr('src', '');
         $('#modal-youtube-play').css('display', 'none');
     });
 

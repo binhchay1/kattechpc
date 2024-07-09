@@ -144,6 +144,44 @@
     display: flex;
 }
 
+.pd-addon-group {
+    margin: 22px 0 12px;
+    border: 1px solid #d8d8d8 !important;
+    position: relative;
+    padding: 10px 12px;
+    border-radius: 10px;
+}
+
+.pd-addon-group .group-title {
+    font-weight: 700;
+    margin: -20px 0 7px;
+    background: #fff;
+    display: table;
+    padding: 0 7px 0 5px;
+}
+
+.pd-addon-group .pd-addon-item:last-child {
+    margin: 0 0 10px;
+}
+
+.pd-addon-group label {
+    cursor: pointer;
+    display: flex;
+    align-items: baseline;
+}
+
+.pd-addon-group .item-title p {
+    font-size: 13px;
+}
+
+.pd-addon-group .item-icon {
+    margin-right: 7px;
+    position: relative;
+    top: 1px;
+    font-size: 17px;
+    width: 15px;
+}
+
 .btn-1 {
     width: 100% !important;
 }
@@ -1194,6 +1232,10 @@ tr:nth-child(even) {
     color: white !important;
     padding: 2px !important;
     width: 8% !important;
+}
+
+#modal-detail-warranty-package {
+    display: none;
 }
 
 @media screen and (max-width: 992px) {

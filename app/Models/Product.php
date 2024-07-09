@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Cohensive\Embed\Facades\Embed;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -66,6 +67,11 @@ class Product extends Model
         return $this->hasMany(OrderDetail::class);
     }
 
+    public function warrantyPackages()
+    {
+        return $this->hasOne(WarrantyPackage::class, 'id', 'warranty_package_id');
+    }
+
     public function sluggable(): array
     {
         return [
@@ -100,8 +106,10 @@ class Product extends Model
         if (!$embed)
             return '';
 
-        $embed->setAttribute(['width' => 104,
-            'height' => 104]);
+        $embed->setAttribute([
+            'width' => 104,
+            'height' => 104
+        ]);
         return $embed->getHtml();
     }
 }

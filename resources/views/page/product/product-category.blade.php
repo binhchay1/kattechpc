@@ -190,8 +190,11 @@
             <div data-id="price-desc" data-type="sort" class="select button-filter">
                 <button>{{ __('Giá giảm dần') }}</button>
             </div>
-            <div data-id="name" data-type="sort" class="select button-filter">
+            <div data-id="name-asc" data-type="sort" class="select button-filter">
                 <button>{{ __('Tên từ A -> Z') }}</button>
+            </div>
+            <div data-id="name-desc" data-type="sort" class="select button-filter">
+                <button>{{ __('Tên từ Z -> A') }}</button>
             </div>
         </div>
         <div class="list-product-category list-product-flex d-flex flex-wrap gap-12">
@@ -247,6 +250,7 @@
         </div>
     </div>
 </div>
+@include('includes.tooltips')
 @endsection
 
 @section('js')
