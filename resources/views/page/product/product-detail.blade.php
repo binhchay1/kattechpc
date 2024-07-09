@@ -11,7 +11,6 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('/css/page/product-detail.css') }}" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 
 @section('content')
@@ -526,7 +525,7 @@
                 @endif
                 @if(count($postRandom5) > 0)
                 <div class="product-related">
-                    <h3> {{ __('Tin tức liên quan') }}</h3>
+                    <h3> {{ __('Tin tức mới nhất') }}</h3>
                     @foreach($postRandom5 as $post)
                     <div id="content">
                         <div id="left">

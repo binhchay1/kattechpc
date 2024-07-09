@@ -4,8 +4,8 @@
 <title>{{ __('Danh mục sản phẩm') }} | Kattech PC</title>
 @endsection
 
-@section('description', __('Thỏa sức với linh kiện máy tính ' . $dataCategory->name . ' với Kattech PC'))
-@section('keywords', $dataCategory->name . ', kattech')
+@section('description', $dataCategory->description)
+@section('keywords', $dataCategory->key_word)
 @section('breadcrumb', $dataCategory->name)
 
 @section('css')
@@ -30,7 +30,7 @@
                         <div class="product-item">
                             <a href="{{ route('productDetail', $product->slug) }}" class="product-image position-relative">
                                 @if(isset($product->image))
-                                <img src="{{ asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="lazy product-image">
+                                <img src="{{ asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy product-image hover-image" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                                 @endif
                             </a>
                             <div class="product-info">
@@ -68,7 +68,7 @@
                         <div class="product-item">
                             <a href="" class="product-image position-relative">
                                 @if(isset($product->image))
-                                <img src="{{ asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="lazy product-image">
+                                <img src="{{ asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy product-image hover-image" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                                 @endif
                             </a>
                             <div class="product-info">
@@ -198,7 +198,7 @@
             @foreach($dataCategories as $product)
             <div class="product-item">
                 <a href="{{ route('productDetail', $product['slug']) }}" class="product-image">
-                    <img width="200" height="150" alt="{{ $product->name }}" class="lazy" src="{{ asset(json_decode($product->image, true)[0]) }}">
+                    <img width="200" height="150" alt="{{ $product->name }}" class="lazy hover-for-tooltips hover-image" src="{{ asset(json_decode($product->image, true)[0]) }}" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                     <span class="p-type-holder">
                         @if($product->hot_status)
                         <i class="p-icon-type p-icon-hot"></i>

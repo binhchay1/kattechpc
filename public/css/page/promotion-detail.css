@@ -19,8 +19,7 @@
     float: right;
 }
 
-.image-post
-{
+.image-post {
     width: 100%;
     height: auto;
 }
@@ -35,25 +34,24 @@
     background: #243a76;
 }
 
-img {
+.content-promotion img {
     width: 100%;
     height: auto;
 }
 
+.new-relate {
+    margin-top: 20px;
+}
+
 @media screen and (max-width: 992px) {
-    .content-promotion
-    {
+    .content-promotion {
         flex-direction: column;
     }
 
-    .rightColumn{
+    .rightColumn {
         width: 100%;
     }
     .leftColumn {
         width: 100%;
     }
 }
-
-
-
-

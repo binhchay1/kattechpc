@@ -13,7 +13,7 @@ class PromotionRequest extends FormRequest
     {
         return true;
     }
-    
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -28,17 +28,15 @@ class PromotionRequest extends FormRequest
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-
-
         ];
     }
-    
+
     public function messages()
     {
         return [
             'title.required' => __('Tiêu đề quảng cáo không được để trống'),
             'title.max' => __('Tiêu đề quảng cáo không được vượt quá 191 kí tự'),
-            'short_description.required' => __('Tiêu đề quảng cáo không được để trống'),
+            'short_description.required' => __('Mô tả quảng cáo không được để trống'),
             'content.required' => __('Nội dung quảng cáo không được để trống'),
             'image.required' => __('Hình ảnh không được để trống'),
             'image.image' => __('Hình ảnh không đúng định dạng'),

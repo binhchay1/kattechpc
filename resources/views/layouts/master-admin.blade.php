@@ -23,6 +23,13 @@
         .text-danger {
             color: red;
         }
+
+        .text-title-area {
+            font-weight: bold;
+            text-decoration: underline;
+            font-size: 20px !important;
+            color: red;
+        }
     </style>
     @include('layouts.head-css')
     @yield('css')

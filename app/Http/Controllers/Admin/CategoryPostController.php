@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
-use App\Http\Requests\CateogryPostRequest;
+use App\Http\Requests\CategoryPostRequest;
 use App\Repositories\CategoryPostRepository;
 use Illuminate\Support\Str;
 
@@ -57,7 +57,7 @@ class CategoryPostController extends Controller
         return view('admin.category-post.edit', compact('categoryPost', 'listCategory'));
     }
 
-    public function updateCategory(CateogryPostRequest $request,  $id)
+    public function updateCategory(CategoryPostRequest $request,  $id)
     {
         $input = $request->except(['_token']);
         $input['slug'] =  Str::slug($input['name']);

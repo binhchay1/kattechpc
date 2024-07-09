@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CateogryPostRequest extends FormRequest
+class CategoryPostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class CateogryPostRequest extends FormRequest
     {
         return true;
     }
-    
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -26,7 +26,7 @@ class CateogryPostRequest extends FormRequest
             'image' =>'mimes:jpeg,png,jpg|max:2048'
         ];
     }
-    
+
     public function messages()
     {
         return [

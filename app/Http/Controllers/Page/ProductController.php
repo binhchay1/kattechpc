@@ -188,9 +188,11 @@ class ProductController extends Controller
             $dataProduct->id_youtube = '';
         }
 
+        $layout = $this->layoutRepository->getListLayout();
+
         return view(
             'page.product.product-detail',
-            compact('youtubeRandom', 'postRandom5', 'countRate', 'countRate1', 'countRate2', 'countRate3', 'countRate4', 'countRate5', 'dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue', 'productViewed', 'dataBreadcrumb')
+            compact('youtubeRandom', 'postRandom5', 'countRate', 'countRate1', 'countRate2', 'countRate3', 'countRate4', 'countRate5', 'dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue', 'productViewed', 'dataBreadcrumb', 'layout')
         );
     }
 
@@ -411,7 +413,9 @@ class ProductController extends Controller
             }
         }
 
-        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'listKeyWord', 'dataBreadcrumb'));
+        $layout = $this->layoutRepository->getListLayout();
+
+        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'listKeyWord', 'dataBreadcrumb', 'layout'));
     }
 
     function getTopParent($category)

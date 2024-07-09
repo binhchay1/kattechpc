@@ -127,7 +127,7 @@
                 <div class="swiper-slide" role="group">
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative scale-img">
-                            <img width="245" height="164" alt="{{ $product->name }}" class="lazy hover-image" src="{{ asset(json_decode($product->image, true)[0]) }}">
+                            <img width="245" height="164" alt="{{ $product->name }}" class="hover-for-tooltips lazy hover-image" src="{{ asset(json_decode($product->image, true)[0]) }}" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                         </a>
                         <div class="product-info">
                             <a href="{{ route('productDetail', $product['slug']) }}">
@@ -178,7 +178,7 @@
             <div class="box-banner-collection">
                 @if(isset($layout->hot_sale_big_thumbnail))
                 <a href="{{ isset($layout->permarklink_hot_sale_big_thumbnail) ? $layout->permarklink_hot_sale_big_thumbnail : '#' }}" class="banner-collection boder-radius-10 scale-img">
-                    <img src="{{ asset($layout->hot_sale_big_thumbnail) }}" width="660" height="430" class="boder-radius-10 lazy" alt="" data-was-processed="true" data-ll-status="loaded">
+                    <img src="{{ asset($layout->hot_sale_big_thumbnail) }}" width="660" height="430" class="boder-radius-10 lazy">
                 </a>
                 @endif
             </div>
@@ -188,7 +188,7 @@
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product->slug) }}" class="product-image position-relative">
                             @if(isset($product->image))
-                            <img src="{{ asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="lazy hover-image">
+                            <img src="{{ asset(json_decode($product->image, true)[0]) }}" width="210" height="164" class="hover-for-tooltips lazy hover-image" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                             @endif
                         </a>
                         <div class="product-info">

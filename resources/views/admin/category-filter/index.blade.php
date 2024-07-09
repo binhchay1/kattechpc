@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-
 <div class="grid grid-cols-1 gap-x-5 xl:grid-cols-12 mt-4">
     <div class="xl:col-span-12">
         <div class="card" id="usersTable">
@@ -59,7 +58,6 @@
                                         </div>
                                     </div>
                                 </td>
-
 
                                 <td>
                                     <div class="relative dropdown">

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\couponRequest;
+use App\Http\Requests\CouponRequest;
 use App\Http\Requests\CouponUpdateRequest;
 use App\Repositories\CouponRepository;
 

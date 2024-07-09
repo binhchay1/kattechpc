@@ -143,7 +143,6 @@
                 </div>
             </div>
         </div>
-
         {!! $listProducts->links() !!}
     </div>
 </div>
