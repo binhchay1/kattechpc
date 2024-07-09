@@ -20,8 +20,8 @@
         <h2 class="text-center">{{ __('Không có sản phẩm nào trong giỏ hàng') }}</h2>
 
         <div class="button-css-cart">
-            <a href="{{ route('home') }}">
-                <button class="button-cart">{{ __('Tiếp tục mua hàng') }}</button>
+            <a href="{{ route('home') }}" style="padding: 10px 15px; border-radius: 10px;">
+                {{ __('Tiếp tục mua hàng') }}
             </a>
         </div>
     </div>
@@ -232,37 +232,48 @@
                 </div>
 
                 @foreach($dataCart as $product)
-                <div class="basket-product" id="item-cart">
-                    <div class="item">
-                        <div class="product-image">
-                            <?php $image = json_decode($product->attributes->image, true); ?>
-                            <img src="{{ asset($image[0])}}" alt="Placholder Image 2" class="product-frame">
+                <div class="basket-product flex-direction-column" id="item-cart">
+                    <div class="d-flex">
+                        <div class="item">
+                            <div class="product-image">
+                                <?php $image = json_decode($product->attributes->image, true); ?>
+                                <img src="{{ asset($image[0]) }}" alt="Placholder Image 2" class="product-frame">
+                            </div>
+                            <div class="product-details">
+                                <h1><strong><span class="item-quantity"></span> {{ $product->name }}</strong></h1>
+                            </div>
                         </div>
-                        <div class="product-details">
-                            <h1><strong><span class="item-quantity"></span> {{ $product->name }}</strong></h1>
+
+                        <div class="in-mobile">
+                            <div class="quantity " id="quantity-cart">
+                                <input type="number" value="{{ $product->quantity }}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{ $product->id }}')">
+                            </div>
+                        </div>
+                        <?php
+                        $total = (int) $product->quantity * (int) str_replace('.', '',  $product->price);
+
+                        ?>
+                        <div id="get-total" class="subtotal get-total inline" id="total_cart">
+                            <span>{{ number_format($total, 0, '.', '.') }} đ</span>
+                            <input hidden name="total_cart" value="{{ $total }}">
+                            <div class="delete" id="delete-cart">
+                                <a>
+                                    <button type="button" onclick="deleteSales(`{{ route('deleteCart', $product['id']) }}`)">{{ __('Xóa') }}</button>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="in-mobile">
-                        <div class="quantity " id="quantity-cart">
-                            <input type="number" value="{{ $product->quantity }}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{ $product->id }}')">
+                    <div>
+                        @if(isset($product->attributes->warranty->title))
+                        <div>
+                            <span class="warranty-text">
+                                <p>Gói bảo hành : {{ $product->attributes->warranty->title }} ( {{ $product->attributes->warranty->price }} )</p>
+                            </span>
                         </div>
-
-
+                        @endif
                     </div>
-                    <?php
-                    $total = (int) $product->quantity * (int) str_replace('.', '',  $product->price);
 
-                    ?>
-                    <div id="get-total" class="subtotal get-total inline" id="total_cart">
-                        <span>{{ number_format($total, 0, '.', '.') }} đ</span>
-                        <input hidden name="total_cart" value="{{ $total }}">
-                        <div class="delete" id="delete-cart">
-                            <a>
-                                <button type="button" onclick="deleteSales(`{{ route('deleteCart', $product['id']) }}`)">{{ __('Xóa') }}</button>
-                            </a>
-                        </div>
-                    </div>
                 </div>
                 @endforeach
 
@@ -270,13 +281,13 @@
                     <div class="summary1">
                         <h3 class="input-address">{{__('Hình thức thanh toán')}}</h3>
                         <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" checked disabled>{{__('Thanh toán sau khi nhận hàng')}}<br>
-                            <div class="basket-module">
-                                <label for="promo-code">{{__('Nhập mã khuyến mãi')}}</label>
-                                <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                                <input id="promo-code" type="text" name="discount_amount" class="promo-code-field">
-                                <p class="error_msg" id="promo-code" style="color: red"></p>
-                                <a type="button" class=" btn-submit promo-code-cta">Apply</a>
-                            </div>
+                        <div class="basket-module">
+                            <label for="promo-code">{{__('Nhập mã khuyến mãi')}}</label>
+                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                            <input id="promo-code" type="text" name="discount_amount" class="promo-code-field">
+                            <p class="error_msg" id="promo-code" style="color: red"></p>
+                            <a type="button" class=" btn-submit promo-code-cta">Apply</a>
+                        </div>
                     </div>
                     <div class="summary summary-area">
                         <div class="input-address summary-total-items total-title">{{ __('Tổng cộng') }} </div>

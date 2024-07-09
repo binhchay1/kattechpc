@@ -194,10 +194,13 @@
             <div class="pd-addon-group">
                 <p class="group-title"> DỊCH VỤ BẢO HÀNH MỞ RỘNG (BHMR) </p>
                 <div class="pd-addon-item">
-                    <input type="checkbox" data-price="{{ $dataProduct->warrantyPackages->price }}">
-                    <div class="item-title">
+                    <div class="d-flex">
+                        <input id="warranty-package-check" type="checkbox" data-price="{{ $dataProduct->warrantyPackages->price }}">
                         <p> {{ $dataProduct->warrantyPackages->title }} </p>
-                        <p>👉 <a onclick="detailWarrantyPackage(this)" data-price="{{ $dataProduct->warrantyPackages->price }}" data-type="{{ $dataProduct->warrantyPackages->type }}" data-time-on="{{ $dataProduct->warrantyPackages->time_on }}" data-description="{{ $dataProduct->warrantyPackages->description }}" data-device="{{ $dataProduct->warrantyPackages->device }}" target="_blank" style="vertical-align: sub;font-size: 14px;color: #288ad6;text-decoration: underline">{{ __('Chi tiết gói bảo hành') }}</a></p>
+                    </div>
+
+                    <div class="item-title">
+                        <p>👉 <a onclick="detailWarrantyPackage(this)" style="cursor: pointer;" data-price="{{ $dataProduct->warrantyPackages->price }}" data-type="{{ $dataProduct->warrantyPackages->type }}" data-time-on="{{ $dataProduct->warrantyPackages->time_on }}" data-description="{{ $dataProduct->warrantyPackages->description }}" data-device="{{ $dataProduct->warrantyPackages->device }}" target="_blank" style="vertical-align: sub;font-size: 14px;color: #288ad6;text-decoration: underline">{{ __('Chi tiết gói bảo hành') }}</a></p>
                     </div>
                 </div>
             </div>
@@ -218,7 +221,7 @@
                 <input type="hidden" class="js-buy-quantity-temp" value="1">
             </div>
             <div class="quantity mt-4 d-flex btn-buy-product">
-                <a class="btn-1" href="{{ route('addCart', $dataProduct['slug']) }}">
+                <a onclick="buyNowHandle(this)" class="btn-1" data-slug="{{ $dataProduct['slug'] }}">
                     <button class="btn-buy">{{ __('Mua ngay') }}</button>
                 </a>
             </div>
@@ -662,6 +665,10 @@
         $('.write_reply').click(function() {
             $('.menu1').slideToggle("fast");
         });
+
+        $('#modal-detail-warranty-package .close').on('click', function() {
+            $('#modal-detail-warranty-package').css('display', 'none');
+        });
     });
 
     function getImageCenter(image) {
@@ -774,7 +781,18 @@
     function addToCart() {
         let slug = $('#product-to-cart').val();
         let total = $('#quantity-to-cart').val();
-        let baseUrl = '/cart/add-to-cart/' + slug + '?total=' + total;
+        let warranty = $('#warranty-package-check').is(":checked");
+
+        let baseUrl = '/cart/add-to-cart/' + slug + '?total=' + total + '&warranty=' + warranty;
+
+        window.location.href = baseUrl;
+    }
+
+    function buyNowHandle(aTag) {
+        let warranty = $('#warranty-package-check').is(":checked");
+        let slug = aTag.getAttribute('data-slug');
+
+        let baseUrl = '/cart/add-cart/' + slug + '?warranty=' + warranty;
 
         window.location.href = baseUrl;
     }

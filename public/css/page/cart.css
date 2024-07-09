@@ -9,7 +9,7 @@ body {
     margin: 0 auto;
 }
 
-#content-page a {
+#content-page main a {
     border: 0 none;
     outline: 0;
     text-decoration: none;
@@ -17,7 +17,7 @@ body {
     color: white;
 }
 #content-page a :hover {
-    color: white ;
+    color: white;
 }
 
 #content-page strong {
@@ -569,6 +569,13 @@ textarea {
     margin-left: 15px;
 }
 
+.warranty-text {
+    font-size: 13px;
+    font-weight: bold;
+    font-style: italic;
+    color: red;
+}
+
 @media screen and (max-width: 992px) {
     .selected-name {
         width: 100%;
@@ -600,11 +607,7 @@ textarea {
         justify-content: space-between;
     }
 
-
-
     .get-total span {
         width: 100%;
     }
-
-
 }

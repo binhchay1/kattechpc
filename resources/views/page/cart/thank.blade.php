@@ -13,8 +13,8 @@
 @endsection
 
 @section('content')
-<main>
-    <div class="thank" style="padding: 15px">
+<main style="background: none; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; margin-bottom: 40px">
+    <div class="thank" style="padding: 15px; background: none;">
         <div>
             <h2 class="set-text" style="color: red; font-weight: bold;">{{__('Đặt hàng thành công')}}</h2>
         </div>
@@ -23,7 +23,7 @@
         <img class="image-cart" src="{{asset('images/cart.jpg')}}">
         <div class="button-css-cart">
 
-            <a href="{{ route('home') }}"><button class="button-cart">{{__('Tiếp tục mua hàng')}}</button></a>
+            <a href="{{ route('home') }}" style="padding: 10px 15px; border-radius: 10px; margin-top: 15px">{{__('Tiếp tục mua hàng')}}</a>
         </div>
     </div>
 </main>

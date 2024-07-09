@@ -40,8 +40,9 @@ class CartController extends Controller
         $this->layoutRepository = $layoutRepository;
     }
 
-    public function addCart($slug)
+    public function addCart(Request $request, $slug)
     {
+        $getWarranty = $request->get('warranty');
         $dataProduct = $this->productRepository->productDetail($slug);
         $getFlashSale = $this->layoutRepository->getFlashSale();
         $isFlashSale = false;
@@ -58,31 +59,51 @@ class CartController extends Controller
             }
         }
 
+        if ($getWarranty == 'true') {
+            $warranty = $dataProduct->warrantyPackages;
+        } else {
+            $warranty = [];
+        }
+
         if ($isFlashSale) {
+            if (isset($warranty->price)) {
+                $lastPrice = (int) $priceFlashSale + $warranty->price;
+            } else {
+                $lastPrice = (int) $priceFlashSale;
+            }
+
             Cart::add(
                 $dataProduct->id,
                 $dataProduct->name,
-                (int) $priceFlashSale,
+                $lastPrice,
                 1,
-                ['image' => $dataProduct->image],
+                ['image' => $dataProduct->image, 'warranty' => $warranty],
                 $dataProduct->code
             );
         } else {
+            if (isset($warranty->price)) {
+                $lastPrice = $warranty->price;
+            } else {
+                $lastPrice = 0;
+            }
+
             if ($dataProduct->new_price != null) {
                 Cart::add(
                     $dataProduct->id,
                     $dataProduct->name,
-                    (int) str_replace('.', '', $dataProduct->new_price),
+                    $lastPrice + (int) str_replace('.', '', $dataProduct->new_price),
                     1,
-                    ['image' => $dataProduct->image]
+                    ['image' => $dataProduct->image, 'warranty' => $warranty],
+                    $dataProduct->code
                 );
             } else {
                 Cart::add(
                     $dataProduct->id,
                     $dataProduct->name,
-                    (int) str_replace('.', '', $dataProduct->price),
+                    $lastPrice + (int) str_replace('.', '', $dataProduct->price),
                     1,
-                    ['image' => $dataProduct->image]
+                    ['image' => $dataProduct->image, 'warranty' => $warranty],
+                    $dataProduct->code
                 );
             }
         }
@@ -164,6 +185,7 @@ class CartController extends Controller
                 'address' => $input['address'],
                 'payment' => $input['payment'],
             ];
+
             $dataSendEmail = [
                 'order' => [],
                 'order_code' => $unique,
@@ -190,10 +212,13 @@ class CartController extends Controller
                             'quantity' => $item->quantity,
                             'price' => $request->total_cart
                         ];
-                        dd($data);
+
+                        if (isset($item->attributes->warranty->id)) {
+                            $data['warranty_package_id'] = $item->attributes->warranty->id;
+                        }
+
                         $this->orderDetailRepository->create($data);
-                        SendMailByGoogle::dispatch(new OrderPlacedEmail($user), $user->email, $user)->onQueue('email-order');
-                        Mail::to($input['email'])->send(new OrderPlacedEmail($input, $data));
+                        SendMailByGoogle::dispatch(new OrderPlacedEmail($user, $data), $user['email'], $user)->onQueue('email-order');
                     }
 
                     $listProductFlashSale = json_encode($listProductFlashSale);
@@ -208,15 +233,17 @@ class CartController extends Controller
                             'price' => $request->total_cart
                         ];
 
+                        if (isset($item->attributes->warranty->id)) {
+                            $data['warranty_package_id'] = $item->attributes->warranty->id;
+                        }
+
                         $this->orderDetailRepository->create($data);
-                        dd($user['email']);
-                        SendMailByGoogle::dispatch(new OrderPlacedEmail($user), $user->email, $user)->onQueue('email-order');
-                        Mail::to($user['email'])->send(new OrderPlacedEmail($user, $data));
+                        SendMailByGoogle::dispatch(new OrderPlacedEmail($user, $data), $user['email'], $user)->onQueue('email-order');
                     }
                     Cart::clear();
                 }
             }
-            
+
             if (isset($input['email'])) {
                 $orderDetailMail = new OrderDetail($dataSendEmail);
                 SendMailByGoogle::dispatch($orderDetailMail, $input['email'], $dataSendEmail)->onQueue('order-detail');
@@ -240,6 +267,7 @@ class CartController extends Controller
     public function addToCart($id, Request $request)
     {
         $total = $request->get('total');
+        $getWarranty = $request->get('warranty');
         $dataProduct = $this->productRepository->productDetail($id);
         $getFlashSale = $this->layoutRepository->getFlashSale();
         $isFlashSale = false;
@@ -256,22 +284,41 @@ class CartController extends Controller
             }
         }
 
+        if ($getWarranty == 'true') {
+            $warranty = $dataProduct->warrantyPackages;
+        } else {
+            $warranty = [];
+        }
+
         if ($isFlashSale) {
+            if (isset($warranty->price)) {
+                $lastPrice = (int) $priceFlashSale + $warranty->price;
+            } else {
+                $lastPrice = (int) $priceFlashSale;
+            }
+
             Cart::add(
                 $dataProduct->id,
                 $dataProduct->name,
-                (int) $priceFlashSale,
+                $lastPrice,
                 $total,
-                ['image' => $dataProduct->image],
+                ['image' => $dataProduct->image, 'warranty' => $warranty],
                 $dataProduct->code
             );
         } else {
+            if (isset($warranty->price)) {
+                $lastPrice = $warranty->price;
+            } else {
+                $lastPrice = 0;
+            }
+
             Cart::add(
                 $dataProduct->id,
                 $dataProduct->name,
-                (int) str_replace('.', '', $dataProduct->new_price) ?? (int) str_replace('.', '', $dataProduct->price),
+                $lastPrice + (int) str_replace('.', '', $dataProduct->new_price) ?? (int) str_replace('.', '', $dataProduct->price),
                 $total,
-                ['image' => $dataProduct->image]
+                ['image' => $dataProduct->image, 'warranty' => $warranty],
+                $dataProduct->code
             );
         }
 

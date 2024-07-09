@@ -1236,6 +1236,12 @@ tr:nth-child(even) {
 
 #modal-detail-warranty-package {
     display: none;
+    width: 100%;
+}
+
+#modal-detail-warranty-package .modal-dialog {
+    width: 100%;
+    margin: auto !important;
 }
 
 @media screen and (max-width: 992px) {

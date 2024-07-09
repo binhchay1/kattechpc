@@ -48,6 +48,6 @@ class  OrderRepository extends BaseRepository
 
     public function getAllOrder()
     {
-        return $this->model->with('orderDetails', 'orderDetails.product')->get();
+        return $this->model->with('orderDetails', 'orderDetails.product', 'orderDetails.warrantyPackage')->get();
     }
 }

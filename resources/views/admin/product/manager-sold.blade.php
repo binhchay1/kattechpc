@@ -50,7 +50,12 @@
                                             <ul class="list-disc list-inside rounded-md marker:text-red-500">
                                                 @if(isset($sold['detail']))
                                                 @foreach($sold['detail'] as $name => $detail)
-                                                <li>{{ __('Sản phẩm') }}: {{ $name }} - {{ __('Bảo hành') }}: <span style="font-weight: bold; color:red">{{ $detail['guarantee'] }}</span> - {{ __('Số lượng') }}: {{ $detail['quantity'] }}</li>
+                                                <li>
+                                                    {{ __('Sản phẩm') }}: {{ $name }} - {{ __('Bảo hành') }}: <span style="font-weight: bold; color:red">{{ $detail['guarantee'] }}</span> - {{ __('Số lượng') }}: {{ $detail['quantity'] }}
+                                                    @if(array_key_exists('warranty', $detail))
+                                                    - {{ __('Gói bảo hành:') }} <span style="font-weight: bold; color:red">{{ $detail['warranty']->title }}</span>
+                                                    @endif
+                                                </li>
                                                 @endforeach
                                                 @endif
                                             </ul>
@@ -64,7 +69,6 @@
                 </div>
             </div>
         </div>
-
         {!! $managerSold->links() !!}
     </div>
 </div>

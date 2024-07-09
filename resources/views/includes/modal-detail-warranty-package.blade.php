@@ -8,12 +8,10 @@
             </div>
             <div class="modal-body">
                 <table>
-                    <thead class="text-left">
-                        <tr class="">
-                            <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="name">{{ __('Mô tả') }}</th>
-                        </tr>
-                    </thead>
                     <tbody class="list" id="table-body-detail">
+                        <tr>
+                            <th colspan="2" class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" style="font-size: 18px; text-align: center;" data-sort="name">{{ __('Mô tả') }}</th>
+                        </tr>
                         <tr>
                             <td>{{ __('Thiết bị') }}</td>
                             <td id="modal-warranty-device"></td>

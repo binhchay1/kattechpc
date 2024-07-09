@@ -313,6 +313,14 @@ class ProductController extends Controller
                     if (isset($detailOrder->price)) {
                         $detail['detail'][$detailOrder->product->name]['price'] = $detailOrder->price;
                     }
+
+                    if (isset($detailOrder->price)) {
+                        $detail['detail'][$detailOrder->product->name]['price'] = $detailOrder->price;
+                    }
+
+                    if (isset($detailOrder->warrantyPackage)) {
+                        $detail['detail'][$detailOrder->product->name]['warranty'] = $detailOrder->warrantyPackage;
+                    }
                 }
             }
 

@@ -21,4 +21,9 @@ class OrderDetail extends Model
     {
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
+
+    public function warrantyPackage()
+    {
+        return $this->belongsTo(WarrantyPackage::class, 'warranty_package_id', 'id');
+    }
 }
