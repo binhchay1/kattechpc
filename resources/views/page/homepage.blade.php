@@ -263,7 +263,7 @@
                 @foreach($category->children as $children)
                 <a href="{{ route('showDataCategory', $children['slug']) }}" class="title-category">{{ $children->name }}</a>
                 @endforeach
-                <a href="{{ route('showDataCategory', $category['slug']) }}" class="title-all-category">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
+                <a href="{{ route('showDataCategory', $category['slug']) }}" class="title-all-category hover-color-all">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
             </div>
         </div>
         <div class="swiper">
@@ -327,7 +327,7 @@
             <div class="title-box">
                 <h2 class="title-box font-weight-600">{{ __('Khuyến mại') }}</h2>
             </div>
-            <a href="{{ route('promotion') }}" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
+            <a href="{{ route('promotion') }}" class="btn-article-group hover-color-all">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
         <div class="list-article-group d-flex align-items-center custom-mobile-promotion">
             @foreach($listPromotion as $promotion)
@@ -349,7 +349,7 @@
             <div class="title-box">
                 <h2 class="title-box font-weight-600">{{ __('Tin tức công nghệ') }}</h2>
             </div>
-            <a href="{{ route('post') }}" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
+            <a href="{{ route('post') }}" class="btn-article-group hover-color-all">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
         <div class="list-article-group d-flex" id="list-post-home">
             @foreach($listNews as $news)
@@ -381,7 +381,7 @@
             <div class="title-box">
                 <h2 class="title-box font-weight-600">{{ __('Youtube Channel') }}</h2>
             </div>
-            <a href="https://www.youtube.com/@kattechpc" class="btn-article-group">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
+            <a href="https://www.youtube.com/@kattechpc" class="btn-article-group hover-color-all">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
         </div>
         <div class="list-article-group d-flex" id="list-post-home">
             @foreach($listYoutube as $youtube)

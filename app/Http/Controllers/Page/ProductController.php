@@ -300,7 +300,7 @@ class ProductController extends Controller
         if (isset($filters['brand'])) {
             if ($filters['brand'] != 'all') {
                 foreach ($dataComplete as $keyBrand => $productBrand) {
-                    if ($productBrand->brands->name != $filters['brand']) {
+                    if ($productBrand->brands->id != $filters['brand']) {
                         $dataComplete->forget($keyBrand);
                     }
                 }
@@ -371,7 +371,13 @@ class ProductController extends Controller
             foreach ($dataComplete as $product) {
                 if (isset($product->brands->name)) {
                     if (!in_array($product->brands->name, $dataBrand)) {
-                        $dataBrand[] = $product->brands->name;
+                        $arrBrand = [
+                            'name' => $product->brands->name,
+                            'image' => $product->brands->image,
+                            'id' => $product->brands->id,
+                        ];
+
+                        $dataBrand[] = $arrBrand;
                     }
                 }
             }

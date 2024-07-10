@@ -196,7 +196,7 @@ function sortByCategoryChild(select) {
 }
 
 function sortByBrand(select) {
-    let valueBrand = select.val();
+    let valueBrand = select.attr('data-id');
     arrayParam['brand'] = valueBrand;
 
     let url = location.protocol + '//' + location.host + location.pathname;

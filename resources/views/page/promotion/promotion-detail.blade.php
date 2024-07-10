@@ -67,7 +67,7 @@
 
     <div class="rightColumn">
         <div class="new-read-late">
-            <h3 id="title-post"> {{ __('Quảng cáo gần đây') }}</h3>
+            <h3 id="title-post"> {{ __('Khuyến mại gần đây') }}</h3>
             @foreach($listPromotion as $promotion)
             <div id="" style="margin-top: 30px">
                 <div id="">

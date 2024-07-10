@@ -104,7 +104,18 @@
         </div>
     </section>
 
-
+    <section>
+        <div class="filter-box-group">
+            <h1 class="group-title"> Lọc theo hãng: </h1>
+            <div class="brand-filter-list">
+                @foreach($dataBrand as $brand)
+                <a class="brand-image button-filter" onclick="sortByBrand($(this))" data-id="{{ $brand['id'] }}">
+                    <img alt="{{ $brand['name'] }}" width="70" height="35" hi class="lazy" src="{{ asset($brand['image']) }}">
+                </a>
+                @endforeach
+            </div>
+        </div>
+    </section>
 
     <h1>Chọn theo nhu cầu</h1>
     <div class="row">
@@ -151,16 +162,6 @@
                     </select>
                 </div>
                 @endif
-
-                <div class="d-flex flex-direction-column">
-                    <label class="font-bold">{{ __('Thương hiệu') }}</label>
-                    <select class="mt-1" id="brand-in-product-category" onchange="sortByBrand($(this))">
-                        <option value="all">{{ __('Tất cả') }}</option>
-                        @foreach($dataBrand as $brand)
-                        <option value="{{ $brand }}">{{ $brand }}</option>
-                        @endforeach
-                    </select>
-                </div>
 
                 @if(isset($listKeyWord))
                 @foreach($listKeyWord as $item)

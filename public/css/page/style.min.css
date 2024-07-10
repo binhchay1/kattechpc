@@ -335,14 +335,14 @@ a:hover {
 .fixed-left {
     position: fixed;
     top: 280px;
-    left: calc(50% - 880px);
+    left: calc(50% - 900px);
     transition: 0.5s linear;
 }
 
 .fixed-right {
     position: fixed;
     top: 280px;
-    right: calc(50% - 880px);
+    right: calc(50% - 900px);
     transition: 0.5s linear;
 }
 
@@ -2374,6 +2374,11 @@ a {
 .custom-mobile-flash-sale {
     flex-direction: column;
     margin-bottom: 20px;
+}
+
+.hover-color-all:hover {
+    text-decoration: underline;
+    color: #007bff !important;
 }
 
 @media screen and (max-width: 768px) {
