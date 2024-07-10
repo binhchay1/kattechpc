@@ -272,6 +272,20 @@ class ProductController extends Controller
             $dataComplete = [];
         }
 
+        foreach ($dataComplete as $product) {
+            if (isset($product->brands->name)) {
+                if (!in_array($product->brands->name, $dataBrand)) {
+                    $arrBrand = [
+                        'name' => $product->brands->name,
+                        'image' => $product->brands->image,
+                        'id' => $product->brands->id,
+                    ];
+
+                    $dataBrand[] = $arrBrand;
+                }
+            }
+        }
+
         if (isset($filters['price'])) {
             $listRangePrice = Product::RANGE_PRICE;
             if (array_key_exists($filters['price'], $listRangePrice)) {
@@ -323,7 +337,7 @@ class ProductController extends Controller
             }
 
             if ($filters['sort'] == 'name-desc' or $filters['sort'] == 'name-asc') {
-                if($filters['sort'] == 'name-desc') {
+                if ($filters['sort'] == 'name-desc') {
                     $dataComplete = $dataComplete->sortBy('name', 'desc');
                 } else {
                     $dataComplete = $dataComplete->sortBy('name');
@@ -368,20 +382,6 @@ class ProductController extends Controller
         }
 
         if (isset($dataComplete)) {
-            foreach ($dataComplete as $product) {
-                if (isset($product->brands->name)) {
-                    if (!in_array($product->brands->name, $dataBrand)) {
-                        $arrBrand = [
-                            'name' => $product->brands->name,
-                            'image' => $product->brands->image,
-                            'id' => $product->brands->id,
-                        ];
-
-                        $dataBrand[] = $arrBrand;
-                    }
-                }
-            }
-
             $dataCategories = $this->utility->paginate($dataComplete, 15);
         } else {
             $dataCategories = $this->utility->paginate([], 15);
