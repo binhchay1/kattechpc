@@ -74,21 +74,26 @@
     <div class="rightColumn">
         <div class="new-read-late">
             <h3 id="title-post"> {{ __('Khuyến mại gần đây') }}</h3>
-            @foreach($listPromotion as $key => $promotion)
+            @foreach($listPromotion as $key => $promotionNews)
+
+            @if($promotion->id == $promotionNews->id)
+            @continue
+            @endif
+
             @if($key > 3)
             @break
             @endif
-            <div id="" style="margin-top: 30px">
-                <div id="">
-                    <img src="{{  asset( $promotion->image ?? 'images/page/no-image.png') }}" alt="Image Alt" class="image-post" />
+            <div>
+                <div>
+                    <img src="{{  asset( $promotionNews->image ?? 'images/page/no-image.png') }}" alt="Image Alt" class="image-post" />
                 </div>
-                <div id="">
-                    <a href="{{ route('promotion.detail', $promotion['slug']) }}">
-                        <h3> {{$promotion->title}}</h3>
+                <div>
+                    <a href="{{ route('promotion.detail', $promotionNews['slug']) }}">
+                        <h3> {{$promotionNews->title}}</h3>
                     </a>
 
                 </div>
-                <span id="post-des">{{$promotion->short_description}}</span>
+                <span id="post-des">{{$promotionNews->short_description}}</span>
             </div>
             @endforeach
         </div>
@@ -96,11 +101,11 @@
         <div class="new-relate">
             <h3 id="title-post"> {{ __('Tin công nghệ gần đây') }}</h3>
             @if($firstPosts1 != null)
-            <div id="" style="margin-top: 30px">
-                <div id="">
+            <div>
+                <div>
                     <img src="{{ $firstPosts1->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="image-post" />
                 </div>
-                <div id="">
+                <div>
                     <h3> {{$firstPosts1->title}}</h3>
                 </div>
             </div>
