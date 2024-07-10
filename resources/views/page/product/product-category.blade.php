@@ -106,7 +106,6 @@
 
     <section>
         <div class="filter-box-group">
-            <h1 class="group-title"> Lọc theo hãng: </h1>
             <div class="brand-filter-list">
                 @foreach($dataBrand as $brand)
                 <a class="brand-image button-filter" onclick="sortByBrand($(this))" data-id="{{ $brand['id'] }}">

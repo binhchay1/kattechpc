@@ -345,3 +345,7 @@
 .d-block {
     display: block !important;
 }
+
+.flex-direction-row {
+    flex-direction: row;
+}

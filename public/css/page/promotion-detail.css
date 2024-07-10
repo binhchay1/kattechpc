@@ -43,6 +43,19 @@
     margin-top: 20px;
 }
 
+.sapo-promotion {
+    margin-top: 15px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.content-inside-promotion {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 15px;
+    border-radius: 15px;
+}
+
 @media screen and (max-width: 992px) {
     .content-promotion {
         flex-direction: column;

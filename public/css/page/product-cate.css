@@ -31,6 +31,8 @@
 .filter-box-group .sort-list {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .filter-box-group .brand-filter-list a {
