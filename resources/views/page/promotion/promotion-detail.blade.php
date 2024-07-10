@@ -26,7 +26,7 @@
                 <div class="flex-direction-column">
                     <div class="d-flex justify-content-center flex-direction-column">
                         <div class="d-flex justify-content-center">
-                            <img src="{{ asset($promotion->image) }}" width="800" height="100">
+                            <img src="{{ asset($promotion->image) }}" width="1000" height="400">
                         </div>
 
                         <h1 style="font-size: 24px; margin: 0; text-align: center;">{{ $promotion->title }}</h1>
@@ -68,7 +68,6 @@
             <p><span style="font-size: 12pt; color: red;"><strong>HOTLINE: {{ config('company.hotline') }}</strong></span></p>
             <p><span style="font-size: 12pt; color: red;"><strong>Hệ thống Showroom Kattech:</strong></span></p>
             <p><span style="font-size: 12pt;"><strong>* Trụ sở chính:</strong> 15 Xã Đàn, Đống Đa, Hà Nội ✆ Tel: {{ config('company.hotline') }}</span></p>
-
         </div>
 
     </div>

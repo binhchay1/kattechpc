@@ -12,21 +12,23 @@
 @section('keywords', 'promotion, sale, kattechpc, kattech')
 @section('breadcrumb', __('Khuyến mãi'))
 
-
-
 @section('content')
 <div class="container-promotion">
+    <div class="banner-deal-page">
+        <a class="item-banner" style="display:block;margin-bottom:16px">
+            <img class="image-flash-sale" src="{{ asset('/images/banner-sale.jpg') }}" alt="banner-deal" width="1200">
+        </a>
+    </div>
     <div class="saleoff-heading">
         <a>{{ __('Hãy thường xuyên theo dõi các chương trình khuyến mãi để có cơ hội mua HÀNG CHÍNH HÃNG GIÁ TỐT NHẤT') }}</a>
     </div>
     <div class="row post-data">
         @foreach($listPromotionDESC as $random)
         @php
-            $currentDate = strtotime(date('Y-m-d H:i:s'));
-            $endDate = strtotime($random->end_date);
+        $currentDate = strtotime(date('Y-m-d H:i:s'));
+        $endDate = strtotime($random->end_date);
         @endphp
-        @if($currentDate < $endDate)
-        <div class="column">
+        @if($currentDate < $endDate) <div class="column">
             <div class="set-image-promotion">
                 <img class="image-promotion " src="{{ $random->image ?? asset('images/page/no-image.png') }}" style="object-fit: cover;">
             </div>
@@ -36,10 +38,10 @@
                     {{ __('Từ') }}: {{ $random->start_date }} - {{ __('Kết thúc') }}: {{ $random->end_date }}
                 </div>
             </div>
-        </div>
-        @endif
-        @endforeach
     </div>
+    @endif
+    @endforeach
+</div>
 </div>
 @endsection
 
