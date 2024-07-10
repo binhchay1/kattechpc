@@ -59,6 +59,11 @@ class PromotionController extends Controller
     {
         $input = $request->except(['_token']);
         $input['slug'] =  Str::slug($input['title']);
+        if (isset($input['image'])) {
+            $input['image']->move(public_path('images/upload/promotion/'), $input['image']->getClientOriginalName());
+            $path = '/images/upload/promotion/' . $input['image']->getClientOriginalName();
+            $input['image'] = $path;
+        }
 
         $input = $this->promotionRepository->update($input, $id);
 

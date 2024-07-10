@@ -17,7 +17,6 @@
 @section('keywords', 'promotion, flash sale, sale, kattechpc, kattech')
 @section('breadcrumb', $promotion->title)
 
-
 @section('content')
 <div class="content-promotion d-flex">
     <div class="leftColumn">
@@ -39,7 +38,7 @@
                 </div>
             </div>
 
-            <div class="">
+            <div style="font-size: 16px;">
                 {!! $promotion->content !!}
             </div>
         </div>
@@ -75,7 +74,10 @@
     <div class="rightColumn">
         <div class="new-read-late">
             <h3 id="title-post"> {{ __('Khuyến mại gần đây') }}</h3>
-            @foreach($listPromotion as $promotion)
+            @foreach($listPromotion as $key => $promotion)
+            @if($key > 3)
+            @break
+            @endif
             <div id="" style="margin-top: 30px">
                 <div id="">
                     <img src="{{  asset( $promotion->image ?? 'images/page/no-image.png') }}" alt="Image Alt" class="image-post" />
@@ -104,7 +106,10 @@
             </div>
             @endif
             @if($postRandom)
-            @foreach($postRandom as $post)
+            @foreach($postRandom as $key1 => $post)
+            @if($key1 > 3)
+            @break
+            @endif
             <div id="content">
                 <div id="left">
                     <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="image-post" />

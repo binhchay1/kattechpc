@@ -29,7 +29,6 @@ class PostController extends Controller
     {
         $listPosts = $this->postRepository->index();
         return view('admin.post.index',compact('listPosts'));
-
     }
 
     public function createPost()
