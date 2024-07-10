@@ -23,6 +23,37 @@
     background-color: red;
 }
 
+.filter-box-group {
+    margin: 0 0 15px;
+}
+
+.filter-box-group .brand-filter-list,
+.filter-box-group .sort-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter-box-group .brand-filter-list a {
+    line-height: 42px;
+    height: 42px;
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgba(44, 44, 44, 0.35);
+    background-color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    min-width: 100px;
+    text-align: center;
+    padding: 0 12px;
+    position: relative;
+}
+
+.filter-box-group .brand-filter-list img {
+    width: auto;
+    position: absolute;
+    inset: 0;
+    max-width: 80%;
+}
+
 .row {
     background: #c5a4a4;
     margin-top: 30px;

@@ -103,6 +103,9 @@
             </div>
         </div>
     </section>
+
+
+
     <h1>Chọn theo nhu cầu</h1>
     <div class="row">
         <div class="flex" id="select-price">
@@ -148,6 +151,7 @@
                     </select>
                 </div>
                 @endif
+
                 <div class="d-flex flex-direction-column">
                     <label class="font-bold">{{ __('Thương hiệu') }}</label>
                     <select class="mt-1" id="brand-in-product-category" onchange="sortByBrand($(this))">

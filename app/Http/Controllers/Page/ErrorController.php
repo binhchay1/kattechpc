@@ -3,51 +3,100 @@
 namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\LayoutRepository;
+use Cache;
 
 class ErrorController extends Controller
 {
+    private $layoutRepository;
+
+    public function __construct(
+        LayoutRepository $layoutRepository
+    ) {
+        $this->layoutRepository = $layoutRepository;
+    }
+
     public function view401()
     {
-        return view('errors.401');
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('errors.401', compact('listCategory'));
     }
 
     public function view402()
     {
-        return view('errors.402');
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('errors.402', compact('listCategory'));
     }
 
     public function view403()
     {
-        return view('errors.403');
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('errors.403', compact('listCategory'));
     }
 
     public function view404()
     {
-        return view('errors.404');
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+        $layout = $this->layoutRepository->getListLayout();
+        if (isset($layout->footer_slide_thumbnail)) {
+            $listSlideFooter = json_decode($layout->footer_slide_thumbnail, true);
+        } else {
+            $listSlideFooter = [];
+        }
+
+        return view('errors.404-now', compact('listCategory', 'listSlideFooter', 'layout'));
     }
 
     public function view419()
     {
-        return view('errors.419');
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+        $layout = $this->layoutRepository->getListLayout();
+        if (isset($layout->footer_slide_thumbnail)) {
+            $listSlideFooter = json_decode($layout->footer_slide_thumbnail, true);
+        } else {
+            $listSlideFooter = [];
+        }
+
+        return view('errors.419-now', compact('listCategory', 'listSlideFooter', 'layout'));
     }
 
     public function view429()
     {
-        return view('errors.429');
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('errors.429', compact('listCategory'));
     }
 
     public function view500()
     {
-        return view('errors.500');
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('errors.500', compact('listCategory'));
     }
 
     public function view503()
     {
-        return view('errors.503');
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('errors.503', compact('listCategory'));
     }
 
     public function viewMaintenance()
     {
-        return view('errors.maintenance');
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('errors.maintenance', compact('listCategory'));
     }
 }

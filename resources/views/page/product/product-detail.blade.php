@@ -150,7 +150,7 @@
                 </div>
                 <div class="box-right">
                     <div id="deal-line-detail" class="box-product-deal">
-                        <p class="text-deal-detail">{{ __('Còn') }} {{ $dataProduct->sale_quantity }}/{{ $dataProduct->sale_stock }} {{ __('sản phẩm') }}</p>
+                        <p class="text-deal-detail">{{ __('Còn') }} {{ $dataProduct->sale_stock }}/{{ $dataProduct->sale_quantity }} {{ __('sản phẩm') }}</p>
                         <div class="p-quantity-sale d-flex">
                             <img class="icon-sale-quantity" src="{{ asset('images/sale_icon.png') }}">
                             <div>
