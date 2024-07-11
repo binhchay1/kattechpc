@@ -17,7 +17,6 @@ return new class extends Migration
             $table->text('messager')->nullable();
             $table->text('facebook')->nullable();
             $table->text('youtube')->nullable();
-            $table->text('youtube')->nullable();
             $table->text('instagram')->nullable();
             $table->timestamps();
         });

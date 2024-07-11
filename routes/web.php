@@ -29,6 +29,7 @@ use App\Http\Controllers\Admin\CustomerReviewController;
 use App\Http\Controllers\Page\ErrorController;
 use App\Http\Controllers\Admin\YoutubeChannelController;
 use App\Http\Controllers\Admin\WarrantyPackageController;
+use App\Http\Controllers\Admin\SocialController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -303,6 +304,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
         Route::get('/update/{id}', [WarrantyPackageController::class, 'editWarrantyPackage'])->name('admin.warranty.package.edit');
         Route::post('/update/{id}', [WarrantyPackageController::class, 'updateWarrantyPackage'])->name('admin.warranty.package.update');
         Route::get('/delete/{id}', [WarrantyPackageController::class, 'deleteWarrantyPackage'])->name('admin.warranty.package.delete');
+    });
+
+    Route::group(['prefix' => 'social'], function () {
+        Route::get('/list', [SocialController::class, 'index'])->name('admin.social.index');
+        Route::post('/update', [SocialController::class, 'storeSocial'])->name('admin.social.update');
     });
 
     Route::group(['prefix' => 'customer-review'], function () {

@@ -38,6 +38,31 @@
                             @endif
                         </div>
 
+                        <div class="xl:col-span-12">
+                            <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{ __('Tiêu đề') }}</label>
+                            <input type="text" id="productNameInput" name="title" value="{{ old('title') }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Tiêu đề') }}">
+                            @if ($errors->has('title'))
+                            <span class="text-danger">{{ $errors->first('title') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="xl:col-span-12">
+                            <label for="key_word" class="inline-block mb-2 text-base font-medium">{{ __('Từ khóa') }}</label>
+                            <textarea class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="key_word" name="key_word" placeholder="{{ __('Từ khóa') }}" rows="5">{{ old('key_word') }}</textarea>
+                            @if ($errors->has('key_word'))
+                            <span class="text-danger">{{ $errors->first('key_word') }}</span><br>
+                            @endif
+                            <small style="font-style: italic;">{{ __('Mỗi từ khóa tương ứng với 1 dòng') }}</small>
+                        </div>
+
+                        <div class="xl:col-span-12">
+                            <label for="productShortDescription" class="inline-block mb-2 text-base font-medium"> {{ __('Mô tả ngắn') }}</label>
+                            <input type="text" id="productShortDescription" name="short_description" value="{{ old('short_description') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Mô tả ngắn') }}">
+                            @if ($errors->has('short_description'))
+                            <span class="text-danger">{{ $errors->first('short_description') }}</span>
+                            @endif
+                        </div>
+
                         <div class="xl:col-span-6">
                             <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Danh mục') }}</label>
                             <select style="width: 50%" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500
@@ -106,6 +131,14 @@
 
                             @if ($errors->has('status_guarantee'))
                             <span class="text-danger">{{ $errors->first('status_guarantee') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="lg:col-span-2 xl:col-span-6">
+                            <label for="productDescription" class="inline-block mb-2 text-base font-medium">{{ __('Link Youtube') }}</label>
+                            <input type="text" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="productDescription" name="link_youtube" placeholder="{{ __('Link Youtube') }}" rows="5">
+                            @if ($errors->has('link_youtube'))
+                            <span class="text-danger">{{ $errors->first('link_youtube') }}</span>
                             @endif
                         </div>
 
@@ -185,14 +218,6 @@
                             </div>
                         </div>
 
-                        <div class="lg:col-span-2 xl:col-span-6">
-                            <label for="productDescription" class="inline-block mb-2 text-base font-medium">{{ __('Link Youtube') }}</label>
-                            <input type="text" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="productDescription" name="link_youtube" placeholder="{{ __('Link Youtube') }}" rows="5">
-                            @if ($errors->has('link_youtube'))
-                            <span class="text-danger">{{ $errors->first('link_youtube') }}</span>
-                            @endif
-                        </div>
-
                         <div class="xl:col-span-6">
                             <label for="productStatus" class="inline-block mb-2 text-base font-medium">{{ __('Gói bảo hành') }}</label>
                             <select class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false id="productStatus" name="warranty_package_id">
@@ -202,39 +227,6 @@
                             </select>
                             @if ($errors->has('warranty_package_id'))
                             <span class="text-danger">{{ $errors->first('warranty_package_id') }}</span>
-                            @endif
-                        </div>
-
-                        <div class="xl:col-span-12">
-                            <hr style="width: 100%;">
-                        </div>
-
-                        <div class="xl:col-span-12">
-                            <h3 class="inline-block mb-2 text-base font-medium text-title-area">{{ __('SEO profile') }}</h3>
-                        </div>
-
-                        <div class="xl:col-span-12">
-                            <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{ __('Tiêu đề') }}</label>
-                            <input type="text" id="productNameInput" name="title" value="{{ old('title') }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Tiêu đề') }}">
-                            @if ($errors->has('title'))
-                            <span class="text-danger">{{ $errors->first('title') }}</span>
-                            @endif
-                        </div>
-
-                        <div class="xl:col-span-12">
-                            <label for="key_word" class="inline-block mb-2 text-base font-medium">{{ __('Từ khóa') }}</label>
-                            <textarea class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="key_word" name="key_word" placeholder="{{ __('Từ khóa') }}" rows="5">{{ old('key_word') }}</textarea>
-                            @if ($errors->has('key_word'))
-                            <span class="text-danger">{{ $errors->first('key_word') }}</span><br>
-                            @endif
-                            <small style="font-style: italic;">{{ __('Mỗi từ khóa tương ứng với 1 dòng') }}</small>
-                        </div>
-
-                        <div class="xl:col-span-12">
-                            <label for="productShortDescription" class="inline-block mb-2 text-base font-medium"> {{ __('Mô tả ngắn') }}</label>
-                            <input type="text" id="productShortDescription" name="short_description" value="{{ old('short_description') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Mô tả ngắn') }}">
-                            @if ($errors->has('short_description'))
-                            <span class="text-danger">{{ $errors->first('short_description') }}</span>
                             @endif
                         </div>
                     </div>
