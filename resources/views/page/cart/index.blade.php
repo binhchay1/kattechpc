@@ -281,7 +281,7 @@
                     <div class="summary1">
                         <h3 class="input-address">{{__('Hình thức thanh toán')}}</h3>
                         <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" checked disabled>{{__('Thanh toán sau khi nhận hàng')}}<br>
-                        <div class="basket-module">
+                        <div class="basket-module" id="add_discount">
                             <label for="promo-code">{{__('Nhập mã khuyến mãi')}}</label>
                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                             <input id="promo-code" type="text" name="discount_amount" class="promo-code-field">
@@ -295,19 +295,25 @@
                     <div class="summary summary-area">
                         <div class="total-value final-value summary-total" style="margin: 0;">{{__('Giảm giá')}}</div>
                         <div class="total-value final-value get-total" style="text-transform: inherit">
-                            @if(Session::get('discount'))
-                            <?php $getDiscount = Session::get('discount')->discount_amount ?>
-                            {{ $getDiscount }} đ
-                            @else
-                            0 đ
-                            @endif
+
+                            @if(Session::has('discount'))
+                                <div class="alert alert-danger">
+                                    <?php $getDiscount = Session::get('discount') ?>
+                                    {{$int =intval ($getDiscount)}}
+                                </div>
+{{--                            @if(Session::get('discount'))--}}
+{{--                            <?php $getDiscount = Session::get('discount')?>--}}
+{{--                            @dd(1, $getDiscount)--}}
+{{--                            {{ $getDiscount }} đ--}}
+
+{{--                            @endif--}}
                         </div>
                     </div>
-                    @if(Session::get('discount'))
-                    <?php $getDiscount = Session::get('discount')->discount_amount ?>
+
                     <div class="summary-total summary-area">
                         <div class="total-title">{{ __('Thành tiền') }}</div>
-                        <?php $money = $totalCart - $getDiscount ?>
+                        <?php $t = 2.00.000;
+                        $money = $totalCart -  $t?>
                         <div class="total-value final-value get-total">{{ number_format($money, 0, '.', '.') }} đ
                             <input hidden name="" value="{{ $money }}">
                         </div>

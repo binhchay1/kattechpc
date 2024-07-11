@@ -42,11 +42,10 @@ function renderCity(data) {
 $(document).ready(function () {
     $(".btn-submit").click(function (e) {
         e.preventDefault();
-
-        var _token = $("input[name='_token']").val();
-        var discount_amount = $("input[name='discount_amount']").val();
+        var _token = $('#token').val();
+        var discount_amount = $('#promo-code').val();
         $.ajax({
-            url: "{{ route('apply.coupon') }}",
+            url: '/cart/apply-coupon',
             type: 'POST',
             data: {
                 _token: _token,
@@ -60,8 +59,7 @@ $(document).ready(function () {
                     $(".error_msg").html(resp);
                 }
             },
-        },
-            setTimeout(window.location.reload.bind(window.location), 1000));
+        });
 
     });
 });
