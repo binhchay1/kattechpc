@@ -533,4 +533,9 @@
     .swiper-slide-image {
         width: 157px;
     }
+
+    .custom-mobile-flash-sale {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
 }
