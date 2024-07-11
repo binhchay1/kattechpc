@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController as ProductAdmin;
+use App\Http\Controllers\Admin\RattingController;
 use App\Http\Controllers\Page\BuildPCController;
 use App\Http\Controllers\Admin\BuildPCController as BuildPCAdmin;
 use App\Http\Controllers\Page\ProductController as ProductPage;
@@ -29,6 +30,7 @@ use App\Http\Controllers\Admin\CustomerReviewController;
 use App\Http\Controllers\Page\ErrorController;
 use App\Http\Controllers\Admin\YoutubeChannelController;
 use App\Http\Controllers\Admin\WarrantyPackageController;
+use App\Http\Controllers\Admin\CommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -313,7 +315,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
         Route::post('/update/{id}', [CustomerReviewController::class, 'updateCustomerReview'])->name('admin.customer.review.update');
         Route::get('/delete/{id}', [CustomerReviewController::class, 'deleteCustomerReview'])->name('admin.customer.review.delete');
     });
-
+    
+    Route::group(['prefix' => 'comment'], function () {
+        Route::get('/list', [CommentController::class, 'index'])->name('admin.comment.index');
+        Route::get('/delete/{id}', [CommentController::class, 'deleteCustomerReview'])->name('admin.comment.delete');
+    });
+    
+    Route::group(['prefix' => 'ratting'], function () {
+        Route::get('/list', [RattingController::class, 'index'])->name('admin.ratting.index');
+        Route::get('/delete/{id}', [RattingController::class, 'deleteRatting'])->name('admin.ratting.delete');
+    });
+    
+    
     Route::get('/products/{productId}/upload', [ProductImageController::class, 'index']);
     Route::post('/products/{productId}/upload', [ProductImageController::class, 'store']);
     Route::get('/product-image/{productImageId}/delete', [ProductImageController::class, 'destroy']);

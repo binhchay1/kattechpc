@@ -210,18 +210,9 @@ class ProductController extends Controller
             return redirect()->back()->with('message', __('Bạn cần đăng nhập để đánh giá sản phẩm!'));
         }
         $input = $request->except(['_token']);
-
-        $exit_rate = $this->ratingRepository->show();
-
-        if ($exit_rate) {
-            $exit_rate->rating_product = $input['rating_product'];
-            $exit_rate->content = $input['content'];
-            $exit_rate->update();
-        } else {
-
+    
             $input = $request->all();
             $this->ratingRepository->store($input);
-        }
 
         return back();
     }
