@@ -1797,8 +1797,8 @@ a {
 }
 
 .global-fixed-left .sale {
-    width: 56px;
-    height: 56px;
+    width: 64px;
+    height: 64px;
     position: relative;
     cursor: pointer;
     box-shadow: 0 3px 10px 0 rgb(0 0 0 / 45%);
@@ -2359,7 +2359,8 @@ a {
 }
 
 .view-more-flash-sale {
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: bold;
     color: white;
 }
 
@@ -2371,13 +2372,7 @@ a {
     cursor: pointer;
 }
 
-.custom-mobile-flash-sale {
-    flex-direction: column;
-    margin-bottom: 20px;
-}
-
 .hover-color-all:hover {
-    text-decoration: underline;
     color: #007bff !important;
 }
 

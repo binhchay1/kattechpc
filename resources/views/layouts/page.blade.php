@@ -132,7 +132,7 @@
     <div class="global-fixed-left">
         <div class="sale">
             <a href="{{ route('promotion') }}">
-                <img width="56" height="64" alt="khuyen-mai" src="{{ asset('images/sale.png') }}" data-was-processed="true">
+                <img width="64" height="64" alt="khuyen-mai" src="{{ asset('images/sale.png') }}" data-was-processed="true">
             </a>
         </div>
     </div>
