@@ -292,27 +292,25 @@
                     <div class="summary summary-area">
                         <div class="input-address summary-total-items total-title">{{ __('Tổng cộng') }} </div>
                     </div>
+                    @if(Session::has('discount'))
                     <div class="summary summary-area">
                         <div class="total-value final-value summary-total" style="margin: 0;">{{__('Giảm giá')}}</div>
                         <div class="total-value final-value get-total" style="text-transform: inherit">
-
-                            @if(Session::has('discount'))
                                 <div class="alert alert-danger">
-                                    <?php $getDiscount = Session::get('discount') ?>
-                                    {{$int =intval ($getDiscount)}}
-                                </div>
-{{--                            @if(Session::get('discount'))--}}
-{{--                            <?php $getDiscount = Session::get('discount')?>--}}
-{{--                            @dd(1, $getDiscount)--}}
-{{--                            {{ $getDiscount }} đ--}}
+                                    <?php $getDiscount = Session::get('discount');
+                                    $intValue = intval($getDiscount);
 
-{{--                            @endif--}}
+                                    echo $intValue;
+                                    $convertDiscount = intval($getDiscount);
+;
+                                    echo $convertDiscount?>
+
+                                </div>
                         </div>
                     </div>
-
                     <div class="summary-total summary-area">
                         <div class="total-title">{{ __('Thành tiền') }}</div>
-                        <?php $t = 2.00.000;
+                        <?php $t = 0;
                         $money = $totalCart -  $t?>
                         <div class="total-value final-value get-total">{{ number_format($money, 0, '.', '.') }} đ
                             <input hidden name="" value="{{ $money }}">
@@ -320,6 +318,8 @@
                     </div>
                     @else
                     <div class="summary-total summary-area">
+                        <?php $t = number_format($totalCart, 0, '.', '.') ;
+                        echo  $t?>
                         <div class="total-title">{{ __('Thành tiền') }}</div>
                         <div class="total-value final-value get-total">{{ number_format($totalCart, 0, '.', '.') }} đ
                             <input hidden name="" value="{{ $totalCart }}">
