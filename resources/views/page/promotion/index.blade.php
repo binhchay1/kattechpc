@@ -14,11 +14,14 @@
 
 @section('content')
 <div class="container-promotion">
+    @if(isset($layout->banner_promotion_thumbnail))
     <div class="banner-deal-page">
-        <a class="item-banner" style="display:block;margin-bottom:16px">
-            <img class="image-flash-sale" src="{{ asset('/images/banner-sale.jpg') }}" alt="banner-deal" width="1200">
+        <a class="item-banner">
+            <img class="image-flash-sale" src="{{ asset($layout->banner_promotion_thumbnail) }}" alt="banner-deal">
         </a>
     </div>
+    @endif
+
     <div class="saleoff-heading">
         <a>{{ __('Hãy thường xuyên theo dõi các chương trình khuyến mãi để có cơ hội mua HÀNG CHÍNH HÃNG GIÁ TỐT NHẤT') }}</a>
     </div>

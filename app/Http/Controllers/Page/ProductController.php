@@ -18,6 +18,7 @@ use App\Enums\Utility;
 use Cache;
 use Illuminate\Support\Facades\DB;
 use App\Enums\Product;
+use App\Repositories\SocialRepository;
 
 class ProductController extends Controller
 {
@@ -29,6 +30,7 @@ class ProductController extends Controller
     protected $sessionProductViewedRepository;
     protected $postRepository;
     protected $youtubeChannelRepository;
+    protected $socialRepository;
     protected $utility;
 
     public function __construct(
@@ -40,6 +42,7 @@ class ProductController extends Controller
         LayoutRepository $layoutRepository,
         SessionProductViewedRepository $sessionProductViewedRepository,
         YoutubeChannelRepository $youtubeChannelRepository,
+        SocialRepository $socialRepository,
         Utility $utility
     ) {
         $this->postRepository = $postRepository;
@@ -50,6 +53,7 @@ class ProductController extends Controller
         $this->layoutRepository = $layoutRepository;
         $this->sessionProductViewedRepository = $sessionProductViewedRepository;
         $this->youtubeChannelRepository = $youtubeChannelRepository;
+        $this->socialRepository = $socialRepository;
         $this->utility = $utility;
     }
 
@@ -62,6 +66,7 @@ class ProductController extends Controller
         $postRandom5 = $this->postRepository->postRandom6();
         $youtubeRandom = $this->youtubeChannelRepository->index();
         $dataProduct = $this->productRepository->productDetail($slug);
+        $social = $this->socialRepository->index();
 
         if (empty($dataProduct)) {
             return redirect('/404');
@@ -184,7 +189,10 @@ class ProductController extends Controller
 
         return view(
             'page.product.product-detail',
-            compact('youtubeRandom', 'postRandom5', 'countRate', 'countRate1', 'countRate2', 'countRate3', 'countRate4', 'countRate5', 'dataProduct', 'productRelated', 'listComment', 'listCategory', 'listRatings', 'ratingValue', 'productViewed', 'dataBreadcrumb', 'layout')
+            compact('youtubeRandom',
+            'postRandom5', 'countRate',
+            'countRate1', 'countRate2', 'countRate3', 'countRate4', 'countRate5', 'dataProduct', 'productRelated',
+            'listComment', 'listCategory', 'listRatings', 'ratingValue', 'productViewed', 'dataBreadcrumb', 'layout', 'social')
         );
     }
 
@@ -253,6 +261,7 @@ class ProductController extends Controller
         }
 
         $dataCategory = $this->categoryRepository->productByCategory($slug, $isParent, $filters);
+        $social = $this->socialRepository->index();
         $dataBrand = [];
         $dataCategories = [];
 
@@ -408,7 +417,8 @@ class ProductController extends Controller
 
         $layout = $this->layoutRepository->getListLayout();
 
-        return view('page.product.product-category', compact('dataCategories', 'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'listKeyWord', 'dataBreadcrumb', 'layout'));
+        return view('page.product.product-category', compact('dataCategories',
+        'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'listKeyWord', 'dataBreadcrumb', 'layout', 'social'));
     }
 
     function getTopParent($category)

@@ -15,11 +15,13 @@
 @section('content')
 <section class="page-deal container page-hompage container">
     <div class="box-product-deal">
+        @if(isset($layout->banner_promotion_thumbnail))
         <div class="banner-deal-page">
-            <a class="item-banner" style="display:block;margin-bottom:16px">
-                <img class="image-flash-sale" src="{{ asset('/images/banner-sale.jpg') }}" alt="banner-deal">
+            <a class="item-banner">
+                <img class="image-flash-sale" src="{{ asset($layout->banner_promotion_thumbnail) }}" alt="banner-deal">
             </a>
         </div>
+        @endif
 
         <div class="flash-sale-content">
             @if(isset($listFlashSale['flash_sale_list_product_id'], $listFlashSale['flash_sale_timer']))

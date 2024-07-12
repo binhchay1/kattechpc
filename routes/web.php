@@ -6,7 +6,7 @@ use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController as ProductAdmin;
-use App\Http\Controllers\Admin\RattingController;
+use App\Http\Controllers\Admin\RatingController;
 use App\Http\Controllers\Page\BuildPCController;
 use App\Http\Controllers\Admin\BuildPCController as BuildPCAdmin;
 use App\Http\Controllers\Page\ProductController as ProductPage;
@@ -332,8 +332,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
     });
 
     Route::group(['prefix' => 'ratting'], function () {
-        Route::get('/list', [RattingController::class, 'index'])->name('admin.ratting.index');
-        Route::get('/delete/{id}', [RattingController::class, 'deleteRatting'])->name('admin.ratting.delete');
+        Route::get('/list', [RatingController::class, 'index'])->name('admin.ratting.index');
+        Route::get('/delete/{id}', [RatingController::class, 'deleteRatting'])->name('admin.ratting.delete');
     });
 
 

@@ -68,7 +68,7 @@
 
                         <div class="xl:col-span-12">
                             <label for="key_word" class="inline-block mb-2 text-base font-medium">{{ __('Từ khóa') }}</label>
-                            <textarea class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="key_word" name="key_word" placeholder="{{ __('Từ khóa') }}" rows="5">{{ old('key_word', $categoryProduct->key_word) }}</textarea>
+                            <textarea class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="key_word" name="key_word" placeholder="{{ __('Từ khóa') }}" rows="5">{{ old('key_word', $categoryPost->key_word) }}</textarea>
                             @if ($errors->has('key_word'))
                             <span class="text-danger">{{ $errors->first('key_word') }}</span><br>
                             @endif
@@ -77,7 +77,7 @@
 
                         <div class="xl:col-span-12">
                             <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Mô tả') }}</label>
-                            <textarea type="text" id="categoryKeyWord" name="description" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Mô tả')}}">{{ old('description', $categoryProduct->description) }}</textarea>
+                            <textarea type="text" id="categoryKeyWord" name="description" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Mô tả')}}">{{ old('description', $categoryPost->description) }}</textarea>
                             @if ($errors->has('description'))
                             <span class="text-danger" style="color: red">{{ $errors->first('description') }}</span>
                             @endif

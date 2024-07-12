@@ -152,7 +152,7 @@
             <div class="flex sort" id="sort">
                 @if(isset($dataCategory->children))
                 <div class="d-flex flex-direction-column">
-                    <label class="font-bold">{{ __('Thể loại') }}</label>
+                    <label class="font-bold">{{ __('Danh mục') }}</label>
                     <select class="mt-1" id="category-in-product-category" onchange="sortByCategoryChild($(this))">
                         <option value="all">{{ __('Tất cả') }}</option>
                         @foreach($dataCategory->children as $children)
@@ -184,69 +184,74 @@
         </div>
     </div>
     <div class="row2">
+        <div>
+            <h2>{{ __('Sắp xếp theo:') }}</h2>
+        </div>
+
         <div class="flex" id="select-sort">
-            <div data-id="new" data-type="sort" class="select button-filter">
+            <div data-id="new" data-type="sort" class="select button-filter" style="border: none;">
                 <button>{{ __('Hàng mới về') }}</button>
             </div>
-            <div data-id="price-asc" data-type="sort" class="select button-filter">
+            <div data-id="price-asc" data-type="sort" class="select button-filter" style="border: none;">
                 <button>{{ __('Giá tăng dần') }}</button>
             </div>
-            <div data-id="price-desc" data-type="sort" class="select button-filter">
+            <div data-id="price-desc" data-type="sort" class="select button-filter" style="border: none;">
                 <button>{{ __('Giá giảm dần') }}</button>
             </div>
-            <div data-id="name-asc" data-type="sort" class="select button-filter">
+            <div data-id="name-asc" data-type="sort" class="select button-filter" style="border: none;">
                 <button>{{ __('Tên từ A -> Z') }}</button>
             </div>
-            <div data-id="name-desc" data-type="sort" class="select button-filter">
+            <div data-id="name-desc" data-type="sort" class="select button-filter" style="border: none;">
                 <button>{{ __('Tên từ Z -> A') }}</button>
             </div>
         </div>
-        <div class="list-product-category list-product-flex d-flex flex-wrap gap-12">
-            @foreach($dataCategories as $product)
-            <div class="product-item">
-                <a href="{{ route('productDetail', $product['slug']) }}" class="product-image">
-                    <img width="200" height="150" alt="{{ $product->name }}" class="lazy hover-for-tooltips hover-image" src="{{ asset(json_decode($product->image, true)[0]) }}" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
-                    <span class="p-type-holder">
-                        @if($product->hot_status)
-                        <i class="p-icon-type p-icon-hot"></i>
-                        @endif
-                    </span>
-                    <span class="p-type-holder p-type-holder-2">
-                        @if($product->hot_sale_status)
-                        <i class="p-icon-type p-icon-best-sale"></i>
-                        @endif
-                    </span>
-                </a>
+    </div>
 
-                <div class="product-info flex-1">
-                    <a href="{{ route('productDetail', $product['slug']) }}">
-                        <h3 class="product-title line-clamp-3">{{ $product->name }}</h3>
-                    </a>
-                    @if($product->new_price != null)
-                    <div class="product-martket-main d-flex align-items-center">
-                        <p class="product-market-price">{{ $product->price }} đ</p>
-                        <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
-                        <div class="product-percent-price">
-                            -{{ ($new_price) }} %
-                        </div>
-                    </div>
-
-                    <div class="product-price-main font-weight-600">
-                        {{ $product->new_price }} đ
-                    </div>
-                    @else
-                    <div class="product-price-main font-weight-600">
-                        {{ $product->price }} đ
-                    </div>
+    <div class="list-product-category list-product-flex d-flex flex-wrap gap-12">
+        @foreach($dataCategories as $product)
+        <div class="product-item">
+            <a href="{{ route('productDetail', $product['slug']) }}" class="product-image">
+                <img width="200" height="150" alt="{{ $product->name }}" class="lazy hover-for-tooltips hover-image" src="{{ asset(json_decode($product->image, true)[0]) }}" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
+                <span class="p-type-holder">
+                    @if($product->hot_status)
+                    <i class="p-icon-type p-icon-hot"></i>
                     @endif
+                </span>
+                <span class="p-type-holder p-type-holder-2">
+                    @if($product->hot_sale_status)
+                    <i class="p-icon-type p-icon-best-sale"></i>
+                    @endif
+                </span>
+            </a>
 
-                    <div class="product-description">
-                        {{ Str::limit($product->short_description, 50) }}
+            <div class="product-info flex-1">
+                <a href="{{ route('productDetail', $product['slug']) }}">
+                    <h3 class="product-title line-clamp-3">{{ $product->name }}</h3>
+                </a>
+                @if($product->new_price != null)
+                <div class="product-martket-main d-flex align-items-center">
+                    <p class="product-market-price">{{ $product->price }} đ</p>
+                    <?php $new_price = floor(100 - (((int) $product->new_price / (int) $product->price) * 100)) ?>
+                    <div class="product-percent-price">
+                        -{{ ($new_price) }} %
                     </div>
                 </div>
+
+                <div class="product-price-main font-weight-600">
+                    {{ $product->new_price }} đ
+                </div>
+                @else
+                <div class="product-price-main font-weight-600">
+                    {{ $product->price }} đ
+                </div>
+                @endif
+
+                <div class="product-description">
+                    {{ Str::limit($product->short_description, 50) }}
+                </div>
             </div>
-            @endforeach
         </div>
+        @endforeach
     </div>
     <div class="center">
         <div class="pagination">
