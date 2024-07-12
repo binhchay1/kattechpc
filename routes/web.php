@@ -310,7 +310,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
 
     Route::group(['prefix' => 'social'], function () {
         Route::get('/list', [SocialController::class, 'index'])->name('admin.social.index');
-        Route::post('/update', [SocialController::class, 'storeSocial'])->name('admin.social.update');
+        Route::get('/create-social', [SocialController::class, 'create'])->name('admin.social.create');
+        Route::post('/store-social', [SocialController::class, 'store'])->name('admin.social.store');
+        Route::get('/edit-social/{id}', [SocialController::class, 'edit'])->name('admin.social.edit');
+        Route::post('/update-social/{id}', [SocialController::class, 'update'])->name('admin.social.update');
+        Route::get('/delete-social/{id}', [SocialController::class, 'delete'])->name('admin.social.delete');
     });
 
     Route::group(['prefix' => 'customer-review'], function () {
@@ -321,18 +325,18 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
         Route::post('/update/{id}', [CustomerReviewController::class, 'updateCustomerReview'])->name('admin.customer.review.update');
         Route::get('/delete/{id}', [CustomerReviewController::class, 'deleteCustomerReview'])->name('admin.customer.review.delete');
     });
-    
+
     Route::group(['prefix' => 'comment'], function () {
         Route::get('/list', [CommentController::class, 'index'])->name('admin.comment.index');
         Route::get('/delete/{id}', [CommentController::class, 'deleteCustomerReview'])->name('admin.comment.delete');
     });
-    
+
     Route::group(['prefix' => 'ratting'], function () {
         Route::get('/list', [RattingController::class, 'index'])->name('admin.ratting.index');
         Route::get('/delete/{id}', [RattingController::class, 'deleteRatting'])->name('admin.ratting.delete');
     });
-    
-    
+
+
     Route::get('/products/{productId}/upload', [ProductImageController::class, 'index']);
     Route::post('/products/{productId}/upload', [ProductImageController::class, 'store']);
     Route::get('/product-image/{productImageId}/delete', [ProductImageController::class, 'destroy']);

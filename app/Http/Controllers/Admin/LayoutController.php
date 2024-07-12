@@ -100,6 +100,11 @@ class LayoutController extends Controller
                 $input['small_banner_thumbnail_right']->move(public_path('images/upload/layout/'), $input['small_banner_thumbnail_right']->getClientOriginalName());
                 $input['small_banner_thumbnail_right'] = '/images/upload/layout/' . $input['small_banner_thumbnail_right']->getClientOriginalName();
             }
+
+            if (isset($input['banner_promotion_thumbnail'])) {
+                $input['banner_promotion_thumbnail']->move(public_path('images/upload/layout/'), $input['banner_promotion_thumbnail']->getClientOriginalName());
+                $input['banner_promotion_thumbnail'] = '/images/upload/layout/' . $input['banner_promotion_thumbnail']->getClientOriginalName();
+            }
         }
 
         if (!empty($getLayout)) {

@@ -103,6 +103,7 @@
     </div>
 
     <div class="global-fixed-right">
+        
         <a href="https://www.facebook.com/kattechpc" aria-label="Face Book" target="_blank" class="fix-face d-flex align-items-center justify-content-center">
             <img width="25" height="25" alt="mes" src="{{ asset('images/logo/icon-facebook.png') }}">
         </a>

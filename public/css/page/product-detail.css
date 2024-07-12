@@ -1244,6 +1244,10 @@ tr:nth-child(even) {
     margin: auto !important;
 }
 
+.swiper-slide-image {
+    padding-top: 0 !important;
+}
+
 @media screen and (max-width: 992px) {
     .swiper-product-related .swiper-slide1 {
         width: 100% !important;

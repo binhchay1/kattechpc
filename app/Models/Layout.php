@@ -35,5 +35,7 @@ class Layout extends Model
         'permarklink_small_banner_thumbnail_left',
         'permarklink_small_banner_thumbnail_right',
         'footer_slide_thumbnail',
+        'banner_promotion_thumbnail',
+        'hide_banner_promotion_thumbnail',
     ];
 }

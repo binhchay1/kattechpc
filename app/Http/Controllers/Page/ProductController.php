@@ -179,6 +179,7 @@ class ProductController extends Controller
             }
         }
 
+        $dataBreadcrumb = array_reverse($dataBreadcrumb);
         $layout = $this->layoutRepository->getListLayout();
 
         return view(
@@ -210,7 +211,7 @@ class ProductController extends Controller
             return redirect()->back()->with('message', __('Bạn cần đăng nhập để đánh giá sản phẩm!'));
         }
         $input = $request->except(['_token']);
-    
+
             $input = $request->all();
             $this->ratingRepository->store($input);
 
@@ -265,14 +266,14 @@ class ProductController extends Controller
 
         foreach ($dataComplete as $product) {
             if (isset($product->brands->name)) {
-                if (!in_array($product->brands->name, $dataBrand)) {
+                if (!array_key_exists($product->brands->name, $dataBrand)) {
                     $arrBrand = [
                         'name' => $product->brands->name,
                         'image' => $product->brands->image,
                         'id' => $product->brands->id,
                     ];
 
-                    $dataBrand[] = $arrBrand;
+                    $dataBrand[$product->brands->name] = $arrBrand;
                 }
             }
         }
