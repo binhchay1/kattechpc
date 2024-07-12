@@ -302,9 +302,7 @@
 
                                     echo $intValue;
                                     $convertDiscount = intval($getDiscount);
-;
                                     echo $convertDiscount?>
-
                                 </div>
                         </div>
                     </div>

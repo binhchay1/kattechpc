@@ -2334,8 +2334,8 @@ a {
     color: #fff;
 }
 
-.hover-image:hover {
-    transform: translate(0, -10px);
+.hover-image {
+    transition: 0.5s linear;
 }
 
 .p-quantity-sale i {
