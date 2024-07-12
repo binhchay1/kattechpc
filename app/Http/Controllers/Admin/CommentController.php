@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\CommentRepository;
-use Illuminate\Http\Request;
-use function Termwind\renderUsing;
 
 class CommentController extends Controller
 {
