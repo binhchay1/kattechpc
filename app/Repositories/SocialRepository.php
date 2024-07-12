@@ -14,7 +14,7 @@ class SocialRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->get();
+        return $this->model->first();
     }
 
     public function create($input)
@@ -30,5 +30,10 @@ class SocialRepository extends BaseRepository
     public function update($input, $id)
     {
         return $this->model->where('id', $id)->update($input);
+    }
+    
+    public function deleteByIdThumb($id)
+    {
+        return $this->model->where('id', 1)->update([$id => null]);
     }
 }

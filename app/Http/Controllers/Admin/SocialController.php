@@ -17,9 +17,9 @@ class SocialController extends Controller
 
     public function index()
     {
-        $listSocial = $this->socialRepository->index();
+        $social = $this->socialRepository->index();
 
-        return view('admin.social.index', compact('listSocial'));
+        return view('admin.social.index', compact('social'));
     }
 
     public function create()
@@ -54,9 +54,14 @@ class SocialController extends Controller
         return redirect()->route('admin.social.index')->with('success', __('Mạng xã hội được thay đổi thành công'));
     }
 
-    public function delete( $id)
+    public function delete( Request $request)
     {
-        $this->socialRepository->destroy($id);
+        $id = $request->get('id');
+        if (!isset($id)) {
+            abort(404);
+        }
+    
+        $this->socialRepository->deleteByIdThumb($id);
         return back()->with('success',  __('Mạng xã hội được xóa thành công'));
     }
 }
