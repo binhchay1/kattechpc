@@ -54,6 +54,20 @@ $(document).ready(function () {
             success: function (data) {
                 if ($.isEmptyObject(data.errors)) {
                     $(".error_msg").html(data.success);
+                    let discount_amount = data.discount_total;
+                    let final_discount_amount = ((total_amount * discount_amount) / 100);
+                    let before_discount_amount = (total_amount - final_discount_amount);
+                    $('#total-amount').text(before_discount_amount.toString().replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.') + ' đ');
+
+                    let strAppend = `<div class="summary summary-area">
+                        <div class="total-value final-value summary-total" style="margin: 0;">Giảm giá</div>
+                        <div class="total-value final-value get-total" style="text-transform: inherit">
+                            <div class="alert alert-danger">
+                                `+ final_discount_amount.toString().replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.') + ` đ
+                            </div>
+                        </div>
+                    </div>`;
+                    $('.add-coupon-area').append(strAppend);
                 } else {
                     let resp = data.errors;
                     $(".error_msg").html(resp);

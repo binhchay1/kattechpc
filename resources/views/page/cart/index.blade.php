@@ -284,44 +284,42 @@
                         <div class="basket-module" id="add_discount">
                             <label for="promo-code">{{__('Nhập mã khuyến mãi')}}</label>
                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                            <input id="promo-code" type="text" name="discount_amount" class="promo-code-field">
+                            @if(Session::has('discount-total'))
+                            <?php $getDiscount = Session::get('discount-total');
+                            $intValue = (int) str_replace(',', '', $getDiscount);
+                            ?>
+                            <input id="promo-code" type="text" name="discount_amount" value="{{ Session::get('discount-code') }}" class="promo-code-field">
+                            @else
+                            <input id="promo-code" type="text" name="discount_amount" value="" class="promo-code-field">
+                            @endif
                             <p class="error_msg" id="promo-code" style="color: red"></p>
-                            <a type="button" class=" btn-submit promo-code-cta">Apply</a>
+                            <a type="button" class="btn-submit promo-code-cta">{{ __('Áp dụng') }}</a>
                         </div>
                     </div>
                     <div class="summary summary-area">
                         <div class="input-address summary-total-items total-title">{{ __('Tổng cộng') }} </div>
                     </div>
-                    @if(Session::has('discount'))
+                    @if(Session::has('discount-total'))
                     <div class="summary summary-area">
                         <div class="total-value final-value summary-total" style="margin: 0;">{{__('Giảm giá')}}</div>
                         <div class="total-value final-value get-total" style="text-transform: inherit">
-                                <div class="alert alert-danger">
-                                    <?php $getDiscount = Session::get('discount');
-                                    $intValue = intval($getDiscount);
-
-                                    echo $intValue;
-                                    $convertDiscount = intval($getDiscount);
-;
-                                    echo $convertDiscount?>
-
-                                </div>
+                            <div class="alert alert-danger">
+                                {{ number_format((($intValue * $totalCart) / 100), 0, '.', '.') }} đ
+                            </div>
                         </div>
                     </div>
                     <div class="summary-total summary-area">
                         <div class="total-title">{{ __('Thành tiền') }}</div>
-                        <?php $t = 0;
-                        $money = $totalCart -  $t?>
-                        <div class="total-value final-value get-total">{{ number_format($money, 0, '.', '.') }} đ
+                        <?php $money = $totalCart - (($intValue * $totalCart) / 100) ?>
+                        <div class="total-value final-value get-total" id="total-amount">{{ number_format($money, 0, '.', '.') }} đ
                             <input hidden name="" value="{{ $money }}">
                         </div>
                     </div>
                     @else
+                    <div class="add-coupon-area"></div>
                     <div class="summary-total summary-area">
-                        <?php $t = number_format($totalCart, 0, '.', '.') ;
-                        echo  $t?>
                         <div class="total-title">{{ __('Thành tiền') }}</div>
-                        <div class="total-value final-value get-total">{{ number_format($totalCart, 0, '.', '.') }} đ
+                        <div class="total-value final-value get-total" id="total-amount">{{ number_format($totalCart, 0, '.', '.') }} đ
                             <input hidden name="" value="{{ $totalCart }}">
                         </div>
                     </div>
@@ -345,11 +343,13 @@
 @endsection
 
 @section('js')
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script>
+    const total_amount = `<?php echo $totalCart ?>`;
+</script>
 <script src="{{ asset('js/page/cart.js') }}"></script>
 @endsection

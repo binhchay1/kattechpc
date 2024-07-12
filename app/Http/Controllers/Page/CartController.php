@@ -7,14 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Jobs\SendMailByGoogle;
 use App\Mail\OrderPlacedEmail;
-use App\Models\Coupon;
 use App\Repositories\OrderDetailRepository;
 use App\Repositories\OrderRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\LayoutRepository;
 use Illuminate\Http\Request;
 use App\Mail\OrderDetail;
-use Illuminate\Support\Facades\Mail;
+use App\Repositories\CouponRepository;
 use Maatwebsite\Excel\Facades\Excel;
 use Session;
 use Cart;
@@ -27,17 +26,20 @@ class CartController extends Controller
     private $orderRepository;
     private $orderDetailRepository;
     private $layoutRepository;
+    private $couponRepository;
 
     public function __construct(
         ProductRepository $productRepository,
         OrderRepository $orderRepository,
         OrderDetailRepository $orderDetailRepository,
-        LayoutRepository $layoutRepository
+        LayoutRepository $layoutRepository,
+        CouponRepository $couponRepository
     ) {
         $this->productRepository = $productRepository;
         $this->orderRepository = $orderRepository;
         $this->orderDetailRepository = $orderDetailRepository;
         $this->layoutRepository = $layoutRepository;
+        $this->couponRepository = $couponRepository;
     }
 
     public function addCart(Request $request, $slug)
@@ -327,13 +329,15 @@ class CartController extends Controller
 
     public function addCoupon(Request $request)
     {
-        $coupon = Coupon::where('code', $request->discount_amount)->first();
+        $coupon = $this->couponRepository->getCouponByCode($request->get('discount_amount'));
         if (!$coupon) {
             return response()->json(['errors' => __('Không tìm thấy mã giảm giá, làm ơn nhập lại!.')]);
         }
-        Session::put('discount', $coupon->discount_amount);
-    
-        return response()->json(['success' => __('Mã giảm giá được thêm thành công')]);
+
+        Session::put('discount-total', $coupon->discount_amount);
+        Session::put('discount-code', $coupon->code);
+
+        return response()->json(['success' => __('Mã giảm giá được thêm thành công'), 'discount_total' => $coupon->discount_amount]);
     }
 
     public function exportExcel()
