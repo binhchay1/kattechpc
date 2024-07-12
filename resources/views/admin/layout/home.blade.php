@@ -224,7 +224,7 @@
                 </div>
             </div>
 
-            <div class="xl:col-span-3">
+            <div class="xl:col-span-4">
                 <div class="form-group">
                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Ảnh biểu ngữ trái') }}</label>
                     <div class="">
@@ -261,7 +261,7 @@
                 </div>
             </div>
 
-            <div class="xl:col-span-3">
+            <div class="xl:col-span-4">
                 <div class="form-group">
                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Ảnh biểu ngữ phải') }}</label>
                     <div class="">
@@ -298,7 +298,7 @@
                 </div>
             </div>
 
-            <div class="xl:col-span-3">
+            <div class="xl:col-span-4">
                 <div class="form-group">
                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Ảnh banner quảng cáo ') }}</label>
                     <div class="">

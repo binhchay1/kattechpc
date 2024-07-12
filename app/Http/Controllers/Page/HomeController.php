@@ -248,6 +248,7 @@ class HomeController extends Controller
         $getTopSale = $this->layoutRepository->listHotSale();
         $layout = $this->layoutRepository->getListLayout();
         $social = $this->socialRepository->index();
+        $listTopSale = [];
 
         if (!empty($getTopSale)) {
             if (isset($getTopSale->hot_sale_list_product_id)) {

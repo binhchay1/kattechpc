@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::table('layout', function (Blueprint $table) {
             $table->integer('hide_banner_promotion_thumbnail')->default(0);
             $table->text('permarklink_banner_promotion_thumbnail')->nullable();
-
-
         });
     }
 

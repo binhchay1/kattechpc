@@ -2376,6 +2376,12 @@ a {
     color: #007bff !important;
 }
 
+.item-banner {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
 @media screen and (max-width: 768px) {
     .main-menu-category {
         position: fixed;
