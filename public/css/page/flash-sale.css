@@ -26,7 +26,7 @@
 }
 
 .product-market-price {
-    margin-top: 10px;
+    margin-top: 25px;
     font-size: 15px;
     font-weight: 550;
     color: gray;
@@ -143,8 +143,13 @@
 
 @media screen and (max-width: 600px) {
     .column {
-        width: 100%;
+        width: 100% !important;
         display: block;
         margin-bottom: 20px;
+    }
+
+    .product-market-price {
+        margin-top: 15px !important;
+
     }
 }
