@@ -31,6 +31,4 @@ class SocialRepository extends BaseRepository
     {
         return $this->model->where('id', $id)->update($input);
     }
-
-
 }
