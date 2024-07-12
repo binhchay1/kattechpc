@@ -2391,6 +2391,7 @@ a {
         transform: translateX(-800px);
         padding-top: 30px;
         overflow: scroll;
+        z-index: 99999999999999999999999;
     }
 
     .show-search .search-mobile {
