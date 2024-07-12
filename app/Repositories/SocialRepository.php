@@ -31,7 +31,7 @@ class SocialRepository extends BaseRepository
     {
         return $this->model->where('id', $id)->update($input);
     }
-    
+
     public function deleteByIdThumb($id)
     {
         return $this->model->where('id', 1)->update([$id => null]);

@@ -5,19 +5,23 @@ namespace App\Http\Controllers\Page;
 use App\Repositories\PostRepository;
 use App\Http\Controllers\Controller;
 use App\Repositories\CategoryPostRepository;
+use App\Repositories\SocialRepository;
 use Cache;
 
 class PostController extends Controller
 {
     protected $postRepository;
     protected $categoryPostRepository;
+    protected $socialRepository;
 
     public function __construct(
         PostRepository $postRepository,
-        CategoryPostRepository $categoryPostRepository
+        CategoryPostRepository $categoryPostRepository,
+        SocialRepository $socialRepository
     ) {
         $this->postRepository = $postRepository;
         $this->categoryPostRepository = $categoryPostRepository;
+        $this->socialRepository = $socialRepository;
     }
 
     public function postDetail($slug)
@@ -41,6 +45,7 @@ class PostController extends Controller
         $getCategory = $this->categoryPostRepository->show($post->category_id);
         $currentCateID = $getCategory->parent;
         $dataBreadcrumb = [];
+        $social = $this->socialRepository->index();
 
         if ($currentCateID != 0) {
             $endWhile = false;
@@ -59,7 +64,7 @@ class PostController extends Controller
             $dataBreadcrumb[$getCategory->name] = route('post.category', $getCategory->slug);
         }
 
-        return view('page.post.post-detail', compact('firstPosts1', 'postNews', 'post', 'postRandom', 'listCategory', 'dataBreadcrumb'));
+        return view('page.post.post-detail', compact('firstPosts1', 'postNews', 'post', 'postRandom', 'listCategory', 'dataBreadcrumb', 'social'));
     }
 
     public function postCategory($slug)
@@ -70,6 +75,7 @@ class PostController extends Controller
 
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $social = $this->socialRepository->index();
         $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
 
         $postCategory = $this->categoryPostRepository->getCatePost($slug);
@@ -110,7 +116,8 @@ class PostController extends Controller
             'postCategory',
             'listCategory',
             'dataPostCategory',
-            'dataBreadcrumb'
+            'dataBreadcrumb',
+            'social'
         ));
     }
 }

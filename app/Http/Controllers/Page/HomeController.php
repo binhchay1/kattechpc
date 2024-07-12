@@ -19,6 +19,7 @@ use App\Repositories\PromotionRepository;
 use Illuminate\Http\Request;
 use App\Repositories\BrandRepository;
 use App\Repositories\CustomerReviewRepository;
+use App\Repositories\SocialRepository;
 use App\Repositories\YoutubeChannelRepository;
 use Illuminate\Support\Facades\Config;
 use Detection\MobileDetect;
@@ -37,6 +38,7 @@ class HomeController extends Controller
     protected $brandRepository;
     protected $youtubeChannelRepository;
     protected $customerReviewRepository;
+    protected $socialRepository;
     protected $utility;
 
     public function __construct(
@@ -51,7 +53,8 @@ class HomeController extends Controller
         CategoryPostRepository $categoryPostRepository,
         BrandRepository $brandRepository,
         YoutubeChannelRepository $youtubeChannelRepository,
-        CustomerReviewRepository $customerReviewRepository
+        CustomerReviewRepository $customerReviewRepository,
+        SocialRepository $socialRepository
     ) {
         $this->utility = $utility;
         $this->productRepository = $productRepository;
@@ -65,6 +68,7 @@ class HomeController extends Controller
         $this->brandRepository = $brandRepository;
         $this->youtubeChannelRepository = $youtubeChannelRepository;
         $this->customerReviewRepository = $customerReviewRepository;
+        $this->socialRepository = $socialRepository;
     }
 
     public function changeLocate($locale)
@@ -86,108 +90,120 @@ class HomeController extends Controller
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
-        return view('page.other.policy', compact('listCategory', 'layout'));
+        return view('page.other.policy', compact('listCategory', 'layout', 'social'));
     }
 
     public function paymentOnline()
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
-        return view('page.other.payment-online', compact('listCategory', 'layout'));
+        return view('page.other.payment-online', compact('listCategory', 'layout', 'social'));
     }
 
     public function payment()
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
-        return view('page.other.payment', compact('listCategory', 'layout'));
+        return view('page.other.payment', compact('listCategory', 'layout', 'social'));
     }
 
     public function rules()
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
-        return view('page.other.rule', compact('listCategory', 'layout'));
+        return view('page.other.rule', compact('listCategory', 'layout', 'social'));
     }
 
     public function complaint()
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
-        return view('page.other.complaint', compact('listCategory', 'layout'));
+        return view('page.other.complaint', compact('listCategory', 'layout', 'social'));
     }
 
     public function productPolicy()
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
-        return view('page.other.product-policy', compact('listCategory', 'layout'));
+        return view('page.other.product-policy', compact('listCategory', 'layout', 'social'));
     }
 
     public function businessPolicy()
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
-        return view('page.other.business-policy', compact('listCategory', 'layout'));
+        return view('page.other.business-policy', compact('listCategory', 'layout', 'social'));
     }
 
     public function electronicBill()
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
-        return view('page.other.electronic-bill', compact('listCategory', 'layout'));
+        return view('page.other.electronic-bill', compact('listCategory', 'layout', 'social'));
     }
 
     public function securityCustomer()
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
-        return view('page.other.security-customer', compact('listCategory', 'layout'));
+        return view('page.other.security-customer', compact('listCategory', 'layout', 'social'));
     }
 
     public function introduction()
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
-        return view('page.other.introduction', compact('listCategory', 'layout'));
+        return view('page.other.introduction', compact('listCategory', 'layout', 'social'));
     }
 
     public function contactBusiness()
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
-        return view('page.other.contact-business', compact('listCategory', 'layout'));
+        return view('page.other.contact-business', compact('listCategory', 'layout', 'social'));
     }
 
     public function viewThankRegister($slug)
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
-        return view('auth.register-success', compact('listCategory', 'layout'));
+        return view('auth.register-success', compact('listCategory', 'layout', 'social'));
     }
 
     public function viewFlashSale()
@@ -196,6 +212,7 @@ class HomeController extends Controller
         $listCategory = Cache::store('redis')->get($key);
         $getFlashSale = $this->layoutRepository->getFlashSale();
         $layout = $this->layoutRepository->getListLayout();
+        $social = $this->socialRepository->index();
 
         if (!empty($getFlashSale)) {
 
@@ -221,7 +238,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('page.flash-sale', compact('listCategory', 'getFlashSale', 'listFlashSale', 'layout'));
+        return view('page.flash-sale', compact('listCategory', 'getFlashSale', 'listFlashSale', 'layout', 'social'));
     }
 
     public function viewTopSale()
@@ -230,6 +247,7 @@ class HomeController extends Controller
         $listCategory = Cache::store('redis')->get($key);
         $getTopSale = $this->layoutRepository->listHotSale();
         $layout = $this->layoutRepository->getListLayout();
+        $social = $this->socialRepository->index();
 
         if (!empty($getTopSale)) {
             if (isset($getTopSale->hot_sale_list_product_id)) {
@@ -249,7 +267,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('page.top-sale', compact('listCategory', 'getTopSale', 'listTopSale', 'layout'));
+        return view('page.top-sale', compact('listCategory', 'getTopSale', 'listTopSale', 'layout', 'social'));
     }
 
     public function viewPromotion()
@@ -259,12 +277,14 @@ class HomeController extends Controller
         $listCategory = Cache::store('redis')->get($key);
         $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
         $layout = $this->layoutRepository->getListLayout();
+        $social = $this->socialRepository->index();
 
         return view('page.promotion.index', compact(
             'listPromotionDESC',
             'listCategory',
             'listCategoryPost',
-            'layout'
+            'layout',
+            'social'
         ));
     }
 
@@ -281,8 +301,9 @@ class HomeController extends Controller
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         $layout = $this->layoutRepository->getListLayout();
+        $social = $this->socialRepository->index();
 
-        return view('page.promotion.promotion-detail', compact('firstPosts1', 'postRandom', 'promotion', 'listPromotion', 'listCategory', 'layout'));
+        return view('page.promotion.promotion-detail', compact('firstPosts1', 'postRandom', 'promotion', 'listPromotion', 'listCategory', 'layout', 'social'));
     }
 
     public function viewPost()
@@ -300,6 +321,7 @@ class HomeController extends Controller
         $listCategory = Cache::store('redis')->get($key);
         $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
         $layout = $this->layoutRepository->getListLayout();
+        $social = $this->socialRepository->index();
 
         return view('page.post.posts', compact(
             'listPost',
@@ -310,7 +332,8 @@ class HomeController extends Controller
             'postRandom5',
             'listCategory',
             'listCategoryPost',
-            'layout'
+            'layout',
+            'social'
         ));
     }
 
@@ -337,6 +360,7 @@ class HomeController extends Controller
         $getFlashSale = $this->layoutRepository->getFlashSale();
         $listYoutube = $this->youtubeChannelRepository->getListYoutube();
         $listCustomerReview = $this->customerReviewRepository->getListCustomerReview();
+        $social = $this->socialRepository->index();
         $listFlashSale = [];
         $listSlide = [];
         $listSlideFooter = [];
@@ -387,7 +411,8 @@ class HomeController extends Controller
             'listYoutube',
             'listCustomerReview',
             'listSlideFooter',
-            'isMobile'
+            'isMobile',
+            'social'
         ));
     }
 
@@ -396,6 +421,7 @@ class HomeController extends Controller
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
         $layout = $this->layoutRepository->getListLayout();
+        $social = $this->socialRepository->index();
         $search = $request->get('q');
         $isList = false;
         $listProducts = [];
@@ -407,19 +433,20 @@ class HomeController extends Controller
             }
         }
 
-        return view('page.search', compact('listProducts', 'search', 'isList', 'listCategory', 'dataBrand', 'layout'));
+        return view('page.search', compact('listProducts', 'search', 'isList', 'listCategory', 'dataBrand', 'layout', 'social'));
     }
 
     public function viewLandingPage($slug)
     {
         $getLandingPage = $this->landingPageRepository->getBySlug($slug);
         $layout = $this->layoutRepository->getListLayout();
+        $social = $this->socialRepository->index();
         if (!$getLandingPage) {
             return redirect('/404');
         }
         $content = $getLandingPage->content;
 
-        return view('page.landing-page', compact('content', 'layout'));
+        return view('page.landing-page', compact('content', 'layout', 'social'));
     }
 
     public function storeCustomContact(Request $request)
@@ -434,8 +461,9 @@ class HomeController extends Controller
     public function staffLogin()
     {
         $layout = $this->layoutRepository->getListLayout();
+        $social = $this->socialRepository->index();
 
-        return view('auth.login-staff', compact('layout'));
+        return view('auth.login-staff', compact('layout', 'social'));
     }
 
     public function postStaffLogin(LoginRequest $request)

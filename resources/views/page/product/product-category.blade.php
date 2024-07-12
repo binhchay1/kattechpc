@@ -152,7 +152,7 @@
             <div class="flex sort" id="sort">
                 @if(isset($dataCategory->children))
                 <div class="d-flex flex-direction-column">
-                    <label class="font-bold">{{ __('Thể loại') }}</label>
+                    <label class="font-bold">{{ __('Danh mục') }}</label>
                     <select class="mt-1" id="category-in-product-category" onchange="sortByCategoryChild($(this))">
                         <option value="all">{{ __('Tất cả') }}</option>
                         @foreach($dataCategory->children as $children)
@@ -184,20 +184,24 @@
         </div>
     </div>
     <div class="row2">
+        <div>
+            <h2>{{ __('Sắp xếp theo:') }}</h2>
+        </div>
+
         <div class="flex" id="select-sort">
-            <div data-id="new" data-type="sort" class="select button-filter">
+            <div data-id="new" data-type="sort" class="select button-filter" style="border: none;">
                 <button>{{ __('Hàng mới về') }}</button>
             </div>
-            <div data-id="price-asc" data-type="sort" class="select button-filter">
+            <div data-id="price-asc" data-type="sort" class="select button-filter" style="border: none;">
                 <button>{{ __('Giá tăng dần') }}</button>
             </div>
-            <div data-id="price-desc" data-type="sort" class="select button-filter">
+            <div data-id="price-desc" data-type="sort" class="select button-filter" style="border: none;">
                 <button>{{ __('Giá giảm dần') }}</button>
             </div>
-            <div data-id="name-asc" data-type="sort" class="select button-filter">
+            <div data-id="name-asc" data-type="sort" class="select button-filter" style="border: none;">
                 <button>{{ __('Tên từ A -> Z') }}</button>
             </div>
-            <div data-id="name-desc" data-type="sort" class="select button-filter">
+            <div data-id="name-desc" data-type="sort" class="select button-filter" style="border: none;">
                 <button>{{ __('Tên từ Z -> A') }}</button>
             </div>
         </div>
