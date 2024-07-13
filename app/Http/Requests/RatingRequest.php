@@ -23,6 +23,7 @@ class RatingRequest extends FormRequest
     {
         return [
             'content' =>'required|max:500',
+            'rating_product' =>'required',
         ];
     }
 
@@ -31,6 +32,7 @@ class RatingRequest extends FormRequest
         return [
             'content.required' => __('Nội dung không được để trống'),
             'content.max' => __('Nội dung không vượt quá 191 kí tự'),
+            'rating_product.required' => __('Đánh giá không được để trống'),
         ];
     }
 }

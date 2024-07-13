@@ -75,6 +75,15 @@
                                     <div class="show-button" style="display: flex">
                                                 <a data-modal-target="addUserModal" class="edit-button block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200" href="{{route('admin.user.edit', $user['id'])}}"><i data-lucide="file-edit" class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span class="align-middle">{{__('Sửa')}}</span></a>
                                                 <a data-modal-target="deleteModal" class="delete-button block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200" href="#!"><i data-lucide="trash-2" class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span class="align-middle">{{__('Xóa')}}</span></a>
+                                        @if($user->role != "admin")
+                                        <a data-modal-target="addUserModal" class="lock-button block px-4 py-1.5 text-base transition-all duration-200 ease-linear text-slate-600 dropdown-item hover:bg-slate-100 hover:text-slate-500 focus:bg-slate-100 focus:text-slate-500 dark:text-zink-100 dark:hover:bg-zink-500 dark:hover:text-zink-200 dark:focus:bg-zink-500 dark:focus:text-zink-200" href="{{route('admin.user.lockUser', $user['id'])}}"><i data-lucide="lock" class="inline-block size-3 ltr:mr-1 rtl:ml-1"></i> <span class="align-middle">
+                                                @if($user->lock_user == null )
+                                                    {{__('Tạm khóa')}}
+                                                @elseif($user->lock_user == 1 )
+                                                    {{__('Đang tạm khóa')}}
+                                                @endif
+                                            </span></a>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>

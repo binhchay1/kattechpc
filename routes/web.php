@@ -226,6 +226,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
         Route::get('/update/{user}', [UserController::class, 'editUser'])->name('admin.user.edit');
         Route::post('/update/{user}', [UserController::class, 'updateUser'])->name('admin.user.update');
         Route::get('/delete/{id}', [UserController::class, 'deleteUser'])->name('admin.user.delete');
+        Route::get('/lock-user/{id}', [UserController::class, 'lockUser'])->name('admin.user.lockUser');
     });
 
     Route::group(['prefix' => 'roles'], function () {

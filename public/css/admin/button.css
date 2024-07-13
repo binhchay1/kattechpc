@@ -31,3 +31,10 @@
     color: white;
     border-radius: 5px;
 }
+
+
+.show-button .lock-button {
+    background: grey;
+    color: white;
+    border-radius: 5px;
+}

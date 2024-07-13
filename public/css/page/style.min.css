@@ -725,6 +725,9 @@ a:hover {
     border-radius: 7px;
     height: 100%;
     margin: 0;
+    text-align: center;
+    width: 100%;
+    font-weight: 600;
 }
 
 .product-slide-main {
@@ -2398,6 +2401,22 @@ a {
         padding-top: 30px;
         overflow: scroll;
         z-index: 99999999999999999999999;
+    }
+
+    .box-right {
+        display: none;
+    }
+
+    .box-right1 {
+        display: block !important;
+    }
+
+    .box-flash-sale .box-middle {
+        width: 100% !important;
+    }
+
+    .time-count b {
+        padding:  0 !important;
     }
 
     .show-search .search-mobile {

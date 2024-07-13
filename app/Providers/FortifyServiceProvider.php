@@ -82,11 +82,14 @@ class FortifyServiceProvider extends ServiceProvider
         {
             public function toResponse($request)
             {
-                if (Auth::user()->role == Role::ADMIN) {
-                    return redirect()->route('admin.dashboard');
-                } else {
-                    return redirect()->route('home');
+                if(Auth::user()->lock_user == null) {
+                    if (Auth::user()->role == Role::ADMIN || Auth::user()->role == Role::STAFF) {
+                        return redirect()->route('admin.dashboard');
+                    } else {
+                        return redirect()->route('home');
+                    }
                 }
+                return redirect('/401');
             }
         });
     }
