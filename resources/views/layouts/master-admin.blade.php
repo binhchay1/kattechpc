@@ -14,7 +14,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="//cdn.ckeditor.com/4.24.0-lts/standard/ckeditor.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css">
-
+    <link rel="stylesheet" >
+    <link rel="stylesheet" href="{{ asset('css/admin/button.css') }}" />
     <style>
         .jc-bs3-container {
             max-width: 300px !important;
