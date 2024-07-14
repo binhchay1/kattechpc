@@ -119,6 +119,7 @@ class CartController extends Controller
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $layout = $this->layoutRepository->getListLayout();
         $totalCart = 0;
         $totalCart = Cart::getTotal();
         $dataCart = Cart::getContent();
@@ -132,6 +133,7 @@ class CartController extends Controller
             'dataCart' => $dataCart,
             'totalCart' => $totalCart,
             'listCategory' => $listCategory,
+            'layout' => $layout,
         ]);
     }
 
@@ -262,8 +264,9 @@ class CartController extends Controller
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $layout = $this->layoutRepository->getListLayout();
 
-        return view('page.cart.thank', compact('listCategory'));
+        return view('page.cart.thank', compact('listCategory', 'layout'));
     }
 
     public function addToCart($id, Request $request)
