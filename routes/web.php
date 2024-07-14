@@ -53,6 +53,7 @@ Route::get('/419', [ErrorController::class, 'view419'])->name('error.419');
 Route::get('/429', [ErrorController::class, 'view429'])->name('error.429');
 Route::get('/500', [ErrorController::class, 'view500'])->name('error.500');
 Route::get('/503', [ErrorController::class, 'view503'])->name('error.503');
+Route::get('/lock-account', [ErrorController::class, 'lockAccount'])->name('lockAccount');
 Route::get('/maintenance', [ErrorController::class, 'viewMaintenance'])->name('maintenance.user');
 Route::get('/staff-login', [HomeController::class, 'staffLogin'])->name('staff.login');
 Route::post('/post-staff-login', [HomeController::class, 'postStaffLogin'])->name('post.staff.login');

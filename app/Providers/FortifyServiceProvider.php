@@ -89,7 +89,7 @@ class FortifyServiceProvider extends ServiceProvider
                         return redirect()->route('home');
                     }
                 }
-                return redirect('/401');
+                return redirect('/lock-account');
             }
         });
     }
