@@ -1055,9 +1055,6 @@ tr:nth-child(even) {
         width: 100% !important;
     }
 
-    .img-card img {
-        height: 142px;
-    }
 
     .product-info-detail {
         width: 100% !important;
@@ -1094,9 +1091,7 @@ tr:nth-child(even) {
         width: 100%;
     }
 
-    .time-count p {
-        display: none;
-    }
+
 
     .box-flash-sale .box-right {
         margin-top: 0;

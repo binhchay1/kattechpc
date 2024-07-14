@@ -101,14 +101,17 @@ class UserController extends Controller
         return back()->with('success',__('Thông tin người dùng được thành công'));
     }
 
+    public function lockUser(Request $request, $id)
+    {
+        $user = $this->userRepository->show($id);
+        if ($user->lock_user) {
+            $user->lock_user = null;
+        } else {
+            $user->lock_user = 1;
+        }
+        $user->save();
 
-//    public function userSearch(Request $request)
-//    {
-//        $filter['name'] = $request->name;
-//        $users = $this->userRepository->getListuser($filter);
-//        $categories = $this->userRepository->getCategoriesAndCount();
-//
-//        return view('pages.users', compact('users', 'categories'));
-//    }
+        return back();
+    }
 
 }

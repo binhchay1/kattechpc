@@ -150,17 +150,32 @@
                 </div>
                 <div class="box-right">
                     <div id="deal-line-detail" class="box-product-deal">
-                        <p class="text-deal-detail">{{ __('Còn') }} {{ $dataProduct->sale_stock }}/{{ $dataProduct->sale_quantity }} {{ __('sản phẩm') }}</p>
                         <div class="p-quantity-sale d-flex">
                             <img class="icon-sale-quantity" src="{{ asset('images/sale_icon.png') }}">
                             <div>
-                                <?php $total_line = ($dataProduct->sale_stock / $dataProduct->sale_quantity) * 100 ?>
+                                    <?php $total_line = ($dataProduct->sale_stock / $dataProduct->sale_quantity) * 100 ?>
                                 <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>"></p>
+                                <p class="text-deal-detail" style="    margin-top: 2px;
+">{{ __('Còn') }} {{ $dataProduct->sale_stock }}/{{ $dataProduct->sale_quantity }} {{ __('sản phẩm') }}</p>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+                <div class="box-right1" style="display: none">
+                    <div id="deal-line-detail" class="box-product-deal">
+                        <div class="p-quantity-sale d-flex">
+                            <img class="icon-sale-quantity" src="{{ asset('images/sale_icon.png') }}">
+                            <div>
+                                    <?php $total_line = ($dataProduct->sale_stock / $dataProduct->sale_quantity) * 100 ?>
+                                <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>"></p>
+                                <p class="text-deal-detail" style="    margin-top: 2px;">{{ __('Còn') }} {{ $dataProduct->sale_stock }}/{{ $dataProduct->sale_quantity }} {{ __('sản phẩm') }}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             @endif
 
             <div>
@@ -399,7 +414,7 @@
 
                         </div>
                         @if(Session::has('message'))
-                        <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+                        <p style="color:red;" class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
                         @endif
                         <form id="feedbackForm" action="{{ route('rating') }}" class="menu" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
@@ -459,16 +474,15 @@
                             </div>
                         </div>
                     </div>
-
+                    @if(isset($errors))
+                        @foreach ($errors->all() as $error)
+                            <div style="color: red; margin: 10px; font-size: 16px">{{ $error }}</div>
+                        @endforeach
+                    @endif
                 </div>
                 <div id="product-info" class="product-info feedback-form" style="background-color: #f5f5f5;">
                     <div class="box-comment">
                         <p class="title-comment font-weight-600" style="font-size: 16px">{{ __('Hỏi và đáp') }}</p>
-                        @if(isset($errors))
-                        @foreach ($errors->all() as $error)
-                        <div style="color: red; margin: 10px; font-size: 16px">{{ $error }}</div>
-                        @endforeach
-                        @endif
                         <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="comment-detail">
