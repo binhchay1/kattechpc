@@ -30,6 +30,19 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
             'g-recaptcha-response' => ['required', new ReCaptcha]
+        ], [
+            'name.required' => 'Tên không được để trống.',
+            'name.string' => 'Tên không đúng định dạng.',
+            'name.max' => 'Tên không quá 255 kí tự.',
+            'email.max' => 'Email không quá 255 kí tự.',
+            'email.required' => 'Email không được để trống.',
+            'email.string' => 'Email không đúng định dạng.',
+            'email.email' => 'Email không đúng định dạng.',
+            'email.unique' => 'Email đã tồn tại.',
+            'password.string' => 'Mật khẩu không đúng định dạng.',
+            'password.required' => 'Mật khẩu không được để trống.',
+            'password.confirmed' => 'Xác nhận mật khẩu không đúng.',
+            'g-recaptcha-response.required' => 'Cần xác nhận recaptcha.',
         ])->validate();
 
         return DB::transaction(function () use ($input) {

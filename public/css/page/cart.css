@@ -84,12 +84,12 @@ aside {
 
 .basket {
     padding-top: 10px;
-    background: #f0f0f0;
     margin-top: 30px;
     border-radius: 10px;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .basket-module {
@@ -124,6 +124,11 @@ aside {
     border-radius: 4px;
     padding: 0.6875rem 1.25rem 0.625rem;
     cursor: pointer;
+    margin-top: 15px;
+}
+
+#promo-code {
+    margin-bottom: 15px;
 }
 
 .basket-labels {
@@ -199,7 +204,6 @@ aside {
 }
 
 .quantity-field {
-    background-color: #ccc;
     border: 1px solid #aaa;
     border-radius: 4px;
     font-size: 1rem;
@@ -207,6 +211,7 @@ aside {
     width: 3.75rem;
     height: 20px;
     text-align: center;
+    padding-left: 20px;
 }
 
 #content-page aside {

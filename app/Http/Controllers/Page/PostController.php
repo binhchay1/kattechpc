@@ -39,6 +39,7 @@ class PostController extends Controller
         $post = $this->postRepository->detail($slug);
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $layout = $this->layoutRepository->getListLayout();
 
         $post = $this->postRepository->detail($slug);
 
@@ -64,7 +65,7 @@ class PostController extends Controller
             $dataBreadcrumb[$getCategory->name] = route('post.category', $getCategory->slug);
         }
 
-        return view('page.post.post-detail', compact('firstPosts1', 'postNews', 'post', 'postRandom', 'listCategory', 'dataBreadcrumb', 'social'));
+        return view('page.post.post-detail', compact('firstPosts1', 'postNews', 'post', 'postRandom', 'listCategory', 'dataBreadcrumb', 'social', 'layout'));
     }
 
     public function postCategory($slug)
@@ -88,6 +89,7 @@ class PostController extends Controller
         $firstPosts2 = $getPosts->splice(1, 1);
         $postRandom3 = $getPosts->splice(1, 3);
         $postRandom4 = $getPosts->splice(1, 8);
+        $layout = $this->layoutRepository->getListLayout();
 
         $currentCateID = $postCategory->parent;
         $dataBreadcrumb = [];
@@ -117,7 +119,8 @@ class PostController extends Controller
             'listCategory',
             'dataPostCategory',
             'dataBreadcrumb',
-            'social'
+            'social',
+            'layout'
         ));
     }
 }
