@@ -2365,7 +2365,7 @@ a {
 }
 
 .view-more-flash-sale:hover {
-    color: var(--color-primary);
+    color: rgb(33, 33, 248);
 }
 
 .title-article p:hover {

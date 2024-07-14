@@ -177,7 +177,7 @@
             </div>
 
             <div>
-                <a href="{{ route('view.top.sale') }}" class="view-more-flash-sale" style="color:black">{{ __('Xem thêm sản phẩm bán chạy') }} <i class="fa fa-caret-right"></i></a>
+                <a href="{{ route('view.top.sale') }}" class="view-more-flash-sale" style="color: #f3070f">{{ __('Xem thêm sản phẩm bán chạy') }} <i class="fa fa-caret-right"></i></a>
             </div>
         </div>
 
