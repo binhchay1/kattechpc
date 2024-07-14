@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\User;
 use App\Enums\Utility;
+use App\Exports\ExportUser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -112,6 +114,11 @@ class UserController extends Controller
         $user->save();
 
         return back();
+    }
+
+    public function exportUser(Request $request)
+    {
+        return Excel::download(new ExportUser(), 'user.xlsx');
     }
 
 }

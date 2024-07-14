@@ -209,6 +209,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
         Route::post('/update/{id}', [ProductAdmin::class, 'updateProduct'])->name('admin.product.update');
         Route::get('/delete/{id}', [ProductAdmin::class, 'deleteProduct'])->name('admin.product.delete');
         Route::get('/manager-sold', [ProductAdmin::class, 'managerSold'])->name('admin.product.manager.sold');
+        Route::get('/export-product', [ProductAdmin::class, 'exportProduct'])->name('admin.product.export');
+
     });
 
     Route::group(['prefix' => 'brands'], function () {
@@ -228,6 +230,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
         Route::post('/update/{user}', [UserController::class, 'updateUser'])->name('admin.user.update');
         Route::get('/delete/{id}', [UserController::class, 'deleteUser'])->name('admin.user.delete');
         Route::get('/lock-user/{id}', [UserController::class, 'lockUser'])->name('admin.user.lockUser');
+        Route::get('/export-user', [UserController::class, 'exportUser'])->name('admin.user.export');
+
     });
 
     Route::group(['prefix' => 'roles'], function () {
