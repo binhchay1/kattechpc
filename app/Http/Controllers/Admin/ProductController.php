@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\ExportOrder;
+use App\Exports\ExportProduct;
 use App\Enums\Product;
 use App\Enums\Utility;
 use App\Http\Controllers\Controller;
@@ -15,6 +17,7 @@ use App\Repositories\WarrantyPackageRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Cache;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
 {
@@ -330,5 +333,10 @@ class ProductController extends Controller
         $managerSold = $this->utility->paginate($managerSold);
 
         return view('admin.product.manager-sold', compact('managerSold'));
+    }
+
+    public function exportProduct(Request $request)
+    {
+        return Excel::download(new ExportProduct(), 'product.xlsx');
     }
 }

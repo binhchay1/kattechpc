@@ -53,6 +53,7 @@ Route::get('/419', [ErrorController::class, 'view419'])->name('error.419');
 Route::get('/429', [ErrorController::class, 'view429'])->name('error.429');
 Route::get('/500', [ErrorController::class, 'view500'])->name('error.500');
 Route::get('/503', [ErrorController::class, 'view503'])->name('error.503');
+Route::get('/lock-account', [ErrorController::class, 'lockAccount'])->name('lockAccount');
 Route::get('/maintenance', [ErrorController::class, 'viewMaintenance'])->name('maintenance.user');
 Route::get('/staff-login', [HomeController::class, 'staffLogin'])->name('staff.login');
 Route::post('/post-staff-login', [HomeController::class, 'postStaffLogin'])->name('post.staff.login');
@@ -208,6 +209,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
         Route::post('/update/{id}', [ProductAdmin::class, 'updateProduct'])->name('admin.product.update');
         Route::get('/delete/{id}', [ProductAdmin::class, 'deleteProduct'])->name('admin.product.delete');
         Route::get('/manager-sold', [ProductAdmin::class, 'managerSold'])->name('admin.product.manager.sold');
+        Route::get('/export-product', [ProductAdmin::class, 'exportProduct'])->name('admin.product.export');
+
     });
 
     Route::group(['prefix' => 'brands'], function () {
@@ -227,6 +230,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
         Route::post('/update/{user}', [UserController::class, 'updateUser'])->name('admin.user.update');
         Route::get('/delete/{id}', [UserController::class, 'deleteUser'])->name('admin.user.delete');
         Route::get('/lock-user/{id}', [UserController::class, 'lockUser'])->name('admin.user.lockUser');
+        Route::get('/export-user', [UserController::class, 'exportUser'])->name('admin.user.export');
+
     });
 
     Route::group(['prefix' => 'roles'], function () {

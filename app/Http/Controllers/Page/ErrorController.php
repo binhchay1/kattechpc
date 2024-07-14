@@ -92,6 +92,14 @@ class ErrorController extends Controller
         return view('errors.503', compact('listCategory'));
     }
 
+    public function lockAccount()
+    {
+        $key = 'menu_homepage';
+        $listCategory = Cache::store('redis')->get($key);
+
+        return view('errors.lock-account', compact('listCategory'));
+    }
+
     public function viewMaintenance()
     {
         $key = 'menu_homepage';

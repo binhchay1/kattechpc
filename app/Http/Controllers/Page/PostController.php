@@ -44,25 +44,29 @@ class PostController extends Controller
         $post = $this->postRepository->detail($slug);
 
         $getCategory = $this->categoryPostRepository->show($post->category_id);
-        $currentCateID = $getCategory->parent;
-        $dataBreadcrumb = [];
-        $social = $this->socialRepository->index();
+        if($getCategory != null) {
+            $currentCateID = $getCategory->parent;
+            $dataBreadcrumb = [];
+            $social = $this->socialRepository->index();
 
-        if ($currentCateID != 0) {
-            $endWhile = false;
-            while (!$endWhile) {
-                $getParent = $this->categoryPostRepository->show($currentCateID);
-                if ($getParent->parent == 0) {
-                    $endWhile = true;
+            if ($currentCateID != 0) {
+                $endWhile = false;
+                while (!$endWhile) {
+                    $getParent = $this->categoryPostRepository->show($currentCateID);
+                    if ($getParent->parent == 0) {
+                        $endWhile = true;
+                    }
+
+                    $currentCateID = $getParent->parent;
+                    $dataBreadcrumb[$getParent->name] = route('post.category', $getParent->slug);
                 }
 
-                $currentCateID = $getParent->parent;
-                $dataBreadcrumb[$getParent->name] = route('post.category', $getParent->slug);
+                $dataBreadcrumb[$getCategory->name] = route('post.category', $getCategory->slug);
+            } else {
+                $dataBreadcrumb[$getCategory->name] = route('post.category', $getCategory->slug);
             }
+            return view('page.post.post-detail', compact('firstPosts1', 'postNews', 'post', 'postRandom', 'listCategory', 'dataBreadcrumb', 'social'));
 
-            $dataBreadcrumb[$getCategory->name] = route('post.category', $getCategory->slug);
-        } else {
-            $dataBreadcrumb[$getCategory->name] = route('post.category', $getCategory->slug);
         }
 
         return view('page.post.post-detail', compact('firstPosts1', 'postNews', 'post', 'postRandom', 'listCategory', 'dataBreadcrumb', 'social', 'layout'));

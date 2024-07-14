@@ -36,7 +36,7 @@
                     <a href="{{ route('promotion') }}" class="sep-item-link" target="_blank"><i class="fa fa-tag"></i> {{ __('Khuyến mại') }}</a>
                 </div>
 
-                @if(Auth::check())
+                @if(Auth::check()  )
                 <div class="ml-15px dropdown">
                     <a class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
                     <div class="dropdown-content">
@@ -126,7 +126,7 @@
                         <li class="list-items"><a href="{{ route('payment') }}"><i class="fa fa-money-check"></i>{{__("Hướng dẫn thanh toán")}}</a></li>
                         <li class="list-items"><a href="{{ route('policy') }}"><i class="fa fa-shield-alt"></i>{{__("Chính sách bảo hành")}}</a></li>
                         <li class="list-items">
-                            @if(Auth::check())
+                            @if(Auth::check() )
                             <div class="dropdown">
                                 <a class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
                                 <div class="dropdown-content">

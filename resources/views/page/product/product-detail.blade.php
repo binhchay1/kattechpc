@@ -566,7 +566,9 @@
                         </div>
                         <div id="content-right">
                             <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
+                            <a href="{{route('post.detail', $post['slug'])}}">
                             <h3> {{$text}}</h3>
+                            </a>
                         </div>
                     </div>
                     @endforeach
