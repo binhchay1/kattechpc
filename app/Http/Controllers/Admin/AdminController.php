@@ -54,9 +54,10 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
-    public function viewDashBoard()
+    public function viewDashBoard(Request $request)
     {
         $orderStatic = $this->orderRepository->getOrderForStatic();
+        $getOrder = $this->orderRepository->getYearInOrder();
         $productStatic = $this->productRepository->getProductForStatic();
         $orderStatic->setPageName('order_page');
         $productStatic->setPageName('product_page');
@@ -153,9 +154,16 @@ class AdminController extends Controller
         return view('admin.custom-contact.index', compact('listCustomContact'));
     }
 
-    public function getDataForIncomeChart()
+    public function getDataForIncomeChart(Request $request)
     {
-        $getOrder = $this->orderRepository->getOrderForStaticIncome();
+        $year = $request->get('year');
+
+        if (!isset($year)) {
+            $year = date('Y');
+        }
+
+        $getOrder = $this->orderRepository->getOrderForStaticIncome($year);
+
         $data = [
             '01' => 0,
             '02' => 0,

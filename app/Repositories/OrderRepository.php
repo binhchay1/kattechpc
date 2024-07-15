@@ -41,13 +41,18 @@ class  OrderRepository extends BaseRepository
         return $this->model->with('orderDetails')->orderBy('created_at', 'DESC')->paginate(10);
     }
 
-    public function getOrderForStaticIncome()
+    public function getOrderForStaticIncome($year)
     {
-        return $this->model->with('orderDetails')->whereYear('created_at', date('Y'))->paginate(10);
+        return $this->model->with('orderDetails')->whereYear('created_at', $year)->paginate(10);
     }
 
     public function getAllOrder()
     {
         return $this->model->with('orderDetails', 'orderDetails.product', 'orderDetails.warrantyPackage')->get();
+    }
+
+    public function getYearInOrder()
+    {
+        return $this->model->select('date')->get();
     }
 }
