@@ -10,7 +10,6 @@ use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
-use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
@@ -103,7 +102,7 @@ class UserController extends Controller
         return back()->with('success',__('Thông tin người dùng được thành công'));
     }
 
-    public function lockUser(Request $request, $id)
+    public function lockUser($id)
     {
         $user = $this->userRepository->show($id);
         if ($user->lock_user) {
@@ -116,9 +115,11 @@ class UserController extends Controller
         return back();
     }
 
-    public function exportUser(Request $request)
+    public function exportUser()
     {
-        return Excel::download(new ExportUser(), 'user.xlsx');
+        $user = $this->userRepository->getListUser();
+
+        return Excel::download(new ExportUser($user), 'user.xlsx');
     }
 
 }

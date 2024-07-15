@@ -10,7 +10,6 @@ class UserRepository extends BaseRepository
     public function model()
     {
         return User::class;
-
     }
 
     public function index()
@@ -48,7 +47,8 @@ class UserRepository extends BaseRepository
         return $this->model->where('facebook_id', $facebookID)->first();
     }
 
+    public function getListUser()
+    {
+        return $this->model->get();
+    }
 }
-
-
-
