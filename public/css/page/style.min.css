@@ -2192,7 +2192,7 @@ a {
 }
 
 .scale-img img {
-    transition: transform 0.2s;
+    transition: transform 0.5s;
 }
 
 .scale-img:hover img {
