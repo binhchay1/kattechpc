@@ -538,4 +538,11 @@
         flex-direction: column;
         margin-bottom: 20px;
     }
+
+    #scroll-logo {
+        display: flex;
+        justify-content: center;
+        margin-top: -15px;
+        margin-left: 25px;
+    }
 }

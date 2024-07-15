@@ -94,7 +94,7 @@
                         </div>
                         <div class="logo" id="scroll-logo">
                             <a href="/">
-                                <img style="width: 120px;margin-top: -30px;margin-left: 20px;" src="{{ asset('/images/logo/logo.png') }}" alt="logo Kattech PC" class="loading">
+                                <img src="{{ asset('/images/logo/logo.png') }}" width="90" alt="logo Kattech PC" class="loading">
                             </a>
                         </div>
                     </div>
