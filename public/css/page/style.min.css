@@ -2195,10 +2195,6 @@ a {
     transition: transform 0.5s;
 }
 
-.scale-img:hover img {
-    transform: scale(1);
-}
-
 @media screen and (max-width: 400px) {
     .wrap {
         top: 150px;
