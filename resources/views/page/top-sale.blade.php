@@ -29,7 +29,7 @@
             <div class="column">
                 <div class="card">
                     <div class="product-image-sale">
-                        <a href="{{route('productDetail', $product['slug']) }}" class="product-image position-relative scale-img">
+                        <a href="{{route('productDetail', $product['slug']) }}" class="product-image position-relative">
                             <img class="image-sale hover-for-tooltips hover-image lazy" src="{{ asset(json_decode($product->image, true)[0]) }}" alt="{{ $product->name }}" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                         </a>
                     </div>

@@ -2191,10 +2191,6 @@ a {
     font-size: 15px;
 }
 
-.scale-img img {
-    transition: transform 0.5s;
-}
-
 @media screen and (max-width: 400px) {
     .wrap {
         top: 150px;

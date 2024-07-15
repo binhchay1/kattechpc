@@ -78,7 +78,7 @@ $(document).ready(function () {
         $('.tooltip-list-gift').html(sale_detail);
 
         $('.global-tooltip').css('display', 'block');
-        $('.global-tooltip').css('left', $(this).offset().left + 225);
+        $('.global-tooltip').css('left', $(this).offset().left + 260);
         $('.global-tooltip').css('top', $(this).offset().top - 10);
         $(this).css('transform', 'translate(0, -10px)');
     }, function () {
