@@ -484,11 +484,14 @@
 
     .swiper-slide {
         width: 100%;
-        margin-right: 10px;
     }
 
     .swiper-flash-sale .swiper-slide{
         width: 100%;
+    }
+
+    .swiper-flash-sale {
+        margin-left: 0 !important;
     }
 
     .product-item .product-image {

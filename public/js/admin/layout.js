@@ -13,7 +13,7 @@ $(document).ready(function () {
     });
 
     $("#add-product-flash-sale").click(function () {
-        let detail_item = '<li class="item-product-flash-sale"><input name="product_id[]" class="form-input" value="" placeholder="Nhập mã sản phẩm"/><input name="quantity[]" class="form-input ml-3" value="" placeholder="Nhập số lượng"/><input name="new_price[]" class="form-input ml-3" value="" placeholder="Nhập giá mới"/><span class="btn-x">X</span></li><script>$(`.btn-x`).click(function () {$(this).parent().remove();});</script>';
+        let detail_item = '<li class="item-product-flash-sale"><input name="product_id[]" class="form-input" value="" placeholder="Nhập mã sản phẩm"/><input name="quantity[]" class="form-input ml-3" value="" placeholder="Nhập số lượng"/><input name="new_price[]" class="form-input ml-3" value="" placeholder="Nhập giá mới"/><input name="stock[]" class="form-input ml-3" value="" placeholder="Số lượng tồn kho" /><span class="btn-x">X</span></li><script>$(`.btn-x`).click(function () {$(this).parent().remove();});</script>';
         $("#area-product-flash-sale").append(detail_item);
     });
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\CustomContactRepository;
+use App\Repositories\LayoutRepository;
 use App\Repositories\MaintenanceModeRepository;
 use App\Repositories\ProductRepository;
 use App\Repositories\OrderRepository;
@@ -11,6 +12,7 @@ use App\Repositories\VisitorRepository;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
@@ -19,19 +21,22 @@ class AdminController extends Controller
     private $productRepository;
     private $visitorRepository;
     private $maintenanceModeRepository;
+    private $layoutRepository;
 
     public function __construct(
         CustomContactRepository $customContactRepository,
         OrderRepository $orderRepository,
         ProductRepository $productRepository,
         VisitorRepository $visitorRepository,
-        MaintenanceModeRepository $maintenanceModeRepository
+        MaintenanceModeRepository $maintenanceModeRepository,
+        LayoutRepository $layoutRepository
     ) {
         $this->customContactRepository = $customContactRepository;
         $this->orderRepository = $orderRepository;
         $this->productRepository = $productRepository;
         $this->visitorRepository = $visitorRepository;
         $this->maintenanceModeRepository = $maintenanceModeRepository;
+        $this->layoutRepository = $layoutRepository;
     }
 
     public function changeLocate($locale)
@@ -79,6 +84,53 @@ class AdminController extends Controller
         }
 
         return view('admin.dashboard', compact('orderStatic', 'productStatic'));
+    }
+
+    public function viewFlashSale()
+    {
+        $layout = $this->layoutRepository->getListLayout();
+        if (isset($layout->flash_sale_list_product_id)) {
+            $listFlashSale = json_decode($layout->flash_sale_list_product_id, true);
+        }
+
+        if (isset($layout->flash_sale_timer)) {
+            $explode = explode(' ', $layout->flash_sale_timer);
+            $layout->flash_sale_timer = $explode[0];
+        }
+
+        return view('admin.flash-sale', compact('layout', 'listFlashSale'));
+    }
+
+    public function storeFlashSale(Request $request)
+    {
+        $input = $request->except(['_token']);
+        $data = [];
+        if (array_key_exists('product_id', $input)) {
+            for ($i = 0; $i < count($input['product_id']); $i++) {
+                $listProduct[$input['product_id'][$i]] = [
+                    'quantity' => $input['quantity'][$i],
+                    'new_price' => $input['new_price'][$i],
+                    'stock' => $input['stock'][$i]
+                ];
+            }
+
+            $data['flash_sale_list_product_id'] = json_encode($listProduct);
+        }
+
+        if (array_key_exists('flash_sale_timer', $input)) {
+            $data['flash_sale_timer'] = $input['flash_sale_timer'];
+        }
+
+        if (!empty($data)) {
+            $getLayout = $this->layoutRepository->getListLayout();
+            if (!empty($getLayout)) {
+                $this->layoutRepository->update($getLayout->id, $data);
+            } else {
+                $this->layoutRepository->store($data);
+            }
+        }
+
+        return back()->with('success', __('Flash sale sửa thành công'));
     }
 
     public function detailDetail($id)

@@ -98,7 +98,9 @@
                 <td width="120">{{ __('Mô tả ngắn') }}</td>
                 <td width="120">{{ __('Gía mới') }}</td>
                 <td width="120">{{ __('Qùa tặng') }}</td>
-                <td width="120">{{ __('Qùa tặng') }}</td>
+                <td width="120">{{ __('Bảo hành') }}</td>
+                <td width="120">{{ __('Tổng số view') }}</td>
+                <td width="120">{{ __('Link youtube') }}</td>
             </tr>
 
             @foreach($listProduct as $product)
@@ -106,13 +108,17 @@
                 <td colspan="2">
                     <p class="p-name">{{ $product->name }}</p>
                 </td>
-                <td>{{ $user->email }} </td>
-                <td>{{ $user->phone }} </td>
-                <td>{{ $user->address }} </td>
-                <td>{{ $user->age }} </td>
-                <td>{{ $user->sex }} </td>
-                <td>{{ $user->role == 'user' ? 'Khách hàng' : 'Quản lý' }} </td>
-                <td>{{ $user->lock_user == 1 ? 'Đang khóa' : 'Không khóa' }} </td>
+                <td>{{ strip_tags($product->description) }} </td>
+                <td>{{ $product->price }} </td>
+                <td>{{ $product->status }} </td>
+                <td>{{ $product->code }} </td>
+                <td>{{ $product->category->name }} </td>
+                <td>{{ $product->short_description }} </td>
+                <td>{{ $product->new_price }} </td>
+                <td>{{ $product->new_price }} </td>
+                <td>{{ $product->status_guarantee }} </td>
+                <td>{{ $product->view }} </td>
+                <td>{{ $product->link_youtube }} </td>
             </tr>
             @endforeach
 

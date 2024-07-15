@@ -32,21 +32,12 @@ class LayoutController extends Controller
                 $listSlideFooter = json_decode($layout->footer_slide_thumbnail, true);
             }
 
-            if (isset($layout->flash_sale_list_product_id)) {
-                $listFlashSale = json_decode($layout->flash_sale_list_product_id, true);
-            }
-
-            if (isset($layout->flash_sale_timer)) {
-                $explode = explode(' ', $layout->flash_sale_timer);
-                $layout->flash_sale_timer = $explode[0];
-            }
-
             if (isset($layout->hot_sale_list_product_id)) {
                 $listHotSale = json_decode($layout->hot_sale_list_product_id, true);
             }
         }
 
-        return view('admin.layout.index', compact('layout', 'listSlide', 'listFlashSale', 'listHotSale', 'listSlideFooter'));
+        return view('admin.layout.index', compact('layout', 'listSlide', 'listHotSale', 'listSlideFooter'));
     }
 
     public function storeLayout(Request $request)
@@ -173,8 +164,6 @@ class LayoutController extends Controller
             }
         }
 
-
-
         return back()->with('success', __('Ảnh được xóa thành công'));
     }
 
@@ -266,38 +255,6 @@ class LayoutController extends Controller
         }
 
         return back()->with('success', __('Hot deal thêm thành công'));
-    }
-
-    public function storeFlashSale(Request $request)
-    {
-        $input = $request->except(['_token']);
-        $data = [];
-        if (array_key_exists('product_id', $input)) {
-            for ($i = 0; $i < count($input['product_id']); $i++) {
-                $listProduct[$input['product_id'][$i]] = [
-                    'quantity' => $input['quantity'][$i],
-                    'new_price' => $input['new_price'][$i],
-                    'stock' => $input['quantity'][$i]
-                ];
-            }
-
-            $data['flash_sale_list_product_id'] = json_encode($listProduct);
-        }
-
-        if (array_key_exists('flash_sale_timer', $input)) {
-            $data['flash_sale_timer'] = $input['flash_sale_timer'];
-        }
-
-        if (!empty($data)) {
-            $getLayout = $this->layoutRepository->getListLayout();
-            if (!empty($getLayout)) {
-                $this->layoutRepository->update($getLayout->id, $data);
-            } else {
-                $this->layoutRepository->store($data);
-            }
-        }
-
-        return back()->with('success', __('Flash sale thêm thành công'));
     }
 
     public function deleteThumbLayout(Request $request)

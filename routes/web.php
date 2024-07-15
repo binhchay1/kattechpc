@@ -134,11 +134,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
     Route::get('/order-detail/{id}', [AdminController::class, 'detailDetail'])->name('admin.detailDetail');
     Route::get('/custom-contact', [AdminController::class, 'listCustomContact'])->name('admin.custom.contact');
     Route::get('/change-maintenance', [AdminController::class, 'changeMaintenance'])->name('change.maintenance');
+    Route::get('/flash-sale', [AdminController::class, 'viewFlashSale'])->name('admin.flash.sale');
+    Route::post('/store-flash-sale', [AdminController::class, 'storeFlashSale'])->name('admin.store.flash.sale');
 
     Route::group(['prefix' => 'layout'], function () {
         Route::get('/', [LayoutController::class, 'viewCustomLayout'])->name('admin.custom.layout');
         Route::post('/store-layout', [LayoutController::class, 'storeLayout'])->name('admin.store.layout');
-        Route::post('/store-flash-sale', [LayoutController::class, 'storeFlashSale'])->name('admin.store.flash.sale');
         Route::post('/store-hot-sale', [LayoutController::class, 'storeHotSale'])->name('admin.store.hot.sale');
         Route::post('/store-slide', [LayoutController::class, 'storeSlide'])->name('admin.store.slide');
         Route::get('/delete-slide/{index}', [LayoutController::class, 'deleteSlide'])->name('admin.delete.slide');

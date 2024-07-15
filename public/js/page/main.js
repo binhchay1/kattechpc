@@ -93,7 +93,8 @@ $(document).ready(function () {
 
     if (isMobileDetected) {
         defaultFlash = 1;
-        perTransFlash = window.innerWidth;
+        perTransFlash = window.innerWidth - 18;
+        console.log(perTransFlash)
     }
 
     let listChildFlash = $(".swiper-flash-sale").children();
@@ -127,7 +128,8 @@ $(document).ready(function () {
 
         $('.swiper-button-prev-flash-sale').on('click', function () {
             if (countFlash == 0) {
-                transFlash = 0;
+                transFlash = 0 - (perTransFlash * stopFlash);
+                countFlash = stopFlash;
                 $('.swiper-flash-sale').css('transform', 'translate3d(' + transFlash + 'px, 0px, 0px)');
             } else {
                 transFlash = transFlash + perTransFlash;
@@ -188,7 +190,8 @@ $(document).ready(function () {
 
                 $('.swiper-button-prev-product-' + listCategory.default[k].slug).on('click', function () {
                     if (countProduct == 0) {
-                        transProduct = 0;
+                        transProduct = 0 - (perTransProduct * stopProduct);
+                        countFlash = stopProduct;
                         $(idElementProduct).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
                     } else {
                         transProduct = transProduct + perTransProduct;
@@ -247,7 +250,8 @@ $(document).ready(function () {
 
         $('.swiper-button-prev-top-sale').on('click', function () {
             if (countTopSale == 0) {
-                transTopSale = 0;
+                transTopSale = 0 - (perTransTopSale * stopTopSale);
+                countTopSale = stopTopSale;
                 $('.swiper-top-sale').css('transform', 'translate3d(' + transTopSale + 'px, 0px, 0px)');
             } else {
                 transTopSale = transTopSale + perTransTopSale;
@@ -300,7 +304,8 @@ $(document).ready(function () {
 
         $('.swiper-button-prev-footer-slide').on('click', function () {
             if (countFooterSlide == 0) {
-                transFooterSlide = 0;
+                transFooterSlide = 0 - (perTransFooterSlide * stopFooterSlide);
+                countFooterSlide = stopFooterSlide;
                 $('.swiper-footer-slide').css('transform', 'translate3d(' + transFooterSlide + 'px, 0px, 0px)');
             } else {
                 transFooterSlide = transFooterSlide + perTransFooterSlide;

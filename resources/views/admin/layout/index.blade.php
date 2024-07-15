@@ -35,7 +35,6 @@
 
                     <div class="mt-5 tab-content">
                         @include('admin.layout.home')
-                        @include('admin.layout.flash-sale')
                         @include('admin.layout.hot-sale')
                         @include('admin.layout.slide')
                         @include('admin.layout.footer-slide')

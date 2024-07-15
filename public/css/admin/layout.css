@@ -18,6 +18,23 @@
     margin-top: 20px;
 }
 
+.mt-20 {
+    margin-top: 20px;
+}
+
+.title-flash-sale {
+    display: flex;
+}
+
+.title-flash-sale span {
+    width: 178px;
+    text-align: center;
+}
+
+.title-flash-sale span:not(:first-child) {
+    margin-left: 10px;
+}
+
 .item-product-hot-sale {
     display: flex;
 }
