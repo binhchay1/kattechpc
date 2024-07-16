@@ -199,7 +199,7 @@ class AdminController extends Controller
         ];
 
         foreach ($getOrder as $order) {
-            $explodeDate = explode(' ', $order->order_date);
+            $explodeDate = explode(' ', $order->created_at);
             $explodeMonth = explode('-', $explodeDate[0]);
             $month = $explodeMonth[1];
             $total = 0;
@@ -221,6 +221,8 @@ class AdminController extends Controller
 
     public function getDataForVisitorChart()
     {
+        $year = $request->get('year');
+
         if (!isset($year)) {
             $year = date('Y');
             $change = false;

@@ -110,7 +110,7 @@
                 <nav class="navbar">
                     <ul class="main-menu-category">
                         @foreach($listCategory['default'] as $category)
-                        @if($category->status == 0)
+                        @if($category->status == 0 && $category->parent == 0)
                         @continue
                         @endif
                         <li class="list-items">

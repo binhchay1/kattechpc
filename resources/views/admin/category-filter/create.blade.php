@@ -1,7 +1,7 @@
 @extends('layouts.master-admin')
 
 @section('title')
-{{ __('Thêm từ khóa danh mục sản phẩm') }}
+{{ __('Thêm bộ lọc danh mục sản phẩm') }}
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@
     <div class="xl:col-span-12">
         <div class="card">
             <div class="card-body">
-                <h6 class="mb-4 text-15">{{__('Thêm từ khóa danh mục sản phẩm')}}</h6>
+                <h6 class="mb-4 text-15">{{__('Thêm bộ lọc danh mục sản phẩm')}}</h6>
                 <form method="POST" action="{{ route('admin.category-filter.store') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
@@ -57,7 +57,7 @@
                     </div>
                     <div class="flex justify-end gap-2 mt-4">
                         <button type="reset" class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">{{__('Xóa toàn bộ')}}</button>
-                        <button type="submit" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">{{__('Thêm từ khóa')}}</button>
+                        <button type="submit" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">{{__('Thêm bộ lọc')}}</button>
                     </div>
                 </form>
             </div>

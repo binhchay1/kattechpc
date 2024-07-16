@@ -30,7 +30,7 @@ class CategoryFilterController extends Controller
 
     public function create()
     {
-        $listCategories = $this->categoryRepository->indexOnlyParent();
+        $listCategories = $this->categoryRepository->filterWithCategory();
         return view('admin.category-filter.create', compact('listCategories'));
     }
 
@@ -50,7 +50,7 @@ class CategoryFilterController extends Controller
         if (empty($categoryFilter)) {
             return redirect('/404');
         }
-        $listCategories = $this->categoryRepository->indexOnlyParent();
+        $listCategories = $this->categoryRepository->filterWithCategory();
         Cache::store('redis')->forget('menu_homepage');
 
         return view('admin.category-filter.edit', compact('categoryFilter', 'listCategories'));

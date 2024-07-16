@@ -23,9 +23,9 @@ class CategoryRepository extends BaseRepository
         return $this->model->where('parent', '!=', '0')->orderBy('created_at', 'DESC')->paginate(10);
     }
 
-    public function indexOnlyParent()
+    public function filterWithCategory()
     {
-        return $this->model->where('parent', '0')->orderBy('name', 'ASC')->get();
+        return $this->model->orderBy('name', 'ASC')->get();
     }
 
     public function store($input)
@@ -60,6 +60,19 @@ class CategoryRepository extends BaseRepository
                 'categoryFilter'
             )
             ->where('parent', 0)->get();
+    }
+
+    public function getListCategoryForCache()
+    {
+        return $this->model
+            ->with(
+                'children',
+                'products',
+                'children.products',
+                'children.products.productImages',
+                'children.products.brands',
+                'categoryFilter'
+            )->get();
     }
 
     public function getListCategoryExcludeId($id)
@@ -114,11 +127,13 @@ class CategoryRepository extends BaseRepository
         return $this->model->with('categoryFilter')->where('id', $id)->first();
     }
 
-    public function getListWithSortParent() {
+    public function getListWithSortParent()
+    {
         return $this->model->with('children')->where('parent', 0)->paginate(30);
     }
 
-    public function getNameAndSlugParentByID($parentID) {
+    public function getNameAndSlugParentByID($parentID)
+    {
         return $this->model->select('name', 'slug')->where('id', $parentID)->first();
     }
 }

@@ -231,7 +231,7 @@
     </div>
     <div class="flex-container">
         @foreach($listCategoryProduct as $category)
-        @if($category->status == 1)
+        @if($category->status == 1 && $category->parent == 0)
         <a href="{{ route('showDataCategory', $category->slug) }}" class="d-flex flex-column text-center category-home-page">
             <img src="{{ asset($category->image) }}" class="item-hot lazy" width="70" height="70">
             <span class="policy-title">{{ $category->name }}</span>

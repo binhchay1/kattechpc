@@ -6,6 +6,10 @@
         @continue
         @endif
 
+        @if($category->parent != 0)
+        @continue
+        @endif
+
         <div class="item">
             <a href="{{ route('showDataCategory', $category->slug) }}" class="cat-1">
                 <img class="lazy icon-menu entered loaded" alt="{{ $category->name }}" width="1" height="1" src="{{ asset($category->image) }}">
