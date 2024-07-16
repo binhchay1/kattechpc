@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-<x-page-title title="Analytics" pagetitle="Dashboards" />
 <div class="grid grid-cols-12 gap-x-5">
     <div class="order-6 col-span-12 2xl:order-1 card 2xl:col-span-5">
         <div class="card-body" id="incomChartArea">
