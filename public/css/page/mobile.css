@@ -406,6 +406,7 @@
 
     #rep-comment {
         width: 50%!important;
+        display: flex;
     }
 
     .main-menu-category hr {

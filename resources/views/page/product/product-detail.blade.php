@@ -305,20 +305,20 @@
                     <div class="p-info1">
                         {!! Str::limit($dataProduct->description, 350, '')!!}
                         @if (strlen($dataProduct->description) > 3)
-                        <span id="dots-{{ $dataProduct->id }}">...</span>
+                        <span id="dots-detail-product">...</span>
                         @endif
                     </div>
 
                     <div class="p-info1">
-                        <span id="more-{{ $dataProduct->id }}" style="display: none;">{!! $dataProduct->description !!}</span>
+                        <span id="more-detail-product" style="display: none;">{!! $dataProduct->description !!}</span>
                     </div>
 
-                    <a href="javascript:" onclick="loadMore('{{ $dataProduct->id }}')" id="read-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
+                    <a href="javascript:" onclick="loadMore()" id="read-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
                         {{ __('Xem tất cả') }}
                         <i class="fas fa-angle-down" style="margin-left: 5px;"></i>
                     </a>
 
-                    <a href="javascript:" onclick="loadMore('{{ $dataProduct->id }}')" id="hide-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center d-none">
+                    <a href="javascript:" onclick="loadMore()" id="hide-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center d-none">
                         {{ __('Thu gọn') }}
                         <i class="fas fa-angle-up" style="margin-left: 5px;"></i>
                     </a>
@@ -447,7 +447,7 @@
                                             <div class="comment-form-right d-flex align-items-center gap-4">
                                                 <i class="fa fa-clock-o" style="font-size:15px; margin-right: 5px"></i>
                                                 <?php $date = date_format($rating->created_at, "d/m/Y") ?>
-                                                <span style="color:#787878;font-size: 12px;margin-right: 4px;font-weight: 700">{{$date}}</span>
+                                                <span class="date-comment">{{$date}}</span>
                                             </div>
                                         </div>
                                         <div class="comment-content d-flex align-items-center justify-content-between">
@@ -762,16 +762,13 @@
     }, 5000);
 
     function loadMore(id) {
-        var dots = document.getElementById("dots-" + id);
-        var moreText = document.getElementById("more-" + id);
+        var moreText = document.getElementById("more-detail-product");
         if (moreText.style.display === "none") {
             moreText.style.display = "inline";
-            dots.style.display = "none";
             $('#hide-all-product').removeClass('d-none');
             $('#read-all-product').addClass('d-none');
         } else {
             moreText.style.display = "none";
-            dots.style.display = "inline";
             $('#read-all-product').removeClass('d-none');
             $('#hide-all-product').addClass('d-none');
         }
