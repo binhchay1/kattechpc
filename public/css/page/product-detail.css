@@ -1217,6 +1217,8 @@ tr:nth-child(even) {
 
 .list-basic-product-info {
     margin-top: 15px;
+    flex-wrap: wrap;
+    line-height: 21px;
 }
 
 .qtv-comment {

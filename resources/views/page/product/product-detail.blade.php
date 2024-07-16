@@ -163,13 +163,11 @@
             <div class="box-right1" style="display: none">
                 <div id="deal-line-detail" class="box-product-deal">
                     <div class="p-quantity-sale d-flex">
-                        <img class="icon-sale-quantity" src="{{ asset('images/sale_icon.png') }}">
-                        <div>
-                            <?php $total_line = ($dataProduct->sale_stock / $dataProduct->sale_quantity) * 100 ?>
-                            <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>"></p>
-                            <p class="text-deal-detail" style="    margin-top: 2px;">{{ __('Còn') }} {{ $dataProduct->sale_stock }}/{{ $dataProduct->sale_quantity }} {{ __('sản phẩm') }}</p>
-
-                        </div>
+                        <?php $total_line = ($dataProduct->sale_stock / $dataProduct->sale_quantity) * 100 ?>
+                        <i class="sprite sprite-fire-deal"></i>
+                        <div class="bg-gradient" style="width: 100%;"></div>
+                        <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>; background: #ffb22f;"></p>
+                        <p class="text-deal-detail" style="background: none;">{{ __('Còn') }} {{ $dataProduct->sale_stock }}/{{ $dataProduct->sale_quantity }} {{ __('sản phẩm') }}</p>
                     </div>
                 </div>
             </div>
@@ -232,7 +230,7 @@
                 </a>
                 <input type="hidden" class="js-buy-quantity-temp" value="1">
             </div>
-            <div class="quantity mt-4 d-flex btn-buy-product">
+            <div class="quantity d-flex btn-buy-product">
                 <a onclick="buyNowHandle(this)" class="btn-1" data-slug="{{ $dataProduct['slug'] }}">
                     <button class="btn-buy">{{ __('Mua ngay') }}</button>
                 </a>
