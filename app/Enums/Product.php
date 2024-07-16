@@ -11,7 +11,7 @@ final class Product
     const STATUS_TEXT = [
         'available' => 'Còn hàng',
         'out of stock' => 'Hết hàng',
-        'order' => 'Đặt hàng',
+        'order' => 'Đang về hàng',
     ];
 
     const RANGE_PRICE = [

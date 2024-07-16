@@ -100,4 +100,9 @@ class ProductRepository extends BaseRepository
     {
         return $this->model->get();
     }
+
+    public function getListProductWithFilter()
+    {
+        return $this->model->with('category', 'productImages', 'brands')->orderBy('created_at', 'DESC')->get();
+    }
 }

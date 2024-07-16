@@ -41,7 +41,7 @@ class CategoryFilterController extends Controller
         $this->categoryFilterRepository->create($input);
         Cache::store('redis')->forget('menu_homepage');
 
-        return redirect()->route('admin.category-filter.index')->with('success',  __('Từ khóa danh mục sản phẩm được thêm thành công'));
+        return redirect()->route('admin.category-filter.index')->with('success',  __('Bộ lọc danh mục được thêm thành công'));
     }
 
     public function edit($id)
@@ -61,13 +61,13 @@ class CategoryFilterController extends Controller
         $input = $request->except(['_token']);
         $input = $this->categoryFilterRepository->update($input, $id);
 
-        return redirect()->route('admin.category-filter.index')->with('success',  __('Từ khóa danh mục sản phẩm được thay đổi thành công'));
+        return redirect()->route('admin.category-filter.index')->with('success',  __('Bộ lọc danh mục được thay đổi thành công'));
     }
 
     public function delete($id)
     {
         $this->categoryFilterRepository->destroy($id);
 
-        return back()->with('success', __('Từ khóa danh mục sản phẩm được xóa  thành công'));
+        return back()->with('success', __('Bộ lọc danh mục được xóa  thành công'));
     }
 }
