@@ -43,7 +43,7 @@ class  OrderRepository extends BaseRepository
 
     public function getOrderForStaticIncome($year)
     {
-        return $this->model->with('orderDetails')->whereYear('created_at', $year)->paginate(10);
+        return $this->model->with('orderDetails')->whereYear('created_at', $year)->get();
     }
 
     public function getAllOrder()
@@ -53,6 +53,6 @@ class  OrderRepository extends BaseRepository
 
     public function getYearInOrder()
     {
-        return $this->model->select('date')->get();
+        return $this->model->select('order_date')->groupBy('order_date')->get();
     }
 }

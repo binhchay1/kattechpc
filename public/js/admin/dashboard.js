@@ -8,10 +8,10 @@ $(document).ready(function () {
         success: function (result) {
             var data = [];
 
-            for (var i in result)
-                data.push(result[i]);
+            for (var i in result.data)
+                data.push(result.data[i]);
 
-            renderIncomeChart(data);
+            renderIncomeChart(data, result.change);
         }
     });
 
@@ -21,15 +21,15 @@ $(document).ready(function () {
         success: function (result) {
             var data = [];
 
-            for (var i in result)
-                data.push(result[i]);
+            for (var i in result.data)
+                data.push(result.data[i]);
 
-            renderVisitorChart(data);
+            renderVisitorChart(data, result.change);
         }
     });
 });
 
-function renderIncomeChart(data) {
+function renderIncomeChart(data, change) {
     var options = {
         series: [{
             name: "Income",
@@ -67,20 +67,23 @@ function renderIncomeChart(data) {
         }
     };
 
-    var chart = new ApexCharts(document.querySelector("#incomeChart"), options);
-    chart.render();
+    if (change == false) {
+        var chart = new ApexCharts(document.querySelector("#incomeChart"), options);
+        chart.render();
+    } else {
+        $('#incomeChart').remove();
+        $('#incomChartArea').append(`<div id="incomeChart" class="apex-charts" data-chart-colors='["bg-red-500"]' dir="ltr"></div>`);
+        var chart = new ApexCharts(document.querySelector("#incomeChart"), options);
+        chart.render();
+    }
 }
 
-function renderVisitorChart(data) {
+function renderVisitorChart(data, change) {
     var options = {
         series: [{
             name: 'Visitor',
             data: data
-        },
-            // {
-            //     name: 'Followers',
-            //     data: [10, 18, 13, 23, 33, 39, 30, 21, 36, 42, 39, 46]
-            // }
+        }
         ],
         chart: {
             height: 350,
@@ -159,15 +162,16 @@ function renderVisitorChart(data) {
         colors: getChartColorsArray("pagesInteraction")
     };
 
-    var chart = new ApexCharts(document.querySelector("#visitorChart"), options);
-    chart.render();
+    if (change == false) {
+        var chart = new ApexCharts(document.querySelector("#visitorChart"), options);
+        chart.render();
+    } else {
+        $('#incomeChart').remove();
+        $('#incomChartArea').append(`<div id="visitorChart" class="apex-charts" data-chart-colors='["bg-custom-500", "bg-purple-500"]' dir="ltr"></div>`);
+        var chart = new ApexCharts(document.querySelector("#visitorChart"), options);
+        chart.render();
+    }
 }
-
-
-
-
-
-
 
 function getChartColorsArray(chartId) {
     const chartElement = document.getElementById(chartId);
@@ -201,4 +205,46 @@ function getChartColorsArray(chartId) {
             console.warn(`chart-colors attribute not found on: ${chartId}`);
         }
     }
+}
+
+function handleYearIncom(select) {
+    let year = select.val();
+    let urlGetIncome = '/admin/get-data-for-income';
+
+    $.ajax({
+        type: "get",
+        url: urlGetIncome,
+        data: {
+            year: year
+        },
+        success: function (result) {
+            var data = [];
+
+            for (var i in result.data)
+                data.push(result.data[i]);
+
+            renderIncomeChart(data, result.change);
+        }
+    });
+}
+
+function handleYearVisitor(select) {
+    let year = select.val();
+    let urlGetVisitor = '/admin/get-data-for-visitor';
+
+    $.ajax({
+        type: "get",
+        url: urlGetVisitor,
+        data: {
+            year: year
+        },
+        success: function (result) {
+            var data = [];
+
+            for (var i in result.data)
+                data.push(result.data[i]);
+
+            renderVisitorChart(data, result.change);
+        }
+    });
 }

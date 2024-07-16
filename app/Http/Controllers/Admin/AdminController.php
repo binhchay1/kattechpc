@@ -56,8 +56,24 @@ class AdminController extends Controller
 
     public function viewDashBoard(Request $request)
     {
-        $orderStatic = $this->orderRepository->getOrderForStatic();
         $getOrder = $this->orderRepository->getYearInOrder();
+        $getVisiter = $this->visitorRepository->getYearInVisitor();
+        $arrayYearOrder = [];
+        $arrayYearVisitor = [];
+        foreach ($getOrder as $itemOrder) {
+            $explode = explode('-', $itemOrder->order_date);
+            if (!in_array($explode[0], $arrayYearOrder)) {
+                $arrayYearOrder[] = $explode[0];
+            }
+        }
+
+        foreach ($getVisiter as $itemVisitor) {
+            if (!in_array($itemVisitor, $arrayYearVisitor)) {
+                $arrayYearVisitor[] = $itemVisitor->year;
+            }
+        }
+
+        $orderStatic = $this->orderRepository->getOrderForStatic();
         $productStatic = $this->productRepository->getProductForStatic();
         $orderStatic->setPageName('order_page');
         $productStatic->setPageName('product_page');
@@ -84,7 +100,7 @@ class AdminController extends Controller
             $product->total_quantity = $totalQuantity;
         }
 
-        return view('admin.dashboard', compact('orderStatic', 'productStatic'));
+        return view('admin.dashboard', compact('orderStatic', 'productStatic', 'arrayYearOrder', 'arrayYearVisitor'));
     }
 
     public function viewFlashSale()
@@ -160,6 +176,9 @@ class AdminController extends Controller
 
         if (!isset($year)) {
             $year = date('Y');
+            $change = false;
+        } else {
+            $change = true;
         }
 
         $getOrder = $this->orderRepository->getOrderForStaticIncome($year);
@@ -192,12 +211,24 @@ class AdminController extends Controller
             $data[$month] += $total;
         }
 
-        return response()->json($data);
+        $response = [
+            'data' => $data,
+            'change' => $change
+        ];
+
+        return response()->json($response);
     }
 
     public function getDataForVisitorChart()
     {
-        $getVisitor = $this->visitorRepository->getVisitorForStatic();
+        if (!isset($year)) {
+            $year = date('Y');
+            $change = false;
+        } else {
+            $change = true;
+        }
+
+        $getVisitor = $this->visitorRepository->getVisitorForStatic($year);
         $data = [
             '01' => 0,
             '02' => 0,
@@ -221,7 +252,12 @@ class AdminController extends Controller
             }
         }
 
-        return response()->json($data);
+        $response = [
+            'data' => $data,
+            'change' => $change
+        ];
+
+        return response()->json($response);
     }
 
     public function changeMaintenance()

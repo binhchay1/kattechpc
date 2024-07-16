@@ -27,8 +27,13 @@ class VisitorRepository extends BaseRepository
         return $this->model->where('id', $id)->update($input);
     }
 
-    public function getVisitorForStatic()
+    public function getVisitorForStatic($year)
     {
-        return $this->model->where('year', date('Y'))->get();
+        return $this->model->where('year', $year)->get();
+    }
+
+    public function getYearInVisitor()
+    {
+        return $this->model->select('year')->groupBy('year')->get();
     }
 }
