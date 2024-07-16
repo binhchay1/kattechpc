@@ -223,6 +223,8 @@ function handleYearIncom(select) {
             for (var i in result.data)
                 data.push(result.data[i]);
 
+            $('#year-html-incom').html(year);
+
             renderIncomeChart(data, result.change);
         }
     });
@@ -243,6 +245,8 @@ function handleYearVisitor(select) {
 
             for (var i in result.data)
                 data.push(result.data[i]);
+
+            $('#year-html-visitor').text(year);
 
             renderVisitorChart(data, result.change);
         }
