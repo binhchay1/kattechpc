@@ -219,7 +219,7 @@ class AdminController extends Controller
         return response()->json($response);
     }
 
-    public function getDataForVisitorChart()
+    public function getDataForVisitorChart(Request $request)
     {
         $year = $request->get('year');
 

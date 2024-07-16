@@ -166,8 +166,8 @@ function renderVisitorChart(data, change) {
         var chart = new ApexCharts(document.querySelector("#visitorChart"), options);
         chart.render();
     } else {
-        $('#incomeChart').remove();
-        $('#incomChartArea').append(`<div id="visitorChart" class="apex-charts" data-chart-colors='["bg-custom-500", "bg-purple-500"]' dir="ltr"></div>`);
+        $('#visitorChart').remove();
+        $('#visitorChartArea').append(`<div id="visitorChart" class="apex-charts" data-chart-colors='["bg-custom-500", "bg-purple-500"]' dir="ltr"></div>`);
         var chart = new ApexCharts(document.querySelector("#visitorChart"), options);
         chart.render();
     }
