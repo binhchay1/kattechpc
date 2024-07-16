@@ -154,8 +154,8 @@
                             <?php $total_line = ($dataProduct->sale_stock / $dataProduct->sale_quantity) * 100 ?>
                             <i class="sprite sprite-fire-deal"></i>
                             <div class="bg-gradient"></div>
-                            <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>"></p>
-                            <p class="text-deal-detail">{{ __('Còn') }} {{ $dataProduct->sale_stock }}/{{ $dataProduct->sale_quantity }} {{ __('sản phẩm') }}</p>
+                            <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>; background: #ffb22f;"></p>
+                            <p class="text-deal-detail" style="background: none;">{{ __('Còn') }} {{ $dataProduct->sale_stock }}/{{ $dataProduct->sale_quantity }} {{ __('sản phẩm') }}</p>
                         </div>
                     </div>
                 </div>
