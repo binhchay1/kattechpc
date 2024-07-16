@@ -7,7 +7,6 @@
 @section('description', $dataCategory->description)
 @section('keywords', $dataCategory->key_word)
 @section('breadcrumb', $dataCategory->name)
-@stop
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('/css/page/product-cate.css') }}" />
