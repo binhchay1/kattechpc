@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ __('Danh mục sản phẩm') }} | Kattech PC</title>
+<title>{{ $dataCategory->title }} | Kattech PC</title>
 @endsection
 
 @section('description', $dataCategory->description)
