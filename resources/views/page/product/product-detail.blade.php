@@ -151,31 +151,28 @@
                 <div class="box-right">
                     <div id="deal-line-detail" class="box-product-deal">
                         <div class="p-quantity-sale d-flex">
-                            <img class="icon-sale-quantity" src="{{ asset('images/sale_icon.png') }}">
-                            <div>
-                                    <?php $total_line = ($dataProduct->sale_stock / $dataProduct->sale_quantity) * 100 ?>
-                                <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>"></p>
-                                <p class="text-deal-detail" style="    margin-top: 2px;
-">{{ __('Còn') }} {{ $dataProduct->sale_stock }}/{{ $dataProduct->sale_quantity }} {{ __('sản phẩm') }}</p>
-
-                            </div>
+                            <?php $total_line = ($dataProduct->sale_stock / $dataProduct->sale_quantity) * 100 ?>
+                            <i class="sprite sprite-fire-deal"></i>
+                            <div class="bg-gradient"></div>
+                            <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>"></p>
+                            <p class="text-deal-detail">{{ __('Còn') }} {{ $dataProduct->sale_stock }}/{{ $dataProduct->sale_quantity }} {{ __('sản phẩm') }}</p>
                         </div>
                     </div>
                 </div>
             </div>
-                <div class="box-right1" style="display: none">
-                    <div id="deal-line-detail" class="box-product-deal">
-                        <div class="p-quantity-sale d-flex">
-                            <img class="icon-sale-quantity" src="{{ asset('images/sale_icon.png') }}">
-                            <div>
-                                    <?php $total_line = ($dataProduct->sale_stock / $dataProduct->sale_quantity) * 100 ?>
-                                <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>"></p>
-                                <p class="text-deal-detail" style="    margin-top: 2px;">{{ __('Còn') }} {{ $dataProduct->sale_stock }}/{{ $dataProduct->sale_quantity }} {{ __('sản phẩm') }}</p>
+            <div class="box-right1" style="display: none">
+                <div id="deal-line-detail" class="box-product-deal">
+                    <div class="p-quantity-sale d-flex">
+                        <img class="icon-sale-quantity" src="{{ asset('images/sale_icon.png') }}">
+                        <div>
+                            <?php $total_line = ($dataProduct->sale_stock / $dataProduct->sale_quantity) * 100 ?>
+                            <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>"></p>
+                            <p class="text-deal-detail" style="    margin-top: 2px;">{{ __('Còn') }} {{ $dataProduct->sale_stock }}/{{ $dataProduct->sale_quantity }} {{ __('sản phẩm') }}</p>
 
-                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
             @endif
 
             <div>
@@ -475,9 +472,9 @@
                         </div>
                     </div>
                     @if(isset($errors))
-                        @foreach ($errors->all() as $error)
-                            <div style="color: red; margin: 10px; font-size: 16px">{{ $error }}</div>
-                        @endforeach
+                    @foreach ($errors->all() as $error)
+                    <div style="color: red; margin: 10px; font-size: 16px">{{ $error }}</div>
+                    @endforeach
                     @endif
                 </div>
                 <div id="product-info" class="product-info feedback-form" style="background-color: #f5f5f5;">
@@ -567,7 +564,7 @@
                         <div id="content-right">
                             <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
                             <a href="{{route('post.detail', $post['slug'])}}">
-                            <h3> {{$text}}</h3>
+                                <h3> {{$text}}</h3>
                             </a>
                         </div>
                     </div>
