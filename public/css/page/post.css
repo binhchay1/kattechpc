@@ -121,7 +121,7 @@
 
 .post_info_item-author {
     position: relative;
-    padding-left: 15px;
+    padding-left: 20px;
     color: #005ec9;
     font-size: 15px;
     font-weight: 600;
@@ -281,6 +281,10 @@
     border-radius: 50%;
 }
 
+.post_info {
+    display: flex;
+}
+
 @media screen and (max-width: 992px) {
     .child {
         flex-direction: column;
@@ -308,5 +312,9 @@
         width: auto;
         margin-bottom: 0;
         float: inherit;
+    }
+
+    .post_info {
+        flex-direction: column;
     }
 }
