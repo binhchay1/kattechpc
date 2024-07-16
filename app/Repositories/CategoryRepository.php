@@ -85,7 +85,7 @@ class CategoryRepository extends BaseRepository
         if ($isParent == 1) {
             $query = $this->model->with('children', 'products', 'children.products.productImages', 'products.brands', 'children.products.brands', 'categoryFilter')->where('slug', $slug);
         } else {
-            $query = $this->model->with('productChildren')->where('slug', $slug);
+            $query = $this->model->with('productChildren', 'categoryFilter')->where('slug', $slug);
         }
 
         foreach ($filter as $key => $value) {

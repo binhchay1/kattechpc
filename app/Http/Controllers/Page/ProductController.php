@@ -189,10 +189,26 @@ class ProductController extends Controller
 
         return view(
             'page.product.product-detail',
-            compact('youtubeRandom',
-            'postRandom5', 'countRate',
-            'countRate1', 'countRate2', 'countRate3', 'countRate4', 'countRate5', 'dataProduct', 'productRelated',
-            'listComment', 'listCategory', 'listRatings', 'ratingValue', 'productViewed', 'dataBreadcrumb', 'layout', 'social')
+            compact(
+                'youtubeRandom',
+                'postRandom5',
+                'countRate',
+                'countRate1',
+                'countRate2',
+                'countRate3',
+                'countRate4',
+                'countRate5',
+                'dataProduct',
+                'productRelated',
+                'listComment',
+                'listCategory',
+                'listRatings',
+                'ratingValue',
+                'productViewed',
+                'dataBreadcrumb',
+                'layout',
+                'social'
+            )
         );
     }
 
@@ -220,8 +236,8 @@ class ProductController extends Controller
         }
         $input = $request->except(['_token']);
 
-            $input = $request->all();
-            $this->ratingRepository->store($input);
+        $input = $request->all();
+        $this->ratingRepository->store($input);
 
         return back();
     }
@@ -391,12 +407,10 @@ class ProductController extends Controller
         $dataProducts = $this->categoryRepository->productSale($slug, $isParent);
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $listKeyWord = $dataCategory->categoryFilter;
 
-        if (count($dataCategories) > 0 and $isParent == 2) {
-            $getParent = $this->getTopParent($this->categoryRepository->getParentWithKeyword($dataCategory->id));
-            $listKeyWord = $getParent->categoryFilter;
-        } else {
-            $listKeyWord = $dataCategory->categoryFilter;
+        foreach ($listKeyWord as $keyword) {
+            $keyword->slug = $this->slugify($keyword->title);
         }
 
         $currentCateID = $dataCategory->parent;
@@ -417,16 +431,32 @@ class ProductController extends Controller
 
         $layout = $this->layoutRepository->getListLayout();
 
-        return view('page.product.product-category', compact('dataCategories',
-        'dataProducts', 'listCategory', 'dataCategory', 'dataBrand', 'listKeyWord', 'dataBreadcrumb', 'layout', 'social'));
+        return view('page.product.product-category', compact(
+            'dataCategories',
+            'dataProducts',
+            'listCategory',
+            'dataCategory',
+            'dataBrand',
+            'listKeyWord',
+            'dataBreadcrumb',
+            'layout',
+            'social'
+        ));
     }
 
-    function getTopParent($category)
+    public function slugify($text, string $divider = '-')
     {
-        if ($category->parent === 0) {
-            return $category;
+        $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+        $text = preg_replace('~[^-\w]+~', '', $text);
+        $text = trim($text, $divider);
+        $text = preg_replace('~-+~', $divider, $text);
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return 'n-a';
         }
 
-        return $this->getTopParent($this->categoryRepository->getParentWithKeyword($category->parent));
+        return $text;
     }
 }

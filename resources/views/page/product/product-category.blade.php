@@ -166,7 +166,7 @@
                 @foreach($listKeyWord as $item)
                 <div class="d-flex flex-direction-column">
                     <label class="font-bold">{{ $item->title }}</label>
-                    <select class="mt-1 select-keyword" id="select-keyword-{{ $item->id }}" data-id="{{ $item->id }}" onchange="sortByKeyWord($(this))">
+                    <select class="mt-1 select-keyword" id="select-keyword-{{ $item->id }}" data-slug="{{ $item->slug }}" onchange="sortByKeyWord($(this))">
                         <option value="all">{{ __('Tất cả') }}</option>
 
                         @php

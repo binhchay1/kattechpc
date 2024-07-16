@@ -20,7 +20,6 @@ class CacheMenuDefined
     public function handle(Request $request, Closure $next): Response
     {
         $keyCache = 'menu_homepage';
-        Cache::store('redis')->flush();
         $getInfor = Cache::store('redis')->get($keyCache);
 
         if (empty($getInfor)) {
@@ -57,8 +56,6 @@ class CacheMenuDefined
             $data['default'] = $listCategory;
             $data['brand'] = $listBrand;
             $data['keyword'] = $listKeyword;
-
-            dd($listKeyword);
 
             Cache::store('redis')->rememberForever($keyCache, function () use ($data) {
                 return $data;

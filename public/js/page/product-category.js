@@ -10,6 +10,14 @@ if (url.indexOf('?') != -1) {
     }
 }
 
+for (let g in arrayParam) {
+    if (g == 'brand' || g == 'category' || g == 'price' || g == 'sort' || g == 'page') {
+        continue;
+    }
+
+    $("[data-slug=" + g + "]").val(arrayParam[g]);
+}
+
 if (arrayParam['brand'] != undefined) {
     $('#brand-in-product-category').val(arrayParam['brand']);
 }
@@ -141,8 +149,8 @@ function sortByKeyWord() {
     let listValKeyWord = {};
     for (let i = 0; i < listKeyWord.length; i++) {
         let valKeyWord = listKeyWord[i].value;
-        let idKeyWord = listKeyWord[i].getAttribute('data-id');
-        listValKeyWord[idKeyWord] = valKeyWord;
+        let slug = listKeyWord[i].getAttribute('data-slug');
+        listValKeyWord[slug] = valKeyWord;
     }
 
     arrayParam['keyword'] = listValKeyWord;
