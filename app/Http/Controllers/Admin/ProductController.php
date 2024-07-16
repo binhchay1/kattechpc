@@ -122,6 +122,10 @@ class ProductController extends Controller
 
         $input['slug'] =  Str::slug($input['name']);
 
+        if ($input['warranty_package_id'] == 'none') {
+            $input['warranty_package_id'] = null;
+        }
+
         if ($request->hasfile('image')) {
             if (isset($input['image_preview'])) {
                 $explode = explode(',', $input['image_preview']);
@@ -235,6 +239,10 @@ class ProductController extends Controller
 
         $input['image'] = json_encode($imgData);
 
+        if ($input['warranty_package_id'] == 'none') {
+            $input['warranty_package_id'] = null;
+        }
+
         unset($input['detail_key']);
         unset($input['detail_tech_key']);
         unset($input['detail_value']);
@@ -292,7 +300,6 @@ class ProductController extends Controller
 
                             $diff = date_diff($date1, $date2);
                             $guarantee = $diff->format("%a ngày");
-
                         } elseif ($statusDate == 'year') {
                             $strToTime = '+' . $detailOrder->product->status_guarantee_year . ' years';
                             $date = strtotime($orderDate);
@@ -302,7 +309,6 @@ class ProductController extends Controller
 
                             $diff = date_diff($date1, $date2);
                             $guarantee = $diff->format("%a ngày");
-
                         } else {
                             $guarantee = $detailOrder->product->status_guarantee;
                         }
@@ -335,8 +341,9 @@ class ProductController extends Controller
         return view('admin.product.manager-sold', compact('managerSold'));
     }
 
-    public function exportProduct(Request $request)
+    public function exportProduct()
     {
-        return Excel::download(new ExportProduct(), 'product.xlsx');
+        $products = $this->productRepository->getListProduct();
+        return Excel::download(new ExportProduct($products), 'product.xlsx');
     }
 }

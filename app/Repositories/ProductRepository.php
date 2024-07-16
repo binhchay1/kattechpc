@@ -50,7 +50,7 @@ class ProductRepository extends BaseRepository
 
     public function productDetail($slug)
     {
-        return $this->model->with('productImages','ratings', 'category', 'warrantyPackages')->where('slug', $slug)->first();
+        return $this->model->with('productImages', 'ratings', 'category', 'warrantyPackages')->where('slug', $slug)->first();
     }
 
     public function getProductRelated($category_id, $product_id)
@@ -95,5 +95,10 @@ class ProductRepository extends BaseRepository
     public function getProductForStatic()
     {
         return $this->model->with('orderDetails')->paginate(15);
+    }
+
+    public function getListProduct()
+    {
+        return $this->model->get();
     }
 }
