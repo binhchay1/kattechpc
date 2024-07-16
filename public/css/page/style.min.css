@@ -2382,6 +2382,17 @@ a {
     margin-bottom: 16px;
 }
 
+.left-side-top-post {
+    float: left;
+    width: 60%;
+}
+
+.second-after-post {
+    float: right;
+    width: 35%;
+    margin-left: 10px;
+}
+
 @media screen and (max-width: 768px) {
     .main-menu-category {
         position: fixed;
@@ -2412,7 +2423,7 @@ a {
     }
 
     .time-count b {
-        padding:  0 !important;
+        padding: 0 !important;
     }
 
     .show-search .search-mobile {

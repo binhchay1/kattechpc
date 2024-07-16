@@ -161,7 +161,8 @@
 
     .footer-bottom-content {
         padding-left: 20px;
-
+        height: 100%;
+        margin-bottom: 50px;
     }
 
     .policy-item {
