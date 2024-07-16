@@ -1280,6 +1280,6 @@ tr:nth-child(even) {
     }
 
     .nhan-xet-bar {
-        width: 57%;
+        margin: 0 10px 0 10px;
     }
 }
