@@ -335,7 +335,8 @@
     }
 
     .product-slide .justify-content-between {
-        justify-content: inherit;
+        margin-left: 15px;
+        margin-right: 15px;
     }
 
     .title-all-category {
@@ -434,7 +435,7 @@
         margin-bottom: 10px;
         display: block;
         color: grey;
-        font-size: 15px;
+        font-size: 22px;
         font-weight: 600;
     }
     .menu-btn {
@@ -453,7 +454,11 @@
         overflow: hidden;
     }
 
-    .global-fixed-right {
+    .global-fixed-right .zalo {
+        display: none !important;
+    }
+
+    .global-fixed-right .messenger {
         display: none !important;
     }
 
@@ -547,5 +552,26 @@
         justify-content: center;
         margin-top: -15px;
         margin-left: 25px;
+    }
+
+    .hot-sale-mobile {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .swiper-button-prev-top-sale {
+        left: 0;
+    }
+
+    .global-fixed-right .scroll-top-btn {
+        bottom: calc(50% - 350px);
+    }
+
+    .global-fixed-right .fix-youtube {
+        bottom: calc(50% - 295px);
+    }
+
+    .global-fixed-right .fix-face {
+        bottom: calc(50% - 240px);
     }
 }

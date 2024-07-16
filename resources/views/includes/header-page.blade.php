@@ -36,7 +36,7 @@
                     <a href="{{ route('promotion') }}" class="sep-item-link" target="_blank"><i class="fa fa-tag"></i> {{ __('Khuyến mại') }}</a>
                 </div>
 
-                @if(Auth::check()  )
+                @if(Auth::check() )
                 <div class="ml-15px dropdown">
                     <a class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
                     <div class="dropdown-content">
@@ -121,12 +121,12 @@
                         </li>
                         @endforeach
                         <hr>
-                        <li class="list-items"><a href="{{ route('home') }}"><i class="fa fa-home"></i>{{__("Trang chủ")}}</a></li>
+                        <li class="list-items" style="margin-top: 20px"><a href="{{ route('home') }}"><i class="fa fa-home"></i>{{__("Trang chủ")}}</a></li>
                         <li class="list-items"><a href="{{ route('post') }}"><i class="fa fa-newspaper"></i>{{__("Tin công nghệ")}}</a></li>
                         <li class="list-items"><a href="{{ route('payment') }}"><i class="fa fa-money-check"></i>{{__("Hướng dẫn thanh toán")}}</a></li>
                         <li class="list-items"><a href="{{ route('policy') }}"><i class="fa fa-shield-alt"></i>{{__("Chính sách bảo hành")}}</a></li>
                         <li class="list-items">
-                            @if(Auth::check() )
+                            @if(Auth::check())
                             <div class="dropdown">
                                 <a class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
                                 <div class="dropdown-content">
@@ -135,7 +135,7 @@
                                     <form method="POST" action="{{ route('logout') }}" style="cursor: pointer;">
                                         @csrf
                                         <a class="sep-item-link" onclick="this.closest('form').submit();return false;">
-                                            {{__('Đăng xuất')}}
+                                            {{ __('Đăng xuất') }}
                                         </a>
                                     </form>
                                 </div>
@@ -202,7 +202,8 @@
                 </li>
                 <li class="item-submenu sm-2">
                     <a href="{{ route('post') }}">
-                        <span class="icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <span class="icon">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M14.5 3.25H17.875C18.1734 3.25 18.4595 3.36853 18.6705 3.5795C18.8815 3.79048 19 4.07663 19 4.375V16.75C19 17.3467 18.7629 17.919 18.341 18.341C17.919 18.7629 17.3467 19 16.75 19M16.75 19C16.1533 19 15.581 18.7629 15.159 18.341C14.7371 17.919 14.5 17.3467 14.5 16.75V2.125C14.5 1.82663 14.3815 1.54048 14.1705 1.32951C13.9595 1.11853 13.6734 1 13.375 1H2.125C1.82663 1 1.54048 1.11853 1.32951 1.32951C1.11853 1.54048 1 1.82663 1 2.125V15.625C1 16.5201 1.35558 17.3786 1.98851 18.0115C2.62145 18.6444 3.47989 19 4.375 19H16.75Z" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round"></path>
                                 <path d="M4 11.5L11 11.5" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round"></path>
                                 <path d="M4 15L11 15" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round"></path>

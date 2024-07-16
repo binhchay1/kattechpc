@@ -1739,7 +1739,7 @@ a {
 }
 
 .global-fixed-right .fix-face {
-    bottom: 30%;
+    bottom: calc(50% - 185px);
     background: #4267b2;
 }
 
@@ -1749,7 +1749,7 @@ a {
     height: 45px;
     position: fixed;
     border-radius: 50%;
-    z-index: 999;
+    z-index: 1;
     -webkit-transition: 0.4s all;
     -o-transition: 0.4s all;
     transition: 0.4s all;
@@ -1759,13 +1759,13 @@ a {
 }
 
 .global-fixed-right .fix-youtube {
-    bottom: 24.5%;
+    bottom: calc(50% - 235px);
     border: 1px solid red;
 }
 
 .global-fixed-right .messenger {
     background: #fff;
-    bottom: 30px;
+    bottom: calc(50% - 430px);
     width: 170px;
     padding: 10px;
     border-radius: 15px;
@@ -1777,7 +1777,7 @@ a {
 
 .global-fixed-right .zalo {
     background: #fff;
-    bottom: 100px;
+    bottom: calc(50% - 360px);
     width: 170px;
     padding: 10px;
     border-radius: 15px;
@@ -1965,6 +1965,10 @@ a {
 #marquee-header {
     font-size: 17px;
     font-weight: bold;
+}
+
+.swiper-button-prev-top-sale {
+    left: calc(50% - 29px);
 }
 
 .popup-showrom-container .item .item-title {
@@ -2242,6 +2246,7 @@ a {
     border-radius: 5px 0 0 5px;
     outline: none;
     color: #9dbfaf;
+    font-size: 17px;
 }
 
 .searchTerm:focus {
@@ -2323,7 +2328,7 @@ a {
 }
 
 .global-fixed-right .scroll-top-btn {
-    bottom: 180px;
+    bottom: calc(50% - 285px);
     background: var(--color-primary);
     border: 1px solid var(--color-primary);
     color: #fff;
@@ -2380,9 +2385,9 @@ a {
 @media screen and (max-width: 768px) {
     .main-menu-category {
         position: fixed;
-        margin-top: 57px;
-        top: 50px;
+        top: calc(50% - 316px);
         left: 0;
+        margin: 0;
         width: 100%;
         height: 100%;
         flex-direction: column;
@@ -2390,7 +2395,6 @@ a {
         transition: 0.5s all ease;
         display: none;
         transform: translateX(-800px);
-        padding-top: 30px;
         overflow: scroll;
         z-index: 99999999999999999999999;
     }

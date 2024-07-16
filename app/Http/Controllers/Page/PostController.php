@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Page;
 use App\Repositories\PostRepository;
 use App\Http\Controllers\Controller;
 use App\Repositories\CategoryPostRepository;
+use App\Repositories\LayoutRepository;
 use App\Repositories\SocialRepository;
 use Cache;
 
@@ -13,15 +14,18 @@ class PostController extends Controller
     protected $postRepository;
     protected $categoryPostRepository;
     protected $socialRepository;
+    protected $layoutRepository;
 
     public function __construct(
         PostRepository $postRepository,
         CategoryPostRepository $categoryPostRepository,
+        LayoutRepository $layoutRepository,
         SocialRepository $socialRepository
     ) {
         $this->postRepository = $postRepository;
         $this->categoryPostRepository = $categoryPostRepository;
         $this->socialRepository = $socialRepository;
+        $this->layoutRepository = $layoutRepository;
     }
 
     public function postDetail($slug)

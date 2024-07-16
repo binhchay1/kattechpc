@@ -393,4 +393,8 @@
     .row2 {
         display: block;
     }
+
+    .filter-box-group .brand-filter-list, .filter-box-group .sort-list {
+        justify-content: center;
+    }
 }
