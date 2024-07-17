@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Exports\ExportOrder;
 use App\Exports\ExportProduct;
 use App\Enums\Product;
 use App\Enums\Utility;

@@ -147,32 +147,33 @@ $(document).ready(function () {
         $('.swiper-button-prev-flash-sale').addClass('d-none');
     }
 
+    var transProduct = 0;
+    var defaultProduct = 6;
+    var perTransProduct = 238;
+    var countProduct = 0;
+    var stopProduct = 0;
+
     if (typeof (listCategory) != 'undefined' && listCategory !== null) {
         let listInterval = {};
         for (let k = 0; k < listCategory.default.length; k++) {
-            var transProduct = 0;
-            var defaultProduct = 6;
-            var perTransProduct = 238;
-            var countProduct = 0;
-            var idElementProduct = '.swiper-product-' + listCategory.default[k].slug;
-            var listChildProduct = $(idElementProduct).children();
+            var listChildProduct = $('.swiper-product-' + listCategory.default[k].slug).children();
 
             if (isMobileDetected) {
                 defaultProduct = 1;
-                perTransProduct = window.innerWidth + 12;
+                perTransProduct = window.innerWidth + 10;
             }
 
             if (listChildProduct.length > defaultProduct) {
-                var stopProduct = listChildProduct.length - defaultProduct;
+                stopProduct = listChildProduct.length - defaultProduct;
                 listInterval[k] = setInterval(function () {
                     if (countProduct == stopProduct) {
                         transProduct = 0;
                         countProduct = 0;
-                        $(idElementProduct).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
+                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
                     } else {
                         transProduct = transProduct - perTransProduct;
                         countProduct += 1;
-                        $(idElementProduct).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
+                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
                     }
 
                 }, 3000);
@@ -181,11 +182,11 @@ $(document).ready(function () {
                     if (countProduct == stopProduct) {
                         transProduct = 0;
                         countProduct = 0;
-                        $(idElementProduct).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
+                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
                     } else {
                         transProduct = transProduct - perTransProduct;
                         countProduct += 1;
-                        $(idElementProduct).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
+                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
                     }
 
                     clearInterval(listInterval[k]);
@@ -194,12 +195,12 @@ $(document).ready(function () {
                 $('.swiper-button-prev-product-' + listCategory.default[k].slug).on('click', function () {
                     if (countProduct == 0) {
                         transProduct = 0 - (perTransProduct * stopProduct);
-                        countFlash = stopProduct;
-                        $(idElementProduct).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
+                        countProduct = stopProduct;
+                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
                     } else {
                         transProduct = transProduct + perTransProduct;
                         countProduct -= 1;
-                        $(idElementProduct).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
+                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
                     }
 
                     clearInterval(listInterval[k]);
@@ -591,6 +592,7 @@ function suggestionForSearchScroll(input) {
                                     </span>
                                 </a>`;
 
+                        console.log(stringAppend);
                         $('#js-search-result-scroll .list').append(stringAppend);
                     }
 

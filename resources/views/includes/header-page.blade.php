@@ -75,7 +75,7 @@
                         <div class="wrap1">
                             <form method="get" action="{{ route('search') }}">
                                 <div class="search">
-                                    <input type="text" name="q" class="searchTerm" placeholder="Nhập  sản phẩm, từ khóa cần tìm">
+                                    <input type="text" name="q" class="searchTerm inline-search" placeholder="Nhập  sản phẩm, từ khóa cần tìm">
                                     <button type="submit" class="searchButton">
                                         <i class="fa fa-search"></i>
                                     </button>
@@ -85,7 +85,7 @@
                         <div class="wrap">
                             <form method="get" action="{{ route('search') }}">
                                 <div class="search">
-                                    <input type="text" name="q" class="searchTerm" placeholder="Nhập  sản phẩm, từ khóa cần tìm">
+                                    <input type="text" name="q" class="searchTerm inline-search-scroll" placeholder="Nhập  sản phẩm, từ khóa cần tìm">
                                     <button type="submit" class="searchButton">
                                         <i class="fa fa-search"></i>
                                     </button>
@@ -141,11 +141,11 @@
                                 </div>
                             </div>
                             @else
-                            <div class="">
-                                <a href="" class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Đăng ký') }}</a>
+                            <div>
+                                <a href="{{ route('register') }}" class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Đăng ký') }}</a>
                             </div>
-                            <div class="">
-                                <a href="/login" class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Đăng nhập') }}</a>
+                            <div>
+                                <a href="{{ route('login') }}" class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Đăng nhập') }}</a>
                             </div>
                             @endif
                         </li>

@@ -504,6 +504,7 @@
     .product-item .product-image {
         display: flex;
         justify-content: center;
+        height: auto;
     }
 
     .box-banner-collection {

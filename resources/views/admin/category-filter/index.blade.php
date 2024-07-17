@@ -36,6 +36,7 @@
                                 </th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{ __('Từ khóa') }}
                                 </th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="location">{{ __('Danh mục') }}
                                 </th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">{{ __('Hành động') }}</th>
                             </tr>
@@ -55,6 +56,14 @@
                                     <div class="flex items-center gap-2">
                                         <div class="grow">
                                             <h6 class="mb-1">{{ $CategoryFilter->keyword  }}</h6>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
+                                    <div class="flex items-center gap-2">
+                                        <div class="grow">
+                                            <h6 class="mb-1">{{ $CategoryFilter->categories->name  }}</h6>
                                         </div>
                                     </div>
                                 </td>

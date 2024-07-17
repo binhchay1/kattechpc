@@ -1073,7 +1073,7 @@ tr:nth-child(even) {
     }
 
     #featured-image {
-        height: 300px;
+        height: auto;
         width: 100%;
     }
 
@@ -1100,6 +1100,11 @@ tr:nth-child(even) {
 
     .product-image {
         width: 100%;
+        height: auto;
+    }
+
+    .product-martket-main {
+        margin-top: 0;
     }
 }
 

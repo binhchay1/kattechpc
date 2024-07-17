@@ -1650,6 +1650,7 @@ a {
 
 #js-search-result {
     display: none;
+    min-height: 100%;
 }
 
 .list-breadcrumb {

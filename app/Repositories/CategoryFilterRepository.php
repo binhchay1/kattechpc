@@ -13,7 +13,7 @@ class CategoryFilterRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->orderBy('created_at', 'DESC')->paginate(10);
+        return $this->model->with('categories')->orderBy('created_at', 'DESC')->paginate(10);
     }
 
     public function create($input)
