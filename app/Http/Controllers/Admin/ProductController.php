@@ -50,9 +50,8 @@ class ProductController extends Controller
         $getStatus = $request->get('status');
         $getSearchName = $request->get('s');
 
-        $listProducts = $this->productRepository->index();
+        $listProducts = $this->productRepository->getListProductWithFilter();
         $categoryFilter = [];
-        $statusFilter = [];
 
         foreach ($listProducts as $product) {
             $product->detail = json_decode($product->detail, true);

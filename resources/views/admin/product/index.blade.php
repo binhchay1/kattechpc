@@ -21,26 +21,36 @@
                 <form action="{{ route('admin.product.index') }}" method="GET">
                     <div class="grid grid-cols-1 gap-5 xl:grid-cols-12">
                         <div class="relative xl:col-span-2">
-                            <input type="text" id="myInput" onkeyup="myFunctionSearch()" class="ltr:pl-8 rtl:pr-8  form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Tìm kiếm')}}" autocomplete="off">
-                            <i data-lucide="search" class="inline-block size-4 absolute ltr:left-2.5 rtl:right-2.5 top-2.5 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-600"></i>
                             <label>{{ __('Tên') }}</label>
                             <input name="s" type="text" class="ltr:pl-8 rtl:pr-8 form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Tìm kiếm')}}" autocomplete="off">
                             <i data-lucide="search" class="inline-block size-4 absolute ltr:left-2.5 rtl:right-2.5 top-2.5 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-600" style="top: 32px;"></i>
                         </div>
 
+                        @if(array_key_exists('category', $_GET))
                         <div class="relative xl:col-span-2">
                             <label>{{ __('Danh mục') }}</label>
-                            <select onchange="handleFilter($(this))" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false name="category">
+                            <select id="filter-category" onchange="handleFilter($(this))" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false name="category">
                                 <option value="all">{{ __('Tất cả') }}</option>
                                 @foreach($categoryFilter as $category)
-                                <option value="{{ $category->id }}" {{ $category->id == $_GET['category'] ? 'selected' : '' }}>{{ $category->name }}</option>
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
                         </div>
+                        @else
+                        <div class="relative xl:col-span-2">
+                            <label>{{ __('Danh mục') }}</label>
+                            <select id="filter-category" onchange="handleFilter($(this))" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false name="category">
+                                <option value="all">{{ __('Tất cả') }}</option>
+                                @foreach($categoryFilter as $category)
+                                <option value="{{ $category->id }}" {{ $category->id == $_GET['category'] ? 'selected' : ''  }}>{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @endif
 
                         <div class="relative xl:col-span-2">
                             <label>{{ __('Trạng thái') }}</label>
-                            <select value="{{ $_GET['status'] }}" onchange="handleFilter($(this))" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false name="status">
+                            <select id="filter-status" onchange="handleFilter($(this))" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false name="status">
                                 <option value="all">{{ __('Tất cả') }}</option>
                                 <option value="available">{{ __('Còn hàng') }}</option>
                                 <option value="out of stock">{{ __('Hết hàng') }}</option>
@@ -177,29 +187,17 @@
     setTimeout(function() {
         $('.alert-block').remove();
     }, 5000);
-</script>
 
-<script>
-    function myFunctionSearch() {
-        // Declare variables
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
+    const searchParams = new URLSearchParams(window.location.search);
 
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
+    if(searchParams.has('category')) {
+        let categoryFilter = searchParams.get('category');
+        $('#filter-category').val(categoryFilter);
+    }
+
+    if(searchParams.has('status')) {
+        let statusFilter = searchParams.get('status');
+        $('#filter-status').val(statusFilter);
     }
 </script>
 @endpush
