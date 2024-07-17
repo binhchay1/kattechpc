@@ -44,17 +44,46 @@ class ProductController extends Controller
         $this->utility = $utility;
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $getCategory = $request->get('category');
+        $getStatus = $request->get('status');
+        $getSearchName = $request->get('s');
+
         $listProducts = $this->productRepository->index();
+        $categoryFilter = [];
+        $statusFilter = [];
 
         foreach ($listProducts as $product) {
             $product->detail = json_decode($product->detail, true);
             $product->detail_tech  = json_decode($product->detail_tech, true);
             $product->image = json_decode($product->image, true);
+            if (!in_array($product->category->name, $categoryFilter)) {
+                $categoryFilter[] = $product->category;
+            }
         }
 
-        return view('admin.product.index', compact('listProducts'));
+        if (isset($getCategory)) {
+            if ($getCategory != 'all') {
+                $listProducts = $listProducts->where('category.id', $getCategory);
+            }
+        }
+
+        if (isset($getStatus)) {
+            if ($getStatus != 'all') {
+                $listProducts = $listProducts->where('status', $getStatus);
+            }
+        }
+
+        if (isset($getSearchName)) {
+            $listProducts = $listProducts->filter(function ($item) use ($getSearchName) {
+                return strpos($item->name, $getSearchName) !== false;
+            });
+        }
+
+        $listProducts = $this->utility->paginate($listProducts);
+
+        return view('admin.product.index', compact('listProducts', 'categoryFilter'));
     }
 
     public function createProduct()

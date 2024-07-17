@@ -151,31 +151,26 @@
                 <div class="box-right">
                     <div id="deal-line-detail" class="box-product-deal">
                         <div class="p-quantity-sale d-flex">
-                            <img class="icon-sale-quantity" src="{{ asset('images/sale_icon.png') }}">
-                            <div>
-                                    <?php $total_line = ($dataProduct->sale_stock / $dataProduct->sale_quantity) * 100 ?>
-                                <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>"></p>
-                                <p class="text-deal-detail" style="    margin-top: 2px;
-">{{ __('Còn') }} {{ $dataProduct->sale_stock }}/{{ $dataProduct->sale_quantity }} {{ __('sản phẩm') }}</p>
-
-                            </div>
+                            <?php $total_line = ($dataProduct->sale_stock / $dataProduct->sale_quantity) * 100 ?>
+                            <i class="sprite sprite-fire-deal"></i>
+                            <div class="bg-gradient" style="width: 100%;"></div>
+                            <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>; background: #ffb22f;"></p>
+                            <p class="text-deal-detail" style="background: none;">{{ __('Còn') }} {{ $dataProduct->sale_stock }}/{{ $dataProduct->sale_quantity }} {{ __('sản phẩm') }}</p>
                         </div>
                     </div>
                 </div>
             </div>
-                <div class="box-right1" style="display: none">
-                    <div id="deal-line-detail" class="box-product-deal">
-                        <div class="p-quantity-sale d-flex">
-                            <img class="icon-sale-quantity" src="{{ asset('images/sale_icon.png') }}">
-                            <div>
-                                    <?php $total_line = ($dataProduct->sale_stock / $dataProduct->sale_quantity) * 100 ?>
-                                <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>"></p>
-                                <p class="text-deal-detail" style="    margin-top: 2px;">{{ __('Còn') }} {{ $dataProduct->sale_stock }}/{{ $dataProduct->sale_quantity }} {{ __('sản phẩm') }}</p>
-
-                            </div>
-                        </div>
+            <div class="box-right1" style="display: none">
+                <div id="deal-line-detail" class="box-product-deal">
+                    <div class="p-quantity-sale d-flex">
+                        <?php $total_line = ($dataProduct->sale_stock / $dataProduct->sale_quantity) * 100 ?>
+                        <i class="sprite sprite-fire-deal"></i>
+                        <div class="bg-gradient" style="width: 100%;"></div>
+                        <p class="js-line-deal-left" style="<?php echo 'width: ' . $total_line . '%' ?>; background: #ffb22f;"></p>
+                        <p class="text-deal-detail" style="background: none;">{{ __('Còn') }} {{ $dataProduct->sale_stock }}/{{ $dataProduct->sale_quantity }} {{ __('sản phẩm') }}</p>
                     </div>
                 </div>
+            </div>
             @endif
 
             <div>
@@ -235,7 +230,7 @@
                 </a>
                 <input type="hidden" class="js-buy-quantity-temp" value="1">
             </div>
-            <div class="quantity mt-4 d-flex btn-buy-product">
+            <div class="quantity d-flex btn-buy-product">
                 <a onclick="buyNowHandle(this)" class="btn-1" data-slug="{{ $dataProduct['slug'] }}">
                     <button class="btn-buy">{{ __('Mua ngay') }}</button>
                 </a>
@@ -310,20 +305,20 @@
                     <div class="p-info1">
                         {!! Str::limit($dataProduct->description, 350, '')!!}
                         @if (strlen($dataProduct->description) > 3)
-                        <span id="dots-{{ $dataProduct->id }}">...</span>
+                        <span id="dots-detail-product">...</span>
                         @endif
                     </div>
 
                     <div class="p-info1">
-                        <span id="more-{{ $dataProduct->id }}" style="display: none;">{!! $dataProduct->description !!}</span>
+                        <span id="more-detail-product" style="display: none;">{!! $dataProduct->description !!}</span>
                     </div>
 
-                    <a href="javascript:" onclick="loadMore('{{ $dataProduct->id }}')" id="read-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
+                    <a href="javascript:" onclick="loadMore()" id="read-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
                         {{ __('Xem tất cả') }}
                         <i class="fas fa-angle-down" style="margin-left: 5px;"></i>
                     </a>
 
-                    <a href="javascript:" onclick="loadMore('{{ $dataProduct->id }}')" id="hide-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center d-none">
+                    <a href="javascript:" onclick="loadMore()" id="hide-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center d-none">
                         {{ __('Thu gọn') }}
                         <i class="fas fa-angle-up" style="margin-left: 5px;"></i>
                     </a>
@@ -452,7 +447,7 @@
                                             <div class="comment-form-right d-flex align-items-center gap-4">
                                                 <i class="fa fa-clock-o" style="font-size:15px; margin-right: 5px"></i>
                                                 <?php $date = date_format($rating->created_at, "d/m/Y") ?>
-                                                <span style="color:#787878;font-size: 12px;margin-right: 4px;font-weight: 700">{{$date}}</span>
+                                                <span class="date-comment">{{$date}}</span>
                                             </div>
                                         </div>
                                         <div class="comment-content d-flex align-items-center justify-content-between">
@@ -475,9 +470,9 @@
                         </div>
                     </div>
                     @if(isset($errors))
-                        @foreach ($errors->all() as $error)
-                            <div style="color: red; margin: 10px; font-size: 16px">{{ $error }}</div>
-                        @endforeach
+                    @foreach ($errors->all() as $error)
+                    <div style="color: red; margin: 10px; font-size: 16px">{{ $error }}</div>
+                    @endforeach
                     @endif
                 </div>
                 <div id="product-info" class="product-info feedback-form" style="background-color: #f5f5f5;">
@@ -567,7 +562,7 @@
                         <div id="content-right">
                             <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
                             <a href="{{route('post.detail', $post['slug'])}}">
-                            <h3> {{$text}}</h3>
+                                <h3> {{$text}}</h3>
                             </a>
                         </div>
                     </div>
@@ -643,176 +638,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('js/page/product.js') }}"></script>
 <script>
-    var indexImage = 0;
-    $(document).ready(function() {
-        $('#modalDetail').hide();
-        $(".product-image-prev").addClass('d-none');
-
-        $('#read-all-product-detail').on('click', function() {
-            $('#modalDetail').show();
-        });
-
-        $('.close').click(function() {
-            $('#modalDetail').hide();
-        });
-
-        $('.js-quantity-change').on('click', function() {
-            let value = $(this).data('value');
-            let quantity = $('.js-buy-quantity').val();
-            let new_quantity = 1;
-            if (value == -1) {
-                if (quantity == 1) {
-                    return;
-                } else {
-                    new_quantity = parseInt(quantity) + parseInt(value);
-
-                }
-            } else {
-                new_quantity = parseInt(quantity) + parseInt(value);
-            }
-
-            $('.js-buy-quantity').val(new_quantity);
-        });
-
-        $('#showmenu').click(function() {
-            $('.menu').slideToggle("fast");
-        });
-
-        $('.write_reply').click(function() {
-            $('.menu1').slideToggle("fast");
-        });
-
-        $('#modal-detail-warranty-package .close').on('click', function() {
-            $('#modal-detail-warranty-package').css('display', 'none');
-        });
-    });
-
-    function getImageCenter(image) {
-        let src = image.src;
-        let maxIndex = $('.swiper-slide-image').length;
-        indexImage = image.getAttribute('data-index');
-        $('.swiper-image').find('.border-image').removeClass('border-image');
-        $("[data-index=" + indexImage + "]").addClass('border-image');
-        $('#featured-image').attr('src', src);
-
-        if (parseInt(indexImage) != 0) {
-            $(".product-image-prev").removeClass('d-none');
-        } else {
-            $(".product-image-prev").addClass('d-none');
-        }
-
-        if (parseInt(indexImage) > maxIndex - 2) {
-            $(".product-image-next").addClass('d-none');
-        } else {
-            $(".product-image-next").removeClass('d-none');
-        }
-    }
-
-    function handleSlideImage(status) {
-        let maxIndex = $('.swiper-slide-image').length;
-        if (status == 'next') {
-            if (parseInt(indexImage) < maxIndex) {
-                let nextIndex = parseInt(indexImage) + 1;
-                $("[data-index=" + indexImage + "]").removeClass('border-image');
-                $("[data-index=" + nextIndex + "]").addClass('border-image');
-                $("[data-index=" + nextIndex + "]").click();
-            }
-
-            if (indexImage > maxIndex - 2) {
-                $(".product-image-next").addClass('d-none');
-            } else {
-                $(".product-image-next").removeClass('d-none');
-            }
-
-            if (indexImage > 0) {
-                $(".product-image-prev").removeClass('d-none');
-            }
-        } else {
-            if (parseInt(indexImage) > 0) {
-                let prevIndex = parseInt(indexImage) - 1;
-                $("[data-index=" + indexImage + "]").removeClass('border-image');
-                $("[data-index=" + prevIndex + "]").addClass('border-image');
-                $("[data-index=" + prevIndex + "]").click();
-            }
-
-            if (indexImage > 0) {
-                $(".product-image-prev").removeClass('d-none');
-            } else {
-                $(".product-image-prev").addClass('d-none');
-            }
-
-            if (indexImage < maxIndex) {
-                $(".product-image-next").removeClass('d-none');
-            }
-        }
-    }
-
-    function detailWarrantyPackage(warranty) {
-        let price = warranty.getAttribute('data-price');
-        let type = warranty.getAttribute('data-type');
-        let description = warranty.getAttribute('data-description');
-        let time_on = warranty.getAttribute('data-time-on');
-        let device = warranty.getAttribute('data-device');
-
-        $('#modal-detail-warranty-package').css('display', 'flex');
-        $('#modal-warranty-price').html(price);
-        $('#modal-warranty-type').html(type);
-        $('#modal-warranty-description').html(description);
-        $('#modal-warranty-time-on').html(time_on);
-        $('#modal-warranty-device').html(device);
-    }
-
-    setTimeout(function() {
-        $('.alert-add').remove();
-    }, 5000);
-
-    function loadMore(id) {
-        var dots = document.getElementById("dots-" + id);
-        var moreText = document.getElementById("more-" + id);
-        if (moreText.style.display === "none") {
-            moreText.style.display = "inline";
-            dots.style.display = "none";
-            $('#hide-all-product').removeClass('d-none');
-            $('#read-all-product').addClass('d-none');
-        } else {
-            moreText.style.display = "none";
-            dots.style.display = "inline";
-            $('#read-all-product').removeClass('d-none');
-            $('#hide-all-product').addClass('d-none');
-        }
-    }
-
-    function updateCart(quantity, id) {
-        $.get(
-            '{{ asset("/cart/update-cart") }}', {
-                quantity: quantity,
-                id: id
-            },
-            function() {
-                location.reload()
-            }
-        )
-    }
-
-    function addToCart() {
-        let slug = $('#product-to-cart').val();
-        let total = $('#quantity-to-cart').val();
-        let warranty = $('#warranty-package-check').is(":checked");
-
-        let baseUrl = '/cart/add-to-cart/' + slug + '?total=' + total + '&warranty=' + warranty;
-
-        window.location.href = baseUrl;
-    }
-
-    function buyNowHandle(aTag) {
-        let warranty = $('#warranty-package-check').is(":checked");
-        let slug = aTag.getAttribute('data-slug');
-
-        let baseUrl = '/cart/add-cart/' + slug + '?warranty=' + warranty;
-
-        window.location.href = baseUrl;
-    }
-
     <?php if (isset($dataProduct->flash_sale_time)) { ?>
         let countTimeSale = `<?php echo $dataProduct->flash_sale_time ?>`;
 

@@ -344,6 +344,7 @@ body {
     border-radius: 5px 0 0 5px;
     outline: none;
     color: #9dbfaf;
+    font-size: 17px;
 }
 
 .searchTerm:focus {

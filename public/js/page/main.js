@@ -23,68 +23,72 @@ $(document).ready(function () {
         }
     }
 
-    $('.hover-for-tooltips').hover(function () {
-        let title = $(this).attr('data-title');
-        let price = $(this).attr('data-price');
-        let new_price = $(this).attr('data-new-price');
-        let sale_detail = $(this).attr('data-sale-detail');
-        let status_guarantee = $(this).attr('data-status-guarantee');
-        let status = $(this).attr('data-status');
-        let detail = '';
-        let currentPrice = '';
+    if (!isMobileDetected) {
+        $('.hover-for-tooltips').hover(function () {
 
-        if ($(this).attr('data-detail') != '') {
-            detail = JSON.parse($(this).attr('data-detail'));
-            $('.empty-hide-detail').show();
-        } else {
-            $('.empty-hide-detail').hide();
-        }
+            let title = $(this).attr('data-title');
+            let price = $(this).attr('data-price');
+            let new_price = $(this).attr('data-new-price');
+            let sale_detail = $(this).attr('data-sale-detail');
+            let status_guarantee = $(this).attr('data-status-guarantee');
+            let status = $(this).attr('data-status');
+            let detail = '';
+            let currentPrice = '';
 
-        if (new_price == '' || new_price == null) {
-            currentPrice = price;
-        } else {
-            currentPrice = new_price;
-        }
+            if ($(this).attr('data-detail') != '') {
+                detail = JSON.parse($(this).attr('data-detail'));
+                $('.empty-hide-detail').show();
+            } else {
+                $('.empty-hide-detail').hide();
+            }
 
-        if (status == 'available') {
-            status = 'Còn hàng';
-            $('#tooltips-status-storage').css('color', 'green');
-        } else if (status == 'out of stock') {
-            status = 'Hết hàng';
-            $('#tooltips-status-storage').css('color', 'red');
-        } else {
-            status = 'Đặt hàng';
-            $('#tooltips-status-storage').css('color', 'yellow');
-        }
+            if (new_price == '' || new_price == null) {
+                currentPrice = price;
+            } else {
+                currentPrice = new_price;
+            }
 
-        if (sale_detail == '') {
-            $('.tooltip-list-gift').hide();
-        } else {
-            $('.tooltip-list-gift').show();
-        }
+            if (status == 'available') {
+                status = 'Còn hàng';
+                $('#tooltips-status-storage').css('color', 'green');
+            } else if (status == 'out of stock') {
+                status = 'Hết hàng';
+                $('#tooltips-status-storage').css('color', 'red');
+            } else {
+                status = 'Đặt hàng';
+                $('#tooltips-status-storage').css('color', 'yellow');
+            }
 
-        $('#tooltip-detail').empty();
-        for (let i in detail) {
-            let stringAppend = `- ` + i + `: ` + detail[i] + `<br>`;
+            if (sale_detail == '') {
+                $('.tooltip-list-gift').hide();
+            } else {
+                $('.tooltip-list-gift').show();
+            }
 
-            $('#tooltip-detail').append(stringAppend);
-        }
+            $('#tooltip-detail').empty();
+            for (let i in detail) {
+                let stringAppend = `- ` + i + `: ` + detail[i] + `<br>`;
 
-        $('.global-tooltip .tooltip-name').html(title);
-        $('#tooltips-price').html(price);
-        $('#tooltips-price').html(currentPrice);
-        $('#tooltips-status-guarantee').html(status_guarantee);
-        $('#tooltips-status-storage').html(status);
-        $('.tooltip-list-gift').html(sale_detail);
+                $('#tooltip-detail').append(stringAppend);
+            }
 
-        $('.global-tooltip').css('display', 'block');
-        $('.global-tooltip').css('left', $(this).offset().left + 260);
-        $('.global-tooltip').css('top', $(this).offset().top - 10);
-        $(this).css('transform', 'translate(0, -10px)');
-    }, function () {
-        $(this).css('transform', 'translate(0, 0)');
-        $('.global-tooltip').css('display', 'none');
-    });
+            $('.global-tooltip .tooltip-name').html(title);
+            $('#tooltips-price').html(price);
+            $('#tooltips-price').html(currentPrice);
+            $('#tooltips-status-guarantee').html(status_guarantee);
+            $('#tooltips-status-storage').html(status);
+            $('.tooltip-list-gift').html(sale_detail);
+
+            $('.global-tooltip').css('display', 'block');
+            $('.global-tooltip').css('left', $(this).offset().left + 260);
+            $('.global-tooltip').css('top', $(this).offset().top - 10);
+            $(this).css('transform', 'translate(0, -10px)');
+        }, function () {
+            $(this).css('transform', 'translate(0, 0)');
+            $('.global-tooltip').css('display', 'none');
+        });
+    }
+
 
     let transFlash = 0;
     let defaultFlash = 5;
@@ -94,7 +98,6 @@ $(document).ready(function () {
     if (isMobileDetected) {
         defaultFlash = 1;
         perTransFlash = window.innerWidth - 18;
-        console.log(perTransFlash)
     }
 
     let listChildFlash = $(".swiper-flash-sale").children();
@@ -156,7 +159,7 @@ $(document).ready(function () {
 
             if (isMobileDetected) {
                 defaultProduct = 1;
-                perTransProduct = window.innerWidth + 10;
+                perTransProduct = window.innerWidth + 12;
             }
 
             if (listChildProduct.length > defaultProduct) {
@@ -214,7 +217,7 @@ $(document).ready(function () {
 
     if (isMobileDetected) {
         defaultTopSale = 1;
-        perTransTopSale = window.innerWidth;
+        perTransTopSale = window.innerWidth - 18;
     }
 
     let listChildTopSale = $(".swiper-top-sale").children();
@@ -486,16 +489,17 @@ $(document).scroll(function () {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         var y = $(this).scrollTop();
         if (y >= 300) {
+            $('.main-menu-category').css('top', 'calc(50% - 352px)');
             $('.bottomMenu').fadeIn();
             $('.container-hamburger').addClass('header-fixed-menu-mobile');
             $('.menu-btn').css('top', '5px');
             $('.list-items').css(' background', 'white');
-            $('.main-menu-category').css('margin-top', '20px');
+
         } else {
+            $('.main-menu-category').css('top', 'calc(50% - 316px)');
             $('.bottomMenu').fadeOut();
             $('.container-hamburger').removeClass('header-fixed-menu-mobile');
             $('.menu-btn').css('top', '40px');
-            $('.main-menu-category').css('margin-top', '57px');
         }
     }
 

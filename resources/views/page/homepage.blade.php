@@ -171,7 +171,7 @@
 
 <section class="top-sale">
     <div class="flash-sale-area">
-        <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center justify-content-between hot-sale-mobile">
             <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
                 <h2 class="flash-sale-title">{{ __('Sản phẩm bán chạy') }}</h2>
             </div>
@@ -217,7 +217,7 @@
 
             </div>
             <div class="swiper-button-next swiper-button-next-top-sale" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
-            <div class="swiper-button-prev swiper-button-prev-top-sale" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box" style="left: calc(50% - 29px);"></div>
+            <div class="swiper-button-prev swiper-button-prev-top-sale" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
             <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
         </div>
     </div>

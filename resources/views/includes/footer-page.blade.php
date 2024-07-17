@@ -87,7 +87,7 @@
             <p>{{__('© 2021 Công ty Cổ phần đầu tư công nghệ Kattech PC')}}</p>
             <p>{{__('Địa chỉ: Tòa nhà Vicom')}} </p>
             <p>{{__('GPĐKKD số 0101142131 do Sở KHĐT Tp.Hà Nội cấp ngày 12/9/2023')}}</p>
-            <p>Email: <a class="color-primary" href="mailto:info@kattechpc.com">info@kattechpc.com</a>. {{ __('Điện thoại') }}: <a class="color-primary" href="tel:1900 1903">1900 1903</a></p>
+            <p>Email: <a class="color-primary" href="mailto:{{ config('company.email') }}">{{ config('company.email') }}</a>. {{ __('Điện thoại') }}: <a class="color-primary" href="tel:{{ config('company.hotline') }}">{{ config('company.hotline') }}</a></p>
         </div>
     </div>
 </div>
