@@ -130,6 +130,8 @@
         </a>
     </div>
 
+    @include('includes.header-side-bar')
+
     <div class="global-fixed-left">
         <div class="sale">
             <a href="{{ route('promotion') }}">

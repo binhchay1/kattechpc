@@ -47,17 +47,23 @@ class ProductController extends Controller
     {
         $getCategory = $request->get('category');
         $getStatus = $request->get('status');
+        $getBrand = $request->get('brand');
         $getSearchName = $request->get('s');
 
         $listProducts = $this->productRepository->getListProductWithFilter();
         $categoryFilter = [];
+        $brandFilter = [];
 
         foreach ($listProducts as $product) {
             $product->detail = json_decode($product->detail, true);
             $product->detail_tech  = json_decode($product->detail_tech, true);
             $product->image = json_decode($product->image, true);
-            if (!in_array($product->category->name, $categoryFilter)) {
-                $categoryFilter[] = $product->category;
+            if (!array_key_exists($product->category->id, $categoryFilter)) {
+                $categoryFilter[$product->category->id] = $product->category;
+            }
+
+            if (!array_key_exists($product->brands->id, $brandFilter)) {
+                $brandFilter[$product->brands->id] = $product->brands;
             }
         }
 
@@ -73,15 +79,23 @@ class ProductController extends Controller
             }
         }
 
+        if (isset($getBrand)) {
+            if ($getBrand != 'all') {
+                $listProducts = $listProducts->where('brands.id', $getBrand);
+            }
+        }
+
         if (isset($getSearchName)) {
-            $listProducts = $listProducts->filter(function ($item) use ($getSearchName) {
-                return strpos($item->name, $getSearchName) !== false;
-            });
+            if ($getSearchName != '') {
+                $listProducts = $listProducts->filter(function ($item) use ($getSearchName) {
+                    return strpos($item->name, $getSearchName) !== false;
+                });
+            }
         }
 
         $listProducts = $this->utility->paginate($listProducts);
 
-        return view('admin.product.index', compact('listProducts', 'categoryFilter'));
+        return view('admin.product.index', compact('listProducts', 'categoryFilter', 'brandFilter'));
     }
 
     public function createProduct()

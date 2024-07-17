@@ -461,6 +461,18 @@ $(document).ready(function () {
         suggestionForSearchScroll(this);
     });
 
+    $('.inline-search-mobile').unbind('keyup');
+    $('.inline-search-mobile').bind('keyup', function () { });
+    $(".inline-search-mobile").on('keyup', function (e) {
+        suggestionForSearchMobile(this);
+    });
+
+    $('.inline-search-mobile-scroll').unbind('keyup');
+    $('.inline-search-mobile-scroll').bind('keyup', function () { });
+    $(".inline-search-mobile-scroll").on('keyup', function (e) {
+        suggestionForSearchMobileScroll(this);
+    });
+
     document.querySelector(".menu-btn").addEventListener("click", toggleMenuBar);
 
     $('#modal-youtube-play .close').on('click', function () {
@@ -592,7 +604,6 @@ function suggestionForSearchScroll(input) {
                                     </span>
                                 </a>`;
 
-                        console.log(stringAppend);
                         $('#js-search-result-scroll .list').append(stringAppend);
                     }
 
@@ -606,6 +617,90 @@ function suggestionForSearchScroll(input) {
     } else {
         $('#js-search-result-scroll .list').empty();
         $('#js-search-result-scroll').hide();
+    }
+}
+
+function suggestionForSearchMobile(input) {
+    let urlSuggest = '/get-products-for-suggestions';
+    if (input.value != '') {
+        $.ajax({
+            type: "get",
+            data: {
+                search: input.value
+            },
+            url: urlSuggest,
+            success: function (result) {
+                if (result.length > 0) {
+                    $('#js-search-result-mobile .list').empty();
+                    for (let i = 0; i < result.length; i++) {
+                        let price = result[i].price;
+                        let name = result[i].name;
+                        let slug = result[i].slug;
+                        let image = JSON.parse(result[i].image);
+
+                        let stringAppend = `<a href="/san-pham/` + slug + `">
+                                    <img src="`+ image[0] + `" alt="` + name + `">
+                                    <span class="info">
+                                    <span class="name">`+ name + `</span>
+                                    <span class="price">`+ price + `</span>
+                                    </span>
+                                </a>`;
+
+                        $('#js-search-result-mobile .list').append(stringAppend);
+                    }
+
+                    $('#js-search-result-mobile').css('display', 'block');
+                } else {
+                    $('#js-search-result-mobile .list').empty();
+                    $('#js-search-result-mobile').css('display', 'none');
+                }
+            }
+        });
+    } else {
+        $('#js-search-result-mobile .list').empty();
+        $('#js-search-result-mobile').hide();
+    }
+}
+
+function suggestionForSearchMobileScroll(input) {
+    let urlSuggest = '/get-products-for-suggestions';
+    if (input.value != '') {
+        $.ajax({
+            type: "get",
+            data: {
+                search: input.value
+            },
+            url: urlSuggest,
+            success: function (result) {
+                if (result.length > 0) {
+                    $('#js-search-result-mobile-scroll .list').empty();
+                    for (let i = 0; i < result.length; i++) {
+                        let price = result[i].price;
+                        let name = result[i].name;
+                        let slug = result[i].slug;
+                        let image = JSON.parse(result[i].image);
+
+                        let stringAppend = `<a href="/san-pham/` + slug + `">
+                                    <img src="`+ image[0] + `" alt="` + name + `">
+                                    <span class="info">
+                                    <span class="name">`+ name + `</span>
+                                    <span class="price">`+ price + `</span>
+                                    </span>
+                                </a>`;
+
+                        $('#js-search-result-mobile-scroll .list').append(stringAppend);
+                    }
+
+                    $('#js-search-result-mobile-scroll').css('display', 'block');
+                } else {
+                    $('#js-search-result-mobile-scroll .list').empty();
+                    $('#js-search-result-mobile-scroll').css('display', 'none');
+                }
+            }
+        });
+    } else {
+        $('#js-search-result-mobile-scroll .list').empty();
+        $('#js-search-result-mobile-scroll').hide();
     }
 }
 
