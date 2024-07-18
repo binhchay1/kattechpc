@@ -79,15 +79,19 @@ $(document).ready(function () {
 });
 
 function updateCart(quantity, id) {
-    $.get(
-        '{{ asset("/cart/update-cart") }}', {
-        quantity: quantity,
-        id: id
-    },
-        function () {
-            location.reload()
+    let url = '/cart/update-cart';
+    $.ajax({
+        type: "get",
+        url: url,
+        data: {
+            quantity: quantity,
+            id: id
+        },
+        success: function (result) {
+            let idElement = '#total_cart-' + id;
+            $(idElement).text(result.price + ' đ');
         }
-    )
+    });
 }
 
 function deleteSales(url) {

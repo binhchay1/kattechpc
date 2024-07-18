@@ -89,7 +89,6 @@ $(document).ready(function () {
         });
     }
 
-
     let transFlash = 0;
     let defaultFlash = 5;
     let perTransFlash = 279;
@@ -496,9 +495,7 @@ $(document).ready(function () {
             $('.header-top-left .sub').removeClass('d-block');
         });
     });
-});
 
-$(document).scroll(function () {
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         var y = $(this).scrollTop();
         if (y >= 300) {
@@ -712,11 +709,11 @@ function watchYoutubeVideo(youtube) {
 }
 
 function toggleMenuBar() {
-    document.querySelector(".main-menu-category").classList.toggle("show");
+    $('.main-menu-category').addClass('show');
     $('body').css('overflow', 'hidden');
 }
 
 function closeMenuMobile() {
-    document.querySelector(".main-menu-category").classList.toggle("hide");
+    $('.main-menu-category').removeClass('show');
     $('body').css('overflow', 'auto');
 }

@@ -307,6 +307,17 @@ aside {
     cursor: pointer;
 }
 
+.checkout-cta:hover {
+    background-color: #e31223 !important;
+    color: #fff !important;
+}
+
+.total-discount {
+    color: yellowgreen;
+    font-size: 13px;
+    font-style: italic;
+}
+
 .summary-delivery-selection {
     background-color: #ccc;
     border: 1px solid #aaa;
@@ -524,15 +535,15 @@ aside {
     font-weight: bold;
 }
 
-#item-cart .item {
+.item-cart .item {
     width: 70%;
 }
 
-#item-cart .in-mobile {
+.item-cart .in-mobile {
     width: 10%;
 }
 
-#item-cart #get-total {
+.item-cart .get-total {
     width: 20%;
 }
 
@@ -542,14 +553,13 @@ textarea {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-#delete-cart button {
+.delete-cart button {
     cursor: pointer;
     padding: 5px 15px;
     margin-top: 10px;
 }
 
 .action-cart a {
-    border: 1px solid #f3070f !important;
     color: #f3070f;
     width: 100%;
     background: #fff;
@@ -566,8 +576,8 @@ textarea {
 }
 
 .action-cart a:hover {
-    background: #f3070f;
-    color: #fff;
+    background-color: #f3070f !important;
+    color: #fff !important;
 }
 
 .action-cart a:not(:first-child) {

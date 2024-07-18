@@ -350,16 +350,15 @@
 
     #total_cart {
         width: 100%;
-
     }
 
-    #delete-cart {
+    .delete-cart {
         float: none;
         width: 100%;
         margin-left: 0;
     }
 
-    #get-total {
+    .get-total {
         margin-top: 10px;
         text-align: left;
         width: 100% !important;

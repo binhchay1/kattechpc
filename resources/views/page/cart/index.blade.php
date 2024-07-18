@@ -232,7 +232,7 @@
                 </div>
 
                 @foreach($dataCart as $product)
-                <div class="basket-product flex-direction-column" id="item-cart">
+                <div class="basket-product flex-direction-column item-cart">
                     <div class="d-flex">
                         <div class="item">
                             <div class="product-image">
@@ -246,17 +246,17 @@
 
                         <div class="in-mobile">
                             <div class="quantity " id="quantity-cart">
-                                <input type="number" value="{{ $product->quantity }}" min="1" class="quantity-field" onchange="updateCart(this.value,'{{ $product->id }}')">
+                                <input type="number" value="{{ $product->quantity }}" min="1" class="quantity-field" onchange="updateCart(this.value, '{{ $product->id }}')">
                             </div>
                         </div>
                         <?php
                         $total = (int) $product->quantity * (int) str_replace('.', '',  $product->price);
 
                         ?>
-                        <div id="get-total" class="subtotal get-total inline" id="total_cart">
-                            <span>{{ number_format($total, 0, '.', '.') }} đ</span>
+                        <div class="subtotal get-total inline">
+                            <span id="total_cart-{{ $product->id }}">{{ number_format($total, 0, '.', '.') }} đ</span>
                             <input hidden name="total_cart" value="{{ $total }}">
-                            <div class="delete" id="delete-cart">
+                            <div class="delete delete-cart">
                                 <a>
                                     <button type="button" onclick="deleteSales(`{{ route('deleteCart', $product['id']) }}`)">{{ __('Xóa') }}</button>
                                 </a>
@@ -303,7 +303,7 @@
                     <div class="summary summary-area">
                         <div class="total-value final-value summary-total" style="margin: 0;">{{__('Giảm giá')}}</div>
                         <div class="total-value final-value get-total" style="text-transform: inherit">
-                            <div class="alert alert-danger">
+                            <div class="alert alert-danger total-discount">
                                 {{ number_format((($intValue * $totalCart) / 100), 0, '.', '.') }} đ
                             </div>
                         </div>

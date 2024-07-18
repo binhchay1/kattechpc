@@ -148,8 +148,9 @@ class CartController extends Controller
 
     public function updateCart(Request $request)
     {
-        $id = $request->id;
-        $quantity = $request->quantity;
+        $id = $request->get('id');
+        $quantity = $request->get('quantity');
+        $product = $this->productRepository->show($id);
 
         Cart::update($id, [
             'quantity' => array(
@@ -158,7 +159,17 @@ class CartController extends Controller
             ),
         ]);
 
-        return back();
+        $discount = Session::get('discount-code');
+        $price = str_replace('.', '', $product->price);
+        $total = $price * $quantity;
+        $last_price = number_format($total, 0, ',', '.');
+
+        $response = [
+            'price' => $last_price,
+            'total' => Cart::getTotal()
+        ];
+
+        return response()->json($response);
     }
 
     public function checkout(OrderRequest $request)
@@ -255,7 +266,8 @@ class CartController extends Controller
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-        session()->forget('discount');
+        session()->forget('discount-total');
+        session()->forget('discount-code');
 
         return redirect()->route('thank');
     }
@@ -340,7 +352,12 @@ class CartController extends Controller
         Session::put('discount-total', $coupon->discount_amount);
         Session::put('discount-code', $coupon->code);
 
-        return response()->json(['success' => __('Mã giảm giá được thêm thành công'), 'discount_total' => $coupon->discount_amount]);
+        $response = [
+            'success' => __('Mã giảm giá được thêm thành công'),
+            'discount_total' => $coupon->discount_amount
+        ];
+
+        return response()->json($response);
     }
 
     public function exportExcel()
