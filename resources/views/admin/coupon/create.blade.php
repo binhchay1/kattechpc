@@ -4,6 +4,16 @@
 {{ __('Thêm mã khuyến mãi') }}
 @endsection
 
+<style>
+    .hide {
+        display: none;
+    }
+
+    .show {
+        display: block;
+    }
+</style>
+
 @section('content')
 <div class="grid grid-cols-1 xl:grid-cols-12 gap-x-5 mt-4">
     <div class="xl:col-span-12">
@@ -21,11 +31,31 @@
                             <span class="text-danger" style="color: red">{{ $errors->first('code') }}</span>
                             @endif
                         </div>
-                        <div class="xl:col-span-6">
+                        <div class="relative xl:col-span-2">
+                            <label>{{ __('Loại') }}</label>
+                            <select id="filter-category" onchange="handleType($(this))" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false name="type">
+                                <option value="percent" selected>{{ __('Giảm giá theo %') }}</option>
+                                <option value="number">{{ __('Giảm giá trừ thẳng') }}</option>
+                            </select>
+                        </div>
+
+                        <div class="xl:col-span-6" id="discount-by-percent">
                             <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Tỉ lệ giảm giá') }}</label>
                             <span style="display: flex; align-items: center;">
                                 <input type="number" id="discount_amount" name="discount_amount" onkeyup="onlyNumberAmount(this)" value="{{ old('discount_amount') }}" class="form-input input-element border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" min="1" max="100" placeholder="{{ __('Tỉ lệ giảm giá') }}">
                                 <span style="font-weight: bold; margin-left: 15px;">%</span>
+                            </span>
+
+                            @if ($errors->has('discount_amount'))
+                            <span class="text-danger" style="color: red">{{ $errors->first('discount_amount') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="xl:col-span-6" id="discount-by-number">
+                            <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Số tiền giảm giá') }}</label>
+                            <span style="display: flex; align-items: center;">
+                                <input type="number" id="discount_amount" name="discount_amount" onkeyup="onlyNumberAmount(this)" value="{{ old('discount_amount') }}" class="form-input input-element border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" min="1" max="100" placeholder="{{ __('Tỉ lệ giảm giá') }}">
+                                <span style="font-weight: bold; margin-left: 15px;">đ</span>
                             </span>
 
                             @if ($errors->has('discount_amount'))
@@ -57,5 +87,13 @@
     function onlyNumberAmount(input) {
         let v = input.value.replace(/\D+/g, '');
         input.value = v.replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.');
+    }
+
+    function handleType(select) {
+        let choice = select.val();
+
+        if (choice == 'percent') {
+
+        }
     }
 </script>

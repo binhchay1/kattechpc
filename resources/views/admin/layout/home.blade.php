@@ -227,8 +227,8 @@
             <div class="xl:col-span-4">
                 <div class="form-group">
                     <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Ảnh biểu ngữ trái') }}</label>
-                    <div class="">
-                        <div class="" style="display: inline-grid;">
+                    <div>
+                        <div style="display: inline-grid;">
                             <input type="file" class="border-0 bg-light pl-0" name="small_banner_thumbnail_left" id="image7" hidden>
                             <div class=" choose-avatar">
                                 <div id="btnimage">

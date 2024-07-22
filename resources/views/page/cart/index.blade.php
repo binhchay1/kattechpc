@@ -15,7 +15,7 @@
 @section('content')
 <main>
     @if($totalCart == 0)
-    <div class="">
+    <div>
         <img class="image-cart" src="{{asset('images/cart.jpg')}}">
         <h2 class="text-center">{{ __('Không có sản phẩm nào trong giỏ hàng') }}</h2>
 
@@ -273,7 +273,6 @@
                         </div>
                         @endif
                     </div>
-
                 </div>
                 @endforeach
 
