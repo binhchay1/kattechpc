@@ -13,7 +13,14 @@ class IsUser
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
-            if (Auth::user()->role == Role::USER or Auth::user()->role == Role::ADMIN) {
+
+            $user = Auth::user();
+            if (
+                $user->role == Role::USER && $user->lock_user == null
+                or $user->role == Role::STAFF && $user->lock_user == null
+                or $user->role == Role::ADMIN && $user->lock_user == null
+            )
+            {
                 return $next($request);
             }
         }

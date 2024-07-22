@@ -79,7 +79,6 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     Route::get('/chinh-sach-doanh-nghiep', [HomeController::class, 'businessPolicy'])->name('businessPolicy');
     Route::get('/landing/{slug}', [HomeController::class, 'viewLandingPage'])->name('landing.page');
     Route::get('/custom-contact', [HomeController::class, 'storeCustomContact'])->name('custom.contact');
-    Route::get('/lich-su-mua-hang', [AccountController::class, 'orderHistory'])->name('orderHistory');
     Route::get('/auth/google/', [SocialLoginController::class, 'redirectToGoogle'])->name('auth.google');
     Route::get('/auth/google/callback/', [SocialLoginController::class, 'handleGoogleCallback']);
     Route::get('/auth/facebook/', [SocialLoginController::class, 'redirectToFacebook'])->name('auth.facebook');
@@ -99,6 +98,9 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
         Route::post('/account-info/{id}', [AccountController::class, 'update'])->name('updateProfile');
         Route::get('/doi-mat-khau', [AccountController::class, 'changePassword'])->name('change-password');
         Route::post('/change-password', [AccountController::class, 'updatePassword'])->name('update-password');
+        Route::get('/cam-on',  [HomeController::class, 'registerSuccess'])->name('registerSuccess');
+        Route::get('/lich-su-mua-hang', [AccountController::class, 'orderHistory'])->name('orderHistory');
+
     });
 
     Route::get('/build-pc',  [BuildPCController::class, 'buildPC'])->name('buildPC');
@@ -109,7 +111,6 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
     Route::get('/export-excel-build-pc',  [BuildPCController::class, 'exportExcelBuildPC'])->name('export.excel.build');
     Route::get('/print-build-pc',  [BuildPCController::class, 'printBuildPC'])->name('print.build');
     Route::get('/export-image-build-pc',  [BuildPCController::class, 'exportImageBuildPC'])->name('export.image.build');
-    Route::get('/cam-on',  [HomeController::class, 'registerSuccess'])->name('registerSuccess');
     Route::group(['prefix' => 'cart'], function () {
         Route::get('/add-cart/{slug}',  [CartController::class, 'addCart'])->name('addCart');
         Route::get('/add-to-cart/{slug}', [CartController::class, 'addToCart'])->name('add_to_cart');
@@ -129,6 +130,7 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenance-mode']], function () {
+    Route::get('/cam-on',  [HomeController::class, 'registerSuccess'])->name('registerSuccess');
     Route::get('/change-locate/{locale}', [AdminController::class, 'changeLocate'])->name('change.locate.admin');
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
     Route::get('/order-detail/{id}', [AdminController::class, 'detailDetail'])->name('admin.detailDetail');
