@@ -29,8 +29,8 @@
                 @foreach($dataUser->orders as $orderHistory)
                 <div class="basket-product">
                     <div class="item-code">{{ $orderHistory->order_code }}</div>
-                    <div class="item-date">{{ $orderHistory->order_date }}</div>
-                    <div class="item-total">{{ number_format($orderHistory->total_detail) }}</div>
+                    <div class="item-date">{{date("d/m/Y", strtotime($orderHistory->order_date))  }}</div>
+                    <div class="item-total">{{ number_format($orderHistory->total_detail) }}đ</div>
                     <div class="item-action"><button type="button" data-toggle="modal" data-target="#modalDetail" data-id="{{ $orderHistory->id }}">{{ __('Xem chi tiết') }}</button></div>
                 </div>
                 @endforeach
@@ -62,7 +62,7 @@
                 $('#modalDetail').attr('style', 'display: flex !important');
                 for (let i = 0; i < result.length; i++) {
                     let strAppend = `<tr>
-                            <td class="column1">` + result[i].order.order_date + `</td>
+                            <td class="column1">` + date + `</td>
                             <td class="column2">` + result[i].order.order_code + `</td>
                             <td class="column3">` + result[i].product.name + `</td>
                             <td class="column4">` + result[i].price + `</td>

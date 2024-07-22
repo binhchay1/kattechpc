@@ -96,8 +96,14 @@ class ErrorController extends Controller
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $layout = $this->layoutRepository->getListLayout();
+        if (isset($layout->footer_slide_thumbnail)) {
+            $listSlideFooter = json_decode($layout->footer_slide_thumbnail, true);
+        } else {
+            $listSlideFooter = [];
+        }
 
-        return view('errors.lock-account', compact('listCategory'));
+        return view('errors.lock-account', compact('listCategory', 'listSlideFooter', 'layout'));
     }
 
     public function viewMaintenance()
