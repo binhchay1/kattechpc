@@ -48,6 +48,8 @@ class OrderRequest extends FormRequest
             'district.max' => __('Quận/Huyện không được vượt quá 100 kí tự'),
             'ward.required' => __('Phường/Xã không được để trống'),
             'ward.max' => __('Phường/Xã không được vượt quá 100 kí tự'),
+            'email.required' => __('Email không được để trống'),
+            'email.email' => __('Email không đúng định dạng'),
         ];
     }
 }
