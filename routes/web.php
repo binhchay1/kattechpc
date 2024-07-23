@@ -100,7 +100,6 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
         Route::post('/change-password', [AccountController::class, 'updatePassword'])->name('update-password');
         Route::get('/cam-on',  [HomeController::class, 'registerSuccess'])->name('registerSuccess');
         Route::get('/lich-su-mua-hang', [AccountController::class, 'orderHistory'])->name('orderHistory');
-
     });
 
     Route::get('/build-pc',  [BuildPCController::class, 'buildPC'])->name('buildPC');
@@ -343,7 +342,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenanc
         Route::get('/list', [RatingController::class, 'index'])->name('admin.ratting.index');
         Route::get('/delete/{id}', [RatingController::class, 'deleteRatting'])->name('admin.ratting.delete');
     });
-
 
     Route::get('/products/{productId}/upload', [ProductImageController::class, 'index']);
     Route::post('/products/{productId}/upload', [ProductImageController::class, 'store']);
