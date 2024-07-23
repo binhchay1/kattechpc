@@ -62,7 +62,7 @@
                 $('#modalDetail').attr('style', 'display: flex !important');
                 for (let i = 0; i < result.length; i++) {
                     let strAppend = `<tr>
-                            <td class="column1">` + date + `</td>
+                            <td class="column1">` + result[i].order.order_date + `</td>
                             <td class="column2">` + result[i].order.order_code + `</td>
                             <td class="column3">` + result[i].product.name + `</td>
                             <td class="column4">` + result[i].price + `</td>
