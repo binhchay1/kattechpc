@@ -30,7 +30,7 @@
                 <div class="basket-product">
                     <div class="item-code">{{ $orderHistory->order_code }}</div>
                     <div class="item-date">{{date("d/m/Y", strtotime($orderHistory->order_date))  }}</div>
-                    <div class="item-total">{{ number_format($orderHistory->total_detail) }}đ</div>
+                    <div class="item-total">{{ number_format($orderHistory->total_detail, 0, '.', '.') }}đ</div>
                     <div class="item-action"><button type="button" data-toggle="modal" data-target="#modalDetail" data-id="{{ $orderHistory->id }}">{{ __('Xem chi tiết') }}</button></div>
                 </div>
                 @endforeach
@@ -62,12 +62,12 @@
                 $('#modalDetail').attr('style', 'display: flex !important');
                 for (let i = 0; i < result.length; i++) {
                     let strAppend = `<tr>
-                            <td class="column1">` + result[i].order.order_date + `</td>
+                            <td class="column1">` + formatDate("d/m/Y",Number(result[i].order.order_date)) + `</td>
                             <td class="column2">` + result[i].order.order_code + `</td>
                             <td class="column3">` + result[i].product.name + `</td>
-                            <td class="column4">` + result[i].price + `</td>
+                            <td class="column4">` + addThousandSeparator(result[i].price) +'đ' + `</td>
                             <td class="column5">` + result[i].quantity + `</td>
-                            <td class="column6">` + (result[i].price * result[i].quantity) + `</td>
+                            <td class="column6">` + addThousandSeparator(result[i].price * result[i].quantity)+'đ' + `</td>
                         </tr>`;
 
                     $('#table-body-detail').append(strAppend);
@@ -75,5 +75,23 @@
             }
         });
     })
+
+    function formatDate(format) {
+        const date = new Date();
+        switch(format){
+            case "d-m-Y H:i:s":
+                return date.getDate()+"-"+(date.getMonth()+1)+"-"+date.getFullYear()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+            case "d-m-Y":
+                return date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
+        }
+        return  date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear();
+    }
+
+    function addThousandSeparator(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    let number = 1234567;
+    let formattedNumber = addThousandSeparator(number);
 </script>
 @endsection
