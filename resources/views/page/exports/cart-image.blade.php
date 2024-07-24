@@ -92,27 +92,20 @@
                 <td colspan="2">{{ __('Tên sản phẩm') }}</td>
                 <td width="100">{{ __('Bảo hành') }}</td>
                 <td width="100">{{ __('Đơn giá') }}</td>
+                <td width="100">{{ __('Số lượng') }}</td>
                 <td width="120">{{ __('Thành tiền') }}</td>
             </tr>
 
-            @foreach($getProduct as $key => $product)
+            @foreach($cartInfor as $key => $product)
             <tr>
                 <td colspan="2">
                     <p class="p-name" href="{{ route('productDetail', $product->id) }}">{{ $product->name }}</p> <br>
                     {{ __('Mã sp:') }} {{ $product->code }} <br>
                 </td>
-                <td>{{ $product->status_guarantee }} </td>
-                @if($product->new_price != null)
-                <td>{{ $product->new_price }} đ</td>
-                @else
-                <td>{{ $product->price }} đ</td>
-                @endif
-
-                @if($product->new_price != null)
-                <td width="120">{{ $product->new_price }} đ</td>
-                @else
-                <td width="120">{{ $product->price }} đ</td>
-                @endif
+                <td>24 tháng </td>
+                <td style="border: 1px solid #fff;">{{ number_format($product->price) }}đ</td>
+                <td>{{ $product->quantity }} </td>
+                <td style="border: 1px solid #fff;">{{ number_format(($product->price) *  $product->quantity) }}</td>
             </tr>
             @endforeach
 

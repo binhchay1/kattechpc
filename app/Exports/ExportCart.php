@@ -10,19 +10,19 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
 class ExportCart implements FromView, WithColumnWidths, WithDrawings
 {
-    protected $products;
+    protected $cartInfor;
     protected $total;
 
-    public function __construct($products, $total)
+    public function __construct($cartInfor, $total)
     {
-        $this->products = $products;
+        $this->cartInfor = $cartInfor;
         $this->total = $total;
     }
 
     public function view(): View
     {
         return view('page.exports.cart-excel', [
-            'products' => $this->products,
+            'cartInfos' => $this->cartInfor,
             'total' => $this->total,
         ]);
     }

@@ -65,24 +65,15 @@
             <td style="background-color: #f3070f; border: 1px solid #fff;">{{ __('Đơn giá') }}</td>
             <td style="background-color: #f3070f; border: 1px solid #fff;">{{ __('Thành tiền') }}</td>
         </tr>
-        @foreach($products as $key => $product)
+        @foreach($cartInfos as $key => $product)
         <tr>
             <td></td>
             <td style="border: 1px solid #fff;" align="left">{{ $key + 1 }}</td>
             <td style="border: 1px solid #fff;">{{ $product->name }}</td>
-            <td style="border: 1px solid #fff;">{{ $product->status_guarantee }}</td>
-            <td style="border: 1px solid #fff;" align="left">1</td>
-            @if($product->new_price != null)
-            <td style="border: 1px solid #fff;">{{ $product->new_price }}</td>
-            @else
-            <td style="border: 1px solid #fff;">{{ $product->price }}</td>
-            @endif
-
-            @if($product->new_price != null)
-            <td style="border: 1px solid #fff;">{{ $product->new_price }}</td>
-            @else
-            <td style="border: 1px solid #fff;">{{ $product->price }}</td>
-            @endif
+            <td style="border: 1px solid #fff;">24 tháng</td>
+            <td style="border: 1px solid #fff;" align="left">{{ $product->quantity }}</td>
+            <td style="border: 1px solid #fff;">{{ number_format($product->price) }}đ</td>
+            <td style="border: 1px solid #fff;" align="right">{{ number_format(($product->price) *  $product->quantity) }}đ</td>
         </tr>
         @endforeach
 
@@ -127,21 +118,40 @@
             <td></td>
             <td></td>
             <td style="background-color: #f77e7e;">{{ __('Tổng tiền đơn hàng') }}</td>
-            <td>{{ $total }}</td>
+            <td>{{ number_format($total) }}</td>
         </tr>
-
+        @if(Session::has('discount-total'))
+            <?php $getDiscount = Session::get('discount-total');
+            $intValue =  str_replace(',', '', $getDiscount);
+            $disCountInt = intval(str_replace('.', '', $intValue));
+            $money = $total - $disCountInt;
+            ?>
         <tr>
             <td></td>
             <td></td>
             <td style="background-color: #f77e7e;">{{ __('Được giảm tiền mặt') }}</td>
-            <td align="right">-</td>
+            <td align="right">{{number_format($disCountInt) }}đ</td>
         </tr>
-
         <tr>
             <td></td>
             <td></td>
             <td style="background-color: #f77e7e;">{{ __('Tổng tiền đơn hàng') }}</td>
-            <td>{{ $total }}</td>
+            <td align="right">{{number_format($money) }}đ </td>
         </tr>
+            @else
+            <tr>
+                <td></td>
+                <td></td>
+                <td style="background-color: #f77e7e;">{{ __('Được giảm tiền mặt') }}</td>
+                <td align="right">-</td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td style="background-color: #f77e7e;">{{ __('Tổng tiền đơn hàng') }}</td>
+                <td align="right">{{number_format($total) }}đ </td>
+            </tr>
+        @endif
     </tbody>
 </table>

@@ -113,26 +113,17 @@
                     <td width="120">{{ __('Thành tiền') }}</td>
                 </tr>
 
-                @foreach($getProduct as $key => $product)
+                @foreach($cartInfor as $key => $product)
                 <tr>
                     <td>{{ $key + 1 }}</td>
                     <td colspan="2">
-                        <a href="{{ route('productDetail', $product->slug) }}">{{ $product->name }}</a> <br>
+                        <a href="{{ route('productDetail', $product->id) }}">{{ $product->name }}</a> <br>
                         Mã sp: {{ $product->code }} <br>
                     </td>
-                    <td>{{ $product->status_guarantee }} </td>
-                    <td>1</td>
-                    @if($product->new_price != null)
-                    <td>{{ $product->new_price }} đ</td>
-                    @else
-                    <td>{{ $product->price }} đ</td>
-                    @endif
-
-                    @if($product->new_price != null)
-                    <td width="120">{{ $product->new_price }} đ</td>
-                    @else
+                    <td>24 tháng </td>
+                    <td>{{ $product->new_price }}</td>
                     <td width="120">{{ $product->price }} đ</td>
-                    @endif
+                    <td width="120">{{ number_format(($product->price) *  $product->quantity) }} đ</td>
                 </tr>
                 @endforeach
 
@@ -146,11 +137,24 @@
                     <td colspan="2" style="background:#b8cce4;">{{ __('Chi phí khác') }}</td>
                     <td style="background:#b8cce4;">0</td>
                 </tr>
+                @if(Session::has('discount-total'))
+                    <?php $getDiscount = Session::get('discount-total');
+                    $intValue =  str_replace(',', '', $getDiscount);
+                    $disCountInt = intval(str_replace('.', '', $intValue));
+                    $money = $total - $disCountInt;
+                    ?>
                 <tr>
                     <td colspan="4"></td>
                     <td colspan="2" style="background:#b8cce4;">{{ __('Tổng tiền đơn hàng') }}</td>
-                    <td style="background:#b8cce4;">{{ number_format($total, 0, ',', '.') }} đ</td>
+                    <td style="background:#b8cce4;">{{ number_format($money) }} đ</td>
                 </tr>
+                @else
+                <tr>
+                    <td colspan="4"></td>
+                    <td colspan="2" style="background:#b8cce4;">{{ __('Tổng tiền đơn hàng') }}</td>
+                    <td style="background:#b8cce4;">{{ number_format($total) }} đ</td>
+                </tr>
+                @endif
 
             </tbody>
         </table>

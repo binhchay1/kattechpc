@@ -363,18 +363,16 @@ class CartController extends Controller
     public function exportExcel()
     {
         $cartInfor =  Cart::getContent();
-
         $nameFile = 'cart_' . date('d-m-Y') . '.xlsx';
         $total = 0;
         $arrProductID = [];
         foreach ($cartInfor as $product) {
             $total += (int) $product->price * $product->quantity;
             $arrProductID[] = $product->id;
+            $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
         }
 
-        $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
-
-        return Excel::download(new ExportCart($getProduct, $total), $nameFile);
+        return Excel::download(new ExportCart($cartInfor, $total), $nameFile);
     }
 
     public function exportImage()
@@ -388,7 +386,7 @@ class CartController extends Controller
         }
         $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
 
-        return view('page.exports.cart-image', compact('getProduct'))->render();
+        return view('page.exports.cart-image', compact('cartInfor'))->render();
     }
 
     public function printCart(Request $request)
@@ -402,6 +400,6 @@ class CartController extends Controller
         }
         $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
 
-        return view('page.cart.print', compact('getProduct', 'total'));
+        return view('page.cart.print', compact('cartInfor', 'total'));
     }
 }
