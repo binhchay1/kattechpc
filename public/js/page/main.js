@@ -5,8 +5,12 @@ $(document).ready(function () {
     var btn = document.getElementById("news-button-summit");
     var span = document.getElementsByClassName("close")[0];
 
-    window.addEventListener('resize', function(event) {
-
+    window.addEventListener('resize', function (event) {
+        if (window.innerWidth <= 922) {
+            isMobileDetected = true;
+        } else {
+            isMobileDetected = false;
+        }
     }, true);
 
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
