@@ -5,20 +5,8 @@ $(document).ready(function () {
     var btn = document.getElementById("news-button-summit");
     var span = document.getElementsByClassName("close")[0];
 
-    window.addEventListener('resize', function (event) {
-        if (window.innerWidth <= 922) {
-            isMobileDetected = true;
-        } else {
-            isMobileDetected = false;
-        }
-    }, true);
-
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        if (window.innerWidth <= 922) {
-            isMobileDetected = true;
-        } else {
-            isMobileDetected = false;
-        }
+        isMobileDetected = true;
     }
 
     btn.onclick = function () {
@@ -101,20 +89,54 @@ $(document).ready(function () {
         });
     }
 
+    var defaultTransFlash = 0;
+    var defaultTransTopSale = 0;
+    var defaultTransFooterSlide = 0;
+    var defaultTransProduct = 0;
+
+    var countFlash = 0;
+    var countProduct = 0;
+    var countTopSale = 0;
+    var countFooterSlide = 0;
+
+    window.addEventListener('resize', function (event) {
+        $('.swiper-flash-sale').css('transform', 'translate3d(0px, 0px, 0px)');
+        $('.swiper-top-sale').css('transform', 'translate3d(0px, 0px, 0px)');
+        $('.swiper-footer-slide').css('transform', 'translate3d(0px, 0px, 0px)');
+        for (let k = 0; k < listCategory.default.length; k++) {
+            $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(0px, 0px, 0px)');
+        }
+
+        if(this.window.innerWidth <= 992) {
+            isMobileDetected = true;
+        } else {
+            isMobileDetected = false;
+        }
+
+        defaultTransFlash = window.innerWidth - 18;
+        defaultTransTopSale = window.innerWidth - 18;
+        defaultTransFooterSlide = window.innerWidth + 5;
+        defaultTransProduct = window.innerWidth + 10;
+        countFlash = 0;
+        countProduct = 0;
+        countTopSale = 0;
+        countFooterSlide = 0;
+    }, true);
+
     let transFlash = 0;
     let defaultFlash = 5;
     let perTransFlash = 279;
-    let countFlash = 0;
+
 
     if (isMobileDetected) {
         defaultFlash = 1;
-        perTransFlash = window.innerWidth - 18;
     }
 
     let listChildFlash = $(".swiper-flash-sale").children();
     if (listChildFlash.length > defaultFlash) {
         let stopFlash = listChildFlash.length - defaultFlash;
         let intervalFlash = setInterval(function () {
+            perTransFlash = defaultTransFlash;
             if (countFlash == stopFlash) {
                 transFlash = 0;
                 countFlash = 0;
@@ -161,7 +183,6 @@ $(document).ready(function () {
     var transProduct = 0;
     var defaultProduct = 6;
     var perTransProduct = 238;
-    var countProduct = 0;
     var stopProduct = 0;
 
     if (typeof (listCategory) != 'undefined' && listCategory !== null) {
@@ -177,7 +198,7 @@ $(document).ready(function () {
                 stopProduct = listChildProduct.length - defaultProduct;
                 listInterval[k] = setInterval(function () {
                     if (isMobileDetected) {
-                        perTransProduct = window.innerWidth + 10;
+                        perTransProduct = defaultTransProduct;
                     }
 
                     if (countProduct == stopProduct) {
@@ -232,14 +253,16 @@ $(document).ready(function () {
 
     if (isMobileDetected) {
         defaultTopSale = 1;
-        perTransTopSale = window.innerWidth - 18;
     }
 
     let listChildTopSale = $(".swiper-top-sale").children();
     if (listChildTopSale.length > defaultTopSale) {
         let stopTopSale = listChildTopSale.length - defaultTopSale;
-        let countTopSale = 0;
         let intervalTopSale = setInterval(function () {
+            if (isMobileDetected) {
+                perTransTopSale = defaultTransTopSale;
+            }
+
             if (countTopSale == stopTopSale) {
                 transTopSale = 0;
                 countTopSale = 0;
@@ -287,13 +310,20 @@ $(document).ready(function () {
     var transFooterSlide = 0;
     var defaultFooterSlide = 5;
     var perTransFooterSlide = 285;
-    var countFooterSlide = 0;
+
+    if (isMobileDetected) {
+        defaultFooterSlide = 1;
+    }
 
     let listChildFooterSlide = $(".swiper-footer-slide").children();
     if (listChildFooterSlide.length > defaultFooterSlide) {
         let stopFooterSlide = listChildFooterSlide.length - defaultFooterSlide;
 
         let intervalFooterSlide = setInterval(function () {
+            if (isMobileDetected) {
+                perTransFooterSlide = defaultTransFooterSlide;
+            }
+
             if (countFooterSlide == stopFooterSlide) {
                 transFooterSlide = 0;
                 countFooterSlide = 0;

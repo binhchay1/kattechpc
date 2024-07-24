@@ -65,27 +65,23 @@
                         </div>
 
                         <div class="xl:col-span-6">
-                            <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Sản phẩm được áp dụng') }}</label>
-                            <div class="choices is-open" data-type="select-multiple" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="true">
-                                <div class="choices__inner"><select class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200 choices__input" id="choices-multiple-default" data-choices="" name="choices-multiple-default" multiple="" hidden="" tabindex="-1" data-choice="active">
+                            <div class="choices is-open" data-type="select-multiple" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="true" aria-activedescendant="choices--choices-multiple-remove-button-item-choice-3">
+                                <div class="choices__inner"><select class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200 choices__input" id="choices-multiple-remove-button" data-choices="" data-choices-removeitem="" name="choices-multiple-remove-button" multiple="" hidden="" tabindex="-1" data-choice="active">
                                         <option value="Choice 1" data-custom-properties="[object Object]">Choice 1</option>
                                     </select>
                                     <div class="choices__list choices__list--multiple">
-                                        <div class="choices__item choices__item--selectable" data-item="" data-id="1" data-value="Choice 1" data-custom-properties="[object Object]" aria-selected="true">Choice 1</div>
-                                    </div><input type="search" name="search_terms" class="choices__input choices__input--cloned" autocomplete="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" aria-label="null" style="min-width: 1ch; width: 2ch;" aria-activedescendant="choices--choices-multiple-default-item-choice-2">
+                                        <div class="choices__item choices__item--selectable" data-item="" data-id="1" data-value="Choice 1" data-custom-properties="[object Object]" aria-selected="true" data-deletable="">Choice 1<button type="button" class="choices__button" aria-label="Remove item: 'Choice 1'" data-button="">Remove item</button></div>
+                                    </div><input type="search" name="search_terms" class="choices__input choices__input--cloned" autocomplete="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" aria-label="null" aria-activedescendant="choices--choices-multiple-remove-button-item-choice-3">
                                 </div>
                                 <div class="choices__list choices__list--dropdown is-active" aria-expanded="true">
                                     <div class="choices__list" aria-multiselectable="true" role="listbox">
-                                        <div id="choices--choices-multiple-default-item-choice-2" class="choices__item choices__item--choice choices__item--selectable is-highlighted" role="option" data-choice="" data-id="2" data-value="Choice 2" data-select-text="Press to select" data-choice-selectable="" aria-selected="true">Choice 2</div>
-                                        <div id="choices--choices-multiple-default-item-choice-3" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="3" data-value="Choice 3" data-select-text="Press to select" data-choice-selectable="">Choice 3</div>
+                                        <div id="choices--choices-multiple-remove-button-item-choice-2" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="2" data-value="Choice 2" data-select-text="Press to select" data-choice-selectable="" aria-selected="false">Choice 2</div>
+                                        <div id="choices--choices-multiple-remove-button-item-choice-3" class="choices__item choices__item--choice choices__item--selectable is-highlighted" role="option" data-choice="" data-id="3" data-value="Choice 3" data-select-text="Press to select" data-choice-selectable="" aria-selected="true">Choice 3</div>
+                                        <div id="choices--choices-multiple-remove-button-item-choice-4" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="4" data-value="Choice 4" data-select-text="Press to select" data-choice-selectable="">Choice 4</div>
                                     </div>
                                 </div>
                             </div>
-                            @if ($errors->has('code'))
-                            <span class="text-danger" style="color: red">{{ $errors->first('code') }}</span>
-                            @endif
                         </div>
-
                     </div>
 
                     <div class="flex justify-end gap-2 mt-4">
