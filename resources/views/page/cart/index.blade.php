@@ -283,14 +283,9 @@
                         <div class="basket-module" id="add_discount">
                             <label for="promo-code">{{__('Nhập mã khuyến mãi')}}</label>
                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                            @if(Session::has('discount-total'))
-                            <?php $getDiscount = Session::get('discount-total');
-                            $intValue = (int) str_replace(',', '', $getDiscount);
-                            ?>
-                            <input id="promo-code" type="text" name="discount_amount" value="{{ Session::get('discount-code') }}" class="promo-code-field">
-                            @else
+
                             <input id="promo-code" type="text" name="discount_amount" value="" class="promo-code-field">
-                            @endif
+{{--                            @endif--}}
                             <p class="error_msg" id="promo-code" style="color: red"></p>
                             <a type="button" class="btn-submit promo-code-cta">{{ __('Áp dụng') }}</a>
                         </div>
@@ -299,17 +294,22 @@
                         <div class="input-address summary-total-items total-title">{{ __('Tổng cộng') }} </div>
                     </div>
                     @if(Session::has('discount-total'))
+                    <?php $getDiscount = Session::get('discount-total');
+                        $intValue =  str_replace(',', '', $getDiscount);
+                        $disCountInt = intval(str_replace('.', '', $intValue));
+                          ?>
                     <div class="summary summary-area">
                         <div class="total-value final-value summary-total" style="margin: 0;">{{__('Giảm giá')}}</div>
                         <div class="total-value final-value get-total" style="text-transform: inherit">
                             <div class="alert alert-danger total-discount">
-                                {{ number_format((($intValue * $totalCart) / 100), 0, '.', '.') }} đ
+                                {{ $getDiscount }} đ
                             </div>
                         </div>
                     </div>
                     <div class="summary-total summary-area">
                         <div class="total-title">{{ __('Thành tiền') }}</div>
-                        <?php $money = $totalCart - (($intValue * $totalCart) / 100) ?>
+                        <?php $money = $totalCart - $disCountInt;
+                       ?>
                         <div class="total-value final-value get-total" id="total-amount">{{ number_format($money, 0, '.', '.') }} đ
                             <input hidden name="" value="{{ $money }}">
                         </div>
