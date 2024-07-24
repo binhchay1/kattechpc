@@ -30,7 +30,7 @@
                 <div class="basket-product">
                     <div class="item-code">{{ $orderHistory->order_code }}</div>
                     <div class="item-date">{{date("d/m/Y", strtotime($orderHistory->order_date))  }}</div>
-                    <div class="item-total">{{ number_format($orderHistory->total_detail, 0, '.', '.') }}đ</div>
+                    <div class="item-total">{{ number_format($orderHistory->total_money, 0, '.', '.') }}đ</div>
                     <div class="item-action"><button type="button" data-toggle="modal" data-target="#modalDetail" data-id="{{ $orderHistory->id }}">{{ __('Xem chi tiết') }}</button></div>
                 </div>
                 @endforeach

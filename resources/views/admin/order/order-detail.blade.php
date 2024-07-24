@@ -65,10 +65,10 @@
 
                             </div>
 
-                            <?php $totalOrder =  number_format($orderDetail->total, 0, ',', '.')  ?>
+                            <?php $totalOrder =  number_format($orderDetail->total_money, 0, ',', '.')  ?>
                             <div class="xl:col-span-4">
                                 <label for="productCodeInput" class="inline-block mb-2 text-base font-medium"> {{ __('Tổng giá trị') }}</label>
-                                <input type="text" id="productCodeInput" name="code" value="{{  $totalOrder }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Mã sản phẩm') }}">
+                                <input type="text" id="productCodeInput" name="code" value="{{  $totalOrder }}đ" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Mã sản phẩm') }}">
 
                             </div>
                             <div class="xl:col-span-3">

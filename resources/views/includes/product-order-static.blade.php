@@ -81,7 +81,7 @@
                             {{ $data }}
                         </td>
                         <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500">
-                            {{ number_format($order->total, 0, ',', '.') }}
+                            {{ number_format($order->total_money, 0, ',', '.') }}
                         </td>
 
                         <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 border-y border-slate-200 dark:border-zink-500 status">

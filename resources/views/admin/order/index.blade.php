@@ -60,7 +60,7 @@
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">  {{ date("d/m/Y", strtotime($order->order_date)) }}
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"> {{ number_format($order->total, 0, ',', '.') }} đ
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5"> {{ number_format($order->total_money, 0, ',', '.') }} đ
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $order->address }}
                                 </td>

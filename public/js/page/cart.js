@@ -72,7 +72,13 @@ $(document).ready(function () {
                     let resp = data.errors;
                     $(".error_msg").html(resp);
                 }
+                setTimeout(function(){
+                        window.location.reload();
+                        /* or window.location = window.location.href; */
+                }, 500);
             },
+
+
         });
 
     });
@@ -90,6 +96,7 @@ function updateCart(quantity, id) {
         success: function (result) {
             let idElement = '#total_cart-' + id;
             $(idElement).text(result.price + ' đ');
+            location.reload();
         }
     });
 }
