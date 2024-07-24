@@ -48,11 +48,11 @@
         </li>
         @endforeach
         <hr>
-        <li class="list-items" style="margin-top: 20px"><a href="{{ route('home') }}"><i class="fa fa-home"></i>{{__("Trang chủ")}}</a></li>
-        <li class="list-items"><a href="{{ route('post') }}"><i class="fa fa-newspaper"></i>{{__("Tin công nghệ")}}</a></li>
-        <li class="list-items"><a href="{{ route('payment') }}"><i class="fa fa-money-check"></i>{{__("Hướng dẫn thanh toán")}}</a></li>
-        <li class="list-items"><a href="{{ route('policy') }}"><i class="fa fa-shield-alt"></i>{{__("Chính sách bảo hành")}}</a></li>
-        <li class="list-items">
+        <li class="list-items no-border" style="margin-top: 20px"><a href="{{ route('home') }}"><i class="fa fa-home"></i>{{__("Trang chủ")}}</a></li>
+        <li class="list-items no-border"><a href="{{ route('post') }}"><i class="fa fa-newspaper"></i>{{__("Tin công nghệ")}}</a></li>
+        <li class="list-items no-border"><a href="{{ route('payment') }}"><i class="fa fa-money-check"></i>{{__("Hướng dẫn thanh toán")}}</a></li>
+        <li class="list-items no-border"><a href="{{ route('policy') }}"><i class="fa fa-shield-alt"></i>{{__("Chính sách bảo hành")}}</a></li>
+        <li class="list-items no-border">
             @if(Auth::check())
             <div class="dropdown">
                 <a class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
@@ -76,7 +76,7 @@
             </div>
             @endif
         </li>
-        <li class="list-items">
+        <li class="list-items no-border">
             <a href="tel:{{ config('company.hotline') }}" style="color: red; display: flex">
                 <span>
                     <svg width="22" height="22" viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg">

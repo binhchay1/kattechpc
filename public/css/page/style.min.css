@@ -2478,6 +2478,11 @@ a {
         display: block;
         list-style: none;
         background: white;
+        position: relative;
+    }
+
+    .list-items.no-border a {
+        border: none !important;
     }
 
     #get_search {

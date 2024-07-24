@@ -428,7 +428,9 @@
         color: grey;
         font-size: 22px;
         font-weight: 600;
+        border: 1px solid #e1e1e1;
     }
+
     .menu-btn {
         display: block;
         position: absolute;
@@ -565,5 +567,11 @@
 
     .global-fixed-right .fix-face {
         bottom: calc(50% - 240px);
+    }
+
+    .list-items-sub {
+        list-style: none;
+        padding: 0;
+        display: none;
     }
 }

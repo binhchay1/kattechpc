@@ -5,8 +5,16 @@ $(document).ready(function () {
     var btn = document.getElementById("news-button-summit");
     var span = document.getElementsByClassName("close")[0];
 
+    window.addEventListener('resize', function(event) {
+
+    }, true);
+
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        isMobileDetected = true;
+        if (window.innerWidth <= 922) {
+            isMobileDetected = true;
+        } else {
+            isMobileDetected = false;
+        }
     }
 
     btn.onclick = function () {
@@ -159,12 +167,15 @@ $(document).ready(function () {
 
             if (isMobileDetected) {
                 defaultProduct = 1;
-                perTransProduct = window.innerWidth + 10;
             }
 
             if (listChildProduct.length > defaultProduct) {
                 stopProduct = listChildProduct.length - defaultProduct;
                 listInterval[k] = setInterval(function () {
+                    if (isMobileDetected) {
+                        perTransProduct = window.innerWidth + 10;
+                    }
+
                     if (countProduct == stopProduct) {
                         transProduct = 0;
                         countProduct = 0;
