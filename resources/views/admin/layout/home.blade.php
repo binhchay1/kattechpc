@@ -334,6 +334,44 @@
                     </div>
                 </div>
             </div>
+
+
+            <div class="xl:col-span-4">
+                <div class="form-group">
+                    <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Ảnh popup quảng cáo ') }}</label>
+                    <div class="">
+                        <div class="" style="display: inline-grid;">
+                            <input type="file" class="border-0 bg-light pl-0" name="adv_thumbnail" id="image10" hidden>
+                            <div class=" choose-avatar">
+                                <div id="btnimage">
+                                    @if(isset($layout->adv_thumbnail))
+                                        <img id="showImage10" class="show-avatar" src="{{ asset($layout->adv_thumbnail) }}" alt="avatar">
+                                    @else
+                                        <img id="showImage10" class="show-avatar" src="{{ asset('images/sspaps-Logo.png') }}" alt="avatar">
+                                    @endif
+                                </div>
+                                <div id="button-10">
+                                    <i class="fas fa-camera btn_chooseImg"> {{ __('Chọn hình ảnh') }}</i>
+                                </div>
+                            </div>
+                            <div>
+                                <input type="text" name="permarklink_adv_thumbnail" value="{{ isset($layout->permarklink_adv_thumbnail) ? $layout->permarklink_adv_thumbnail : old('permarklink_adv_thumbnail') }}" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Nhập đường dẫn') }}">
+                            </div>
+                            <div class="area-action-layout">
+                                <div>
+                                    <input type="checkbox" id="hide_adv_thumbnail" onchange="handleHideInput('hide_adv_thumbnail')" {{ $layout->hide_adv_thumbnail == 1 ? 'checked' : '' }}>
+                                    <label>{{ __('Ẩn') }}</label>
+                                </div>
+
+                                <button type="button" class="btn-delete-layout" onclick="deleteThumb('adv_thumbnail')">{{ __('Xóa') }}</button>
+                            </div>
+                            @if ($errors->has('adv_thumbnail'))
+                                <span class="text-danger">{{ $errors->first('adv_thumbnail') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+            </div>
             <input type="hidden" name="hide_small_thumbnail_1" value="{{ $layout->hide_small_thumbnail_1 }}">
             <input type="hidden" name="hide_small_thumbnail_2" value="{{ $layout->hide_small_thumbnail_2 }}">
             <input type="hidden" name="hide_small_thumbnail_3" value="{{ $layout->hide_small_thumbnail_3 }}">
@@ -343,6 +381,7 @@
             <input type="hidden" name="hide_small_banner_thumbnail_left" value="{{ $layout->hide_small_banner_thumbnail_left }}">
             <input type="hidden" name="hide_small_banner_thumbnail_right" value="{{ $layout->hide_small_banner_thumbnail_right }}">
             <input type="hidden" name="hide_banner_promotion_thumbnail" value="{{ $layout->hide_banner_promotion_thumbnail }}">
+            <input type="hidden" name="hide_adv_thumbnail" value="{{ $layout->hide_adv_thumbnail }}">
         </div>
 
         <button type="submit" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20" style="margin-top: 10px;">{{__('Thêm ảnh')}}</button>

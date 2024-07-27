@@ -92,7 +92,7 @@
     </div>
 </div>
 <div id="toolbar-menu-mobile" class="toolbar-menu-mobile  d-xl-none d-lg-none hSticky hSticky-nav hSticky-up bottomMenu">
-    <ul style="padding: 0;">
+    <ul>
         @if(Auth::check())
         <li class="item">
             <a href="{{ route('profile') }}">

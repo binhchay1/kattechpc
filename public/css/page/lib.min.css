@@ -349,3 +349,7 @@
 .flex-direction-row {
     flex-direction: row;
 }
+
+.right-inherit {
+    right: inherit !important;
+}

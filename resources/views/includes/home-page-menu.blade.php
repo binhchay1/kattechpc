@@ -2,11 +2,7 @@
     <p class="group-title"><i class="fa fa-bars"></i> {{ __('Danh mục sản phẩm') }}</p>
     <div class="global-menu-holder">
         @foreach($listCategory['default'] as $category)
-        @if($category->status == 0)
-        @continue
-        @endif
-
-        @if($category->parent != 0)
+        @if($category->status == 0 or $category->parent != 0)
         @continue
         @endif
 
@@ -59,7 +55,7 @@
                     <p class="cat-2">{{ __('CHỌN THEO') }} {{ $title }}</p>
                     <div class="sub-cat-2-link">
                         @foreach($listKeyword as $keyword)
-                        <a href="/laptop-intel-core-i3">{{ $keyword }}</a>
+                        <a href="{{ route('showDataCategory', $category->slug) }}?{{ $title }}={{ $keyword }}">{{ $keyword }}</a>
                         @endforeach
                     </div>
                 </div>

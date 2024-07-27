@@ -13,7 +13,7 @@
     </div>
     <ul class="list-category-menu-mobile">
         @foreach($listCategory['default'] as $category)
-        @if($category->status == 0 && $category->parent == 0)
+        @if($category->status == 0 && $category->parent != 0)
         @continue
         @endif
         <li class="list-items">
@@ -21,28 +21,60 @@
                 <img class="lazy icon-menu entered loaded" alt="{{ $category->name }}" width="1" height="1" src="{{ asset($category->image) }}">
                 <span class="cat-title line-clamp-1">{{ $category->name }}</span>
             </a>
-            <span class="icon-right" aria-hidden="true"></span>
+            <span class="icon-right" onclick="handleSideBar($(this))"></span>
             <ul class="list-items-sub">
+                @if(isset($category->children))
                 <li class="sub-items">
-                    <a href="/chon-theo-nhu-cau-1" class="lv2">CHỌN THEO NHU CẦU</a>
-                    <span class="icon-right item-lv2 item-lv" aria-hidden="true"></span>
+                    <a class="lv2">CHỌN THEO NHU CẦU</a>
+                    <span class="icon-right item-lv2 item-lv"></span>
                     <div class="sub-menu-lv3">
-                        <a href="/pc-esport" class="lv3">PC ESPORT</a>
-                        <a href="/pc-game-aaa" class="lv3">PC GAME AAA</a>
-                        <a href="/pc-stream-game" class="lv3">PC STREAM GAME</a>
+                        @foreach($category->children as $categoryChild)
+                        <a href="{{ route('showDataCategory', $categoryChild['slug']) }}" class="lv3">{{ $categoryChild->name }}</a>
+                        @endforeach
                     </div>
                 </li>
+                @endif
                 <li class="sub-items">
-                    <a href="/chon-theo-khoang-gia-1" class="lv2">CHỌN THEO KHOẢNG GIÁ</a>
+                    <a class="lv2">{{ __('CHỌN THEO KHOẢNG GIÁ') }}</a>
+                    <span class="icon-right item-lv2 item-lv" onclick="handleSideBar($(this))" aria-hidden="true"></span>
+                    <div class="sub-menu-lv3">
+                        <a href="{{ route('showDataCategory', $category->slug) }}?price=duoi-10trieu" class="lv3">{{ __('Dưới 10 Triệu') }}</a>
+                        <a href="{{ route('showDataCategory', $category->slug) }}?price=tu-10trieu-15trieu" class="lv3">{{ __('10 Triệu - 15 Triệu') }}</a>
+                        <a href="{{ route('showDataCategory', $category->slug) }}?price=tu-15trieu-20trieu" class="lv3">{{ __('15 Triệu - 20 Triệu') }}</a>
+                        <a href="{{ route('showDataCategory', $category->slug) }}?price=tu-20trieu-30trieu" class="lv3">{{ __('20 Triệu - 30 Triệu') }}</a>
+                        <a href="{{ route('showDataCategory', $category->slug) }}?price=tu-30trieu-50trieu" class="lv3">{{ __('30 Triệu - 50 Triệu') }}</a>
+                        <a href="{{ route('showDataCategory', $category->slug) }}?price=tu-50trieu-100trieu" class="lv3">{{ __('50 Triệu - 100 Triệu') }}</a>
+                        <a href="{{ route('showDataCategory', $category->slug) }}?price=tren-100trieu" class="lv3">{{ __('Trên 100 Triệu') }}</a>
+                    </div>
+                </li>
+
+                <li class="sub-items">
+                    @if(array_key_exists('brand', $listCategory))
+                    @if(array_key_exists($category->name, $listCategory['brand']))
+                    <a class="lv2">{{ __('CHỌN THEO HÃNG') }}</a>
                     <span class="icon-right item-lv2 item-lv" aria-hidden="true"></span>
                     <div class="sub-menu-lv3">
-                        <a href="/5-trieu-15-trieu" class="lv3">5 Triệu - 15 Triệu</a>
-                        <a href="/15-trieu-20-trieu-1" class="lv3">15 Triệu - 20 Triệu</a>
-                        <a href="/20-trieu-30-trieu-1" class="lv3">20 Triệu - 30 Triệu</a>
-                        <a href="/30-trieu-50-trieu-1" class="lv3">30 Triệu - 50 Triệu</a>
-                        <a href="/50-trieu-100-trieu-1" class="lv3">50 Triệu - 100 Triệu</a>
-                        <a href="/tren-100-trieu-1" class="lv3">Trên 100 Triệu</a>
+                        @foreach($listCategory['brand'][$category->name] as $categoryBrand)
+                        <a href="{{ route('showDataCategory', $category->slug) }}?brand={{ $categoryBrand }}" class="lv3">{{ $categoryBrand }}</a>
+                        @endforeach
                     </div>
+                    @endif
+                    @endif
+                </li>
+
+                <li class="sub-items">
+                    @if(array_key_exists('keyword', $listCategory))
+                    @if(array_key_exists($category->name, $listCategory['keyword']))
+                    @foreach($listCategory['keyword'][$category->name] as $title => $listKeyword)
+                    <a class="lv2">{{ __('CHỌN THEO') }} {{ $title }}</a>
+                    <div class="sub-menu-lv3">
+                        @foreach($listKeyword as $keyword)
+                        <a href="{{ route('showDataCategory', $category->slug) }}?{{ $title }}={{ $keyword }}" class="lv3">{{ $keyword }}</a>
+                        @endforeach
+                    </div>
+                    @endforeach
+                    @endif
+                    @endif
                 </li>
             </ul>
         </li>
@@ -55,7 +87,7 @@
         <li class="list-items no-border">
             @if(Auth::check())
             <div class="dropdown">
-                <a class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
+                <a class="sep-item-link" style="width: 608px;" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
                 <div class="dropdown-content">
                     <a href="{{ route('profile') }}">{{ __('Tài khoản') }}</a>
                     <a href="{{ route('orderHistory') }}">{{ __('Lịch sử mua hàng') }}</a>

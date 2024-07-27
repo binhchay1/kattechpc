@@ -25,7 +25,6 @@ class CouponController extends Controller
     public function index()
     {
         $listCoupons = $this->couponRepository->index();
-        dd($listCoupons);
 
         return view('admin.coupon.index', compact('listCoupons'));
     }
