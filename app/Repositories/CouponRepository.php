@@ -13,7 +13,7 @@ class CouponRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->orderBy('created_at', 'DESC')->paginate(10);
+        return $this->model->with('product')->orderBy('created_at', 'DESC')->paginate(10);
     }
 
     public function store($input)

@@ -8,11 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Coupon extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'coupons';
-    
+
     protected $fillable = [
         'code',
         'discount_amount',
+        'list_product_id',
+        'type',
+        'use_amount',
+        'total_amount',
+        'apply_user_status',
+        'time_end',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(CategoryPost::class,'list_product_id' ,'id' );
+    }
 }

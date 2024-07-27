@@ -43,44 +43,48 @@
                         <div class="xl:col-span-6 d-none" id="discount-by-percent">
                             <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Tỉ lệ giảm giá') }}</label>
                             <span style="display: flex; align-items: center;">
-                                <input type="number" id="discount_amount" name="discount_amount" onkeyup="onlyNumberAmount(this)" value="{{ old('discount_amount') }}" class="form-input input-element border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" min="1" max="100" placeholder="{{ __('Tỉ lệ giảm giá') }}">
+                                <input type="number" id="discount_amount"  name="discount_amount" onkeyup="onlyNumberAmount(this)" value="{{ old('discount_amount') }}" class="form-input input-element border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" min="1" max="100" placeholder="{{ __('Tỉ lệ giảm giá') }}">
                                 <span style="font-weight: bold; margin-left: 15px;">%</span>
                             </span>
 
-                            @if ($errors->has('discount_amount'))
-                            <span class="text-danger" style="color: red">{{ $errors->first('discount_amount') }}</span>
-                            @endif
+
                         </div>
 
                         <div class="xl:col-span-6" id="discount-by-number">
                             <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Số tiền giảm giá') }}</label>
                             <span style="display: flex; align-items: center;">
-                                <input type="number" id="discount_amount" name="discount_amount" onkeyup="onlyNumberAmount(this)" value="{{ old('discount_amount') }}" class="form-input input-element border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" min="1" max="100" placeholder="{{ __('Tỉ lệ giảm giá') }}">
+                                <input type="number"  id="discount_amount" name="discount_amount" onkeyup="onlyNumberAmount(this)" value="{{ old('discount_amount') }}" class="form-input input-element border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" min="1" max="100" placeholder="{{ __('Tỉ lệ giảm giá') }}">
                                 <span style="font-weight: bold; margin-left: 15px;">đ</span>
                             </span>
 
-                            @if ($errors->has('discount_amount'))
-                            <span class="text-danger" style="color: red">{{ $errors->first('discount_amount') }}</span>
-                            @endif
                         </div>
 
                         <div class="xl:col-span-6">
-                            <div class="choices is-open" data-type="select-multiple" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="true" aria-activedescendant="choices--choices-multiple-remove-button-item-choice-3">
-                                <div class="choices__inner"><select class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200 choices__input" id="choices-multiple-remove-button" data-choices="" data-choices-removeitem="" name="choices-multiple-remove-button" multiple="" hidden="" tabindex="-1" data-choice="active">
-                                        <option value="Choice 1" data-custom-properties="[object Object]">Choice 1</option>
-                                    </select>
-                                    <div class="choices__list choices__list--multiple">
-                                        <div class="choices__item choices__item--selectable" data-item="" data-id="1" data-value="Choice 1" data-custom-properties="[object Object]" aria-selected="true" data-deletable="">Choice 1<button type="button" class="choices__button" aria-label="Remove item: 'Choice 1'" data-button="">Remove item</button></div>
-                                    </div><input type="search" name="search_terms" class="choices__input choices__input--cloned" autocomplete="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list" aria-label="null" aria-activedescendant="choices--choices-multiple-remove-button-item-choice-3">
-                                </div>
-                                <div class="choices__list choices__list--dropdown is-active" aria-expanded="true">
-                                    <div class="choices__list" aria-multiselectable="true" role="listbox">
-                                        <div id="choices--choices-multiple-remove-button-item-choice-2" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="2" data-value="Choice 2" data-select-text="Press to select" data-choice-selectable="" aria-selected="false">Choice 2</div>
-                                        <div id="choices--choices-multiple-remove-button-item-choice-3" class="choices__item choices__item--choice choices__item--selectable is-highlighted" role="option" data-choice="" data-id="3" data-value="Choice 3" data-select-text="Press to select" data-choice-selectable="" aria-selected="true">Choice 3</div>
-                                        <div id="choices--choices-multiple-remove-button-item-choice-4" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="4" data-value="Choice 4" data-select-text="Press to select" data-choice-selectable="">Choice 4</div>
-                                    </div>
-                                </div>
-                            </div>
+                            <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Sản phẩm') }}</label>
+                            <select style="width: 50%" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false id="categorySelect" name="list_product_id">
+                                @foreach($listProducts as $product)
+                                    <option value="{{$product->id}}">{{$product->name}}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('list_product_id'))
+                                <span class="text-danger">{{ $errors->first('list_product_id') }}</span>
+                            @endif
+                        </div>
+
+
+                        <div class="xl:col-span-6">
+                            <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Số lượng') }}</label>
+                            <input type="text" id="categoryInput" name="total_amount" value="{{ old('total_amount') }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Mã khuyến mãi') }}">
+                            @if ($errors->has('total_amount'))
+                                <span class="text-danger" style="color: red">{{ $errors->first('total_amount') }}</span>
+                            @endif
+                        </div>
+                        <div class="xl:col-span-6">
+                            <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Thời gian kết thúc') }}</label>
+                            <input type="date" id="categoryInput" name="time_end" value="{{ old('time_end') }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Mã khuyến mãi') }}">
+                            @if ($errors->has('time_end'))
+                                <span class="text-danger" style="color: red">{{ $errors->first('time_end') }}</span>
+                            @endif
                         </div>
                     </div>
 
