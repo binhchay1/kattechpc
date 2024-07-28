@@ -1015,7 +1015,7 @@ tr:nth-child(even) {
     color: white !important;
 }
 
-@media screen and (max-width: 992px) {
+.only-mobile-for-body {
     .product-info-detail h5 {
         font-size: 18px !important;
         line-height: 36px;
