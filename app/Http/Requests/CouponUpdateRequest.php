@@ -23,7 +23,9 @@ class CouponUpdateRequest extends FormRequest
     {
         return [
             'code' =>'required|max:50|unique:coupons,code,' .$this->id,
-            'discount_amount' =>'required'
+            'use_by_user_amount' =>'required',
+            'time_end' =>'required',
+            'total_amount' =>'required',
         ];
     }
 
@@ -33,7 +35,9 @@ class CouponUpdateRequest extends FormRequest
             'code.required' => __('Mã khuyến mãi không được để trống'),
             'code.unique' => __('Mã sản phẩm phải là duy nhất'),
             'code.max' => __('Mã sản phẩm không vượt quá 50 kí tự'),
-            'discount_amount.required' => __('Mã khuyến mãi không được để trống'),
+            'use_by_user_amount.required' => __('Số lượng mỗi khách hàng được sử dụng không được để trống'),
+            'time_end.required' => __('Thời gian không được để trống'),
+            'total_amount.required' => __('Số lượng không được để trống'),
         ];
     }
 }

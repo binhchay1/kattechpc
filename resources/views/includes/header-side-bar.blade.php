@@ -23,7 +23,7 @@
             </a>
             <span class="icon-right" onclick="handleSideBar($(this))"></span>
             <ul class="list-items-sub">
-                @if(isset($category->children))
+                @if(isset($category->children) and count($category->children) > 0)
                 <li class="sub-items">
                     <a class="lv2">CHỌN THEO NHU CẦU</a>
                     <span class="icon-right item-lv2 item-lv" onclick="handleSideBar($(this))"></span>

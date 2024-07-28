@@ -66,7 +66,7 @@
 
                         <div class="xl:col-span-6">
                             <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Số lượng') }}</label>
-                            <input type="number" min="1" id="categoryInput" onkeyup="onlyNumberAmount(this)" name="total_amount" value="{{ old('total_amount') }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Mã khuyến mãi') }}">
+                            <input type="number" min="1" id="categoryInput" onkeyup="onlyNumberAmount(this)" name="total_amount" value="{{ old('total_amount') }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Nhập số lượng') }}">
                             @if ($errors->has('total_amount'))
                             <span class="text-danger" style="color: red">{{ $errors->first('total_amount') }}</span>
                             @endif
@@ -74,9 +74,9 @@
 
                         <div class="xl:col-span-6">
                             <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Số lượng mỗi khách hàng được sử dụng') }}</label>
-                            <input type="number" min="1" id="categoryInput" onkeyup="onlyNumberAmount(this)" name="total_amount" value="{{ old('total_amount') }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Mã khuyến mãi') }}">
-                            @if ($errors->has('total_amount'))
-                            <span class="text-danger" style="color: red">{{ $errors->first('total_amount') }}</span>
+                            <input type="number" min="1" id="categoryInput" onkeyup="onlyNumberAmount(this)" name="use_by_user_amount" value="{{ old('use_by_user_amount') }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Nhập số lượng mỗi khách được sử dụng') }}">
+                            @if ($errors->has('use_by_user_amount'))
+                            <span class="text-danger" style="color: red">{{ $errors->first('use_by_user_amount') }}</span>
                             @endif
                         </div>
 
@@ -84,15 +84,16 @@
                             <div style="display: flex;">
                                 <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Áp dụng toàn bọn sản phẩm') }}</label>
                                 <span style="margin-left: 15px; margin-top: 5px;">
-                                    <input type="checkbox" name="apply_" onkeyup="onlyNumberAmount(this)" class="form-input input-element border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200">
+                                    <input type="checkbox" id="apply_all_product" onclick="handleApplyProduct()" onkeyup="onlyNumberAmount(this)" class="form-input input-element border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200">
+                                    <input type="hidden" name="apply_all_product" id="apply_all_product_hidden" value="false">
                                 </span>
                             </div>
 
-                            <div>
+                            <div id="list_product_id">
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Sản phẩm') }}</label>
-                                <select style="width: 50%" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false id="categorySelect" name="list_product_id">
+                                <select name="list_product_id" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="choices-multiple-remove-button" data-choices data-choices-removeItem name="choices-multiple-remove-button" multiple>
                                     @foreach($listProducts as $product)
-                                    <option value="{{$product->id}}">{{$product->name}}</option>
+                                    <option value="{{ $product->code }}">{{ $product->code }}</option>
                                     @endforeach
                                 </select>
                                 @if ($errors->has('list_product_id'))
@@ -103,7 +104,7 @@
                     </div>
 
                     <div class="flex justify-end gap-2 mt-4">
-                        <button type="reset" class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">{{__('Xóa toàn bộ')}}</button>
+                        <button onclick="handleReset()" type="reset" class="text-red-500 bg-white btn hover:text-red-500 hover:bg-red-100 focus:text-red-500 focus:bg-red-100 active:text-red-500 active:bg-red-100 dark:bg-zink-700 dark:hover:bg-red-500/10 dark:focus:bg-red-500/10 dark:active:bg-red-500/10">{{__('Xóa toàn bộ')}}</button>
                         <button type="submit" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">{{__('Thêm mã khuyến mãi')}}</button>
                     </div>
                 </form>
@@ -140,5 +141,25 @@
             $('#discount-by-number').show();
             $('#discount-by-percent').hide();
         }
+    }
+
+    function handleApplyProduct() {
+        let status = 'true';
+
+        if (!$('#apply_all_product').is(":checked")) {
+            status = 'false';
+        };
+
+        $('#apply_all_product_hidden').val(status);
+
+        if (status == 'true') {
+            $('#list_product_id').hide();
+        } else {
+            $('#list_product_id').show();
+        }
+    }
+
+    function handleReset() {
+        $('#list_product_id').show();
     }
 </script>
