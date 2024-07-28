@@ -26,7 +26,7 @@
                 @if(isset($category->children))
                 <li class="sub-items">
                     <a class="lv2">CHỌN THEO NHU CẦU</a>
-                    <span class="icon-right item-lv2 item-lv"></span>
+                    <span class="icon-right item-lv2 item-lv" onclick="handleSideBar($(this))"></span>
                     <div class="sub-menu-lv3">
                         @foreach($category->children as $categoryChild)
                         <a href="{{ route('showDataCategory', $categoryChild['slug']) }}" class="lv3">{{ $categoryChild->name }}</a>
@@ -52,7 +52,7 @@
                     @if(array_key_exists('brand', $listCategory))
                     @if(array_key_exists($category->name, $listCategory['brand']))
                     <a class="lv2">{{ __('CHỌN THEO HÃNG') }}</a>
-                    <span class="icon-right item-lv2 item-lv" aria-hidden="true"></span>
+                    <span class="icon-right item-lv2 item-lv" onclick="handleSideBar($(this))" aria-hidden="true"></span>
                     <div class="sub-menu-lv3">
                         @foreach($listCategory['brand'][$category->name] as $categoryBrand)
                         <a href="{{ route('showDataCategory', $category->slug) }}?brand={{ $categoryBrand }}" class="lv3">{{ $categoryBrand }}</a>
@@ -62,20 +62,21 @@
                     @endif
                 </li>
 
+                @if(array_key_exists('keyword', $listCategory))
+                @if(array_key_exists($category->name, $listCategory['keyword']))
+                @foreach($listCategory['keyword'][$category->name] as $title => $listKeyword)
                 <li class="sub-items">
-                    @if(array_key_exists('keyword', $listCategory))
-                    @if(array_key_exists($category->name, $listCategory['keyword']))
-                    @foreach($listCategory['keyword'][$category->name] as $title => $listKeyword)
                     <a class="lv2">{{ __('CHỌN THEO') }} {{ $title }}</a>
+                    <span class="icon-right item-lv2 item-lv" onclick="handleSideBar($(this))" aria-hidden="true"></span>
                     <div class="sub-menu-lv3">
                         @foreach($listKeyword as $keyword)
                         <a href="{{ route('showDataCategory', $category->slug) }}?{{ $title }}={{ $keyword }}" class="lv3">{{ $keyword }}</a>
                         @endforeach
                     </div>
-                    @endforeach
-                    @endif
-                    @endif
                 </li>
+                @endforeach
+                @endif
+                @endif
             </ul>
         </li>
         @endforeach

@@ -1687,6 +1687,10 @@ a {
     height: 30px;
 }
 
+.sub-items {
+    position: relative;
+}
+
 .logo {
     font-size: 1.5rem;
 }

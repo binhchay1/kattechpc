@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CouponRequest;
 use App\Http\Requests\CouponUpdateRequest;
 use App\Repositories\CouponRepository;
 use App\Repositories\ProductRepository;
@@ -45,7 +44,6 @@ class CouponController extends Controller
         $input = $request->all();
         $input['use_amount'] = 0;
         $input['apply_user_status'] = 0;
-        dd($input);
         $this->couponRepository->store($input);
 
         return redirect()->route('admin.coupon.index')->with('success',  __('Mã khuyến mãi được thêm thành công'));

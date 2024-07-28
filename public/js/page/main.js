@@ -7,9 +7,15 @@ $(document).ready(function () {
     checkSessions();
 
     if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        isMobileDetected = true;
-        $('body').addClass("only-mobile-for-body");
-        $('.global-fixed-right a').addClass('right-inherit');
+        if (window.innerWidth <= 992) {
+            isMobileDetected = true;
+            $('body').addClass("only-mobile-for-body");
+            $('.global-fixed-right a').addClass('right-inherit');
+        } else {
+            isMobileDetected = false;
+            $('body').removeClass("only-mobile-for-body");
+            $('.global-fixed-right a').removeClass('right-inherit');
+        }
     } else {
         $('body').removeClass("only-mobile-for-body");
         $('.global-fixed-right a').removeClass('right-inherit');
@@ -115,8 +121,12 @@ $(document).ready(function () {
 
         if (this.window.innerWidth <= 992) {
             isMobileDetected = true;
+            $('body').addClass("only-mobile-for-body");
+            $('.global-fixed-right a').addClass('right-inherit');
         } else {
             isMobileDetected = false;
+            $('body').removeClass("only-mobile-for-body");
+            $('.global-fixed-right a').removeClass('right-inherit');
             $('body').css('overflow', 'auto');
             $('.main-menu-category').removeClass('show');
         }
