@@ -97,8 +97,6 @@
     gap: 5px;
 }
 
-
-/* Clear floats after the columns */
 .flash-sale-content:after {
     content: "";
     display: table;
@@ -141,7 +139,7 @@
     margin-bottom: 8px;
 }
 
-@media screen and (max-width: 970px) {
+.only-mobile-for-body {
     .column {
         width: 100% !important;
         display: block;

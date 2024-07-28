@@ -18,7 +18,7 @@ class Coupon extends Model
         'type',
         'use_amount',
         'total_amount',
-        'apply_user_status',
+        'user_by_user_amount',
         'time_end',
     ];
 

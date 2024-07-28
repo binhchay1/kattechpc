@@ -21,7 +21,7 @@
     clear: both;
 }
 
-@media screen and (max-width: 600px) {
+.only-mobile-for-body {
     .column {
         width: 100%;
 
@@ -90,7 +90,7 @@
 }
 
 .child {
-    flex: 1 0 21%; /* explanation below */
+    flex: 1 0 21%;
     margin: 5px;
     height: 100px;
     background-color: grey;

@@ -24,7 +24,7 @@
     clear: both;
 }
 
-@media screen and (max-width: 600px) {
+.only-mobile-for-body {
     .column {
         width: 100%;
 

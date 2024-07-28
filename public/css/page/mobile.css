@@ -1,4 +1,4 @@
-@media screen and (max-width: 992px) {
+.only-mobile-for-body {
     .box-side-left {
         width: 90% !important;
         padding: 0 !important;

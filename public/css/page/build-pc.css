@@ -324,11 +324,6 @@ span .p-name {
 }
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-body {
-    background: #f2f2f2;
-    font-family: "Open Sans", sans-serif;
-}
-
 .search {
     width: 100%;
     position: relative;
@@ -641,7 +636,7 @@ body {
     padding-left: 0 !important;
 }
 
-@media screen and (max-width: 992px) {
+.only-mobile-for-body {
     .popup-select {
         width: 100%;
     }

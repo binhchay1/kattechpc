@@ -1254,7 +1254,7 @@ tr:nth-child(even) {
     font-weight: 700;
 }
 
-@media screen and (max-width: 992px) {
+.only-mobile-for-body {
     .swiper-product-related .swiper-slide1 {
         width: 100% !important;
     }

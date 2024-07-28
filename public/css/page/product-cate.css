@@ -329,7 +329,7 @@
     width: 223px;
 }
 
-@media screen and (max-width: 992px) {
+.only-mobile-for-body {
     .flex {
         display: block !important;
     }

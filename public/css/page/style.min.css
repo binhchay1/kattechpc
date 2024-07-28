@@ -2203,7 +2203,7 @@ a {
     font-size: 15px;
 }
 
-@media screen and (max-width: 400px) {
+.only-mobile-for-body {
     .wrap {
         top: 150px;
         width: 90%;
@@ -2212,6 +2212,7 @@ a {
         transform: translate(-50%, -50%);
     }
 }
+
 .columna {
     float: left;
     width: 20%;
@@ -2502,7 +2503,7 @@ a {
     margin: auto;
 }
 
-@media screen and (max-width: 768px) {
+.only-mobile-for-body {
     .box-right {
         display: none;
     }

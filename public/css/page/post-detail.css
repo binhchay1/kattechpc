@@ -78,7 +78,7 @@ img, iframe {
     clear: both;
 }
 
-@media screen and (max-width: 800px) {
+.only-mobile-for-body {
     .leftcolumn, .product-related {
         width: 100%;
     }
