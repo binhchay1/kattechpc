@@ -66,7 +66,7 @@
     </div>
 
     <div class=" top">
-        <h3>{{ __('ĐỐI TÁC ĐÁNG TIN CẬY') }}</h3>
+        <h3 style="color: red">{{ __('ĐỐI TÁC ĐÁNG TIN CẬY') }}</h3>
         <h4>{{ __('KATTECH là đối tác số 1 cung cấp chính hãng các sản phẩm công nghệ đến từ các thương hiệu hàng đầu thế giới tại Việt Nam. Sản phẩm đầy đủ 100% giấy tờ - Cam kết chứng minh nguồn gốc xuất xứ.') }}
         </h4>
     </div>
@@ -75,7 +75,8 @@
         <img class="top-image" src="{{ asset('/images/best-laptop-brand.jpg') }}">
     </div>
 
-    <div class=" top" ><h4>{{ __('Bộ phận doanh nghiệp công ty ') }}</h4>
+    <div class=" ml-200px top" >
+        <h4>{{ __('Bộ phận doanh nghiệp công ty ') }}</h4>
     </div>
 
     <div class=" top1">
