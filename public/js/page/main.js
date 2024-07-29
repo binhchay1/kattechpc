@@ -17,12 +17,13 @@ $(document).ready(function () {
     var countTopSale = 0;
     var countFooterSlide = 0;
 
-    if (WURFL.is_mobile && WURFL.form_factor === "Tablet") {
-        isTablet = true;
-    }
+    if (WURFL.is_mobile) {
+        if (WURFL.form_factor === "Tablet") {
+            isTablet = true;
+        }
 
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         isMobileDetected = true;
+
         $('body').addClass("only-mobile-for-body");
         $('.global-fixed-right a').addClass('right-inherit');
 
@@ -38,7 +39,6 @@ $(document).ready(function () {
             defaultTransProduct = 650 + 12;
         }
 
-
     } else {
         isMobileDetected = false;
         $('body').removeClass("only-mobile-for-body");
@@ -47,7 +47,7 @@ $(document).ready(function () {
     }
 
     window.addEventListener('scroll', () => {
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        if (isMobileDetected) {
             var y = $(this).scrollTop();
             if (y >= 300) {
                 $('.bottomMenu').fadeIn();

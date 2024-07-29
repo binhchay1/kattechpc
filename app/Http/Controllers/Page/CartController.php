@@ -369,7 +369,6 @@ class CartController extends Controller
         foreach ($cartInfor as $product) {
             $total += (int) $product->price * $product->quantity;
             $arrProductID[] = $product->id;
-            $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
         }
 
         return Excel::download(new ExportCart($cartInfor, $total), $nameFile);
