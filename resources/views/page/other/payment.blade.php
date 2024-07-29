@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container" style="margin-top: 50px">
     <div class="row d-flex" id="payment">
         <div class="column">
             <h1>{{ __('Thông tin hướng dẫn thanh toán') }}</h1>

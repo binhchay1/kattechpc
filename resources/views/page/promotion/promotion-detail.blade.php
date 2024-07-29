@@ -25,7 +25,7 @@
                 <div class="flex-direction-column">
                     <div class="d-flex justify-content-center flex-direction-column">
                         <div class="d-flex justify-content-center">
-                            <img src="{{ asset($promotion->image) }}" width="1000" height="400">
+                            <img src="{{ asset($promotion->image) }}" style="width: 100%;">
                         </div>
 
                         <h1 style="font-size: 24px; margin: 0; text-align: center;">{{ $promotion->title }}</h1>

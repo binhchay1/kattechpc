@@ -333,7 +333,7 @@
             @foreach($listPromotion as $promotion)
             <div class="item-article d-flex gap-12">
                 <a href="{{ route('promotion.detail', $promotion->slug) }}" class="img-article boder-radius-10 position-relative">
-                    <img class="lazy" src="{{ asset($promotion->image) }}" alt="Banner" width="276px">
+                    <img class="lazy" src="{{ asset($promotion->image) }}" alt="Banner">
                 </a>
             </div>
             @endforeach
