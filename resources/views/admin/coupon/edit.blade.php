@@ -82,14 +82,15 @@
                             <div style="display: flex;">
                                 <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Áp dụng toàn bọn sản phẩm') }}</label>
                                 <span style="margin-left: 15px; margin-top: 5px;">
-                                    <input type="checkbox" {{ $coupon->apply_all_product == 'true' ? 'checked' : '' }} id="apply_all_product" name="apply_all_product" onclick="handleApplyProduct()" onkeyup="onlyNumberAmount(this)" class="form-input input-element border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200">
+                                    <input type="checkbox" {{ empty(json_decode($coupon->list_product_id, true)) ? 'checked' : '' }} id="apply_all_product" name="apply_all_product" onclick="handleApplyProduct()" onkeyup="onlyNumberAmount(this)" class="form-input input-element border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200">
                                     <input type="hidden" name="apply_all_product" id="apply_all_product_hidden" value="{{ $coupon->apply_all_product }}">
                                 </span>
                             </div>
 
-                            <div id="list_product_id">
+                            @if(empty(json_decode($coupon->list_product_id, true)))
+                            <div id="list_product_id" style="display: none;">
                                 <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Sản phẩm') }}</label>
-                                <select name="list_product_id" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="choices-multiple-remove-button" data-choices data-choices-removeItem name="choices-multiple-remove-button" multiple>
+                                <select require name="list_product_id[]" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="choices-multiple-remove-button" data-choices data-choices-removeItem name="choices-multiple-remove-button" multiple>
                                     @foreach($listProducts as $product)
                                     <option value="{{ $product->code }}">{{ $product->code }}</option>
                                     @endforeach
@@ -98,6 +99,19 @@
                                 <span class="text-danger">{{ $errors->first('list_product_id') }}</span>
                                 @endif
                             </div>
+                            @else
+                            <div id="list_product_id">
+                                <label for="categorySelect" class="inline-block mb-2 text-base font-medium">{{ __('Sản phẩm') }}</label>
+                                <select require name="list_product_id[]" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" id="choices-multiple-remove-button" data-choices data-choices-removeItem name="choices-multiple-remove-button" multiple>
+                                    @foreach($listProducts as $product)
+                                    <option value="{{ $product->code }}" {{ in_array($product->code, json_decode($coupon->list_product_id, true)) ? 'selected' : '' }}>{{ $product->code }}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('list_product_id'))
+                                <span class="text-danger">{{ $errors->first('list_product_id') }}</span>
+                                @endif
+                            </div>
+                            @endif
                         </div>
                     </div>
 

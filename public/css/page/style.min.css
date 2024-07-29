@@ -2587,4 +2587,8 @@ a {
         cursor: pointer;
         border-radius: 24px;
     }
+
+    .sub-items {
+        background: #4c4b4b;
+    }
 }

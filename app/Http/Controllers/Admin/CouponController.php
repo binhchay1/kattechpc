@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CouponUpdateRequest;
 use App\Repositories\CouponRepository;
 use App\Repositories\ProductRepository;
-use Illuminate\Http\Request;
+use Illuminate\Support\MessageBag;
 
 class CouponController extends Controller
 {
@@ -48,7 +48,11 @@ class CouponController extends Controller
         if ($input['apply_all_product'] == 'true') {
             $input['list_product_id'] = null;
         } else {
-            $input['list_product_id'] = json_encode($input['list_product_id']);
+            if (empty($input['list_product_id'])) {
+                $errors = new MessageBag;
+                $errors->add('list_product_id', 'Danh sách sản phẩm không được để trống');
+                return back()->withErrors($errors);
+            }
         }
 
         $data = [
@@ -87,7 +91,11 @@ class CouponController extends Controller
         if ($input['apply_all_product'] == 'true') {
             $input['list_product_id'] = null;
         } else {
-            $input['list_product_id'] = json_encode($input['list_product_id']);
+            if (empty($input['list_product_id'])) {
+                $errors = new MessageBag;
+                $errors->add('list_product_id', 'Danh sách sản phẩm không được để trống');
+                return back()->withErrors($errors);
+            }
         }
 
         $data = [
@@ -100,7 +108,7 @@ class CouponController extends Controller
             'use_by_user_amount' => $input['use_by_user_amount']
         ];
 
-        $input = $this->couponRepository->update($input, $id);
+        $input = $this->couponRepository->update($data, $id);
 
         return redirect()->route('admin.coupon.index')->with('success',  __('Mã khuyến mãi được thay đổi thành công'));
     }
@@ -108,6 +116,6 @@ class CouponController extends Controller
     public function delete($id)
     {
         $this->couponRepository->destroy($id);
-        return back()->with('success', __('Danh mục sản phẩm  được xóa  thành công'));
+        return back()->with('success', __('Mã khuyến mãi được xóa  thành công'));
     }
 }
