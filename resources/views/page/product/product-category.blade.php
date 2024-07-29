@@ -119,27 +119,32 @@
     <h1>Chọn theo nhu cầu</h1>
     <div class="row">
         <div class="flex" id="select-price">
-            <h2>Lọc theo giá:</h2>
-            <div data-id="duoi-10trieu" data-type="price" class="section">
-                <button>{{ __('Dưới 10 triệu') }}</button>
+            <div>
+                <h2>Lọc theo giá:</h2>
             </div>
-            <div data-id="tu-10trieu-15trieu" data-type="price" class="section">
-                <button>{{ __('10 triệu - 15 triệu') }}</button>
-            </div>
-            <div data-id="tu-15trieu-20trieu" data-type="price" class="section">
-                <button>{{ __('15 triệu - 20 triệu') }}</button>
-            </div>
-            <div data-id="tu-20trieu-30trieu" data-type="price" class="section">
-                <button>{{ __('20 triệu - 30 triệu') }}</button>
-            </div>
-            <div data-id="tu-30trieu-50trieu" data-type="price" class="section">
-                <button>{{ __('30 triệu - 50 triệu') }}</button>
-            </div>
-            <div data-id="tu-50trieu-100trieu" data-type="price" class="section">
-                <button>{{ __('50 triệu - 100 triệu') }}</button>
-            </div>
-            <div data-id="tren-100trieu" data-type="price" class="section">
-                <button>{{ __('Trên 100 triệu') }}</button>
+
+            <div class="d-flex sort-price-area">
+                <div data-id="duoi-10trieu" data-type="price" class="section">
+                    <button>{{ __('Dưới 10 triệu') }}</button>
+                </div>
+                <div data-id="tu-10trieu-15trieu" data-type="price" class="section">
+                    <button>{{ __('10 triệu - 15 triệu') }}</button>
+                </div>
+                <div data-id="tu-15trieu-20trieu" data-type="price" class="section">
+                    <button>{{ __('15 triệu - 20 triệu') }}</button>
+                </div>
+                <div data-id="tu-20trieu-30trieu" data-type="price" class="section">
+                    <button>{{ __('20 triệu - 30 triệu') }}</button>
+                </div>
+                <div data-id="tu-30trieu-50trieu" data-type="price" class="section">
+                    <button>{{ __('30 triệu - 50 triệu') }}</button>
+                </div>
+                <div data-id="tu-50trieu-100trieu" data-type="price" class="section">
+                    <button>{{ __('50 triệu - 100 triệu') }}</button>
+                </div>
+                <div data-id="tren-100trieu" data-type="price" class="section">
+                    <button>{{ __('Trên 100 triệu') }}</button>
+                </div>
             </div>
         </div>
     </div>

@@ -214,7 +214,6 @@
                     </div>
                 </div>
                 @endforeach
-
             </div>
             <div class="swiper-button-next swiper-button-next-top-sale" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
             <div class="swiper-button-prev swiper-button-prev-top-sale" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
@@ -408,11 +407,10 @@
             <h2 class="title-box font-weight-600">{{ __('Đánh giá từ khách hàng') }}</h2>
         </div>
         <div class="list-review-customer-homepage">
-            <div class="swiper swiper-review-customer swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
-                @foreach($listCustomerReview as $customerReview)
-                <div class="swiper-wrapper">
-
-                    <div class="swiper-slide" role="group">
+            <div class="swiper">
+                <div class="swiper-wrapper swiper-review-customer">
+                    @foreach($listCustomerReview as $customerReview)
+                    <div class="swiper-slide-review" role="group">
                         <div class="item-review-customer-hompage d-flex align-items-center">
                             <div class="left-review position-relative">
                                 <img src="{{ asset($customerReview->thumbnail) }}" width="88" height="93" class="lazy" alt="avatar">
@@ -426,8 +424,8 @@
                             </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
 
             @if(!$isMobile)

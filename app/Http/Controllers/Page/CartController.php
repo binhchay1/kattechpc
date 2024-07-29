@@ -400,4 +400,11 @@ class CartController extends Controller
 
         return view('page.cart.print', compact('cartInfor', 'total'));
     }
+
+    public function getCoupons(Request $request)
+    {
+        $getCoupons = $this->couponRepository->getListCoupon();
+
+        return response()->json($getCoupons);
+    }
 }

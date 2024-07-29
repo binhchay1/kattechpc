@@ -422,7 +422,7 @@ $(document).ready(function () {
     if (isMobileDetected) {
         let transCustomerReview = 0;
         let defaultCustomerReview = 1;
-        let perTransCustomerReview = 392;
+        let perTransCustomerReview = window.innerWidth - 10;
         let currentCountPagination = 1;
 
         let listChildCustomerReview = $(".swiper-review-customer").children();
@@ -456,7 +456,7 @@ $(document).ready(function () {
                 e.preventDefault;
                 let data_id = $(this).attr('data-id');
                 let index = parseInt(data_id.split('-')[3]);
-                let transForReview = -(392 * (index - 1));
+                let transForReview = -((window.innerWidth - 10) * (index - 1));
                 $('.swiper-pagination .swiper-pagination-bullet-active').removeClass('swiper-pagination-bullet-active');
                 $('.swiper-review-customer').css('transform', 'translate3d(' + transForReview + 'px, 0px, 0px)');
                 $(this).addClass('swiper-pagination-bullet-active');
@@ -467,7 +467,7 @@ $(document).ready(function () {
     } else {
         let transCustomerReview = 0;
         let defaultCustomerReview = 4;
-        let perTransCustomerReview = 350;
+        let perTransCustomerReview = 360;
         let currentCountPagination = 1;
 
         let listChildCustomerReview = $(".swiper-review-customer").children();
@@ -501,7 +501,7 @@ $(document).ready(function () {
                 e.preventDefault;
                 let data_id = $(this).attr('data-id');
                 let index = parseInt(data_id.split('-')[3]);
-                let transForReview = -(350 * (index - 1));
+                let transForReview = -(360 * (index - 1));
                 $('.swiper-pagination .swiper-pagination-bullet-active').removeClass('swiper-pagination-bullet-active');
                 $('.swiper-review-customer').css('transform', 'translate3d(' + transForReview + 'px, 0px, 0px)');
                 $(this).addClass('swiper-pagination-bullet-active');

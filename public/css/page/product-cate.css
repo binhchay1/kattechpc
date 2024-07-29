@@ -349,17 +349,36 @@
         margin-top: 10px;
     }
 
+    #product-category-area select {
+        width: 100%;
+        margin-right: 10px;
+    }
+
     .pagination {
         padding: 0;
     }
 
-    #select-price div {
-        margin-left: 10px !important;
+    #select-price .sort-price-area div {
+        width: 48%;
+    }
+
+    .sort-price-area {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    #select-price div:not(:first-child) {
+        margin-left: 0;
+    }
+
+    #select-price div button {
+        width: 100%;
     }
 
     #select-price {
         display: flex !important;
         flex-wrap: wrap;
+        flex-direction: column;
     }
 
     #product-category-area button {
@@ -375,7 +394,7 @@
     }
 
     #select-sort button {
-        width: 95%;
+        width: 100%;
     }
 
     #sort div {

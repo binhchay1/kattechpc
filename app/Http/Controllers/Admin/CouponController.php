@@ -62,7 +62,8 @@ class CouponController extends Controller
             'discount_amount' => $input['discount_amount'],
             'total_amount' => $input['total_amount'],
             'list_product_id' => $input['list_product_id'],
-            'use_by_user_amount' => $input['use_by_user_amount']
+            'use_by_user_amount' => $input['use_by_user_amount'],
+            'private_status' => $input['private_status']
         ];
 
         $this->couponRepository->store($data);
@@ -105,7 +106,8 @@ class CouponController extends Controller
             'discount_amount' => $input['discount_amount'],
             'total_amount' => $input['total_amount'],
             'list_product_id' => $input['list_product_id'],
-            'use_by_user_amount' => $input['use_by_user_amount']
+            'use_by_user_amount' => $input['use_by_user_amount'],
+            'private_status' => $input['private_status']
         ];
 
         $input = $this->couponRepository->update($data, $id);

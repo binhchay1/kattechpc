@@ -80,6 +80,14 @@
 
                         <div class="xl:col-span-6">
                             <div style="display: flex;">
+                                <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Không hiển thị công khai') }} <span style="font-style: italic; font-size: 12px">{{ __('( không hiển thị ở ngoài phần mã khuyến mãi trong giỏ hàng)') }}</span></label>
+                                <span style="margin-left: 15px; margin-top: 5px;">
+                                    <input type="checkbox" {{ $coupon->private_status == 'true' ? 'checked' : '' }} id="private_status" onclick="handlePrivateStatus()" class="form-input input-element border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200">
+                                    <input type="hidden" name="private_status" id="private_status_hidden" value="{{ $coupon->private_status }}">
+                                </span>
+                            </div>
+
+                            <div style="display: flex;">
                                 <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Áp dụng toàn bọn sản phẩm') }}</label>
                                 <span style="margin-left: 15px; margin-top: 5px;">
                                     <input type="checkbox" {{ empty(json_decode($coupon->list_product_id, true)) ? 'checked' : '' }} id="apply_all_product" name="apply_all_product" onclick="handleApplyProduct()" onkeyup="onlyNumberAmount(this)" class="form-input input-element border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200">
@@ -173,5 +181,15 @@
 
     function handleReset() {
         $('#list_product_id').show();
+    }
+
+    function handlePrivateStatus() {
+        let status = 'true';
+
+        if (!$('#private_status_product').is(":checked")) {
+            status = 'false';
+        };
+
+        $('#private_status_hidden').val(status);
     }
 </script>

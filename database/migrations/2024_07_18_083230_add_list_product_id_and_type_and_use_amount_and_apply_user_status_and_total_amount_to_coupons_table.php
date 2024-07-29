@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('type');
             $table->integer('use_amount');
             $table->integer('total_amount');
-            $table->string('apply_user_status')->default(0);
+            $table->string('use_by_user_amount')->default(0);
             $table->date('time_end')->nullable();
         });
     }
@@ -31,7 +31,7 @@ return new class extends Migration
             $table->dropColumn('type');
             $table->dropColumn('use_amount');
             $table->dropColumn('total_amount');
-            $table->dropColumn('apply_user_status');
+            $table->dropColumn('use_by_user_amount');
         });
     }
 };

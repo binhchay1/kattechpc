@@ -40,4 +40,11 @@ class CouponRepository extends BaseRepository
     {
         return $this->model->where('code', $code)->first();
     }
+
+    public function getListCoupon()
+    {
+        $now = date('Y-m-d');
+
+        return $this->model->where('time_end', '>=', $now)->get();
+    }
 }

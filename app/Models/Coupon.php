@@ -20,6 +20,7 @@ class Coupon extends Model
         'total_amount',
         'use_by_user_amount',
         'time_end',
+        'private_status',
     ];
 
     public function product()

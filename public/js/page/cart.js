@@ -11,34 +11,6 @@ promise.then(function (result) {
     renderCity(result.data);
 });
 
-function renderCity(data) {
-    for (const x of data) {
-        citis.options[citis.options.length] = new Option(x.Name, x.Name);
-    }
-    citis.onchange = function () {
-        districts.length = 1;
-        wards.length = 1;
-        if (this.value != "") {
-            const result = data.filter(n => n.Name === this.value);
-
-            for (const k of result[0].Districts) {
-                districts.options[district.options.length] = new Option(k.Name, k.Name);
-            }
-        }
-    };
-    districts.onchange = function () {
-        wards.length = 1;
-        const dataCity = data.filter((n) => n.Name === citis.value);
-        if (this.value != "") {
-            const dataWards = dataCity[0].Districts.filter(n => n.Name === this.value)[0].Wards;
-
-            for (const w of dataWards) {
-                wards.options[wards.options.length] = new Option(w.Name, w.Name);
-            }
-        }
-    };
-}
-
 $(document).ready(function () {
     $(".btn-submit").click(function (e) {
         e.preventDefault();
@@ -72,17 +44,46 @@ $(document).ready(function () {
                     let resp = data.errors;
                     $(".error_msg").html(resp);
                 }
-                setTimeout(function(){
-                        window.location.reload();
-                        /* or window.location = window.location.href; */
+                setTimeout(function () {
+                    window.location.reload();
                 }, 500);
             },
-
-
         });
 
     });
 });
+
+function renderCity(data) {
+    for (const x of data) {
+        citis.options[citis.options.length] = new Option(x.Name, x.Name);
+    }
+    citis.onchange = function () {
+        districts.length = 1;
+        wards.length = 1;
+        if (this.value != "") {
+            const result = data.filter(n => n.Name === this.value);
+
+            for (const k of result[0].Districts) {
+                districts.options[district.options.length] = new Option(k.Name, k.Name);
+            }
+        }
+    };
+    districts.onchange = function () {
+        wards.length = 1;
+        const dataCity = data.filter((n) => n.Name === citis.value);
+        if (this.value != "") {
+            const dataWards = dataCity[0].Districts.filter(n => n.Name === this.value)[0].Wards;
+
+            for (const w of dataWards) {
+                wards.options[wards.options.length] = new Option(w.Name, w.Name);
+            }
+        }
+    };
+
+    $('#modal-coupon .close').on('click', function () {
+        $('#modal-coupon').css('display', 'none');
+    });
+}
 
 function updateCart(quantity, id) {
     let url = '/cart/update-cart';
@@ -191,4 +192,55 @@ function capture() {
 function printCart() {
     let urlPrint = '/cart/print-cart';
     window.location.href = urlPrint;
+}
+
+function showModalCoupon() {
+    let urlCoupon = '/cart/get-coupons';
+
+    $.ajax({
+        type: "GET",
+        url: urlCoupon,
+        success: function (data) {
+            console.log(data);
+
+            for (let i = 0; i < data.length; i++) {
+                let textDiscount = '';
+                let textApply = '';
+
+                if (data[i].type == "percent") {
+                    textDiscount = '%';
+                } else {
+                    textDiscount = 'đ';
+                }
+
+                if (data[i].list_product_id == null) {
+                    textApply = 'cho toàn bộ sản phẩm';
+                } else {
+                    textApply = '1 số sản phẩm nhất định';
+                }
+
+
+
+                let content = `<div class="item-coupon-in-list">
+                <div class="image-item-coupon-in-list">
+                    <img src="{{ asset('images/logo/logo.png') }}">
+                </div>
+
+                <div class="information-item-coupon-in-list">
+                    <span>Giảm giá đến `+ data[i].discount_amount + ' ' + textDiscount + `</span>
+                    <span>Áp dụng cho `+ textApply + `</span>
+                    <span>Số lượng còn lại `+ data[i].total_amount + ` </span>
+                    <span>Thời gian còn </span>
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="modal-choose-coupon" aria-label="" role="radio" aria-checked="false" tabindex="0"></div>
+                </div>
+            </div>`;
+
+                $('.modal-coupon-area').append(content);
+            }
+
+            $('#modal-coupon').css('display', 'flex');
+        }
+    });
 }

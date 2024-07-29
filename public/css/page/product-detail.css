@@ -1065,6 +1065,7 @@ tr:nth-child(even) {
 
     .small-Card .swiper-wrapper {
         align-items: center;
+        justify-content: center;
     }
 
     .list-showroom-detail .item {

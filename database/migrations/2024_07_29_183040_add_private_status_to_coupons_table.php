@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('coupons', function (Blueprint $table) {
-            $table->renameColumn('apply_user_status', 'user_by_user_amount');
+            $table->string('private_status')->nullable();
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('coupons', function (Blueprint $table) {
-            $table->renameColumn('user_by_user_amount', 'apply_user_status');
+            $table->dropColumn('private_status');
         });
     }
 };
