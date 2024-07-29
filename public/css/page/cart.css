@@ -350,7 +350,7 @@ aside {
     }
 
     .product-image {
-        width: 40%;
+        width: 100%;
     }
 
     .product-details {
@@ -538,12 +538,8 @@ aside {
     width: 70%;
 }
 
-.item-cart .in-mobile {
-    width: 10%;
-}
-
-.item-cart .get-total {
-    width: 20%;
+.information-cart-item {
+    display: flex;
 }
 
 .product-data input,

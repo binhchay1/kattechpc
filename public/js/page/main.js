@@ -76,7 +76,7 @@ $(document).ready(function () {
         }
     }
 
-    if (!isMobileDetected || isTablet) {
+    if (!isMobileDetected) {
         $('.hover-for-tooltips').hover(function () {
             let title = $(this).attr('data-title');
             let price = $(this).attr('data-price');

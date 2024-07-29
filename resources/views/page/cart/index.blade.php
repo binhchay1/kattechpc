@@ -32,194 +32,194 @@
         <div class="product-data">
             <h3 style="font-style: italic; color: #e31223">{{ __('Các thông tin * bắt buộc nhập') }}</h3>
             @if(Auth::user())
-                <div class="basket" id="info-user">
-                    <div class="basket-module">
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="fname" class="label">{{__('Họ tên')}}<span class="require-field">*</span></label>
-                            </div>
-                            <div class="col-75">
-                                <input type="text" id="fname" name="name" value="{{Auth::user()->name}}" placeholder="{{ __('Họ và tên') }}">
-                            </div>
-                            @if ($errors->has('name'))
-                            <span class="text-danger">{{ $errors->first('name') }}</span>
-                            @endif
+            <div class="basket" id="info-user">
+                <div class="basket-module">
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Họ tên')}}<span class="require-field">*</span></label>
                         </div>
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="fname" class="label">{{__('Email')}}<span class="require-field">*</span></label>
-                            </div>
-                            <div class="col-75">
-                                <input type="text" id="fname" name="email" placeholder="{{__('Địa chỉ email')}}">
-                            </div>
-                            @if ($errors->has('email'))
-                            <span class="text-danger">{{ $errors->first('email') }}<span class="require-field">*</span></span>
-                            @endif
+                        <div class="col-75">
+                            <input type="text" id="fname" name="name" value="{{Auth::user()->name}}" placeholder="{{ __('Họ và tên') }}">
                         </div>
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="fname" class="label">{{__('Số điện thoại')}}<span class="require-field">*</span></label>
-                            </div>
-                            <div class="col-75">
-                                <input type="text" id="fname" name="phone" value="{{Auth::user()->phone}}" placeholder="{{ __('Số điện thoại') }}">
-                            </div>
-                            @if ($errors->has('phone'))
-                            <span class="text-danger">{{ $errors->first('phone') }}</span>
-                            @endif
+                        @if ($errors->has('name'))
+                        <span class="text-danger">{{ $errors->first('name') }}</span>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Email')}}<span class="require-field">*</span></label>
                         </div>
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="fname" class="label">{{__('Tỉnh/Thành phố')}}<span class="require-field">*</span></label>
-                            </div>
-                            <select class="form-select form-select-sm mb-3 selected-name" id="city" aria-label=".form-select-sm" name="province">
-                                <option value="" selected>{{ __('Chọn tỉnh thành') }}</option>
-                            </select>
-                            @if ($errors->has('province'))
-                            <span class="text-danger">{{ $errors->first('province') }}</span>
-                            @endif
+                        <div class="col-75">
+                            <input type="text" id="fname" name="email" placeholder="{{__('Địa chỉ email')}}">
                         </div>
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="fname" class="label">{{__('Quận/huyện')}}<span class="require-field">*</span></label>
-                            </div>
-                            <select class="form-select form-select-sm mb-3 selected-name" id="district" aria-label=".form-select-sm" name="district">
-                                <option value="" selected>{{ __('Chọn quận huyện') }}</option>
-                            </select>
-                            @if ($errors->has('district'))
-                            <span class="text-danger">{{ $errors->first('district') }}</span>
-                            @endif
+                        @if ($errors->has('email'))
+                        <span class="text-danger">{{ $errors->first('email') }}<span class="require-field">*</span></span>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Số điện thoại')}}<span class="require-field">*</span></label>
                         </div>
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="fname" class="label">{{__('Phường/xã')}}<span class="require-field">*</span></label>
-                            </div>
-                            <select class="form-select form-select-sm selected-name" id="ward" aria-label=".form-select-sm" name="ward">
-                                <option value="" selected>{{ __('Chọn phường xã') }}</option>
-                            </select>
-                            @if ($errors->has('ward'))
-                            <span class="text-danger">{{ $errors->first('ward') }}</span>
-                            @endif
+                        <div class="col-75">
+                            <input type="text" id="fname" name="phone" value="{{Auth::user()->phone}}" placeholder="{{ __('Số điện thoại') }}">
                         </div>
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="fname" class="label">{{__('Địa chỉ')}}<span class="require-field">*</span></label>
-                            </div>
-                            <div class="col-75">
-                                <input type="text" id="fname" name="address" value="{{Auth::user()->address}}" placeholder="{{ __('Địa chỉ') }}">
-                            </div>
-                            @if ($errors->has('address'))
-                            <span class="text-danger">{{ $errors->first('address') }}</span>
-                            @endif
-                            <?php $date = date('Y-m-d H:i:s'); ?>
-                            <input type="hidden" id="fname" name="user_id" value="{{Auth::user()->id}}" placeholder="{{ __('Địa chỉ') }}">
-                            <input type="hidden" id="fname" name="order_date" value="{{$date}}" placeholder="{{ __('Địa chỉ') }}">
-                            <input type="hidden" id="fname" name="status" value="0">
+                        @if ($errors->has('phone'))
+                        <span class="text-danger">{{ $errors->first('phone') }}</span>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Tỉnh/Thành phố')}}<span class="require-field">*</span></label>
                         </div>
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="fname" class="label">{{__('Ghi chú')}}<span class="require-field"></span></label>
-                            </div>
-                            <div class="col-75">
-                                <textarea type="text" id="fname" name="notes" value="" placeholder="{{ __('Ghi chú') }}"></textarea>
-                            </div>
+                        <select class="form-select form-select-sm mb-3 selected-name" id="city" aria-label=".form-select-sm" name="province">
+                            <option value="" selected>{{ __('Chọn tỉnh thành') }}</option>
+                        </select>
+                        @if ($errors->has('province'))
+                        <span class="text-danger">{{ $errors->first('province') }}</span>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Quận/huyện')}}<span class="require-field">*</span></label>
+                        </div>
+                        <select class="form-select form-select-sm mb-3 selected-name" id="district" aria-label=".form-select-sm" name="district">
+                            <option value="" selected>{{ __('Chọn quận huyện') }}</option>
+                        </select>
+                        @if ($errors->has('district'))
+                        <span class="text-danger">{{ $errors->first('district') }}</span>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Phường/xã')}}<span class="require-field">*</span></label>
+                        </div>
+                        <select class="form-select form-select-sm selected-name" id="ward" aria-label=".form-select-sm" name="ward">
+                            <option value="" selected>{{ __('Chọn phường xã') }}</option>
+                        </select>
+                        @if ($errors->has('ward'))
+                        <span class="text-danger">{{ $errors->first('ward') }}</span>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Địa chỉ')}}<span class="require-field">*</span></label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="fname" name="address" value="{{Auth::user()->address}}" placeholder="{{ __('Địa chỉ') }}">
+                        </div>
+                        @if ($errors->has('address'))
+                        <span class="text-danger">{{ $errors->first('address') }}</span>
+                        @endif
+                        <?php $date = date('Y-m-d H:i:s'); ?>
+                        <input type="hidden" id="fname" name="user_id" value="{{Auth::user()->id}}" placeholder="{{ __('Địa chỉ') }}">
+                        <input type="hidden" id="fname" name="order_date" value="{{$date}}" placeholder="{{ __('Địa chỉ') }}">
+                        <input type="hidden" id="fname" name="status" value="0">
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Ghi chú')}}<span class="require-field"></span></label>
+                        </div>
+                        <div class="col-75">
+                            <textarea type="text" id="fname" name="notes" value="" placeholder="{{ __('Ghi chú') }}"></textarea>
+                        </div>
 
-                        </div>
                     </div>
                 </div>
+            </div>
             @else
-                <div class="basket" id="info-user">
-                    <div class="basket-module">
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="fname" class="label">{{__('Họ tên')}}<span class="require-field">*</span></label>
-                            </div>
-                            <div class="col-75">
-                                <input type="text" id="fname" name="name" placeholder="{{__('Họ và tên')}}">
-                            </div>
-                            @if ($errors->has('name'))
-                            <span class="text-danger">{{ $errors->first('name') }}</span>
-                            @endif
+            <div class="basket" id="info-user">
+                <div class="basket-module">
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Họ tên')}}<span class="require-field">*</span></label>
                         </div>
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="fname" class="label">{{__('Email')}}<span class="require-field">*</span></label>
-                            </div>
-                            <div class="col-75">
-                                <input type="text" id="fname" name="email" placeholder="{{__('Địa chỉ email')}}">
-                            </div>
-                            @if ($errors->has('email'))
-                            <span class="text-danger">{{ $errors->first('email') }}</span>
-                            @endif
+                        <div class="col-75">
+                            <input type="text" id="fname" name="name" placeholder="{{__('Họ và tên')}}">
                         </div>
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="fname" class="label">{{__('Số điện thoại')}}<span class="require-field">*</span></label>
-                            </div>
-                            <div class="col-75">
-                                <input type="text" id="fname" name="phone" placeholder="{{__('Số điện thoại')}}">
-                            </div>
-                            @if ($errors->has('phone'))
-                            <span class="text-danger">{{ $errors->first('phone') }}</span>
-                            @endif
+                        @if ($errors->has('name'))
+                        <span class="text-danger">{{ $errors->first('name') }}</span>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Email')}}<span class="require-field">*</span></label>
                         </div>
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="fname" class="label">{{__('Tỉnh/Thành phố')}}<span class="require-field">*</span></label>
-                            </div>
-                            <select class="form-select form-select-sm mb-3 selected-name" id="city" aria-label=".form-select-sm" name="province">
-                                <option value="" selected>{{ __('Chọn tỉnh thành') }}</option>
-                            </select>
-                            @if ($errors->has('province'))
-                            <span class="text-danger">{{ $errors->first('province') }}</span>
-                            @endif
+                        <div class="col-75">
+                            <input type="text" id="fname" name="email" placeholder="{{__('Địa chỉ email')}}">
                         </div>
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="fname" class="label">{{__('Quận/huyện')}}<span class="require-field">*</span></label>
-                            </div>
-                            <select class="form-select form-select-sm mb-3 selected-name" id="district" aria-label=".form-select-sm" name="district">
-                                <option value="" selected>Chọn quận huyện</option>
-                            </select>
-                            @if ($errors->has('district'))
-                            <span class="text-danger">{{ $errors->first('district') }}</span>
-                            @endif
+                        @if ($errors->has('email'))
+                        <span class="text-danger">{{ $errors->first('email') }}</span>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Số điện thoại')}}<span class="require-field">*</span></label>
                         </div>
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="fname" class="label">{{__('Phường/xã')}}<span class="require-field">*</span></label>
-                            </div>
-                            <select class="form-select form-select-sm selected-name" id="ward" aria-label=".form-select-sm" name="ward">
-                                <option value="" selected>{{ __('Chọn phường xã') }}</option>
-                            </select>
-                            @if ($errors->has('ward'))
-                            <span class="text-danger">{{ $errors->first('ward') }}</span>
-                            @endif
+                        <div class="col-75">
+                            <input type="text" id="fname" name="phone" placeholder="{{__('Số điện thoại')}}">
                         </div>
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="fname" class="label">{{__('Địa chỉ')}}<span class="require-field">*</span></label>
-                            </div>
-                            <div class="col-75">
-                                <input type="text" id="fname" name="address" placeholder="{{__('Địa chỉ')}}">
-                            </div>
-                            @if ($errors->has('address'))
-                            <span class="text-danger">{{ $errors->first('address') }}</span>
-                            @endif
-                            <?php $date = date('Y-m-d H:i:s'); ?>
-                            <input type="hidden" id="fname" name="order_date" value="{{$date}}" placeholder="{{__('Địa chỉ')}}">
-                            <input type="hidden" id="fname" name="status" value="0" placeholder="{{__('Địa chỉ')}}">
+                        @if ($errors->has('phone'))
+                        <span class="text-danger">{{ $errors->first('phone') }}</span>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Tỉnh/Thành phố')}}<span class="require-field">*</span></label>
                         </div>
-                        <div class="row">
-                            <div class="col-25">
-                                <label for="fname" class="label">{{__('Ghi chú')}}<span class="require-field"></span></label>
-                            </div>
-                            <div class="col-75">
-                                <textarea type="text" id="fname" name="notes" value="" placeholder="{{ __('Ghi chú') }}"></textarea>
-                            </div>
+                        <select class="form-select form-select-sm mb-3 selected-name" id="city" aria-label=".form-select-sm" name="province">
+                            <option value="" selected>{{ __('Chọn tỉnh thành') }}</option>
+                        </select>
+                        @if ($errors->has('province'))
+                        <span class="text-danger">{{ $errors->first('province') }}</span>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Quận/huyện')}}<span class="require-field">*</span></label>
+                        </div>
+                        <select class="form-select form-select-sm mb-3 selected-name" id="district" aria-label=".form-select-sm" name="district">
+                            <option value="" selected>Chọn quận huyện</option>
+                        </select>
+                        @if ($errors->has('district'))
+                        <span class="text-danger">{{ $errors->first('district') }}</span>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Phường/xã')}}<span class="require-field">*</span></label>
+                        </div>
+                        <select class="form-select form-select-sm selected-name" id="ward" aria-label=".form-select-sm" name="ward">
+                            <option value="" selected>{{ __('Chọn phường xã') }}</option>
+                        </select>
+                        @if ($errors->has('ward'))
+                        <span class="text-danger">{{ $errors->first('ward') }}</span>
+                        @endif
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Địa chỉ')}}<span class="require-field">*</span></label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="fname" name="address" placeholder="{{__('Địa chỉ')}}">
+                        </div>
+                        @if ($errors->has('address'))
+                        <span class="text-danger">{{ $errors->first('address') }}</span>
+                        @endif
+                        <?php $date = date('Y-m-d H:i:s'); ?>
+                        <input type="hidden" id="fname" name="order_date" value="{{$date}}" placeholder="{{__('Địa chỉ')}}">
+                        <input type="hidden" id="fname" name="status" value="0" placeholder="{{__('Địa chỉ')}}">
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="fname" class="label">{{__('Ghi chú')}}<span class="require-field"></span></label>
+                        </div>
+                        <div class="col-75">
+                            <textarea type="text" id="fname" name="notes" value="" placeholder="{{ __('Ghi chú') }}"></textarea>
+                        </div>
 
-                        </div>
                     </div>
                 </div>
+            </div>
             @endif
 
             <div class="basket">
@@ -233,7 +233,7 @@
 
                 @foreach($dataCart as $product)
                 <div class="basket-product flex-direction-column item-cart">
-                    <div class="d-flex">
+                    <div class="d-flex item-product-in-cart">
                         <div class="item">
                             <div class="product-image">
                                 <?php $image = json_decode($product->attributes->image, true); ?>
@@ -244,22 +244,24 @@
                             </div>
                         </div>
 
-                        <div class="in-mobile">
-                            <div class="quantity " id="quantity-cart">
-                                <input type="number" value="{{ $product->quantity }}" min="1" class="quantity-field" onchange="updateCart(this.value, '{{ $product->id }}')">
+                        <div class="information-cart-item">
+                            <div class="in-mobile">
+                                <div class="quantity " id="quantity-cart">
+                                    <input type="number" value="{{ $product->quantity }}" min="1" class="quantity-field" onchange="updateCart(this.value, '{{ $product->id }}')">
+                                </div>
                             </div>
-                        </div>
-                        <?php
-                        $total = (int) $product->quantity * (int) str_replace('.', '',  $product->price);
+                            <?php
+                            $total = (int) $product->quantity * (int) str_replace('.', '',  $product->price);
 
-                        ?>
-                        <div class="subtotal get-total inline">
-                            <span id="total_cart-{{ $product->id }}">{{ number_format($total, 0, '.', '.') }} đ</span>
-                            <input hidden name="total_cart" value="{{ $total }}">
-                            <div class="delete delete-cart">
-                                <a>
-                                    <button type="button" onclick="deleteSales(`{{ route('deleteCart', $product['id']) }}`)">{{ __('Xóa') }}</button>
-                                </a>
+                            ?>
+                            <div class="subtotal get-total inline">
+                                <span id="total_cart-{{ $product->id }}">{{ number_format($total, 0, '.', '.') }} đ</span>
+                                <input hidden name="total_cart" value="{{ $total }}">
+                                <div class="delete delete-cart">
+                                    <a>
+                                        <button type="button" onclick="deleteSales(`{{ route('deleteCart', $product['id']) }}`)">{{ __('Xóa') }}</button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -285,7 +287,7 @@
                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
                             <input id="promo-code" type="text" name="discount_amount" value="" class="promo-code-field">
-{{--                            @endif--}}
+                            {{-- @endif--}}
                             <p class="error_msg" id="promo-code" style="color: red"></p>
                             <a type="button" class="btn-submit promo-code-cta">{{ __('Áp dụng') }}</a>
                         </div>
@@ -295,9 +297,9 @@
                     </div>
                     @if(Session::has('discount-total'))
                     <?php $getDiscount = Session::get('discount-total');
-                        $intValue =  str_replace(',', '', $getDiscount);
-                        $disCountInt = intval(str_replace('.', '', $intValue));
-                          ?>
+                    $intValue =  str_replace(',', '', $getDiscount);
+                    $disCountInt = intval(str_replace('.', '', $intValue));
+                    ?>
                     <div class="summary summary-area">
                         <div class="total-value final-value summary-total" style="margin: 0;">{{__('Giảm giá')}}</div>
                         <div class="total-value final-value get-total" style="text-transform: inherit">
@@ -309,7 +311,7 @@
                     <div class="summary-total summary-area">
                         <div class="total-title">{{ __('Thành tiền') }}</div>
                         <?php $money = $totalCart - $disCountInt;
-                       ?>
+                        ?>
                         <div class="total-value final-value get-total" id="total-amount">{{number_format($money, 0, '.', '.') }} đ
                             <input hidden name="total_money" value="{{ $money }}">
                         </div>

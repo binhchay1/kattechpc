@@ -159,7 +159,6 @@ class CartController extends Controller
             ),
         ]);
 
-        $discount = Session::get('discount-code');
         $price = str_replace('.', '', $product->price);
         $total = $price * $quantity;
         $last_price = number_format($total, 0, ',', '.');

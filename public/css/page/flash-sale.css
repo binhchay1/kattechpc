@@ -149,4 +149,8 @@
     .product-market-price {
         margin-top: 15px !important;
     }
+
+    .image-flash-sale {
+        width: 100%;
+    }
 }
