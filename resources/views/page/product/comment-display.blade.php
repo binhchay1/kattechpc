@@ -28,7 +28,7 @@
                 @if($comment->parent_id == null)
                 <div class="info_feeback  align-items-center gap-6" id="rep-comment" style="text-align: right; width: 20%">
                     <i class="far fa-comments" style="font-size:20px; margin-right: 5px; font-weight: 550"></i>
-                    <a href="javascript:" style="font-weight: 550" class="write_reply font-weight-500">{{ __('Trả lời') }}</a>
+                    <a style="font-weight: 550" class="write_reply font-weight-500">{{ __('Trả lời') }}</a>
                 </div>
                     @endif
             </div>

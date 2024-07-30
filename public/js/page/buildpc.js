@@ -220,7 +220,7 @@ function priceWithCommas(price) {
 
 function deleteProductHandle(button) {
     let id = button.getAttribute('data-id');
-    let idArea = '#product-item-in-list-' + currentArea + '-' + id;
+    let idArea = '#product-item-in-list-' + id + '-' + currentArea;
     let price = button.getAttribute('data-price');
     if (currentArea == 1) {
         var index = currentArrayProduct.listArea1.indexOf(id);

@@ -46,6 +46,8 @@ class BuildPCController extends Controller
         $menu = $this->buildPcRepository->index();
         $getSessionBuildPC = $request->session()->get('buildID');
         $theme = $this->buildPcThemeRepository->index();
+        $dataBuild = [];
+
         if (isset($theme[0]->youtube)) {
             $arrLinkYoutube = json_decode($theme[0]->youtube, true);
         } else {
@@ -60,16 +62,21 @@ class BuildPCController extends Controller
             $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
             if (isset($getDataBySessionBuildPC)) {
                 $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
-            } else {
+            }
+
+            if ($dataBuild == null) {
                 $dataBuild = [];
             }
-        } else {
-            $dataBuild = [];
         }
 
         $dataPreSession = [
             'listArea1' => [],
             'listArea2' => [],
+        ];
+
+        $dataPricePreSession = [
+            'priceArea1' => 0,
+            'priceArea2' => 0
         ];
 
         if (!empty($dataBuild)) {
@@ -78,6 +85,16 @@ class BuildPCController extends Controller
                 $dataPreSession[$key] = $getPrBySession;
             }
         }
+
+        foreach($dataPreSession as $keyArea => $listProduct) {
+            foreach($listProduct as $product) {
+                if($product->new_price != null) {
+                    // $totalPriceArea +
+                }
+            }
+        }
+
+        dd($dataPreSession);
 
         return view('page.build-pc.build-pc', compact('listCategory', 'menu', 'dataBuild', 'dataPreSession', 'arrLinkYoutube', 'theme'));
     }
