@@ -149,8 +149,8 @@ $(document).ready(function () {
             let offsetLeft = 0;
             let offsetTop = 0;
             if($(this).offset().left > 1200) {
-                offsetLeft = $(this).offset().left;
-                offsetTop = $(this).offset().top - 260;
+                offsetLeft = $(this).offset().right + 260;
+                offsetTop = $(this).offset().top - 10;
             } else {
                 offsetLeft = $(this).offset().left + 260;
                 offsetTop = $(this).offset().top - 10;
