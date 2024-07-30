@@ -6,6 +6,7 @@
 
     .box-side-right {
         width: 100% !important;
+        margin-bottom: 15px;
     }
 
     #hidden-logo {
@@ -648,6 +649,12 @@
     @media only screen and (max-width: 600px) {
         .footer-middle-item {
             margin-left: 10px;
+        }
+    }
+
+    @media only screen and (min-width: 650px) {
+        #scroll-logo {
+            margin-left: 90px;
         }
     }
 }

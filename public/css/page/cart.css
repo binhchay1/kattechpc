@@ -169,8 +169,30 @@ aside {
     cursor: not-allowed;
 }
 
+.modal-choose-coupon.checked {
+    background: var(--color-primary);
+    padding: 5px;
+}
+
 .modal-coupon-area {
     display: flex;
+}
+
+.modal-button-coupon-area {
+    margin-top: 20px;
+    display: flex;
+    justify-content: end;
+}
+
+.modal-button-coupon-area .btn-close {
+    border-radius: 4px;
+    padding: 0.6875rem 1.25rem 0.625rem;
+    cursor: pointer;
+    border: 0 none;
+    outline: 0;
+    text-decoration: none;
+    background-color: #c0c2c6;
+    color: white;
 }
 
 .item-coupon-in-list {
@@ -183,6 +205,14 @@ aside {
     position: relative;
     width: 100%;
     transition: background 1s ease;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.submit-disable {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.5;
 }
 
 .item-coupon-in-list.disable {

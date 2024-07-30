@@ -145,16 +145,16 @@ $(document).ready(function () {
         $('.swiper-flash-sale').css('transform', 'translate3d(0px, 0px, 0px)');
         $('.swiper-top-sale').css('transform', 'translate3d(0px, 0px, 0px)');
         $('.swiper-footer-slide').css('transform', 'translate3d(0px, 0px, 0px)');
-        for (let k = 0; k < listCategory.default.length; k++) {
-            $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(0px, 0px, 0px)');
+        if (typeof (listCategory) != 'undefined' && listCategory !== null) {
+            for (let k = 0; k < listCategory.default.length; k++) {
+                $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(0px, 0px, 0px)');
+            }
         }
 
-        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-            isMobileDetected = true;
+        if (WURFL.is_mobile) {
             $('body').addClass("only-mobile-for-body");
             $('.global-fixed-right a').addClass('right-inherit');
         } else {
-            isMobileDetected = false;
             $('body').removeClass("only-mobile-for-body");
             $('.global-fixed-right a').removeClass('right-inherit');
         }
@@ -420,9 +420,17 @@ $(document).ready(function () {
     }
 
     if (isMobileDetected) {
+        let defaultTransCustomerReview = 0;
+
+        if (window.innerWidth > 650) {
+            defaultTransCustomerReview = 650 - 10;
+        } else {
+            defaultTransCustomerReview = window.innerWidth - 10;
+        }
+
         let transCustomerReview = 0;
         let defaultCustomerReview = 1;
-        let perTransCustomerReview = window.innerWidth - 10;
+        let perTransCustomerReview = defaultTransCustomerReview;
         let currentCountPagination = 1;
 
         let listChildCustomerReview = $(".swiper-review-customer").children();
@@ -456,7 +464,7 @@ $(document).ready(function () {
                 e.preventDefault;
                 let data_id = $(this).attr('data-id');
                 let index = parseInt(data_id.split('-')[3]);
-                let transForReview = -((window.innerWidth - 10) * (index - 1));
+                let transForReview = -(defaultTransCustomerReview * (index - 1));
                 $('.swiper-pagination .swiper-pagination-bullet-active').removeClass('swiper-pagination-bullet-active');
                 $('.swiper-review-customer').css('transform', 'translate3d(' + transForReview + 'px, 0px, 0px)');
                 $(this).addClass('swiper-pagination-bullet-active');

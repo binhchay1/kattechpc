@@ -401,7 +401,7 @@ class CartController extends Controller
         return view('page.cart.print', compact('cartInfor', 'total'));
     }
 
-    public function getCoupons(Request $request)
+    public function getCoupons()
     {
         $getCoupons = $this->couponRepository->getListCoupon();
 
