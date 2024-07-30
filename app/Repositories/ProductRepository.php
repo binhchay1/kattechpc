@@ -105,4 +105,9 @@ class ProductRepository extends BaseRepository
     {
         return $this->model->with('category', 'productImages', 'brands')->orderBy('created_at', 'DESC')->get();
     }
+
+    public function getProductByArrayCode($listCode)
+    {
+        return $this->model->whereIn('code', $listCode)->get();
+    }
 }

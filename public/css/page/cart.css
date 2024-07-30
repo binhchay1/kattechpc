@@ -176,6 +176,7 @@ aside {
 
 .modal-coupon-area {
     display: flex;
+    flex-direction: column;
 }
 
 .modal-button-coupon-area {

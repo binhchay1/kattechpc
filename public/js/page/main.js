@@ -47,17 +47,31 @@ $(document).ready(function () {
     }
 
     window.addEventListener('scroll', () => {
-        if (isMobileDetected) {
-            var y = $(this).scrollTop();
-            if (y >= 300) {
+        var y = $(this).scrollTop();
+        if (y >= 300) {
+            if (isMobileDetected) {
                 $('.bottomMenu').fadeIn();
                 $('.container-hamburger').addClass('header-fixed-menu-mobile');
                 $('.menu-btn').css('top', '5px');
                 $('.list-items').css(' background', 'white');
             } else {
+                $('.sub-header-scroll').addClass('d-block');
+                $('.sub-header-scroll').addClass('header-fixed');
+                $('.scroll-top-btn').removeClass('d-none');
+                $('.fixed-left').css('top', '65px');
+                $('.fixed-right').css('top', '65px');
+            }
+        } else {
+            if (isMobileDetected) {
                 $('.bottomMenu').fadeOut();
                 $('.container-hamburger').removeClass('header-fixed-menu-mobile');
                 $('.menu-btn').css('top', '40px');
+            } else {
+                $('.sub-header-scroll').removeClass('d-block');
+                $('.sub-header-scroll').removeClass('header-fixed');
+                $('.scroll-top-btn').addClass('d-none');
+                $('.fixed-left').css('top', '280px');
+                $('.fixed-right').css('top', '280px');
             }
         }
     }, true);
@@ -602,21 +616,6 @@ $(document).ready(function () {
             $('.header-top-left .sub').removeClass('d-block');
         });
     });
-
-    var x = $(this).scrollTop();
-    if (x >= 300) {
-        $('.sub-header-scroll').addClass('d-block');
-        $('.sub-header-scroll').addClass('header-fixed');
-        $('.scroll-top-btn').removeClass('d-none');
-        $('.fixed-left').css('top', '65px');
-        $('.fixed-right').css('top', '65px');
-    } else {
-        $('.sub-header-scroll').removeClass('d-block');
-        $('.sub-header-scroll').removeClass('header-fixed');
-        $('.scroll-top-btn').addClass('d-none');
-        $('.fixed-left').css('top', '280px');
-        $('.fixed-right').css('top', '280px');
-    }
 });
 
 function priceWithCommas(price) {

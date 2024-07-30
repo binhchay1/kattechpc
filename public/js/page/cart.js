@@ -216,11 +216,13 @@ function showModalCoupon() {
     $.ajax({
         type: "GET",
         url: urlCoupon,
-        success: function (data) {
+        success: function (response) {
+            $('.modal-coupon-area').empty();
+            var data = response.data;
+            var product = response.product;
             var d = new Date();
             var month = d.getMonth() + 1;
             var day = d.getDate();
-
             var now = d.getFullYear() + '-' +
                 (month < 10 ? '0' : '') + month + '-' +
                 (day < 10 ? '0' : '') + day;
@@ -228,6 +230,7 @@ function showModalCoupon() {
             for (let i = 0; i < data.length; i++) {
                 let textDiscount = '';
                 let textApply = '';
+                let textClass = '';
                 let dateDiff = datediff(parseDate(now), parseDate(data[i].time_end));
                 dateDiff = parseInt(dateDiff) + 1;
 
@@ -238,9 +241,18 @@ function showModalCoupon() {
                 }
 
                 if (data[i].list_product_id == null) {
-                    textApply = 'cho toàn bộ sản phẩm';
+                    textApply = 'Áp dụng cho toàn bộ sản phẩm';
                 } else {
-                    textApply = '1 số sản phẩm nhất định';
+                    let listProduct = JSON.parse(data[i].list_product_id);
+
+                    for (let k in listProduct) {
+                        if (Object.values(product).indexOf(listProduct[k]) > -1) {
+                            textApply = 'Sản phẩm ' + k + ' được sử dụng mã này';
+                        } else {
+                            textApply = 'Sản phẩm trong giỏ hàng của bạn không được hỗ trợ dùng mã này';
+                            textClass = 'disable';
+                        }
+                    }
                 }
 
                 let content = `
@@ -249,14 +261,14 @@ function showModalCoupon() {
                         <img src="/images/logo/logo.png">
                     </div>
 
-                    <div class="information-item-coupon-in-list">
+                    <div class="information-item-coupon-in-list `+ textClass + `">
                         <span>Giảm giá đến `+ data[i].discount_amount + ' ' + textDiscount + `</span>
-                        <span>Áp dụng cho `+ textApply + `</span>
+                        <span>Điều kiện : `+ textApply + `</span>
                         <span>Số lượng còn lại `+ data[i].total_amount + ` </span>
                         <span>Thời gian còn `+ dateDiff + ` ngày</span>
                     </div>
                     <div class="d-flex justify-content-center align-items-center click-choose-item-coupons">
-                        <div data-id="`+ data[i].code + `" class="modal-choose-coupon" aria-label="" role="radio" aria-checked="false" tabindex="0"></div>
+                        <div data-id="`+ data[i].code + `" class="modal-choose-coupon ` + textClass + `" aria-label="" role="radio" aria-checked="false" tabindex="0"></div>
                     </div>
                 </div>`;
 

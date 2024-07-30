@@ -266,7 +266,7 @@
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative hover-for-tooltips" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                             @if(isset($product->image))
-                            <img src="{{ asset($dataProduct->image[0]) }}" width="210" height="164" class="lazy product-image">
+                            <img src="{{ asset(json_decode($product->image)[0]) }}" width="210" height="164" class="lazy product-image">
                             @endif
                         </a>
                         <div>
@@ -599,7 +599,7 @@
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative hover-for-tooltips" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                             @if(isset($product->image))
-                            <img src="{{ asset($dataProduct->image[0]) }}" width="210" height="164" class="lazy product-image">
+                            <img src="{{ asset(json_decode($product->image)[0]) }}" width="210" height="164" class="lazy product-image">
                             @endif
                         </a>
                         <div>
