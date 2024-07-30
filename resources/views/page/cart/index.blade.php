@@ -322,9 +322,11 @@
                             @if(Session::has('discount-code'))
                             <a onclick="showModalCoupon()" class="accept-coupon">{{ __('Mã đã được sử dụng ') }} {{ Session::get('discount-code') }}</a>
                             <p class="error_msg" style="color: green"></p>
+                            <a class="delete-coupon">X</a>
                             @else
                             <a onclick="showModalCoupon()" class="accept-coupon">{{ __('Chọn hoặc nhập mã') }}</a>
                             <p class="error_msg" style="color: green"></p>
+                            <a class="delete-coupon" style="display:none">X</a>
                             @endif
                         </div>
                     </div>
