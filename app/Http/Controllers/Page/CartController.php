@@ -343,7 +343,7 @@ class CartController extends Controller
 
     public function addCoupon(Request $request)
     {
-        $coupon = $this->couponRepository->getCouponByCode($request->get('discount_amount'));
+        $coupon = $this->couponRepository->getCouponByCode($request->get('code'));
         if (!$coupon) {
             return response()->json(['errors' => __('Không tìm thấy mã giảm giá, làm ơn nhập lại!.')]);
         }
@@ -355,7 +355,9 @@ class CartController extends Controller
         $response = [
             'success' => __('Mã giảm giá được thêm thành công'),
             'discount_total' => $coupon->discount_amount,
-            'discount_type' => $coupon->type
+            'discount_type' => $coupon->type,
+            'discount_code' => $coupon->code,
+            'discount_list_product_id' => $coupon->list_product_id,
         ];
 
         return response()->json($response);

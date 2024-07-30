@@ -98,10 +98,28 @@ $(document).ready(function () {
                 if ($.isEmptyObject(data.errors)) {
                     $(".error_msg").html(data.success);
                     let discount_amount = data.discount_total;
-                    let final_discount_amount = ((total_amount * discount_amount) / 100);
-                    let before_discount_amount = (total_amount - final_discount_amount);
+                    let final_discount_amount = 0;
+                    let before_discount_amount = 0;
+                    if (data.list_product_id == null) {
+                        if (data.type == 'percent') {
+                            final_discount_amount = ((total_amount * discount_amount) / 100);
+                            before_discount_amount = (total_amount - final_discount_amount);
+                        } else {
+                            final_discount_amount = discount_amount;
+                            before_discount_amount = (total_amount - final_discount_amount);
+                        }
+                    } else {
+                        if (data.type == 'percent') {
+                            final_discount_amount = ((total_amount * discount_amount) / 100);
+                            before_discount_amount = (total_amount - final_discount_amount);
+                        } else {
+                            final_discount_amount = discount_amount;
+                            before_discount_amount = (total_amount - final_discount_amount);
+                        }
+                    }
+
                     $('#total-amount').text(before_discount_amount.toString().replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.') + ' đ');
-                    $('.accept-coupon').text('Mã đã được sử dụng');
+                    $('.accept-coupon').text('Mã đã được sử dụng ' + data.code);
 
                     let strAppend = `<div class="summary summary-area">
                         <div class="total-value final-value summary-total" style="margin: 0;">Giảm giá</div>
@@ -115,11 +133,10 @@ $(document).ready(function () {
                     $('#modal-coupon').css('display', 'none');
                 } else {
                     let resp = data.errors;
-                    $(".error_msg").html(resp);
+                    $(".error_msg_modal").html(resp);
                 }
             },
         });
-
     });
 });
 

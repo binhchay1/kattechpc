@@ -364,6 +364,16 @@
 
     .get-total {
         width: 100% !important;
+        text-align: end;
+    }
+
+    .summary-subtotal,
+    .summary-total {
+        width: 100%;
+    }
+
+    .summary-area {
+        margin-top: 15px;
     }
 
     .total-title {
@@ -627,11 +637,11 @@
     }
 
     .global-fixed-right .fix-youtube {
-        bottom: calc(50% - 235px);
+        bottom: calc(50% - 355px);
     }
 
     .global-fixed-right .fix-face {
-        bottom: calc(50% - 180px);
+        bottom: calc(50% - 300px);
     }
 
     .list-items-sub {
@@ -655,6 +665,18 @@
     @media only screen and (min-width: 650px) {
         #scroll-logo {
             margin-left: 90px;
+        }
+
+        .global-fixed-right .fix-face {
+            bottom: calc(50% - 570px);
+        }
+
+        .global-fixed-right .fix-youtube {
+            bottom: calc(50% - 625px);
+        }
+
+        #toolbar-menu-mobile .item {
+            margin-bottom: 0;
         }
     }
 }
