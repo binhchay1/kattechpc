@@ -34,7 +34,7 @@
             </div>
 
             <div>
-                <img class="boder-radius-10"  style="width: 100%" src="{{ $post->thumbnail ?? asset('/images/test_post/2904-viettel-dau-gia-thanh-cong-bang-tan-5g-1.jpg') }}" alt="{{ $post->title }}" width="300" height="300">
+                <img class="boder-radius-10" style="width: 100%" src="{{ $post->thumbnail ?? asset('/images/test_post/2904-viettel-dau-gia-thanh-cong-bang-tan-5g-1.jpg') }}" alt="{{ $post->title }}" width="300" height="300">
             </div>
         </div>
 
@@ -45,52 +45,51 @@
 
     <div class="product-related">
         <div class="new-relate">
-            <h3 id="title-post" > {{ __('Tin tức liên quan') }}</h3>
-            <div id="" style="margin-top: 30px">
-                <div id="">
+            <h3 id="title-post"> {{ __('Tin tức liên quan') }}</h3>
+            <div style="margin-top: 30px">
+                <div>
                     <img src="{{ $firstPosts1->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="image-post" />
                 </div>
-                <div id="">
+                <div>
                     <h3> {{$firstPosts1->title}}</h3>
                 </div>
             </div>
             @foreach($postRandom as $post)
-                <div id="content" >
-                    <div id="left">
-                        <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="image-post" />
-                    </div>
-                    <div id="content-right">
-                        <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
-                        <a href="{{ route('post.detail', $post['slug']) }}"><h3> {{$text}}</h3></a>
-                    </div>
+            <div id="content">
+                <div id="left">
+                    <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="image-post" />
                 </div>
+                <div id="content-right">
+                    <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
+                    <a href="{{ route('post.detail', $post['slug']) }}">
+                        <h3> {{$text}}</h3>
+                    </a>
+                </div>
+            </div>
             @endforeach
         </div>
 
         <div class="new-read-late">
-            <h3 id="title-post" > {{ __('Bài viết mới nhất') }}</h3>
+            <h3 id="title-post"> {{ __('Bài viết mới nhất') }}</h3>
             @foreach($postNews as $post)
-                <div id="" style="margin-top: 30px">
-                    <div id="">
-                        <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="image-post" />
-                    </div>
-                    <div id="">
-                        <h3> {{$post->title}}</h3>
-                    </div>
-                    <span id="post-des">{{$post->short_description}}</span>
+            <div id="" style="margin-top: 30px">
+                <div id="">
+                    <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="image-post" />
                 </div>
-                @endforeach
+                <div id="">
+                    <a href="{{ route('post.detail', $post['slug']) }}">
+                        <h3> {{$post->title}}</h3>
+                    </a>
+                </div>
+                <span id="post-des">{{$post->short_description}}</span>
+            </div>
+            @endforeach
             <div style="margin-top: 30px">
                 <div id="">
                     <img src="{{ asset( 'images/logo/logo.png') }}" alt="Image Alt" class="image-post" />
                 </div>
             </div>
         </div>
-
-
     </div>
-
-
-
 </div>
 @endsection

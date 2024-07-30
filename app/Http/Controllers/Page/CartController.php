@@ -348,6 +348,8 @@ class CartController extends Controller
             return response()->json(['errors' => __('Không tìm thấy mã giảm giá, làm ơn nhập lại!.')]);
         }
 
+        dd(Cart::get_content());
+
         Session::put('discount-total', $coupon->discount_amount);
         Session::put('discount-code', $coupon->code);
         Session::put('discount-type', $coupon->type);
@@ -358,6 +360,7 @@ class CartController extends Controller
             'discount_type' => $coupon->type,
             'discount_code' => $coupon->code,
             'discount_list_product_id' => $coupon->list_product_id,
+            ''
         ];
 
         return response()->json($response);

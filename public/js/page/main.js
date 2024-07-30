@@ -146,8 +146,17 @@ $(document).ready(function () {
             $('.tooltip-list-gift').html(sale_detail);
 
             $('.global-tooltip').css('display', 'block');
-            $('.global-tooltip').css('left', $(this).offset().left + 260);
-            $('.global-tooltip').css('top', $(this).offset().top - 10);
+            let offsetLeft = 0;
+            let offsetTop = 0;
+            if($(this).offset().left > 1200) {
+                offsetLeft = $(this).offset().left;
+                offsetTop = $(this).offset().top - 260;
+            } else {
+                offsetLeft = $(this).offset().left + 260;
+                offsetTop = $(this).offset().top - 10;
+            }
+            $('.global-tooltip').css('left', offsetLeft);
+            $('.global-tooltip').css('top', offsetTop);
             $(this).css('transform', 'translate(0, -10px)');
         }, function () {
             $(this).css('transform', 'translate(0, 0)');

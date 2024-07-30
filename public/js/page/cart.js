@@ -109,13 +109,17 @@ $(document).ready(function () {
                             before_discount_amount = (total_amount - final_discount_amount);
                         }
                     } else {
-                        if (data.type == 'percent') {
-                            final_discount_amount = ((total_amount * discount_amount) / 100);
-                            before_discount_amount = (total_amount - final_discount_amount);
-                        } else {
-                            final_discount_amount = discount_amount;
-                            before_discount_amount = (total_amount - final_discount_amount);
+                        let listProduct = JSON.parse(data.list_product_id);
+                        for (let m in listProduct) {
+                            if (data.type == 'percent') {
+                                final_discount_amount = ((total_amount * discount_amount) / 100);
+                                before_discount_amount = (total_amount - final_discount_amount);
+                            } else {
+                                final_discount_amount = discount_amount;
+                                before_discount_amount = (total_amount - final_discount_amount);
+                            }
                         }
+
                     }
 
                     $('#total-amount').text(before_discount_amount.toString().replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.') + ' đ');
@@ -317,10 +321,8 @@ function showModalCoupon() {
                 if (data[i].list_product_id == null) {
                     textApply = 'Áp dụng cho toàn bộ sản phẩm';
                 } else {
-                    let listProduct = JSON.parse(data[i].list_product_id);
-
-                    for (let k in listProduct) {
-                        if (Object.values(product).indexOf(listProduct[k]) > -1) {
+                    for (let k in product) {
+                        if (Object.values(product).indexOf(data[k]) > -1) {
                             textApply = 'Sản phẩm ' + k + ' được sử dụng mã này';
                         } else {
                             textApply = 'Sản phẩm trong giỏ hàng của bạn không được hỗ trợ dùng mã này';
