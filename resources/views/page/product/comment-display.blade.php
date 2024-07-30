@@ -18,7 +18,7 @@
                 <div class="comment-form-right d-flex align-items-center gap-4">
                     <i class="fa fa-clock-o" style="font-size:15px; margin-right: 5px"></i>
                     <?php $date = date_format($comment->created_at, "d/m/Y") ?>
-                    <span style="color:#787878;font-size: 12px;margin-right: 4px;font-weight: 700">{{$date}}</span>
+                    <span style="color:#787878;font-size: 14px;margin-right: 4px;font-weight: 700">{{$date}}</span>
                 </div>
             </div>
 
