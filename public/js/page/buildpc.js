@@ -1,6 +1,4 @@
 var currentArea = 1;
-var currentPrice1 = 0;
-var currentPrice2 = 0;
 var currentParam = {
     'choice': '',
     'brand': '',
@@ -92,6 +90,8 @@ $(document).ready(function () {
     $('#modal-no-item-print .close').on('click', function () {
         $('#modal-no-item-print').css('display', 'none');
     });
+
+    console.log(currentArrayProduct);
 });
 
 function addToMenu(choose) {
@@ -134,9 +134,9 @@ function addToMenu(choose) {
     $('#' + idMenu).hide();
     if ($(idSelected + ' .sum_price') != undefined) {
         if (currentArea == 1) {
-            currentArrayProduct.listArea1.push(product.id);
+            currentArrayProduct.listArea1.push(product.id.toString());
         } else {
-            currentArrayProduct.listArea2.push(product.id);
+            currentArrayProduct.listArea2.push(product.id.toString());
         }
     }
 
@@ -220,7 +220,7 @@ function priceWithCommas(price) {
 
 function deleteProductHandle(button) {
     let id = button.getAttribute('data-id');
-    let idArea = '#product-item-in-list-' + id + '-' + currentArea;
+    let idArea = '#product-item-in-list-' + currentArea + '-' + id;
     let price = button.getAttribute('data-price');
     if (currentArea == 1) {
         var index = currentArrayProduct.listArea1.indexOf(id);

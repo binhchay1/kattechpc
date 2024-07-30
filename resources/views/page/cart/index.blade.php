@@ -319,9 +319,13 @@
 
                                 <h3 class="input-address ml-5">{{ __('Mã khuyến mãi') }}</h3>
                             </div>
-
+                            @if(Session::has('discount-code'))
+                            <a onclick="showModalCoupon()" class="accept-coupon">{{ __('Mã đã được sử dụng ') }} {{ Session::get('discount-code') }}</a>
+                            <p class="error_msg" style="color: green"></p>
+                            @else
                             <a onclick="showModalCoupon()" class="accept-coupon">{{ __('Chọn hoặc nhập mã') }}</a>
                             <p class="error_msg" style="color: green"></p>
+                            @endif
                         </div>
                     </div>
                     <div class="summary summary-area">
@@ -384,6 +388,10 @@
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <script>
     const total_amount = `<?php echo $totalCart ?>`;
+    var discount_code_default = '';
+    <?php if (Session::has('discount-code')) { ?>
+        var discount_code_default = `<?php echo Session::get('discount-code') ?>`;
+    <?php } ?>
 </script>
 <script src="{{ asset('js/page/cart.js') }}"></script>
 @endsection

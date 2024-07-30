@@ -75,8 +75,8 @@ class BuildPCController extends Controller
         ];
 
         $dataPricePreSession = [
-            'priceArea1' => 0,
-            'priceArea2' => 0
+            'listArea1' => 0,
+            'listArea2' => 0
         ];
 
         if (!empty($dataBuild)) {
@@ -86,17 +86,21 @@ class BuildPCController extends Controller
             }
         }
 
-        foreach($dataPreSession as $keyArea => $listProduct) {
-            foreach($listProduct as $product) {
-                if($product->new_price != null) {
-                    // $totalPriceArea +
+        foreach ($dataPreSession as $keyArea => $listProduct) {
+            foreach ($listProduct as $product) {
+                if ($product->new_price != null) {
+                    $priceProduct = str_replace('.', '', $product->new_price);
+                    $dataPricePreSession[$keyArea] += intval($priceProduct);
                 }
             }
         }
 
-        dd($dataPreSession);
+        $currentPrice1 = $dataPricePreSession['listArea1'];
+        $currentPrice2 = $dataPricePreSession['listArea2'];
+        $dataPricePreSession['listArea1'] = number_format($dataPricePreSession['listArea1'], 0, ',', '.');
+        $dataPricePreSession['listArea2'] = number_format($dataPricePreSession['listArea2'], 0, ',', '.');
 
-        return view('page.build-pc.build-pc', compact('listCategory', 'menu', 'dataBuild', 'dataPreSession', 'arrLinkYoutube', 'theme'));
+        return view('page.build-pc.build-pc', compact('listCategory', 'menu', 'dataBuild', 'dataPreSession', 'arrLinkYoutube', 'theme', 'dataPricePreSession', 'currentPrice1', 'currentPrice2'));
     }
 
     public function getProduct(Request $request)

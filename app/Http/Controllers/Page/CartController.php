@@ -267,6 +267,7 @@ class CartController extends Controller
         }
         session()->forget('discount-total');
         session()->forget('discount-code');
+        session()->forget('discount-type');
 
         return redirect()->route('thank');
     }
@@ -348,6 +349,10 @@ class CartController extends Controller
             return response()->json(['errors' => __('Không tìm thấy mã giảm giá, làm ơn nhập lại!.')]);
         }
 
+        $listProductWithPrice = [];
+        foreach (Cart::getContent() as $item) {
+            $listProductWithPrice[$item->conditions] = $item->price;
+        }
         Session::put('discount-total', $coupon->discount_amount);
         Session::put('discount-code', $coupon->code);
         Session::put('discount-type', $coupon->type);
@@ -358,7 +363,7 @@ class CartController extends Controller
             'discount_type' => $coupon->type,
             'discount_code' => $coupon->code,
             'discount_list_product_id' => $coupon->list_product_id,
-            ''
+            'discount_list_product_id_with_price' => $listProductWithPrice
         ];
 
         return response()->json($response);

@@ -109,21 +109,23 @@ $(document).ready(function () {
                             before_discount_amount = (total_amount - final_discount_amount);
                         }
                     } else {
-                        let listProduct = JSON.parse(data.list_product_id);
-                        for (let m in listProduct) {
-                            if (data.type == 'percent') {
-                                final_discount_amount = ((total_amount * discount_amount) / 100);
-                                before_discount_amount = (total_amount - final_discount_amount);
-                            } else {
-                                final_discount_amount = discount_amount;
-                                before_discount_amount = (total_amount - final_discount_amount);
-                            }
-                        }
+                        if (data.type == 'percent') {
+                            let listProduct = JSON.parse(data.discount_list_product_id_with_price);
+                            for (let m in listProduct) {
+                                if (m == discount_code_default) {
 
+                                }
+                            }
+                            final_discount_amount += ((total_amount * discount_amount) / 100);
+                            before_discount_amount = (total_amount - final_discount_amount);
+                        } else {
+                            final_discount_amount = discount_amount;
+                            before_discount_amount = (total_amount - final_discount_amount);
+                        }
                     }
 
                     $('#total-amount').text(before_discount_amount.toString().replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.') + ' đ');
-                    $('.accept-coupon').text('Mã đã được sử dụng ' + data.code);
+                    $('.accept-coupon').text('Mã đã được sử dụng ' + data.discount_code);
 
                     let strAppend = `<div class="summary summary-area">
                         <div class="total-value final-value summary-total" style="margin: 0;">Giảm giá</div>
@@ -308,8 +310,11 @@ function showModalCoupon() {
                 let textApply = '';
                 let textClass = '';
                 let active = true;
-
-                let dateDiff = datediff(parseDate(now), parseDate(data[i].time_end));
+                let date1 = new Date(data[i].time_end);
+                let date2 = new Date(now);
+                let diffTime = Math.abs(date2 - date1);
+                let diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                let dateDiff = diffDays;
                 dateDiff = parseInt(dateDiff) + 1;
 
                 if (data[i].type == "percent") {
@@ -332,6 +337,11 @@ function showModalCoupon() {
                     }
                 }
 
+                if(data[i].code == discount_code_default) {
+                    textClass += ' checked';
+                    $('.modal-button-coupon-area .after-submit').removeClass('submit-disable');
+                }
+
                 let content = `
                 <div class="item-coupon-in-list `+ textClass + `">
                     <div class="image-item-coupon-in-list">
@@ -342,10 +352,10 @@ function showModalCoupon() {
                         <span>Giảm giá đến `+ data[i].discount_amount + ' ' + textDiscount + `</span>
                         <span>Điều kiện : `+ textApply + `</span>
                         <span>Số lượng còn lại `+ data[i].total_amount + ` </span>
-                        <span>Thời gian còn `+ dateDiff + ` ngày</span>
+                        <span>Thời gian còn `+ diffDays + ` ngày</span>
                     </div>
                     <div class="d-flex justify-content-center align-items-center click-choose-item-coupons">
-                        <div data-id="`+ data[i].code + `" class="modal-choose-coupon ` + textClass + `" aria-label="" role="radio" aria-checked="false" tabindex="0"></div>
+                        <div id="item-choose-coupon-in-modal-`+ data[i].code + `" data-id="` + data[i].code + `" class="modal-choose-coupon ` + textClass + `" aria-label="" role="radio" aria-checked="false" tabindex="0"></div>
                     </div>
                 </div>`;
 
@@ -359,13 +369,4 @@ function showModalCoupon() {
             $('#modal-coupon').css('display', 'flex');
         }
     });
-}
-
-function datediff(first, second) {
-    return Math.round((second - first) / (1000 * 60 * 60 * 24));
-}
-
-function parseDate(str) {
-    var mdy = str.split('-');
-    return new Date(mdy[2], mdy[0] - 1, mdy[1]);
 }

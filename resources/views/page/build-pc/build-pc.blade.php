@@ -29,7 +29,7 @@
 
         <div id="build-pc-content-area-1">
             <div id="build-pc-content-price-1">
-                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">0</span>
+                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataPricePreSession['listArea1'] }}</span>
                     <span class="total-price-config-1"></span>
                 </p>
                 <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
@@ -113,12 +113,12 @@
                 @endforeach
                 @endif
             </div>
-            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">0</span><span class="total-price-config-1"></span></p>
+            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataPricePreSession['listArea1'] }}</span></p>
         </div>
 
         <div id="build-pc-content-area-2" class="d-none">
             <div id="build-pc-content-price-2">
-                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-2">0</span>
+                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-2">{{ $dataPricePreSession['listArea2'] }}</span>
                     <span class="total-price-config-2"></span>
                 </p>
             </div>
@@ -195,7 +195,7 @@
                 @endforeach
                 @endif
             </div>
-            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-2">0</span><span class="total-price-config-2"></span></p>
+            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-2">0</span><span class="total-price-config-2">{{ $dataPricePreSession['listArea2'] }}</span></p>
         </div>
 
         <ul class="list-btn-action" id="js-buildpc-action">
@@ -284,5 +284,9 @@
     <?php } ?>
 </script>
 @endif
+<script>
+    var currentPrice1 = parseInt(<?php echo $currentPrice1 ?>);
+    var currentPrice2 = parseInt(<?php echo $currentPrice2 ?>);
+</script>
 <script src="{{ asset('/js/page/buildpc.js') }}"></script>
 @endsection
