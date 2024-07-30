@@ -339,6 +339,7 @@
                     </a>
                 </div>
                 @endif
+
                 <div id="product-info" class="product-info feedback-form">
                     <h3>{{__('Đánh giá sản phẩm')}}</h3>
                     <div class="review-info  boder-radius-10">
@@ -476,7 +477,6 @@
                                                 </div>
                                                 <p style="font-size: 16px" class="d-flex aligin-items-center"><b>{{ __('Nhận xét:') }}</b>{{$rating->content}}</p>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -493,6 +493,7 @@
                 <div id="product-info" class="product-info feedback-form" style="background-color: #f5f5f5;">
                     <div class="box-comment">
                         <p class="title-comment font-weight-600" style="font-size: 16px">{{ __('Hỏi và đáp') }}</p>
+                        @if(auth()->check())
                         <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="comment-detail">
@@ -511,6 +512,7 @@
                             </div>
                             <p id="js-content-note0" style="color: red;max-width: 100%;display: flex;font-weight:700;margin-bottom:10px;"></p>
                         </form>
+                        @endif
                     </div>
 
                     @include('page.product.comment-display', ['comments' => $dataProduct->comments, 'product_id' => $dataProduct->id])

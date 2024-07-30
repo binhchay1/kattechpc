@@ -53,7 +53,8 @@ $(document).ready(function () {
     });
 
     $('.write_reply').click(function () {
-        $('.menu1').slideToggle("fast");
+        let key = $(this).attr('data-key');
+        $('#reply-comment-' + key).slideToggle("fast");
     });
 
     $('#modal-detail-warranty-package .close').on('click', function () {

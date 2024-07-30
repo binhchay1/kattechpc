@@ -825,8 +825,9 @@ tr:nth-child(even) {
 
 .write_reply {
     color: #36ac4a;
-    font-weight: 500;
     font-size: 16px;
+    cursor: pointer;
+    font-weight: 550;
 }
 
 .box-comment {
@@ -1168,6 +1169,7 @@ tr:nth-child(even) {
     width: 30%;
     border-radius: 5px;
     float: right;
+    margin-left: 20px;
 }
 
 .box-side-left {
@@ -1225,13 +1227,20 @@ tr:nth-child(even) {
 }
 
 .qtv-comment {
-    background-color: #1a6592;
+    background: repeating-linear-gradient(
+        to right,
+        #fd7272 0,
+        var(--color-primary) 50%,
+        #f50c0c 100%
+    );
     font-weight: 600;
     font-family: inherit;
     font-size: 13px !important;
     color: white !important;
     padding: 2px !important;
     width: 8% !important;
+    text-align: center;
+    border-radius: 10px;
 }
 
 #modal-detail-warranty-package {

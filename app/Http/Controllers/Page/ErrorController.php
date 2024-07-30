@@ -36,8 +36,14 @@ class ErrorController extends Controller
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $layout = $this->layoutRepository->getListLayout();
+        if (isset($layout->footer_slide_thumbnail)) {
+            $listSlideFooter = json_decode($layout->footer_slide_thumbnail, true);
+        } else {
+            $listSlideFooter = [];
+        }
 
-        return view('errors.403', compact('listCategory'));
+        return view('errors.403-now', compact('listCategory', 'listSlideFooter', 'layout'));
     }
 
     public function view404()
@@ -80,16 +86,28 @@ class ErrorController extends Controller
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $layout = $this->layoutRepository->getListLayout();
+        if (isset($layout->footer_slide_thumbnail)) {
+            $listSlideFooter = json_decode($layout->footer_slide_thumbnail, true);
+        } else {
+            $listSlideFooter = [];
+        }
 
-        return view('errors.500', compact('listCategory'));
+        return view('errors.500-now', compact('listCategory', 'listSlideFooter', 'layout'));
     }
 
     public function view503()
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $layout = $this->layoutRepository->getListLayout();
+        if (isset($layout->footer_slide_thumbnail)) {
+            $listSlideFooter = json_decode($layout->footer_slide_thumbnail, true);
+        } else {
+            $listSlideFooter = [];
+        }
 
-        return view('errors.503', compact('listCategory'));
+        return view('errors.503-now', compact('listCategory', 'listSlideFooter', 'layout'));
     }
 
     public function lockAccount()
@@ -110,7 +128,13 @@ class ErrorController extends Controller
     {
         $key = 'menu_homepage';
         $listCategory = Cache::store('redis')->get($key);
+        $layout = $this->layoutRepository->getListLayout();
+        if (isset($layout->footer_slide_thumbnail)) {
+            $listSlideFooter = json_decode($layout->footer_slide_thumbnail, true);
+        } else {
+            $listSlideFooter = [];
+        }
 
-        return view('errors.maintenance', compact('listCategory'));
+        return view('errors.maintenance', compact('listCategory', 'listSlideFooter', 'layout'));
     }
 }

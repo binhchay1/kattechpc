@@ -237,8 +237,11 @@ class LayoutController extends Controller
     {
         $input = $request->except(['_token']);
         $data = [];
+
         if (array_key_exists('product_id', $input)) {
             $data['hot_sale_list_product_id'] = json_encode($input['product_id']);
+        } else {
+            $data['hot_sale_list_product_id'] = null;
         }
 
         if (isset($input['hot_sale_big_thumbnail'])) {

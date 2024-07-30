@@ -70,6 +70,10 @@ a:hover {
     margin-left: auto;
 }
 
+.ml-15px.dropdown {
+    cursor: pointer;
+}
+
 .hotline {
     background: repeating-linear-gradient(
         to right,

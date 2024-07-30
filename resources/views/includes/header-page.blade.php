@@ -35,7 +35,7 @@
                 <div class="ml-15px">
                     <a href="{{ route('promotion') }}" class="sep-item-link" target="_blank"><i class="fa fa-tag"></i> {{ __('Khuyến mại') }}</a>
                 </div>
-                @if(auth()->check() )
+                @if(auth()->check())
                     <div class="ml-15px dropdown">
                         <a class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
                         <div class="dropdown-content">

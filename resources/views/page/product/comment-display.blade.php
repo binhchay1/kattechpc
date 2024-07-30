@@ -1,4 +1,4 @@
-@foreach($comments as $comment)
+@foreach($comments as $key => $comment)
 <div id="comment-list" class="comment-list" @if($comment->parent_id != null) style="margin-left:40px;" @endif>
     <div class="item-comment" id="comment_473">
         <div class="form-reply-comment">
@@ -8,8 +8,8 @@
                         {{ $comment->user->name  }}
                     </b>
 
-                   @if($comment->user->role == 'admin' || $comment->user->role == 'staff')
-                     <p class="qtv-comment">QTV</p>
+                    @if($comment->user->role == 'admin' || $comment->user->role == 'staff')
+                    <p class="qtv-comment">QTV</p>
                     @endif
                 </div>
                 <div class="comment-form-right d-flex align-items-center gap-4">
@@ -25,18 +25,18 @@
                         <p style="font-size: 15px">{{ $comment->content }}</p>
                     </div>
                 </div>
-                @if($comment->parent_id == null)
-                <div class="info_feeback  align-items-center gap-6" id="rep-comment" style="text-align: right; width: 20%">
+                @if($comment->parent_id == null and auth()->check())
+                <div class="info_feeback align-items-center gap-6" id="rep-comment" style="text-align: right; width: 20%">
                     <i class="far fa-comments" style="font-size:20px; margin-right: 5px; font-weight: 550"></i>
-                    <a style="font-weight: 550" class="write_reply font-weight-500">{{ __('Trả lời') }}</a>
+                    <a data-key="{{ $key }}" class="write_reply font-weight-500">{{ __('Trả lời') }}</a>
                 </div>
-                    @endif
+                @endif
             </div>
             <div class="reply-list-container js-replyList-item" id="reply_list_473" data-item-id="473"></div>
         </div>
     </div>
     <div class="box-comment1">
-        <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data" style="display: none" class="menu1">
+        <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data" style="display: none" class="menu1" id="reply-comment-{{ $key }}">
             {{ csrf_field() }}
             <div class="comment-detail">
                 <div class="form-comment gap-10 d-flex justify-content-between">
