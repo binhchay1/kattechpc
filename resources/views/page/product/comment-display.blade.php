@@ -4,6 +4,9 @@
         <div class="form-reply-comment">
             <div class="comment-name d-flex align-items-center justify-content-between">
                 <div class="comment-form-left d-flex align-items-center gap-6">
+                    <b class="avatar-user avatar-admin" style="width: 26px; height: 25px;">
+                        <img src=" {{ asset( $comment->user->profile_photo_path ?? 'images/user/avatar.jpg') }}" alt="admin avatar" class="lazy loading" data-was-processed="true">
+                    </b>
                     <b class="user-name d-flex align-items-center ">
                         {{ $comment->user->name  }}
                     </b>

@@ -427,6 +427,7 @@
                         @if(Session::has('message'))
                         <p style="color:red;" class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
                         @endif
+                        @if(auth()->check())
                         <form id="feedbackForm" action="{{ route('rating') }}" class="menu" method="post" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="rating">
@@ -448,14 +449,18 @@
                             <input type="hidden" name="user_id" value="{{Auth::user()->id ?? ""}}">
                             <button type="submit" class="submit-btn" id="">{{__('Gửi đánh giá')}}</button>
                         </form>
+                        @endif
 
-                        <div class="list-review">
+                        <div class="list-review" style="margin-top: 20px">
                             <div id="js-review-holder">
                                 @foreach($listRatings as $rating)
                                 <div class="item-comment">
                                     <div class="form-reply-comment">
                                         <div class="comment-name d-flex align-items-center justify-content-between">
                                             <div class="comment-form-left d-flex align-items-center gap-6">
+                                                <b class="avatar-user avatar-admin" style="width: 26px; height: 25px;">
+                                                    <img src=" {{ asset( $rating->user->profile_photo_path ?? 'images/user/avatar.jpg') }}" alt="admin avatar" class="lazy loading" data-was-processed="true">
+                                                </b>
                                                 <b class="user-name d-flex align-items-center gap-6">
                                                     {{$rating->user->name}}
                                                 </b>
