@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Page;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CommentRequest;
 use App\Http\Requests\RatingRequest;
 use App\Repositories\CategoryRepository;
 use App\Repositories\PostRepository;
@@ -19,6 +20,7 @@ use Cache;
 use Illuminate\Support\Facades\DB;
 use App\Enums\Product;
 use App\Repositories\SocialRepository;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -212,7 +214,7 @@ class ProductController extends Controller
         );
     }
 
-    public function storeComment(RatingRequest $request)
+    public function storeComment(CommentRequest $request)
     {
         if (!Auth::check()) {
             return back()->withErrors([
@@ -225,7 +227,9 @@ class ProductController extends Controller
 
         $input['user_id'] = Auth::user()->id;
         $this->commentRepository->store($input);
-
+    
+        Session::flash('sweet-message-comment', 'Cảm ơn bạn đã bình luận sản phẩm!');
+    
         return back();
     }
 
@@ -238,7 +242,8 @@ class ProductController extends Controller
 
         $input = $request->all();
         $this->ratingRepository->store($input);
-
+        
+        Session::flash('sweet-message', 'Cảm ơn bạn đã đánh giá sản phẩm!');
         return back();
     }
 
