@@ -45,6 +45,6 @@ class CouponRepository extends BaseRepository
     {
         $now = date('Y-m-d');
 
-        return $this->model->where('time_end', '>=', $now)->get();
+        return $this->model->where('time_end', '>=', $now)->where('private_status', 'false')->get();
     }
 }

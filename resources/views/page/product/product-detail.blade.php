@@ -278,7 +278,7 @@
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative hover-for-tooltips" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                             @if(isset($product->image))
-                            <img src="{{ asset($dataProduct->image[0]) }}" width="210" height="164" class="lazy product-image">
+                            <img src="{{ asset(json_decode($product->image)[0]) }}" width="210" height="164" class="lazy product-image">
                             @endif
                         </a>
                         <div>
@@ -306,6 +306,9 @@
                 </div>
                 @endforeach
             </div>
+            <div class="swiper-button-next swiper-button-next-product-related" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
+            <div class="swiper-button-prev swiper-button-prev-product-related" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
         </div>
         @endif
 
@@ -590,7 +593,6 @@
                             <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="img-fluid2" />
                         </div>
                         <div id="content-right">
-
                             <h3> {{$post->title}}</h3>
                         </div>
                     </div>
@@ -598,7 +600,6 @@
                 </div>
                 @endif
             </div>
-
         </section>
 
         @if(count($productViewed) > 0)
@@ -610,7 +611,7 @@
                     <div class="product-item">
                         <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative hover-for-tooltips" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
                             @if(isset($product->image))
-                            <img src="{{ asset($dataProduct->image[0]) }}" width="210" height="164" class="lazy product-image">
+                            <img src="{{ asset(json_decode($product->image)[0]) }}" width="210" height="164" class="lazy product-image">
                             @endif
                         </a>
                         <div>
@@ -638,6 +639,9 @@
                 </div>
                 @endforeach
             </div>
+            <div class="swiper-button-next swiper-button-next-product-viewed" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
+            <div class="swiper-button-prev swiper-button-prev-product-viewed" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
+            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
         </div>
         @endif
     </div>

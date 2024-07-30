@@ -12,16 +12,31 @@ promise.then(function (result) {
 });
 
 $(document).ready(function () {
-    $(".btn-submit").click(function (e) {
+    $('.modal-coupon-area').on('click', '.modal-choose-coupon', function (e) {
         e.preventDefault();
-        var _token = $('#token').val();
-        var discount_amount = $('#promo-code').val();
+        let list_button_choose = $('.item-coupon-in-list .modal-choose-coupon');
+
+        for (let i = 0; i < list_button_choose.length; i++) {
+            if (list_button_choose[i].classList.contains("checked")) {
+                list_button_choose[i].classList.remove("checked")
+            }
+        }
+
+        $(this).addClass('checked');
+        $('.modal-button-coupon-area .after-submit').removeClass('submit-disable');
+    });
+
+    $('.before-submit').on('click', function (e) {
+        e.preventDefault();
+
+        let code = $('.input-with-validator').val();
+        let _token = $('#token').val();
         $.ajax({
             url: '/cart/apply-coupon',
             type: 'POST',
             data: {
                 _token: _token,
-                discount_amount: discount_amount
+                code: code
             },
             success: function (data) {
                 if ($.isEmptyObject(data.errors)) {
@@ -40,15 +55,16 @@ $(document).ready(function () {
                         </div>
                     </div>`;
                     $('.add-coupon-area').append(strAppend);
+                    $('#modal-coupon').css('display', 'none');
                 } else {
                     let resp = data.errors;
                     $(".error_msg").html(resp);
                 }
-                setTimeout(function () {
-                    window.location.reload();
-                }, 500);
             },
         });
+    });
+
+    $('.after-submit').on('click', function () {
 
     });
 });
@@ -80,7 +96,7 @@ function renderCity(data) {
         }
     };
 
-    $('#modal-coupon .close').on('click', function () {
+    $('#modal-coupon .btn-close').on('click', function () {
         $('#modal-coupon').css('display', 'none');
     });
 }
@@ -107,7 +123,7 @@ function deleteSales(url) {
         $.ajax({
             type: "get",
             url: url,
-            success: function (result) {
+            success: function () {
                 location.reload()
             }
         });
@@ -200,12 +216,23 @@ function showModalCoupon() {
     $.ajax({
         type: "GET",
         url: urlCoupon,
-        success: function (data) {
-            console.log(data);
+        success: function (response) {
+            $('.modal-coupon-area').empty();
+            var data = response.data;
+            var product = response.product;
+            var d = new Date();
+            var month = d.getMonth() + 1;
+            var day = d.getDate();
+            var now = d.getFullYear() + '-' +
+                (month < 10 ? '0' : '') + month + '-' +
+                (day < 10 ? '0' : '') + day;
 
             for (let i = 0; i < data.length; i++) {
                 let textDiscount = '';
                 let textApply = '';
+                let textClass = '';
+                let dateDiff = datediff(parseDate(now), parseDate(data[i].time_end));
+                dateDiff = parseInt(dateDiff) + 1;
 
                 if (data[i].type == "percent") {
                     textDiscount = '%';
@@ -214,28 +241,36 @@ function showModalCoupon() {
                 }
 
                 if (data[i].list_product_id == null) {
-                    textApply = 'cho toàn bộ sản phẩm';
+                    textApply = 'Áp dụng cho toàn bộ sản phẩm';
                 } else {
-                    textApply = '1 số sản phẩm nhất định';
+                    let listProduct = JSON.parse(data[i].list_product_id);
+
+                    for (let k in listProduct) {
+                        if (Object.values(product).indexOf(listProduct[k]) > -1) {
+                            textApply = 'Sản phẩm ' + k + ' được sử dụng mã này';
+                        } else {
+                            textApply = 'Sản phẩm trong giỏ hàng của bạn không được hỗ trợ dùng mã này';
+                            textClass = 'disable';
+                        }
+                    }
                 }
 
+                let content = `
+                <div class="item-coupon-in-list">
+                    <div class="image-item-coupon-in-list">
+                        <img src="/images/logo/logo.png">
+                    </div>
 
-
-                let content = `<div class="item-coupon-in-list">
-                <div class="image-item-coupon-in-list">
-                    <img src="{{ asset('images/logo/logo.png') }}">
-                </div>
-
-                <div class="information-item-coupon-in-list">
-                    <span>Giảm giá đến `+ data[i].discount_amount + ' ' + textDiscount + `</span>
-                    <span>Áp dụng cho `+ textApply + `</span>
-                    <span>Số lượng còn lại `+ data[i].total_amount + ` </span>
-                    <span>Thời gian còn </span>
-                </div>
-                <div class="d-flex justify-content-center align-items-center">
-                    <div class="modal-choose-coupon" aria-label="" role="radio" aria-checked="false" tabindex="0"></div>
-                </div>
-            </div>`;
+                    <div class="information-item-coupon-in-list `+ textClass + `">
+                        <span>Giảm giá đến `+ data[i].discount_amount + ' ' + textDiscount + `</span>
+                        <span>Điều kiện : `+ textApply + `</span>
+                        <span>Số lượng còn lại `+ data[i].total_amount + ` </span>
+                        <span>Thời gian còn `+ dateDiff + ` ngày</span>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center click-choose-item-coupons">
+                        <div data-id="`+ data[i].code + `" class="modal-choose-coupon ` + textClass + `" aria-label="" role="radio" aria-checked="false" tabindex="0"></div>
+                    </div>
+                </div>`;
 
                 $('.modal-coupon-area').append(content);
             }
@@ -243,4 +278,13 @@ function showModalCoupon() {
             $('#modal-coupon').css('display', 'flex');
         }
     });
+}
+
+function datediff(first, second) {
+    return Math.round((second - first) / (1000 * 60 * 60 * 24));
+}
+
+function parseDate(str) {
+    var mdy = str.split('-');
+    return new Date(mdy[2], mdy[0] - 1, mdy[1]);
 }

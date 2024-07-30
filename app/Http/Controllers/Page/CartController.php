@@ -401,10 +401,27 @@ class CartController extends Controller
         return view('page.cart.print', compact('cartInfor', 'total'));
     }
 
-    public function getCoupons(Request $request)
+    public function getCoupons()
     {
         $getCoupons = $this->couponRepository->getListCoupon();
+        $cartInfor =  Cart::getContent();
+        $listCode = [];
 
-        return response()->json($getCoupons);
+        foreach ($cartInfor as $info) {
+            $listCode[] = $info->conditions;
+        }
+
+        $listProduct = [];
+        $getProduct = $this->productRepository->getProductByArrayCode($listCode);
+        foreach ($getProduct as $product) {
+            $listProduct[$product->name] = $product->code;
+        }
+
+        $response = [
+            'data' => $getCoupons,
+            'product' => $listProduct
+        ];
+
+        return response()->json($response);
     }
 }
