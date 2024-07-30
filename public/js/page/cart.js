@@ -14,6 +14,10 @@ promise.then(function (result) {
 $(document).ready(function () {
     $('.modal-coupon-area').on('click', '.modal-choose-coupon', function (e) {
         e.preventDefault();
+        if ($(this).hasClass('disable')) {
+            return false;
+        }
+
         let list_button_choose = $('.item-coupon-in-list .modal-choose-coupon');
 
         for (let i = 0; i < list_button_choose.length; i++) {
@@ -42,9 +46,62 @@ $(document).ready(function () {
                 if ($.isEmptyObject(data.errors)) {
                     $(".error_msg").html(data.success);
                     let discount_amount = data.discount_total;
+                    if (data.discount_type == 'percent') {
+                        let final_discount_amount = ((total_amount * discount_amount) / 100);
+                        let before_discount_amount = (total_amount - final_discount_amount);
+                    } else {
+                        let final_discount_amount = ((total_amount * discount_amount) / 100);
+                        let before_discount_amount = (total_amount - final_discount_amount);
+                    }
+
+                    $('#total-amount').text(before_discount_amount.toString().replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.') + ' đ');
+                    $('.accept-coupon').text('Mã đã được sử dụng');
+
+                    let strAppend = `<div class="summary summary-area">
+                        <div class="total-value final-value summary-total" style="margin: 0;">Giảm giá</div>
+                        <div class="total-value final-value get-total" style="text-transform: inherit">
+                            <div class="alert alert-danger">
+                                `+ final_discount_amount.toString().replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.') + ` đ
+                            </div>
+                        </div>
+                    </div>`;
+                    $('.add-coupon-area').append(strAppend);
+                    $('#modal-coupon').css('display', 'none');
+                } else {
+                    let resp = data.errors;
+                    $(".error_msg_modal").html(resp);
+                }
+            },
+        });
+    });
+
+    $('.after-submit').on('click', function (e) {
+        e.preventDefault();
+
+        let list_button_choose = $('.item-coupon-in-list .modal-choose-coupon');
+        let code = '';
+
+        for (let i = 0; i < list_button_choose.length; i++) {
+            if (list_button_choose[i].classList.contains("checked")) {
+                code = list_button_choose[i].getAttribute('data-id');
+            }
+        }
+        let _token = $('#token').val();
+        $.ajax({
+            url: '/cart/apply-coupon',
+            type: 'POST',
+            data: {
+                _token: _token,
+                code: code
+            },
+            success: function (data) {
+                if ($.isEmptyObject(data.errors)) {
+                    $(".error_msg").html(data.success);
+                    let discount_amount = data.discount_total;
                     let final_discount_amount = ((total_amount * discount_amount) / 100);
                     let before_discount_amount = (total_amount - final_discount_amount);
                     $('#total-amount').text(before_discount_amount.toString().replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.') + ' đ');
+                    $('.accept-coupon').text('Mã đã được sử dụng');
 
                     let strAppend = `<div class="summary summary-area">
                         <div class="total-value final-value summary-total" style="margin: 0;">Giảm giá</div>
@@ -62,9 +119,6 @@ $(document).ready(function () {
                 }
             },
         });
-    });
-
-    $('.after-submit').on('click', function () {
 
     });
 });
@@ -217,7 +271,8 @@ function showModalCoupon() {
         type: "GET",
         url: urlCoupon,
         success: function (response) {
-            $('.modal-coupon-area').empty();
+            $('#modal-coupon-area-active').empty();
+            $('#modal-coupon-area-de-active').empty();
             var data = response.data;
             var product = response.product;
             var d = new Date();
@@ -231,6 +286,8 @@ function showModalCoupon() {
                 let textDiscount = '';
                 let textApply = '';
                 let textClass = '';
+                let active = true;
+
                 let dateDiff = datediff(parseDate(now), parseDate(data[i].time_end));
                 dateDiff = parseInt(dateDiff) + 1;
 
@@ -251,17 +308,18 @@ function showModalCoupon() {
                         } else {
                             textApply = 'Sản phẩm trong giỏ hàng của bạn không được hỗ trợ dùng mã này';
                             textClass = 'disable';
+                            active = false;
                         }
                     }
                 }
 
                 let content = `
-                <div class="item-coupon-in-list">
+                <div class="item-coupon-in-list `+ textClass + `">
                     <div class="image-item-coupon-in-list">
                         <img src="/images/logo/logo.png">
                     </div>
 
-                    <div class="information-item-coupon-in-list `+ textClass + `">
+                    <div class="information-item-coupon-in-list">
                         <span>Giảm giá đến `+ data[i].discount_amount + ' ' + textDiscount + `</span>
                         <span>Điều kiện : `+ textApply + `</span>
                         <span>Số lượng còn lại `+ data[i].total_amount + ` </span>
@@ -272,7 +330,11 @@ function showModalCoupon() {
                     </div>
                 </div>`;
 
-                $('.modal-coupon-area').append(content);
+                if (active) {
+                    $('#modal-coupon-area-active').append(content);
+                } else {
+                    $('#modal-coupon-area-de-active').append(content);
+                }
             }
 
             $('#modal-coupon').css('display', 'flex');

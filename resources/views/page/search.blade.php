@@ -10,6 +10,19 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('/css/page/product-cate.css') }}" />
+
+<style>
+    .only-mobile-for-body {
+        #product-category-area button {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .button-filter {
+            border: none;
+        }
+    }
+</style>
 @endsection
 
 @section('content')

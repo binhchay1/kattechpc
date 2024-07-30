@@ -321,6 +321,7 @@
                             </div>
 
                             <a onclick="showModalCoupon()" class="accept-coupon">{{ __('Chọn hoặc nhập mã') }}</a>
+                            <p class="error_msg" style="color: green"></p>
                         </div>
                     </div>
                     <div class="summary summary-area">

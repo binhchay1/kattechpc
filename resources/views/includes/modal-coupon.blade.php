@@ -14,13 +14,18 @@
                     <a type="button" class="btn-submit before-submit promo-code-cta ml-10px">{{ __('Áp dụng') }}</a>
                 </div>
                 <div>
-                    <p class="error_msg" style="color: red"></p>
+                    <p class="error_msg_modal" style="color: red"></p>
                 </div>
 
                 <hr>
 
                 <div class="modal-coupon-area">
+                    <div class="modal-coupon-area" id="modal-coupon-area-active">
 
+                    </div>
+                    <div class="modal-coupon-area" id="modal-coupon-area-de-active">
+
+                    </div>
                 </div>
 
                 <hr>

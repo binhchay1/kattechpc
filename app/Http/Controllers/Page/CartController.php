@@ -350,10 +350,12 @@ class CartController extends Controller
 
         Session::put('discount-total', $coupon->discount_amount);
         Session::put('discount-code', $coupon->code);
+        Session::put('discount-type', $coupon->type);
 
         $response = [
             'success' => __('Mã giảm giá được thêm thành công'),
-            'discount_total' => $coupon->discount_amount
+            'discount_total' => $coupon->discount_amount,
+            'discount_type' => $coupon->type
         ];
 
         return response()->json($response);
