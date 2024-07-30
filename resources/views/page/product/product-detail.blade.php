@@ -17,6 +17,18 @@
 @if(Session::has('success'))
 <p class="alert-add {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('success') }}</p>
 @endif
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+@if(Session::has('sweet-message'))
+    <script>
+     swal("Cảm ơn", "Bạn đã đánh giá thành công", "success")
+    </script>
+@endif
+
+@if(Session::has('sweet-message-comment'))
+    <script>
+        swal("Cảm ơn", "Bạn đã bình luận thành công", "success")
+    </script>
+@endif
 <div class="container">
     <section class="product-container set-background">
         <div class="img-card">
