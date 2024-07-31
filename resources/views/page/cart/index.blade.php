@@ -50,7 +50,7 @@
                             <label for="fname" class="label">{{__('Email')}}<span class="require-field">*</span></label>
                         </div>
                         <div class="col-75">
-                            <input type="text" id="fname" name="email" placeholder="{{__('Địa chỉ email')}}">
+                            <input type="text" id="fname" value="{{Auth::user()->email }}" name="email" placeholder="{{__('Địa chỉ email')}}">
                         </div>
                         @if ($errors->has('email'))
                         <span class="text-danger">{{ $errors->first('email') }}<span class="require-field">*</span></span>
@@ -73,6 +73,8 @@
                         </div>
                         <select class="form-select form-select-sm mb-3 selected-name" id="city" aria-label=".form-select-sm" name="province">
                             <option value="" selected>{{ __('Chọn tỉnh thành') }}</option>
+                            <option value="{{Auth::user()->province}}" selected>{{Auth::user()->province}}</option>
+
                         </select>
                         @if ($errors->has('province'))
                         <span class="text-danger">{{ $errors->first('province') }}</span>
@@ -84,6 +86,7 @@
                         </div>
                         <select class="form-select form-select-sm mb-3 selected-name" id="district" aria-label=".form-select-sm" name="district">
                             <option value="" selected>{{ __('Chọn quận huyện') }}</option>
+                            <option value="{{Auth::user()->district}}" selected>{{Auth::user()->district}}</option>
                         </select>
                         @if ($errors->has('district'))
                         <span class="text-danger">{{ $errors->first('district') }}</span>
@@ -95,6 +98,7 @@
                         </div>
                         <select class="form-select form-select-sm selected-name" id="ward" aria-label=".form-select-sm" name="ward">
                             <option value="" selected>{{ __('Chọn phường xã') }}</option>
+                            <option value="{{Auth::user()->ward}}" selected>{{Auth::user()->ward}}</option>
                         </select>
                         @if ($errors->has('ward'))
                         <span class="text-danger">{{ $errors->first('ward') }}</span>
