@@ -19,15 +19,15 @@
 @endif
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @if(Session::has('sweet-message'))
-    <script>
-     swal("Cảm ơn", "Bạn đã đánh giá thành công", "success")
-    </script>
+<script>
+    swal("Cảm ơn", "Bạn đã đánh giá thành công", "success")
+</script>
 @endif
 
 @if(Session::has('sweet-message-comment'))
-    <script>
-        swal("Cảm ơn", "Bạn đã bình luận thành công", "success")
-    </script>
+<script>
+    swal("Cảm ơn", "Bạn đã bình luận thành công", "success")
+</script>
 @endif
 <div class="container">
     <section class="product-container set-background">

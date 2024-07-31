@@ -72,7 +72,7 @@
                                 $post = \Illuminate\Support\Str::limit($random->title, 60) . "...";
                             }
                             ?>
-                            <h2><a class="text-tech" href="{{ route('post.detail', $random['slug']) }}">{{ $random->title }}</a></h2>
+                            <a class="text-tech" href="{{ route('post.detail', $random['slug']) }}"><h2>{{ $random->title }}</h2></a>
                         </div>
                     </div>
                     @endforeach
@@ -142,7 +142,7 @@
                     </div>
                     <div id="content-right">
                         <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
-                        <h4> {{$text}}</h4>
+                        <a class="text-tech" href="{{ route('post.detail', $post['slug']) }}"><h4> {{$text}}</h4></a>
                     </div>
                 </div>
                 @endforeach

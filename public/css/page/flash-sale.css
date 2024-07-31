@@ -132,7 +132,7 @@
 
 .buy-now-deal:hover {
     background: #0f5b9a;
-    color: #fff;
+    color: #fff !important;
 }
 
 .js-item-deal-time {

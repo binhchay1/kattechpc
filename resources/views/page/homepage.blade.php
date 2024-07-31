@@ -100,7 +100,7 @@
 </section>
 
 @if(isset($getFlashSale->flash_sale_timer))
-@if(strtotime($getFlashSale->flash_sale_timer) >= strtotime(date('Y-m-d H:i:s')))
+@if(strtotime($getFlashSale->flash_sale_timer) >= strtotime(date('Y-m-d H:i:s')) and $getFlashSale->flash_sale_list_product_id != null)
 <section class="flash-sale-banner">
     <div class="flash-sale-area">
         <div class="d-flex align-items-center justify-content-between custom-mobile-flash-sale">
@@ -169,6 +169,7 @@
 @endif
 @endif
 
+@if(count($listHotSale))
 <section class="top-sale">
     <div class="flash-sale-area">
         <div class="d-flex align-items-center justify-content-between hot-sale-mobile">
@@ -221,6 +222,7 @@
         </div>
     </div>
 </section>
+@endif
 
 <section class="category">
     <div class="d-flex align-items-center justify-content-between">
