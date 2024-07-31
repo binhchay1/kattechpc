@@ -6,16 +6,16 @@
                 <div class="xl:col-span-6">
                     <div class="">
                         <div class="" style="display: inline-grid;">
-                            <input type="file" class="border-0 bg-light pl-0" name="hot_sale_big_thumbnail" id="image9" hidden>
+                            <input type="file" class="border-0 bg-light pl-0" name="hot_sale_big_thumbnail" id="image12" hidden>
                             <div class=" choose-avatar">
                                 <div id="btnimage">
                                     @if(isset($layout->hot_sale_big_thumbnail))
-                                    <img id="showImage9" class="show-avatar" src="{{ asset($layout->hot_sale_big_thumbnail) }}" alt="avatar">
+                                    <img id="showImage12" class="show-avatar" src="{{ asset($layout->hot_sale_big_thumbnail) }}" alt="avatar">
                                     @else
-                                    <img id="showImage9" class="show-avatar" src="{{ asset('/images/layout/650x430.png') }}" alt="avatar">
+                                    <img id="showImage12" class="show-avatar" src="{{ asset('/images/layout/650x430.png') }}" alt="avatar">
                                     @endif
                                 </div>
-                                <div id="button-9">
+                                <div id="button-12">
                                     <i class="fas fa-camera btn_chooseImg"> {{ __('Chọn hình ảnh') }}</i>
                                 </div>
                             </div>

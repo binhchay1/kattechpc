@@ -2,7 +2,7 @@
 
 @section('title')
 <title>{{ __('Đăng ký') }} | Kattech PC</title>
-<script async src="https://www.google.com/recaptcha/api.js"></script>
+<script async src="https://www.google.com/recaptcha/api.js?render=explicit" async defer></script>
 @endsection
 
 @section('description', __('Đăng ký để trải nghiệm nhiều tính năng khác của chúng tôi'))

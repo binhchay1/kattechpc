@@ -83,7 +83,7 @@
                         @else
                         <div class="relative xl:col-span-2">
                             <label>{{ __('Thương hiệu') }}</label>
-                            <select id="filter-category" onchange="handleFilter($(this))" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200"  name="brand">
+                            <select id="filter-category" onchange="handleFilter($(this))" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" name="brand">
                                 <option value="all">{{ __('Tất cả') }}</option>
                                 @foreach($brandFilter as $brand)
                                 <option value="{{ $brand->id }}">{{ $brand->name }}</option>
@@ -105,15 +105,15 @@
                             <tr class="relative rounded-md bg-slate-100 dark:bg-zink-600 after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold">{{ __('Hành động') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="name">{{ __('Tên sản phẩm') }}</th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="name">{{ __('Thương hiệu') }}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="brand">{{ __('Thương hiệu') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="code">{{ __('Mã sản phẩm') }}</th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">{{ __('Ảnh sản phẩm') }}</th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="user-id">{{ __('Link Youtube') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="category">{{ __('Danh mục') }}</th>
-                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="description">{{ __('Mô tả') }}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="image">{{ __('Ảnh sản phẩm') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="price">{{ __('Giá') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="detail">{{ __('Thông số sản phẩm') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="detail">{{ __('Thông số kỹ thuật') }}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="link-youtube">{{ __('Link Youtube') }}</th>
+                                <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="description">{{ __('Mô tả') }}</th>
                                 <th class="px-3.5 py-2.5 first:pl-5 last:pr-5 font-semibold sort" data-sort="status">{{ __('Trạng thái') }}</th>
                             </tr>
                         </thead>
@@ -131,6 +131,7 @@
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 name"> {{ $product->brands->name ?? "" }}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 code">{{ $product->code }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $product->category->name ?? "" }}
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
                                     <div class="items-center gap-2" style="overflow: hidden;">
@@ -148,10 +149,6 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $product->link_youtube ?? "" }}
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $product->category->name ?? "" }}
-                                </td>
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 description">{!! Str::limit(strip_tags(html_entity_decode($product->description)), 100) !!}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 price">{{ $product->price }}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 detail">
                                     <ul class="list-disc list-inside rounded-md marker:text-red-500" style="height: 100px; overflow: hidden;">
@@ -172,6 +169,8 @@
                                         @endif
                                     </ul>
                                 </td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $product->link_youtube ? Str::limit($product->link_youtube, 50) : "" }}</td>
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 description">{!! Str::limit(strip_tags(html_entity_decode($product->description)), 100) !!}</td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5 status">
                                     @if($product->status == 'available')
                                     <span class="status px-2.5 py-0.5 inline-block text-xs font-medium rounded border bg-green-100 border-transparent text-green-500 dark:bg-green-500/20 dark:border-transparent">{{ __('Còn hàng') }}</span>
@@ -225,12 +224,12 @@
 
     const searchParams = new URLSearchParams(window.location.search);
 
-    if(searchParams.has('category')) {
+    if (searchParams.has('category')) {
         let categoryFilter = searchParams.get('category');
         $('#filter-category').val(categoryFilter);
     }
 
-    if(searchParams.has('status')) {
+    if (searchParams.has('status')) {
         let statusFilter = searchParams.get('status');
         $('#filter-status').val(statusFilter);
     }

@@ -12,6 +12,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ExportBuildPC;
 use App\Repositories\BuildPCThemeRepository;
 use App\Repositories\CategoryRepository;
+use App\Repositories\LayoutRepository;
 use Cart;
 use Cache;
 
@@ -23,19 +24,22 @@ class BuildPCController extends Controller
     private $sessionBuildPcRepository;
     private $buildPcThemeRepository;
     private $categoryRepository;
+    private $layoutRepository;
 
     public function __construct(
         ProductRepository $productRepository,
         BuildPcRepository $buildPcRepository,
         SessionBuildPCRepository $sessionBuildPcRepository,
         BuildPCThemeRepository $buildPcThemeRepository,
-        CategoryRepository $categoryRepository
+        CategoryRepository $categoryRepository,
+        LayoutRepository $layoutRepository,
     ) {
         $this->productRepository = $productRepository;
         $this->buildPcRepository = $buildPcRepository;
         $this->sessionBuildPcRepository = $sessionBuildPcRepository;
         $this->buildPcThemeRepository = $buildPcThemeRepository;
         $this->categoryRepository = $categoryRepository;
+        $this->layoutRepository = $layoutRepository;
     }
 
     public function buildPC(Request $request)
@@ -46,6 +50,7 @@ class BuildPCController extends Controller
         $menu = $this->buildPcRepository->index();
         $getSessionBuildPC = $request->session()->get('buildID');
         $theme = $this->buildPcThemeRepository->index();
+        $layout = $this->layoutRepository->getListLayout();
         $dataBuild = [];
 
         if (isset($theme[0]->youtube)) {
@@ -100,7 +105,8 @@ class BuildPCController extends Controller
         $dataPricePreSession['listArea1'] = number_format($dataPricePreSession['listArea1'], 0, ',', '.');
         $dataPricePreSession['listArea2'] = number_format($dataPricePreSession['listArea2'], 0, ',', '.');
 
-        return view('page.build-pc.build-pc', compact('listCategory', 'menu', 'dataBuild', 'dataPreSession', 'arrLinkYoutube', 'theme', 'dataPricePreSession', 'currentPrice1', 'currentPrice2'));
+        return view('page.build-pc.build-pc', compact('listCategory', 'menu',
+        'dataBuild', 'dataPreSession', 'arrLinkYoutube', 'theme', 'dataPricePreSession', 'currentPrice1', 'currentPrice2', 'layout'));
     }
 
     public function getProduct(Request $request)

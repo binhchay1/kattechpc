@@ -1381,6 +1381,11 @@ a {
     border-radius: 5px 5px 0 0;
 }
 
+.global-menu-holder .cat-1:hover .cat-title {
+    color: white;
+    font-weight: bold;
+}
+
 .global-menu-holder .item .cat-1 img {
     margin-right: 10px;
     width: 20px;

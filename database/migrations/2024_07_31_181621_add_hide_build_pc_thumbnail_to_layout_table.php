@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('layout', function (Blueprint $table) {
-            $table->string('build_pc_thumbnail')->nullable();
-            $table->string('permarklink_build_pc_thumbnail')->nullable();
+            $table->integer('hide_build_pc_thumbnail')->default(0);
         });
     }
 
@@ -23,8 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('layout', function (Blueprint $table) {
-            $table->dropColumn('build_pc_thumbnail');
-            $table->dropColumn('permarklink_build_pc_thumbnail');
+            $table->dropColumn('hide_build_pc_thumbnail');
         });
     }
 };

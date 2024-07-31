@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ __('Danh mục') }} | Kattech PC</title>
+<title>{{ $postCategory->title }} | Kattech PC</title>
 @endsection
 
 @section('description', $postCategory->description)

@@ -1,7 +1,7 @@
 <div class="modal" tabindex="-1" role="dialog" id="modal-youtube-play">
     <div class="modal-dialog" role="document" style="margin: auto;">
-        <div class="modal-content" style="width: auto">
-            <div class="modal-header">
+        <div class="modal-content in-product-page" style="width: auto">
+            <div class="modal-header in-product-page-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

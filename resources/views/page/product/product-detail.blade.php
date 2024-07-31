@@ -186,7 +186,9 @@
             @endif
 
             <div>
+                @if(isset($dataProduct->status_guarantee) and $dataProduct->status_guarantee != null)
                 <p>{{ __('Bảo hành') }}: <span style="font-weight: bold; color: blue">{{ $dataProduct->status_guarantee }}</span></p>
+                @endif
                 @if($dataProduct->status == 'available')
                 <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: green">{{ __('Còn hàng') }}</span></p>
                 @elseif($dataProduct->status == 'out of stock')

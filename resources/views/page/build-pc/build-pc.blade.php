@@ -14,6 +14,14 @@
 
 @section('content')
 <div class="build-pc-area">
+    @if(isset($layout->build_pc_thumbnail))
+    <div class="banner-deal-page">
+        <a class="item-banner">
+            <img class="image-flash-sale" src="{{ asset($layout->build_pc_thumbnail) }}" alt="banner-deal" width="100%">
+        </a>
+    </div>
+    @endif
+
     <div class="build-pc_content">
         <h1 style="font-size: 30px;line-height:36px;margin-bottom: 10px;text-align: center;font-weight:500;">{{ __('Build PC - Xây dựng cấu hình máy tính PC giá rẻ chuẩn nhất') }}</h1>
         <h2 style="font-size: 26px;line-height:30px;margin-bottom: 10px;font-weight:500; ">{{ __('Chọn linh kiện xây dựng cấu hình - Tự build PC') }} </h2>

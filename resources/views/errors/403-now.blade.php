@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-<title>{{ __('503') }}</title>
+<title>{{ __('403') }}</title>
 @endsection
 
 @section('description', __('Bạn không có quyền truy cập trong Kattech PC'))

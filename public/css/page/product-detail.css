@@ -1243,6 +1243,15 @@ tr:nth-child(even) {
     border-radius: 10px;
 }
 
+.in-product-page {
+    background-color: inherit;
+    border: none;
+}
+
+.in-product-page-header {
+    display: flex;
+}
+
 #modal-detail-warranty-package {
     display: none;
     width: 100%;

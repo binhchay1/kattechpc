@@ -40,5 +40,8 @@ class Layout extends Model
         'adv_thumbnail',
         'permarklink_adv_thumbnail',
         'hide_adv_thumbnail',
+        'build_pc_thumbnail',
+        'permarklink_build_pc_thumbnail',
+        'hide_build_pc_thumbnail',
     ];
 }
