@@ -44,7 +44,6 @@
                         </thead>
                         <tbody class="list">
                             @foreach($listComments as $review)
-                                @if($review->user->role == 'user')
                             <tr class="relative rounded-md after:absolute ltr:after:border-l-2 rtl:after:border-r-2 ltr:after:left-0 rtl:after:right-0 after:top-0 after:bottom-0 after:border-transparent [&.active]:after:border-custom-500 [&.active]:bg-slate-100 dark:[&.active]:bg-zink-600">
 
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $review->created_at->format('Y-m-d') }}
@@ -85,7 +84,6 @@
                                     </div>
                                 </div>
                             </div>
-                            @endif
                             @endforeach
                         </tbody>
                     </table>
