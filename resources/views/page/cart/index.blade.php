@@ -396,7 +396,7 @@
     const total_amount = `<?php echo $totalCart ?>`;
     var discount_code_default = '';
     <?php if (Session::has('discount-code')) { ?>
-        var discount_code_default = `<?php echo Session::get('discount-code') ?>`;
+        discount_code_default = `<?php echo Session::get('discount-code') ?>`;
     <?php } ?>
 </script>
 <script src="{{ asset('js/page/cart.js') }}"></script>

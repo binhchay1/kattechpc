@@ -80,7 +80,7 @@
 
                                 $image1 = json_decode($productSession1->image, true);
                                 @endphp
-                                <div class="contain-item-drive" id="product-item-in-list-2-{{ $productSession1->id }}">
+                                <div class="contain-item-drive" id="product-item-in-list-1-{{ $productSession1->id }}">
                                     <a target="_blank" href="{{ route('productDetail', $productSession1->slug) }}" class="d-img"><img src="{{ $image1[0] }}"></a>
                                     <span class="d-name">
                                         <a target="_blank" href="{{ route('productDetail', $productSession1->slug) }}"> {{ $productSession1->name }} </a> <br>
@@ -295,6 +295,7 @@
 <script>
     var currentPrice1 = parseInt(<?php echo $currentPrice1 ?>);
     var currentPrice2 = parseInt(<?php echo $currentPrice2 ?>);
+    var countMenuBuildPC = parseInt(<?php echo $countMenuBuildPC ?>);
 </script>
 <script src="{{ asset('/js/page/buildpc.js') }}"></script>
 @endsection

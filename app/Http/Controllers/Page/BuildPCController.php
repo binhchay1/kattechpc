@@ -100,13 +100,51 @@ class BuildPCController extends Controller
             }
         }
 
+        $countMenuBuildPC = $this->buildPcRepository->countTotalListBuildPC();
+
         $currentPrice1 = $dataPricePreSession['listArea1'];
         $currentPrice2 = $dataPricePreSession['listArea2'];
         $dataPricePreSession['listArea1'] = number_format($dataPricePreSession['listArea1'], 0, ',', '.');
         $dataPricePreSession['listArea2'] = number_format($dataPricePreSession['listArea2'], 0, ',', '.');
 
-        return view('page.build-pc.build-pc', compact('listCategory', 'menu',
-        'dataBuild', 'dataPreSession', 'arrLinkYoutube', 'theme', 'dataPricePreSession', 'currentPrice1', 'currentPrice2', 'layout'));
+        return view('page.build-pc.build-pc', compact(
+            'listCategory',
+            'menu',
+            'dataBuild',
+            'dataPreSession',
+            'arrLinkYoutube',
+            'theme',
+            'dataPricePreSession',
+            'currentPrice1',
+            'currentPrice2',
+            'layout',
+            'countMenuBuildPC'
+        ));
+    }
+
+    public function handleSessionBuildPC(Request $request)
+    {
+        $data = $request->get('data');
+
+        $getSession = $request->session()->get('buildID');
+        if (empty($getSession)) {
+            $buildID = bin2hex(date('Y-m-d H:i:s'));
+            $request->session()->put('buildID', $buildID);
+            $dataSessionBuild = [
+                'build_id' => $buildID,
+                'data_build' => json_encode($data)
+            ];
+
+            $this->sessionBuildPcRepository->create($dataSessionBuild);
+        } else {
+            $dataSessionBuild = [
+                'data_build' => json_encode($data)
+            ];
+
+            $this->sessionBuildPcRepository->updateByBuildID($getSession, $dataSessionBuild);
+        }
+
+        return 'success';
     }
 
     public function getProduct(Request $request)
@@ -231,31 +269,6 @@ class BuildPCController extends Controller
                 1,
                 ['image' => $product->image]
             );
-        }
-
-        return 'success';
-    }
-
-    public function handleSessionBuildPC(Request $request)
-    {
-        $data = $request->get('data');
-
-        $getSession = $request->session()->get('buildID');
-        if (empty($getSession)) {
-            $buildID = bin2hex(date('Y-m-d H:i:s'));
-            $request->session()->put('buildID', $buildID);
-            $dataSessionBuild = [
-                'build_id' => $buildID,
-                'data_build' => json_encode($data)
-            ];
-
-            $this->sessionBuildPcRepository->create($dataSessionBuild);
-        } else {
-            $dataSessionBuild = [
-                'data_build' => json_encode($data)
-            ];
-
-            $this->sessionBuildPcRepository->updateByBuildID($getSession, $dataSessionBuild);
         }
 
         return 'success';

@@ -363,7 +363,7 @@ class CartController extends Controller
             'discount_type' => $coupon->type,
             'discount_code' => $coupon->code,
             'discount_list_product_id' => $coupon->list_product_id,
-            'discount_list_product_id_with_price' => $listProductWithPrice
+            'discount_list_cart_product_id_with_price' => $listProductWithPrice
         ];
 
         return response()->json($response);

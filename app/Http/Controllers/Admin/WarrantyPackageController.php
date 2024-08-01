@@ -33,6 +33,7 @@ class WarrantyPackageController extends Controller
     public function storeWarrantyPackage(Request $request)
     {
         $input = $request->except(['_token']);
+        $input['price'] = str_replace('.', '', $input['price']);
 
         $this->warrantyPackageRepository->create($input);
 
@@ -48,6 +49,8 @@ class WarrantyPackageController extends Controller
     public function updateWarrantyPackage(Request $request,  $id)
     {
         $input = $request->except(['_token']);
+
+        $input['price'] = str_replace('.', '', $input['price']);
 
         $input = $this->warrantyPackageRepository->update($input, $id);
 

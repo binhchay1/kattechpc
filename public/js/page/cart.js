@@ -46,16 +46,38 @@ $(document).ready(function () {
                 if ($.isEmptyObject(data.errors)) {
                     $(".error_msg").html(data.success);
                     let discount_amount = data.discount_total;
-                    if (data.discount_type == 'percent') {
-                        let final_discount_amount = ((total_amount * discount_amount) / 100);
-                        let before_discount_amount = (total_amount - final_discount_amount);
+                    let final_discount_amount = 0;
+                    let before_discount_amount = 0;
+                    if (data.list_product_id == null) {
+                        if (data.type == 'percent') {
+                            final_discount_amount = ((total_amount * discount_amount) / 100);
+                            before_discount_amount = (total_amount - final_discount_amount);
+                        } else {
+                            final_discount_amount = discount_amount;
+                            before_discount_amount = (total_amount - final_discount_amount);
+                        }
                     } else {
-                        let final_discount_amount = ((total_amount * discount_amount) / 100);
-                        let before_discount_amount = (total_amount - final_discount_amount);
+                        if (data.type == 'percent') {
+                            let listProductInCart = JSON.parse(data.discount_list_cart_product_id_with_price);
+                            let listProduct = JSON.parse(data.discount_list_product_id);
+                            let productPrice = 0;
+                            for (let m in listProductInCart) {
+                                for (let p in listProduct) {
+                                    if (m == listProduct[p]) {
+                                        productPrice += ((parseInt(listProductInCart[m].replace('.', '')) * discount_amount) / 100);
+                                    }
+                                }
+                            }
+                            final_discount_amount = productPrice;
+                            before_discount_amount = (total_amount - final_discount_amount);
+                        } else {
+                            final_discount_amount = discount_amount;
+                            before_discount_amount = (total_amount - final_discount_amount);
+                        }
                     }
 
                     $('#total-amount').text(before_discount_amount.toString().replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.') + ' đ');
-                    $('.accept-coupon').text('Mã đã được sử dụng');
+                    $('.accept-coupon').text('Mã đã được sử dụng ' + data.discount_code);
 
                     let strAppend = `<div class="summary summary-area">
                         <div class="total-value final-value summary-total" style="margin: 0;">Giảm giá</div>
@@ -337,7 +359,7 @@ function showModalCoupon() {
                     }
                 }
 
-                if(data[i].code == discount_code_default) {
+                if (data[i].code == discount_code_default) {
                     textClass += ' checked';
                     $('.modal-button-coupon-area .after-submit').removeClass('submit-disable');
                 }

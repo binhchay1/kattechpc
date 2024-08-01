@@ -40,4 +40,9 @@ class BuildPcRepository extends BaseRepository
     {
         return $this->model->select('category_id')->where('id', $id)->first();
     }
+
+    public function countTotalListBuildPC()
+    {
+        return $this->model->count();
+    }
 }
