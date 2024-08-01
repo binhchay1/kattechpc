@@ -424,4 +424,8 @@
     .product-item .product-info .product-title {
         height: auto;
     }
+
+    .product-item .product-image {
+        height: 230px;
+    }
 }
