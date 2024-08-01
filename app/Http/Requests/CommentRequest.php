@@ -13,7 +13,7 @@ class CommentRequest extends FormRequest
     {
         return true;
     }
-    
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,12 +25,12 @@ class CommentRequest extends FormRequest
             'content' =>'required|max:500',
         ];
     }
-    
+
     public function messages()
     {
         return [
-            'content.required' => __('Nội dung không được để trống'),
-            'content.max' => __('Nội dung không vượt quá 191 kí tự'),
+            'content.required' => __('Nội dung bình luận không được để trống'),
+            'content.max' => __('Nội dung bình luận không vượt quá 191 kí tự'),
         ];
     }
 }
