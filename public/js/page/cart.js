@@ -87,6 +87,7 @@ $(document).ready(function () {
                             </div>
                         </div>
                     </div>`;
+                    $('.add-coupon-area').empty();
                     $('.add-coupon-area').append(strAppend);
                     $('#modal-coupon').css('display', 'none');
                 } else {
@@ -157,6 +158,14 @@ $(document).ready(function () {
                             </div>
                         </div>
                     </div>`;
+
+                    let strAppendAccept = `<div class="d-flex align-items-center flex-row in-section-discount">
+                                <a onclick="showModalCoupon()" class="accept-coupon">Mã đã được sử dụng `+ data.discount_code + `</a>
+                                <a class="delete-coupon">X</a>
+                            </div>`;
+
+                    $('.in-section-discount').empty();
+                    $('.in-section-discount').append(strAppendAccept);
                     $('.add-coupon-area').append(strAppend);
                     $('#modal-coupon').css('display', 'none');
                 } else {
@@ -164,6 +173,26 @@ $(document).ready(function () {
                     $(".error_msg_modal").html(resp);
                 }
             },
+        });
+    });
+
+    $('.delete-coupon').on('click', function (e) {
+        e.preventDefault();
+
+        let url = '/cancel-coupon';
+        let strAppend = `<a onclick="showModalCoupon()" class="accept-coupon">Chọn hoặc nhập mã</a>
+                            <p class="error_msg" style="color: green"></p>`;
+
+        $('.in-section-discount').empty();
+        $('.in-section-discount').append(strAppend);
+        $('.add-coupon-area').empty();
+
+        $.ajax({
+            type: "get",
+            url: url,
+            success: function () {
+                location.reload()
+            }
         });
     });
 });

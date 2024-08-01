@@ -324,13 +324,17 @@
                                 <h3 class="input-address ml-5">{{ __('Mã khuyến mãi') }}</h3>
                             </div>
                             @if(Session::has('discount-code'))
-                            <a onclick="showModalCoupon()" class="accept-coupon">{{ __('Mã đã được sử dụng ') }} {{ Session::get('discount-code') }}</a>
+                            <div class="d-flex align-items-center flex-row in-section-discount">
+                                <a onclick="showModalCoupon()" class="accept-coupon">{{ __('Mã đã được sử dụng ') }} {{ Session::get('discount-code') }}</a>
+                                <a class="delete-coupon">X</a>
+                            </div>
+
                             <p class="error_msg" style="color: green"></p>
-                            <a class="delete-coupon">X</a>
                             @else
-                            <a onclick="showModalCoupon()" class="accept-coupon">{{ __('Chọn hoặc nhập mã') }}</a>
-                            <p class="error_msg" style="color: green"></p>
-                            <a class="delete-coupon" style="display:none">X</a>
+                            <div class="d-flex align-items-center flex-row in-section-discount">
+                                <a onclick="showModalCoupon()" class="accept-coupon">{{ __('Chọn hoặc nhập mã') }}</a>
+                                <p class="error_msg" style="color: green"></p>
+                            </div>
                             @endif
                         </div>
                     </div>
@@ -344,7 +348,7 @@
                     ?>
                     <div class="summary summary-area">
                         <div class="total-value final-value summary-total" style="margin: 0;">{{__('Giảm giá')}}</div>
-                        <div class="total-value final-value get-total" style="text-transform: inherit">
+                        <div class="total-value final-value get-total discount_total" style="text-transform: inherit">
                             <div class="alert alert-danger total-discount">
                                 {{ $getDiscount }} đ
                             </div>

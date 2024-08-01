@@ -12,6 +12,6 @@ class SessionBuildPC extends Model
     protected $table = 'session_build_pc';
 
     protected $fillable = [
-        'build_id', 'data_build'
+        'build_id', 'data_build', 'data_menu'
     ];
 }

@@ -123,6 +123,7 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
         Route::get('/export-image-cart',  [CartController::class, 'exportImage'])->name('export.image.cart');
         Route::get('/print-cart',  [CartController::class, 'printCart'])->name('print.cart');
         Route::get('/get-coupons', [CartController::class, 'getCoupons'])->name('get.coupons');
+        Route::get('/cancel-coupons', [CartController::class, 'cancelCoupons'])->name('cancel.coupons');
     });
 
     Route::get('/bai-viet/{slug}', [PostPage::class, 'postDetail'])->name('post.detail');

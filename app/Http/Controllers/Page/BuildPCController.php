@@ -84,6 +84,16 @@ class BuildPCController extends Controller
             'listArea2' => 0
         ];
 
+        $dataListMenu = [
+            'listArea1' => [],
+            'listArea1' => []
+        ];
+
+
+        if (isset($getDataBySessionBuildPC->data_menu)) {
+            $dataListMenu = json_decode($getDataBySessionBuildPC->data_menu, true);
+        }
+
         if (!empty($dataBuild)) {
             foreach ($dataBuild as $key => $area) {
                 $getPrBySession = $this->productRepository->getProductByArrayID($area);
@@ -100,12 +110,34 @@ class BuildPCController extends Controller
             }
         }
 
+        $cloneDataListMenu = $dataListMenu;
+
+        foreach ($dataListMenu['listArea1'] as $keyClone => $clone) {
+            foreach ($dataPreSession['listArea1'] as $keyValue => $value) {
+                if ($clone == $value) {
+                    $cloneDataListMenu['listArea1'][$keyClone] = $value;
+                }
+            }
+        }
+
+        foreach ($dataListMenu['listArea2'] as $keyClone => $clone) {
+            foreach ($dataPreSession['listArea2'] as $keyValue => $value) {
+                if ($clone == $value) {
+                    $cloneDataListMenu['listArea2'][$keyClone] = $value;
+                }
+            }
+        }
+
+        $prepareMenu = $cloneDataListMenu;
+
         $countMenuBuildPC = $this->buildPcRepository->countTotalListBuildPC();
 
         $currentPrice1 = $dataPricePreSession['listArea1'];
         $currentPrice2 = $dataPricePreSession['listArea2'];
         $dataPricePreSession['listArea1'] = number_format($dataPricePreSession['listArea1'], 0, ',', '.');
         $dataPricePreSession['listArea2'] = number_format($dataPricePreSession['listArea2'], 0, ',', '.');
+
+        dd($prepareMenu);
 
         return view('page.build-pc.build-pc', compact(
             'listCategory',
@@ -118,27 +150,32 @@ class BuildPCController extends Controller
             'currentPrice1',
             'currentPrice2',
             'layout',
-            'countMenuBuildPC'
+            'countMenuBuildPC',
+            'dataListMenu'
         ));
     }
 
     public function handleSessionBuildPC(Request $request)
     {
+        $menu = $request->get('menu');
         $data = $request->get('data');
 
         $getSession = $request->session()->get('buildID');
+
         if (empty($getSession)) {
             $buildID = bin2hex(date('Y-m-d H:i:s'));
             $request->session()->put('buildID', $buildID);
             $dataSessionBuild = [
                 'build_id' => $buildID,
-                'data_build' => json_encode($data)
+                'data_build' => json_encode($data),
+                'data_menu' => json_encode($menu)
             ];
 
             $this->sessionBuildPcRepository->create($dataSessionBuild);
         } else {
             $dataSessionBuild = [
-                'data_build' => json_encode($data)
+                'data_build' => json_encode($data),
+                'data_menu' => json_encode($menu),
             ];
 
             $this->sessionBuildPcRepository->updateByBuildID($getSession, $dataSessionBuild);

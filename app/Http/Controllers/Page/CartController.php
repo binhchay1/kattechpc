@@ -434,4 +434,15 @@ class CartController extends Controller
 
         return response()->json($response);
     }
+
+    public function cancelCoupons()
+    {
+        session()->forget('discount-total');
+        session()->forget('discount-code');
+        session()->forget('discount-type');
+        session()->forget('discount-list_product_id');
+        session()->forget('discount-list_cart_product_id_with_price');
+
+        return 'success';
+    }
 }

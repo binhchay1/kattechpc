@@ -224,6 +224,7 @@ function priceWithCommas(price) {
 }
 
 function deleteProductHandle(button) {
+    console.log(currentArrayProduct)
     let id = button.getAttribute('data-id');
     let idArea = '#product-item-in-list-' + currentArea + '-' + id;
     let price = button.getAttribute('data-price');
@@ -232,10 +233,22 @@ function deleteProductHandle(button) {
         if (index !== -1) {
             currentArrayProduct.listArea1.splice(index, 1);
         }
+
+        for (var f in listMenuBuildPC.listArea1) {
+            if (listMenuBuildPC.listArea1[f] == id) {
+                delete listMenuBuildPC[f];
+            }
+        }
     } else {
         var index = currentArrayProduct.listArea2.indexOf(id);
         if (index !== -1) {
             currentArrayProduct.listArea2.splice(index, 1);
+        }
+
+        for (var f in listMenuBuildPC.listArea2) {
+            if (listMenuBuildPC.listArea2[f] == id) {
+                delete listMenuBuildPC[f];
+            }
         }
     }
 
@@ -258,7 +271,6 @@ function changeProductHandle(userChose) {
             $('#js-brand-filter').empty();
             renderBrandToModal(data);
             renderCountWithPrice(data);
-            renderKeywordsToModal(data);
         }
     });
 
@@ -581,7 +593,8 @@ function handleSortPrice(price) {
 function handleSessionBuild() {
     let urlSession = '/handle-session-build-pc';
     let data = {
-        data: listMenuBuildPC
+        menu: listMenuBuildPC,
+        data: currentArrayProduct
     };
     $.ajax({
         type: "POST",

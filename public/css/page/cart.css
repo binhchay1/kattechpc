@@ -181,7 +181,18 @@ aside {
 
 .error_msg_modal {
     text-align: center;
-    color: var(--color-primary);
+    color: #f3070f !important;
+}
+
+.error_msg {
+    font-weight: bold;
+}
+
+.delete-coupon {
+    margin-left: 15px;
+    background-color: inherit !important;
+    color: #f3070f !important;
+    cursor: pointer;
 }
 
 .modal-button-coupon-area {
@@ -199,6 +210,11 @@ aside {
     text-decoration: none;
     background-color: #c0c2c6;
     color: white;
+}
+
+.discount_total {
+    font-style: italic;
+    color: green;
 }
 
 .item-coupon-in-list {

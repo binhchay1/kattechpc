@@ -43,8 +43,11 @@
                 <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
             </div>
             <div class="list-drive" id="build-pc-content-list-1" style="border: solid 1px #e1e1e1;">
-                @if(array_key_exists('listArea1', $dataBuild))
+                @if(array_key_exists('listArea1', $dataListMenu))
                 @foreach($menu as $key1 => $value)
+                @if($value == 'null')
+                @continue
+                @endif
                 <div class="item-drive d-flex">
                     <div class="name-item-drive">
                         <h3 class="d-name d-name-277">{{ $key1 + 1 }}. {{ $value->name }}</h3>
@@ -131,7 +134,7 @@
                 </p>
             </div>
             <div class="list-drive" id="build-pc-content-list-2" style="border: solid 1px #e1e1e1;">
-                @if(array_key_exists('listArea2', $dataBuild))
+                @if(array_key_exists('listArea2', $dataListMenu))
                 @foreach($menu as $key2 => $value)
                 <div class="item-drive d-flex">
                     <div class="name-item-drive">
@@ -297,8 +300,8 @@
     var currentPrice2 = parseInt(<?php echo $currentPrice2 ?>);
     var countMenuBuildPC = parseInt(<?php echo $countMenuBuildPC ?>);
     var listMenuBuildPC = {
-        'listArea1' : {},
-        'listArea2' : {}
+        'listArea1': JSON.parse('<?php echo json_encode($dataListMenu['listArea1']); ?>'),
+        'listArea2': JSON.parse('<?php echo json_encode($dataListMenu['listArea2']); ?>')
     };
 </script>
 <script src="{{ asset('/js/page/buildpc.js') }}"></script>
