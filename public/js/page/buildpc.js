@@ -91,8 +91,10 @@ $(document).ready(function () {
         $('#modal-no-item-print').css('display', 'none');
     });
 
-    console.log(countMenuBuildPC);
-    console.log(currentArrayProduct);
+    for (var b = 1; b <= countMenuBuildPC; b++) {
+        listMenuBuildPC.listArea1[b] = '';
+        listMenuBuildPC.listArea2[b] = '';
+    }
 });
 
 function addToMenu(choose) {
@@ -136,8 +138,10 @@ function addToMenu(choose) {
     if ($(idSelected + ' .sum_price') != undefined) {
         if (currentArea == 1) {
             currentArrayProduct.listArea1.push(product.id.toString());
+            listMenuBuildPC.listArea1[split[2]] = product.id;
         } else {
             currentArrayProduct.listArea2.push(product.id.toString());
+            listMenuBuildPC.listArea2[split[2]] = product.id;
         }
     }
 
@@ -577,7 +581,7 @@ function handleSortPrice(price) {
 function handleSessionBuild() {
     let urlSession = '/handle-session-build-pc';
     let data = {
-        data: currentArrayProduct
+        data: listMenuBuildPC
     };
     $.ajax({
         type: "POST",

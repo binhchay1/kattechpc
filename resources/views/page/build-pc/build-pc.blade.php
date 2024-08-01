@@ -296,6 +296,10 @@
     var currentPrice1 = parseInt(<?php echo $currentPrice1 ?>);
     var currentPrice2 = parseInt(<?php echo $currentPrice2 ?>);
     var countMenuBuildPC = parseInt(<?php echo $countMenuBuildPC ?>);
+    var listMenuBuildPC = {
+        'listArea1' : {},
+        'listArea2' : {}
+    };
 </script>
 <script src="{{ asset('/js/page/buildpc.js') }}"></script>
 @endsection
