@@ -416,4 +416,12 @@
     .filter-box-group .brand-filter-list, .filter-box-group .sort-list {
         justify-content: center;
     }
+
+    .product-martket-main {
+        margin-top: 0;
+    }
+
+    .product-item .product-info .product-title {
+        height: auto;
+    }
 }

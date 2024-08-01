@@ -24,7 +24,7 @@
 
                         <div class="xl:col-span-6">
                             <label for="productNameInput" class="inline-block mb-2 text-base font-medium">{{ __('Gía') }}</label>
-                            <input type="text" id="productNameInput" name="price" value="{{ old('price') }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Gía')}}">
+                            <input type="text" onkeyup="onlyNumberAmount(this)" id="warrantyPrice" name="price" value="{{ old('price') }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Gía')}}">
                             @if ($errors->has('price'))
                             <span class="text-danger">{{ $errors->first('price') }}</span>
                             @endif
@@ -78,4 +78,18 @@
 <script src="{{ URL::asset('build/libs/dropzone/dropzone-min.js') }}"></script>
 <script src="{{ URL::asset('js/admin/eventImage.js') }}"></script>
 <script src="{{ URL::asset('build/js/pages/apps-ecommerce-product-create.init.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        if ($('#warrantyPrice').val() != null || $('#warrantyPrice').val() != '') {
+            let input = document.getElementById('warrantyPrice');
+            let v = input.value.replace(/\D+/g, '');
+            input.value = v.replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.');
+        }
+    });
+
+    function onlyNumberAmount(input) {
+        let v = input.value.replace(/\D+/g, '');
+        input.value = v.replace(/(^\d{1,3}|\d{3})(?=(?:\d{3})+(?:,|$))/g, '$1.');
+    }
+</script>
 @endpush

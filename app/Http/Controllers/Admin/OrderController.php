@@ -6,7 +6,6 @@ use App\Exports\ExportOrder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use App\Models\Order;
-use App\Repositories\OrderDetailRepository;
 use App\Repositories\OrderRepository;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -14,21 +13,13 @@ use Maatwebsite\Excel\Facades\Excel;
 class OrderController extends Controller
 {
     private $orderRepository;
-    private $orderDetailRepository;
 
     public function __construct(
         OrderRepository $orderRepository,
-        OrderDetailRepository $orderDetailRepository
-
-    )
-    {
+    ) {
         $this->orderRepository = $orderRepository;
-        $this->orderDetailRepository = $orderDetailRepository;
     }
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $listOrders = $this->orderRepository->index();
@@ -43,17 +34,11 @@ class OrderController extends Controller
         return view('admin.order.index', compact('listOrders'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function createOrder()
     {
         return view('admin.order.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function storeOrder(OrderRequest $request)
     {
         $input = $request->except(['_token']);
@@ -63,17 +48,11 @@ class OrderController extends Controller
         return redirect()->route('admin.order.index')->with('success',  __('Đơn hàng được thay đổi thành công'));
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function showOrder($id)
     {
         $this->orderRepository->show($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function editOrder($id)
     {
         $orderDetail = $this->orderRepository->show($id);
@@ -87,9 +66,6 @@ class OrderController extends Controller
         return view('admin.order.edit', compact('orderDetail', 'statusOrder'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function updateOrder(Request $request,  $id)
     {
         $input = $request->except(['_token']);
@@ -98,9 +74,6 @@ class OrderController extends Controller
         return redirect()->route('admin.order.index')->with('success', 'Đơn hàng được thay đổi thành công.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function deleteOrder($id)
     {
         $order = $this->orderRepository->destroy($id);
@@ -110,12 +83,14 @@ class OrderController extends Controller
         return back()->with('success', 'Đơn hàng được xóa thành công.');
     }
 
-    public function export(Request $request)
+    public function export()
     {
-        return Excel::download(new ExportOrder(), 'order.xlsx');
+        $orders = $this->orderRepository->getAllOrder();
+
+        return Excel::download(new ExportOrder($orders), 'order.xlsx');
     }
 
-    public function activeOrder(Request $request, $id)
+    public function activeOrder($id)
     {
         $order = Order::find($id);
         if ($order->status) {

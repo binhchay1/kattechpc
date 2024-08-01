@@ -179,7 +179,7 @@
                         @endphp
 
                         @foreach($item->keyword as $keyword)
-                        <option value="{{ $keyword }}">{{ $keyword }}</option>
+                        <option value="{{ trim($keyword) }}">{{ trim($keyword) }}</option>
                         @endforeach
                     </select>
                 </div>
