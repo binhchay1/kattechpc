@@ -214,22 +214,20 @@ class ProductController extends Controller
         );
     }
 
-    public function storeComment(CommentRequest $request)
+    public function storeComment(Request $request)
     {
-        if (!Auth::check()) {
-            return back()->withErrors([
-                'custom' => __('Bạn cần đăng nhập để bình luận!')
-            ]);
-        }
 
         $input = $request->except(['_token']);
         $input = $request->all();
-
-        $input['user_id'] = Auth::user()->id;
+        dd($input);
+        if (Auth::user()) {
+            $input['user_id'] = Auth::user()->id;
+        }
+        $input['user_id'] = "";
         $this->commentRepository->store($input);
-    
+
         Session::flash('sweet-message-comment', 'Cảm ơn bạn đã bình luận sản phẩm!');
-    
+
         return back();
     }
 
@@ -242,7 +240,7 @@ class ProductController extends Controller
 
         $input = $request->all();
         $this->ratingRepository->store($input);
-        
+
         Session::flash('sweet-message', 'Cảm ơn bạn đã đánh giá sản phẩm!');
         return back();
     }
