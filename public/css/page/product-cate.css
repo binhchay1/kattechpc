@@ -428,4 +428,8 @@
     .product-item .product-image {
         height: 230px;
     }
+
+    #content-page h1 {
+        font-size: 30px;
+    }
 }

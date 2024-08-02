@@ -43,7 +43,7 @@
                 <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
             </div>
             <div class="list-drive" id="build-pc-content-list-1" style="border: solid 1px #e1e1e1;">
-                @if(array_key_exists('listArea1', $dataListMenu))
+                @if(array_key_exists('listArea1', $prepareMenu))
                 @foreach($menu as $key1 => $value)
                 @if($value == 'null')
                 @continue
@@ -134,7 +134,7 @@
                 </p>
             </div>
             <div class="list-drive" id="build-pc-content-list-2" style="border: solid 1px #e1e1e1;">
-                @if(array_key_exists('listArea2', $dataListMenu))
+                @if(array_key_exists('listArea2', $prepareMenu))
                 @foreach($menu as $key2 => $value)
                 <div class="item-drive d-flex">
                     <div class="name-item-drive">

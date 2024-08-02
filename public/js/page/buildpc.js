@@ -6,14 +6,24 @@ var currentParam = {
     'sort': ''
 };
 var urlCurrent = location.href;
+var isMobile = false;
 
 $(document).ready(function () {
+    if (WURFL.is_mobile) {
+        isMobile = true;
+    }
+
     $(".open-selection").click(function () {
         var userChose = $(this).attr("id");
         changeProductHandle(userChose);
     });
 
     $('.close-popup').click(function () {
+        if (isMobile) {
+            $('body').css('overflow', 'auto');
+            $('#js-modal-popup').css('overflow', 'hidden');
+        }
+
         $('#js-modal-popup').hide();
     });
 
@@ -91,7 +101,7 @@ $(document).ready(function () {
         $('#modal-no-item-print').css('display', 'none');
     });
 
-    for (var b = 1; b <= countMenuBuildPC; b++) {
+    for (var b = 0; b < countMenuBuildPC; b++) {
         listMenuBuildPC.listArea1[b] = '';
         listMenuBuildPC.listArea2[b] = '';
     }
@@ -131,22 +141,27 @@ function addToMenu(choose) {
                             <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50" disabled><i>=</i>
                             <span class="sum_price">` + price + `</span>
                             <span class="btn-action_seclect show-popup_select" onclick="changeProductHandle('` + idMenu + `')"><i class="fa fa-edit edit-item"></i></span>
-                            <span class="btn-action_seclect delete_select" data-id="` + product.id + `" data-price="` + price + `" onclick="deleteProductHandle(this)"><i class="fa fa-trash remove-item"></i></span>
+                            <span class="btn-action_seclect delete_select" data-id="` + product.id + `" data-price="` + price + `" onclick="deleteProductHandle(this, '` + idMenu + `')"><i class="fa fa-trash remove-item"></i></span>
                             </div>
                             </div>`;
     $('#' + idMenu).hide();
     if ($(idSelected + ' .sum_price') != undefined) {
         if (currentArea == 1) {
             currentArrayProduct.listArea1.push(product.id.toString());
-            listMenuBuildPC.listArea1[split[2]] = product.id;
+            listMenuBuildPC.listArea1[parseInt(split[2]) - 1] = product.id;
         } else {
             currentArrayProduct.listArea2.push(product.id.toString());
-            listMenuBuildPC.listArea2[split[2]] = product.id;
+            listMenuBuildPC.listArea2[parseInt(split[2]) - 1] = product.id;
         }
     }
 
     $(idSelected).empty();
     $(idSelected).append(stringAppend);
+    if (isMobile) {
+        $('body').css('overflow', 'auto');
+        $('#js-modal-popup').css('overflow', 'hidden');
+    }
+
     $('#js-modal-popup').hide();
     countTotalPrice(price, 'plus');
     handleSessionBuild();
@@ -223,8 +238,7 @@ function priceWithCommas(price) {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-function deleteProductHandle(button) {
-    console.log(currentArrayProduct)
+function deleteProductHandle(button, idMenu) {
     let id = button.getAttribute('data-id');
     let idArea = '#product-item-in-list-' + currentArea + '-' + id;
     let price = button.getAttribute('data-price');
@@ -253,8 +267,7 @@ function deleteProductHandle(button) {
     }
 
     $(idArea).remove();
-    let idBtnAdd = '#category-js-' + id + '-' + currentArea;
-    $(idBtnAdd).show();
+    $('#' + idMenu).show();
     countTotalPrice(price, 'minus');
     handleSessionBuild();
 }
@@ -273,6 +286,11 @@ function changeProductHandle(userChose) {
             renderCountWithPrice(data);
         }
     });
+
+    if (isMobile) {
+        $('body').css('overflow', 'hidden');
+        $('#js-modal-popup').css('overflow', 'auto');
+    }
 
     $('#js-modal-popup').show();
 }

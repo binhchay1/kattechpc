@@ -1313,4 +1313,8 @@ tr:nth-child(even) {
     .nhan-xet-bar {
         margin: 0 10px 0 10px;
     }
+
+    .box-side-right {
+        margin-left: 0;
+    }
 }

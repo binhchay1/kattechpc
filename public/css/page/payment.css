@@ -178,3 +178,10 @@
     padding: 10px;
     border-radius: 10px;
 }
+
+.only-mobile-for-body {
+    #title-mobile {
+        font-size: 25px;
+        background-color: red;
+    }
+}

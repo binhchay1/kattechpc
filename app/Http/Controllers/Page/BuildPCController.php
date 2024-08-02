@@ -86,9 +86,8 @@ class BuildPCController extends Controller
 
         $dataListMenu = [
             'listArea1' => [],
-            'listArea1' => []
+            'listArea2' => []
         ];
-
 
         if (isset($getDataBySessionBuildPC->data_menu)) {
             $dataListMenu = json_decode($getDataBySessionBuildPC->data_menu, true);
@@ -114,7 +113,7 @@ class BuildPCController extends Controller
 
         foreach ($dataListMenu['listArea1'] as $keyClone => $clone) {
             foreach ($dataPreSession['listArea1'] as $keyValue => $value) {
-                if ($clone == $value) {
+                if ($clone == $value->id) {
                     $cloneDataListMenu['listArea1'][$keyClone] = $value;
                 }
             }
@@ -137,8 +136,6 @@ class BuildPCController extends Controller
         $dataPricePreSession['listArea1'] = number_format($dataPricePreSession['listArea1'], 0, ',', '.');
         $dataPricePreSession['listArea2'] = number_format($dataPricePreSession['listArea2'], 0, ',', '.');
 
-        dd($prepareMenu);
-
         return view('page.build-pc.build-pc', compact(
             'listCategory',
             'menu',
@@ -151,7 +148,8 @@ class BuildPCController extends Controller
             'currentPrice2',
             'layout',
             'countMenuBuildPC',
-            'dataListMenu'
+            'dataListMenu',
+            'prepareMenu'
         ));
     }
 
