@@ -51,6 +51,13 @@
         box-sizing: border-box;
     }
 
+    .btn-submit-comment-reply {
+        background: red;
+        padding: 10px;
+        color: white;
+        font-weight: 600;
+        border: none;
+    }
     .btn-submit-comment {
         background: red;
         padding: 10px;
@@ -557,7 +564,7 @@
 
                                     <div>
                                         <div  style="border: 0" id="submit-send">
-                                            <a class="btn-send-form-comment d-flex align-items-center justify-content-center gap-6 send-comment-pc"> <i class="fa fa-send-o" style="font-size:24px; "></i>Gửi</a>
+                                            <a class="btn-send-form-comment d-flex align-items-center justify-content-center gap-6 send-comment-pc" id="btn-send-data-comment"> <i class="fa fa-send-o" style="font-size:24px; "></i>Gửi</a>
                                         </div>
                                     </div>
                                 </div>
@@ -576,14 +583,14 @@
                                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                                           @if(auth()->user())
                                             <div class="d-flex justify-content-center align-items-center">
-                                                <input type="text" class="input-with-validator ml-10px comment-data-name" value="{{auth()->user()->name}}" name="name_user" placeholder="{{ __('Họ và tên') }}">
+                                                <input type="text" class="input-with-validator ml-10px comment-data-name" required value="{{auth()->user()->name}}" name="name_user" placeholder="{{ __('Họ và tên') }}">
                                             </div>
                                             <div>
                                                 <p class="error_msg_modal" style="color: red"></p>
                                             </div>
 
                                             <div class="d-flex justify-content-center align-items-center">
-                                                <input type="text" class="input-with-validator ml-10px comment-email"  value="{{auth()->user()->email}} name="email_user" placeholder="{{ __('Email') }}">
+                                                <input type="text" class="input-with-validator ml-10px comment-email" required  value="{{auth()->user()->email}}" name="email_user" placeholder="{{ __('Email') }}">
                                             </div>
                                             @else
                                                 <div class="d-flex justify-content-center align-items-center">
@@ -813,14 +820,17 @@
 </script>
 
     <script>
-        $(".btn-send-form-comment").click(function() {
-
+        $("#btn-send-data-comment").click(function() {
             $('#modal-coupon').css('display', 'block');
         });
 
-        $(".btn-send-form-comment-reply").click(function() {
+        $("#reply_comment_user").click(function() {
 
-            $('#modal-coupon-reply').css('display', 'block');
+            $('.user-rep-comment').css('display', 'block');
+        });
+
+        $('#modal-coupon .btn-close-comment').on('click', function () {
+            $('#modal-coupon').css('display', 'none');
         });
     </script>
 @endsection

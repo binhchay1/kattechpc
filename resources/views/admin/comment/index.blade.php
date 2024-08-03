@@ -49,7 +49,7 @@
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $review->created_at->format('Y-m-d') }}
                                 </td>
 
-                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $review->user->name }}
+                                <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $review->name_user }}
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $review->content }}
                                 </td>

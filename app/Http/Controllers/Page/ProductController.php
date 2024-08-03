@@ -216,14 +216,16 @@ class ProductController extends Controller
 
     public function storeComment(Request $request)
     {
-
         $input = $request->except(['_token']);
         $input = $request->all();
-        dd($input);
-        if (Auth::user()) {
+        if (!empty(Auth::user())) {
             $input['user_id'] = Auth::user()->id;
+
         }
-        $input['user_id'] = "";
+        else {
+            $input['user_id'] = 0;
+        }
+
         $this->commentRepository->store($input);
 
         Session::flash('sweet-message-comment', 'Cảm ơn bạn đã bình luận sản phẩm!');

@@ -852,6 +852,17 @@ tr:nth-child(even) {
     border-radius: 10px;
 }
 
+.repply-comment input {
+    border: 1px solid #d9d9d9;
+    height: 38px;
+    padding: 0 0 0 10px;
+    margin-right: 10px;
+    min-width: 250px;
+    border-radius: 5px;
+    outline: 0;
+}
+
+
 .reply_content-data {
     background: #fff;
     padding: 5px;
@@ -859,7 +870,7 @@ tr:nth-child(even) {
     line-height: 20px;
     outline: 0;
     resize: none;
-    width: 90%;
+    width: 98%;
     border: none;
     height: 90px;
     margin-bottom: 10px;
