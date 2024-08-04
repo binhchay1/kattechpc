@@ -50,28 +50,35 @@
     <div class=" top1">
         <div class="parent">
             <div class="child" id="product-poli">
-                <span class="policy-title">{{ __('DELL') }}</span>
+                <img class="image-pc" src="{{asset('/images/page/dell.png')}}">
             </div>
             <div class="child" id="product-poli">
-                <span class="policy-title">{{ __('HP') }}</span>
+                <img class="image-pc" src="{{asset('/images/page/hp.png')}}">
+
             </div>
             <div class="child" id="product-poli">
-                <span class="policy-title">{{ __('ASUS') }}</span>
+                <img class="image-pc" src="{{asset('/images/page/asus.png')}}">
+
             </div>
             <div class="child" id="product-poli">
-                <span class="policy-title">{{ __('APPLE') }}</span>
+                <img class="image-pc" src="{{asset('/images/page/msi.png')}}">
+
             </div>
             <div class="child" id="product-poli" >
-                <span class="policy-title">{{ __('SAM SUNG') }}</span>
+                <img class="image-pc" src="{{asset('/images/page/samsung.jpg')}}">
+
             </div>
             <div class="child" id="product-poli">
-                <span class="policy-title">{{ __('MSI') }}</span>
+                <img class="image-pc" src="{{asset('/images/page/apple.png')}}">
+
             </div>
             <div class="child" id="product-poli">
-                <span class="policy-title">{{ __('GIGABYTE') }}</span>
+                <img class="image-pc" src="{{asset('/images/page/gigabyte.png')}}">
+
             </div>
             <div class="child" id="product-poli">
-                <span class="policy-title">{{ __('KINGFAST') }}</span>
+                <img class="image-pc" src="{{asset('/images/page/kington.png')}}">
+
             </div>
         </div>
     </div>

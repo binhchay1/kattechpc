@@ -94,31 +94,39 @@
     <div class="row row-top1">
         <h1 class="title-top1"> {{ __('Thưong hiệu uy tín') }}</h1>
         <div class="parent">
-            <div class="child">
-                <span class="policy-title">{{ __('DELL') }}</span>
+            <div class="child" id="product-poli">
+                <img class="image-pc" src="{{asset('/images/page/dell.png')}}">
             </div>
-            <div class="child">
-                <span class="policy-title">{{ __('HP') }}</span>
+            <div class="child" id="product-poli">
+                <img class="image-pc" src="{{asset('/images/page/hp.png')}}">
+
             </div>
-            <div class="child">
-                <span class="policy-title">{{ __('ASUS') }}</span>
+            <div class="child" id="product-poli">
+                <img class="image-pc" src="{{asset('/images/page/asus.png')}}">
+
             </div>
-            <div class="child">
-                <span class="policy-title">{{ __('APPLE') }}</span>
+            <div class="child" id="product-poli">
+                <img class="image-pc" src="{{asset('/images/page/msi.png')}}">
+
             </div>
-            <div class="child">
-                <span class="policy-title">{{ __('SAM SUNG') }}</span>
+            <div class="child" id="product-poli" >
+                <img class="image-pc" src="{{asset('/images/page/samsung.jpg')}}">
+
             </div>
-            <div class="child">
-                <span class="policy-title">{{ __('MSI') }}</span>
+            <div class="child" id="product-poli">
+                <img class="image-pc" src="{{asset('/images/page/apple.png')}}">
+
             </div>
-            <div class="child">
-                <span class="policy-title">{{ __('GIGABYTE') }}</span>
+            <div class="child" id="product-poli">
+                <img class="image-pc" src="{{asset('/images/page/gigabyte.png')}}">
+
             </div>
-            <div class="child">
-                <span class="policy-title">{{ __('KINGFAST') }}</span>
+            <div class="child" id="product-poli">
+                <img class="image-pc" src="{{asset('/images/page/kington.png')}}">
+
             </div>
         </div>
+
     </div>
 
 </div>
