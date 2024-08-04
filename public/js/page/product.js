@@ -183,8 +183,15 @@ $(document).ready(function () {
         $('.swiper-button-next-product-viewed').addClass('d-none');
         $('.swiper-button-prev-product-viewed').addClass('d-none');
     }
-});
 
+    $("#btn-send-data-comment").click(function () {
+        $('#modal-coupon').css('display', 'block');
+    });
+
+    $('#modal-coupon .btn-close-comment').on('click', function () {
+        $('#modal-coupon').css('display', 'none');
+    });
+});
 
 function getImageCenter(image) {
     let src = image.src;
@@ -307,4 +314,12 @@ function buyNowHandle(aTag) {
     let baseUrl = '/cart/add-cart/' + slug + '?warranty=' + warranty;
 
     window.location.href = baseUrl;
+}
+
+function handleReply(input) {
+    let id = input.attr('id');
+    let split = id.split('_');
+    let idElement = '#user-rep-comment-' + split[3];
+
+    $(idElement).css('display', 'block');
 }

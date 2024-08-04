@@ -862,7 +862,6 @@ tr:nth-child(even) {
     outline: 0;
 }
 
-
 .reply_content-data {
     background: #fff;
     padding: 5px;
@@ -880,6 +879,9 @@ tr:nth-child(even) {
 .form-comment {
     display: flex;
     justify-content: space-between;
+    border-radius: 10px;
+    border: 1px solid silver;
+    background: #fff;
 }
 
 .btn-send-form-comment {
@@ -1284,6 +1286,75 @@ tr:nth-child(even) {
     font-weight: 700;
 }
 
+.comment-data-name {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.comment-email {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.btn-submit-comment-reply {
+    background: red;
+    padding: 10px;
+    color: white;
+    font-weight: 600;
+    border: none;
+}
+.btn-submit-comment {
+    background: red;
+    padding: 10px;
+    color: white;
+    font-weight: 600;
+    border: none;
+}
+
+.modal-button-coupon-area a:hover {
+    color: white !important;
+}
+
+.btn-close-comment {
+    background: black;
+    padding: 10px;
+    color: white;
+    font-weight: 600;
+}
+
+.modal-button-coupon-area {
+    margin-top: 10px;
+}
+
+.date-in-comment-display {
+    color: #787878;
+    font-size: 14px;
+    margin-right: 4px;
+    font-weight: 700;
+}
+
+.send-comment-in-display {
+    width: 20%;
+    display: flex;
+    align-items: center;
+}
+
+.in-modal-submit-comment {
+    width: 60%;
+    margin-top: 25%;
+    border-radius: 10px;
+}
+
 .only-mobile-for-body {
     .swiper-product-related .swiper-slide1 {
         width: 100% !important;
@@ -1327,5 +1398,16 @@ tr:nth-child(even) {
 
     .box-side-right {
         margin-left: 0;
+    }
+
+    .send-comment-in-display {
+        width: 100%;
+        margin: 10px;
+    }
+
+    .repply-comment input {
+        margin-right: 0;
+        margin-left: 5px;
+        margin-top: 10px;
     }
 }

@@ -353,3 +353,8 @@
 .right-inherit {
     right: inherit !important;
 }
+
+.align-items-center {
+    align-items: center;
+}
+

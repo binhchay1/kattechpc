@@ -29,68 +29,13 @@
     swal("Cảm ơn", "Bạn đã bình luận thành công", "success")
 </script>
 @endif
-
-<style>
-    .comment-data-name {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-    .comment-email {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-    .btn-submit-comment-reply {
-        background: red;
-        padding: 10px;
-        color: white;
-        font-weight: 600;
-        border: none;
-    }
-    .btn-submit-comment {
-        background: red;
-        padding: 10px;
-        color: white;
-        font-weight: 600;
-        border: none;
-    }
-
-    .modal-button-coupon-area a:hover {
-        color: white !important;
-    }
-
-    .btn-close-comment {
-        background: black;
-        padding: 10px;
-        color: white;
-        font-weight: 600;
-    }
-
-    .modal-button-coupon-area {
-        margin-top: 10px;
-    }
-
-</style>
 <div class="container">
     <section class="product-container set-background">
         <div class="img-card">
             <div class="image-container">
                 <img src="{{ asset($dataProduct->image[0]) }}" id="featured-image">
             </div>
-
             <div class="small-Card">
-
                 <div class="swiper d-flex align-items-center" style="min-height: auto;">
                     <div class="swiper-wrapper swiper-image">
                         @if($dataProduct->link_youtube != null)
@@ -545,11 +490,11 @@
                         </div>
                     </div>
                 </div>
-                    @if(isset($errors))
-                        @foreach ($errors->all() as $error)
-                            <div style="color: red; margin: 10px; font-size: 16px">{{ $error }}</div>
-                        @endforeach
-                    @endif
+                @if(isset($errors))
+                @foreach ($errors->all() as $error)
+                <div style="color: red; margin: 10px; font-size: 16px">{{ $error }}</div>
+                @endforeach
+                @endif
                 <div id="product-info" class="product-info feedback-form" style="background-color: #f5f5f5;">
                     <div class="box-comment">
                         <p class="title-comment font-weight-600" style="font-size: 16px">{{ __('Hỏi và đáp') }}</p>
@@ -562,9 +507,9 @@
                                         <input type="hidden" value="{{ $dataProduct->id }}" name="product_id">
                                     </div>
 
-                                    <div>
-                                        <div  style="border: 0" id="submit-send">
-                                            <a class="btn-send-form-comment d-flex align-items-center justify-content-center gap-6 send-comment-pc" id="btn-send-data-comment"> <i class="fa fa-send-o" style="font-size:24px; "></i>Gửi</a>
+                                    <div class="d-flex align-items-center">
+                                        <div style="border: 0" id="submit-send">
+                                            <a class="btn-send-form-comment d-flex align-items-center justify-content-center gap-6 send-comment-pc cursor-pointer" id="btn-send-data-comment"> <i class="fa fa-send-o" style="font-size:24px; "></i>Gửi</a>
                                         </div>
                                     </div>
                                 </div>
@@ -573,7 +518,7 @@
 
                             <div class="modal" tabindex="-1" role="dialog" id="modal-coupon">
                                 <div class="modal-dialog" role="document" style="margin: auto;">
-                                    <div class="modal-content" style=" width: 60%; margin-top: 25%">
+                                    <div class="modal-content in-modal-submit-comment">
                                         <div class="modal-header">
                                             <div class="title-header-map">
                                                 <p>{{ __('Nhập thông tin') }}</p>
@@ -581,7 +526,7 @@
                                         </div>
                                         <div class="modal-body popup-showrom-container modal-coupon-content">
                                             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                                          @if(auth()->user())
+                                            @if(auth()->user())
                                             <div class="d-flex justify-content-center align-items-center">
                                                 <input type="text" class="input-with-validator ml-10px comment-data-name" required value="{{auth()->user()->name}}" name="name_user" placeholder="{{ __('Họ và tên') }}">
                                             </div>
@@ -590,25 +535,24 @@
                                             </div>
 
                                             <div class="d-flex justify-content-center align-items-center">
-                                                <input type="text" class="input-with-validator ml-10px comment-email" required  value="{{auth()->user()->email}}" name="email_user" placeholder="{{ __('Email') }}">
+                                                <input type="text" class="input-with-validator ml-10px comment-email" required value="{{auth()->user()->email}}" name="email_user" placeholder="{{ __('Email') }}">
                                             </div>
                                             @else
-                                                <div class="d-flex justify-content-center align-items-center">
-                                                    <input type="text" class="input-with-validator ml-10px comment-data-name"  name="name_user" placeholder="{{ __('Họ và tên') }}">
-                                                </div>
-                                                <div>
-                                                    <p class="error_msg_modal" style="color: red"></p>
-                                                </div>
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <input type="text" class="input-with-validator ml-10px comment-data-name" name="name_user" placeholder="{{ __('Họ và tên') }}">
+                                            </div>
+                                            <div>
+                                                <p class="error_msg_modal" style="color: red"></p>
+                                            </div>
 
-                                                <div class="d-flex justify-content-center align-items-center">
-                                                    <input type="text" class="input-with-validator ml-10px comment-email"  name="email_user" placeholder="{{ __('Email') }}">
-                                                </div>
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <input type="text" class="input-with-validator ml-10px comment-email" name="email_user" placeholder="{{ __('Email') }}">
+                                            </div>
                                             @endif
 
-
                                             <div class="modal-button-coupon-area">
-                                                <button type="submit" class="btn-submit-comment after-submit submit-disable promo-code-cta">{{ __('Áp dụng') }}</button>
-                                                <a type="button" class="btn-close-comment ml-10px">{{ __('Đóng') }}</a>
+                                                <button type="submit" class="btn-submit-comment after-submit submit-disable promo-code-cta border-radius-10">{{ __('Áp dụng') }}</button>
+                                                <a type="button" class="btn-close-comment ml-10px border-radius-10">{{ __('Đóng') }}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -818,19 +762,4 @@
         }, 1000);
     <?php } ?>
 </script>
-
-    <script>
-        $("#btn-send-data-comment").click(function() {
-            $('#modal-coupon').css('display', 'block');
-        });
-
-        $("#reply_comment_user").click(function() {
-
-            $('.user-rep-comment').css('display', 'block');
-        });
-
-        $('#modal-coupon .btn-close-comment').on('click', function () {
-            $('#modal-coupon').css('display', 'none');
-        });
-    </script>
 @endsection

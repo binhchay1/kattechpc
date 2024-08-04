@@ -111,18 +111,19 @@ class BuildPCController extends Controller
 
         $cloneDataListMenu = $dataListMenu;
 
-        foreach ($dataListMenu['listArea1'] as $keyClone => $clone) {
-            foreach ($dataPreSession['listArea1'] as $keyValue => $value) {
-                if ($clone == $value->id) {
-                    $cloneDataListMenu['listArea1'][$keyClone] = $value;
+        foreach ($dataPreSession['listArea1'] as $keyValue1 => $value1) {
+            foreach ($dataListMenu['listArea1'] as $keyClone1 => $clone1) {
+                if ($clone1 == $value1->id) {
+                    $cloneDataListMenu['listArea1'][$keyClone1] = $value1;
                 }
             }
         }
 
-        foreach ($dataListMenu['listArea2'] as $keyClone => $clone) {
-            foreach ($dataPreSession['listArea2'] as $keyValue => $value) {
-                if ($clone == $value) {
-                    $cloneDataListMenu['listArea2'][$keyClone] = $value;
+
+        foreach ($dataPreSession['listArea2'] as $keyValue2 => $value2) {
+            foreach ($dataListMenu['listArea2'] as $keyClone2 => $clone2) {
+                if ($clone == $value2->id) {
+                    $cloneDataListMenu['listArea2'][$keyClone2] = $value2;
                 }
             }
         }
@@ -135,6 +136,8 @@ class BuildPCController extends Controller
         $currentPrice2 = $dataPricePreSession['listArea2'];
         $dataPricePreSession['listArea1'] = number_format($dataPricePreSession['listArea1'], 0, ',', '.');
         $dataPricePreSession['listArea2'] = number_format($dataPricePreSession['listArea2'], 0, ',', '.');
+
+        // dd($dataPreSession);
 
         return view('page.build-pc.build-pc', compact(
             'listCategory',

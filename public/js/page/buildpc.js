@@ -249,8 +249,8 @@ function deleteProductHandle(button, idMenu) {
         }
 
         for (var f in listMenuBuildPC.listArea1) {
-            if (listMenuBuildPC.listArea1[f] == id) {
-                delete listMenuBuildPC[f];
+            if (listMenuBuildPC.listArea1[f] == parseInt(id)) {
+                delete listMenuBuildPC.listArea1[f];
             }
         }
     } else {
@@ -261,7 +261,7 @@ function deleteProductHandle(button, idMenu) {
 
         for (var f in listMenuBuildPC.listArea2) {
             if (listMenuBuildPC.listArea2[f] == id) {
-                delete listMenuBuildPC[f];
+                delete listMenuBuildPC.listArea2[f];
             }
         }
     }
