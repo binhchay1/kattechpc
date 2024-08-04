@@ -37,12 +37,15 @@
 
     <div class="row top">
         <div id="condition">
+            <div style="padding: 10px">
+
             <h2>{{ __('1. TIẾP NHẬN YÊU CẦU') }}</h2>
             <p class="policy-title">{{ __('● Cách 1: Gọi điện thoại đến hotline: 1900 1903') }}</p>
-            <p class="policy-title">{{ __('● Cách 2: Gửi Email về địa chỉ: dichvukhachhang@kattech.vn') }}</p>
-            <p class="policy-title">{{ __('● Cách 3: Gửi tin nhắn tới Facebook hoặc Website: kattech.vn') }}</p>
+            <p class="policy-title">{{ __('● Cách 2: Gửi Email về địa chỉ: dichvukhachhang@kattech.vn') }}</p><p class="policy-title">{{ __('● Cách 3: Gửi tin nhắn tới Facebook hoặc Website: kattech.vn') }}</p>
+            </div>
         </div>
         <div  id="condition2">
+            <div style="padding: 10px">
             <h2>{{__('2. PHÂN TÍCH YÊU CẦU')}}</h2>
             <p class="policy-title">{{ __('1. Đối với các khiếu nại trực tiếp hoặc qua điện thoại mà có đủ thông tin, có thể giải quyết được ngay: trả lời khiếu nại khách hàng ngay.') }}</p>
             <p class="policy-title">{{ __('2. Đối với khiếu nại chưa đủ thông tin hoặc không thể giải quyết được ngay thì thực hiện:') }}</p>
@@ -50,17 +53,22 @@
             <p class="policy-title">{{ __('● Liên hệ tới các bộ phận liên quan để làm rõ khiếu nại.') }}</p>
             <p class="policy-title">{{ __('● Đề xuất các phương án giải quyết khiếu nại.') }}</p>
         </div>
+        </div>
     </div>
 
     <div class="row top promotion">
         <div id="condition">
+            <div style="padding: 10px">
             <h2>{{ __('3. TRẢ LỜI, GIẢI QUYẾT YÊU CẦU') }}</h2>
             <p class="policy-title">{{ __('1. Liên hệ lại với khách hàng để trả lời khiếu nại và đề xuất các phương án giải quyết.') }}</p>
             <p class="policy-title">{{ __('2. Giải quyết khiếu nại theo hướng đề xuất đã được khách hàng yêu cầu.') }}</p>
         </div>
+        </div>
         <div  id="condition2">
+            <div style="padding: 10px">
             <h2>{{ __('4. KẾT THÚC YÊU CẦU') }}</h2>
             <p class="policy-title">{{ __('Lưu lại thông tin khiếu nại để tổng hợp và rút kinh nghiệm.') }}</p>
+        </div>
         </div>
     </div>
 </div>
