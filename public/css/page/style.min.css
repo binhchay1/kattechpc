@@ -1929,6 +1929,15 @@ a {
     border-radius: 10px;
 }
 
+@media screen and (max-width: 600px) {
+
+    #modal-coupon .modal-dialog {
+        width: 390px;
+        margin: auto !important;
+        border-radius: 10px;
+    }
+}
+
 #map {
     width: 800px;
     height: 400px;

@@ -13,7 +13,7 @@ class  OrderRepository extends BaseRepository
 
     public function index()
     {
-        return $this->model->with('orderDetails')->orderBy('created_at', 'DESC')->paginate(10);
+        return $this->model->with('orderDetails')->orderBy('order_date', 'DESC')->paginate(10);
     }
 
     public function create($input)

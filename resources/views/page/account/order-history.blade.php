@@ -26,7 +26,11 @@
                     <div class="item-total heading">{{ __('Thành tiền') }}</div>
                     <div class="item-action heading">{{ __('Hành động') }}</div>
                 </div>
-                @foreach($dataUser->orders as $orderHistory)
+                <?php
+                // Convert the collection to an array and sort it by 'created_at'
+                $sortedPosts = $dataUser->orders->sortByDesc('order_date');
+                ?>
+                @foreach($sortedPosts as $orderHistory)
                 <div class="basket-product">
                     <div class="item-code">{{ $orderHistory->order_code }}</div>
                     <div class="item-date">{{date("d/m/Y", strtotime($orderHistory->order_date))  }}</div>

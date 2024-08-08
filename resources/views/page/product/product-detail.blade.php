@@ -507,10 +507,10 @@
                                         <input type="hidden" value="{{ $dataProduct->id }}" name="product_id">
                                     </div>
 
-                                    <div class="d-flex align-items-center">
-                                        <div style="border: 0" id="submit-send">
-                                            <a class="btn-send-form-comment d-flex align-items-center justify-content-center gap-6 send-comment-pc cursor-pointer" id="btn-send-data-comment"> <i class="fa fa-send-o" style="font-size:24px; "></i>Gửi</a>
-                                        </div>
+                                </div>
+                                <div class="d-flex align-items-center" style="margin-top: 10px">
+                                    <div style="border: 0" id="submit-send">
+                                        <a class="btn-send-form-comment d-flex align-items-center justify-content-center gap-6 send-comment-pc cursor-pointer" id="btn-send-data-comment"> <i class="fa fa-send-o" style="font-size:24px; "></i>Gửi</a>
                                     </div>
                                 </div>
                             </div>

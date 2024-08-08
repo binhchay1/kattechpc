@@ -15,7 +15,7 @@ class OrderController extends Controller
     private $orderRepository;
 
     public function __construct(
-        OrderRepository $orderRepository,
+        OrderRepository $orderRepository
     ) {
         $this->orderRepository = $orderRepository;
     }
