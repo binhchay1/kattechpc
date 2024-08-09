@@ -372,7 +372,7 @@
                     </div>
                     @endif
                     <div class="summary-checkout">
-                        <button class="checkout-cta">{{ __('Đặt hàng') }}</button>
+                        <button class="checkout-cta" style="background-color: #f3070f; font-weight: 600">{{ __('Đặt hàng') }}</button>
                         <div class="d-flex action-cart">
                             <a onclick="downloadCartExcel()" target="_blank">{{ __('Tải file excel') }}</a>
                             <a onclick="downloadCartImage()" target="_blank">{{ __('Tải ảnh báo giá') }}</a>
