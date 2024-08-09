@@ -26,14 +26,16 @@ class RatingController extends Controller
 
         $products = [];
         foreach ($listRatings as $item) {
-            if (array_key_exists($item->product->code, $products)) {
-                $products[$item->product->code]['name'] = $item->product->name;
-                $products[$item->product->code]['total_rating'] = $products[$item->product->code]['total_rating'] + $item->rating_product;
-                $products[$item->product->code]['total_vote'] = $products[$item->product->code]['total_vote'] + 1;
-            } else {
-                $products[$item->product->code]['name'] = $item->product->name;
-                $products[$item->product->code]['total_rating'] = $item->rating_product;
-                $products[$item->product->code]['total_vote'] = 1;
+            if (isset($item->product->code)) {
+                if (array_key_exists($item->product->code, $products)) {
+                    $products[$item->product->code]['name'] = $item->product->name;
+                    $products[$item->product->code]['total_rating'] = $products[$item->product->code]['total_rating'] + $item->rating_product;
+                    $products[$item->product->code]['total_vote'] = $products[$item->product->code]['total_vote'] + 1;
+                } else {
+                    $products[$item->product->code]['name'] = $item->product->name;
+                    $products[$item->product->code]['total_rating'] = $item->rating_product;
+                    $products[$item->product->code]['total_vote'] = 1;
+                }
             }
         }
 

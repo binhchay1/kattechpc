@@ -55,7 +55,7 @@
                                 </td>
 
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">
-                                   {{ $review->product->name }}
+                                   {{ $review->product->name ?? null }}
                                 </td>
 
                                 <td>
