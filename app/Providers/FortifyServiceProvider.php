@@ -83,11 +83,7 @@ class FortifyServiceProvider extends ServiceProvider
             public function toResponse($request)
             {
                 if(Auth::user()->lock_user == null) {
-                    if (Auth::user()->role == Role::ADMIN
-                        or Auth::user()->role == Role::STAFF ) {
-                        return redirect()->route('admin.dashboard');
-                    }
-                    else if(Auth::user()->role == Role::USER ) {
+                    if(Auth::user()->role == Role::USER ) {
                         return redirect()->route('home');
                     }
                     return redirect('/419');

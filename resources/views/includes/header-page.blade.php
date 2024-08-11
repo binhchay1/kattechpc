@@ -57,6 +57,14 @@
                     <a href="/login" class="sep-item-link" target="_blank"><i class="fa fa-home"></i> {{ __('Đăng nhập') }}</a>
                 </div>
                 @endif
+
+                @if(auth()->check())
+                @if(auth()->user()->role == 'admin' || auth()->user()->role == 'staff')
+                <div class="ml-15px">
+                    <a href="{{ route('admin.dashboard') }}" class="sep-item-link" target="_blank"><i class="fa fa-chart-line"></i> {{ __('Dashboard') }}</a>
+                </div>
+                @endif
+                @endif
             </div>
         </div>
     </div>

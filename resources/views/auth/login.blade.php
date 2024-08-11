@@ -77,7 +77,9 @@
                         Google
                     </a>
                 </div>
-
+                <div>
+                    <a href="{{route('staff.login')}}" style="font-size: 15px">{{ __('Đăng nhập với nhân viên?') }}</a>
+                </div>
                 <div class="w-full text-center p-t-55">
                     <span class="txt2">
                         {{ __('Bạn chưa có tài khoản') }}

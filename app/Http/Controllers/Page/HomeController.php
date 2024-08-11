@@ -6,6 +6,7 @@ use App\Enums\Role;
 use App\Enums\Utility;
 use App\Http\Requests\LoginRequest;
 use App\Repositories\ProductRepository;
+use GPBMetadata\Google\Api\Auth;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
@@ -473,6 +474,7 @@ class HomeController extends Controller
 
         if (\Auth::attempt($credentials)) {
             $request->session()->put('email', $credentials['email']);
+            if(\Auth::user()->lock_user == null) {
 
             if (\Auth::user()->role == Role::STAFF || \Auth::user()->role == Role::ADMIN) {
                 return redirect()->route('admin.dashboard');
@@ -485,6 +487,10 @@ class HomeController extends Controller
                 return redirect()->route('staff.login')->withErrors([
                     'custom' => __('Bạn không có quyền truy cập!')
                 ]);
+            }
+
+            } else {
+                return redirect('/lock-account');
             }
         } else {
             return back()->withErrors([

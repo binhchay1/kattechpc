@@ -28,6 +28,23 @@
                 </button>
 
                 <div class="flex gap-3 ms-auto">
+                    <div class="relative flex items-center h-header">
+                        <p style=" font-weight: bold;">{{ __('Trang chủ : ') }}</p>
+                        <div class="relative flex items-center h-header">
+                            <a href="{{route("home")}}">
+
+                            <button type="button"
+                            >
+                                <i data-lucide="gallery-thumbnails" class="inline-block w-5 h-5 stroke-1 fill-slate-100
+                             group-data-[topbar=dark]:fill-topbar-item-bg-hover-dark group-data-
+                             [topbar=brand]:fill-topbar-item-bg-hover-brand"></i>
+                            </button>
+                            </a>
+
+                        </div>
+                    </div>
+
+
 
                     <div class="relative flex items-center h-header">
                         <p style="margin-right: 15px; font-weight: bold;">{{ __('Chế độ bảo trì : ') }}</p>
@@ -80,7 +97,9 @@
                                 <img src="{{Auth::user()->profile_photo_path}}" alt="" class="w-[37.5px] h-[37.5px] rounded-full">
                             </div>
                             @else
-                            <i data-lucide="user-2" class="inline-block w-5 h-5 stroke-1 fill-slate-100 group-data-[topbar=dark]:fill-topbar-item-bg-hover-dark group-data-[topbar=brand]:fill-topbar-item-bg-hover-brand"></i>
+                            <i data-lucide="user-2" class="inline-block w-5 h-5 stroke-1 fill-slate-100
+                             group-data-[topbar=dark]:fill-topbar-item-bg-hover-dark group-data-
+                             [topbar=brand]:fill-topbar-item-bg-hover-brand"></i>
                             @endif
                         </button>
                         <div class="absolute z-50 hidden p-4 ltr:text-left rtl:text-right bg-white rounded-md shadow-md !top-4 dropdown-menu min-w-[14rem] dark:bg-zink-600" aria-labelledby="dropdownMenuButton">
