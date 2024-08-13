@@ -45,7 +45,7 @@
             <div class="list-drive" id="build-pc-content-list-1" style="border: solid 1px #e1e1e1;">
                 @if(array_key_exists('listArea1', $prepareMenu))
                 @foreach($menu as $key1 => $value)
-                @if($prepareMenu['listArea1'][$key1] == null)
+                @if(!array_key_exists($key1, $prepareMenu['listArea1']))
                 <div class="item-drive d-flex">
                     <div class="name-item-drive">
                         <h3 class="d-name d-name-277">{{ $key1 + 1 }}. {{ $value->name }}</h3>
@@ -146,7 +146,7 @@
             <div class="list-drive" id="build-pc-content-list-2" style="border: solid 1px #e1e1e1;">
                 @if(array_key_exists('listArea2', $prepareMenu))
                 @foreach($menu as $key2 => $value)
-                @if($prepareMenu['listArea2'][$key2] == null)
+                @if(!array_key_exists($key2, $prepareMenu['listArea2']))
                 <div class="item-drive d-flex">
                     <div class="name-item-drive">
                         <h3 class="d-name d-name-277">{{ $key2 + 1 }}. {{ $value->name }}</h3>
@@ -178,6 +178,7 @@
                         <div id="category-js-selected-{{ $value->id }}-2" class="js-item-row category-selected-row">
                             @php
                             $productSession2 = $prepareMenu['listArea2'][$key2];
+                            dd($prepareMenu);
                             if($productSession2->new_price != null) {
                             $price2 = $productSession2->new_price;
                             } else {

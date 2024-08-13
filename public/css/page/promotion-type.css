@@ -360,4 +360,21 @@
     .container-promotion {
         width: 100%;
     }
+
+    #content-page img {
+        width: 100%;
+    }
+
+    .saleoff-heading {
+        display: none !important;
+    }
+
+    .post-data {
+        padding: 0;
+    }
+
+    .post-data .column {
+        width: 100%;
+        float: inherit;
+    }
 }
