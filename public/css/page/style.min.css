@@ -600,6 +600,8 @@ a:hover {
     transition-property: transform;
     box-sizing: content-box;
     transition-duration: 1000ms;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .swiper-product .swiper-slide {

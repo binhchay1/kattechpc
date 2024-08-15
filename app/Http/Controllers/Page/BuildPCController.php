@@ -109,35 +109,12 @@ class BuildPCController extends Controller
             }
         }
 
-        $cloneDataListMenu = $dataListMenu;
-
-        foreach ($dataPreSession['listArea1'] as $keyValue1 => $value1) {
-            foreach ($dataListMenu['listArea1'] as $keyClone1 => $clone1) {
-                if ($clone1 == $value1->id) {
-                    $cloneDataListMenu['listArea1'][$keyClone1] = $value1;
-                }
-            }
-        }
-
-
-        foreach ($dataPreSession['listArea2'] as $keyValue2 => $value2) {
-            foreach ($dataListMenu['listArea2'] as $keyClone2 => $clone2) {
-                if ($clone == $value2->id) {
-                    $cloneDataListMenu['listArea2'][$keyClone2] = $value2;
-                }
-            }
-        }
-
-        $prepareMenu = $cloneDataListMenu;
-
         $countMenuBuildPC = $this->buildPcRepository->countTotalListBuildPC();
 
         $currentPrice1 = $dataPricePreSession['listArea1'];
         $currentPrice2 = $dataPricePreSession['listArea2'];
         $dataPricePreSession['listArea1'] = number_format($dataPricePreSession['listArea1'], 0, ',', '.');
         $dataPricePreSession['listArea2'] = number_format($dataPricePreSession['listArea2'], 0, ',', '.');
-
-        // dd($dataPreSession);
 
         return view('page.build-pc.build-pc', compact(
             'listCategory',
@@ -152,7 +129,6 @@ class BuildPCController extends Controller
             'layout',
             'countMenuBuildPC',
             'dataListMenu',
-            'prepareMenu'
         ));
     }
 
