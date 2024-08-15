@@ -230,8 +230,8 @@
                 <div class="basket-labels" id="cart-basket">
                     <ul>
                         <li class="item item-heading">{{ __('Sản phẩm') }}</li>
-                        <li class="quantity item-quan">{{ __('Số lượng') }}</li>
-                        <li class="subtotal ">{{ __('Thành tiền') }}</li>
+                        <li class="quantity item-quan" style="font-weight: 700">{{ __('Số lượng') }}</li>
+                        <li class="subtotal " style="font-weight: 700">{{ __('Thành tiền') }}</li>
                     </ul>
                 </div>
 
@@ -244,7 +244,7 @@
                                 <img src="{{ asset($image[0]) }}" alt="Placholder Image 2" class="product-frame">
                             </div>
                             <div class="product-details">
-                                <h1><strong><span class="item-quantity"></span> {{ $product->name }}</strong></h1>
+                                <span class="item-quantity" style="font-family: 'SF Pro Display', sans-serif;">{{ $product->name }}</span>
                             </div>
                         </div>
 
@@ -295,7 +295,7 @@
                                 </svg>
                                 <h3 class="input-address ml-5">{{__('Hình thức thanh toán')}}</h3>
                             </div>
-                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" checked disabled>{{__('Thanh toán sau khi nhận hàng')}}<br>
+                            <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" checked disabled><span>{{__('Thanh toán sau khi nhận hàng')}}</span><br>
                         </div>
 
                         <div class="basket-module" id="add_discount">
@@ -339,7 +339,7 @@
                         </div>
                     </div>
                     <div class="summary summary-area">
-                        <div class="input-address summary-total-items total-title">{{ __('Tổng cộng') }} </div>
+                        <div class="input-address summary-total-items total-title">{{ __('Tổng tiền') }} </div>
                     </div>
                     @if(Session::has('discount-total'))
                     <?php $getDiscount = Session::get('discount-total');
@@ -355,25 +355,25 @@
                         </div>
                     </div>
                     <div class="summary-total summary-area">
-                        <div class="total-title">{{ __('Thành tiền') }}</div>
+                        <div class="total-title" style="font-size: 16px; font-weight: 0">{{ __('Thành tiền') }}</div>
                         <?php $money = $totalCart - $disCountInt;
                         ?>
-                        <div class="total-value final-value get-total" id="total-amount">{{number_format($money, 0, '.', '.') }} đ
+                        <div class="total-value final-value get-total" id="total-amount" style=" font-size: 16px;">{{number_format($money, 0, '.', '.') }} đ
                             <input hidden name="total_money" value="{{ $money }}">
                         </div>
                     </div>
                     @else
                     <div class="add-coupon-area"></div>
                     <div class="summary-total summary-area">
-                        <div class="total-title">{{ __('Thành tiền') }}</div>
-                        <div class="total-value final-value get-total" id="total-amount">{{ number_format($totalCart, 0, '.', '.') }} đ
+                        <div class="total-title"  style="font-size: 16px; font-weight: 0">{{ __('Thành tiền') }}</div>
+                        <div class="total-value final-value get-total" id="total-amount" style="    font-size: 19px;">{{ number_format($totalCart, 0, '.', '.') }} đ
                             <input hidden name="total_money" value="{{ $totalCart }}">
                         </div>
                     </div>
                     @endif
                     <div class="summary-checkout">
                         <button class="checkout-cta" style="background-color: #f3070f; font-weight: 600">{{ __('Đặt hàng') }}</button>
-                        <div class="d-flex action-cart">
+                        <div class="d-flex action-cart" id="cart-exel">
                             <a onclick="downloadCartExcel()" target="_blank">{{ __('Tải file excel') }}</a>
                             <a onclick="downloadCartImage()" target="_blank">{{ __('Tải ảnh báo giá') }}</a>
                             <a onclick="printCart()" target="_blank">{{ __('In báo giá') }}</a>

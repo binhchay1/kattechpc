@@ -590,8 +590,9 @@ aside {
 }
 
 .get-total {
-    color: red;
+    color: #e31223;
     font-weight: 700;
+    font-family: 'SF Pro Display', sans-serif;
 }
 
 .delete {
@@ -712,6 +713,19 @@ textarea {
     display: block;
     text-align: center;
     cursor: pointer;
+}
+
+#cart-exel  a:hover {
+    background-color: #0a76e4 !important;
+    color: white  !important;
+
+}
+
+#cart-exel  a {
+    background-color: white !important;
+    color: #0a76e4 !important;
+    border: 1px solid #0a76e4 !important;
+    font-weight: 600;
 }
 
 .action-cart a:hover {
