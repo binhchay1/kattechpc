@@ -2,28 +2,53 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\Utility;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Models\Category;
 use App\Repositories\CategoryRepository;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Cache;
 
 class CategoryProductController extends Controller
 {
     private $categoryRepository;
+    private $utility;
+
 
     public function __construct(
-        CategoryRepository $categoryRepository
+        CategoryRepository $categoryRepository,
+        Utility $utility
+
     ) {
+        $this->utility = $utility;
         $this->categoryRepository = $categoryRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $getStatus = $request->get('status');
+        $getSearchName = $request->get('s');
+
         $listCategory = $this->categoryRepository->getListWithSortParent();
 
+        if (isset($getStatus)) {
+            if ($getStatus != 'all') {
+                $listCategory = $listCategory->where('status', $getStatus);
+            }
+        }
+
+        if (isset($getSearchName)) {
+            if ($getSearchName != '') {
+                $listCategory = $listCategory->filter(function ($item) use ($getSearchName) {
+                    return strpos($item->name, $getSearchName) !== false;
+                });
+            }
+        }
+
+        $listCategory = $this->utility->paginate($listCategory);
         return view('admin.category-product.index', compact('listCategory'));
     }
 
