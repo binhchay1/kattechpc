@@ -17,11 +17,36 @@
                 </div>
             </div>
             <div class="!py-3.5 card-body border-y border-dashed border-slate-200 dark:border-zink-500">
-                <form action="#!">
+                <form action="{{ route('admin.post.index') }}" method="GET">
                     <div class="grid grid-cols-1 gap-5 xl:grid-cols-12">
                         <div class="relative xl:col-span-2">
-                            <input type="text" id="myInput" onkeyup="myFunction()" class="ltr:pl-8 rtl:pr-8  form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Tìm kiếm')}}" autocomplete="off">
-                            <i data-lucide="search" class="inline-block size-4 absolute ltr:left-2.5 rtl:right-2.5 top-2.5 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-600"></i>
+                            <label>{{ __('Tên') }}</label>
+                            <input name="s" type="text" class="ltr:pl-8 rtl:pr-8 form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{__('Tìm kiếm')}}" autocomplete="off">
+                            <i data-lucide="search" class="inline-block size-4 absolute ltr:left-2.5 rtl:right-2.5 top-2.5 text-slate-500 dark:text-zink-200 fill-slate-100 dark:fill-zink-600" style="top: 32px;"></i>
+                        </div>
+                        @if(array_key_exists('category', $_GET))
+                            <div class="relative xl:col-span-2">
+                                <label>{{ __('Danh mục') }}</label>
+                                <select id="filter-category" onchange="handleFilter($(this))" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false name="category">
+                                    <option value="all">{{ __('Tất cả') }}</option>
+                                    @foreach($categoryFilter as $category)
+                                        <option value="{{ $category->id }}" {{ $category->id == $_GET['category'] ? 'selected' : ''  }}>{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @else
+                            <div class="relative xl:col-span-2">
+                                <label>{{ __('Danh mục') }}</label>
+                                <select id="filter-category" onchange="handleFilter($(this))" class="form-input border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false name="category">
+                                    <option value="all">{{ __('Tất cả') }}</option>
+                                    @foreach($categoryFilter as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endif
+                        <div class="relative xl:col-span-2" style="margin-top: 20px;">
+                            <button class="text-white bg-red-500 border-red-500 btn hover:text-white hover:bg-red-600 hover:border-red-600 focus:text-white focus:bg-red-600 focus:border-red-600 focus:ring focus:ring-red-100 active:text-white active:bg-red-600 active:border-red-600 active:ring active:ring-red-100 dark:ring-custom-400/20" type="submit">{{ __('Tìm kiếm') }}</button>
                         </div>
                     </div>
                 </form>
@@ -116,5 +141,12 @@
     setTimeout(function() {
         $('.alert-block').remove();
     }, 5000);
+
+    const searchParams = new URLSearchParams(window.location.search);
+
+    if (searchParams.has('category')) {
+        let categoryFilter = searchParams.get('category');
+        $('#filter-category').val(categoryFilter);
+    }
 </script>
 @endpush

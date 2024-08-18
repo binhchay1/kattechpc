@@ -12,11 +12,16 @@ class PostRepository extends BaseRepository
         return Post::class;
     }
 
+    public function getListPostWithFilter()
+    {
+        return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->get();
+    }
+
     public function index()
     {
         return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->paginate(10);
     }
-    
+
     public function getPostLimit()
     {
         return $this->model->with('user', 'category')->orderBy('created_at', 'DESC')->get()->take(6);
