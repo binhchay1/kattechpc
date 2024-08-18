@@ -43,9 +43,8 @@
                 <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
             </div>
             <div class="list-drive" id="build-pc-content-list-1" style="border: solid 1px #e1e1e1;">
-                @if(array_key_exists('listArea1', $prepareMenu))
                 @foreach($menu as $key1 => $value)
-                @if(!array_key_exists($key1, $prepareMenu['listArea1']))
+                @if(!array_key_exists($key1, $menu))
                 <div class="item-drive d-flex">
                     <div class="name-item-drive">
                         <h3 class="d-name d-name-277">{{ $key1 + 1 }}. {{ $value->name }}</h3>
@@ -113,25 +112,6 @@
                 </div>
                 @endif
                 @endforeach
-                @else
-                @foreach($menu as $key => $value)
-                <div class="item-drive d-flex">
-                    <div class="name-item-drive">
-                        <h3 class="d-name d-name-277">{{ $key + 1 }}. {{ $value->name }}</h3>
-                        @if(isset($value->offers))
-                        <div class="d-flex">
-                            <i class="fa fa-gift"></i>
-                            <h5 class="offers-build-pc">{{ $value->offers }}</h5>
-                        </div>
-                        @endif
-                    </div>
-                    <div class="drive-checked" style="margin-left:0;">
-                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-1"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
-                        <div id="category-js-selected-{{ $value->id }}-1" class="js-item-row category-selected-row"></div>
-                    </div>
-                </div>
-                @endforeach
-                @endif
             </div>
             <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataPricePreSession['listArea1'] }}</span></p>
         </div>
@@ -144,7 +124,6 @@
                 <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
             </div>
             <div class="list-drive" id="build-pc-content-list-2" style="border: solid 1px #e1e1e1;">
-                @if(array_key_exists('listArea2', $prepareMenu))
                 @foreach($menu as $key2 => $value)
                 @if(!array_key_exists($key2, $prepareMenu['listArea2']))
                 <div class="item-drive d-flex">
@@ -215,25 +194,6 @@
                 </div>
                 @endif
                 @endforeach
-                @else
-                @foreach($menu as $key2 => $value)
-                <div class="item-drive d-flex">
-                    <div class="name-item-drive">
-                        <h3 class="d-name d-name-277">{{ $key2 + 1 }}. {{ $value->name }}</h3>
-                        @if(isset($value->offers))
-                        <div class="d-flex">
-                            <i class="fa fa-gift"></i>
-                            <h5 class="offers-build-pc">{{ $value->offers }}</h5>
-                        </div>
-                        @endif
-                    </div>
-                    <div class="drive-checked" style="margin-left:0;">
-                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-2"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
-                        <div id="category-js-selected-{{ $value->id }}-2" class="js-item-row category-selected-row"></div>
-                    </div>
-                </div>
-                @endforeach
-                @endif
             </div>
             <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataPricePreSession['listArea1'] }}</span></p>
         </div>

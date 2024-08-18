@@ -29,7 +29,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-            'g-recaptcha-response' => ['required', new ReCaptcha]
+            // 'g-recaptcha-response' => ['required', new ReCaptcha]
         ], [
             'name.required' => 'Tên không được để trống.',
             'name.string' => 'Tên không đúng định dạng.',
@@ -42,7 +42,7 @@ class CreateNewUser implements CreatesNewUsers
             'password.string' => 'Mật khẩu không đúng định dạng.',
             'password.required' => 'Mật khẩu không được để trống.',
             'password.confirmed' => 'Xác nhận mật khẩu không đúng.',
-            'g-recaptcha-response.required' => 'Cần xác nhận recaptcha.',
+            // 'g-recaptcha-response.required' => 'Cần xác nhận recaptcha.',
         ])->validate();
 
         return DB::transaction(function () use ($input) {

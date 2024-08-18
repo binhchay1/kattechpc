@@ -51,7 +51,8 @@ class BuildPCController extends Controller
         $getSessionBuildPC = $request->session()->get('buildID');
         $theme = $this->buildPcThemeRepository->index();
         $layout = $this->layoutRepository->getListLayout();
-        $dataBuild = [];
+
+        dd($menu);
 
         if (isset($theme[0]->youtube)) {
             $arrLinkYoutube = json_decode($theme[0]->youtube, true);
@@ -63,72 +64,40 @@ class BuildPCController extends Controller
             ];
         }
 
-        if ($getSessionBuildPC != null) {
-            $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
-            if (isset($getDataBySessionBuildPC)) {
-                $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
-            }
-
-            if ($dataBuild == null) {
-                $dataBuild = [];
-            }
-        }
-
-        $dataPreSession = [
+        $dataListMenu = [
             'listArea1' => [],
             'listArea2' => [],
         ];
 
-        $dataPricePreSession = [
-            'listArea1' => 0,
-            'listArea2' => 0
-        ];
-
-        $dataListMenu = [
-            'listArea1' => [],
-            'listArea2' => []
-        ];
+        if ($getSessionBuildPC != null) {
+            $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
+        }
 
         if (isset($getDataBySessionBuildPC->data_menu)) {
             $dataListMenu = json_decode($getDataBySessionBuildPC->data_menu, true);
         }
 
-        if (!empty($dataBuild)) {
-            foreach ($dataBuild as $key => $area) {
-                $getPrBySession = $this->productRepository->getProductByArrayID($area);
-                $dataPreSession[$key] = $getPrBySession;
-            }
-        }
-
-        foreach ($dataPreSession as $keyArea => $listProduct) {
+        foreach ($dataListMenu as $keyArea => $listProduct) {
             foreach ($listProduct as $product) {
                 if ($product->new_price != null) {
                     $priceProduct = str_replace('.', '', $product->new_price);
-                    $dataPricePreSession[$keyArea] += intval($priceProduct);
+                    $dataListMenu[$keyArea]['price'] += intval($priceProduct);
                 }
             }
         }
 
         $countMenuBuildPC = $this->buildPcRepository->countTotalListBuildPC();
-
-        $currentPrice1 = $dataPricePreSession['listArea1'];
-        $currentPrice2 = $dataPricePreSession['listArea2'];
-        $dataPricePreSession['listArea1'] = number_format($dataPricePreSession['listArea1'], 0, ',', '.');
-        $dataPricePreSession['listArea2'] = number_format($dataPricePreSession['listArea2'], 0, ',', '.');
+        $dataListMenu['listArea1']['price'] = number_format($dataListMenu['listArea1']['price'], 0, ',', '.');
+        $dataListMenu['listArea2']['price'] = number_format($dataListMenu['listArea2']['price'], 0, ',', '.');
 
         return view('page.build-pc.build-pc', compact(
             'listCategory',
-            'menu',
-            'dataBuild',
-            'dataPreSession',
+            'dataListMenu',
             'arrLinkYoutube',
             'theme',
             'dataPricePreSession',
-            'currentPrice1',
-            'currentPrice2',
             'layout',
-            'countMenuBuildPC',
-            'dataListMenu',
+            'countMenuBuildPC'
         ));
     }
 
