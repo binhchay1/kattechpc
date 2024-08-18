@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\Utility;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\UpdatePostRequest;
@@ -18,17 +19,46 @@ class PostController extends Controller
 
     public function __construct(
         CategoryPostRepository $categoryPostRepository,
-        PostRepository $postRepository
+        PostRepository $postRepository,
+        Utility $utility
+
     )
     {
         $this->categoryPostRepository = $categoryPostRepository;
         $this->postRepository = $postRepository;
+        $this->utility = $utility;
+
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $listPosts = $this->postRepository->index();
-        return view('admin.post.index',compact('listPosts'));
+        $getCategory = $request->get('category');
+        $getSearchName = $request->get('s');
+        $listPosts = $this->postRepository->getListPostWithFilter();
+        $categoryFilter = [];
+
+        foreach ($listPosts as $post) {
+            if (!array_key_exists($post->category->id, $categoryFilter)) {
+                $categoryFilter[$post->category->id] = $post->category;
+            }
+        }
+
+        if (isset($getCategory)) {
+            if ($getCategory != 'all') {
+                $listPosts = $listPosts->where('category.id', $getCategory);
+            }
+        }
+
+        if (isset($getSearchName)) {
+            if ($getSearchName != '') {
+                $listPosts = $listPosts->filter(function ($item) use ($getSearchName) {
+                    return strpos($item->name, $getSearchName) !== false;
+                });
+            }
+        }
+        $listPosts = $this->utility->paginate($listPosts);
+
+        return view('admin.post.index',compact('categoryFilter', 'listPosts'));
     }
 
     public function createPost()
