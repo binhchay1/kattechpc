@@ -37,14 +37,14 @@
 
         <div id="build-pc-content-area-1">
             <div id="build-pc-content-price-1">
-                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataPricePreSession['listArea1'] }}</span>
+                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataListMenu['listArea1']['price'] }}</span>
                     <span class="total-price-config-1"></span>
                 </p>
                 <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
             </div>
             <div class="list-drive" id="build-pc-content-list-1" style="border: solid 1px #e1e1e1;">
-                @foreach($menu as $key1 => $value)
-                @if(!array_key_exists($key1, $menu))
+                @foreach($dataListMenu['listArea1']['menu'] as $key1 => $value)
+                @if($dataListMenu['listArea1']['data'][$key1] == null)
                 <div class="item-drive d-flex">
                     <div class="name-item-drive">
                         <h3 class="d-name d-name-277">{{ $key1 + 1 }}. {{ $value->name }}</h3>
@@ -75,7 +75,7 @@
                         <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-1" style="display: none"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
                         <div id="category-js-selected-{{ $value->id }}-1" class="js-item-row category-selected-row">
                             @php
-                            $productSession1 = $prepareMenu['listArea1'][$key1];
+                            $productSession1 = $dataListMenu['listArea1']['data'][$key1];
                             if($productSession1->new_price != null) {
                             $price1 = $productSession1->new_price;
                             } else {
@@ -113,19 +113,19 @@
                 @endif
                 @endforeach
             </div>
-            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataPricePreSession['listArea1'] }}</span></p>
+            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataListMenu['listArea1']['price'] }}</span></p>
         </div>
 
         <div id="build-pc-content-area-2" class="d-none">
             <div id="build-pc-content-price-2">
-                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataPricePreSession['listArea2'] }}</span>
+                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataListMenu['listArea2']['price'] }}</span>
                     <span class="total-price-config-2"></span>
                 </p>
                 <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
             </div>
             <div class="list-drive" id="build-pc-content-list-2" style="border: solid 1px #e1e1e1;">
-                @foreach($menu as $key2 => $value)
-                @if(!array_key_exists($key2, $prepareMenu['listArea2']))
+                @foreach($dataListMenu['listArea2']['menu'] as $key2 => $value)
+                @if($dataListMenu['listArea2']['data'][$key2] == null)
                 <div class="item-drive d-flex">
                     <div class="name-item-drive">
                         <h3 class="d-name d-name-277">{{ $key2 + 1 }}. {{ $value->name }}</h3>
@@ -156,7 +156,7 @@
                         <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-1" style="display: none"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
                         <div id="category-js-selected-{{ $value->id }}-2" class="js-item-row category-selected-row">
                             @php
-                            $productSession2 = $prepareMenu['listArea2'][$key2];
+                            $productSession2 = $dataListMenu['listArea2']['data'][$key2];
                             dd($prepareMenu);
                             if($productSession2->new_price != null) {
                             $price2 = $productSession2->new_price;
@@ -195,7 +195,7 @@
                 @endif
                 @endforeach
             </div>
-            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataPricePreSession['listArea1'] }}</span></p>
+            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataListMenu['listArea2']['price'] }}</span></p>
         </div>
 
         <ul class="list-btn-action" id="js-buildpc-action">
@@ -285,8 +285,8 @@
 </script>
 @endif
 <script>
-    var currentPrice1 = parseInt(<?php echo $currentPrice1 ?>);
-    var currentPrice2 = parseInt(<?php echo $currentPrice2 ?>);
+    var currentPrice1 = parseInt(<?php echo $dataListMenu['listArea1']['price'] ?>);
+    var currentPrice2 = parseInt(<?php echo $dataListMenu['listArea2']['price'] ?>);
     var countMenuBuildPC = parseInt(<?php echo $countMenuBuildPC ?>);
     var listMenuBuildPC = {
         'listArea1': JSON.parse('<?php echo json_encode($dataListMenu['listArea1']); ?>'),

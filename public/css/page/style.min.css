@@ -11,7 +11,7 @@ body {
     padding: 0;
     background: #fff;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: hidden;
     min-width: 1200px;
     word-break: break-word;
 }

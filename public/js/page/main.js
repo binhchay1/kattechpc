@@ -2,6 +2,8 @@ var isMobileDetected = false;
 var isTablet = false;
 
 $(document).ready(function () {
+    $('.preloader-main').hide();
+    $('body').css('overflow', 'auto');
     var modal = document.getElementById("submitGetNews");
     var btn = document.getElementById("news-button-summit");
     var span = document.getElementsByClassName("close")[0];
@@ -149,7 +151,7 @@ $(document).ready(function () {
             let offsetLeft = 0;
             let offsetTop = 0;
 
-            if($(this).offset().left > 1200) {
+            if ($(this).offset().left > 1200) {
                 offsetLeft = $(this).offset().left - 460;
                 offsetTop = $(this).offset().top - 10;
             } else {
