@@ -611,7 +611,6 @@ function handleSortPrice(price) {
 function handleSessionBuild() {
     let urlSession = '/handle-session-build-pc';
     let data = {
-        menu: listMenuBuildPC,
         data: currentArrayProduct
     };
     $.ajax({

@@ -78,8 +78,8 @@ class BuildPCController extends Controller
         if ($getSessionBuildPC != null) {
             $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
 
-            if (isset($getDataBySessionBuildPC->data_build)) {
-                $dataListMenu = json_decode($getDataBySessionBuildPC->data_build, true);
+            if (isset($getDataBySessionBuildPC->data_menu)) {
+                $dataListMenu = json_decode($getDataBySessionBuildPC->data_menu, true);
             }
         }
 
@@ -111,8 +111,6 @@ class BuildPCController extends Controller
         $dataListMenu['listArea1']['price'] = number_format($dataListMenu['listArea1']['price'], 0, ',', '.');
         $dataListMenu['listArea2']['price'] = number_format($dataListMenu['listArea2']['price'], 0, ',', '.');
 
-        // dd($dataListMenu);
-
         return view('page.build-pc.build-pc', compact(
             'listCategory',
             'dataListMenu',
@@ -125,9 +123,7 @@ class BuildPCController extends Controller
 
     public function handleSessionBuildPC(Request $request)
     {
-        $menu = $request->get('menu');
         $data = $request->get('data');
-
         $getSession = $request->session()->get('buildID');
 
         if (empty($getSession)) {
@@ -135,15 +131,13 @@ class BuildPCController extends Controller
             $request->session()->put('buildID', $buildID);
             $dataSessionBuild = [
                 'build_id' => $buildID,
-                'data_build' => json_encode($data),
-                'data_menu' => json_encode($menu)
+                'data_build' => json_encode($data)
             ];
 
             $this->sessionBuildPcRepository->create($dataSessionBuild);
         } else {
             $dataSessionBuild = [
-                'data_build' => json_encode($data),
-                'data_menu' => json_encode($menu),
+                'data_build' => json_encode($data)
             ];
 
             $this->sessionBuildPcRepository->updateByBuildID($getSession, $dataSessionBuild);
@@ -295,9 +289,9 @@ class BuildPCController extends Controller
         $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
         $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
         if ($area == 1) {
-            $arrProductID = $dataBuild['listArea1'];
+            $arrProductID = $dataBuild['listArea1']['data'];
         } else {
-            $arrProductID = $dataBuild['listArea2'];
+            $arrProductID = $dataBuild['listArea2']['data'];
         }
 
         $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
