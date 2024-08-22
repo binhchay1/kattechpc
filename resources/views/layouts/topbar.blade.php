@@ -29,25 +29,18 @@
 
                 <div class="flex gap-3 ms-auto">
                     <div class="relative flex items-center h-header">
-                        <p style=" font-weight: bold;">{{ __('Trang chủ : ') }}</p>
+                        <p class="text-home-page" style=" font-weight: bold;">{{ __('Trang chủ : ') }}</p>
                         <div class="relative flex items-center h-header">
-                            <a href="{{route("home")}}">
-
-                            <button type="button"
-                            >
-                                <i data-lucide="gallery-thumbnails" class="inline-block w-5 h-5 stroke-1 fill-slate-100
-                             group-data-[topbar=dark]:fill-topbar-item-bg-hover-dark group-data-
-                             [topbar=brand]:fill-topbar-item-bg-hover-brand"></i>
-                            </button>
+                            <a href="{{ route('home') }}">
+                                <button type="button">
+                                    <i data-lucide="gallery-thumbnails" class="inline-block w-5 h-5 stroke-1 fill-slate-100 group-data-[topbar=dark]:fill-topbar-item-bg-hover-dark group-data-[topbar=brand]:fill-topbar-item-bg-hover-brand"></i>
+                                </button>
                             </a>
-
                         </div>
                     </div>
 
-
-
                     <div class="relative flex items-center h-header">
-                        <p style="margin-right: 15px; font-weight: bold;">{{ __('Chế độ bảo trì : ') }}</p>
+                        <p class="text-maintainer" style="margin-right: 15px; font-weight: bold;">{{ __('Chế độ bảo trì : ') }}</p>
                         <label class="switch">
                             @if(Session::get('status-maintenance-mode') == 'off')
                             <input type="checkbox" id="button-maintainer" title="{{ __('Maintenance mode') }}">

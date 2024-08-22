@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="grid grid-cols-12 gap-x-5">
+<div class="grid grid-cols-12 gap-x-5" style="margin-top: 20px;">
     <div class="order-6 col-span-12 2xl:order-1 card 2xl:col-span-5">
         <div class="card-body" id="incomChartArea">
             <div class="flex items-center gap-2">

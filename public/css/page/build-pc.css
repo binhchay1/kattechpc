@@ -633,6 +633,10 @@ span .p-name {
     margin-bottom: 30px;
 }
 
+.link-youtube-area iframe:not(:first-child) {
+    margin-left: 10px;
+}
+
 .ul-filter {
     padding-left: 0 !important;
 }

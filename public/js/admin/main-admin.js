@@ -8,9 +8,22 @@ $('#button-maintainer').on('change', function () {
                 window.location.href = url;
             },
             cancel: function () {
-
+                $('#button-maintainer').prop('checked', false);
             },
         }
     });
 });
 
+$(document).ready(function () {
+    var isMobile = false;
+
+    if (WURFL.is_mobile) {
+        isMobile = true;
+    }
+
+    console.log(isMobile);
+    if(isMobile) {
+        $('.text-home-page').addClass('d-none');
+        $('.text-maintainer').addClass('d-none');
+    }
+});
