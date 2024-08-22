@@ -261,36 +261,13 @@
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-@if(empty($dataBuild))
-<script>
-    var currentArrayProduct = {
-        'listArea1': [],
-        'listArea2': []
-    };
-</script>
-@else
-<script>
-    var currentArrayProduct = {
-        'listArea1': [],
-        'listArea2': []
-    };
-
-    <?php if (array_key_exists('listArea1', $dataBuild)) { ?>
-        currentArrayProduct.listArea1 = JSON.parse('<?php echo json_encode($dataBuild['listArea1']); ?>');
-    <?php } ?>
-
-    <?php if (array_key_exists('listArea2', $dataBuild)) { ?>
-        currentArrayProduct.listArea2 = JSON.parse('<?php echo json_encode($dataBuild['listArea2']); ?>');
-    <?php } ?>
-</script>
-@endif
 <script>
     var currentPrice1 = parseInt(<?php echo $dataListMenu['listArea1']['price'] ?>);
     var currentPrice2 = parseInt(<?php echo $dataListMenu['listArea2']['price'] ?>);
     var countMenuBuildPC = parseInt(<?php echo $countMenuBuildPC ?>);
-    var listMenuBuildPC = {
-        'listArea1': JSON.parse('<?php echo json_encode($dataListMenu['listArea1']); ?>'),
-        'listArea2': JSON.parse('<?php echo json_encode($dataListMenu['listArea2']); ?>')
+    var dataListMenu = {
+        'listArea1': JSON.parse(`<?php echo json_encode($dataListMenu['listArea1']) ?>`),
+        'listArea2': JSON.parse(`<?php echo json_encode($dataListMenu['listArea2']) ?>`)
     };
 </script>
 <script src="{{ asset('/js/page/buildpc.js') }}"></script>

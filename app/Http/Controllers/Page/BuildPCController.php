@@ -111,6 +111,8 @@ class BuildPCController extends Controller
         $dataListMenu['listArea1']['price'] = number_format($dataListMenu['listArea1']['price'], 0, ',', '.');
         $dataListMenu['listArea2']['price'] = number_format($dataListMenu['listArea2']['price'], 0, ',', '.');
 
+        dd(json_encode($dataListMenu['listArea1']));
+
         return view('page.build-pc.build-pc', compact(
             'listCategory',
             'dataListMenu',
