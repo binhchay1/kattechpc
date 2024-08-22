@@ -37,7 +37,7 @@
 
         <div id="build-pc-content-area-1">
             <div id="build-pc-content-price-1">
-                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataListMenu['listArea1']['price'] }}</span>
+                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataListMenu['listArea1']['price-format'] }}</span>
                     <span class="total-price-config-1"></span>
                 </p>
                 <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
@@ -113,12 +113,12 @@
                 @endif
                 @endforeach
             </div>
-            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataListMenu['listArea1']['price'] }}</span></p>
+            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataListMenu['listArea1']['price-format'] }}</span></p>
         </div>
 
         <div id="build-pc-content-area-2" class="d-none">
             <div id="build-pc-content-price-2">
-                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataListMenu['listArea2']['price'] }}</span>
+                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataListMenu['listArea2']['price-format'] }}</span>
                     <span class="total-price-config-2"></span>
                 </p>
                 <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
@@ -157,7 +157,6 @@
                         <div id="category-js-selected-{{ $value->id }}-2" class="js-item-row category-selected-row">
                             @php
                             $productSession2 = $dataListMenu['listArea2']['data'][$key2];
-                            dd($prepareMenu);
                             if($productSession2->new_price != null) {
                             $price2 = $productSession2->new_price;
                             } else {
@@ -195,7 +194,7 @@
                 @endif
                 @endforeach
             </div>
-            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataListMenu['listArea2']['price'] }}</span></p>
+            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataListMenu['listArea2']['price-format'] }}</span></p>
         </div>
 
         <ul class="list-btn-action" id="js-buildpc-action">
@@ -205,20 +204,18 @@
             <li onclick="exportImage()"><span>{{ __('TẢI ẢNH') }}<i class="fa fa-image"></i></span></li>
         </ul>
 
+        @if($hasYoutubeLink)
         <div>
             <h3 style="text-align: center;">{{ __('Video hướng dẫn xây dựng cấu hình') }}</h3>
 
             <div class="link-youtube-area">
-                <iframe width="560" height="315" class="link-youtube-item" src="https://www.youtube.com/embed/4clNHIl89to?si=mFlBFOjQYD8EznoX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                @foreach($arrLinkYoutube as $link)
+                <iframe width="560" height="315" class="link-youtube-item" src="{{ $link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                 </iframe>
-
-                <iframe style="margin-left: 30px" class="link-youtube-item" width="560" height="315" src="https://www.youtube.com/embed/4clNHIl89to?si=mFlBFOjQYD8EznoX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                </iframe>
-
-                <iframe style="margin-left: 30px" class="link-youtube-item" width="560" height="315" src="https://www.youtube.com/embed/4clNHIl89to?si=mFlBFOjQYD8EznoX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                </iframe>
+                @endforeach
             </div>
         </div>
+        @endif
 
         @if(count($theme) > 0)
         @if(isset($theme[0]->content))
@@ -266,9 +263,11 @@
     var currentPrice2 = parseInt(<?php echo $dataListMenu['listArea2']['price'] ?>);
     var countMenuBuildPC = parseInt(<?php echo $countMenuBuildPC ?>);
     var dataListMenu = {
-        'listArea1': JSON.parse(`<?php echo json_encode($dataListMenu['listArea1']) ?>`),
-        'listArea2': JSON.parse(`<?php echo json_encode($dataListMenu['listArea2']) ?>`)
+        'listArea1': JSON.parse(`<?php echo json_encode($dataProductBuild['listArea1']) ?>`),
+        'listArea2': JSON.parse(`<?php echo json_encode($dataProductBuild['listArea2']) ?>`)
     };
+
+    console.log(dataListMenu);
 </script>
 <script src="{{ asset('/js/page/buildpc.js') }}"></script>
 @endsection

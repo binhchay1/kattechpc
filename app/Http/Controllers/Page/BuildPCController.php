@@ -78,24 +78,49 @@ class BuildPCController extends Controller
         if ($getSessionBuildPC != null) {
             $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
 
-            if (isset($getDataBySessionBuildPC->data_menu)) {
-                $dataListMenu = json_decode($getDataBySessionBuildPC->data_menu, true);
+            if (isset($getDataBySessionBuildPC->data_build)) {
+                $dataBuildBySession = json_decode($getDataBySessionBuildPC->data_build, true);
+                $dataListMenu['listArea1']['data'] = $dataBuildBySession['listArea1'];
+                $dataListMenu['listArea2']['data'] = $dataBuildBySession['listArea2'];
             }
         }
 
         if (isset($theme[0]->youtube)) {
             $arrLinkYoutube = json_decode($theme[0]->youtube, true);
+            $hasYoutubeLink = true;
         } else {
             $arrLinkYoutube = [
                 'link_youtube_1' => '',
                 'link_youtube_2' => '',
                 'link_youtube_3' => ''
             ];
+            $hasYoutubeLink = false;
         }
 
+        $arrProductID = [
+            'listArea1' => [],
+            'listArea1' => []
+        ];
+
+        $dataProductBuild = [
+            'listArea1' => $dataListMenu['listArea1']['data'],
+            'listArea2' => $dataListMenu['listArea2']['data'],
+        ];
+
         foreach ($dataListMenu as $keyArea => $value) {
-            foreach ($value['data'] as $product) {
-                if ($product != null) {
+            foreach ($value['data'] as $productID) {
+                if ($productID != null) {
+                    $arrProductID[$keyArea][] = $productID;
+                }
+            }
+
+            if (!empty($arrProductID[$keyArea])) {
+                $getProduct = $this->productRepository->getProductByArrayID($arrProductID[$keyArea]);
+
+                foreach ($getProduct as $product) {
+                    $keyProduct = array_search((string) $product->id, $dataListMenu[$keyArea]['data']);
+                    $dataListMenu[$keyArea]['data'][$keyProduct] = $product;
+
                     if ($product->new_price != null) {
                         $priceProduct = str_replace('.', '', $product->new_price);
                     } else {
@@ -108,10 +133,8 @@ class BuildPCController extends Controller
         }
 
         $countMenuBuildPC = $this->buildPcRepository->countTotalListBuildPC();
-        $dataListMenu['listArea1']['price'] = number_format($dataListMenu['listArea1']['price'], 0, ',', '.');
-        $dataListMenu['listArea2']['price'] = number_format($dataListMenu['listArea2']['price'], 0, ',', '.');
-
-        dd(json_encode($dataListMenu['listArea1']));
+        $dataListMenu['listArea1']['price-format'] = number_format($dataListMenu['listArea1']['price'], 0, ',', '.');
+        $dataListMenu['listArea2']['price-format'] = number_format($dataListMenu['listArea2']['price'], 0, ',', '.');
 
         return view('page.build-pc.build-pc', compact(
             'listCategory',
@@ -119,7 +142,9 @@ class BuildPCController extends Controller
             'arrLinkYoutube',
             'theme',
             'layout',
-            'countMenuBuildPC'
+            'countMenuBuildPC',
+            'hasYoutubeLink',
+            'dataProductBuild'
         ));
     }
 
@@ -136,7 +161,7 @@ class BuildPCController extends Controller
                 'data_build' => json_encode($data)
             ];
 
-            $this->sessionBuildPcRepository->create($dataSessionBuild);
+            $this->sessionBuildPcRepository->store($dataSessionBuild);
         } else {
             $dataSessionBuild = [
                 'data_build' => json_encode($data)
@@ -291,13 +316,13 @@ class BuildPCController extends Controller
         $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
         $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
         if ($area == 1) {
-            foreach ($dataBuild['listArea1']['data'] as $data) {
+            foreach ($dataBuild['listArea1'] as $data) {
                 if ($data != null) {
                     $arrProductID[] = $data;
                 }
             }
         } else {
-            foreach ($dataBuild['listArea2']['data'] as $data) {
+            foreach ($dataBuild['listArea2'] as $data) {
                 if ($data != null) {
                     $arrProductID[] = $data;
                 }
@@ -336,13 +361,13 @@ class BuildPCController extends Controller
         $arrProductID = [];
 
         if ($area == 1) {
-            foreach ($dataBuild['listArea1']['data'] as $data) {
+            foreach ($dataBuild['listArea1'] as $data) {
                 if ($data != null) {
                     $arrProductID[] = $data;
                 }
             }
         } else {
-            foreach ($dataBuild['listArea2']['data'] as $data) {
+            foreach ($dataBuild['listArea2'] as $data) {
                 if ($data != null) {
                     $arrProductID[] = $data;
                 }
@@ -371,13 +396,13 @@ class BuildPCController extends Controller
         $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
 
         if ($area == 1) {
-            foreach ($dataBuild['listArea1']['data'] as $data) {
+            foreach ($dataBuild['listArea1'] as $data) {
                 if ($data != null) {
                     $arrProductID[] = $data;
                 }
             }
         } else {
-            foreach ($dataBuild['listArea2']['data'] as $data) {
+            foreach ($dataBuild['listArea2'] as $data) {
                 if ($data != null) {
                     $arrProductID[] = $data;
                 }

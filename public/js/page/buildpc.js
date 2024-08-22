@@ -142,10 +142,8 @@ function addToMenu(choose) {
     $('#' + idMenu).hide();
     if ($(idSelected + ' .sum_price') != undefined) {
         if (currentArea == 1) {
-            dataListMenu.listArea1.push(product.id.toString());
             dataListMenu.listArea1[parseInt(split[2]) - 1] = product.id;
         } else {
-            dataListMenu.listArea2.push(product.id.toString());
             dataListMenu.listArea2[parseInt(split[2]) - 1] = product.id;
         }
     }
@@ -199,10 +197,10 @@ function resetBuildPC() {
                 $(idBtnAdd).show();
             }
 
-            dataListMenu = {
-                'listArea1': [],
-                'listArea2': []
-            };
+            for (let m = 0; m < countMenuBuildPC; m++) {
+                dataListMenu.listArea1[m + 1] = null;
+                dataListMenu.listArea2[m + 1] = null;
+            }
 
             handleSessionBuild();
         }
@@ -238,25 +236,15 @@ function deleteProductHandle(button, idMenu) {
     let idArea = '#product-item-in-list-' + currentArea + '-' + id;
     let price = button.getAttribute('data-price');
     if (currentArea == 1) {
-        var index = dataListMenu.listArea1.indexOf(id);
-        if (index !== -1) {
-            dataListMenu.listArea1.splice(index, 1);
-        }
-
         for (var f in dataListMenu.listArea1) {
             if (dataListMenu.listArea1[f] == parseInt(id)) {
-                delete dataListMenu.listArea1[f];
+                dataListMenu.listArea1[f] = null;
             }
         }
     } else {
-        var index = dataListMenu.listArea2.indexOf(id);
-        if (index !== -1) {
-            dataListMenu.listArea2.splice(index, 1);
-        }
-
         for (var f in dataListMenu.listArea2) {
             if (dataListMenu.listArea2[f] == id) {
-                delete dataListMenu.listArea2[f];
+                dataListMenu.listArea1[f] = null;
             }
         }
     }
@@ -292,21 +280,15 @@ function changeProductHandle(userChose) {
 
 function addToCart() {
     let url = '/build-pc-checkout';
-    let listCheck = [];
-    if (currentArea == 1) {
-        listCheck = dataListMenu.listArea1
-    } else {
-        listCheck = dataListMenu.listArea2
-    }
+    let data = [];
 
-    let data = '';
     if (currentArea == 1) {
         data = dataListMenu.listArea1;
     } else {
         data = dataListMenu.listArea2;
     }
 
-    if (listCheck.length == 0) {
+    if (data.length == 0) {
         $('#modal-no-item-print').css('display', 'flex');
     } else {
         $.ajax({
@@ -728,7 +710,7 @@ function capture() {
         .then(canvas => {
             const image = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
             const a = document.createElement('a');
-            a.setAttribute('download', 'my-image.png');
+            a.setAttribute('download', 'kattech-pc.png');
             a.setAttribute('href', image);
             a.click();
             canvas.remove();
