@@ -64,7 +64,7 @@
                 </div>
             </div>
             @if(isset($dataProduct->detail))
-            <div class="product-related" style="margin-top: 40px; width: 97%">
+            <div class="product-related" style="margin-top: 40px; width: 99%">
                 <h3> {{ __('Thông số sản phẩm') }}</h3>
                 <table>
                     <tr>
@@ -75,7 +75,7 @@
                     @if(is_array($dataProduct->detail))
                     @foreach($dataProduct->detail as $key => $value)
                     <tr>
-                        <td>{{ $key }}</td>
+                        <td style="width: 30%;">{{ $key }}</td>
                         <td>{{ $value }}</td>
                     </tr>
                     @endforeach
@@ -581,7 +581,7 @@
                         @if(is_array($dataProduct->detail_tech))
                         @foreach(array_slice($dataProduct->detail_tech, 0, 4) as $key => $value)
                         <tr>
-                            <td style="font-weight: 600; width: 20%;">{{ $key }}</td>
+                            <td style="font-weight: 600; width: 30%;">{{ $key }}</td>
                             <td>{{ $value }}</td>
                         </tr>
                         @endforeach
@@ -626,7 +626,7 @@
                         <div id="content-right">
                             <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
                             <a href="{{route('post.detail', $post['slug'])}}">
-                                <h3> {{$text}}</h3>
+                                <h3 style="margin: 0!important;"> {{$text}}</h3>
                             </a>
                         </div>
                     </div>

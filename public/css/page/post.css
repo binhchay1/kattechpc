@@ -286,9 +286,7 @@
 }
 
 .only-mobile-for-body {
-    .child {
-        flex-direction: column;
-    }
+
 
     .image-related-post {
         width: 100%;

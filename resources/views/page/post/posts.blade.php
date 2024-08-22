@@ -89,7 +89,7 @@
                         }
                         ?>
 
-                        <h2><a class="text-tech" href="{{ route('post.detail', $random->slug) }}">{{$post}}</a></h2>
+                        <h2 style="margin: 0"><a class="text-tech" href="{{ route('post.detail', $random->slug) }}">{{$post}}</a></h2>
                         <div class="post_info">
                             <span class="post_info_item-date d-flex">
                                 <?php $getDate =  $random->created_at->format('N d/m/Y') ?? "";

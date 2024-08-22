@@ -99,7 +99,7 @@
                             <form method="get" action="{{ route('search') }}">
                                 <div class="search">
                                     <input type="text" name="q" class="searchTerm inline-search-mobile" placeholder="Nhập  sản phẩm, từ khóa cần tìm">
-                                    <button type="submit" class="searchButton">
+                                    <button type="submit" id="custom_search" class="searchButton">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </div>
