@@ -11,6 +11,11 @@ class SessionBuildPCRepository extends BaseRepository
         return SessionBuildPC::class;
     }
 
+    public function store($input)
+    {
+        return $this->model->create($input);
+    }
+
     public function updateByBuildID($build_id, $data)
     {
         return $this->model->where('build_id', $build_id)->update($data);

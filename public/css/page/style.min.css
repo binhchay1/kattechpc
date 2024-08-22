@@ -11,7 +11,7 @@ body {
     padding: 0;
     background: #fff;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: hidden;
     min-width: 1200px;
     word-break: break-word;
 }
@@ -620,6 +620,7 @@ a:hover {
 
 .swiper-top-sale {
     left: 48%;
+    padding-top: 0 !important;
 }
 
 .border-image {
@@ -1284,7 +1285,7 @@ a:hover {
     position: absolute;
     top: 50%;
     margin-top: calc(0px - (44px / 2));
-    z-index: 10;
+    z-index: 1;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -1821,7 +1822,7 @@ a {
     left: 20px;
     bottom: 50px;
     width: 80px;
-    z-index: 9999;
+    z-index: 1;
 }
 
 .global-fixed-left .sale {
@@ -1932,7 +1933,6 @@ a {
 }
 
 @media screen and (max-width: 600px) {
-
     #modal-coupon .modal-dialog {
         width: 390px;
         margin: auto !important;
@@ -2548,6 +2548,25 @@ a {
     min-width: inherit !important;
     position: relative;
     margin: auto;
+}
+
+.preloader-main {
+    position: absolute;
+    z-index: 1;
+    background: #000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.preloader-main svg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 150px;
+    width: 150px;
 }
 
 .only-mobile-for-body {

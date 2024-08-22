@@ -37,15 +37,14 @@
 
         <div id="build-pc-content-area-1">
             <div id="build-pc-content-price-1">
-                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataPricePreSession['listArea1'] }}</span>
+                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataListMenu['listArea1']['price-format'] }}</span>
                     <span class="total-price-config-1"></span>
                 </p>
                 <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
             </div>
             <div class="list-drive" id="build-pc-content-list-1" style="border: solid 1px #e1e1e1;">
-                @if(array_key_exists('listArea1', $prepareMenu))
-                @foreach($menu as $key1 => $value)
-                @if(!array_key_exists($key1, $prepareMenu['listArea1']))
+                @foreach($dataListMenu['listArea1']['menu'] as $key1 => $value)
+                @if($dataListMenu['listArea1']['data'][$key1] == null)
                 <div class="item-drive d-flex">
                     <div class="name-item-drive">
                         <h3 class="d-name d-name-277">{{ $key1 + 1 }}. {{ $value->name }}</h3>
@@ -76,7 +75,7 @@
                         <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-1" style="display: none"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
                         <div id="category-js-selected-{{ $value->id }}-1" class="js-item-row category-selected-row">
                             @php
-                            $productSession1 = $prepareMenu['listArea1'][$key1];
+                            $productSession1 = $dataListMenu['listArea1']['data'][$key1];
                             if($productSession1->new_price != null) {
                             $price1 = $productSession1->new_price;
                             } else {
@@ -113,40 +112,20 @@
                 </div>
                 @endif
                 @endforeach
-                @else
-                @foreach($menu as $key => $value)
-                <div class="item-drive d-flex">
-                    <div class="name-item-drive">
-                        <h3 class="d-name d-name-277">{{ $key + 1 }}. {{ $value->name }}</h3>
-                        @if(isset($value->offers))
-                        <div class="d-flex">
-                            <i class="fa fa-gift"></i>
-                            <h5 class="offers-build-pc">{{ $value->offers }}</h5>
-                        </div>
-                        @endif
-                    </div>
-                    <div class="drive-checked" style="margin-left:0;">
-                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-1"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
-                        <div id="category-js-selected-{{ $value->id }}-1" class="js-item-row category-selected-row"></div>
-                    </div>
-                </div>
-                @endforeach
-                @endif
             </div>
-            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataPricePreSession['listArea1'] }}</span></p>
+            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataListMenu['listArea1']['price-format'] }}</span></p>
         </div>
 
         <div id="build-pc-content-area-2" class="d-none">
             <div id="build-pc-content-price-2">
-                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataPricePreSession['listArea2'] }}</span>
+                <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataListMenu['listArea2']['price-format'] }}</span>
                     <span class="total-price-config-2"></span>
                 </p>
                 <div class="js-buildpc-promotion-content" style="margin-bottom: 0px;"></div>
             </div>
             <div class="list-drive" id="build-pc-content-list-2" style="border: solid 1px #e1e1e1;">
-                @if(array_key_exists('listArea2', $prepareMenu))
-                @foreach($menu as $key2 => $value)
-                @if(!array_key_exists($key2, $prepareMenu['listArea2']))
+                @foreach($dataListMenu['listArea2']['menu'] as $key2 => $value)
+                @if($dataListMenu['listArea2']['data'][$key2] == null)
                 <div class="item-drive d-flex">
                     <div class="name-item-drive">
                         <h3 class="d-name d-name-277">{{ $key2 + 1 }}. {{ $value->name }}</h3>
@@ -177,8 +156,7 @@
                         <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-1" style="display: none"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
                         <div id="category-js-selected-{{ $value->id }}-2" class="js-item-row category-selected-row">
                             @php
-                            $productSession2 = $prepareMenu['listArea2'][$key2];
-                            dd($prepareMenu);
+                            $productSession2 = $dataListMenu['listArea2']['data'][$key2];
                             if($productSession2->new_price != null) {
                             $price2 = $productSession2->new_price;
                             } else {
@@ -215,27 +193,8 @@
                 </div>
                 @endif
                 @endforeach
-                @else
-                @foreach($menu as $key2 => $value)
-                <div class="item-drive d-flex">
-                    <div class="name-item-drive">
-                        <h3 class="d-name d-name-277">{{ $key2 + 1 }}. {{ $value->name }}</h3>
-                        @if(isset($value->offers))
-                        <div class="d-flex">
-                            <i class="fa fa-gift"></i>
-                            <h5 class="offers-build-pc">{{ $value->offers }}</h5>
-                        </div>
-                        @endif
-                    </div>
-                    <div class="drive-checked" style="margin-left:0;">
-                        <span class="show-popup_select span-last open-selection" id="category-js-{{ $value->id }}-2"><i class="fa fa-plus"></i> Chọn {{ $value->name }}</span>
-                        <div id="category-js-selected-{{ $value->id }}-2" class="js-item-row category-selected-row"></div>
-                    </div>
-                </div>
-                @endforeach
-                @endif
             </div>
-            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataPricePreSession['listArea1'] }}</span></p>
+            <p class="total-price">{{ __('Chi phí dự tính:') }} <span class="total-price-in-hud-1">{{ $dataListMenu['listArea2']['price-format'] }}</span></p>
         </div>
 
         <ul class="list-btn-action" id="js-buildpc-action">
@@ -245,20 +204,18 @@
             <li onclick="exportImage()"><span>{{ __('TẢI ẢNH') }}<i class="fa fa-image"></i></span></li>
         </ul>
 
+        @if($hasYoutubeLink)
         <div>
             <h3 style="text-align: center;">{{ __('Video hướng dẫn xây dựng cấu hình') }}</h3>
 
             <div class="link-youtube-area">
-                <iframe width="560" height="315" class="link-youtube-item" src="https://www.youtube.com/embed/4clNHIl89to?si=mFlBFOjQYD8EznoX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                @foreach($arrLinkYoutube as $link)
+                <iframe width="560" height="315" class="link-youtube-item" src="{{ $link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
                 </iframe>
-
-                <iframe style="margin-left: 30px" class="link-youtube-item" width="560" height="315" src="https://www.youtube.com/embed/4clNHIl89to?si=mFlBFOjQYD8EznoX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                </iframe>
-
-                <iframe style="margin-left: 30px" class="link-youtube-item" width="560" height="315" src="https://www.youtube.com/embed/4clNHIl89to?si=mFlBFOjQYD8EznoX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
-                </iframe>
+                @endforeach
             </div>
         </div>
+        @endif
 
         @if(count($theme) > 0)
         @if(isset($theme[0]->content))
@@ -301,37 +258,16 @@
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-@if(empty($dataBuild))
 <script>
-    var currentArrayProduct = {
-        'listArea1': [],
-        'listArea2': []
-    };
-</script>
-@else
-<script>
-    var currentArrayProduct = {
-        'listArea1': [],
-        'listArea2': []
-    };
-
-    <?php if (array_key_exists('listArea1', $dataBuild)) { ?>
-        currentArrayProduct.listArea1 = JSON.parse('<?php echo json_encode($dataBuild['listArea1']); ?>');
-    <?php } ?>
-
-    <?php if (array_key_exists('listArea2', $dataBuild)) { ?>
-        currentArrayProduct.listArea2 = JSON.parse('<?php echo json_encode($dataBuild['listArea2']); ?>');
-    <?php } ?>
-</script>
-@endif
-<script>
-    var currentPrice1 = parseInt(<?php echo $currentPrice1 ?>);
-    var currentPrice2 = parseInt(<?php echo $currentPrice2 ?>);
+    var currentPrice1 = parseInt(<?php echo $dataListMenu['listArea1']['price'] ?>);
+    var currentPrice2 = parseInt(<?php echo $dataListMenu['listArea2']['price'] ?>);
     var countMenuBuildPC = parseInt(<?php echo $countMenuBuildPC ?>);
-    var listMenuBuildPC = {
-        'listArea1': JSON.parse('<?php echo json_encode($dataListMenu['listArea1']); ?>'),
-        'listArea2': JSON.parse('<?php echo json_encode($dataListMenu['listArea2']); ?>')
+    var dataListMenu = {
+        'listArea1': JSON.parse(`<?php echo json_encode($dataProductBuild['listArea1']) ?>`),
+        'listArea2': JSON.parse(`<?php echo json_encode($dataProductBuild['listArea2']) ?>`)
     };
+
+    console.log(dataListMenu);
 </script>
 <script src="{{ asset('/js/page/buildpc.js') }}"></script>
 @endsection

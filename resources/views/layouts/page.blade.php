@@ -153,6 +153,8 @@
             <div class="background"></div>
         </div>
         @endif
+
+        @include('includes.preloader')
     </div>
 
     <script src="{{ asset('/plugins/jquery/jquery-3.4.1.min.js') }}"></script>

@@ -100,11 +100,6 @@ $(document).ready(function () {
     $('#modal-no-item-print .close').on('click', function () {
         $('#modal-no-item-print').css('display', 'none');
     });
-
-    for (var b = 0; b < countMenuBuildPC; b++) {
-        listMenuBuildPC.listArea1[b] = '';
-        listMenuBuildPC.listArea2[b] = '';
-    }
 });
 
 function addToMenu(choose) {
@@ -147,11 +142,9 @@ function addToMenu(choose) {
     $('#' + idMenu).hide();
     if ($(idSelected + ' .sum_price') != undefined) {
         if (currentArea == 1) {
-            currentArrayProduct.listArea1.push(product.id.toString());
-            listMenuBuildPC.listArea1[parseInt(split[2]) - 1] = product.id;
+            dataListMenu.listArea1[parseInt(split[2]) - 1] = product.id;
         } else {
-            currentArrayProduct.listArea2.push(product.id.toString());
-            listMenuBuildPC.listArea2[parseInt(split[2]) - 1] = product.id;
+            dataListMenu.listArea2[parseInt(split[2]) - 1] = product.id;
         }
     }
 
@@ -204,10 +197,10 @@ function resetBuildPC() {
                 $(idBtnAdd).show();
             }
 
-            currentArrayProduct = {
-                'listArea1': [],
-                'listArea2': []
-            };
+            for (let m = 0; m < countMenuBuildPC; m++) {
+                dataListMenu.listArea1[m + 1] = null;
+                dataListMenu.listArea2[m + 1] = null;
+            }
 
             handleSessionBuild();
         }
@@ -243,25 +236,15 @@ function deleteProductHandle(button, idMenu) {
     let idArea = '#product-item-in-list-' + currentArea + '-' + id;
     let price = button.getAttribute('data-price');
     if (currentArea == 1) {
-        var index = currentArrayProduct.listArea1.indexOf(id);
-        if (index !== -1) {
-            currentArrayProduct.listArea1.splice(index, 1);
-        }
-
-        for (var f in listMenuBuildPC.listArea1) {
-            if (listMenuBuildPC.listArea1[f] == parseInt(id)) {
-                delete listMenuBuildPC.listArea1[f];
+        for (var f in dataListMenu.listArea1) {
+            if (dataListMenu.listArea1[f] == parseInt(id)) {
+                dataListMenu.listArea1[f] = null;
             }
         }
     } else {
-        var index = currentArrayProduct.listArea2.indexOf(id);
-        if (index !== -1) {
-            currentArrayProduct.listArea2.splice(index, 1);
-        }
-
-        for (var f in listMenuBuildPC.listArea2) {
-            if (listMenuBuildPC.listArea2[f] == id) {
-                delete listMenuBuildPC.listArea2[f];
+        for (var f in dataListMenu.listArea2) {
+            if (dataListMenu.listArea2[f] == id) {
+                dataListMenu.listArea1[f] = null;
             }
         }
     }
@@ -297,21 +280,15 @@ function changeProductHandle(userChose) {
 
 function addToCart() {
     let url = '/build-pc-checkout';
-    let listCheck = [];
+    let data = [];
+
     if (currentArea == 1) {
-        listCheck = currentArrayProduct.listArea1
+        data = dataListMenu.listArea1;
     } else {
-        listCheck = currentArrayProduct.listArea2
+        data = dataListMenu.listArea2;
     }
 
-    let data = '';
-    if (currentArea == 1) {
-        data = currentArrayProduct.listArea1;
-    } else {
-        data = currentArrayProduct.listArea2;
-    }
-
-    if (listCheck.length == 0) {
+    if (data.length == 0) {
         $('#modal-no-item-print').css('display', 'flex');
     } else {
         $.ajax({
@@ -611,8 +588,7 @@ function handleSortPrice(price) {
 function handleSessionBuild() {
     let urlSession = '/handle-session-build-pc';
     let data = {
-        menu: listMenuBuildPC,
-        data: currentArrayProduct
+        data: dataListMenu
     };
     $.ajax({
         type: "POST",
@@ -629,9 +605,9 @@ function printPage() {
     let listCheck = [];
     let urlPrint = '/print-build-pc?a=' + currentArea;
     if (currentArea == 1) {
-        listCheck = currentArrayProduct.listArea1
+        listCheck = dataListMenu.listArea1
     } else {
-        listCheck = currentArrayProduct.listArea2
+        listCheck = dataListMenu.listArea2
     }
 
     if (listCheck.length == 0) {
@@ -639,16 +615,16 @@ function printPage() {
     } else {
         window.location.href = urlPrint;
     }
-};
+}
 
 function exportExcel() {
     let urlExport = '/export-excel-build-pc';
     let listCheck = [];
     let fileName = 'buildpc-kattech.xlsx';
     if (currentArea == 1) {
-        listCheck = currentArrayProduct.listArea1
+        listCheck = dataListMenu.listArea1
     } else {
-        listCheck = currentArrayProduct.listArea2
+        listCheck = dataListMenu.listArea2
     }
 
     if (listCheck.length == 0) {
@@ -700,9 +676,9 @@ function exportImage() {
     let listCheck = [];
     let urlExportImage = '/export-image-build-pc';
     if (currentArea == 1) {
-        listCheck = currentArrayProduct.listArea1
+        listCheck = dataListMenu.listArea1
     } else {
-        listCheck = currentArrayProduct.listArea2
+        listCheck = dataListMenu.listArea2
     }
 
     if (listCheck.length == 0) {
@@ -734,7 +710,7 @@ function capture() {
         .then(canvas => {
             const image = canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream');
             const a = document.createElement('a');
-            a.setAttribute('download', 'my-image.png');
+            a.setAttribute('download', 'kattech-pc.png');
             a.setAttribute('href', image);
             a.click();
             canvas.remove();
