@@ -74,7 +74,6 @@ class BuildPCController extends Controller
         return redirect()->route('admin.buildPC.index')->with('success',  __('Cấu hình được thay đổi thành công'));
     }
 
-
     public function delete($id)
     {
         $this->buildPcRepository->destroy($id);

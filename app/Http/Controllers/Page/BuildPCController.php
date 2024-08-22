@@ -289,9 +289,17 @@ class BuildPCController extends Controller
         $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
         $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
         if ($area == 1) {
-            $arrProductID = $dataBuild['listArea1']['data'];
+            foreach ($dataBuild['listArea1']['data'] as $data) {
+                if ($data != null) {
+                    $arrProductID[] = $data;
+                }
+            }
         } else {
-            $arrProductID = $dataBuild['listArea2']['data'];
+            foreach ($dataBuild['listArea2']['data'] as $data) {
+                if ($data != null) {
+                    $arrProductID[] = $data;
+                }
+            }
         }
 
         $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
@@ -323,11 +331,20 @@ class BuildPCController extends Controller
         $getSessionBuildPC = $request->session()->get('buildID');
         $getDataBySessionBuildPC = $this->sessionBuildPcRepository->getDataByBuildID($getSessionBuildPC);
         $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
+        $arrProductID = [];
 
         if ($area == 1) {
-            $arrProductID = $dataBuild['listArea1'];
+            foreach ($dataBuild['listArea1']['data'] as $data) {
+                if ($data != null) {
+                    $arrProductID[] = $data;
+                }
+            }
         } else {
-            $arrProductID = $dataBuild['listArea2'];
+            foreach ($dataBuild['listArea2']['data'] as $data) {
+                if ($data != null) {
+                    $arrProductID[] = $data;
+                }
+            }
         }
 
         $getProduct = $this->productRepository->getProductByArrayID($arrProductID);
@@ -352,9 +369,17 @@ class BuildPCController extends Controller
         $dataBuild = json_decode($getDataBySessionBuildPC->data_build, true);
 
         if ($area == 1) {
-            $arrProductID = $dataBuild['listArea1'];
+            foreach ($dataBuild['listArea1']['data'] as $data) {
+                if ($data != null) {
+                    $arrProductID[] = $data;
+                }
+            }
         } else {
-            $arrProductID = $dataBuild['listArea2'];
+            foreach ($dataBuild['listArea2']['data'] as $data) {
+                if ($data != null) {
+                    $arrProductID[] = $data;
+                }
+            }
         }
 
         $getProduct = $this->productRepository->getProductByArrayID($arrProductID);

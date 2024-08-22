@@ -638,7 +638,7 @@ function printPage() {
     } else {
         window.location.href = urlPrint;
     }
-};
+}
 
 function exportExcel() {
     let urlExport = '/export-excel-build-pc';
