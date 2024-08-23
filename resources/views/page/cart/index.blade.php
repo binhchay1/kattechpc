@@ -19,9 +19,9 @@
         <img class="image-cart" src="{{asset('images/cart.jpg')}}">
         <h2 class="text-center">{{ __('Không có sản phẩm nào trong giỏ hàng') }}</h2>
 
-        <div class="button-css-cart">
-            <a href="{{ route('home') }}" style="padding: 10px 15px; border-radius: 10px;">
-                {{ __('Tiếp tục mua hàng') }}
+        <div class="button-css-cart" id="css-cart-tks">
+            <a href="{{ route('home') }}" style="font-weight:600; padding: 10px 15px; border-radius: 10px;">
+                {{ __('TIẾP TỤC MUA SẮM') }}
             </a>
         </div>
     </div>

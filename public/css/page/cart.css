@@ -779,3 +779,10 @@ textarea {
         width: 100%;
     }
 }
+
+#css-cart-tks a:hover {
+    color: white !important;
+}
+
+
+

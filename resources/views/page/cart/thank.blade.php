@@ -21,9 +21,9 @@
         <p class="tks">{{__('Cảm ơn quý khách đã cho KATTECH có cơ hội được phục vụ. Nhân viên KATTECH sẽ liên hệ với quý khách trong thời gian sớm nhất.')}}</p>
 
         <img class="image-cart" src="{{asset('images/cart.jpg')}}">
-        <div class="button-css-cart">
+        <div class="button-css-cart" id="css-cart-tks">
 
-            <a href="{{ route('home') }}" style="padding: 10px 15px; border-radius: 10px; margin-top: 15px">{{__('Tiếp tục mua hàng')}}</a>
+            <a href="{{ route('home') }}" style="font-weight:600; padding: 10px 15px; border-radius: 10px; margin-top: 15px">{{__('TIẾP TỤC MUA SẮM')}}</a>
         </div>
     </div>
 </main>

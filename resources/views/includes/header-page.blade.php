@@ -154,12 +154,12 @@
                 <div class="build-area">
                     <a href="{{ route('buildPC') }}">
                         <i class="fa fa-screwdriver"></i>
-                        <span>{{ __('Xây dựng cấu hình') }}</span>
+                        <span style="font-weight: 600">{{ __('Xây Dựng Cấu Hình') }}</span>
                     </a>
                 </div>
                 <div class="cart-area ml-20px">
                     <a href="{{ route('showCart') }}">
-                        <i class="fa badge" value="{{ count(Cart::getContent()) }}">&#xf07a;</i> <span>{{ __('Giỏ hàng') }}</span>
+                        <i class="fa badge" value="{{ count(Cart::getContent()) }}">&#xf07a;</i> <span style="font-weight: 600">{{ __('Giỏ Hàng') }}</span>
                     </a>
                 </div>
             </div>

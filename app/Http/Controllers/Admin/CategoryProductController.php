@@ -33,7 +33,6 @@ class CategoryProductController extends Controller
         $getSearchName = $request->get('s');
 
         $listCategory = $this->categoryRepository->getListWithSortParent();
-
         if (isset($getStatus)) {
             if ($getStatus != 'all') {
                 $listCategory = $listCategory->where('status', $getStatus);

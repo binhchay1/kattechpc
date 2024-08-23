@@ -198,7 +198,7 @@
         </div>
 
         <ul class="list-btn-action" id="js-buildpc-action">
-            <li onclick="addToCart()"><span>{{ __('THÊM VÀO GIỎ HÀNG') }}<i class="fa fa-shopping-cart"></i></span></li>
+            <li onclick="addToCart()"><span>{{ __('THANH TOÁN') }}<i class="fa fa-shopping-cart"></i></span></li>
             <li onclick="printPage()"><span>{{ __('XEM VÀ IN') }}<i class="fa fa-print"></i></span></li>
             <li onclick="exportExcel()"><span>{{ __('TẢI FILE EXCEL') }}<i class="fa fa-file"></i></span></li>
             <li onclick="exportImage()"><span>{{ __('TẢI ẢNH') }}<i class="fa fa-image"></i></span></li>
