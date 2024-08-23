@@ -224,3 +224,20 @@ function sortByBrand(select) {
 
     window.location.href = url;
 }
+
+function dropMenuHandle(id) {
+    let idSVGDown = '.' + id + '-drop-down';
+    let idSVGUp = '.' + id + '-drop-up';
+    let idArea = '#' + id;
+
+    console.log(idSVGDown, idSVGUp, idArea, $(idArea).css('display') == 'none');
+    if ($(idArea).hasClass('d-none-in-mobile')) {
+        $(idArea).removeClass('d-none-in-mobile');
+        $(idSVGUp).css('display', 'block');
+        $(idSVGDown).css('display', 'none');
+    } else {
+        $(idArea).addClass('d-none-in-mobile');
+        $(idSVGUp).css('display', 'none');
+        $(idSVGDown).css('display', 'block');
+    }
+}

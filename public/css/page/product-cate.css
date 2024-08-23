@@ -329,6 +329,34 @@
     width: 223px;
 }
 
+.dropbtn {
+    display: none;
+}
+
+.dropbtn svg {
+    width: 20px;
+    float: right;
+    margin-right: 10px;
+    margin-top: 15px;
+}
+
+.area-title-filter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.drop-menu-price-drop-up {
+    display: none;
+}
+
+.sort-drop-up {
+    display: none;
+}
+
+.select-sort-drop-up {
+    display: none;
+}
+
 .only-mobile-for-body {
     .flex {
         display: block !important;
@@ -413,7 +441,8 @@
         display: block;
     }
 
-    .filter-box-group .brand-filter-list, .filter-box-group .sort-list {
+    .filter-box-group .brand-filter-list,
+    .filter-box-group .sort-list {
         justify-content: center;
     }
 
@@ -431,5 +460,18 @@
 
     #content-page h1 {
         font-size: 30px;
+    }
+
+    .area-process-in-mobile {
+        transition: all .5s ease;
+    }
+
+    .d-none-in-mobile {
+        display: none !important;
+    }
+
+    .dropbtn {
+        display: block;
+        background: none !important;
     }
 }

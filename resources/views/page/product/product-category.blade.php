@@ -119,11 +119,20 @@
     <h1>Chọn theo nhu cầu</h1>
     <div class="row">
         <div class="flex" id="select-price">
-            <div>
-                <h2>Lọc theo giá:</h2>
+            <div class="area-title-filter">
+                <h2>{{ __('Lọc theo giá:') }}</h2>
+                <a class="dropbtn" onclick="dropMenuHandle('drop-menu-price')">
+                    <svg class="drop-menu-price-drop-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path d="M207 381.5L12.7 187.1c-9.4-9.4-9.4-24.6 0-33.9l22.7-22.7c9.4-9.4 24.5-9.4 33.9 0L224 284.5l154.7-154c9.4-9.3 24.5-9.3 33.9 0l22.7 22.7c9.4 9.4 9.4 24.6 0 33.9L241 381.5c-9.4 9.4-24.6 9.4-33.9 0z" />
+                    </svg>
+
+                    <svg class="drop-menu-price-drop-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path d="M241 130.5l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9l-22.7 22.7c-9.4 9.4-24.5 9.4-33.9 0L224 227.5 69.3 381.5c-9.4 9.3-24.5 9.3-33.9 0l-22.7-22.7c-9.4-9.4-9.4-24.6 0-33.9L207 130.5c9.4-9.4 24.6-9.4 33.9 0z" />
+                    </svg>
+                </a>
             </div>
 
-            <div class="d-flex sort-price-area">
+            <div class="d-flex sort-price-area area-process-in-mobile d-none-in-mobile" id="drop-menu-price">
                 <div data-id="duoi-10trieu" data-type="price" class="section">
                     <button>{{ __('Dưới 10 triệu') }}</button>
                 </div>
@@ -148,13 +157,23 @@
             </div>
         </div>
     </div>
+
     <div class="row1 mt-1">
         <div class="flex sort">
-            <div>
+            <div class="area-title-filter">
                 <h2>{{ __('Lọc theo tiêu chí:') }}</h2>
+                <a class="dropbtn" onclick="dropMenuHandle('sort')">
+                    <svg class="sort-drop-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path d="M207 381.5L12.7 187.1c-9.4-9.4-9.4-24.6 0-33.9l22.7-22.7c9.4-9.4 24.5-9.4 33.9 0L224 284.5l154.7-154c9.4-9.3 24.5-9.3 33.9 0l22.7 22.7c9.4 9.4 9.4 24.6 0 33.9L241 381.5c-9.4 9.4-24.6 9.4-33.9 0z" />
+                    </svg>
+
+                    <svg class="sort-drop-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path d="M241 130.5l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9l-22.7 22.7c-9.4 9.4-24.5 9.4-33.9 0L224 227.5 69.3 381.5c-9.4 9.3-24.5 9.3-33.9 0l-22.7-22.7c-9.4-9.4-9.4-24.6 0-33.9L207 130.5c9.4-9.4 24.6-9.4 33.9 0z" />
+                    </svg>
+                </a>
             </div>
 
-            <div class="flex sort" id="sort">
+            <div class="flex sort area-process-in-mobile d-none-in-mobile" id="sort">
                 @if(isset($dataCategory->children))
                 <div class="d-flex flex-direction-column">
                     <label class="font-bold">{{ __('Danh mục') }}</label>
@@ -188,12 +207,22 @@
             </div>
         </div>
     </div>
+
     <div class="row2">
-        <div>
+        <div class="area-title-filter">
             <h2>{{ __('Sắp xếp theo:') }}</h2>
+            <a class="dropbtn" onclick="dropMenuHandle('select-sort')">
+                <svg class="select-sort-drop-down" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path d="M207 381.5L12.7 187.1c-9.4-9.4-9.4-24.6 0-33.9l22.7-22.7c9.4-9.4 24.5-9.4 33.9 0L224 284.5l154.7-154c9.4-9.3 24.5-9.3 33.9 0l22.7 22.7c9.4 9.4 9.4 24.6 0 33.9L241 381.5c-9.4 9.4-24.6 9.4-33.9 0z" />
+                </svg>
+
+                <svg class="select-sort-drop-up" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path d="M241 130.5l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9l-22.7 22.7c-9.4 9.4-24.5 9.4-33.9 0L224 227.5 69.3 381.5c-9.4 9.3-24.5 9.3-33.9 0l-22.7-22.7c-9.4-9.4-9.4-24.6 0-33.9L207 130.5c9.4-9.4 24.6-9.4 33.9 0z" />
+                </svg>
+            </a>
         </div>
 
-        <div class="flex" id="select-sort">
+        <div class="flex area-process-in-mobile d-none-in-mobile" id="select-sort">
             <div data-id="new" data-type="sort" class="select button-filter" style="border: none;">
                 <button>{{ __('Hàng mới về') }}</button>
             </div>
