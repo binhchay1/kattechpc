@@ -21,7 +21,6 @@ $(document).ready(function () {
         isMobile = true;
     }
 
-    console.log(isMobile);
     if(isMobile) {
         $('.text-home-page').addClass('d-none');
         $('.text-maintainer').addClass('d-none');
