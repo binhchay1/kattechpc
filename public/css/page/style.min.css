@@ -2543,13 +2543,6 @@ a {
     margin: auto;
 }
 
-.only-tablet-for-body {
-    max-width: 1000px !important;
-    min-width: inherit !important;
-    position: relative;
-    margin: auto;
-}
-
 .preloader-main {
     position: absolute;
     z-index: 1;

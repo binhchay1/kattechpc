@@ -18,7 +18,6 @@ use Cache;
 
 class BuildPCController extends Controller
 {
-
     private $productRepository;
     private $buildPcRepository;
     private $sessionBuildPcRepository;
@@ -32,7 +31,7 @@ class BuildPCController extends Controller
         SessionBuildPCRepository $sessionBuildPcRepository,
         BuildPCThemeRepository $buildPcThemeRepository,
         CategoryRepository $categoryRepository,
-        LayoutRepository $layoutRepository,
+        LayoutRepository $layoutRepository
     ) {
         $this->productRepository = $productRepository;
         $this->buildPcRepository = $buildPcRepository;

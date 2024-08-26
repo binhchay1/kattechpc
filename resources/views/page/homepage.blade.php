@@ -99,6 +99,89 @@
     </div>
 </section>
 
+<section class="slider-banner-mobile">
+    <div class="slider-banner-main-mobile">
+        <div id="header-carousel" class="owl-carousel slide">
+            <div class="carousel-inner">
+                @foreach($listSlide as $keyOwl => $slide)
+                @if($keyOwl == 0)
+                <div class="carousel-item active">
+                    <a href="{{ $slide['url'] }}">
+                        <img src="{{ asset($slide['image']) }}" width="920" height="500" alt="Image" class="lazy">
+                    </a>
+                </div>
+                @else
+                <div class="carousel-item">
+                    <a href="{{ $slide['url'] }}">
+                        <img src="{{ asset($slide['image']) }}" width="920" height="500" alt="Image" class="lazy">
+                    </a>
+                </div>
+                @endif
+                @endforeach
+                <div class="swiper-button-next swiper-button-next-slide" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
+                <div class="swiper-button-prev swiper-button-prev-slide" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
+                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+            </div>
+        </div>
+    </div>
+    <div class="news-main-under">
+        <div class="news-main-right-1">
+            @if(isset($layout->small_thumbnail_1))
+            @if($layout->hide_small_thumbnail_1 == 0)
+            <a href="{{ isset($layout->permarklink_small_thumbnail_1) ? $layout->permarklink_small_thumbnail_1 : '#' }}">
+                <img src="{{ asset($layout->small_thumbnail_1) }}" width="500" class="lazy">
+            </a>
+            @endif
+            @endif
+        </div>
+        <div class="news-main-right-2">
+            @if(isset($layout->small_thumbnail_2))
+            @if($layout->hide_small_thumbnail_2 == 0)
+            <a href="{{ isset($layout->permarklink_small_thumbnail_2) ? $layout->permarklink_small_thumbnail_2 : '#' }}">
+                <img src="{{ asset($layout->small_thumbnail_2) }}" width="500" class="lazy">
+            </a>
+            @endif
+            @endif
+        </div>
+        <div class="news-main-right-1">
+            @if(isset($layout->small_thumbnail_3))
+            @if($layout->hide_small_thumbnail_3 == 0)
+            <a href="{{ isset($layout->permarklink_small_thumbnail_3) ? $layout->permarklink_small_thumbnail_3 : '#' }}">
+                <img src="{{ asset($layout->small_thumbnail_3) }}" width="350" class="lazy">
+            </a>
+            @endif
+            @endif
+        </div>
+        <div class="news-main-right-2">
+            @if(isset($layout->small_thumbnail_4))
+            @if($layout->hide_small_thumbnail_4 == 0)
+            <a href="{{ isset($layout->permarklink_small_thumbnail_4) ? $layout->permarklink_small_thumbnail_4 : '#' }}">
+                <img src="{{ asset($layout->small_thumbnail_4) }}" width="350" class="lazy">
+            </a>
+            @endif
+            @endif
+        </div>
+        <div class="news-main-right-2">
+            @if(isset($layout->small_thumbnail_5))
+            @if($layout->hide_small_thumbnail_5 == 0)
+            <a href="{{ isset($layout->permarklink_small_thumbnail_5) ? $layout->permarklink_small_thumbnail_5 : '#' }}">
+                <img src="{{ asset($layout->small_thumbnail_5) }}" width="350" class="lazy">
+            </a>
+            @endif
+            @endif
+        </div>
+        <div class="news-main-right-2">
+            @if(isset($layout->small_thumbnail_6))
+            @if($layout->hide_small_thumbnail_6 == 0)
+            <a href="{{ isset($layout->permarklink_small_thumbnail_6) ? $layout->permarklink_small_thumbnail_6 : '#' }}">
+                <img src="{{ asset($layout->small_thumbnail_6) }}" width="350" class="lazy">
+            </a>
+            @endif
+            @endif
+        </div>
+    </div>
+</section>
+
 @if(isset($getFlashSale->flash_sale_timer))
 @if(strtotime($getFlashSale->flash_sale_timer) >= strtotime(date('Y-m-d H:i:s')) and $getFlashSale->flash_sale_list_product_id != null)
 <section class="flash-sale-banner">

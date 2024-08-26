@@ -2,6 +2,8 @@ var isMobileDetected = false;
 var isTablet = false;
 
 $(document).ready(function () {
+    var widthDevice = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    $('body').attr('style', 'width: ' + widthDevice + 'px !important');
     $('.preloader-main').hide();
     $('body').css('overflow', 'auto');
     var modal = document.getElementById("submitGetNews");
