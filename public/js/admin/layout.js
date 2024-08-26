@@ -53,7 +53,7 @@ function readURL(input, id) {
 }
 
 function deleteThumb(idThumb) {
-    let urlDelete = '/delete-thumb-layout?id=' + idThumb;
+    let urlDelete = '/admin/layout/delete-thumb-layout?id=' + idThumb;
     window.location.href = urlDelete;
 }
 

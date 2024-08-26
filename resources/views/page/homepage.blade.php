@@ -15,7 +15,7 @@
         <div class="news-main">
             <div class="news-main-left">
                 <div id="header-carousel" class="owl-carousel slide">
-                    <div class="carousel-inner">
+                    <div class="carousel-inner-slide">
                         @foreach($listSlide as $keyOwl => $slide)
                         @if($keyOwl == 0)
                         <div class="carousel-item active">
@@ -101,83 +101,87 @@
 
 <section class="slider-banner-mobile">
     <div class="slider-banner-main-mobile">
-        <div id="header-carousel" class="owl-carousel slide">
-            <div class="carousel-inner">
+        <div class="owl-carousel slide">
+            <div class="carousel-inner-slide-mobile">
                 @foreach($listSlide as $keyOwl => $slide)
                 @if($keyOwl == 0)
                 <div class="carousel-item active">
                     <a href="{{ $slide['url'] }}">
-                        <img src="{{ asset($slide['image']) }}" width="920" height="500" alt="Image" class="lazy">
+                        <img src="{{ asset($slide['image']) }}" width="100%" height="250" alt="Image" class="lazy">
                     </a>
                 </div>
                 @else
                 <div class="carousel-item">
                     <a href="{{ $slide['url'] }}">
-                        <img src="{{ asset($slide['image']) }}" width="920" height="500" alt="Image" class="lazy">
+                        <img src="{{ asset($slide['image']) }}" width="100%" height="250" alt="Image" class="lazy">
                     </a>
                 </div>
                 @endif
                 @endforeach
-                <div class="swiper-button-next swiper-button-next-slide" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
-                <div class="swiper-button-prev swiper-button-prev-slide" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
+                <div class="swiper-button-next swiper-button-next-slide-mobile" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
+                <div class="swiper-button-prev swiper-button-prev-slide-mobile" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
                 <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
             </div>
         </div>
     </div>
-    <div class="news-main-under">
-        <div class="news-main-right-1">
-            @if(isset($layout->small_thumbnail_1))
-            @if($layout->hide_small_thumbnail_1 == 0)
-            <a href="{{ isset($layout->permarklink_small_thumbnail_1) ? $layout->permarklink_small_thumbnail_1 : '#' }}">
-                <img src="{{ asset($layout->small_thumbnail_1) }}" width="500" class="lazy">
-            </a>
-            @endif
-            @endif
-        </div>
-        <div class="news-main-right-2">
-            @if(isset($layout->small_thumbnail_2))
-            @if($layout->hide_small_thumbnail_2 == 0)
-            <a href="{{ isset($layout->permarklink_small_thumbnail_2) ? $layout->permarklink_small_thumbnail_2 : '#' }}">
-                <img src="{{ asset($layout->small_thumbnail_2) }}" width="500" class="lazy">
-            </a>
-            @endif
-            @endif
-        </div>
-        <div class="news-main-right-1">
-            @if(isset($layout->small_thumbnail_3))
-            @if($layout->hide_small_thumbnail_3 == 0)
-            <a href="{{ isset($layout->permarklink_small_thumbnail_3) ? $layout->permarklink_small_thumbnail_3 : '#' }}">
-                <img src="{{ asset($layout->small_thumbnail_3) }}" width="350" class="lazy">
-            </a>
-            @endif
-            @endif
-        </div>
-        <div class="news-main-right-2">
-            @if(isset($layout->small_thumbnail_4))
-            @if($layout->hide_small_thumbnail_4 == 0)
-            <a href="{{ isset($layout->permarklink_small_thumbnail_4) ? $layout->permarklink_small_thumbnail_4 : '#' }}">
-                <img src="{{ asset($layout->small_thumbnail_4) }}" width="350" class="lazy">
-            </a>
-            @endif
-            @endif
-        </div>
-        <div class="news-main-right-2">
-            @if(isset($layout->small_thumbnail_5))
-            @if($layout->hide_small_thumbnail_5 == 0)
-            <a href="{{ isset($layout->permarklink_small_thumbnail_5) ? $layout->permarklink_small_thumbnail_5 : '#' }}">
-                <img src="{{ asset($layout->small_thumbnail_5) }}" width="350" class="lazy">
-            </a>
-            @endif
-            @endif
-        </div>
-        <div class="news-main-right-2">
-            @if(isset($layout->small_thumbnail_6))
-            @if($layout->hide_small_thumbnail_6 == 0)
-            <a href="{{ isset($layout->permarklink_small_thumbnail_6) ? $layout->permarklink_small_thumbnail_6 : '#' }}">
-                <img src="{{ asset($layout->small_thumbnail_6) }}" width="350" class="lazy">
-            </a>
-            @endif
-            @endif
+    <div class="news-main-under-mobile">
+        <div class="owl-carousel slide">
+            <div class="carousel-inner-thumb">
+                @if(isset($layout->small_thumbnail_1))
+                @if($layout->hide_small_thumbnail_1 == 0)
+                <div class="news-main-right-1 carousel-item active">
+                    <a href="{{ isset($layout->permarklink_small_thumbnail_1) ? $layout->permarklink_small_thumbnail_1 : '#' }}">
+                        <img src="{{ asset($layout->small_thumbnail_1) }}" width="100%" height="250" class="lazy">
+                    </a>
+                </div>
+                @endif
+                @endif
+                @if(isset($layout->small_thumbnail_2))
+                @if($layout->hide_small_thumbnail_2 == 0)
+                <div class="news-main-right-2 carousel-item">
+                    <a href="{{ isset($layout->permarklink_small_thumbnail_2) ? $layout->permarklink_small_thumbnail_2 : '#' }}">
+                        <img src="{{ asset($layout->small_thumbnail_2) }}" width="100%" height="250" class="lazy">
+                    </a>
+                </div>
+                @endif
+                @endif
+                @if(isset($layout->small_thumbnail_3))
+                @if($layout->hide_small_thumbnail_3 == 0)
+                <div class="news-main-right-1 carousel-item">
+                    <a href="{{ isset($layout->permarklink_small_thumbnail_3) ? $layout->permarklink_small_thumbnail_3 : '#' }}">
+                        <img src="{{ asset($layout->small_thumbnail_3) }}" width="100%" height="250" class="lazy">
+                    </a>
+                </div>
+                @endif
+                @endif
+                @if(isset($layout->small_thumbnail_4))
+                @if($layout->hide_small_thumbnail_4 == 0)
+                <div class="news-main-right-2 carousel-item">
+                    <a href="{{ isset($layout->permarklink_small_thumbnail_4) ? $layout->permarklink_small_thumbnail_4 : '#' }}">
+                        <img src="{{ asset($layout->small_thumbnail_4) }}" width="100%" height="250" class="lazy">
+                    </a>
+                </div>
+                @endif
+                @endif
+                @if(isset($layout->small_thumbnail_5))
+                @if($layout->hide_small_thumbnail_5 == 0)
+                <div class="news-main-right-2 carousel-item">
+                    <a href="{{ isset($layout->permarklink_small_thumbnail_5) ? $layout->permarklink_small_thumbnail_5 : '#' }}">
+                        <img src="{{ asset($layout->small_thumbnail_5) }}" width="100%" height="250" class="lazy">
+                    </a>
+                </div>
+                @endif
+                @endif
+                @if(isset($layout->small_thumbnail_6))
+                @if($layout->hide_small_thumbnail_6 == 0)
+                <div class="news-main-right-2 carousel-item">
+                    <a href="{{ isset($layout->permarklink_small_thumbnail_6) ? $layout->permarklink_small_thumbnail_6 : '#' }}">
+                        <img src="{{ asset($layout->small_thumbnail_6) }}" width="100%" height="250" class="lazy">
+                    </a>
+                </div>
+                @endif
+                @endif
+            </div>
         </div>
     </div>
 </section>
@@ -635,56 +639,79 @@
 
     const listCategory = <?php echo json_encode($listCategory) ?>;
 
-    let countOwl = 0;
-    let listOwl = $('.carousel-inner .carousel-item');
-    let totalListOwl = listOwl.length;
+    let listSlideOwl = $('.carousel-inner-slide .carousel-item');
+    let totalListSlideOwl = listSlideOwl.length;
 
+    let listSlideMobileOwl = $('.carousel-inner-slide-mobile .carousel-item');
+    let totalListSlideMobileOwl = listSlideMobileOwl.length;
 
-    if (totalListOwl > 1) {
+    let listThumbOwl = $('.carousel-inner-thumb .carousel-item');
+    let totalListThumbOwl = listThumbOwl.length;
+
+    if (totalListSlideOwl > 1) {
+        handleOwl(listSlideOwl, '.swiper-button-next-slide', '.swiper-button-prev-slide');
+    } else {
+        $('.swiper-button-next-slide').addClass('d-none');
+        $('.swiper-button-prev-slide').addClass('d-none');
+    }
+
+    if (totalListSlideMobileOwl > 1) {
+        handleOwl(listSlideMobileOwl, '.swiper-button-next-slide-mobile', '.swiper-button-prev-slide-mobile');
+    } else {
+        $('.swiper-button-next-slide-mobile').addClass('d-none');
+        $('.swiper-button-prev-slide-mobile').addClass('d-none');
+    }
+
+    if (totalListThumbOwl > 1) {
+        handleOwl(listThumbOwl, '.swiper-button-next-slide-mobile', '.swiper-button-prev-slide-mobile');
+    } else {
+        $('.swiper-button-next-thumb').addClass('d-none');
+        $('.swiper-button-prev-thumb').addClass('d-none');
+    }
+
+    function handleOwl(list, next, prev) {
+        let countOwl = 0;
         let intervalOwl = setInterval(function() {
-            if (countOwl == listOwl.length - 1) {
-                listOwl[countOwl].classList.remove('active');
+            if (countOwl == list.length - 1) {
+                list[countOwl].classList.remove('active');
                 countOwl = 0;
                 nextOwl = countOwl;
-                listOwl[nextOwl].classList.add('active');
+                list[nextOwl].classList.add('active');
 
             } else {
                 nextOwl = countOwl + 1;
 
-                listOwl[countOwl].classList.remove('active');
-                listOwl[nextOwl].classList.add('active');
+                list[countOwl].classList.remove('active');
+                list[nextOwl].classList.add('active');
             }
 
             countOwl++;
         }, 3000);
 
-        $('.swiper-button-next-slide').on('click', function() {
-            if (countOwl == listOwl.length - 1) {
+        $(next).on('click', function() {
+            if (countOwl == list.length - 1) {
                 return;
 
             } else {
-                listOwl[countOwl].classList.remove('active');
-                listOwl[countOwl + 1].classList.add('active');
+                list[countOwl].classList.remove('active');
+                list[countOwl + 1].classList.add('active');
                 countOwl++;
             }
 
             clearInterval(intervalOwl);
         });
 
-        $('.swiper-button-prev-slide').on('click', function() {
+        $(prev).on('click', function() {
             if (countOwl == 0) {
                 return;
             } else {
-                listOwl[countOwl].classList.remove('active');
-                listOwl[countOwl - 1].classList.add('active');
+                list[countOwl].classList.remove('active');
+                list[countOwl - 1].classList.add('active');
                 countOwl--;
             }
 
             clearInterval(intervalOwl);
         });
-    } else {
-        $('.swiper-button-next-slide').addClass('d-none');
-        $('.swiper-button-prev-slide').addClass('d-none');
     }
 </script>
 @endsection

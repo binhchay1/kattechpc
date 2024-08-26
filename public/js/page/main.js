@@ -6,6 +6,7 @@ $(document).ready(function () {
     $('body').attr('style', 'width: ' + widthDevice + 'px !important');
     $('.preloader-main').hide();
     $('body').css('overflow', 'auto');
+    $('body').css('overflow-x', 'hidden');
     var modal = document.getElementById("submitGetNews");
     var btn = document.getElementById("news-button-summit");
     var span = document.getElementsByClassName("close")[0];
