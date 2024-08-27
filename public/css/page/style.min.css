@@ -155,26 +155,28 @@ a:hover {
 }
 
 .build-area i {
-    background: #fff;
+    background: var(--color-primary);
     height: 46px;
     width: 46px;
     line-height: 44px;
     text-align: center;
     font-size: 24px;
-    border: 1px solid #aaa;
+    border: 1px solid var(--color-primary);
     border-radius: 30px;
+    color: white;
 }
 
 .cart-area i {
-    background: #fff;
+    background: var(--color-primary);
     height: 46px;
     width: 40px;
     line-height: 45px;
     text-align: center;
     font-size: 21px;
-    border: 1px solid #aaa;
+    border: 1px solid var(--color-primary);
     border-radius: 30px;
     padding-left: 10px;
+    color: white;
 }
 
 .footer {
@@ -1479,7 +1481,7 @@ a {
 .badge:after {
     content: attr(value);
     font-size: 13px;
-    background: red;
+    background: black;
     border-radius: 83%;
     padding: 3px;
     position: relative;
