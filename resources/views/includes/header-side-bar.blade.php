@@ -1,14 +1,22 @@
 <div class="main-menu-category">
     <div class="header-menu-mobile">
         <span class="close-mn" onclick="closeMenuMobile()">X</span>
-        <a href="/" class="logo-menu">
-            <img src="{{ asset('images/logo/logo.png') }}" width="100" height="100" alt="Logo Kattech PC" style="margin-left: 45px;">
+        <a href="/" class="logo-menu" style="margin-left: 80px;">
+            <img src="{{ asset('images/logo/logo.png') }}" width="100" height="100" alt="Logo Kattech PC">
         </a>
 
-        <div class="cart-area ml-20px" style="float: right; margin-top: 5px">
-            <a href="{{ route('showCart') }}">
-                <i class="fa badge" value="{{ count(Cart::getContent()) }}">&#xf07a;</i> <span></span>
-            </a>
+        <div class="d-flex">
+            <div class="build-area" style="display: block;">
+                <a href="{{ route('buildPC') }}">
+                    <i class="fa fa-screwdriver" style="background: white; color: black"></i>
+                </a>
+            </div>
+
+            <div class="cart-area" style="margin-left: 10px;">
+                <a href="{{ route('showCart') }}">
+                    <i class="fa badge" style="background: white; color: black" value="{{ count(Cart::getContent()) }}">&#xf07a;</i> <span></span>
+                </a>
+            </div>
         </div>
     </div>
     <ul class="list-category-menu-mobile">

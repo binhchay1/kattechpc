@@ -138,14 +138,15 @@
     }
 
     .build-area i {
-        background: #fff;
-        height: 30px;
-        width: 30px;
-        line-height: 30px;
+        background: var(--color-primary);
+        height: 46px;
+        width: 46px;
+        line-height: 44px;
         text-align: center;
-        font-size: 16px;
-        border: 1px solid #aaa;
+        font-size: 24px;
+        border: 1px solid var(--color-primary);
         border-radius: 30px;
+        color: white;
     }
 
     .sub-header .d-xl-block {
@@ -620,7 +621,6 @@
         display: flex;
         justify-content: center;
         margin-top: -15px;
-        margin-left: 20px;
     }
 
     .hot-sale-mobile {
@@ -708,5 +708,9 @@
     .slider-banner-mobile {
         display: flex;
         flex-direction: column;
+    }
+
+    .swiper-wrapper {
+        margin-left: 0;
     }
 }

@@ -36,19 +36,19 @@
                     <a href="{{ route('promotion') }}" class="sep-item-link" target="_blank"><i class="fa fa-tag"></i> {{ __('Khuyến mại') }}</a>
                 </div>
                 @if(auth()->check())
-                    <div class="ml-15px dropdown">
-                        <a class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
-                        <div class="dropdown-content">
-                            <a href="{{ route('profile') }}">{{ __('Tài khoản') }}</a>
-                            <a href="{{ route('orderHistory') }}">{{ __('Lịch sử mua hàng') }}</a>
-                            <form method="POST" action="{{ route('logout') }}" style="cursor: pointer;">
-                                @csrf
-                                <a class="sep-item-link" onclick="this.closest('form').submit();return false;">
-                                    {{__('Đăng xuất')}}
-                                </a>
-                            </form>
-                        </div>
+                <div class="ml-15px dropdown">
+                    <a class="sep-item-link" target="_blank"><i class="fa fa-user"></i> {{ __('Tài khoản') }}</a>
+                    <div class="dropdown-content">
+                        <a href="{{ route('profile') }}">{{ __('Tài khoản') }}</a>
+                        <a href="{{ route('orderHistory') }}">{{ __('Lịch sử mua hàng') }}</a>
+                        <form method="POST" action="{{ route('logout') }}" style="cursor: pointer;">
+                            @csrf
+                            <a class="sep-item-link" onclick="this.closest('form').submit();return false;">
+                                {{__('Đăng xuất')}}
+                            </a>
+                        </form>
                     </div>
+                </div>
                 @else
                 <div class="ml-15px">
                     <a href="/register" class="sep-item-link" target="_blank"><i class="fa fa-address-book"></i> {{ __('Đăng ký') }}</a>
@@ -118,7 +118,12 @@
                         </div>
                     </div>
                     <div class="columnc">
-                        <div class="cart-area ml-20px" style="float: right; margin-top: 5px">
+                        <div class="build-area" style="display: block;">
+                            <a href="{{ route('buildPC') }}">
+                                <i class="fa fa-screwdriver"></i>
+                            </a>
+                        </div>
+                        <div class="cart-area ml-20px">
                             <a href="{{ route('showCart') }}">
                                 <i style="width: 40px;" class="fa badge" value="{{ count(Cart::getContent()) }}">&#xf07a;</i> <span></span>
                             </a>
