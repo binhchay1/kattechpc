@@ -131,7 +131,7 @@ Route::group(['middleware' => ['maintenance', 'cache.menu', 'count.visitor']], f
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['admin', 'session-maintenance-mode']], function () {
-    Route::get('/cam-on',  [HomeController::class, 'registerSuccess'])->name('registerSuccess');
+    Route::get('/cam-on',  [HomeController::class, 'registerSuccess'])->name('registerSuccessAdmin');
     Route::get('/change-locate/{locale}', [AdminController::class, 'changeLocate'])->name('change.locate.admin');
     Route::get('/dashboard', [AdminController::class, 'viewDashBoard'])->name('admin.dashboard');
     Route::get('/order-detail/{id}', [AdminController::class, 'detailDetail'])->name('admin.detailDetail');
