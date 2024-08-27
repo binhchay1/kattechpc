@@ -704,4 +704,9 @@
     .top-sale {
         margin-top: 20px;
     }
+
+    .slider-banner-mobile {
+        display: flex;
+        flex-direction: column;
+    }
 }
