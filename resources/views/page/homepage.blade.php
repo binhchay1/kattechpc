@@ -677,6 +677,7 @@
                 countOwl = 0;
                 nextOwl = countOwl;
                 list[nextOwl].classList.add('active');
+                return;
 
             } else {
                 nextOwl = countOwl + 1;
