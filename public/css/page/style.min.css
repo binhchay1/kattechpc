@@ -1484,7 +1484,7 @@ a {
 .badge:after {
     content: attr(value);
     font-size: 13px;
-    background: black;
+    background: var(--color-primary);
     border-radius: 83%;
     padding: 3px;
     position: relative;

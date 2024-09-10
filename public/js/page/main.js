@@ -1,9 +1,6 @@
 var isMobileDetected = false;
-var isTablet = false;
 
 $(document).ready(function () {
-    var widthDevice = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-    $('body').attr('style', 'width: ' + widthDevice + 'px !important');
     $('.preloader-main').hide();
     $('body').css('overflow', 'auto');
     $('body').css('overflow-x', 'hidden');
@@ -11,10 +8,6 @@ $(document).ready(function () {
     var btn = document.getElementById("news-button-summit");
     var span = document.getElementsByClassName("close")[0];
     checkSessions();
-
-    shortcut.add("F12", function () {
-        alert("F1 pressed");
-    });
 
     var defaultTransFlash = 279;
     var defaultTransTopSale = 247;
@@ -27,33 +20,17 @@ $(document).ready(function () {
     var countFooterSlide = 0;
 
     if (WURFL.is_mobile) {
-        if (WURFL.form_factor === "Tablet") {
-            isTablet = true;
-        }
-
-        isMobileDetected = true;
-
-        $('body').addClass("only-mobile-for-body");
-        $('.global-fixed-right a').addClass('right-inherit');
-
-        if (window.innerWidth < 650) {
-            defaultTransFlash = window.innerWidth - 18;
-            defaultTransTopSale = window.innerWidth - 18;
-            defaultTransFooterSlide = window.innerWidth + 5;
-            defaultTransProduct = window.innerWidth + 12;
-        } else {
-            defaultTransFlash = 650 - 18;
-            defaultTransTopSale = 650 - 18;
-            defaultTransFooterSlide = 650 + 5;
-            defaultTransProduct = 650 + 12;
-        }
-
+        mobileScreenHandle();
     } else {
         isMobileDetected = false;
         $('body').removeClass("only-mobile-for-body");
         $('.global-fixed-right a').removeClass('right-inherit');
         $('.main-menu-category').addClass('d-none');
     }
+
+    window.addEventListener("orientationchange", () => {
+        mobileScreenHandle();
+    });
 
     window.addEventListener('scroll', () => {
         var y = $(this).scrollTop();
@@ -184,25 +161,8 @@ $(document).ready(function () {
             }
         }
 
-        if (WURFL.is_mobile) {
-            $('body').addClass("only-mobile-for-body");
-            $('.global-fixed-right a').addClass('right-inherit');
-        } else {
-            $('body').removeClass("only-mobile-for-body");
-            $('.global-fixed-right a').removeClass('right-inherit');
-        }
-
-        if (window.innerWidth < 650) {
-            defaultTransFlash = window.innerWidth - 18;
-            defaultTransTopSale = window.innerWidth - 18;
-            defaultTransFooterSlide = window.innerWidth + 5;
-            defaultTransProduct = window.innerWidth + 12;
-        } else {
-            defaultTransFlash = 650 - 18;
-            defaultTransTopSale = 650 - 18;
-            defaultTransFooterSlide = 650 + 5;
-            defaultTransProduct = 650 + 12;
-        }
+        var widthDevice = (window.innerWidth > 650) ? 650 : window.innerWidth;
+        $('body').attr('style', 'width: ' + widthDevice + 'px !important');
 
         countFlash = 0;
         countProduct = 0;
@@ -888,4 +848,27 @@ function readCookie(name) {
     }
 
     return '';
+}
+
+function mobileScreenHandle() {
+    isMobileDetected = true;
+
+    var widthDevice = (window.innerWidth > 650) ? 650 : window.innerWidth;
+    $('body').attr('style', 'width: ' + widthDevice + 'px !important');
+    $('body').addClass("only-mobile-for-body");
+    $('.global-fixed-right a').addClass('right-inherit');
+    $('body').css('overflow', 'auto');
+    $('body').css('overflow-x', 'hidden');
+
+    if (window.innerWidth < 650) {
+        defaultTransFlash = window.innerWidth - 18;
+        defaultTransTopSale = window.innerWidth - 18;
+        defaultTransFooterSlide = window.innerWidth + 5;
+        defaultTransProduct = window.innerWidth + 12;
+    } else {
+        defaultTransFlash = 650 - 18;
+        defaultTransTopSale = 650 - 18;
+        defaultTransFooterSlide = 650 + 5;
+        defaultTransProduct = 650 + 12;
+    }
 }
