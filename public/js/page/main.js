@@ -28,6 +28,27 @@ $(document).ready(function () {
         $('.main-menu-category').addClass('d-none');
     }
 
+    window.addEventListener('resize', function (event) {
+        if (isMobileDetected) {
+            $('.swiper-flash-sale').css('transform', 'translate3d(0px, 0px, 0px)');
+            $('.swiper-top-sale').css('transform', 'translate3d(0px, 0px, 0px)');
+            $('.swiper-footer-slide').css('transform', 'translate3d(0px, 0px, 0px)');
+            if (typeof (listCategory) != 'undefined' && listCategory !== null) {
+                for (let k = 0; k < listCategory.default.length; k++) {
+                    $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(0px, 0px, 0px)');
+                }
+            }
+
+            var widthDevice = (window.innerWidth > 650) ? 650 : window.innerWidth;
+            $('body').attr('style', 'width: ' + widthDevice + 'px !important');
+
+            countFlash = 0;
+            countProduct = 0;
+            countTopSale = 0;
+            countFooterSlide = 0;
+        }
+    }, true);
+
     window.addEventListener("orientationchange", () => {
         mobileScreenHandle();
     });
@@ -150,26 +171,6 @@ $(document).ready(function () {
             $('.global-tooltip').css('display', 'none');
         });
     }
-
-    window.addEventListener('resize', function (event) {
-        $('.swiper-flash-sale').css('transform', 'translate3d(0px, 0px, 0px)');
-        $('.swiper-top-sale').css('transform', 'translate3d(0px, 0px, 0px)');
-        $('.swiper-footer-slide').css('transform', 'translate3d(0px, 0px, 0px)');
-        if (typeof (listCategory) != 'undefined' && listCategory !== null) {
-            for (let k = 0; k < listCategory.default.length; k++) {
-                $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(0px, 0px, 0px)');
-            }
-        }
-
-        var widthDevice = (window.innerWidth > 650) ? 650 : window.innerWidth;
-        $('body').attr('style', 'width: ' + widthDevice + 'px !important');
-
-        countFlash = 0;
-        countProduct = 0;
-        countTopSale = 0;
-        countFooterSlide = 0;
-
-    }, true);
 
     let transFlash = 0;
     let defaultFlash = 5;
