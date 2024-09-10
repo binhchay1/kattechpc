@@ -12,6 +12,10 @@ $(document).ready(function () {
     var span = document.getElementsByClassName("close")[0];
     checkSessions();
 
+    shortcut.add("F12", function () {
+        alert("F1 pressed");
+    });
+
     var defaultTransFlash = 279;
     var defaultTransTopSale = 247;
     var defaultTransFooterSlide = 285;
