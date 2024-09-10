@@ -2579,6 +2579,18 @@ a {
     display: none;
 }
 
+.swiper-button-next-slide {
+    margin-top: 0;
+    right: calc(23px + 38%);
+    top: 85%;
+}
+
+.swiper-button-prev-slide {
+    margin-top: 0;
+    left: calc(10px + 12%);
+    top: 85%;
+}
+
 .only-mobile-for-body {
     .box-right {
         display: none;

@@ -1,4 +1,5 @@
 var isMobileDetected = false;
+var isOrient = false;
 
 $(document).ready(function () {
     $('.preloader-main').hide();
@@ -29,23 +30,33 @@ $(document).ready(function () {
     }
 
     window.addEventListener('resize', function (event) {
-        if (isMobileDetected) {
-            $('.swiper-flash-sale').css('transform', 'translate3d(0px, 0px, 0px)');
-            $('.swiper-top-sale').css('transform', 'translate3d(0px, 0px, 0px)');
-            $('.swiper-footer-slide').css('transform', 'translate3d(0px, 0px, 0px)');
-            if (typeof (listCategory) != 'undefined' && listCategory !== null) {
-                for (let k = 0; k < listCategory.default.length; k++) {
-                    $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(0px, 0px, 0px)');
+        if (window.innerWidth >= 1920) {
+            $('body').removeClass('only-mobile-for-body');
+            $('.global-fixed-right a').removeClass('right-inherit');
+            $('body').css('width', '100%');
+            $('body').css('overflow', 'auto');
+            $('body').css('overflow-x', 'hidden');
+        } else {
+            if (isMobileDetected) {
+                $('.swiper-flash-sale').css('transform', 'translate3d(0px, 0px, 0px)');
+                $('.swiper-top-sale').css('transform', 'translate3d(0px, 0px, 0px)');
+                $('.swiper-footer-slide').css('transform', 'translate3d(0px, 0px, 0px)');
+                if (typeof (listCategory) != 'undefined' && listCategory !== null) {
+                    for (let k = 0; k < listCategory.default.length; k++) {
+                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(0px, 0px, 0px)');
+                    }
                 }
+
+                var widthDevice = (window.innerWidth > 650) ? 650 : window.innerWidth;
+                $('body').attr('style', 'width: ' + widthDevice + 'px !important');
+
+                countFlash = 0;
+                countProduct = 0;
+                countTopSale = 0;
+                countFooterSlide = 0;
+
+                mobileScreenHandle();
             }
-
-            var widthDevice = (window.innerWidth > 650) ? 650 : window.innerWidth;
-            $('body').attr('style', 'width: ' + widthDevice + 'px !important');
-
-            countFlash = 0;
-            countProduct = 0;
-            countTopSale = 0;
-            countFooterSlide = 0;
         }
     }, true);
 
