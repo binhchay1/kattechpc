@@ -382,12 +382,64 @@
                 </div>
             </div>
         </div>
+
+        <div class="fixed-giohang" id="footer-cart">
+            <span class="fixed-total-giohang">Tổng tiền:
+                <strong class="total-cart-payment total_cart_new js-finalPrice" id="total_value">
+                    17.699.000
+                </strong>
+            </span>
+            <span class="divider"></span>
+            <!--  <button type="button" class="fixed-submit-giohang" id="btn-submit"  onclick="return checkFieldCart()">Đặt hàng </button> -->
+
+            <button class="fixed-submit-giohang js-check-sendcart submited" style="border-radius: 0; font-weight: 600">{{ __('Đặt hàng') }}</button>
+        </div>
     </form>
     @endif
 </main>
 
+<style>
+
+    #footer-cart {
+        display: none;
+    }
+    .fixed-giohang {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        z-index: 1;
+        height: 50px;
+        background-image: linear-gradient(to right, #243a76, #ed1b24);
+        display: -webkit-inline-box;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        text-align: center;
+        color: #fff;
+    }
+
+    .fixed-total-giohang {
+        float: left;
+        margin-left: 65px;
+        flex-basis: 0;
+        flex-grow: 2;
+        line-height: 50px;
+    }
+
+    .fixed-submit-giohang {
+        flex-basis: 0;
+        flex-grow: 1;
+        background: none;
+        border: none;
+        line-height: 50px;
+        color: #fff;
+        font-size: 14px;
+        float: right;
+    }
+</style>
 <div id="area-export-image"></div>
 @include('includes.modal-coupon')
+
 @endsection
 
 @section('js')

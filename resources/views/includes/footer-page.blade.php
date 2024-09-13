@@ -91,6 +91,8 @@
         </div>
     </div>
 </div>
+@if(!Route::is('productDetail') && !Route::is('showCart'))
+    // code
 <div id="toolbar-menu-mobile" class="toolbar-menu-mobile  d-xl-none d-lg-none hSticky hSticky-nav hSticky-up bottomMenu">
     <ul>
         @if(Auth::check())
@@ -140,4 +142,36 @@
         </li>
     </ul>
 </div>
+@endif
+@if(Route::is('productDetail'))
+    // code
+    <div id="toolbar-menu-mobile" class="toolbar-menu-mobile  d-xl-none d-lg-none hSticky hSticky-nav hSticky-up bottomMenu">
+        <ul style="background-image: linear-gradient(to right, #243a76, #ed1b24);">
+            <li class="item">
+                <a class="addCart gap-8 d-flex flex-wrap align-items-center justify-content-center" onclick="addToCart()">
+                    <input type="hidden" value="{{ $dataProduct['slug'] }}" id="product-to-cart">
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="color: white" width="30" height="30" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+  <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                    </svg>
+                </span>
+                    <span style="color: white">{{ __('Thêm vào giỏ hàng') }}</span>
+                </a>
+            </li>
+            <li class="item ">
+                <a onclick="buyNowHandle(this)" class="btn-1" data-slug="{{ $dataProduct['slug'] }}">
+                <span class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" style="color: white" width="30" height="30" fill="currentColor" class="bi bi-cash" viewBox="0 0 16 16">
+  <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+  <path d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2z"/>
+</svg>
+                </span>
+                    <span style="color: white">{{ __('Mua ngay') }}</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+@endif
 @include('includes.modal-submit-get-news')
+<script src="{{ asset('js/page/product.js') }}"></script>

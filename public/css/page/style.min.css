@@ -1944,6 +1944,9 @@ a {
         margin: auto !important;
         border-radius: 10px;
     }
+    .fixed-giohang {
+        display: block !important;
+    }
 }
 
 #map {
@@ -2300,7 +2303,7 @@ a {
 .searchButton {
     width: 40px;
     height: 38px;
-    border: 1px solid #888e8e;
+    border: 1px solid red;
     background: var(--color-primary);
     text-align: center;
     color: #fff;
