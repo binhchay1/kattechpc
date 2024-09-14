@@ -14,11 +14,13 @@ $(document).ready(function () {
     var defaultTransTopSale = 247;
     var defaultTransFooterSlide = 285;
     var defaultTransProduct = 235;
+    let defaultTransCustomerReview = 0;
 
     var countFlash = 0;
     var countProduct = 0;
     var countTopSale = 0;
     var countFooterSlide = 0;
+    var countCustomerReview = 0;
 
     if (WURFL.is_mobile) {
         mobileScreenHandle();
@@ -53,6 +55,7 @@ $(document).ready(function () {
             countProduct = 0;
             countTopSale = 0;
             countFooterSlide = 0;
+            countCustomerReview = 0;
 
             mobileScreenHandle();
         }
@@ -423,8 +426,6 @@ $(document).ready(function () {
     }
 
     if (isMobileDetected) {
-        let defaultTransCustomerReview = 0;
-
         if (window.innerWidth > 650) {
             defaultTransCustomerReview = 650 - 10;
         } else {
@@ -484,7 +485,7 @@ $(document).ready(function () {
         let listChildCustomerReview = $(".swiper-review-customer").children();
         if (listChildCustomerReview.length > defaultCustomerReview) {
             let stopCustomerReview = listChildCustomerReview.length - defaultCustomerReview;
-            let countCustomerReview = 0;
+            countCustomerReview = 0;
             let countPagination = 1;
             setInterval(function () {
                 if (countCustomerReview == stopCustomerReview) {
@@ -875,10 +876,12 @@ function mobileScreenHandle() {
         defaultTransTopSale = window.innerWidth - 18;
         defaultTransFooterSlide = window.innerWidth + 5;
         defaultTransProduct = window.innerWidth + 12;
+        defaultTransCustomerReview = window.innerWidth - 10;
     } else {
         defaultTransFlash = 650 - 18;
         defaultTransTopSale = 650 - 18;
         defaultTransFooterSlide = 650 + 5;
         defaultTransProduct = 650 + 12;
+        defaultTransCustomerReview = 650 - 10;
     }
 }
