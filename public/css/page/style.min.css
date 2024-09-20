@@ -1309,13 +1309,13 @@ a:hover {
     font-variant: initial;
 }
 
-/*.swiper-button-next::after {*/
-/*    content: ">";*/
-/*}*/
+.swiper-button-next::after {
+    content: ">";
+}
 
-/*.swiper-button-prev::after {*/
-/*    content: "";*/
-/*}*/
+.swiper-button-prev::after {
+    content: "";
+}
 
 #swipper-next-slide
 {
@@ -1363,13 +1363,13 @@ a:hover {
 }
 
 
-/*#swipper-next-slide::after {*/
-/*    content: ">";*/
-/*}*/
+#swipper-next-slide::after {
+    display:none !important;
+}
 
-/*#swipper-prev-slide::after {*/
-/*    content: "<";*/
-/*}*/
+#swipper-prev-slide::after {
+    display:none !important;
+}
 
 .box-banner-collection {
     position: absolute;

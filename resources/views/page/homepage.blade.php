@@ -8,66 +8,7 @@
 <link rel="stylesheet" href="{{ asset('/plugins/owlcarousel/owl.theme.default.min.css') }}" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM0sYq/xRSs+/Doh4Z2F4E4FIk5hpuYlDkkpM" crossorigin="anonymous">
 @endsection
-{{--<style>--}}
-{{--    #swipper-next-slide {--}}
-{{--    border-radius: 10px !important;--}}
-{{--    background: #dee0e2 !important;--}}
-{{--    margin: 59px  !important;--}}
-{{--    margin-top: 160px  !important;--}}
-{{--    padding: 16px  !important;--}}
-{{--    opacity: 1  !important;--}}
-{{--    font-size: 25px  !important;--}}
-{{--    position: absolute  !important;--}}
-{{--    height: 60px  !important;--}}
-{{--    width: 60px  !important;--}}
-{{--    line-height: 40px  !important;--}}
-{{--    text-align: center  !important;--}}
-{{--    color: #000  !important;--}}
-{{--    z-index: 9  !important;--}}
-{{--    transition: .4s  !important;--}}
-{{--    outline: 0  !important;--}}
-{{--}--}}
 
-{{--    #swipper-next-slide::after {--}}
-{{--        content: "<" !important;;--}}
-{{--    }--}}
-
-{{--    #swipper-next-slide::after {--}}
-{{--        font-size: 18px !important;--}}
-{{--        color: black !important;--}}
-{{--        font-family: swiper-icons;--}}
-{{--        text-transform: none !important;--}}
-{{--        letter-spacing: 0;--}}
-{{--        font-variant: initial;--}}
-{{--        line-height: 0 !important;--}}
-{{--    }--}}
-
-{{--#swipper-prev-slide {--}}
-{{--    border-radius: 10px !important;--}}
-{{--    background: #dee0e2 !important;--}}
-{{--    margin: 59px  !important;--}}
-{{--    margin-top: 160px  !important;--}}
-{{--    padding: 16px  !important;--}}
-{{--    opacity: 1  !important;--}}
-{{--    font-size: 25px  !important;--}}
-{{--    position: absolute  !important;--}}
-{{--    height: 60px  !important;--}}
-{{--    width: 60px  !important;--}}
-{{--    line-height: 40px  !important;--}}
-{{--    text-align: center  !important;--}}
-{{--    color: #000  !important;--}}
-{{--    z-index: 9  !important;--}}
-{{--    transition: .4s  !important;--}}
-{{--    outline: 0  !important;--}}
-{{--}--}}
-
-{{--    #swipper-next-slide {--}}
-{{--        display: none;--}}
-{{--    }--}}
-{{--    #swipper-prev-slide {--}}
-{{--        display: none;--}}
-{{--    }--}}
-{{--</style>--}}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function(){
@@ -92,16 +33,16 @@
                         @if($keyOwl == 0)
                         <div class="carousel-item active">
                             <a href="{{ $slide['url'] }}">
-{{--                                <img src="{{ asset($slide['image']) }}" width="920" height="500" alt="Image" class="lazy">--}}
-                                <img src="{{ asset('https://hanoicomputercdn.com/media/banner/08_Aug994069d58be51af8c5199643ffbe09b0.jpg') }}" width="920" height="500" alt="Image" class="lazy">
+                                <img src="{{ asset($slide['image']) }}" width="920" height="500" alt="Image" class="lazy">
+{{--                                <img src="{{ asset('https://hanoicomputercdn.com/media/banner/08_Aug994069d58be51af8c5199643ffbe09b0.jpg') }}" width="920" height="500" alt="Image" class="lazy">--}}
 
                             </a>
                         </div>
                         @else
                         <div class="carousel-item">
                             <a href="{{ $slide['url'] }}">
-{{--                                <img src="{{ asset($slide['image']) }}" width="920" height="500" alt="Image" class="lazy">--}}
-                                <img src="{{ asset('https://hanoicomputercdn.com/media/banner/08_Aug994069d58be51af8c5199643ffbe09b0.jpg') }}" width="920" height="500" alt="Image" class="lazy">
+                                <img src="{{ asset($slide['image']) }}" width="920" height="500" alt="Image" class="lazy">
+{{--                                <img src="{{ asset('https://hanoicomputercdn.com/media/banner/08_Aug994069d58be51af8c5199643ffbe09b0.jpg') }}" width="920" height="500" alt="Image" class="lazy">--}}
                             </a>
                         </div>
                         @endif
