@@ -21,6 +21,60 @@
         });
     });
 </script>
+
+<style>
+.show-all {
+    text-align: center;
+    display: none;
+}
+
+.show-all a {
+    padding: 5px 8px;
+    background: #ffec0696;
+    font-weight: 600;
+    color: #2c3075;
+    border: 1px solid #e5e7eb;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.show-all-cate {
+    display: none;
+}
+
+.show-all-cate a h2 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 8px 10px;
+    background: #ee2b34;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0 10px 10px 10px;
+    border-radius: 3px;
+}
+
+@media only screen and (max-width : 600px) {
+    .show-all {
+        display: block;
+    }
+    .show-all-cate {
+        display: block;
+        margin-top: 10px;
+
+    }
+
+    .cat-show {
+        display: none !important;
+           ;
+    }
+}
+</style>
 @section('content')
 <h1 style="position: absolute;top: -99999px">Kattech PC - Cửa Hàng Máy Tính PC Đồ Hoạ - Gaming chuyên nghiệp</h1>
 <section class="slider-banner">
@@ -351,7 +405,17 @@
 @if($category->parent == 0 && $category->status == 1)
 <section class="product-slide">
     <div class="product-slide-main boder-radius-10">
-        <div class="d-flex align-items-center justify-content-between">
+        <div class="show-all">
+            <a href="{{ route('showDataCategory', $category['slug']) }}" class="title-all-category hover-color-all">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
+
+        </div>
+        <div class="show-all-cate">
+            <a href="{{ route('showDataCategory', $category['slug']) }}">
+                <h2 class="title-box font-weight-600">{{ $category->name }}</h2>
+            </a>
+        </div>
+
+        <div class="align-items-center justify-content-between cat-show" style="display: flex">
             <div class="title">
                 <a href="{{ route('showDataCategory', $category['slug']) }}">
                     <h2 class="title-box font-weight-600">{{ $category->name }}</h2>
@@ -446,7 +510,17 @@
 @if(count($listNews) > 0)
 <section class="content-news">
     <div class="box-article-group boder-radius-10">
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="show-all">
+            <a href="{{ route('post') }}" class="title-all-category hover-color-all">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
+
+        </div>
+        <div class="show-all-cate">
+            <a href="">
+                <h2 class="title-box font-weight-600">{{ __('Tin tức công nghệ') }}</h2>
+            </a>
+        </div>
+
+        <div class=" justify-content-between align-items-center cat-show" style="display: flex">
             <div class="title-box">
                 <h2 class="title-box font-weight-600">{{ __('Tin tức công nghệ') }}</h2>
             </div>
