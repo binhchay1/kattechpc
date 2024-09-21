@@ -13,11 +13,11 @@
 <script>
     $(document).ready(function(){
         $(".lazy").hover(function(){
-            $('#swipper-next-slide').css("display", "block");
-            $('#swipper-prev-slide').css("display", "block");
+            $('#swiper-next-slide').css("display", "block");
+            $('#swiper-prev-slide').css("display", "block");
         },  function(){
-            $('#swipper-next-slide').css("display", "none");
-            $('#swipper-prev-slide').css("display", "none");
+            $('#swiper-next-slide').css("display", "none");
+            $('#swiper-prev-slide').css("display", "none");
         });
     });
 </script>
@@ -34,21 +34,18 @@
                         <div class="carousel-item active">
                             <a href="{{ $slide['url'] }}">
                                 <img src="{{ asset($slide['image']) }}" width="920" height="500" alt="Image" class="lazy">
-{{--                                <img src="{{ asset('https://hanoicomputercdn.com/media/banner/08_Aug994069d58be51af8c5199643ffbe09b0.jpg') }}" width="920" height="500" alt="Image" class="lazy">--}}
-
                             </a>
                         </div>
                         @else
                         <div class="carousel-item">
                             <a href="{{ $slide['url'] }}">
                                 <img src="{{ asset($slide['image']) }}" width="920" height="500" alt="Image" class="lazy">
-{{--                                <img src="{{ asset('https://hanoicomputercdn.com/media/banner/08_Aug994069d58be51af8c5199643ffbe09b0.jpg') }}" width="920" height="500" alt="Image" class="lazy">--}}
                             </a>
                         </div>
                         @endif
                         @endforeach
-                        <div class=" swiper-button-next swiper-button-next-slide" id="swipper-next-slide" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"><i class="fas fa-chevron-right" style="margin-top: 15px"></i></div>
-                        <div class="  swiper-button-prev swiper-button-prev-slide " id="swipper-prev-slide" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"><i class="fas fa-chevron-left"  style="margin-top: 15px"></i></div>
+                        <div class="swiper-button-next swiper-button-next-slide" id="swiper-next-slide" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"><i class="fas fa-chevron-right" style="margin-top: 15px"></i></div>
+                        <div class="swiper-button-prev swiper-button-prev-slide " id="swiper-prev-slide" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"><i class="fas fa-chevron-left"  style="margin-top: 15px"></i></div>
                         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                     </div>
                 </div>
@@ -80,7 +77,7 @@
             @if(isset($layout->small_thumbnail_3))
             @if($layout->hide_small_thumbnail_3 == 0)
             <a href="{{ isset($layout->permarklink_small_thumbnail_3) ? $layout->permarklink_small_thumbnail_3 : '#' }}">
-                <img src="{{ asset($layout->small_thumbnail_3) }}" width="350" class="lazy">
+                <img src="{{ asset($layout->small_thumbnail_3) }}" width="350" height="234" class="lazy">
             </a>
             @endif
             @endif
@@ -89,7 +86,7 @@
             @if(isset($layout->small_thumbnail_4))
             @if($layout->hide_small_thumbnail_4 == 0)
             <a href="{{ isset($layout->permarklink_small_thumbnail_4) ? $layout->permarklink_small_thumbnail_4 : '#' }}">
-                <img src="{{ asset($layout->small_thumbnail_4) }}" width="350" class="lazy">
+                <img src="{{ asset($layout->small_thumbnail_4) }}" width="350" height="234" class="lazy">
             </a>
             @endif
             @endif
@@ -98,7 +95,7 @@
             @if(isset($layout->small_thumbnail_5))
             @if($layout->hide_small_thumbnail_5 == 0)
             <a href="{{ isset($layout->permarklink_small_thumbnail_5) ? $layout->permarklink_small_thumbnail_5 : '#' }}">
-                <img src="{{ asset($layout->small_thumbnail_5) }}" width="350" class="lazy">
+                <img src="{{ asset($layout->small_thumbnail_5) }}" width="350" height="234" class="lazy">
             </a>
             @endif
             @endif
@@ -107,7 +104,7 @@
             @if(isset($layout->small_thumbnail_6))
             @if($layout->hide_small_thumbnail_6 == 0)
             <a href="{{ isset($layout->permarklink_small_thumbnail_6) ? $layout->permarklink_small_thumbnail_6 : '#' }}">
-                <img src="{{ asset($layout->small_thumbnail_6) }}" width="350" class="lazy">
+                <img src="{{ asset($layout->small_thumbnail_6) }}" width="350" height="234" class="lazy">
             </a>
             @endif
             @endif
