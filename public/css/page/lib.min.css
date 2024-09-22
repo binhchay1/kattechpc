@@ -312,6 +312,10 @@
     border-radius: 10px;
 }
 
+.d-none {
+    display: none !important;
+}
+
 .mt-10 {
     margin-top: 10px;
 }

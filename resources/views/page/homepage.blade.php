@@ -11,11 +11,11 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    $(document).ready(function(){
-        $(".lazy").hover(function(){
+    $(document).ready(function() {
+        $(".lazy").hover(function() {
             $('#swiper-next-slide').css("display", "block");
             $('#swiper-prev-slide').css("display", "block");
-        },  function(){
+        }, function() {
             $('#swiper-next-slide').css("display", "none");
             $('#swiper-prev-slide').css("display", "none");
         });
@@ -23,57 +23,58 @@
 </script>
 
 <style>
-.show-all {
-    text-align: center;
-    display: none;
-}
-
-.show-all a {
-    padding: 5px 8px;
-    background: #ffec0696;
-    font-weight: 600;
-    color: #2c3075;
-    border: 1px solid #e5e7eb;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-.show-all-cate {
-    display: none;
-}
-
-.show-all-cate a h2 {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    padding: 8px 10px;
-    background: #ee2b34;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin: 0 10px 10px 10px;
-    border-radius: 3px;
-}
-
-@media only screen and (max-width : 600px) {
     .show-all {
-        display: block;
+        text-align: center;
+        display: none;
     }
+
+    .show-all a {
+        padding: 5px 8px;
+        background: #ffec0696;
+        font-weight: 600;
+        color: #2c3075;
+        border: 1px solid #e5e7eb;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
     .show-all-cate {
-        display: block;
-        margin-top: 10px;
-
+        display: none;
     }
 
-    .cat-show {
-        display: none !important;
-           ;
+    .show-all-cate a h2 {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding: 8px 10px;
+        background: #ee2b34;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin: 0 10px 10px 10px;
+        border-radius: 3px;
     }
-}
+
+    @media only screen and (max-width : 600px) {
+        .show-all {
+            display: block;
+        }
+
+        .show-all-cate {
+            display: block;
+            margin-top: 10px;
+
+        }
+
+        .cat-show {
+            display: none !important;
+            ;
+        }
+    }
 </style>
 @section('content')
 <h1 style="position: absolute;top: -99999px">Kattech PC - Cửa Hàng Máy Tính PC Đồ Hoạ - Gaming chuyên nghiệp</h1>
@@ -99,7 +100,7 @@
                         @endif
                         @endforeach
                         <div class="swiper-button-next swiper-button-next-slide" id="swiper-next-slide" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"><i class="fas fa-chevron-right" style="margin-top: 15px"></i></div>
-                        <div class="swiper-button-prev swiper-button-prev-slide " id="swiper-prev-slide" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"><i class="fas fa-chevron-left"  style="margin-top: 15px"></i></div>
+                        <div class="swiper-button-prev swiper-button-prev-slide " id="swiper-prev-slide" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"><i class="fas fa-chevron-left" style="margin-top: 15px"></i></div>
                         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                     </div>
                 </div>
@@ -405,10 +406,6 @@
 @if($category->parent == 0 && $category->status == 1)
 <section class="product-slide">
     <div class="product-slide-main boder-radius-10">
-        <div class="show-all">
-            <a href="{{ route('showDataCategory', $category['slug']) }}" class="title-all-category hover-color-all">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
-
-        </div>
         <div class="show-all-cate">
             <a href="{{ route('showDataCategory', $category['slug']) }}">
                 <h2 class="title-box font-weight-600">{{ $category->name }}</h2>
@@ -431,7 +428,7 @@
                 <a href="{{ route('showDataCategory', $category['slug']) }}" class="title-all-category hover-color-all">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
             </div>
         </div>
-        <div class="swiper">
+        <div class="swiper swiper-product-only">
             <div class="swiper-wrapper swiper-product-{{ $category->slug }}">
                 @foreach($category->products as $product)
                 <div class="swiper-slide" role="group">
@@ -481,6 +478,10 @@
             <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
         </div>
     </div>
+
+    <div class="show-all">
+        <a href="{{ route('showDataCategory', $category['slug']) }}" class="title-all-category hover-color-all">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
+    </div>
 </section>
 @endif
 @endforeach
@@ -510,10 +511,6 @@
 @if(count($listNews) > 0)
 <section class="content-news">
     <div class="box-article-group boder-radius-10">
-        <div class="show-all">
-            <a href="{{ route('post') }}" class="title-all-category hover-color-all">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
-
-        </div>
         <div class="show-all-cate">
             <a href="">
                 <h2 class="title-box font-weight-600">{{ __('Tin tức công nghệ') }}</h2>
@@ -545,6 +542,10 @@
             </div>
             @endforeach
         </div>
+    </div>
+
+    <div class="show-all">
+        <a href="{{ route('post') }}" class="title-all-category hover-color-all">{{ __('Xem tất cả') }} <i class="fa fa-caret-right"></i></a>
     </div>
 </section>
 @endif

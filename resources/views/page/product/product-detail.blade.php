@@ -40,15 +40,15 @@
                 @endforeach
                 <a class="prev" onclick="plusSlides(-1)">❮</a>
                 <a class="next" onclick="plusSlides(1)">❯</a>
-
             </div>
 
-            <div class="image-container" id="image-first" >
+            <div class="image-container" id="image-first">
                 <img src="{{ asset($dataProduct->image[0]) }}" id="featured-image">
             </div>
+
             <div class="small-Card">
                 <div class="swiper d-flex align-items-center" style="min-height: auto;">
-                    <div class="swiper-wrapper swiper-image">
+                    <div class="swiper-wrapper swiper-image" style="margin-left: 0px;">
                         @if($dataProduct->link_youtube != null)
                         <div class="content-article content-article-item d-flex flex-column flex-1">
                             <a class="img-article boder-radius-10 position-relative" data-url="{{ $dataProduct->link_youtube }}" onclick="watchYoutubeVideo($(this))">
@@ -70,32 +70,10 @@
                         @endforeach
                     </div>
                 </div>
-                    <div class="swiper-button-next product-image-next" tabindex="0" role="button" aria-label="Next slide" onclick="handleSlideImage('next')"></div>
-                    <div class="swiper-button-prev product-image-prev" tabindex="0" role="button" aria-label="Previous slide" onclick="handleSlideImage('prev')"></div>
-                    <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                </div>
+                <div class="swiper-button-next product-image-next" tabindex="0" role="button" aria-label="Next slide" onclick="handleSlideImage('next')"></div>
+                <div class="swiper-button-prev product-image-prev" tabindex="0" role="button" aria-label="Previous slide" onclick="handleSlideImage('prev')"></div>
+                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
             </div>
-            @if(isset($dataProduct->detail))
-            <div class="product-related" style="margin-top: 40px; width: 99%">
-                <h3> {{ __('Thông số sản phẩm') }}</h3>
-                <table>
-                    <tr>
-                        <th col="300"></th>
-                        <th></th>
-                    </tr>
-                    @if(isset($dataProduct->detail))
-                    @if(is_array($dataProduct->detail))
-                    @foreach($dataProduct->detail as $key => $value)
-                    <tr>
-                        <td style="width: 30%;">{{ $key }}</td>
-                        <td>{{ $value }}</td>
-                    </tr>
-                    @endforeach
-                    @endif
-                    @endif
-                </table>
-            </div>
-            @endif
         </div>
 
         <div class="product-info-detail" style="padding: 0">
@@ -279,433 +257,456 @@
             </div>
         </div>
     </section>
+</div>
 
-    <div>
-        @if(count($productRelated) > 0)
-        <h3 class="productRelated">{{ __('Sản phẩm liên quan') }}</h3>
-        <div class="swiper d-flex">
-            <div class="swiper-wrapper swiper-product-related">
-                @foreach($productRelated as $product)
-                <div class="swiper-slide1" role="group">
-                    <div class="product-item">
-                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative hover-for-tooltips" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
-                            @if(isset($product->image))
-                            <img src="{{ asset(json_decode($product->image)[0]) }}" width="210" height="164" class="lazy product-image">
-                            @endif
-                        </a>
-                        <div>
-                            <a href="{{ route('productDetail', $product['slug']) }}">
-                                <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
-                            </a>
-
-                            @if($product->new_price != null)
-                            <div class="product-martket-main d-flex align-items-center">
-                                <del class="product-market-price">{{ $product->price }} ₫</del>
-                                <?php $new_price = floor(100 - (((int)$product->new_price / (int)$product->price) * 100)) ?>
-
-                                <div class="product-percent-price">-{{ $new_price }} %</div>
-                            </div>
-                            <div class="product-price-main font-weight-600">
-                                {{ $product->new_price }} đ
-                            </div>
-                            @else
-                            <div class="product-price-main font-weight-600">
-                                {{ $product->price }} đ
-                            </div>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-            <div class="swiper-button-next swiper-button-next-product-related" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
-            <div class="swiper-button-prev swiper-button-prev-product-related" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
-            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-        </div>
+@if(isset($dataProduct->detail))
+<div class="product-related" style="margin-top: 40px; width: 99%">
+    <h3> {{ __('Thông số sản phẩm') }}</h3>
+    <table>
+        <tr>
+            <th col="300"></th>
+            <th></th>
+        </tr>
+        @if(isset($dataProduct->detail))
+        @if(is_array($dataProduct->detail))
+        @foreach($dataProduct->detail as $key => $value)
+        <tr>
+            <td style="width: 30%;">{{ $key }}</td>
+            <td>{{ $value }}</td>
+        </tr>
+        @endforeach
         @endif
-
-        <section class="product-container set-background1">
-            <div class="box-side-left">
-                @if($dataProduct->description != null)
-                <div class="product-info" id="product-info">
-                    <h3>{{ __('Thông tin sản phẩm') }}</h3>
-                    <div class="p-info1">
-                        {!! Str::limit($dataProduct->description, 350, '')!!}
-                        @if (strlen($dataProduct->description) > 3)
-                        <span id="dots-detail-product">...</span>
-                        @endif
-                    </div>
-
-                    <div class="p-info1">
-                        <span id="more-detail-product" style="display: none;">{!! $dataProduct->description !!}</span>
-                    </div>
-
-                    <a href="javascript:" onclick="loadMore()" id="read-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
-                        {{ __('Xem tất cả') }}
-                        <i class="fas fa-angle-down" style="margin-left: 5px;"></i>
-                    </a>
-
-                    <a href="javascript:" onclick="loadMore()" id="hide-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center d-none">
-                        {{ __('Thu gọn') }}
-                        <i class="fas fa-angle-up" style="margin-left: 5px;"></i>
-                    </a>
-                </div>
-                @endif
-
-                <div id="product-info" class="product-info feedback-form">
-                    <h3>{{__('Đánh giá sản phẩm')}}</h3>
-                    <div class="review-info  boder-radius-10">
-
-                        <div class="avgRate justify-content-center align-items-center flex-column">
-                            @if($countRate > 0)
-                            <p style="padding: 10px;font-size: 15px" class="mt-12">{{$countRate}} đánh giá và nhận xét</p>
-                            @else
-                            <p class="mt-12">Chưa có đánh giá và nhận xét</p>
-                            @endif
-                        </div>
-
-                        <div class="box-avg-rate-count">
-                            <div class="avg-rate-count">
-                                <?php
-                                $style = '';
-                                if (isset($countRate5) && $countRate5 > 0) {
-                                    $style = 'style="background:red"';
-                                }
-                                ?>
-                                <div class="avg-rate-item d-flex justify-content-center align-items-center">
-                                    <span class="rate-number">5 <i class="fas fa-star checked-rating"></i></span>
-                                    <div class="nhan-xet-bar" <?php echo $style ?>>
-                                        <div class="percent percent5" style="width:50%"></div>
-                                    </div>
-                                    <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate5}}</strong> {{ __('đánh giá') }}</span>
-                                </div>
-
-                                <?php
-                                $style = '';
-                                if (isset($countRate4) && $countRate4 > 0) {
-                                    $style = 'style="background:red"';
-                                }
-                                ?>
-                                <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
-                                    <span class="rate-number">4 <i class="fas fa-star checked-rating"></i></span>
-                                    <div class="nhan-xet-bar" <?php echo $style ?>>
-                                        <div class="percent percent4" style="width:50%"></div>
-                                    </div>
-                                    <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate4}}</strong> {{ __('đánh giá') }}</span>
-                                </div>
-                                <?php
-                                $style = '';
-                                if (isset($countRate3) && $countRate3 > 0) {
-                                    $style = 'style="background:red"';
-                                }
-                                ?>
-                                <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
-                                    <span class="rate-number">3 <i class="fas fa-star checked-rating"></i></span>
-                                    <div class="nhan-xet-bar" <?php echo $style ?>>
-                                        <div class="percent percent3" style="width:0%"></div>
-                                    </div>
-                                    <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate3}}</strong> {{ __('đánh giá') }}</span>
-                                </div>
-                                <?php
-                                $style = '';
-                                if (isset($countRate2) && $countRate2 > 0) {
-                                    $style = 'style="background:red"';
-                                }
-                                ?>
-                                <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
-                                    <span class="rate-number">2 <i class="fas fa-star checked-rating"></i></span>
-                                    <div class="nhan-xet-bar" <?php echo $style ?>>
-                                        <div class="percent percent2" style="width:0%"></div>
-                                    </div>
-                                    <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate2}}</strong> {{ __('đánh giá') }}</span>
-                                </div>
-                                <?php
-                                $style = '';
-                                if (isset($countRate1) && $countRate1 > 0) {
-                                    $style = 'style="background:red"';
-                                }
-                                ?>
-                                <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
-                                    <span class="rate-number rate-number1">1 <i class="fas fa-star checked-rating"></i></span>
-                                    <div class="nhan-xet-bar" <?php echo $style ?>>
-                                        <div class="percent percent1" style="width:0%"></div>
-                                    </div>
-                                    <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate1}}</strong> {{ __('đánh giá') }}</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-                        @if(Session::has('message'))
-                        <p style="color:red;" class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
-                        @endif
-                        @if(auth()->check())
-                        <form id="feedbackForm" action="{{ route('rating') }}" class="menu" method="post" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                            <div class="rating">
-                                <input type="radio" id="star5" name="rating_product" value="5">
-                                <label for="star5">&#9733;</label>
-                                <input type="radio" id="star4" name="rating_product" value="4">
-                                <label for="star4">&#9733;</label>
-                                <input type="radio" id="star3" name="rating_product" value="3">
-                                <label for="star3">&#9733;</label>
-                                <input type="radio" id="star2" name="rating_product" value="2">
-                                <label for="star2">&#9733;</label>
-                                <input type="radio" id="star1" name="rating_product" value="1">
-                                <label for="star1">&#9733;</label>
-                            </div>
-                            <div class="box-form-review" id="js-box-review" style="display: block;">
-                                <textarea class="review_reply_content" id="rating-content" placeholder="Mời bạn để lại đánh giá..." name="content" spellcheck="false"></textarea>
-                            </div>
-                            <input type="hidden" name="product_id" value="{{$dataProduct->id}}">
-                            <input type="hidden" name="user_id" value="{{Auth::user()->id ?? ""}}">
-                            <button type="submit" class="submit-btn" id="">{{__('Gửi đánh giá')}}</button>
-                        </form>
-                        @endif
-
-                        <div class="list-review" style="margin-top: 20px">
-                            <div id="js-review-holder">
-                                @foreach($listRatings as $rating)
-                                <div class="item-comment">
-                                    <div class="form-reply-comment">
-                                        <div class="comment-name d-flex align-items-center justify-content-between">
-                                            <div class="comment-form-left d-flex align-items-center gap-6">
-                                                <b class="avatar-user avatar-admin" style="width: 26px; height: 25px;">
-                                                    <img src=" {{ asset( $rating->user->profile_photo_path ?? 'images/user/avatar.jpg') }}" alt="admin avatar" class="lazy loading" data-was-processed="true">
-                                                </b>
-                                                <b class="user-name d-flex align-items-center gap-6">
-                                                    {{$rating->user->name}}
-                                                </b>
-                                            </div>
-                                            <div class="comment-form-right d-flex align-items-center gap-4">
-                                                <i class="fa fa-clock-o" style="font-size:15px; margin-right: 5px"></i>
-                                                <?php $date = date_format($rating->created_at, "d/m/Y") ?>
-                                                <span class="date-comment">{{$date}}</span>
-                                            </div>
-                                        </div>
-                                        <div class="comment-content d-flex align-items-center justify-content-between">
-                                            <div class="text-review d-flex flex-column gap-12" id="rating-review">
-                                                @php $ratenum = number_format($rating->rating_product) @endphp
-                                                <div class="rating1">
-                                                    @for($i = 1; $i <= $ratenum; $i++) <i class=" checked-rating fa fa-star "></i>
-                                                        @endfor
-                                                        @for($j = $ratenum + 1; $j <= 5; $j++) <i class="fa fa-star "></i>
-                                                            @endfor
-                                                </div>
-                                                <p style="font-size: 16px" class="d-flex aligin-items-center"><b>{{ __('Nhận xét:') }}</b>{{$rating->content}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @if(isset($errors))
-                @foreach ($errors->all() as $error)
-                <div style="color: red; margin: 10px; font-size: 16px">{{ $error }}</div>
-                @endforeach
-                @endif
-                <div id="product-info" class="product-info feedback-form" style="background-color: #f5f5f5;">
-                    <div class="box-comment">
-                        <p class="title-comment font-weight-600" style="font-size: 16px">{{ __('Hỏi và đáp') }}</p>
-                        <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data">
-                            {{ csrf_field() }}
-                            <div class="comment-detail">
-                                <div class="form-comment gap-10 d-flex justify-content-between">
-                                    <div style="width: 80%;">
-                                        <textarea class="comment_reply_content boder-radius-10" id="content0" name="content" placeholder="Xin mời để lại câu hỏi"></textarea>
-                                        <input type="hidden" value="{{ $dataProduct->id }}" name="product_id">
-                                    </div>
-
-                                </div>
-                                <div class="d-flex align-items-center" style="margin-top: 10px">
-                                    <div style="border: 0" id="submit-send">
-                                        <a class="btn-send-form-comment d-flex align-items-center justify-content-center gap-6 send-comment-pc cursor-pointer" id="btn-send-data-comment"> <i class="fa fa-send-o" style="font-size:24px; "></i>Gửi</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <p id="js-content-note0" style="color: red;max-width: 100%;display: flex;font-weight:700;margin-bottom:10px;"></p>
-
-                            <div class="modal" tabindex="-1" role="dialog" id="modal-coupon">
-                                <div class="modal-dialog" role="document" style="margin: auto;">
-                                    <div class="modal-content in-modal-submit-comment">
-                                        <div class="modal-header">
-                                            <div class="title-header-map">
-                                                <p>{{ __('Nhập thông tin') }}</p>
-                                            </div>
-                                        </div>
-                                        <div class="modal-body popup-showrom-container modal-coupon-content">
-                                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                                            @if(auth()->user())
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <input type="text" class="input-with-validator ml-10px comment-data-name" required value="{{auth()->user()->name}}" name="name_user" placeholder="{{ __('Họ và tên') }}">
-                                            </div>
-                                            <div>
-                                                <p class="error_msg_modal" style="color: red"></p>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <input type="text" class="input-with-validator ml-10px comment-email" required value="{{auth()->user()->email}}" name="email_user" placeholder="{{ __('Email') }}">
-                                            </div>
-                                            @else
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <input type="text" class="input-with-validator ml-10px comment-data-name" name="name_user" placeholder="{{ __('Họ và tên') }}">
-                                            </div>
-                                            <div>
-                                                <p class="error_msg_modal" style="color: red"></p>
-                                            </div>
-
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                <input type="text" class="input-with-validator ml-10px comment-email" name="email_user" placeholder="{{ __('Email') }}">
-                                            </div>
-                                            @endif
-
-                                            <div class="modal-button-coupon-area">
-                                                <button type="submit" class="btn-submit-comment after-submit submit-disable promo-code-cta border-radius-10">{{ __('Áp dụng') }}</button>
-                                                <a type="button" class="btn-close-comment ml-10px border-radius-10">{{ __('Đóng') }}</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-
-                    @include('page.product.comment-display', ['comments' => $dataProduct->comments, 'product_id' => $dataProduct->id])
-                </div>
-            </div>
-            <div class="box-side-right">
-                @if($dataProduct->detail_tech != null)
-                <div class="product-related">
-                    <h3> {{ __('Thông số kĩ thuật') }}</h3>
-                    <table>
-                        <tr>
-                            <th col="300"></th>
-                            <th></th>
-                        </tr>
-                        @if(isset($dataProduct->detail_tech))
-                        @php
-                        $dataProduct->detail_tech = json_decode($dataProduct->detail_tech, true);
-                        @endphp
-                        @if(is_array($dataProduct->detail_tech))
-                        @foreach(array_slice($dataProduct->detail_tech, 0, 4) as $key => $value)
-                        <tr>
-                            <td style="font-weight: 600; width: 30%;">{{ $key }}</td>
-                            <td>{{ $value }}</td>
-                        </tr>
-                        @endforeach
-                        @endif
-                        @endif
-                    </table>
-                    <a href="javascript:" id="read-all-product-detail" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
-                        {{ __('Xem tất cả') }}
-                    </a>
-                    <div id="modalDetail" class="modal">
-                        <div class="modal-content">
-                            <span class="close">&times;</span>
-                            <table>
-                                <tr>
-                                    <th col="300"></th>
-                                    <th></th>
-                                </tr>
-                                @if(isset($dataProduct->detail_tech))
-                                @if(is_array($dataProduct->detail_tech))
-                                @foreach($dataProduct->detail_tech as $key => $value)
-                                <tr>
-                                    <td style="font-weight: 600">{{ $key }}</td>
-                                    <td>{{ $value }}</td>
-                                </tr>
-                                @endforeach
-                                @endif
-                                @endif
-                            </table>
-                        </div>
-
-                    </div>
-                </div>
-                @endif
-                @if(count($postRandom5) > 0)
-                <div class="product-related">
-                    <h3> {{ __('Tin tức mới nhất') }}</h3>
-                    @foreach($postRandom5 as $post)
-                    <div id="content">
-                        <div id="left">
-                            <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="img-fluid2" />
-                        </div>
-                        <div id="content-right">
-                            <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
-                            <a href="{{route('post.detail', $post['slug'])}}">
-                                <h3 style="margin: 0!important;"> {{$text}}</h3>
-                            </a>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-                @endif
-                @if(count($youtubeRandom) > 0)
-                <div class="product-related">
-                    <h3> {{ __('Video nổi bật ') }}</h3>
-                    @foreach($youtubeRandom as $post)
-                    <div id="content">
-                        <div id="left">
-                            <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="img-fluid2" />
-                        </div>
-                        <div id="content-right">
-                            <h3> {{$post->title}}</h3>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-                @endif
-            </div>
-        </section>
-
-        @if(count($productViewed) > 0)
-        <h3 class="productRelated">{{ __('Sản phẩm đã xem') }}</h3>
-        <div class="swiper d-flex" style="margin-bottom: 20px;">
-            <div class="swiper-wrapper swiper-product-viewed">
-                @foreach($productViewed as $product)
-                <div class="swiper-slide1" role="group">
-                    <div class="product-item">
-                        <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative hover-for-tooltips" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
-                            @if(isset($product->image))
-                            <img src="{{ asset(json_decode($product->image)[0]) }}" width="210" height="164" class="lazy product-image">
-                            @endif
-                        </a>
-                        <div>
-                            <a href="{{ route('productDetail', $product['slug']) }}">
-                                <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
-                            </a>
-
-                            @if($product->new_price != null)
-                            <div class="product-martket-main d-flex align-items-center">
-                                <del class="product-market-price">{{ $product->price }} ₫</del>
-                                <?php $new_price = floor(100 - (((int)$product->new_price / (int)$product->price) * 100)) ?>
-
-                                <div class="product-percent-price">-{{ $new_price }} %</div>
-                            </div>
-                            <div class="product-price-main font-weight-600">
-                                {{ $product->new_price }} đ
-                            </div>
-                            @else
-                            <div class="product-price-main font-weight-600">
-                                {{ $product->price }} đ
-                            </div>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-            <div class="swiper-button-next swiper-button-next-product-viewed" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
-            <div class="swiper-button-prev swiper-button-prev-product-viewed" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
-            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-        </div>
         @endif
+    </table>
+</div>
+@endif
+
+<div>
+    @if(count($productRelated) > 0)
+    <h3 class="productRelated">{{ __('Sản phẩm liên quan') }}</h3>
+    <div class="swiper d-flex">
+        <div class="swiper-wrapper swiper-product-related">
+            @foreach($productRelated as $product)
+            <div class="swiper-slide1" role="group">
+                <div class="product-item">
+                    <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative hover-for-tooltips" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
+                        @if(isset($product->image))
+                        <img src="{{ asset(json_decode($product->image)[0]) }}" width="210" height="164" class="lazy product-image">
+                        @endif
+                    </a>
+                    <div>
+                        <a href="{{ route('productDetail', $product['slug']) }}">
+                            <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
+                        </a>
+
+                        @if($product->new_price != null)
+                        <div class="product-martket-main d-flex align-items-center">
+                            <del class="product-market-price">{{ $product->price }} ₫</del>
+                            <?php $new_price = floor(100 - (((int)$product->new_price / (int)$product->price) * 100)) ?>
+
+                            <div class="product-percent-price">-{{ $new_price }} %</div>
+                        </div>
+                        <div class="product-price-main font-weight-600">
+                            {{ $product->new_price }} đ
+                        </div>
+                        @else
+                        <div class="product-price-main font-weight-600">
+                            {{ $product->price }} đ
+                        </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        <div class="swiper-button-next swiper-button-next-product-related" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
+        <div class="swiper-button-prev swiper-button-prev-product-related" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
     </div>
+    @endif
+
+    <section class="product-container set-background1">
+        <div class="box-side-left">
+            @if($dataProduct->description != null)
+            <div class="product-info" id="product-info">
+                <h3>{{ __('Thông tin sản phẩm') }}</h3>
+                <div class="p-info1">
+                    {!! Str::limit($dataProduct->description, 350, '')!!}
+                    @if (strlen($dataProduct->description) > 3)
+                    <span id="dots-detail-product">...</span>
+                    @endif
+                </div>
+
+                <div class="p-info1">
+                    <span id="more-detail-product" style="display: none;">{!! $dataProduct->description !!}</span>
+                </div>
+
+                <a href="javascript:" onclick="loadMore()" id="read-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
+                    {{ __('Xem tất cả') }}
+                    <i class="fas fa-angle-down" style="margin-left: 5px;"></i>
+                </a>
+
+                <a href="javascript:" onclick="loadMore()" id="hide-all-product" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center d-none">
+                    {{ __('Thu gọn') }}
+                    <i class="fas fa-angle-up" style="margin-left: 5px;"></i>
+                </a>
+            </div>
+            @endif
+
+            <div id="product-info" class="product-info feedback-form">
+                <h3>{{__('Đánh giá sản phẩm')}}</h3>
+                <div class="review-info  boder-radius-10">
+
+                    <div class="avgRate justify-content-center align-items-center flex-column">
+                        @if($countRate > 0)
+                        <p style="padding: 10px;font-size: 15px" class="mt-12">{{$countRate}} đánh giá và nhận xét</p>
+                        @else
+                        <p class="mt-12">Chưa có đánh giá và nhận xét</p>
+                        @endif
+                    </div>
+
+                    <div class="box-avg-rate-count">
+                        <div class="avg-rate-count">
+                            <?php
+                            $style = '';
+                            if (isset($countRate5) && $countRate5 > 0) {
+                                $style = 'style="background:red"';
+                            }
+                            ?>
+                            <div class="avg-rate-item d-flex justify-content-center align-items-center">
+                                <span class="rate-number">5 <i class="fas fa-star checked-rating"></i></span>
+                                <div class="nhan-xet-bar" <?php echo $style ?>>
+                                    <div class="percent percent5" style="width:50%"></div>
+                                </div>
+                                <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate5}}</strong> {{ __('đánh giá') }}</span>
+                            </div>
+
+                            <?php
+                            $style = '';
+                            if (isset($countRate4) && $countRate4 > 0) {
+                                $style = 'style="background:red"';
+                            }
+                            ?>
+                            <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
+                                <span class="rate-number">4 <i class="fas fa-star checked-rating"></i></span>
+                                <div class="nhan-xet-bar" <?php echo $style ?>>
+                                    <div class="percent percent4" style="width:50%"></div>
+                                </div>
+                                <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate4}}</strong> {{ __('đánh giá') }}</span>
+                            </div>
+                            <?php
+                            $style = '';
+                            if (isset($countRate3) && $countRate3 > 0) {
+                                $style = 'style="background:red"';
+                            }
+                            ?>
+                            <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
+                                <span class="rate-number">3 <i class="fas fa-star checked-rating"></i></span>
+                                <div class="nhan-xet-bar" <?php echo $style ?>>
+                                    <div class="percent percent3" style="width:0%"></div>
+                                </div>
+                                <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate3}}</strong> {{ __('đánh giá') }}</span>
+                            </div>
+                            <?php
+                            $style = '';
+                            if (isset($countRate2) && $countRate2 > 0) {
+                                $style = 'style="background:red"';
+                            }
+                            ?>
+                            <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
+                                <span class="rate-number">2 <i class="fas fa-star checked-rating"></i></span>
+                                <div class="nhan-xet-bar" <?php echo $style ?>>
+                                    <div class="percent percent2" style="width:0%"></div>
+                                </div>
+                                <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate2}}</strong> {{ __('đánh giá') }}</span>
+                            </div>
+                            <?php
+                            $style = '';
+                            if (isset($countRate1) && $countRate1 > 0) {
+                                $style = 'style="background:red"';
+                            }
+                            ?>
+                            <div class="avg-rate-item mt-12 d-flex justify-content-center align-items-center">
+                                <span class="rate-number rate-number1">1 <i class="fas fa-star checked-rating"></i></span>
+                                <div class="nhan-xet-bar" <?php echo $style ?>>
+                                    <div class="percent percent1" style="width:0%"></div>
+                                </div>
+                                <span class="total-avg-rate" title="Xem các đánh giá này"><strong>{{$countRate1}}</strong> {{ __('đánh giá') }}</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    @if(Session::has('message'))
+                    <p style="color:red;" class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+                    @endif
+                    @if(auth()->check())
+                    <form id="feedbackForm" action="{{ route('rating') }}" class="menu" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="rating">
+                            <input type="radio" id="star5" name="rating_product" value="5">
+                            <label for="star5">&#9733;</label>
+                            <input type="radio" id="star4" name="rating_product" value="4">
+                            <label for="star4">&#9733;</label>
+                            <input type="radio" id="star3" name="rating_product" value="3">
+                            <label for="star3">&#9733;</label>
+                            <input type="radio" id="star2" name="rating_product" value="2">
+                            <label for="star2">&#9733;</label>
+                            <input type="radio" id="star1" name="rating_product" value="1">
+                            <label for="star1">&#9733;</label>
+                        </div>
+                        <div class="box-form-review" id="js-box-review" style="display: block;">
+                            <textarea class="review_reply_content" id="rating-content" placeholder="Mời bạn để lại đánh giá..." name="content" spellcheck="false"></textarea>
+                        </div>
+                        <input type="hidden" name="product_id" value="{{$dataProduct->id}}">
+                        <input type="hidden" name="user_id" value="{{Auth::user()->id ?? ""}}">
+                        <button type="submit" class="submit-btn" id="">{{__('Gửi đánh giá')}}</button>
+                    </form>
+                    @endif
+
+                    <div class="list-review" style="margin-top: 20px">
+                        <div id="js-review-holder">
+                            @foreach($listRatings as $rating)
+                            <div class="item-comment">
+                                <div class="form-reply-comment">
+                                    <div class="comment-name d-flex align-items-center justify-content-between">
+                                        <div class="comment-form-left d-flex align-items-center gap-6">
+                                            <b class="avatar-user avatar-admin" style="width: 26px; height: 25px;">
+                                                <img src=" {{ asset( $rating->user->profile_photo_path ?? 'images/user/avatar.jpg') }}" alt="admin avatar" class="lazy loading" data-was-processed="true">
+                                            </b>
+                                            <b class="user-name d-flex align-items-center gap-6">
+                                                {{$rating->user->name}}
+                                            </b>
+                                        </div>
+                                        <div class="comment-form-right d-flex align-items-center gap-4">
+                                            <i class="fa fa-clock-o" style="font-size:15px; margin-right: 5px"></i>
+                                            <?php $date = date_format($rating->created_at, "d/m/Y") ?>
+                                            <span class="date-comment">{{$date}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="comment-content d-flex align-items-center justify-content-between">
+                                        <div class="text-review d-flex flex-column gap-12" id="rating-review">
+                                            @php $ratenum = number_format($rating->rating_product) @endphp
+                                            <div class="rating1">
+                                                @for($i = 1; $i <= $ratenum; $i++) <i class=" checked-rating fa fa-star "></i>
+                                                    @endfor
+                                                    @for($j = $ratenum + 1; $j <= 5; $j++) <i class="fa fa-star "></i>
+                                                        @endfor
+                                            </div>
+                                            <p style="font-size: 16px" class="d-flex aligin-items-center"><b>{{ __('Nhận xét:') }}</b>{{$rating->content}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @if(isset($errors))
+            @foreach ($errors->all() as $error)
+            <div style="color: red; margin: 10px; font-size: 16px">{{ $error }}</div>
+            @endforeach
+            @endif
+            <div id="product-info" class="product-info feedback-form" style="background-color: #f5f5f5;">
+                <div class="box-comment">
+                    <p class="title-comment font-weight-600" style="font-size: 16px">{{ __('Hỏi và đáp') }}</p>
+                    <form action="{{ route('storeComment') }}" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="comment-detail">
+                            <div class="form-comment gap-10 d-flex justify-content-between">
+                                <div style="width: 80%;">
+                                    <textarea class="comment_reply_content boder-radius-10" id="content0" name="content" placeholder="Xin mời để lại câu hỏi"></textarea>
+                                    <input type="hidden" value="{{ $dataProduct->id }}" name="product_id">
+                                </div>
+
+                            </div>
+                            <div class="d-flex align-items-center" style="margin-top: 10px">
+                                <div style="border: 0" id="submit-send">
+                                    <a class="btn-send-form-comment d-flex align-items-center justify-content-center gap-6 send-comment-pc cursor-pointer" id="btn-send-data-comment"> <i class="fa fa-send-o" style="font-size:24px; "></i>Gửi</a>
+                                </div>
+                            </div>
+                        </div>
+                        <p id="js-content-note0" style="color: red;max-width: 100%;display: flex;font-weight:700;margin-bottom:10px;"></p>
+
+                        <div class="modal" tabindex="-1" role="dialog" id="modal-coupon">
+                            <div class="modal-dialog" role="document" style="margin: auto;">
+                                <div class="modal-content in-modal-submit-comment">
+                                    <div class="modal-header">
+                                        <div class="title-header-map">
+                                            <p>{{ __('Nhập thông tin') }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body popup-showrom-container modal-coupon-content">
+                                        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                                        @if(auth()->user())
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <input type="text" class="input-with-validator ml-10px comment-data-name" required value="{{auth()->user()->name}}" name="name_user" placeholder="{{ __('Họ và tên') }}">
+                                        </div>
+                                        <div>
+                                            <p class="error_msg_modal" style="color: red"></p>
+                                        </div>
+
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <input type="text" class="input-with-validator ml-10px comment-email" required value="{{auth()->user()->email}}" name="email_user" placeholder="{{ __('Email') }}">
+                                        </div>
+                                        @else
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <input type="text" class="input-with-validator ml-10px comment-data-name" name="name_user" placeholder="{{ __('Họ và tên') }}">
+                                        </div>
+                                        <div>
+                                            <p class="error_msg_modal" style="color: red"></p>
+                                        </div>
+
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            <input type="text" class="input-with-validator ml-10px comment-email" name="email_user" placeholder="{{ __('Email') }}">
+                                        </div>
+                                        @endif
+
+                                        <div class="modal-button-coupon-area">
+                                            <button type="submit" class="btn-submit-comment after-submit submit-disable promo-code-cta border-radius-10">{{ __('Áp dụng') }}</button>
+                                            <a type="button" class="btn-close-comment ml-10px border-radius-10">{{ __('Đóng') }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                @include('page.product.comment-display', ['comments' => $dataProduct->comments, 'product_id' => $dataProduct->id])
+            </div>
+        </div>
+        <div class="box-side-right">
+            @if($dataProduct->detail_tech != null)
+            <div class="product-related">
+                <h3> {{ __('Thông số kĩ thuật') }}</h3>
+                <table>
+                    <tr>
+                        <th col="300"></th>
+                        <th></th>
+                    </tr>
+                    @if(isset($dataProduct->detail_tech))
+                    @php
+                    $dataProduct->detail_tech = json_decode($dataProduct->detail_tech, true);
+                    @endphp
+                    @if(is_array($dataProduct->detail_tech))
+                    @foreach(array_slice($dataProduct->detail_tech, 0, 4) as $key => $value)
+                    <tr>
+                        <td style="font-weight: 600; width: 30%;">{{ $key }}</td>
+                        <td>{{ $value }}</td>
+                    </tr>
+                    @endforeach
+                    @endif
+                    @endif
+                </table>
+                <a href="javascript:" id="read-all-product-detail" class="btn-article-col js-viewmore-content font-weight-500 gap-8 d-flex align-items-center justify-content-center">
+                    {{ __('Xem tất cả') }}
+                </a>
+                <div id="modalDetail" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <table>
+                            <tr>
+                                <th col="300"></th>
+                                <th></th>
+                            </tr>
+                            @if(isset($dataProduct->detail_tech))
+                            @if(is_array($dataProduct->detail_tech))
+                            @foreach($dataProduct->detail_tech as $key => $value)
+                            <tr>
+                                <td style="font-weight: 600">{{ $key }}</td>
+                                <td>{{ $value }}</td>
+                            </tr>
+                            @endforeach
+                            @endif
+                            @endif
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            @endif
+            @if(count($postRandom5) > 0)
+            <div class="product-related">
+                <h3> {{ __('Tin tức mới nhất') }}</h3>
+                @foreach($postRandom5 as $post)
+                <div id="content">
+                    <div id="left">
+                        <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="img-fluid2" />
+                    </div>
+                    <div id="content-right">
+                        <?php $text = \Illuminate\Support\Str::limit($post->short_description, 80) ?>
+                        <a href="{{route('post.detail', $post['slug'])}}">
+                            <h3 style="margin: 0!important;"> {{$text}}</h3>
+                        </a>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            @endif
+            @if(count($youtubeRandom) > 0)
+            <div class="product-related">
+                <h3> {{ __('Video nổi bật ') }}</h3>
+                @foreach($youtubeRandom as $post)
+                <div id="content">
+                    <div id="left">
+                        <img src="{{ $post->thumbnail ?? asset( 'images/page/no-image.png') }}" alt="Image Alt" class="img-fluid2" />
+                    </div>
+                    <div id="content-right">
+                        <h3> {{$post->title}}</h3>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            @endif
+        </div>
+    </section>
+
+    @if(count($productViewed) > 0)
+    <h3 class="productRelated">{{ __('Sản phẩm đã xem') }}</h3>
+    <div class="swiper d-flex" style="margin-bottom: 20px;">
+        <div class="swiper-wrapper swiper-product-viewed">
+            @foreach($productViewed as $product)
+            <div class="swiper-slide1" role="group">
+                <div class="product-item">
+                    <a href="{{ route('productDetail', $product['slug']) }}" class="product-image position-relative hover-for-tooltips" data-detail="{{ $product->detail }}" data-title="{{ $product->title }}" data-price="{{ $product->price }}" data-new-price="{{ $product->new_price }}" data-sale-detail="{{ $product->sale_detail }}" data-status-guarantee="{{ $product->status_guarantee }}" data-status="{{ $product->status }}">
+                        @if(isset($product->image))
+                        <img src="{{ asset(json_decode($product->image)[0]) }}" width="210" height="164" class="lazy product-image">
+                        @endif
+                    </a>
+                    <div>
+                        <a href="{{ route('productDetail', $product['slug']) }}">
+                            <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
+                        </a>
+
+                        @if($product->new_price != null)
+                        <div class="product-martket-main d-flex align-items-center">
+                            <del class="product-market-price">{{ $product->price }} ₫</del>
+                            <?php $new_price = floor(100 - (((int)$product->new_price / (int)$product->price) * 100)) ?>
+
+                            <div class="product-percent-price">-{{ $new_price }} %</div>
+                        </div>
+                        <div class="product-price-main font-weight-600">
+                            {{ $product->new_price }} đ
+                        </div>
+                        @else
+                        <div class="product-price-main font-weight-600">
+                            {{ $product->price }} đ
+                        </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        <div class="swiper-button-next swiper-button-next-product-viewed" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
+        <div class="swiper-button-prev swiper-button-prev-product-viewed" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+    </div>
+    @endif
+</div>
 </div>
 @include('includes.tooltips')
 @include('includes.modal-detail-warranty-package')
@@ -790,30 +791,35 @@
         let i;
         let slides = document.getElementsByClassName("mySlides");
         let dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {slideIndex = 1}
-        if (n < 1) {slideIndex = slides.length}
+        if (n > slides.length) {
+            slideIndex = 1
+        }
+        if (n < 1) {
+            slideIndex = slides.length
+        }
         for (i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
         }
         for (i = 0; i < dots.length; i++) {
             dots[i].className = dots[i].className.replace(" active", "");
         }
-        slides[slideIndex-1].style.display = "block";
-        dots[slideIndex-1].className += " active";
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
     }
 </script>
 
 <style>
-    img {vertical-align: middle;}
+    img {
+        vertical-align: middle;
+    }
 
-    /* Slideshow container */
     .slideshow-container {
         position: relative;
         margin: auto;
     }
 
-    /* Next & previous buttons */
-    .prev, .next {
+    .prev,
+    .next {
         cursor: pointer;
         position: absolute;
         top: 50%;
@@ -828,15 +834,14 @@
         user-select: none;
     }
 
-    /* Position the "next button" to the right */
     .next {
         right: 0;
         border-radius: 3px 0 0 3px;
     }
 
-    /* On hover, add a black background color with a little bit see-through */
-    .prev:hover, .next:hover {
-        background-color: rgba(0,0,0,0.8);
+    .prev:hover,
+    .next:hover {
+        background-color: rgba(0, 0, 0, 0.8);
     }
 
     /* Fading animation */
@@ -846,13 +851,22 @@
     }
 
     @keyframes fade {
-        from {opacity: .4}
-        to {opacity: 1}
+        from {
+            opacity: .4
+        }
+
+        to {
+            opacity: 1
+        }
     }
 
-    /* On smaller screens, decrease text size */
     @media only screen and (max-width: 300px) {
-        .prev, .next,.text {font-size: 11px}
+
+        .prev,
+        .next,
+        .text {
+            font-size: 11px
+        }
     }
 </style>
 @endsection
