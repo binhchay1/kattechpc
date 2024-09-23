@@ -2641,6 +2641,10 @@ a {
     left: calc(10px + 12%);
 }
 
+.swiper-wrapper {
+    height: auto !important;
+}
+
 .only-mobile-for-body {
     .box-right {
         display: none;
