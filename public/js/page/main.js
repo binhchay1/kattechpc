@@ -46,11 +46,10 @@ $(document).ready(function () {
     var modal = document.getElementById("submitGetNews");
     var btn = document.getElementById("news-button-summit");
     var span = document.getElementsByClassName("close")[0];
-    let is_firefox = navigator.userAgent.toLowerCase().includes('firefox');
     let is_android = navigator.platform.toLowerCase().includes("android");
     checkSessions();
 
-    if (WURFL.is_mobile || is_firefox || is_android) {
+    if (WURFL.is_mobile || is_android) {
         mobileScreenHandle();
     } else {
         isMobileDetected = false;
@@ -278,7 +277,6 @@ $(document).ready(function () {
                         countProduct = 0;
                         $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
                     } else {
-                        console.log(transProduct, perTransProduct);
                         transProduct = transProduct - perTransProduct;
                         countProduct += 1;
                         $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
