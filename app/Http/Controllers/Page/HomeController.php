@@ -428,7 +428,8 @@ class HomeController extends Controller
         $isList = false;
         $listProducts = [];
         $dataBrand = [];
-        if ($search) {
+
+        if ($search || $search == '') {
             $listProducts = $this->productRepository->getProductBySearch($search);
             if (count($listProducts) > 0) {
                 $isList = true;

@@ -1410,14 +1410,7 @@ tr:nth-child(even) {
         margin-left: 5px;
         margin-top: 10px;
     }
-
-#image-first {
-    display: none;
 }
-}
-
-
-
 
 .slideshow-container {
     display: none;

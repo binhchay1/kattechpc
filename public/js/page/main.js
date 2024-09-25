@@ -39,6 +39,8 @@ var transFooterSlide = 0;
 var defaultFooterSlide = 5;
 var perTransFooterSlide = 285;
 
+var is_firefox = navigator.userAgent.toLowerCase().includes('firefox');
+
 $(document).ready(function () {
     $('.preloader-main').hide();
     $('body').css('overflow', 'auto');
