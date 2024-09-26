@@ -26,6 +26,7 @@ class CouponUpdateRequest extends FormRequest
             'use_by_user_amount' =>'required',
             'time_end' =>'required',
             'total_amount' =>'required',
+            'discount_amount' =>'required',
         ];
     }
 
@@ -38,6 +39,7 @@ class CouponUpdateRequest extends FormRequest
             'use_by_user_amount.required' => __('Số lượng mỗi khách hàng được sử dụng không được để trống'),
             'time_end.required' => __('Thời gian không được để trống'),
             'total_amount.required' => __('Số lượng không được để trống'),
+            'discount_amount.required' => __('Giá được giảm không được để trống'),
         ];
     }
 }

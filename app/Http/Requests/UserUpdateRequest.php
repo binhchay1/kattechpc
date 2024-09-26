@@ -32,7 +32,7 @@ class UserUpdateRequest extends FormRequest
             'email.required' => __('Địa chỉ email không được để trống'),
             'email.email' => __('Địa chỉ email không đúng định dạng'),
             'email.unique' => __('Địa chỉ email phải là duy nhất'),
-            'age.required|' => __('Ngày sinh không được để trống'),
+            'age.required' => __('Ngày sinh không được để trống'),
             'address.required' => __('Địa chỉ không được để trống'),
             'phone.required' => __('Số điện thoại không được để trống'),
             'profile_photo_path.image' => __('Ảnh đại diện không được để trống'),

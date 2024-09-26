@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LandingPageRequest extends FormRequest
+class WarrantyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,14 +17,13 @@ class LandingPageRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'title' =>'required',
-            'content' =>'required',
-       
+            'title' => 'required',
+         
         ];
     }
     
@@ -32,8 +31,6 @@ class LandingPageRequest extends FormRequest
     {
         return [
             'title.required' => __('Tiêu đề không được để trống'),
-            'content.required' => __('Nội dung không được để trống'),
-        
         ];
     }
 }

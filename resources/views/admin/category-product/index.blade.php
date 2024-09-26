@@ -91,7 +91,7 @@
                                 </td>
                                 <td>
                                     <div class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
-                                        <img src="{{$category->image}}" class="h-10 rounded-full">
+                                        <img src="{{asset($category->image)}}" class="h-10 rounded-full">
                                     </div>
                                 </td>
                                 <td class="px-3.5 py-2.5 first:pl-5 last:pr-5">{{ $category->slug }}
@@ -143,7 +143,7 @@
                                 </td>
                                 <td>
                                     <div class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
-                                        <img src="{{$children->image}}" class="h-10 rounded-full">
+                                        <img src="{{asset($children->image)}}" class="h-10 rounded-full">
                                     </div>
                                 </td>
 
@@ -189,7 +189,7 @@
                                 </td>
                                 <td>
                                     <div class="flex items-center justify-center size-10 font-medium rounded-full shrink-0 bg-slate-200 text-slate-800 dark:text-zink-50 dark:bg-zink-600">
-                                        <img src="{{$subChildren->image}}" class="h-10 rounded-full">
+                                        <img src="{{asset($subChildren->image)}}" class="h-10 rounded-full">
                                     </div>
                                 </td>
 

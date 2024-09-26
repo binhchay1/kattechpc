@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\YoutubeRequest;
+use App\Http\Requests\YoutubeUpdateRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\YoutubeChannelRepository;
@@ -28,7 +30,7 @@ class YoutubeChannelController extends Controller
         return view('admin.youtube.create');
     }
 
-    public function storeYoutubeChannel(Request $request)
+    public function storeYoutubeChannel(YoutubeRequest $request)
     {
         $input = $request->except(['_token']);
         if ($request->hasfile('thumbnail')) {
@@ -50,7 +52,7 @@ class YoutubeChannelController extends Controller
         return view('admin.youtube.edit', compact('youtubeChannel'));
     }
 
-    public function updateYoutubeChannel(Request $request,  $id)
+    public function updateYoutubeChannel(YoutubeUpdateRequest $request,  $id)
     {
         $input = $request->except(['_token']);
         if ($request->hasfile('thumbnail')) {

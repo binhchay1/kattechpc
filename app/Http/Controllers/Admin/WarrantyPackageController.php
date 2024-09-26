@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\WarrantyRequest;
 use App\Repositories\WarrantyPackageRepository;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,7 @@ class WarrantyPackageController extends Controller
         return view('admin.warranty-package.create', compact('listWarrantyPackage'));
     }
 
-    public function storeWarrantyPackage(Request $request)
+    public function storeWarrantyPackage(WarrantyRequest $request)
     {
         $input = $request->except(['_token']);
         $input['price'] = str_replace('.', '', $input['price']);
@@ -46,7 +47,7 @@ class WarrantyPackageController extends Controller
         return view('admin.warranty-package.edit', compact('warrantyPackage'));
     }
 
-    public function updateWarrantyPackage(Request $request,  $id)
+    public function updateWarrantyPackage(WarrantyRequest $request,  $id)
     {
         $input = $request->except(['_token']);
 

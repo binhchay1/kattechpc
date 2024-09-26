@@ -46,6 +46,9 @@
                                 <option value="percent" selected>{{ __('Giảm giá theo %') }}</option>
                                 <option value="number">{{ __('Giảm giá trừ thẳng') }}</option>
                             </select>
+                            @if ($errors->has('type'))
+                                <span class="text-danger" style="color: red">{{ $errors->first('type') }}</span>
+                            @endif
                         </div>
 
                         <div class="xl:col-span-6 d-none" id="discount-by-percent">
@@ -53,6 +56,9 @@
                             <span style="display: flex; align-items: center;">
                                 <input type="number" min="1" id="discount_amount" name="discount_amount_percent" onkeyup="onlyNumberAmount(this)" value="{{ old('discount_amount') }}" class="form-input input-element border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" min="1" max="100" placeholder="{{ __('Tỉ lệ giảm giá') }}">
                                 <span style="font-weight: bold; margin-left: 15px;">%</span>
+                                @if ($errors->has('discount_amount'))
+                                    <span class="text-danger" style="color: red">{{ $errors->first('discount_amount') }}</span>
+                                @endif
                             </span>
                         </div>
 
