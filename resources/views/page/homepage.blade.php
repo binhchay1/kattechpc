@@ -672,7 +672,6 @@
 @section('js')
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('/plugins/owlcarousel/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('/js/page/main.js') }}"></script>
 <script>
     <?php if (isset($listFlashSale['flash_sale_timer'])) { ?>
         let countTimeSale = `<?php echo $listFlashSale['flash_sale_timer'] ?>`;

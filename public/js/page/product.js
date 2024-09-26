@@ -1,12 +1,10 @@
-var isMobileDetected = false;
+
 var indexImage = 0;
 $(document).ready(function () {
     var defaultTransProductViewed = 0;
     var defaultTransProductRelated = 0;
 
     if (WURFL.is_mobile) {
-        isMobileDetected = true;
-
         $('body').addClass("only-mobile-for-body");
         $('.global-fixed-right a').addClass('right-inherit');
 

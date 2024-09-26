@@ -2645,6 +2645,10 @@ a {
     height: auto !important;
 }
 
+#js-search-result-scroll {
+    display: none;
+}
+
 .only-mobile-for-body {
     .box-right {
         display: none;

@@ -161,7 +161,6 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.plugins.min.js"></script>
     <script src="https://wurfl.io/wurfl.js"></script>
-    <script src="{{ asset('/plugins/shortcuts/shortcuts.js') }}"></script>
     <script src="{{ asset('/js/page/main.js') }}"></script>
 
     @yield('js')
