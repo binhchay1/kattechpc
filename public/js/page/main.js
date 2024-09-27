@@ -50,7 +50,7 @@ $(document).ready(function () {
     let is_android = navigator.platform.toLowerCase().includes("android");
     checkSessions();
 
-    if (WURFL !== undefined) {
+    if (typeof myVar !== 'undefined' || WURFL !== undefined) {
         if (WURFL.is_mobile) {
             mobileScreenHandle();
         } else {
