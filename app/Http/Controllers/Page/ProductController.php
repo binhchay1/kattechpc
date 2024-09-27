@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\DB;
 use App\Enums\Product;
 use App\Repositories\SocialRepository;
 use Illuminate\Support\Facades\Session;
+use function League\Flysystem\type;
 
 class ProductController extends Controller
 {
@@ -274,6 +275,7 @@ class ProductController extends Controller
 
         if (isset($request->sort)) {
             $filters['sort'] = $request->sort;
+    
         }
 
         $isParent = $this->categoryRepository->checkIsParent($slug);
@@ -360,7 +362,9 @@ class ProductController extends Controller
 
             if ($filters['sort'] == 'name-desc' or $filters['sort'] == 'name-asc') {
                 if ($filters['sort'] == 'name-desc') {
-                    $dataComplete = $dataComplete->sortBy('name', 'desc');
+    
+                    $dataComplete = $dataComplete->sortByDesc('name');
+    
                 } else {
                     $dataComplete = $dataComplete->sortBy('name');
                 }
