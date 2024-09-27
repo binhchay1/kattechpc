@@ -50,13 +50,24 @@ $(document).ready(function () {
     let is_android = navigator.platform.toLowerCase().includes("android");
     checkSessions();
 
-    if (WURFL.is_mobile || is_android) {
-        mobileScreenHandle();
+    if (WURFL !== undefined) {
+        if (WURFL.is_mobile) {
+            mobileScreenHandle();
+        } else {
+            isMobileDetected = false;
+            $('body').removeClass("only-mobile-for-body");
+            $('.global-fixed-right a').removeClass('right-inherit');
+            $('.main-menu-category').addClass('d-none');
+        }
     } else {
-        isMobileDetected = false;
-        $('body').removeClass("only-mobile-for-body");
-        $('.global-fixed-right a').removeClass('right-inherit');
-        $('.main-menu-category').addClass('d-none');
+        if (is_android) {
+            mobileScreenHandle();
+        } else {
+            isMobileDetected = false;
+            $('body').removeClass("only-mobile-for-body");
+            $('.global-fixed-right a').removeClass('right-inherit');
+            $('.main-menu-category').addClass('d-none');
+        }
     }
 
     window.addEventListener('resize', function (event) {

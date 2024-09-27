@@ -174,4 +174,3 @@
     </div>
 @endif
 @include('includes.modal-submit-get-news')
-<script src="{{ asset('js/page/product.js') }}"></script>
