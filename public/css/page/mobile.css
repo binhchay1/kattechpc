@@ -134,7 +134,7 @@
     }
 
     .build-area-mobile span {
-        color: var(--color-primary);
+        color: #f3070f;
     }
 
     .build-area i {
@@ -681,7 +681,7 @@
         width: 40px;
         height: 38px !important;
         border: 1px solid red !important;
-        background: var(--color-primary);
+        background: #f3070f;
         text-align: center;
         color: #fff;
         border-radius: 0 10px 10px 0;
@@ -716,5 +716,118 @@
 
     .swiper-product-only {
         max-height: 440px;
+    }
+
+    .show-all {
+        display: block;
+    }
+
+    .show-all-cate {
+        display: block;
+        margin-top: 10px;
+    }
+
+    .cat-show {
+        display: none !important;
+    }
+
+    .box-right {
+        display: none;
+    }
+
+    .wrap {
+        top: 150px;
+        width: 90%;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .box-right1 {
+        display: block !important;
+    }
+
+    .box-flash-sale .box-middle {
+        width: 100% !important;
+    }
+
+    .time-count b {
+        padding: 0 !important;
+    }
+
+    .show-search .search-mobile {
+        display: block;
+    }
+
+    .list-items.no-border a {
+        border: none !important;
+    }
+
+    #get_search {
+        height: 42px;
+        margin: 0;
+        padding: 0 40px;
+        font-size: 13px;
+        outline: 0;
+        border: 2px solid #f3070f;
+        border-radius: 25px;
+    }
+
+    .close-mn {
+        width: 32px;
+        height: 32px;
+        float: left;
+        line-height: 32px;
+        color: #fff;
+        font-size: 22px;
+    }
+
+    .menu-btn {
+        display: block;
+        position: absolute;
+        color: black;
+        top: 40px;
+        right: 30px;
+        font-size: 2rem;
+        margin-left: 10px;
+        left: 0;
+        margin-top: 5px;
+        width: 30px;
+    }
+
+    .lock-scroll {
+        overflow: hidden;
+    }
+
+    #main {
+        display: block;
+        width: 420px;
+        display: flex;
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    #search_button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        border: none;
+        color: #fff;
+        font-weight: 400;
+        outline: 0;
+        background: #f3070f;
+        padding: 0 20px;
+        font-size: 22px;
+        cursor: pointer;
+        border-radius: 24px;
+    }
+
+    .sub-items {
+        background: #ede5e5;
+    }
+
+    .sub-menu-lv3 {
+        background: #efefef;
     }
 }
