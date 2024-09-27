@@ -50,7 +50,7 @@ $(document).ready(function () {
     let is_android = navigator.platform.toLowerCase().includes("android");
     checkSessions();
 
-    if (typeof myVar !== 'undefined' || WURFL !== undefined) {
+    if (typeof WURFL !== 'undefined') {
         if (WURFL.is_mobile) {
             mobileScreenHandle();
         } else {
@@ -60,7 +60,9 @@ $(document).ready(function () {
             $('.main-menu-category').addClass('d-none');
         }
     } else {
-        if (is_android) {
+        const checkIsMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        if (checkIsMobile || is_android) {
             mobileScreenHandle();
         } else {
             isMobileDetected = false;
