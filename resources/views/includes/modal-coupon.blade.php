@@ -11,7 +11,7 @@
                 <div class="d-flex justify-content-center align-items-center">
                     <label style="margin: 0;">{{ __('Mã khuyến mãi') }}</label>
                     <input type="text" class="input-with-validator ml-10px" placeholder="{{ __('Nhập mã khuyến mãi') }}">
-                    <a type="button" class="btn-submit before-submit promo-code-cta ml-10px">{{ __('Áp dụng') }}</a>
+                    <a type="button" class="btn-submit before-submit promo-code-cta ml-10px" id="mybuttonCart">{{ __('Áp dụng') }}</a>
                 </div>
                 <div>
                     <p class="error_msg_modal" style="color: red"></p>
@@ -31,7 +31,7 @@
                 <hr>
 
                 <div class="modal-button-coupon-area">
-                    <a type="button" class="btn-submit after-submit submit-disable promo-code-cta">{{ __('Áp dụng') }}</a>
+                    <a type="button" class="btn-submit after-submit submit-disable promo-code-cta" id="mybuttonCart">{{ __('Áp dụng') }}</a>
                     <a type="button" class="btn-close ml-10px">{{ __('Đóng') }}</a>
                 </div>
 
@@ -39,3 +39,13 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    var mybutton = document.getElementById("mybuttonCart");
+    mybutton.onclick = function() {
+        setTimeout(function() {
+            location.reload();
+        }, 2000);
+    };
+</script>
