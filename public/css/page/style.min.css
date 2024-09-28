@@ -2679,3 +2679,13 @@ a {
 .slider-banner-main-mobile {
     z-index: -1;
 }
+
+#submitGetNews {
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#submitGetNews .modal-dialog {
+    background: white;
+}

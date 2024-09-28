@@ -74,6 +74,28 @@
                 <div class="swiper-button-prev product-image-prev" tabindex="0" role="button" aria-label="Previous slide" onclick="handleSlideImage('prev')"></div>
                 <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
             </div>
+
+            @if(isset($dataProduct->detail))
+            <div class="product-related" style="margin-top: 40px; width: 96%">
+                <h3> {{ __('Thông số sản phẩm') }}</h3>
+                <table>
+                    <tr>
+                        <th col="300"></th>
+                        <th></th>
+                    </tr>
+                    @if(isset($dataProduct->detail))
+                    @if(is_array($dataProduct->detail))
+                    @foreach($dataProduct->detail as $key => $value)
+                    <tr>
+                        <td style="width: 30%;">{{ $key }}</td>
+                        <td>{{ $value }}</td>
+                    </tr>
+                    @endforeach
+                    @endif
+                    @endif
+                </table>
+            </div>
+            @endif
         </div>
 
         <div class="product-info-detail" style="padding: 0">
@@ -258,28 +280,6 @@
         </div>
     </section>
 </div>
-
-@if(isset($dataProduct->detail))
-<div class="product-related" style="margin-top: 40px; width: 99%">
-    <h3> {{ __('Thông số sản phẩm') }}</h3>
-    <table>
-        <tr>
-            <th col="300"></th>
-            <th></th>
-        </tr>
-        @if(isset($dataProduct->detail))
-        @if(is_array($dataProduct->detail))
-        @foreach($dataProduct->detail as $key => $value)
-        <tr>
-            <td style="width: 30%;">{{ $key }}</td>
-            <td>{{ $value }}</td>
-        </tr>
-        @endforeach
-        @endif
-        @endif
-    </table>
-</div>
-@endif
 
 @if(count($productRelated) > 0)
 <h3 class="productRelated">{{ __('Sản phẩm liên quan') }}</h3>

@@ -1,16 +1,16 @@
-<div class="modal fade" id="submitGetNews" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="submitGetNewsLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-            </button>
+<div class="modal" tabindex="-1" role="dialog" id="submitGetNews">
+    <div class="modal-dialog" role="document" style="margin: auto; padding: 15px; border-radius: 15px;">
+        <div class="modal-content in-product-page" style="width: auto">
+            <div class="modal-header in-product-page-header" style="display: flex; justify-content: end;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
             <div class="modal-body">
-                <div class="modal-icon">
-                    <i class="fa fa-smile"></i>
+                <p class="description" style="font-size: 20px; font-weight: bolder;">{{__('Cám ơn đăng ký theo dõi!!!')}}<br> {{__('Yêu cầu của bạn được gửi đi thành công')}}</p>
+                <div class="d-flex justify-content-center">
+                    <button class="btn" class="close" data-dismiss="modal" onclick="$('#submitGetNews').css('display', 'none')">{{__('Tiếp tục')}}</button>
                 </div>
-                <h3 class="title">{{__('Ôi trời')}}!</h3>
-                <p class="description">{{__('Bạn đã làm được rồi!!!')}}<br> {{__('Yêu cầu của bạn được gửi đi thành công')}}</p>
-                <button class="btn">{{__('Tiếp tục')}}</button>
             </div>
         </div>
     </div>
