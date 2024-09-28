@@ -3,7 +3,7 @@ var isMobileDetected = false;
 var defaultTransFlash = 279;
 var defaultTransTopSale = 247;
 var defaultTransFooterSlide = 285;
-var defaultTransProduct = 235;
+var defaultTransProduct = 237;
 var defaultTransCustomerReview = 0;
 
 var countFlash = 0;
@@ -97,10 +97,11 @@ $(document).ready(function () {
             defaultTopSale = 3;
             defaultFooterSlide = 5;
 
-            perTransFlash = 279;
-            perTransProduct = 238;
-            perTransTopSale = 247;
-            perTransFooterSlide = 285;
+            defaultTransFlash = 279;
+            defaultTransTopSale = 247;
+            defaultTransFooterSlide = 285;
+            defaultTransProduct = 237;
+            defaultTransCustomerReview = 0;
 
             isMobileDetected = false;
 
@@ -229,7 +230,7 @@ $(document).ready(function () {
         });
     }
 
-    if (intervalFlash != 0) {
+    if (intervalFlash == 0) {
         if (listChildFlash.length > defaultFlash) {
             let stopFlash = listChildFlash.length - defaultFlash;
             intervalFlash = setInterval(function () {
@@ -334,7 +335,7 @@ $(document).ready(function () {
         }
     }
 
-    if (intervalTopSale != 0) {
+    if (intervalTopSale == 0) {
         if (listChildTopSale.length > defaultTopSale) {
             let stopTopSale = listChildTopSale.length - defaultTopSale;
             intervalTopSale = setInterval(function () {
@@ -385,11 +386,7 @@ $(document).ready(function () {
         }
     }
 
-    if (isMobileDetected) {
-        defaultFooterSlide = 1;
-    }
-
-    if (intervalFooterSlide != 0) {
+    if (intervalFooterSlide == 0) {
         if (listChildFooterSlide.length > defaultFooterSlide) {
             let stopFooterSlide = listChildFooterSlide.length - defaultFooterSlide;
 
@@ -729,7 +726,7 @@ function suggestionForSearchMobile(input) {
                         let image = JSON.parse(result[i].image);
 
                         let stringAppend = `<a href="/san-pham/` + slug + `">
-                                    <img src="`+ image[0] + `" alt="` + name + `">
+                                    <img src="/`+ image[0] + `" alt="` + name + `">
                                     <span class="info">
                                     <span class="name">`+ name + `</span>
                                     <span class="price">`+ price + `</span>
@@ -771,7 +768,7 @@ function suggestionForSearchMobileScroll(input) {
                         let image = JSON.parse(result[i].image);
 
                         let stringAppend = `<a href="/san-pham/` + slug + `">
-                                    <img src="`+ image[0] + `" alt="` + name + `">
+                                    <img src="/`+ image[0] + `" alt="` + name + `">
                                     <span class="info">
                                     <span class="name">`+ name + `</span>
                                     <span class="price">`+ price + `</span>
