@@ -16,7 +16,6 @@
 
 .img-card {
     float: left;
-    z-index: -1;
 }
 
 .img-card img {

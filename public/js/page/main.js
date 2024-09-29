@@ -719,6 +719,7 @@ function suggestionForSearchMobile(input) {
             success: function (result) {
                 if (result.length > 0) {
                     $('#js-search-result-mobile .list').empty();
+                    $('.img-card').css('z-index', '-1');
                     for (let i = 0; i < result.length; i++) {
                         let price = result[i].price;
                         let name = result[i].name;
@@ -740,12 +741,14 @@ function suggestionForSearchMobile(input) {
                 } else {
                     $('#js-search-result-mobile .list').empty();
                     $('#js-search-result-mobile').css('display', 'none');
+                    $('.img-card').css('z-index', 'inherit');
                 }
             }
         });
     } else {
         $('#js-search-result-mobile .list').empty();
         $('#js-search-result-mobile').hide();
+        $('.img-card').css('z-index', 'inherit');
     }
 }
 
@@ -761,6 +764,7 @@ function suggestionForSearchMobileScroll(input) {
             success: function (result) {
                 if (result.length > 0) {
                     $('#js-search-result-mobile-scroll .list').empty();
+                    $('.img-card').css('z-index', '-1');
                     for (let i = 0; i < result.length; i++) {
                         let price = result[i].price;
                         let name = result[i].name;
@@ -782,12 +786,14 @@ function suggestionForSearchMobileScroll(input) {
                 } else {
                     $('#js-search-result-mobile-scroll .list').empty();
                     $('#js-search-result-mobile-scroll').css('display', 'none');
+                    $('.img-card').css('z-index', 'inherit');
                 }
             }
         });
     } else {
         $('#js-search-result-mobile-scroll .list').empty();
         $('#js-search-result-mobile-scroll').hide();
+        $('.img-card').css('z-index', 'inherit');
     }
 }
 

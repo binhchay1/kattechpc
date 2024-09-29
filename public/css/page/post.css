@@ -144,9 +144,10 @@
 .parent1 {
     display: flex;
     flex-wrap: wrap;
-    background: #ffeded;
-    border-radius: 10px;
+    background: #fdfdfd;
+    border-radius: 0 10px 10px 10px;
     margin-top: -10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .child1 {
@@ -156,6 +157,7 @@
     line-height: 50px;
     border-radius: 5px;
     justify-content: center;
+    padding: 10px;
 }
 
 .item-hot {

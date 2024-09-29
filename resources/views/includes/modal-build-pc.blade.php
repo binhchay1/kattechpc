@@ -92,10 +92,6 @@
                             </li>
                         </ul>
                     </div>
-
-                    <!-- <div class="gr-filter" id="gr-filter">
-
-                    </div> -->
                 </div>
             </div>
 
