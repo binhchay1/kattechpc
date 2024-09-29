@@ -19,9 +19,9 @@
         "vite": "^5.4.6"
     },
     "dependencies": {
-        "@ckeditor/ckeditor5-build-balloon": "^40.1.0",
-        "@ckeditor/ckeditor5-build-classic": "^40.1.0",
-        "@ckeditor/ckeditor5-build-inline": "^40.1.0",
+        "@ckeditor/ckeditor5-build-balloon": "^43.1.1",
+        "@ckeditor/ckeditor5-build-classic": "^43.1.1",
+        "@ckeditor/ckeditor5-build-inline": "^43.1.1",
         "@popperjs/core": "^2.11.8",
         "@simonwep/pickr": "^1.9.0",
         "aos": "^3.0.0-beta.6",
