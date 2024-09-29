@@ -335,7 +335,6 @@ function renderProductToModal(data) {
                                 data-title="` + title + `"
                                 data-price="` + price + `"
                                 data-new-price="` + new_price + `"
-                                data-sale-detail="` + sale_detail + `"
                                 data-status-guarantee="` + status_guarantee + `"
                                 data-status="` + status + `">
                             </a>
