@@ -80,6 +80,9 @@ $(document).ready(function () {
             $('body').css('overflow', 'auto');
             $('body').css('overflow-x', 'hidden');
             $('#toolbar-menu-mobile').addClass('d-none');
+            if (!$('.main-menu-category').hasClass('d-none')) {
+                $('.main-menu-category').addClass('d-none');
+            }
 
             countFlash = 0;
             countProduct = 0;
@@ -115,6 +118,7 @@ $(document).ready(function () {
         var y = $(this).scrollTop();
         if (y >= 300) {
             if (isMobileDetected) {
+                console.log(1);
                 $('.bottomMenu').fadeIn();
                 $('.container-hamburger').addClass('header-fixed-menu-mobile');
                 $('.menu-btn').css('top', '5px');
@@ -890,6 +894,10 @@ function mobileScreenHandle() {
     $('.swiper-flash-sale').css('transform', 'translate3d(0px, 0px, 0px)');
     $('.swiper-top-sale').css('transform', 'translate3d(0px, 0px, 0px)');
     $('.swiper-footer-slide').css('transform', 'translate3d(0px, 0px, 0px)');
+    if ($('.main-menu-category').hasClass('d-none')) {
+        $('.main-menu-category').removeClass('d-none');
+    }
+
     if (typeof (listCategory) != 'undefined' && listCategory !== null) {
         for (let k = 0; k < listCategory.default.length; k++) {
             $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(0px, 0px, 0px)');
