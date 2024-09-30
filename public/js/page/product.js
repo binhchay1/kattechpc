@@ -220,7 +220,7 @@ function getImageCenterMobile(image) {
     indexImage = image.getAttribute('data-index-mobile');
     $('#js-image-list').find('.border-image').removeClass('border-image');
     $("[data-index-mobile=" + indexImage + "]").addClass('border-image');
-    $('#featured-image').attr('src', src);
+    $('#image-first').attr('src', src);
 }
 
 function handleSlideImage(status) {

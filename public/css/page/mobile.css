@@ -882,4 +882,8 @@
         display: block;
         margin: auto;
     }
+
+    .drive-checked {
+        width: 100%;
+    }
 }

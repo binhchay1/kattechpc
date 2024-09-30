@@ -117,7 +117,6 @@ $(document).ready(function () {
         var y = $(this).scrollTop();
         if (y >= 300) {
             if (isMobileDetected) {
-                console.log(1);
                 $('.bottomMenu').fadeIn();
                 $('.container-hamburger').addClass('header-fixed-menu-mobile');
                 $('.menu-btn').css('top', '5px');
@@ -145,12 +144,11 @@ $(document).ready(function () {
     }, true);
 
     var modal = document.getElementById("submitGetNews");
-    var btn = document.getElementById("news-button-summit");
-    var span = document.getElementsByClassName("close")[0];
-    btn.onclick = function () {
-        let input_value = $('#email_newsletter').val();
+    $('#news-button-summit').on('click', function (e) {
+        e.preventDefault();
+        let email = $('#email_newsletter').val();
         let text = '';
-        if (input_value == '' || input_value == null) {
+        if (email == '' || email == null) {
             text = 'Vui lòng nhập địa chỉ email ...';
         } else if (!validateEmail(email)) {
             text = 'Không đúng định dạng email. Vui lòng nhập lại ...';
@@ -159,12 +157,8 @@ $(document).ready(function () {
         }
 
         $('#submitGetNews .description').text(text);
-        modal.style.display = "block";
-    }
-
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
+        modal.style.display = "flex";
+    });
 
     window.onclick = function (event) {
         if (event.target == modal) {

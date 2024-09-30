@@ -641,6 +641,10 @@ span .p-name {
     padding-left: 0 !important;
 }
 
+.icon-menu-filter-mobile {
+    display: none;
+}
+
 .only-mobile-for-body {
     .popup-select {
         width: 100%;
@@ -702,12 +706,12 @@ span .p-name {
     }
 
     .name-item-drive {
-        width: 100%;
+        width: 190px;
         border-bottom: 1px solid #efefef;
     }
 
     .item-drive {
-        flex-direction: column;
+        flex-direction: row;
     }
 
     .span-last {
@@ -770,5 +774,23 @@ span .p-name {
 
     .banner-deal-page .item-banner {
         justify-content: inherit !important;
+    }
+
+    .build-pc_content h3 {
+        font-size: 16px;
+    }
+
+    .sum_price {
+        margin-left: 0;
+    }
+
+    .price-in-mobile {
+        width: 100%;
+    }
+
+    .icon-menu-filter-mobile {
+        display: block;
+        color: #fff;
+        font-size: 27px;
     }
 }

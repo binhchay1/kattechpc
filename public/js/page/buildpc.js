@@ -100,6 +100,14 @@ $(document).ready(function () {
     $('#modal-no-item-print .close').on('click', function () {
         $('#modal-no-item-print').css('display', 'none');
     });
+
+    $('.icon-menu-filter-mobile').on('click', function () {
+        if($('.popup-main_filter').hasClass('hide-mobile')) {
+            $('.popup-main_filter').removeClass('hide-mobile');
+        } else {
+            $('.popup-main_filter').addClass('hide-mobile');
+        }
+    });
 });
 
 function addToMenu(choose) {

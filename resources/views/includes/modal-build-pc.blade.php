@@ -18,11 +18,12 @@
             </div>
             <div class="col-lg-2" style="text-align: right; color: white; font-size: 35px">
                 <span class="close-popup"><i class="fa fa-times"></i></span>
+                <div class="icon-menu-filter-mobile"><i class="fa fa-list"></i></div>
             </div>
         </div>
 
         <div class="row popup-main" id="popup-main">
-            <div class="col-lg-4 popup-main_filter w-30 float_l">
+            <div class="col-lg-4 popup-main_filter w-30 float_l hide-mobile">
                 <h4>{{ __('Lọc sản phẩm theo') }}</h4>
                 <div class="list-filter">
                     <div class="gr-filter brand">

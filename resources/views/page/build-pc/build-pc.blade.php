@@ -100,8 +100,8 @@
                                     Kho hàng: <span style="color: red">{{ $textStatus1 }}</span> | Mã SP: <span style="color: red">{{ $productSession1->code }}</span>
                                 </span>
                                 <div class="price-in-mobile">
-                                    <span class="d-price">{{ $price1 }}</span>
-                                    <i>x</i> <input class="count-p" type="number" value="1" min="1" max="50" disabled><i>=</i>
+                                    <span class="d-price hide-mobile">{{ $price1 }}</span>
+                                    <i class="hide-mobile">x</i> <input class="count-p hide-mobile" type="number" value="1" min="1" max="50" disabled><i class="hide-mobile">=</i>
                                     <span class="sum_price">{{ $price1 }}</span>
                                     <span class="btn-action_seclect show-popup_select" onclick="changeProductHandle('category-js-{{ $value->id }}-1')"><i class="fa fa-edit edit-item"></i></span>
                                     <span class="btn-action_seclect delete_select" data-id="{{ $productSession1->id }}" data-price="{{ $price1 }}" onclick="deleteProductHandle(this, 'category-js-{{ $value->id }}-1')"><i class="fa fa-trash remove-item"></i></span>
@@ -266,8 +266,6 @@
         'listArea1': JSON.parse(`<?php echo json_encode($dataProductBuild['listArea1']) ?>`),
         'listArea2': JSON.parse(`<?php echo json_encode($dataProductBuild['listArea2']) ?>`)
     };
-
-    console.log(dataListMenu);
 </script>
 <script src="{{ asset('/js/page/buildpc.js') }}"></script>
 @endsection
