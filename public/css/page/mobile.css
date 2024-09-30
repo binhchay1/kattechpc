@@ -402,7 +402,7 @@
     }
 
     .hide-mobile {
-        display: none;
+        display: none !important;
     }
 
     .flash-sale-title-area,
@@ -829,5 +829,22 @@
 
     .sub-menu-lv3 {
         background: #efefef;
+    }
+
+    .status-guarantee-mobile {
+        display: flex;
+        justify-content: space-around;
+        font-size: 16px;
+    }
+
+    .price-product {
+        justify-content: center;
+        background-image: linear-gradient(to right, #243a76, #ed1b24);
+        color: white;
+        font-size: 17px;
+    }
+
+    .information-in-mobile {
+        width: 100% !important;
     }
 }

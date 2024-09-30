@@ -104,19 +104,15 @@
         </div>
 
         <div class="global-fixed-right">
-
             <a href="{{ $social->facebook ?? '' }}" aria-label="Face Book" target="_blank" class="fix-face d-flex align-items-center justify-content-center">
                 <img width="25" height="25" alt="mes" src="{{ asset('images/logo/icon-facebook.png') }}">
             </a>
-
             <a href="{{ $social->youtube ?? '' }}" aria-label="Youtube" target="_blank" class="fix-youtube d-flex align-items-center justify-content-center">
                 <img width="40" height="40" alt="mes" src="{{ asset('images/logo/icon-youtube.png') }}">
             </a>
-
             <a href="javascript:window.scrollTo({ top: 0, behavior: 'smooth' });" class="scroll-top-btn align-items-center justify-content-center d-none" title="Di chuyển lên đầu trang!" style="display: flex;">
                 <i class="fa fa-angle-up"></i>
             </a>
-
             <a href="{{ $social->messager ?? '' }}" target="_blank" class="messenger d-flex align-items-center">
                 <img width="40" height="40" alt="mes" src="{{ asset('images/logo/facebook_messenger.png') }}">
                 <div class="contact-info">

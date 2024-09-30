@@ -44,9 +44,7 @@ $(document).ready(function () {
     $('.preloader-main').hide();
     $('body').css('overflow', 'auto');
     $('body').css('overflow-x', 'hidden');
-    var modal = document.getElementById("submitGetNews");
-    var btn = document.getElementById("news-button-summit");
-    var span = document.getElementsByClassName("close")[0];
+
     let is_android = navigator.platform.toLowerCase().includes("android");
     checkSessions();
 
@@ -79,6 +77,7 @@ $(document).ready(function () {
             $('body').css('width', '100%');
             $('body').css('overflow', 'auto');
             $('body').css('overflow-x', 'hidden');
+            $('.detail-product-on-mobile').css('display', 'none');
             $('#toolbar-menu-mobile').addClass('d-none');
             if (!$('.main-menu-category').hasClass('d-none')) {
                 $('.main-menu-category').addClass('d-none');
@@ -145,7 +144,21 @@ $(document).ready(function () {
         }
     }, true);
 
+    var modal = document.getElementById("submitGetNews");
+    var btn = document.getElementById("news-button-summit");
+    var span = document.getElementsByClassName("close")[0];
     btn.onclick = function () {
+        let input_value = $('#email_newsletter').val();
+        let text = '';
+        if (input_value == '' || input_value == null) {
+            text = 'Vui lòng nhập địa chỉ email ...';
+        } else if (!validateEmail(email)) {
+            text = 'Không đúng định dạng email. Vui lòng nhập lại ...';
+        } else {
+            text = 'Cám ơn đã đăng ký nhận thông tin. Chúc quý khách có trải nghiệm vui vẻ với bên chúng tôi!'
+        }
+
+        $('#submitGetNews .description').text(text);
         modal.style.display = "block";
     }
 
@@ -159,8 +172,8 @@ $(document).ready(function () {
         }
     }
 
-    if (!isMobileDetected) {
-        $('.hover-for-tooltips').hover(function () {
+    $('.hover-for-tooltips').hover(function () {
+        if (!isMobileDetected) {
             let title = $(this).attr('data-title');
             let price = $(this).attr('data-price');
             let new_price = $(this).attr('data-new-price');
@@ -228,11 +241,11 @@ $(document).ready(function () {
             $('.global-tooltip').css('left', offsetLeft);
             $('.global-tooltip').css('top', offsetTop);
             $(this).css('transform', 'translate(0, -10px)');
-        }, function () {
-            $(this).css('transform', 'translate(0, 0)');
-            $('.global-tooltip').css('display', 'none');
-        });
-    }
+        }
+    }, function () {
+        $(this).css('transform', 'translate(0, 0)');
+        $('.global-tooltip').css('display', 'none');
+    });
 
     if (intervalFlash == 0) {
         if (listChildFlash.length > defaultFlash) {
@@ -894,6 +907,7 @@ function mobileScreenHandle() {
     $('.swiper-flash-sale').css('transform', 'translate3d(0px, 0px, 0px)');
     $('.swiper-top-sale').css('transform', 'translate3d(0px, 0px, 0px)');
     $('.swiper-footer-slide').css('transform', 'translate3d(0px, 0px, 0px)');
+    $('.detail-product-on-mobile').css('display', 'block');
     if ($('.main-menu-category').hasClass('d-none')) {
         $('.main-menu-category').removeClass('d-none');
     }
@@ -1193,4 +1207,9 @@ function handleSlideProductInterval() {
             });
         }
     }
+}
+
+function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
 }

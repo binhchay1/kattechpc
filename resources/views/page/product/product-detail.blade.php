@@ -30,6 +30,38 @@
 </script>
 @endif
 <div class="container">
+    <div class="detail-product-on-mobile">
+        <h1 class="text-center" style="border-bottom: 1px solid; padding-bottom: 13px;">{{ $dataProduct->name }}</h1>
+        <div class="list-basic-product-info d-flex align-items-center flex-wrap justify-content-center">
+            <?php $countRating = $dataProduct->ratings->count();
+            $countComment = $dataProduct->comments->count();
+            ?>
+            <div class="item-basic">
+                Mã SP: <span class="color-primary">{{ $dataProduct->code }}</span> |
+            </div>
+            <div class="item-basic" style="margin-left: 10px;">
+                Đánh giá: <span class="color-primary">
+                    @if($countRating && $countRating > 0)
+                    {{ $countRating }}
+                    @else
+                    0
+                    @endif
+                </span> | &nbsp;
+            </div>
+            <div class="item-basic">
+                Bình luận: <span class="color-primary">
+                    @if($countComment && $countComment > 0)
+                    {{$countComment}}
+                    @else
+                    0
+                    @endif</span> | &nbsp;
+            </div>
+            <div class="item-basic last-item-basic position-relative">
+                Lượt xem: <span class="color-primary">{{ $dataProduct->views }}</span>
+            </div>
+        </div>
+    </div>
+
     <section class="product-container set-background">
         <div class="img-card">
             <div class="slideshow-container">
@@ -76,7 +108,7 @@
             </div>
 
             @if(isset($dataProduct->detail))
-            <div class="product-related" style="margin-top: 40px; width: 96%">
+            <div class="product-related information-in-mobile" style="margin-top: 40px; width: 96%">
                 <h3> {{ __('Thông số sản phẩm') }}</h3>
                 <table>
                     <tr>
@@ -99,8 +131,8 @@
         </div>
 
         <div class="product-info-detail" style="padding: 0">
-            <h1>{{ $dataProduct->name }}</h1>
-            <div class="list-basic-product-info d-flex align-items-center flex-wrap">
+            <h1 class="hide-mobile">{{ $dataProduct->name }}</h1>
+            <div class="list-basic-product-info d-flex align-items-center flex-wrap hide-mobile">
                 <?php $countRating = $dataProduct->ratings->count();
                 $countComment = $dataProduct->comments->count();
                 ?>
@@ -125,7 +157,7 @@
                         @endif</span> | &nbsp;
                 </div>
                 <div class="item-basic last-item-basic position-relative">
-                    Lượt xem: <span class="color-primary">970</span>
+                    Lượt xem: <span class="color-primary">{{ $dataProduct->views }}</span>
                 </div>
             </div>
             <div class="d-flex price-product">
@@ -195,7 +227,7 @@
             </div>
             @endif
 
-            <div>
+            <div class="status-guarantee-mobile">
                 @if(isset($dataProduct->status_guarantee) and $dataProduct->status_guarantee != null)
                 <p>{{ __('Bảo hành') }}: <span style="font-weight: bold; color: blue">{{ $dataProduct->status_guarantee }}</span></p>
                 @endif
@@ -206,7 +238,6 @@
                 @else
                 <p>{{ __('Tình trạng') }}: <span style="font-weight: bold; color: blue">{{ __('Đang về hàng') }}</span></p>
                 @endif
-                <p></p>
             </div>
 
             @if(isset($dataProduct->sale_detail))
@@ -579,7 +610,7 @@
     </div>
     <div class="box-side-right">
         @if($dataProduct->detail_tech != null)
-        <div class="product-related">
+        <div class="product-related information-in-mobile">
             <h3> {{ __('Thông số kĩ thuật') }}</h3>
             <table>
                 <tr>

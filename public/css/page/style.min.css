@@ -2690,3 +2690,8 @@ a {
 #submitGetNews .modal-dialog {
     background: white;
 }
+
+.detail-product-on-mobile {
+    display: none;
+}
+
