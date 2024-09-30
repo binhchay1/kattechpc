@@ -288,7 +288,7 @@
                             @endif
                         </a>
                         <div class="product-info">
-                            <a href="">
+                            <a href="{{ route('productDetail', $product->slug) }}">
                                 <h3 class="product-title line-clamp-3">{{ $product->name }} </h3>
                             </a>
                             <div class="product-martket-main d-flex align-items-center">

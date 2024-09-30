@@ -67,14 +67,3 @@
 </div>
 
 @endsection
-
-@section('js')
-<script>
-    $('.vendor-carousel').owlCarousel({
-        loop: true,
-        nav: false,
-        autoplay: true,
-        smartSpeed: 1000,
-    });
-</script>
-@endsection

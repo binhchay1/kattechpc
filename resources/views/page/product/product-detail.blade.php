@@ -68,6 +68,20 @@
                 <img src="{{ asset($dataProduct->image[0]) }}" id="featured-image">
             </div>
 
+            <div class="pd-img-gallery owl-thumbs" id="js-image-list">
+                @foreach ($dataProduct->image as $key => $image)
+                @if($key == 0)
+                <a href="javascript:void(0);" class="owl-thumb-item item js-pd-image-item active" onclick="getImageCenter(this)">
+                    <img src="{{ asset($image) }}">
+                </a>
+                @else
+                <a href="javascript:void(0);" class="owl-thumb-item item js-pd-image-item" onclick="getImageCenter(this)">
+                    <img src="{{ asset($image) }}">
+                </a>
+                @endif
+                @endforeach
+            </div>
+
             <div class="small-Card">
                 <div class="swiper d-flex align-items-center" style="min-height: auto;">
                     <div class="swiper-wrapper swiper-image" style="margin-left: 0px;">

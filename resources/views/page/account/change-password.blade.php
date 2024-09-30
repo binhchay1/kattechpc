@@ -62,16 +62,6 @@
 @section('js')
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script>
-    $('.vendor-carousel').owlCarousel({
-        loop: true,
-        nav: false,
-        autoplay: true,
-        smartSpeed: 1000,
-    });
-</script>
-
-
-<script>
     setTimeout(function() {
         $('.alert-block').remove();
     }, 5000);

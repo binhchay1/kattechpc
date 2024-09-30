@@ -95,14 +95,3 @@ Với khẩu hiệu “Uy tín tạo dựng niềm tin”, KATTECH mong muốn x
     </div>
 
 @endsection
-
-@section('js')
-    <script>
-        $('.vendor-carousel').owlCarousel({
-            loop: true,
-            nav: false,
-            autoplay: true,
-            smartSpeed: 1000,
-        });
-    </script>
-@endsection
