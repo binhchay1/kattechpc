@@ -893,7 +893,7 @@ function mobileScreenHandle() {
     isMobileDetected = true;
 
     var widthDevice = (window.innerWidth > 650) ? 650 : window.innerWidth;
-    $('body').attr('style', 'width: ' + (widthDevice + 10) + 'px !important');
+    $('body').attr('style', 'width: ' + (widthDevice) + 'px !important');
     $('body').addClass("only-mobile-for-body");
     $('.global-fixed-right a').addClass('right-inherit');
     $('body').css('overflow', 'auto');
