@@ -166,6 +166,8 @@
         padding-left: 20px;
         height: 100%;
         margin-bottom: 50px;
+        width: inherit;
+        word-break: auto-phrase;
     }
 
     .policy-item {
