@@ -215,6 +215,14 @@ function getImageCenter(image) {
     }
 }
 
+function getImageCenterMobile(image) {
+    let src = image.src;
+    indexImage = image.getAttribute('data-index-mobile');
+    $('#js-image-list').find('.border-image').removeClass('border-image');
+    $("[data-index-mobile=" + indexImage + "]").addClass('border-image');
+    $('#featured-image').attr('src', src);
+}
+
 function handleSlideImage(status) {
     let maxIndex = $('.swiper-slide-image').length;
     if (status == 'next') {

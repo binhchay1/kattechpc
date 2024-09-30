@@ -68,14 +68,14 @@
                 <img src="{{ asset($dataProduct->image[0]) }}" id="featured-image">
             </div>
 
-            <div class="pd-img-gallery owl-thumbs" id="js-image-list">
+            <div class="pd-img-gallery" id="js-image-list">
                 @foreach ($dataProduct->image as $key => $image)
                 @if($key == 0)
-                <a href="javascript:void(0);" class="owl-thumb-item item js-pd-image-item active" onclick="getImageCenter(this)">
+                <a href="javascript:void(0);" data-index-mobile="{{ $key }}" class="item border-image" onclick="getImageCenterMobile(this)">
                     <img src="{{ asset($image) }}">
                 </a>
                 @else
-                <a href="javascript:void(0);" class="owl-thumb-item item js-pd-image-item" onclick="getImageCenter(this)">
+                <a href="javascript:void(0);" data-index-mobile="{{ $key }}" class="item" onclick="getImageCenterMobile(this)">
                     <img src="{{ asset($image) }}">
                 </a>
                 @endif
@@ -164,7 +164,7 @@
                     Lượt xem: <span class="color-primary">{{ $dataProduct->views }}</span>
                 </div>
             </div>
-            <div class="d-flex price-product">
+            <div class="d-flex price-product hide-mobile">
                 @if($dataProduct->is_flash_sale == 0)
                 @if($dataProduct->new_price != null)
                 <h5>{{ ($dataProduct->new_price )}} đ </h5>
@@ -176,6 +176,26 @@
                 @else
                 <h5>{{ number_format($dataProduct->new_price, 0, ',', '.') }} đ </h5>
                 <del class="old-price">{{ ($dataProduct->price) }} đ</del>
+                <div class="save-price-detail">{{ __('Tiết kiệm:') }} {{ number_format((int) str_replace('.', '', $dataProduct->price) - (int) str_replace('.', '', $dataProduct->new_price) )}} đ</div>
+                @endif
+            </div>
+
+            <div class="price-product price-product-for-mobile">
+                @if($dataProduct->is_flash_sale == 0)
+                @if($dataProduct->new_price != null)
+                <div class="d-flex align-items-center flex-column">
+                    <h5 style="margin: 0">{{ ($dataProduct->new_price )}} đ </h5>
+                    <del class="old-price">{{ ($dataProduct->price) }} đ</del>
+                </div>
+                <div class="save-price-detail">{{ __('Tiết kiệm:') }} {{ number_format((int) str_replace('.', '', $dataProduct->price) - (int) str_replace('.', '', $dataProduct->new_price) )}} đ</div>
+                @else
+                <h5>{{ __('Giá ') }}: {{ ($dataProduct->price) }} đ</h5>
+                @endif
+                @else
+                <div class="d-flex align-items-center flex-column">
+                    <h5 style="margin: 0">{{ number_format($dataProduct->new_price, 0, ',', '.') }} đ </h5>
+                    <del class="old-price">{{ ($dataProduct->price) }} đ</del>
+                </div>
                 <div class="save-price-detail">{{ __('Tiết kiệm:') }} {{ number_format((int) str_replace('.', '', $dataProduct->price) - (int) str_replace('.', '', $dataProduct->new_price) )}} đ</div>
                 @endif
             </div>

@@ -1412,8 +1412,16 @@ tr:nth-child(even) {
         margin-left: 5px;
         margin-top: 10px;
     }
+
+    .price-product-for-mobile {
+        display: flex;
+    }
 }
 
 .slideshow-container {
+    display: none;
+}
+
+.price-product-for-mobile {
     display: none;
 }
