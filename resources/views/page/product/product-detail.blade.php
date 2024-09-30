@@ -64,16 +64,6 @@
 
     <section class="product-container set-background">
         <div class="img-card">
-            <div class="slideshow-container">
-                @foreach ($dataProduct->image as $key => $image)
-                <div class="mySlides fade">
-                    <img src="{{  asset($image) }} " id="featured-image">
-                </div>
-                @endforeach
-                <a class="prev" onclick="plusSlides(-1)">❮</a>
-                <a class="next" onclick="plusSlides(1)">❯</a>
-            </div>
-
             <div class="image-container" id="image-first">
                 <img src="{{ asset($dataProduct->image[0]) }}" id="featured-image">
             </div>
