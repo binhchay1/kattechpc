@@ -215,9 +215,9 @@ function getImageCenter(image) {
     }
 }
 
-function getImageCenterMobile(image) {
-    let src = image.src;
-    indexImage = image.getAttribute('data-index-mobile');
+function getImageCenterMobile(alink) {
+    let src = alink.find('img').attr('src');
+    indexImage = alink.attr('data-index-mobile');
     $('#js-image-list').find('.border-image').removeClass('border-image');
     $("[data-index-mobile=" + indexImage + "]").addClass('border-image');
     $('#image-first').attr('src', src);

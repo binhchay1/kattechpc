@@ -336,7 +336,8 @@ function renderProductToModal(data) {
             textStatus = 'Đang về hàng';
         }
 
-        let stringAppend = `<div class="p-item"><div class="row">
+        let stringAppend = `<div class="p-item">
+                        <div class="row flex-row-in-mobile">
                         <div class="col-lg-3">
                             <a href="` + urlProduct + `" class="p-img">
                                 <img src="` + image[0] + `"
@@ -347,6 +348,7 @@ function renderProductToModal(data) {
                                 data-status="` + status + `">
                             </a>
                         </div>
+                        <div class="col-lg-10 process-in-mobile">
                         <div class="col-lg-6 info">
                             <a href="" class="p-name">` + name + `</a>
                             <table>
@@ -381,6 +383,7 @@ function renderProductToModal(data) {
 
         stringAppend += `</div><div class="col-lg-3" style="margin-top:10px ">
                         <span id="buy-product" style="display: flex" class="btn-buy js-select-product" data-id="` + data.menu + `" data-product='` + dataSendToAdd + `' onclick="addToMenu(this)">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
+                        </div>
                         </div>
                         </div>
                      <hr></div>`;

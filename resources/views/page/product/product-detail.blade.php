@@ -71,11 +71,11 @@
             <div class="pd-img-gallery" id="js-image-list">
                 @foreach ($dataProduct->image as $key => $image)
                 @if($key == 0)
-                <a href="javascript:void(0);" data-index-mobile="{{ $key }}" class="item border-image" onclick="getImageCenterMobile(this)">
+                <a href="javascript:void(0);" data-index-mobile="{{ $key }}" class="item border-image" onclick="getImageCenterMobile($(this))">
                     <img src="{{ asset($image) }}">
                 </a>
                 @else
-                <a href="javascript:void(0);" data-index-mobile="{{ $key }}" class="item" onclick="getImageCenterMobile(this)">
+                <a href="javascript:void(0);" data-index-mobile="{{ $key }}" class="item" onclick="getImageCenterMobile($(this))">
                     <img src="{{ asset($image) }}">
                 </a>
                 @endif
