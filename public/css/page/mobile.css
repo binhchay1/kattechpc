@@ -190,11 +190,6 @@
         margin-top: 15px;
     }
 
-    #featured-image {
-        width: 100%;
-        height: 400px;
-    }
-
     .product-container {
         flex-direction: column;
     }
