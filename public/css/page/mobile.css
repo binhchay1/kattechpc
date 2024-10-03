@@ -888,4 +888,8 @@
     .drive-checked {
         width: 100%;
     }
+
+    #js-search-result-mobile-scroll {
+        display: none !important;
+    }
 }
