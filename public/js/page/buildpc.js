@@ -323,7 +323,6 @@ function renderProductToModal(data) {
         let title = val.title;
         let new_price = val.new_price;
         let price = val.price;
-        let sale_detail = val.sale_detail;
         let slug = val.slug;
         let image = JSON.parse(val.image);
         let urlProduct = '/san-pham/' + slug;
@@ -339,7 +338,7 @@ function renderProductToModal(data) {
 
         let stringAppend = `<div class="p-item">
                         <div class="row flex-row-in-mobile">
-                        <div class="col-lg-3">
+                        <div class="col-lg-3" style="display: flex;align-items: center;">
                             <a href="` + urlProduct + `" class="p-img">
                                 <img src="` + image[0] + `"
                                 data-title="` + title + `"
@@ -350,7 +349,7 @@ function renderProductToModal(data) {
                             </a>
                         </div>
                         <div class="col-lg-10 process-in-mobile">
-                        <div class="col-lg-6 info" style="max-width: 100%">
+                        <div class="col-lg-6 info" style="max-width: 100%; padding-left: 0">
                             <a href="" class="p-name">` + name + `</a>
                             <table>
                                 <tbody>
@@ -382,7 +381,7 @@ function renderProductToModal(data) {
             stringAppend += `<span class="p-price">` + price + `</span>`;
         }
 
-        stringAppend += `</div><div class="col-lg-3" style="margin-top:10px; max-width: 55% !important;">
+        stringAppend += `</div><div class="col-lg-3" style="margin-top:10px; max-width: 55% !important; padding-left: 0">
                         <span id="buy-product" style="display: flex" class="btn-buy js-select-product" data-id="` + data.menu + `" data-product='` + dataSendToAdd + `' onclick="addToMenu(this)">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
                         </div>
                         </div>

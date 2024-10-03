@@ -403,6 +403,10 @@
         width: 100%;
     }
 
+    #select-price div {
+        margin-top: 0;
+    }
+
     #select-price {
         display: flex !important;
         flex-wrap: wrap;
