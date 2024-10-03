@@ -461,14 +461,6 @@
         display: none;
     }
 
-    .main-menu-category li a {
-        margin-bottom: 10px;
-        display: block;
-        color: grey;
-        font-size: 15px;
-        font-weight: 600;
-    }
-
     .main-menu-category .list-items img {
         margin-right: 10px;
     }
@@ -604,7 +596,7 @@
     }
 
     .box-breadcrumb-global .box-breadcrumb {
-        justify-content: center !important;
+        margin-top: 15px;
     }
 
     .swiper-slide-image {
@@ -890,6 +882,10 @@
     }
 
     #js-search-result-mobile-scroll {
+        display: none !important;
+    }
+
+    #js-search-result-mobile {
         display: none !important;
     }
 }
