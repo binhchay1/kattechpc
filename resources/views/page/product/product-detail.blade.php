@@ -82,13 +82,22 @@
                 @endforeach
             </div>
 
+            @if($dataProduct->link_youtube != null)
+            <div class="pd-image-btn">
+                <a class="item-icon" data-url="{{ $dataProduct->link_youtube }}" onclick="watchYoutubeVideo($(this))">
+                    <i class="sprite sprite-play-youtube incon-play-youtube"></i>
+                </a>
+                <p>Video <br> Sản phẩm</p>
+            </div>
+            @endif
+
             <div class="small-Card">
                 <div class="swiper d-flex align-items-center" style="min-height: auto;">
                     <div class="swiper-wrapper swiper-image" style="margin-left: 0px;">
                         @if($dataProduct->link_youtube != null)
                         <div class="content-article content-article-item d-flex flex-column flex-1">
                             <a class="img-article boder-radius-10 position-relative" data-url="{{ $dataProduct->link_youtube }}" onclick="watchYoutubeVideo($(this))">
-                                <img class="boder-radius-10" src="{{ asset($dataProduct->image[0]) }}" alt="{{ $dataProduct->name }}">
+                                <img src="{{ asset($dataProduct->image[0]) }}" alt="{{ $dataProduct->name }}">
                                 <i class="sprite sprite-play-youtube incon-play-youtube"></i>
                             </a>
                         </div>
@@ -107,7 +116,7 @@
                     </div>
                 </div>
                 <div class="swiper-button-next product-image-next" tabindex="0" role="button" aria-label="Next slide" onclick="handleSlideImage('next')"></div>
-                <div class="swiper-button-prev product-image-prev" tabindex="0" role="button" aria-label="Previous slide" onclick="handleSlideImage('prev')"></div>
+                <div class="swiper-button-prev product-image-prev" style="left: calc(20px + 12%);" tabindex="0" role="button" aria-label="Previous slide" onclick="handleSlideImage('prev')"></div>
                 <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
             </div>
 
