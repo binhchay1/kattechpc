@@ -7,7 +7,7 @@
                 <h4>{{ __('Chọn linh kiện') }}</h4>
             </div>
             <div class="col-lg-6 no-max-flex-none">
-                <div class="wrap">
+                <div class="wrap-modal-builpc">
                     <div class="search">
                         <input type="text" class="searchTerm" placeholder="{{ __('Bạn cần link kiện gì?') }}" id="search-in-modal">
                         <button type="submit" class="searchButton" id="btn-search-in-modal">

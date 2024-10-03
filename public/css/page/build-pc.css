@@ -669,6 +669,14 @@ span .p-name {
     display: none;
 }
 
+.wrap-modal-builpc {
+    width: 80%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .only-mobile-for-body {
     .popup-select {
         width: 100%;
@@ -787,7 +795,7 @@ span .p-name {
         margin-left: 15px;
     }
 
-    #js-holder-p_item .p-item hr{
+    #js-holder-p_item .p-item hr {
         margin-bottom: 15px;
         margin-top: 15px;
     }
@@ -816,5 +824,14 @@ span .p-name {
         display: block;
         color: #fff;
         font-size: 27px;
+    }
+
+    .process-in-mobile {
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+
+    .flex-row-in-mobile {
+        flex-wrap: inherit !important;
     }
 }

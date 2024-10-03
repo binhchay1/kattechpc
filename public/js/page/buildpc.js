@@ -284,6 +284,7 @@ function changeProductHandle(userChose) {
     }
 
     $('#js-modal-popup').show();
+    $('#js-modal-popup').css('display', 'flex');
 }
 
 function addToCart() {
@@ -349,7 +350,7 @@ function renderProductToModal(data) {
                             </a>
                         </div>
                         <div class="col-lg-10 process-in-mobile">
-                        <div class="col-lg-6 info">
+                        <div class="col-lg-6 info" style="max-width: 100%">
                             <a href="" class="p-name">` + name + `</a>
                             <table>
                                 <tbody>
@@ -381,7 +382,7 @@ function renderProductToModal(data) {
             stringAppend += `<span class="p-price">` + price + `</span>`;
         }
 
-        stringAppend += `</div><div class="col-lg-3" style="margin-top:10px ">
+        stringAppend += `</div><div class="col-lg-3" style="margin-top:10px; max-width: 55% !important;">
                         <span id="buy-product" style="display: flex" class="btn-buy js-select-product" data-id="` + data.menu + `" data-product='` + dataSendToAdd + `' onclick="addToMenu(this)">Thêm vào cấu hình <i class="fa fa-angle-right"></i></span>
                         </div>
                         </div>
