@@ -834,4 +834,16 @@ span .p-name {
     .flex-row-in-mobile {
         flex-wrap: inherit !important;
     }
+
+    .list-product-select img {
+        width: 95px;
+    }
+
+    #js-modal-popup .col-lg-10 {
+        padding-left: 0;
+    }
+
+    #form-header {
+        flex-wrap: inherit !important;
+    }
 }
