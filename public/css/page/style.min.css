@@ -1879,7 +1879,7 @@ a {
 .global-fixed-left {
     position: fixed;
     left: 20px;
-    bottom: 50px;
+    bottom: 85px;
     width: 80px;
     z-index: 1;
 }
@@ -2698,4 +2698,3 @@ a {
 .pd-img-gallery {
     display: none;
 }
-

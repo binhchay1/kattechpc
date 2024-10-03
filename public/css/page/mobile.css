@@ -535,10 +535,6 @@
         margin: auto;
     }
 
-    .global-fixed-left {
-        display: none;
-    }
-
     .row-hamburger .search-mobile {
         margin-left: 15px;
     }
@@ -631,7 +627,7 @@
     }
 
     .global-fixed-right .scroll-top-btn {
-        bottom: calc(50% - 290px);
+        bottom: calc(50% - 405px);
     }
 
     .global-fixed-right .fix-youtube {
@@ -685,14 +681,6 @@
         border-radius: 0 10px 10px 0;
         cursor: pointer;
         font-size: 20px;
-    }
-
-    .global-fixed-right .fix-face {
-        bottom: calc(50% - 570px);
-    }
-
-    .global-fixed-right .fix-youtube {
-        bottom: calc(50% - 625px);
     }
 
     #toolbar-menu-mobile .item {

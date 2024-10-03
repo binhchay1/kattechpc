@@ -123,6 +123,7 @@ $(document).ready(function () {
                 $('.container-hamburger').addClass('header-fixed-menu-mobile');
                 $('.menu-btn').css('top', '15px');
                 $('.list-items').css(' background', 'white');
+                $('.scroll-top-btn').removeClass('d-none');
             } else {
                 $('.sub-header-scroll').addClass('d-block');
                 $('.sub-header-scroll').addClass('header-fixed');
@@ -135,6 +136,7 @@ $(document).ready(function () {
                 $('.bottomMenu').fadeOut();
                 $('.container-hamburger').removeClass('header-fixed-menu-mobile');
                 $('.menu-btn').css('top', '50px');
+                $('.scroll-top-btn').addClass('d-none');
             } else {
                 $('.sub-header-scroll').removeClass('d-block');
                 $('.sub-header-scroll').removeClass('header-fixed');
