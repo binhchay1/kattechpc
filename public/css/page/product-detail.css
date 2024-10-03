@@ -1032,7 +1032,7 @@ tr:nth-child(even) {
 
 .only-mobile-for-body {
     .product-info-detail h5 {
-        font-size: 18px !important;
+        font-size: 23px !important;
         line-height: 36px;
         font-weight: 600;
     }
@@ -1360,6 +1360,10 @@ tr:nth-child(even) {
 .only-mobile-for-body {
     .swiper-product-related .swiper-slide1 {
         width: 100% !important;
+    }
+
+    .product-info-detail .save-price-detail {
+        font-weight: bold;
     }
 
     .comment-form-left {

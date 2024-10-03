@@ -56,6 +56,7 @@ $(document).ready(function () {
             $('body').removeClass("only-mobile-for-body");
             $('.global-fixed-right a').removeClass('right-inherit');
             $('.main-menu-category').addClass('d-none');
+            handleSlideProductInterval();
         }
     } else {
         const checkIsMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -67,6 +68,7 @@ $(document).ready(function () {
             $('body').removeClass("only-mobile-for-body");
             $('.global-fixed-right a').removeClass('right-inherit');
             $('.main-menu-category').addClass('d-none');
+            handleSlideProductInterval();
         }
     }
 
@@ -240,308 +242,6 @@ $(document).ready(function () {
         $(this).css('transform', 'translate(0, 0)');
         $('.global-tooltip').css('display', 'none');
     });
-
-    if (intervalFlash == 0) {
-        if (listChildFlash.length > defaultFlash) {
-            let stopFlash = listChildFlash.length - defaultFlash;
-            intervalFlash = setInterval(function () {
-                perTransFlash = defaultTransFlash;
-                if (countFlash == stopFlash) {
-                    transFlash = 0;
-                    countFlash = 0;
-                    $('.swiper-flash-sale').css('transform', 'translate3d(' + transFlash + 'px, 0px, 0px)');
-                } else {
-                    transFlash = transFlash - perTransFlash;
-                    countFlash += 1;
-                    $('.swiper-flash-sale').css('transform', 'translate3d(' + transFlash + 'px, 0px, 0px)');
-                }
-            }, 3000);
-
-            $('.swiper-button-next-flash-sale').on('click', function () {
-                if (countFlash == stopFlash) {
-                    transFlash = 0;
-                    countFlash = 0;
-                    $('.swiper-flash-sale').css('transform', 'translate3d(' + transFlash + 'px, 0px, 0px)');
-                } else {
-                    transFlash = transFlash - perTransFlash;
-                    countFlash += 1;
-                    $('.swiper-flash-sale').css('transform', 'translate3d(' + transFlash + 'px, 0px, 0px)');
-                }
-
-                clearInterval(intervalFlash);
-            });
-
-            $('.swiper-button-prev-flash-sale').on('click', function () {
-                if (countFlash == 0) {
-                    transFlash = 0 - (perTransFlash * stopFlash);
-                    countFlash = stopFlash;
-                    $('.swiper-flash-sale').css('transform', 'translate3d(' + transFlash + 'px, 0px, 0px)');
-                } else {
-                    transFlash = transFlash + perTransFlash;
-                    countFlash -= 1;
-                    $('.swiper-flash-sale').css('transform', 'translate3d(' + transFlash + 'px, 0px, 0px)');
-                }
-
-                clearInterval(intervalFlash);
-            });
-        } else {
-            $('.swiper-button-next-flash-sale').addClass('d-none');
-            $('.swiper-button-prev-flash-sale').addClass('d-none');
-        }
-    }
-
-    if (typeof (listCategory) != 'undefined' && listCategory !== null) {
-        for (let k = 0; k < listCategory.default.length; k++) {
-            let listInterval = {}
-            var listChildProduct = $('.swiper-product-' + listCategory.default[k].slug).children();
-
-            if (listChildProduct.length > defaultProduct) {
-                stopProduct = listChildProduct.length - defaultProduct;
-                listInterval[k] = setInterval(function () {
-                    perTransProduct = defaultTransProduct;
-
-                    if (countProduct == stopProduct) {
-                        transProduct = 0;
-                        countProduct = 0;
-                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
-                    } else {
-                        transProduct = transProduct - perTransProduct;
-                        countProduct += 1;
-                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
-                    }
-
-                }, 3000);
-
-                $('.swiper-button-next-product-' + listCategory.default[k].slug).on('click', function () {
-                    if (countProduct == stopProduct) {
-                        transProduct = 0;
-                        countProduct = 0;
-                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
-                    } else {
-                        transProduct = transProduct - perTransProduct;
-                        countProduct += 1;
-                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
-                    }
-
-                    clearInterval(listInterval[k]);
-                });
-
-                $('.swiper-button-prev-product-' + listCategory.default[k].slug).on('click', function () {
-                    if (countProduct == 0) {
-                        transProduct = 0 - (perTransProduct * stopProduct);
-                        countProduct = stopProduct;
-                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
-                    } else {
-                        transProduct = transProduct + perTransProduct;
-                        countProduct -= 1;
-                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
-                    }
-
-                    clearInterval(listInterval[k]);
-                });
-            } else {
-                $('.swiper-button-next-product-' + listCategory.default[k].slug).addClass('d-none');
-                $('.swiper-button-prev-product-' + listCategory.default[k].slug).addClass('d-none');
-            }
-        }
-    }
-
-    if (intervalTopSale == 0) {
-        if (listChildTopSale.length > defaultTopSale) {
-            let stopTopSale = listChildTopSale.length - defaultTopSale;
-            intervalTopSale = setInterval(function () {
-                perTransTopSale = defaultTransTopSale;
-
-                if (countTopSale == stopTopSale) {
-                    transTopSale = 0;
-                    countTopSale = 0;
-                    $('.swiper-top-sale').css('transform', 'translate3d(' + transTopSale + 'px, 0px, 0px)');
-                } else {
-                    transTopSale = transTopSale - perTransTopSale;
-                    countTopSale += 1;
-                    $('.swiper-top-sale').css('transform', 'translate3d(' + transTopSale + 'px, 0px, 0px)');
-                }
-
-            }, 3000);
-
-            $('.swiper-button-next-top-sale').on('click', function () {
-                if (countTopSale == stopTopSale) {
-                    transTopSale = 0;
-                    countTopSale = 0;
-                    $('.swiper-top-sale').css('transform', 'translate3d(' + transTopSale + 'px, 0px, 0px)');
-                } else {
-                    transTopSale = transTopSale - perTransTopSale;
-                    countTopSale += 1;
-                    $('.swiper-top-sale').css('transform', 'translate3d(' + transTopSale + 'px, 0px, 0px)');
-                }
-
-                clearInterval(intervalTopSale);
-            });
-
-            $('.swiper-button-prev-top-sale').on('click', function () {
-                if (countTopSale == 0) {
-                    transTopSale = 0 - (perTransTopSale * stopTopSale);
-                    countTopSale = stopTopSale;
-                    $('.swiper-top-sale').css('transform', 'translate3d(' + transTopSale + 'px, 0px, 0px)');
-                } else {
-                    transTopSale = transTopSale + perTransTopSale;
-                    countTopSale -= 1;
-                    $('.swiper-top-sale').css('transform', 'translate3d(' + transTopSale + 'px, 0px, 0px)');
-                }
-
-                clearInterval(intervalTopSale);
-            });
-        } else {
-            $('.swiper-button-next-top-sale').addClass('d-none');
-            $('.swiper-button-prev-top-sale').addClass('d-none');
-        }
-    }
-
-    if (intervalFooterSlide == 0) {
-        if (listChildFooterSlide.length > defaultFooterSlide) {
-            let stopFooterSlide = listChildFooterSlide.length - defaultFooterSlide;
-
-            intervalFooterSlide = setInterval(function () {
-                if (isMobileDetected) {
-                    perTransFooterSlide = defaultTransFooterSlide;
-                }
-
-                if (countFooterSlide == stopFooterSlide) {
-                    transFooterSlide = 0;
-                    countFooterSlide = 0;
-                    $('.swiper-footer-slide').css('transform', 'translate3d(' + transFooterSlide + 'px, 0px, 0px)');
-                } else {
-                    transFooterSlide = transFooterSlide - perTransFooterSlide;
-                    countFooterSlide += 1;
-                    $('.swiper-footer-slide').css('transform', 'translate3d(' + transFooterSlide + 'px, 0px, 0px)');
-                }
-
-            }, 3000);
-
-            $('.swiper-button-next-footer-slide').on('click', function () {
-                if (countFooterSlide == stopFooterSlide) {
-                    transFooterSlide = 0;
-                    countFooterSlide = 0;
-                    $('.swiper-footer-slide').css('transform', 'translate3d(' + transFooterSlide + 'px, 0px, 0px)');
-                } else {
-                    transFooterSlide = transFooterSlide - perTransFooterSlide;
-                    countFooterSlide += 1;
-                    $('.swiper-footer-slide').css('transform', 'translate3d(' + transFooterSlide + 'px, 0px, 0px)');
-                }
-
-                clearInterval(intervalFooterSlide);
-            });
-
-            $('.swiper-button-prev-footer-slide').on('click', function () {
-                if (countFooterSlide == 0) {
-                    transFooterSlide = 0 - (perTransFooterSlide * stopFooterSlide);
-                    countFooterSlide = stopFooterSlide;
-                    $('.swiper-footer-slide').css('transform', 'translate3d(' + transFooterSlide + 'px, 0px, 0px)');
-                } else {
-                    transFooterSlide = transFooterSlide + perTransFooterSlide;
-                    countFooterSlide -= 1;
-                    $('.swiper-footer-slide').css('transform', 'translate3d(' + transFooterSlide + 'px, 0px, 0px)');
-                }
-
-                clearInterval(intervalFooterSlide);
-            });
-        }
-    }
-
-    if (isMobileDetected) {
-        if (window.innerWidth > 650) {
-            defaultTransCustomerReview = 650 - 10;
-        } else {
-            defaultTransCustomerReview = window.innerWidth - 10;
-        }
-
-        let transCustomerReview = 0;
-        let defaultCustomerReview = 1;
-        let perTransCustomerReview = defaultTransCustomerReview;
-        let currentCountPagination = 1;
-
-        if (listChildCustomerReview.length > defaultCustomerReview) {
-            let stopCustomerReview = listChildCustomerReview.length - defaultCustomerReview;
-            let countCustomerReview = 0;
-            let countPagination = 1;
-            intervalCustomerReview = setInterval(function () {
-                if (countCustomerReview == stopCustomerReview) {
-                    transCustomerReview = 0;
-                    countCustomerReview = 0;
-                    countPagination = 1;
-
-                    $("span[data-id='swiper-pagination-bullet-" + currentCountPagination + "']").removeClass('swiper-pagination-bullet-active');
-                    $("span[data-id='swiper-pagination-bullet-" + countPagination + "']").addClass('swiper-pagination-bullet-active');
-                    $('.swiper-review-customer').css('transform', 'translate3d(' + transCustomerReview + 'px, 0px, 0px)');
-                } else {
-                    transCustomerReview = transCustomerReview - perTransCustomerReview;
-                    countCustomerReview += 1;
-                    let nextCountPagination = countPagination + 1;
-
-                    $("span[data-id='swiper-pagination-bullet-" + countPagination + "']").removeClass('swiper-pagination-bullet-active');
-                    $("span[data-id='swiper-pagination-bullet-" + nextCountPagination + "']").addClass('swiper-pagination-bullet-active');
-                    $('.swiper-review-customer').css('transform', 'translate3d(' + transCustomerReview + 'px, 0px, 0px)');
-                    currentCountPagination = countPagination += 1;
-                }
-
-            }, 3000);
-
-            $('.swiper-pagination-bullet').on('click', function (e) {
-                e.preventDefault;
-                let data_id = $(this).attr('data-id');
-                let index = parseInt(data_id.split('-')[3]);
-                let transForReview = -(defaultTransCustomerReview * (index - 1));
-                $('.swiper-pagination .swiper-pagination-bullet-active').removeClass('swiper-pagination-bullet-active');
-                $('.swiper-review-customer').css('transform', 'translate3d(' + transForReview + 'px, 0px, 0px)');
-                $(this).addClass('swiper-pagination-bullet-active');
-                countPagination = index;
-                clearInterval(intervalCustomerReview);
-            });
-        }
-    } else {
-        let transCustomerReview = 0;
-        let defaultCustomerReview = 4;
-        let perTransCustomerReview = 360;
-        let currentCountPagination = 1;
-
-        let listChildCustomerReview = $(".swiper-review-customer").children();
-        if (listChildCustomerReview.length > defaultCustomerReview) {
-            let stopCustomerReview = listChildCustomerReview.length - defaultCustomerReview;
-            countCustomerReview = 0;
-            let countPagination = 1;
-            setInterval(function () {
-                if (countCustomerReview == stopCustomerReview) {
-                    transCustomerReview = 0;
-                    countCustomerReview = 0;
-                    countPagination = 1;
-
-                    $("span[data-id='swiper-pagination-bullet-" + currentCountPagination + "']").removeClass('swiper-pagination-bullet-active');
-                    $("span[data-id='swiper-pagination-bullet-" + countPagination + "']").addClass('swiper-pagination-bullet-active');
-                    $('.swiper-review-customer').css('transform', 'translate3d(' + transCustomerReview + 'px, 0px, 0px)');
-                } else {
-                    transCustomerReview = transCustomerReview - perTransCustomerReview;
-                    countCustomerReview += 1;
-                    let nextCountPagination = countPagination + 1;
-
-                    $("span[data-id='swiper-pagination-bullet-" + countPagination + "']").removeClass('swiper-pagination-bullet-active');
-                    $("span[data-id='swiper-pagination-bullet-" + nextCountPagination + "']").addClass('swiper-pagination-bullet-active');
-                    $('.swiper-review-customer').css('transform', 'translate3d(' + transCustomerReview + 'px, 0px, 0px)');
-                    currentCountPagination = countPagination += 1;
-                }
-
-            }, 3000);
-
-            $('.swiper-pagination-bullet').on('click', function (e) {
-                e.preventDefault;
-                let data_id = $(this).attr('data-id');
-                let index = parseInt(data_id.split('-')[3]);
-                let transForReview = -(360 * (index - 1));
-                $('.swiper-pagination .swiper-pagination-bullet-active').removeClass('swiper-pagination-bullet-active');
-                $('.swiper-review-customer').css('transform', 'translate3d(' + transForReview + 'px, 0px, 0px)');
-                $(this).addClass('swiper-pagination-bullet-active');
-            });
-        }
-    }
 
     $('.global-menu-container').hover(function () {
         $('.global-menu-holder').show();
@@ -906,12 +606,6 @@ function mobileScreenHandle() {
         $('.main-menu-category').removeClass('d-none');
     }
 
-    if (typeof (listCategory) != 'undefined' && listCategory !== null) {
-        for (let k = 0; k < listCategory.default.length; k++) {
-            $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(0px, 0px, 0px)');
-        }
-    }
-
     countFlash = 0;
     countProduct = 0;
     countTopSale = 0;
@@ -960,6 +654,63 @@ function handleSlideProductInterval() {
 
     if (intervalCustomerReview != 0) {
         clearInterval(intervalCustomerReview);
+    }
+
+    if (typeof (listCategory) != 'undefined' && listCategory !== null) {
+        let listInterval = {}
+        for (let k = 0; k < listCategory.default.length; k++) {
+            clearInterval(listInterval[k]);
+            var listChildProduct = $('.swiper-product-' + listCategory.default[k].slug).children();
+
+            if (listChildProduct.length > defaultProduct) {
+                stopProduct = listChildProduct.length - defaultProduct;
+                listInterval[k] = setInterval(function () {
+                    perTransProduct = defaultTransProduct;
+
+                    if (countProduct == stopProduct) {
+                        transProduct = 0;
+                        countProduct = 0;
+                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
+                    } else {
+                        transProduct = transProduct - perTransProduct;
+                        countProduct += 1;
+                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
+                    }
+
+                }, 3000);
+
+                $('.swiper-button-next-product-' + listCategory.default[k].slug).on('click', function () {
+                    if (countProduct == stopProduct) {
+                        transProduct = 0;
+                        countProduct = 0;
+                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
+                    } else {
+                        transProduct = transProduct - perTransProduct;
+                        countProduct += 1;
+                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
+                    }
+
+                    clearInterval(listInterval[k]);
+                });
+
+                $('.swiper-button-prev-product-' + listCategory.default[k].slug).on('click', function () {
+                    if (countProduct == 0) {
+                        transProduct = 0 - (perTransProduct * stopProduct);
+                        countProduct = stopProduct;
+                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
+                    } else {
+                        transProduct = transProduct + perTransProduct;
+                        countProduct -= 1;
+                        $('.swiper-product-' + listCategory.default[k].slug).css('transform', 'translate3d(' + transProduct + 'px, 0px, 0px)');
+                    }
+
+                    clearInterval(listInterval[k]);
+                });
+            } else {
+                $('.swiper-button-next-product-' + listCategory.default[k].slug).addClass('d-none');
+                $('.swiper-button-prev-product-' + listCategory.default[k].slug).addClass('d-none');
+            }
+        }
     }
 
     if (listChildFlash.length > defaultFlash) {

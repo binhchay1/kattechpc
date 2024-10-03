@@ -6,7 +6,6 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('/plugins/owlcarousel/owl.theme.default.min.css') }}" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOM0sYq/xRSs+/Doh4Z2F4E4FIk5hpuYlDkkpM" crossorigin="anonymous">
 @endsection
 
 @section('content')
@@ -313,7 +312,7 @@
 @endif
 
 <section class="category">
-    <div class="d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center justify-content-between category-child-title">
         <div class="flash-sale-title-area d-flex align-items-center justify-content-center">
             <h2 class="flash-sale-title">{{ __('Danh mục sản phẩm') }}</h2>
         </div>
