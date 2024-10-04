@@ -17,6 +17,7 @@
     <div class="row d-flex post-data">
         <div class="column1">
             <div class="top5 flex">
+                @if(isset($firstPosts1))
                 <div class="left-side-top-post">
                     <div class="position-relative mb-3">
                         <img class="img-fluid w-100" alt="{{ $firstPosts1->title }}" src="{{ $firstPosts1->thumbnail ?? asset('images/page/no-image.png') }}">
@@ -32,7 +33,9 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
+                @if(isset($secondPost))
                 <div class="second-after-post">
                     <div class="position-relative mb-3">
                         <img class="img-fluid w-100" alt="{{ $secondPost->title }}" src="{{ $secondPost->thumbnail ?? asset('images/page/no-image.png') }}">
@@ -50,6 +53,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
             @if(count($postRandom3) >0)
             <div class="top1">

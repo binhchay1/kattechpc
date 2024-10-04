@@ -312,9 +312,6 @@ class HomeController extends Controller
     {
         $listPost = $this->postRepository->postHome();
         $firstPosts1 = $this->postRepository->firstPost();
-        if (empty($firstPosts1)) {
-            return redirect('/404');
-        }
         $secondPost = $this->postRepository->secondPost();
         $postRandom3 = $listPost->splice(1, 3);
         $postRandom4 = $listPost->splice(1, 8);
