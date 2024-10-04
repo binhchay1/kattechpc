@@ -26,6 +26,6 @@ class ClearCacheRedis extends Command
      */
     public function handle()
     {
-        Cache::store('redis')->flush();
+        Cache::store(env('REDIS_DEFAULT_CONNECT'))->flush();
     }
 }

@@ -19,7 +19,7 @@ class ErrorController extends Controller
     public function view401()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
 
         return view('errors.401', compact('listCategory'));
     }
@@ -27,7 +27,7 @@ class ErrorController extends Controller
     public function view402()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
 
         return view('errors.402', compact('listCategory'));
     }
@@ -35,7 +35,7 @@ class ErrorController extends Controller
     public function view403()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $layout = $this->layoutRepository->getListLayout();
         if (isset($layout->footer_slide_thumbnail)) {
             $listSlideFooter = json_decode($layout->footer_slide_thumbnail, true);
@@ -49,7 +49,7 @@ class ErrorController extends Controller
     public function view404()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $layout = $this->layoutRepository->getListLayout();
         if (isset($layout->footer_slide_thumbnail)) {
             $listSlideFooter = json_decode($layout->footer_slide_thumbnail, true);
@@ -63,7 +63,7 @@ class ErrorController extends Controller
     public function view419()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $layout = $this->layoutRepository->getListLayout();
         if (isset($layout->footer_slide_thumbnail)) {
             $listSlideFooter = json_decode($layout->footer_slide_thumbnail, true);
@@ -77,7 +77,7 @@ class ErrorController extends Controller
     public function view429()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
 
         return view('errors.429', compact('listCategory'));
     }
@@ -85,7 +85,7 @@ class ErrorController extends Controller
     public function view500()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $layout = $this->layoutRepository->getListLayout();
         if (isset($layout->footer_slide_thumbnail)) {
             $listSlideFooter = json_decode($layout->footer_slide_thumbnail, true);
@@ -99,7 +99,7 @@ class ErrorController extends Controller
     public function view503()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $layout = $this->layoutRepository->getListLayout();
         if (isset($layout->footer_slide_thumbnail)) {
             $listSlideFooter = json_decode($layout->footer_slide_thumbnail, true);
@@ -113,7 +113,7 @@ class ErrorController extends Controller
     public function lockAccount()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $layout = $this->layoutRepository->getListLayout();
         if (isset($layout->footer_slide_thumbnail)) {
             $listSlideFooter = json_decode($layout->footer_slide_thumbnail, true);
@@ -127,7 +127,7 @@ class ErrorController extends Controller
     public function viewMaintenance()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $layout = $this->layoutRepository->getListLayout();
         if (isset($layout->footer_slide_thumbnail)) {
             $listSlideFooter = json_decode($layout->footer_slide_thumbnail, true);

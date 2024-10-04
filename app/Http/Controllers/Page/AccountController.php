@@ -44,7 +44,7 @@ class AccountController extends Controller
         }
 
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $genderUser = User::SEX;
 
         return view('page.account.show', compact('dataUser', 'genderUser', 'listCategory'));
@@ -77,7 +77,7 @@ class AccountController extends Controller
             return redirect('/404');
         }
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
 
         return view('page.account.change-password', compact('dataUser','listCategory'));
     }
@@ -124,7 +124,7 @@ class AccountController extends Controller
         }
 
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
 
         return view('page.account.order-history', compact('dataUser', 'listCategory'));
     }

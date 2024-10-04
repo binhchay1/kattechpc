@@ -118,7 +118,7 @@ class CartController extends Controller
     public function showCart()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $layout = $this->layoutRepository->getListLayout();
         $totalCart = 0;
         $totalCart = Cart::getTotal();
@@ -275,7 +275,7 @@ class CartController extends Controller
     public function thank()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $layout = $this->layoutRepository->getListLayout();
 
         return view('page.cart.thank', compact('listCategory', 'layout'));

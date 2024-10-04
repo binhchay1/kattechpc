@@ -39,7 +39,7 @@ class CategoryFilterController extends Controller
         $input = $request->except(['_token']);
 
         $this->categoryFilterRepository->create($input);
-        Cache::store('redis')->forget('menu_homepage');
+        Cache::store(env('REDIS_DEFAULT_CONNECT'))->forget('menu_homepage');
 
         return redirect()->route('admin.category-filter.index')->with('success',  __('Bộ lọc danh mục được thêm thành công'));
     }
@@ -51,7 +51,7 @@ class CategoryFilterController extends Controller
             return redirect('/404');
         }
         $listCategories = $this->categoryRepository->filterWithCategory();
-        Cache::store('redis')->forget('menu_homepage');
+        Cache::store(env('REDIS_DEFAULT_CONNECT'))->forget('menu_homepage');
 
         return view('admin.category-filter.edit', compact('categoryFilter', 'listCategories'));
     }

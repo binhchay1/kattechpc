@@ -44,7 +44,7 @@ class BuildPCController extends Controller
     public function buildPC(Request $request)
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $getProductByKey = $request->get('key');
         $menu = $this->buildPcRepository->index();
         $getSessionBuildPC = $request->session()->get('buildID');

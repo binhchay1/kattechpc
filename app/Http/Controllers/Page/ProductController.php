@@ -78,7 +78,7 @@ class ProductController extends Controller
         $getProduct = $dataProduct['id'];
 
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         if (isset($dataProduct->detail)) {
             $dataProduct->detail = json_decode($dataProduct->detail, true);
         }
@@ -275,7 +275,7 @@ class ProductController extends Controller
 
         if (isset($request->sort)) {
             $filters['sort'] = $request->sort;
-    
+
         }
 
         $isParent = $this->categoryRepository->checkIsParent($slug);
@@ -362,9 +362,9 @@ class ProductController extends Controller
 
             if ($filters['sort'] == 'name-desc' or $filters['sort'] == 'name-asc') {
                 if ($filters['sort'] == 'name-desc') {
-    
+
                     $dataComplete = $dataComplete->sortByDesc('name');
-    
+
                 } else {
                     $dataComplete = $dataComplete->sortBy('name');
                 }
@@ -415,7 +415,7 @@ class ProductController extends Controller
 
         $dataProducts = $this->categoryRepository->productSale($slug, $isParent);
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $listKeyWord = $dataCategory->categoryFilter;
 
         foreach ($listKeyWord as $keyword) {

@@ -42,7 +42,7 @@ class PostController extends Controller
         $postNews = $listPost->splice(1, 3);
         $post = $this->postRepository->detail($slug);
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $layout = $this->layoutRepository->getListLayout();
 
         $post = $this->postRepository->detail($slug);
@@ -83,7 +83,7 @@ class PostController extends Controller
         }
 
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $social = $this->socialRepository->index();
         $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
 

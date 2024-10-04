@@ -40,7 +40,7 @@ class BrandController extends Controller
             $input['image'] = $path;
         }
         $this->brandRepository->create($input);
-        Cache::store('redis')->forget('menu_homepage');
+        Cache::store(env('REDIS_DEFAULT_CONNECT'))->forget('menu_homepage');
 
         return redirect()->route('admin.brand.index')->with('success',  __('Thương hiệu được thêm thành công'));
     }
@@ -64,7 +64,7 @@ class BrandController extends Controller
             $input['image'] = $path;
         }
         $input = $this->brandRepository->update($input, $id);
-        Cache::store('redis')->forget('menu_homepage');
+        Cache::store(env('REDIS_DEFAULT_CONNECT'))->forget('menu_homepage');
 
         return redirect()->route('admin.brand.index')->with('success',  __('Thương hiệu được thay đổi thành công'));
     }

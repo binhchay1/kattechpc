@@ -90,7 +90,7 @@ class HomeController extends Controller
     public function viewPolicy()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
@@ -100,7 +100,7 @@ class HomeController extends Controller
     public function paymentOnline()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
@@ -110,7 +110,7 @@ class HomeController extends Controller
     public function payment()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
@@ -120,7 +120,7 @@ class HomeController extends Controller
     public function rules()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
@@ -130,7 +130,7 @@ class HomeController extends Controller
     public function complaint()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
@@ -140,7 +140,7 @@ class HomeController extends Controller
     public function productPolicy()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
@@ -150,7 +150,7 @@ class HomeController extends Controller
     public function businessPolicy()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
@@ -160,7 +160,7 @@ class HomeController extends Controller
     public function electronicBill()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
@@ -170,7 +170,7 @@ class HomeController extends Controller
     public function securityCustomer()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
@@ -180,7 +180,7 @@ class HomeController extends Controller
     public function introduction()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
@@ -190,7 +190,7 @@ class HomeController extends Controller
     public function contactBusiness()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
@@ -200,7 +200,7 @@ class HomeController extends Controller
     public function viewThankRegister($slug)
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $social = $this->socialRepository->index();
         $layout = $this->layoutRepository->getListLayout();
 
@@ -210,7 +210,7 @@ class HomeController extends Controller
     public function viewFlashSale()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $getFlashSale = $this->layoutRepository->getFlashSale();
         $layout = $this->layoutRepository->getListLayout();
         $social = $this->socialRepository->index();
@@ -245,7 +245,7 @@ class HomeController extends Controller
     public function viewTopSale()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $getTopSale = $this->layoutRepository->listHotSale();
         $layout = $this->layoutRepository->getListLayout();
         $social = $this->socialRepository->index();
@@ -276,7 +276,7 @@ class HomeController extends Controller
     {
         $listPromotionDESC = $this->promotionRepository->promotionDESC();
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
         $layout = $this->layoutRepository->getListLayout();
         $social = $this->socialRepository->index();
@@ -301,7 +301,7 @@ class HomeController extends Controller
         $listPromotion = $this->promotionRepository->promotionHome();
         $promotion = $this->promotionRepository->detail($slug);
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $layout = $this->layoutRepository->getListLayout();
         $social = $this->socialRepository->index();
 
@@ -320,7 +320,7 @@ class HomeController extends Controller
         $postRandom4 = $listPost->splice(1, 8);
         $postRandom5 = $this->postRepository->postRandom5();
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $listCategoryPost = $this->categoryPostRepository->getListCategoryPost();
         $layout = $this->layoutRepository->getListLayout();
         $social = $this->socialRepository->index();
@@ -352,7 +352,7 @@ class HomeController extends Controller
         }
 
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $listCategoryProduct = $listCategory['default'];
         $listNews = $this->postRepository->getListNewsInHomepage();
         $listPromotion = $this->promotionRepository->getListPromotionHomePage();
@@ -421,7 +421,7 @@ class HomeController extends Controller
     public function viewSearch(Request $request)
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $layout = $this->layoutRepository->getListLayout();
         $social = $this->socialRepository->index();
         $search = $request->get('q');
@@ -503,7 +503,7 @@ class HomeController extends Controller
     public function registerSuccess()
     {
         $key = 'menu_homepage';
-        $listCategory = Cache::store('redis')->get($key);
+        $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
         $layout = $this->layoutRepository->getListLayout();
 
         return view('auth.register-success', compact('listCategory', 'layout'));

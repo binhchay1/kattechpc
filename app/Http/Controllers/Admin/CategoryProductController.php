@@ -68,7 +68,7 @@ class CategoryProductController extends Controller
             $input['image'] = $path;
         }
         $this->categoryRepository->create($input);
-        Cache::store('redis')->forget('menu_homepage');
+        Cache::store(env('REDIS_DEFAULT_CONNECT'))->forget('menu_homepage');
 
         return redirect()->route('admin.categoryProduct.index')->with('success',  __('Danh mục sản phẩm được thêm thành công'));
     }
@@ -95,7 +95,7 @@ class CategoryProductController extends Controller
             $input['image'] = $path;
         }
         $input = $this->categoryRepository->update($input, $id);
-        Cache::store('redis')->forget('menu_homepage');
+        Cache::store(env('REDIS_DEFAULT_CONNECT'))->forget('menu_homepage');
 
         return redirect()->route('admin.categoryProduct.index')->with('success',  __('Danh mục sản phẩm được thay đổi thành công'));
     }
@@ -103,7 +103,7 @@ class CategoryProductController extends Controller
     public function deleteCategory($id)
     {
         $this->categoryRepository->destroy($id);
-        Cache::store('redis')->forget('menu_homepage');
+        Cache::store(env('REDIS_DEFAULT_CONNECT'))->forget('menu_homepage');
 
         return back()->with('success', __('Danh mục sản phẩm  được xóa thành công'));
     }
@@ -117,7 +117,7 @@ class CategoryProductController extends Controller
             $categoryProduct->status = 1;
         }
         $categoryProduct->save();
-        Cache::store('redis')->forget('menu_homepage');
+        Cache::store(env('REDIS_DEFAULT_CONNECT'))->forget('menu_homepage');
 
         return back();
     }

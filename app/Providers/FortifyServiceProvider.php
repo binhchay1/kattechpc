@@ -41,21 +41,21 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::loginView(function () {
             $key = 'menu_homepage';
-            $listCategory = Cache::store('redis')->get($key);
+            $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
 
             return view('auth.login', compact('listCategory'));
         });
 
         Fortify::registerView(function () {
             $key = 'menu_homepage';
-            $listCategory = Cache::store('redis')->get($key);
+            $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
 
             return view('auth.register', compact('listCategory'));
         });
 
         Fortify::requestPasswordResetLinkView(function () {
             $key = 'menu_homepage';
-            $listCategory = Cache::store('redis')->get($key);
+            $listCategory = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($key);
 
             return view('auth.forgot-password', compact('listCategory'));
         });

@@ -182,7 +182,7 @@ class ProductController extends Controller
         }
 
         $this->productRepository->store($input);
-        Cache::store('redis')->forget('menu_homepage');
+        Cache::store(env('REDIS_DEFAULT_CONNECT'))->forget('menu_homepage');
 
         return redirect()->route('admin.product.index')->with('success',  __('Sản phẩm được thêm thành công'));
     }
@@ -291,7 +291,7 @@ class ProductController extends Controller
         unset($input['image_preview']);
 
         $this->productRepository->update($input, $id);
-        Cache::store('redis')->forget('menu_homepage');
+        Cache::store(env('REDIS_DEFAULT_CONNECT'))->forget('menu_homepage');
 
         return redirect()->route('admin.product.index')->with('success', __('Sản phẩm được thay đổi thành công'));
     }
@@ -299,7 +299,7 @@ class ProductController extends Controller
     public function deleteProduct($id)
     {
         $this->productRepository->destroy($id);
-        Cache::store('redis')->forget('menu_homepage');
+        Cache::store(env('REDIS_DEFAULT_CONNECT'))->forget('menu_homepage');
 
         return back()->with('success', __('Sản phẩm được xóa thành công'));
     }

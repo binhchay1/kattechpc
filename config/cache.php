@@ -80,6 +80,11 @@ return [
             'lock_connection' => 'default',
         ],
 
+        'redis_test' => [
+            'driver' => 'redis',
+            'connection' => 'cache_clone_1',
+        ],
+
         'dynamodb' => [
             'driver' => 'dynamodb',
             'key' => env('AWS_ACCESS_KEY_ID'),

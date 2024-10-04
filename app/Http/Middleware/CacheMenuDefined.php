@@ -20,7 +20,7 @@ class CacheMenuDefined
     public function handle(Request $request, Closure $next): Response
     {
         $keyCache = 'menu_homepage';
-        $getInfor = Cache::store('redis')->get($keyCache);
+        $getInfor = Cache::store(env('REDIS_DEFAULT_CONNECT'))->get($keyCache);
 
         if (empty($getInfor)) {
             $data = [];
@@ -57,7 +57,7 @@ class CacheMenuDefined
             $data['brand'] = $listBrand;
             $data['keyword'] = $listKeyword;
 
-            Cache::store('redis')->rememberForever($keyCache, function () use ($data) {
+            Cache::store(env('REDIS_DEFAULT_CONNECT'))->rememberForever($keyCache, function () use ($data) {
                 return $data;
             });
         }
