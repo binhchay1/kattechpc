@@ -65,7 +65,7 @@
                             dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:
                             border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" data-choices data-choices-search-false value="{{ $categoryProduct->status }}" id="brandSelect" name="status">
                                 @foreach($statusCategory as $type => $value)
-                                <option id="type_of_league" value="{{ $type }}" {{$value == $categoryProduct->status  ? 'selected' : ''}}>{{ $value }}</option>
+                                <option value="{{ $type }}" {{$value == $categoryProduct->status  ? 'selected' : ''}}>{{ $value }}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('status'))

@@ -217,10 +217,12 @@ function getImageCenter(image) {
 
 function getImageCenterMobile(alink) {
     let src = alink.find('img').attr('src');
-    indexImage = alink.attr('data-index-mobile');
+    let indexImageMobile = alink.attr('data-index-mobile');
+
+    console.log(indexImageMobile)
     $('#js-image-list').find('.border-image').removeClass('border-image');
-    $("[data-index-mobile=" + indexImage + "]").addClass('border-image');
-    $('#image-first').attr('src', src);
+    $("[data-index-mobile=" + indexImageMobile + "]").addClass('border-image');
+    $('#featured-image').attr('src', src);
 }
 
 function handleSlideImage(status) {

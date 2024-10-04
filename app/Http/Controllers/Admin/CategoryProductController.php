@@ -53,9 +53,10 @@ class CategoryProductController extends Controller
 
     public function createCategory()
     {
+        $statusCategory = \App\Enums\Category::STATUS;
         $listCategory = $this->categoryRepository->index();
 
-        return view('admin.category-product.create', compact('listCategory'));
+        return view('admin.category-product.create', compact('listCategory', 'statusCategory'));
     }
 
     public function storeCategory(CategoryRequest $request)

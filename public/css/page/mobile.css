@@ -76,6 +76,18 @@
         width: 100%;
     }
 
+    .category-child-title {
+        justify-content: center !important;
+    }
+
+    .category .flex-container {
+        margin: 0 10px 10px;
+    }
+
+    .flash-sale-title {
+        margin-bottom: 0;
+    }
+
     .product-slide-main {
         width: 100%;
         padding-left: 0;
@@ -176,10 +188,6 @@
 
     .footer-middle-item {
         margin-top: 15px;
-    }
-
-    #featured-image {
-        width: 100%;
     }
 
     .product-container {
@@ -347,10 +355,6 @@
         margin-right: 15px;
     }
 
-    .title-all-category {
-        margin-left: 20px;
-    }
-
     #content-page .item {
         width: 100%;
     }
@@ -461,14 +465,6 @@
         display: none;
     }
 
-    .main-menu-category li a {
-        margin-bottom: 10px;
-        display: block;
-        color: grey;
-        font-size: 15px;
-        font-weight: 600;
-    }
-
     .main-menu-category .list-items img {
         margin-right: 10px;
     }
@@ -539,10 +535,6 @@
         margin: auto;
     }
 
-    .global-fixed-left {
-        display: none;
-    }
-
     .row-hamburger .search-mobile {
         margin-left: 15px;
     }
@@ -604,7 +596,7 @@
     }
 
     .box-breadcrumb-global .box-breadcrumb {
-        justify-content: center !important;
+        margin-top: 15px;
     }
 
     .swiper-slide-image {
@@ -635,7 +627,7 @@
     }
 
     .global-fixed-right .scroll-top-btn {
-        bottom: calc(50% - 290px);
+        bottom: calc(50% - 405px);
     }
 
     .global-fixed-right .fix-youtube {
@@ -689,14 +681,6 @@
         border-radius: 0 10px 10px 0;
         cursor: pointer;
         font-size: 20px;
-    }
-
-    .global-fixed-right .fix-face {
-        bottom: calc(50% - 570px);
-    }
-
-    .global-fixed-right .fix-youtube {
-        bottom: calc(50% - 625px);
     }
 
     #toolbar-menu-mobile .item {
@@ -887,5 +871,17 @@
 
     .drive-checked {
         width: 100%;
+    }
+
+    #js-search-result-mobile-scroll {
+        display: none !important;
+    }
+
+    #js-search-result-mobile {
+        display: none !important;
+    }
+
+    .box-breadcrumb-global {
+        padding-left: 20px;
     }
 }
