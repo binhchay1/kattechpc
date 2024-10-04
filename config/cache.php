@@ -82,7 +82,7 @@ return [
 
         'redis_test' => [
             'driver' => 'redis',
-            'connection' => 'cache_clone_1',
+            'connection' => 'cache_test',
         ],
 
         'dynamodb' => [
