@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Repositories\CustomContactRepository;
-use App\Repositories\LayoutRepository;
-use App\Repositories\MaintenanceModeRepository;
-use App\Repositories\ProductRepository;
-use App\Repositories\OrderRepository;
-use App\Repositories\VisitorRepository;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use App\Http\Controllers\Controller;
+use App\Repositories\OrderRepository;
+use App\Repositories\LayoutRepository;
+use Illuminate\Support\Facades\Config;
+use App\Repositories\ProductRepository;
+use App\Repositories\VisitorRepository;
+use Illuminate\Support\Facades\Session;
+use App\Repositories\CustomContactRepository;
+use App\Repositories\MaintenanceModeRepository;
 
 class AdminController extends Controller
 {
@@ -105,6 +105,7 @@ class AdminController extends Controller
 
     public function viewFlashSale()
     {
+        $listFlashSale = (object) array();
         $layout = $this->layoutRepository->getListLayout();
         if (isset($layout->flash_sale_list_product_id)) {
             $listFlashSale = json_decode($layout->flash_sale_list_product_id, true);

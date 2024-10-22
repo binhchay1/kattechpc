@@ -25,11 +25,18 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
+                                    @if(isset($layout->hide_small_thumbnail_1))
                                     <input type="checkbox" id="hide_small_thumbnail_1" onchange="handleHideInput('hide_small_thumbnail_1')" {{ $layout->hide_small_thumbnail_1 == 1 ? 'checked' : '' }}>
+                                    @else
+                                    <input type="checkbox" id="hide_small_thumbnail_1" onchange="handleHideInput('hide_small_thumbnail_1')">
+                                    @endif
+
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
+                                @if(isset($layout->hide_small_thumbnail_1))
                                 <button type="button" class="btn-delete-layout" onclick="deleteThumb('small_thumbnail_1')">{{ __('Xóa') }}</button>
+                                @endif
                             </div>
                             @if ($errors->has('small_thumbnail_1'))
                             <span class="text-danger">{{ $errors->first('small_thumbnail_1') }}</span>
@@ -62,11 +69,18 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
+                                    @if(isset($layout->hide_small_thumbnail_2))
                                     <input type="checkbox" id="hide_small_thumbnail_2" onchange="handleHideInput('hide_small_thumbnail_2')" {{ $layout->hide_small_thumbnail_2 == 1 ? 'checked' : '' }}>
+                                    @else
+                                    <input type="checkbox" id="hide_small_thumbnail_2" onchange="handleHideInput('hide_small_thumbnail_2')">
+                                    @endif
+
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
+                                @if(isset($layout->hide_small_thumbnail_2))
                                 <button type="button" class="btn-delete-layout" onclick="deleteThumb('small_thumbnail_2')">{{ __('Xóa') }}</button>
+                                @endif
                             </div>
                             @if ($errors->has('small_thumbnail_2'))
                             <span class="text-danger">{{ $errors->first('small_thumbnail_2') }}</span>
@@ -307,9 +321,9 @@
                             <div class=" choose-avatar">
                                 <div id="btnimage">
                                     @if(isset($layout->banner_promotion_thumbnail))
-                                        <img id="showImage9" class="show-avatar" src="{{ asset($layout->banner_promotion_thumbnail) }}" alt="avatar">
+                                    <img id="showImage9" class="show-avatar" src="{{ asset($layout->banner_promotion_thumbnail) }}" alt="avatar">
                                     @else
-                                        <img id="showImage9" class="show-avatar" src="{{ asset('images/sspaps-Logo.png') }}" alt="avatar">
+                                    <img id="showImage9" class="show-avatar" src="{{ asset('images/sspaps-Logo.png') }}" alt="avatar">
                                     @endif
                                 </div>
                                 <div id="button-9">
@@ -328,7 +342,7 @@
                                 <button type="button" class="btn-delete-layout" onclick="deleteThumb('banner_promotion_thumbnail')">{{ __('Xóa') }}</button>
                             </div>
                             @if ($errors->has('banner_promotion_thumbnail'))
-                                <span class="text-danger">{{ $errors->first('banner_promotion_thumbnail') }}</span>
+                            <span class="text-danger">{{ $errors->first('banner_promotion_thumbnail') }}</span>
                             @endif
                         </div>
                     </div>
@@ -344,9 +358,9 @@
                             <div class=" choose-avatar">
                                 <div id="btnimage">
                                     @if(isset($layout->adv_thumbnail))
-                                        <img id="showImage10" class="show-avatar" src="{{ asset($layout->adv_thumbnail) }}" alt="avatar">
+                                    <img id="showImage10" class="show-avatar" src="{{ asset($layout->adv_thumbnail) }}" alt="avatar">
                                     @else
-                                        <img id="showImage10" class="show-avatar" src="{{ asset('images/sspaps-Logo.png') }}" alt="avatar">
+                                    <img id="showImage10" class="show-avatar" src="{{ asset('images/sspaps-Logo.png') }}" alt="avatar">
                                     @endif
                                 </div>
                                 <div id="button-10">
@@ -365,7 +379,7 @@
                                 <button type="button" class="btn-delete-layout" onclick="deleteThumb('adv_thumbnail')">{{ __('Xóa') }}</button>
                             </div>
                             @if ($errors->has('adv_thumbnail'))
-                                <span class="text-danger">{{ $errors->first('adv_thumbnail') }}</span>
+                            <span class="text-danger">{{ $errors->first('adv_thumbnail') }}</span>
                             @endif
                         </div>
                     </div>
@@ -381,9 +395,9 @@
                             <div class=" choose-avatar">
                                 <div id="btnimage">
                                     @if(isset($layout->build_pc_thumbnail))
-                                        <img id="showImage11" class="show-avatar" src="{{ asset($layout->build_pc_thumbnail) }}" alt="avatar">
+                                    <img id="showImage11" class="show-avatar" src="{{ asset($layout->build_pc_thumbnail) }}" alt="avatar">
                                     @else
-                                        <img id="showImage11" class="show-avatar" src="{{ asset('images/sspaps-Logo.png') }}" alt="avatar">
+                                    <img id="showImage11" class="show-avatar" src="{{ asset('images/sspaps-Logo.png') }}" alt="avatar">
                                     @endif
                                 </div>
                                 <div id="button-11">
@@ -402,7 +416,7 @@
                                 <button type="button" class="btn-delete-layout" onclick="deleteThumb('build_pc_thumbnail')">{{ __('Xóa') }}</button>
                             </div>
                             @if ($errors->has('adv_thumbnail'))
-                                <span class="text-danger">{{ $errors->first('adv_thumbnail') }}</span>
+                            <span class="text-danger">{{ $errors->first('adv_thumbnail') }}</span>
                             @endif
                         </div>
                     </div>

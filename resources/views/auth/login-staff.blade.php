@@ -1,7 +1,12 @@
 @extends('layouts.master-without-nav')
 @section('title')
-{{ __('staff-login') }}
+{{ __('Đăng nhập') }}
 @endsection
+
+@section('description', __('Đăng nhập để tiếp tục với Kattech PC'))
+@section('keywords', 'login, kattechpc, kattech')
+@section('breadcrumb', __('Đăng nhập'))
+
 @section('content')
 
 <body class="flex items-center justify-center min-h-screen px-4 py-16 bg-cover bg-auth-pattern dark:bg-auth-pattern-dark dark:text-zink-100 font-public">
