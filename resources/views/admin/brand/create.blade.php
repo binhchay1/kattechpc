@@ -23,13 +23,6 @@
         <div class="card">
             <div class="card-body">
                 <h6 class="mb-4 text-15">{{__('Thêm thương hiệu')}}</h6>
-                @if ($errors->any())
-                <ul class="alert alert-warning" style="color: red">
-                    @foreach ($errors->all() as $error)
-                    <li>{{$error}}</li>
-                    @endforeach
-                </ul>
-                @endif
                 <form method="POST" action="{{ route('admin.brand.store') }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
