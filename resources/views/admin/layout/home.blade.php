@@ -486,17 +486,17 @@
                     </div>
                 </div>
             </div>
-            <input type="hidden" name="hide_small_thumbnail_1" value="{{ $layout->hide_small_thumbnail_1 }}">
-            <input type="hidden" name="hide_small_thumbnail_2" value="{{ $layout->hide_small_thumbnail_2 }}">
-            <input type="hidden" name="hide_small_thumbnail_3" value="{{ $layout->hide_small_thumbnail_3 }}">
-            <input type="hidden" name="hide_small_thumbnail_4" value="{{ $layout->hide_small_thumbnail_4 }}">
-            <input type="hidden" name="hide_small_thumbnail_5" value="{{ $layout->hide_small_thumbnail_5 }}">
-            <input type="hidden" name="hide_small_thumbnail_6" value="{{ $layout->hide_small_thumbnail_6 }}">
-            <input type="hidden" name="hide_small_banner_thumbnail_left" value="{{ $layout->hide_small_banner_thumbnail_left }}">
-            <input type="hidden" name="hide_small_banner_thumbnail_right" value="{{ $layout->hide_small_banner_thumbnail_right }}">
-            <input type="hidden" name="hide_banner_promotion_thumbnail" value="{{ $layout->hide_banner_promotion_thumbnail }}">
-            <input type="hidden" name="hide_adv_thumbnail" value="{{ $layout->hide_adv_thumbnail }}">
-            <input type="hidden" name="hide_build_pc_thumbnail" value="{{ $layout->hide_build_pc_thumbnail }}">
+            <input type="hidden" name="hide_small_thumbnail_1" value="{{ isset($layout->hide_small_thumbnail_1) ? $layout->hide_small_thumbnail_1 : '' }}">
+            <input type="hidden" name="hide_small_thumbnail_2" value="{{ isset($layout->hide_small_thumbnail_2) ? $layout->hide_small_thumbnail_2 : '' }}">
+            <input type="hidden" name="hide_small_thumbnail_3" value="{{ isset($layout->hide_small_thumbnail_3) ? $layout->hide_small_thumbnail_3 : '' }}">
+            <input type="hidden" name="hide_small_thumbnail_4" value="{{ isset($layout->hide_small_thumbnail_4) ? $layout->hide_small_thumbnail_4 : '' }}">
+            <input type="hidden" name="hide_small_thumbnail_5" value="{{ isset($layout->hide_small_thumbnail_5) ? $layout->hide_small_thumbnail_5 : '' }}">
+            <input type="hidden" name="hide_small_thumbnail_6" value="{{ isset($layout->hide_small_thumbnail_6) ? $layout->hide_small_thumbnail_6 : '' }}">
+            <input type="hidden" name="hide_small_banner_thumbnail_left" value="{{ isset($layout->hide_small_banner_thumbnail_left) ? $layout->hide_small_banner_thumbnail_left : '' }}">
+            <input type="hidden" name="hide_small_banner_thumbnail_right" value="{{ isset($layout->hide_small_banner_thumbnail_right) ? $layout->hide_small_banner_thumbnail_right : '' }}">
+            <input type="hidden" name="hide_banner_promotion_thumbnail" value="{{ isset($layout->hide_banner_promotion_thumbnail) ? $layout->hide_banner_promotion_thumbnail : '' }}">
+            <input type="hidden" name="hide_adv_thumbnail" value="{{ isset($layout->hide_adv_thumbnail) ? $layout->hide_adv_thumbnail : '' }}">
+            <input type="hidden" name="hide_build_pc_thumbnail" value="{{ isset($layout->hide_build_pc_thumbnail) ? $layout->hide_build_pc_thumbnail : '' }}">
         </div>
 
         <button type="submit" class="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20" style="margin-top: 10px;">{{__('Sửa ảnh')}}</button>
