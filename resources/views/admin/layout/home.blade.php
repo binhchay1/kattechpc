@@ -113,11 +113,18 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
+                                    @if(isset($layout->hide_small_thumbnail_3))
                                     <input type="checkbox" id="hide_small_thumbnail_3" onchange="handleHideInput('hide_small_thumbnail_3')" {{ $layout->hide_small_thumbnail_3 == 1 ? 'checked' : '' }}>
+                                    @else
+                                    <input type="checkbox" id="hide_small_thumbnail_3" onchange="handleHideInput('hide_small_thumbnail_3')">
+                                    @endif
+
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
+                                @if(isset($layout->hide_small_thumbnail_3))
                                 <button type="button" class="btn-delete-layout" onclick="deleteThumb('small_thumbnail_3')">{{ __('Xóa') }}</button>
+                                @endif
                             </div>
                             @if ($errors->has('small_thumbnail_3'))
                             <span class="text-danger">{{ $errors->first('small_thumbnail_3') }}</span>
@@ -150,11 +157,19 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
+                                    @if(isset($layout->hide_small_thumbnail_4))
                                     <input type="checkbox" name="hide_small_thumbnail_4" onchange="handleHideInput('hide_small_thumbnail_4')" {{ $layout->hide_small_thumbnail_4 == 1 ? 'checked' : '' }}>
+                                    @else
+                                    <input type="checkbox" id="hide_small_thumbnail_4" onchange="handleHideInput('hide_small_thumbnail_4')">
+                                    @endif
+
+
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
+                                @if(isset($layout->hide_small_thumbnail_4))
                                 <button type="button" class="btn-delete-layout" onclick="deleteThumb('small_thumbnail_4')">{{ __('Xóa') }}</button>
+                                @endif
                             </div>
                             @if ($errors->has('small_thumbnail_4'))
                             <span class="text-danger">{{ $errors->first('small_thumbnail_4') }}</span>
@@ -187,11 +202,18 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
+                                    @if(isset($layout->hide_small_thumbnail_5))
                                     <input type="checkbox" name="hide_small_thumbnail_5" onchange="handleHideInput('hide_small_thumbnail_5')" {{ $layout->hide_small_thumbnail_5 == 1 ? 'checked' : '' }}>
+                                    @else
+                                    <input type="checkbox" id="hide_small_thumbnail_5" onchange="handleHideInput('hide_small_thumbnail_5')">
+                                    @endif
+
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
+                                @if(isset($layout->hide_small_thumbnail_5))
                                 <button type="button" class="btn-delete-layout" onclick="deleteThumb('small_thumbnail_5')">{{ __('Xóa') }}</button>
+                                @endif
                             </div>
                             @if ($errors->has('small_thumbnail_5'))
                             <span class="text-danger">{{ $errors->first('small_thumbnail_5') }}</span>
@@ -224,11 +246,18 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
+                                    @if(isset($layout->hide_small_thumbnail_6))
                                     <input type="checkbox" id="hide_small_thumbnail_6" onchange="handleHideInput('hide_small_thumbnail_6')" {{ $layout->hide_small_thumbnail_6 == 1 ? 'checked' : '' }}>
+                                    @else
+                                    <input type="checkbox" id="hide_small_thumbnail_6" onchange="handleHideInput('hide_small_thumbnail_6')">
+                                    @endif
+
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
+                                @if(isset($layout->hide_small_thumbnail_6))
                                 <button type="button" class="btn-delete-layout" onclick="deleteThumb('small_thumbnail_6')">{{ __('Xóa') }}</button>
+                                @endif
                             </div>
                             @if ($errors->has('small_thumbnail_6'))
                             <span class="text-danger">{{ $errors->first('small_thumbnail_6') }}</span>
@@ -261,11 +290,18 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
+                                    @if(isset($layout->hide_small_banner_thumbnail_left))
                                     <input type="checkbox" id="hide_small_banner_thumbnail_left" onchange="handleHideInput('hide_small_banner_thumbnail_left')" {{ $layout->hide_small_banner_thumbnail_left == 1 ? 'checked' : '' }}>
+                                    @else
+                                    <input type="checkbox" id="hide_small_banner_thumbnail_left" onchange="handleHideInput('hide_small_banner_thumbnail_left')">
+                                    @endif
+
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
+                                @if(isset($layout->hide_small_banner_thumbnail_left))
                                 <button type="button" class="btn-delete-layout" onclick="deleteThumb('small_banner_thumbnail_left')">{{ __('Xóa') }}</button>
+                                @endif
                             </div>
                             @if ($errors->has('small_banner_thumbnail_left'))
                             <span class="text-danger">{{ $errors->first('small_banner_thumbnail_left') }}</span>
@@ -298,11 +334,18 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
+                                    @if(isset($layout->hide_small_banner_thumbnail_right))
                                     <input type="checkbox" id="hide_small_banner_thumbnail_right" onchange="handleHideInput('hide_small_banner_thumbnail_right')" {{ $layout->hide_small_banner_thumbnail_right == 1 ? 'checked' : '' }}>
+                                    @else
+                                    <input type="checkbox" id="hide_small_banner_thumbnail_right" onchange="handleHideInput('hide_small_banner_thumbnail_right')">
+                                    @endif
+
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
+                                @if(isset($layout->hide_small_banner_thumbnail_right))
                                 <button type="button" class="btn-delete-layout" onclick="deleteThumb('small_banner_thumbnail_right')">{{ __('Xóa') }}</button>
+                                @endif
                             </div>
                             @if ($errors->has('small_banner_thumbnail_right'))
                             <span class="text-danger">{{ $errors->first('small_banner_thumbnail_right') }}</span>
@@ -335,11 +378,18 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
+                                    @if(isset($layout->hide_banner_promotion_thumbnail))
                                     <input type="checkbox" id="hide_banner_promotion_thumbnail" onchange="handleHideInput('hide_banner_promotion_thumbnail')" {{ $layout->hide_banner_promotion_thumbnail == 1 ? 'checked' : '' }}>
+                                    @else
+                                    <input type="checkbox" id="hide_banner_promotion_thumbnail" onchange="handleHideInput('hide_banner_promotion_thumbnail')">
+                                    @endif
+
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
+                                @if(isset($layout->hide_banner_promotion_thumbnail))
                                 <button type="button" class="btn-delete-layout" onclick="deleteThumb('banner_promotion_thumbnail')">{{ __('Xóa') }}</button>
+                                @endif
                             </div>
                             @if ($errors->has('banner_promotion_thumbnail'))
                             <span class="text-danger">{{ $errors->first('banner_promotion_thumbnail') }}</span>
@@ -372,11 +422,18 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
+                                    @if(isset($layout->hide_adv_thumbnail))
                                     <input type="checkbox" id="hide_adv_thumbnail" onchange="handleHideInput('hide_adv_thumbnail')" {{ $layout->hide_adv_thumbnail == 1 ? 'checked' : '' }}>
+                                    @else
+                                    <input type="checkbox" id="hide_adv_thumbnail" onchange="handleHideInput('hide_adv_thumbnail')">
+                                    @endif
+
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
+                                @if(isset($layout->hide_adv_thumbnail))
                                 <button type="button" class="btn-delete-layout" onclick="deleteThumb('adv_thumbnail')">{{ __('Xóa') }}</button>
+                                @endif
                             </div>
                             @if ($errors->has('adv_thumbnail'))
                             <span class="text-danger">{{ $errors->first('adv_thumbnail') }}</span>
@@ -409,11 +466,18 @@
                             </div>
                             <div class="area-action-layout">
                                 <div>
+                                    @if(isset($layout->hide_build_pc_thumbnail))
                                     <input type="checkbox" id="hide_build_pc_thumbnail" onchange="handleHideInput('hide_build_pc_thumbnail')" {{ $layout->hide_build_pc_thumbnail == 1 ? 'checked' : '' }}>
+                                    @else
+                                    <input type="checkbox" id="hide_build_pc_thumbnail" onchange="handleHideInput('hide_build_pc_thumbnail')">
+                                    @endif
+
                                     <label>{{ __('Ẩn') }}</label>
                                 </div>
 
+                                @if(isset($layout->hide_build_pc_thumbnail))
                                 <button type="button" class="btn-delete-layout" onclick="deleteThumb('build_pc_thumbnail')">{{ __('Xóa') }}</button>
+                                @endif
                             </div>
                             @if ($errors->has('adv_thumbnail'))
                             <span class="text-danger">{{ $errors->first('adv_thumbnail') }}</span>
