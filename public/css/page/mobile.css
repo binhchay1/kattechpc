@@ -884,4 +884,8 @@
     .box-breadcrumb-global {
         padding-left: 20px;
     }
+
+    .img-article img {
+        width: 100% !important;
+    }
 }

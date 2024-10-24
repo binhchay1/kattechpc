@@ -496,7 +496,7 @@
             <div class="item-article d-flex gap-12">
                 <div class="content-article content-article-item d-flex flex-column flex-1">
                     <a class="img-article boder-radius-10 position-relative" data-url="{{ $youtube->link }}" onclick="watchYoutubeVideo($(this))">
-                        <img class="boder-radius-10" src="{{ asset($youtube->thumbnail) }}" alt="{{ $youtube->title }}">
+                        <img class="boder-radius-10" width="400" src="{{ asset($youtube->thumbnail) }}" alt="{{ $youtube->title }}">
                         <i class="sprite sprite-play-youtube incon-play-youtube"></i>
                     </a>
                     <a class="title-article" data-url="{{ $youtube->link }}" onclick="watchYoutubeVideo($(this))">
