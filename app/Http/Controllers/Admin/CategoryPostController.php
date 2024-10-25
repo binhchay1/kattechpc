@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\CategoryPostRequest;
+use App\Models\Post;
 use App\Repositories\CategoryPostRepository;
 use Illuminate\Support\Str;
 
@@ -74,6 +75,14 @@ class CategoryPostController extends Controller
 
     public function deleteCategory($id)
     {
+        $category = $this->categoryPostRepository->show($id);
+        $postsOfCategory = $category->posts()->withCount('category')->get();
+        $postsWithOneCategory = $postsOfCategory->filter(function ($post) {
+            return $post->categories_count <= 1;
+        });
+        $postsIDs = $postsWithOneCategory->pluck(['id'])->toArray();
+    
+        Post::whereIn('id', $postsIDs)->update(['category_id' => 1]);
         $this->categoryPostRepository->destroy($id);
         return back()->with('success', __('Danh mục sản phẩm  được xóa  thành công'));
     }

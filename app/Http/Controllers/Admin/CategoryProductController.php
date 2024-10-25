@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Models\Category;
+use App\Models\Product;
 use App\Repositories\CategoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -103,6 +104,14 @@ class CategoryProductController extends Controller
 
     public function deleteCategory($id)
     {
+        $category = $this->categoryRepository->show($id);
+        $postsOfCategory = $category->productChildren()->withCount('category')->get();
+        $postsWithOneCategory = $postsOfCategory->filter(function ($post) {
+            return $post->categories_count <= 1;
+        });
+        $postsIDs = $postsWithOneCategory->pluck(['id'])->toArray();
+    
+        Product::whereIn('id', $postsIDs)->update(['category_id' => 1]);
         $this->categoryRepository->destroy($id);
         Cache::store(env('REDIS_DEFAULT_CONNECT'))->forget('menu_homepage');
 
