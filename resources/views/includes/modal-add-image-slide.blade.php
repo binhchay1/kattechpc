@@ -14,18 +14,18 @@
                 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
                     <div class="xl:col-span-6">
                         <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Ảnh') }}</label>
-                        <input type="file" class="border-0 bg-light pl-0" name="slide_image" id="image10" hidden>
+                        <input type="file" class="border-0 bg-light pl-0" name="slide_image" id="image15" hidden>
                         <div id="btnimage">
-                            <img id="showImage10" class="show-avatar" src="{{ asset('/images/layout/500x250.png') }}" alt="avatar">
+                            <img id="showImage15" class="show-avatar" src="{{ asset('/images/layout/500x250.png') }}" alt="avatar">
                         </div>
-                        <div id="button-10">
+                        <div id="button-15">
                             <i class="fas fa-camera btn_chooseImg"> {{ __('Chọn hình ảnh') }}</i>
                         </div>
                     </div>
 
                     <div class="xl:col-span-6">
                         <label for="categoryParentInput" class="inline-block mb-2 text-base font-medium">{{ __('Đường dẫn') }}</label>
-                        <input type="text" id="categoryInput" name="slide_url" value="{{ old('image') }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Nhập đường dẫn') }}">
+                        <input type="text" id="categoryInput" name="slide_url" value="{{ old('slide_url') }}" class="form-input  border-slate-200 dark:border-zink-500 focus:outline-none focus:border-custom-500 disabled:bg-slate-100 dark:disabled:bg-zink-600 disabled:border-slate-300 dark:disabled:border-zink-500 dark:disabled:text-zink-200 disabled:text-slate-500 dark:text-zink-100 dark:bg-zink-700 dark:focus:border-custom-800 placeholder:text-slate-400 dark:placeholder:text-zink-200" placeholder="{{ __('Nhập đường dẫn') }}">
                     </div>
                 </div>
                 <div class="flex justify-end gap-2 mt-4">

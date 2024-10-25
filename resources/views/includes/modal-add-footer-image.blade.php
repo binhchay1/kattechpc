@@ -14,11 +14,11 @@
                 <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-12">
                     <div class="xl:col-span-6">
                         <label for="categoryInput" class="inline-block mb-2 text-base font-medium">{{ __('Ảnh') }}</label>
-                        <input type="file" class="border-0 bg-light pl-0" name="slide_image_footer" id="image11" hidden>
+                        <input type="file" class="border-0 bg-light pl-0" name="slide_image_footer" id="image14" hidden>
                         <div id="btnimage">
-                            <img id="showImage11" class="show-avatar" src="{{ asset('/images/layout/500x250.png') }}" alt="avatar">
+                            <img id="showImage14" class="show-avatar" src="{{ asset('/images/layout/500x250.png') }}" alt="avatar">
                         </div>
-                        <div id="button-11">
+                        <div id="button-14">
                             <i class="fas fa-camera btn_chooseImg"> {{ __('Chọn hình ảnh') }}</i>
                         </div>
                     </div>
