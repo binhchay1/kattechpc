@@ -119,7 +119,6 @@ class LayoutController extends Controller
 
     public function storeSlide(Request $request)
     {
-        dd($request);
         $input = $request->except(['_token']);
         if (isset($input['slide_image'])) {
             $input['slide_image']->move(public_path('images/upload/layout/'), $input['slide_image']->getClientOriginalName());
