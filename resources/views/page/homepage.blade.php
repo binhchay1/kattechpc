@@ -20,13 +20,13 @@
                         @if($keyOwl == 0)
                         <div class="carousel-item active">
                             <a href="{{ $slide['url'] }}">
-                                <img src="{{ asset($slide['image']) }}" width="920" height="500" alt="Image" class="lazy">
+                                <img src="{{ asset($slide['image']) }}" width="920" height="535" alt="Image" class="lazy">
                             </a>
                         </div>
                         @else
                         <div class="carousel-item">
                             <a href="{{ $slide['url'] }}">
-                                <img src="{{ asset($slide['image']) }}" width="920" height="500" alt="Image" class="lazy">
+                                <img src="{{ asset($slide['image']) }}" width="920" height="535" alt="Image" class="lazy">
                             </a>
                         </div>
                         @endif
