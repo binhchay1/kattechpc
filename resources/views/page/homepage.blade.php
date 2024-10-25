@@ -442,7 +442,7 @@
 
 @if(count($listNews) > 0)
 <section class="content-news">
-    <div class="box-article-group boder-radius-10">
+    <div class="box-article-group boder-radius-10" style="margin-bottom: 0;">
         <div class="show-all-cate">
             <a href="">
                 <h2 class="title-box font-weight-600">{{ __('Tin tức công nghệ') }}</h2>
@@ -484,7 +484,7 @@
 
 @if(count($listYoutube) > 0)
 <section class="content-news">
-    <div class="box-videos-group box-article-group position-relative boder-radius-10">
+    <div class="box-videos-group box-article-group position-relative boder-radius-10" style="margin-bottom: 0;">
         <div class="d-flex justify-content-between align-items-center">
             <div class="title-box">
                 <h2 class="title-box font-weight-600">{{ __('Youtube Channel') }}</h2>
@@ -500,7 +500,7 @@
                         <i class="sprite sprite-play-youtube incon-play-youtube"></i>
                     </a>
                     <a class="title-article" data-url="{{ $youtube->link }}" onclick="watchYoutubeVideo($(this))">
-                        <p style="font-size: 14px;">{{ $youtube->title }}</p>
+                        <p style="font-size: 20px; font-weight: bold;">{{ $youtube->title }}</p>
                     </a>
                 </div>
             </div>
