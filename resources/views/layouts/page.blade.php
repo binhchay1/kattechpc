@@ -26,6 +26,12 @@
     <link rel="stylesheet" href="{{ asset('/css/page/mobile.css') }}">
     <link rel="stylesheet" href="{{ asset('/css/page/ckeditor.css') }}" type="text/css">
     @yield('css')
+
+    <script>
+        window.onbeforeunload = function() {
+            window.scrollTo(0, 0);
+        }
+    </script>
 </head>
 
 <body>
@@ -149,9 +155,9 @@
             <div class="background"></div>
         </div>
         @endif
-
-        @include('includes.preloader')
     </div>
+
+    @include('includes.preloader')
 
     <script src="{{ asset('/plugins/jquery/jquery-3.4.1.min.js') }}"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>

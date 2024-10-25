@@ -41,7 +41,8 @@ var defaultFooterSlide = 5;
 var perTransFooterSlide = 285;
 
 $(document).ready(function () {
-    $('.preloader-main').hide();
+
+    $('.preloader-main').css('display', 'none');
     $('body').css('overflow', 'auto');
     $('body').css('overflow-x', 'hidden');
 
