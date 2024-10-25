@@ -346,14 +346,14 @@ a:hover {
 .fixed-left {
     position: fixed;
     top: 280px;
-    left: calc(50% - 900px);
+    left: calc(50% - 980px);
     transition: 0.5s linear;
 }
 
 .fixed-right {
     position: fixed;
     top: 280px;
-    right: calc(50% - 900px);
+    right: calc(50% - 980px);
     transition: 0.5s linear;
 }
 
