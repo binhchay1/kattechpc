@@ -31,8 +31,8 @@
                         </div>
                         @endif
                         @endforeach
-                        <div class="swiper-button-next swiper-button-next-slide" id="swiper-next-slide" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"><i class="fas fa-chevron-right" style="margin-top: 15px"></i></div>
-                        <div class="swiper-button-prev swiper-button-prev-slide " id="swiper-prev-slide" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"><i class="fas fa-chevron-left" style="margin-top: 15px"></i></div>
+                        <div class="swiper-button-next swiper-button-next-slide" id="swiper-next-slide" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
+                        <div class="swiper-button-prev swiper-button-prev-slide " id="swiper-prev-slide" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
                         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                     </div>
                 </div>
