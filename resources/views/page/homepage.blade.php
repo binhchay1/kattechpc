@@ -14,6 +14,7 @@
     <div class="slider-banner-main">
         <div class="news-main">
             <div class="news-main-left">
+                @if($listSlide != null)
                 <div id="header-carousel" class="owl-carousel slide">
                     <div class="carousel-inner-slide">
                         @foreach($listSlide as $keyOwl => $slide)
@@ -36,6 +37,7 @@
                         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                     </div>
                 </div>
+                @endif
             </div>
             <div class="news-main-right">
                 <div class="news-main-right-1">
@@ -101,6 +103,7 @@
 
 <section class="slider-banner-mobile">
     <div class="slider-banner-main-mobile">
+    @if($listSlide != null)
         <div class="owl-carousel slide">
             <div class="carousel-inner-slide-mobile">
                 @foreach($listSlide as $keyOwl => $slide)
@@ -123,6 +126,7 @@
                 <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
             </div>
         </div>
+        @endif
     </div>
     <div class="news-main-under-mobile">
         <div class="owl-carousel slide">
