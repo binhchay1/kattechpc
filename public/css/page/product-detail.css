@@ -1030,7 +1030,7 @@ tr:nth-child(even) {
     color: white !important;
 }
 
-.only-mobile-for-body {
+@media only screen and (max-width: 1919px) {
     .product-info-detail h5 {
         font-size: 23px !important;
         line-height: 36px;
@@ -1388,7 +1388,7 @@ tr:nth-child(even) {
     object-fit: inherit !important;
 }
 
-.only-mobile-for-body {
+@media only screen and (max-width: 1919px) {
     .swiper-product-related .swiper-slide1 {
         width: 100% !important;
     }

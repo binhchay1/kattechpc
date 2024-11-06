@@ -28,7 +28,7 @@
     clear: both;
 }
 
-.only-mobile-for-body {
+@media only screen and (max-width: 1919px) {
     .column {
         width: 100%;
 
