@@ -40,11 +40,21 @@ var transFooterSlide = 0;
 var defaultFooterSlide = 5;
 var perTransFooterSlide = 285;
 
+console.log('outside');
+
+console.log(WURFL);
+
+var checkIsMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+console.log(checkIsMobile);
+
 $(document).ready(function () {
 
     $('.preloader-main').css('display', 'none');
     $('body').css('overflow', 'auto');
     $('body').css('overflow-x', 'hidden');
+
+    console.log('inside');
 
     let is_android = navigator.platform.toLowerCase().includes("android");
     checkSessions();
