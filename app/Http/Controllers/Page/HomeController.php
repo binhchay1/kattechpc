@@ -6,7 +6,6 @@ use App\Enums\Role;
 use App\Enums\Utility;
 use App\Http\Requests\LoginRequest;
 use App\Repositories\ProductRepository;
-use GPBMetadata\Google\Api\Auth;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
@@ -215,7 +214,7 @@ class HomeController extends Controller
         $layout = $this->layoutRepository->getListLayout();
         $social = $this->socialRepository->index();
 
-        if (!empty($getFlashSale)) {
+        if ($getFlashSale['flash_sale_timer'] != null or $getFlashSale['flash_sale_timer'] != null) {
 
             if (isset($getFlashSale->flash_sale_list_product_id)) {
                 $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
@@ -371,7 +370,7 @@ class HomeController extends Controller
             $listSlideFooter = json_decode($getSlideFooter->footer_slide_thumbnail, true);
         }
 
-        if (!empty($getFlashSale)) {
+        if ($getFlashSale['flash_sale_timer'] != null or $getFlashSale['flash_sale_timer'] != null) {
             if (isset($getFlashSale->flash_sale_list_product_id)) {
                 $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
                 foreach ($listProductFlashSale as $key => $value) {

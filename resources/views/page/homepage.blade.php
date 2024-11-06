@@ -14,6 +14,7 @@
     <div class="slider-banner-main">
         <div class="news-main">
             <div class="news-main-left">
+                @if($listSlide != null)
                 <div id="header-carousel" class="owl-carousel slide">
                     <div class="carousel-inner-slide">
                         @foreach($listSlide as $keyOwl => $slide)
@@ -31,11 +32,12 @@
                         </div>
                         @endif
                         @endforeach
-                        <div class="swiper-button-next swiper-button-next-slide" id="swiper-next-slide" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"><i class="fas fa-chevron-right" style="margin-top: 15px"></i></div>
-                        <div class="swiper-button-prev swiper-button-prev-slide " id="swiper-prev-slide" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"><i class="fas fa-chevron-left" style="margin-top: 15px"></i></div>
+                        <div class="swiper-button-next swiper-button-next-slide" id="swiper-next-slide" tabindex="0" role="button" aria-label="Next slide" aria-controls="js-deal-box"></div>
+                        <div class="swiper-button-prev swiper-button-prev-slide " id="swiper-prev-slide" tabindex="0" role="button" aria-label="Previous slide" aria-controls="js-deal-box"></div>
                         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
                     </div>
                 </div>
+                @endif
             </div>
             <div class="news-main-right">
                 <div class="news-main-right-1">
@@ -101,6 +103,7 @@
 
 <section class="slider-banner-mobile">
     <div class="slider-banner-main-mobile">
+    @if($listSlide != null)
         <div class="owl-carousel slide">
             <div class="carousel-inner-slide-mobile">
                 @foreach($listSlide as $keyOwl => $slide)
@@ -123,6 +126,7 @@
                 <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
             </div>
         </div>
+        @endif
     </div>
     <div class="news-main-under-mobile">
         <div class="owl-carousel slide">
