@@ -19,6 +19,11 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     @yield('title')
 
+    <script>
+        var element = document.getElementById("body-main");
+        element.classList.add("only-mobile-for-body");
+    </script>
+
     <link rel="shortcut icon" href="{{ asset('/images/logo/favicon.ico') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('/css/page/style.min.css') }}">
@@ -34,7 +39,7 @@
     </script>
 </head>
 
-<body>
+<body id="body-main">
     <div id="all-content-in">
         <div id="page-banner">
             @include('includes.item-banner')
