@@ -40,6 +40,8 @@ var transFooterSlide = 0;
 var defaultFooterSlide = 5;
 var perTransFooterSlide = 285;
 
+$('body').removeClass("only-mobile-for-body");
+
 $(document).ready(function () {
 
     $('.preloader-main').css('display', 'none');
