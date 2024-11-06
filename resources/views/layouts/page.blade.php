@@ -19,11 +19,6 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     @yield('title')
 
-    <script>
-        var element = document.getElementById("body-main");
-        element.classList.add("only-mobile-for-body");
-    </script>
-
     <link rel="shortcut icon" href="{{ asset('/images/logo/favicon.ico') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('/css/page/style.min.css') }}">
@@ -168,7 +163,7 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.min.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.9/jquery.lazy.plugins.min.js"></script>
     <script src="https://wurfl.io/wurfl.js"></script>
-    <script src="{{ asset('/js/page/main.js') }}"></script>
+    <script src="{{ asset('/js/page/process.js') }}"></script>
 
     @yield('js')
 </body>
