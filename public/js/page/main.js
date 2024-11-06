@@ -40,7 +40,7 @@ var transFooterSlide = 0;
 var defaultFooterSlide = 5;
 var perTransFooterSlide = 285;
 
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function () {
 
     $('.preloader-main').css('display', 'none');
     $('body').css('overflow', 'auto');

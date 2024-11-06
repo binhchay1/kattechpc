@@ -2625,7 +2625,7 @@ a {
     height: auto;
 }
 
-@media only screen and (max-width: 1919px) {
+.only {
     max-width: 650px !important;
     min-width: inherit !important;
     position: relative;

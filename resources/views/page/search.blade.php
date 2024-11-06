@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="{{ asset('/css/page/product-cate.css') }}" />
 
 <style>
-    @media only screen and (max-width: 1919px) {
+    .only-mobile-for-body {
         #product-category-area button {
             width: 100%;
             margin-top: 10px;
