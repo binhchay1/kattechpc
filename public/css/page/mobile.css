@@ -1,4 +1,4 @@
-.only-mobile-for-body {
+@media only screen and (max-width: 1919px) {
     .box-side-left {
         width: 95% !important;
         padding: 0 !important;
@@ -17,7 +17,8 @@
     }
 
     body {
-        min-width: 100% !important;
+        min-width: inherit !important;
+        margin: auto;
     }
 
     .slider-banner-main,
@@ -500,18 +501,6 @@
         display: none;
     }
 
-    .menu-btn {
-        display: block;
-        position: absolute;
-        color: black;
-        top: 40px;
-        right: 30px;
-        font-size: 2rem;
-        margin-left: 23px;
-        left: 0;
-        margin-top: 15px;
-    }
-
     .lock-scroll {
         overflow: hidden;
     }
@@ -627,15 +616,18 @@
     }
 
     .global-fixed-right .scroll-top-btn {
-        bottom: calc(50% - 405px);
+        bottom: calc(50% - 365px);
+        right: calc(20% - 20px);
     }
 
     .global-fixed-right .fix-youtube {
-        bottom: calc(50% - 355px);
+        bottom: calc(50% - 315px);
+        right: calc(20% - 20px);
     }
 
     .global-fixed-right .fix-face {
-        bottom: calc(50% - 300px);
+        bottom: calc(50% - 260px);
+        right: calc(20% - 20px);
     }
 
     .list-items-sub {
@@ -723,7 +715,7 @@
 
     .wrap {
         top: 150px;
-        width: 90%;
+        width: 50%;
         position: absolute;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -772,13 +764,11 @@
         display: block;
         position: absolute;
         color: black;
-        top: 50px;
-        right: 30px;
         font-size: 2rem;
-        margin-left: 10px;
         left: 0;
-        margin-top: 5px;
         width: 30px;
+        top: 20px;
+        left: 25px;
     }
 
     .lock-scroll {

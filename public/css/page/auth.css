@@ -346,14 +346,14 @@
     margin-top: 5px;
 }
 
-.only-mobile-for-body {
+@media only screen and (max-width: 1919px) {
     .alert-validate::before {
         visibility: visible;
         opacity: 1;
     }
 }
 
-.only-mobile-for-body {
+@media only screen and (max-width: 1919px) {
     .wrap-login100 {
         padding-left: 60px;
         padding-right: 60px;

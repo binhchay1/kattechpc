@@ -1877,8 +1877,8 @@ a {
 
 .global-fixed-left {
     position: fixed;
-    left: 20px;
-    bottom: 85px;
+    left: calc(20% + 20px);
+    bottom: calc(10% + 10px);
     width: 80px;
     z-index: 1;
 }
@@ -2330,6 +2330,7 @@ a {
     float: left;
     width: 20%;
     padding: 10px;
+    position: relative;
 }
 
 .columnb {
@@ -2388,14 +2389,6 @@ a {
     border-radius: 0 10px 10px 0;
     cursor: pointer;
     font-size: 20px;
-}
-
-.wrap {
-    top: 150px;
-    width: 90%;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .swiper-slide-review {
@@ -2623,13 +2616,6 @@ a {
     margin: auto;
     width: auto;
     height: auto;
-}
-
-.only-mobile-for-body {
-    max-width: 650px !important;
-    min-width: inherit !important;
-    position: relative;
-    margin: auto;
 }
 
 .preloader-main {
