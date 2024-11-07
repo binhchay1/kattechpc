@@ -602,7 +602,7 @@
 
     #scroll-logo {
         display: flex;
-        justify-content: center;
+        justify-content: end;
         margin-top: -15px;
     }
 
@@ -617,16 +617,6 @@
 
     .global-fixed-right .scroll-top-btn {
         bottom: calc(50% - 365px);
-        right: calc(20% - 20px);
-    }
-
-    .global-fixed-right .fix-youtube {
-        bottom: calc(50% - 315px);
-        right: calc(20% - 20px);
-    }
-
-    .global-fixed-right .fix-face {
-        bottom: calc(50% - 260px);
         right: calc(20% - 20px);
     }
 
@@ -711,14 +701,6 @@
 
     .box-right {
         display: none;
-    }
-
-    .wrap {
-        top: 150px;
-        width: 50%;
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, -50%);
     }
 
     .box-right1 {
@@ -828,6 +810,15 @@
         display: none;
     }
 
+    .global-fixed-left {
+        bottom: calc(10% + 10px);
+    }
+
+    .global-fixed-right {
+        bottom: calc(10% + 10px);
+        left: 70%;
+    }
+
     .pd-img-gallery {
         display: flex;
         overflow: auto;
@@ -845,7 +836,7 @@
         overflow: hidden;
         margin: 0 10px 0 5px;
         box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
-        transition: .4s all;
+        transition: 0.4s all;
         border: 1px solid transparent;
     }
 
@@ -877,5 +868,25 @@
 
     .img-article img {
         width: 100% !important;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .wrap {
+        top: 150px;
+        width: 90%;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@media only screen and (min-width: 651px) and (max-width: 1919px) {
+    .wrap {
+        top: 150px;
+        width: 640px;
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 }

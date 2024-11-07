@@ -1298,7 +1298,7 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: .5;
+    opacity: 0.5;
 }
 
 .swiper-button-next::after,
@@ -1816,9 +1816,17 @@ a {
     text-decoration: underline !important;
 }
 
+.global-fixed-right {
+    position: fixed;
+    bottom: calc(10% - 55px);
+    right: 0;
+    z-index: 1;
+}
+
 .global-fixed-right .fix-face {
-    bottom: calc(50% - 185px);
     background: #4267b2;
+    margin-left: 130px;
+    margin-top: 10px;
 }
 
 .close-mn {
@@ -1831,7 +1839,6 @@ a {
     font-size: 22px;
     width: 45px;
     height: 45px;
-    position: fixed;
     border-radius: 50%;
     z-index: 1;
     -webkit-transition: 0.4s all;
@@ -1843,13 +1850,13 @@ a {
 }
 
 .global-fixed-right .fix-youtube {
-    bottom: calc(50% - 235px);
     border: 1px solid red;
+    margin-left: 130px;
+    margin-top: 10px;
 }
 
 .global-fixed-right .messenger {
     background: #fff;
-    bottom: calc(50% - 430px);
     width: 170px;
     padding: 10px;
     border-radius: 15px;
@@ -1857,11 +1864,11 @@ a {
     box-shadow: 0 1px 2px 1px #01010133;
     color: #007bff;
     font-size: 14px;
+    margin-top: 10px;
 }
 
 .global-fixed-right .zalo {
     background: #fff;
-    bottom: calc(50% - 360px);
     width: 170px;
     padding: 10px;
     border-radius: 15px;
@@ -1869,6 +1876,7 @@ a {
     box-shadow: 0 1px 2px 1px #01010133;
     color: #007bff;
     font-size: 14px;
+    margin-top: 10px;
 }
 
 .global-fixed-right .contact-info {
@@ -1877,8 +1885,7 @@ a {
 
 .global-fixed-left {
     position: fixed;
-    left: calc(20% + 20px);
-    bottom: calc(10% + 10px);
+    bottom: calc(10% - 15px);
     width: 80px;
     z-index: 1;
 }
@@ -2344,6 +2351,7 @@ a {
     width: 30%;
     padding: 10px;
     display: flex;
+    justify-content: end;
 }
 
 .test:after {
@@ -2407,9 +2415,9 @@ a {
 .wrap1 {
     margin-top: 28px;
     display: none;
-    width: 50%;
+    width: 60%;
     position: absolute;
-    left: 40%;
+    left: 45%;
     transform: translate(-50%, -50%);
 }
 
@@ -2463,6 +2471,8 @@ a {
     background: var(--color-primary);
     border: 1px solid var(--color-primary);
     color: #fff;
+    margin-left: 130px;
+    margin-top: 10px;
 }
 
 .hover-image {

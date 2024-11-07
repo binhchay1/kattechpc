@@ -109,6 +109,16 @@
             @include('includes.footer-page')
         </div>
 
+        <div class="global-fixed-left">
+            <div class="sale">
+                <a href="{{ route('promotion') }}">
+                    <img width="64" height="64" alt="khuyen-mai" src="{{ asset('images/sale.png') }}" data-was-processed="true">
+                </a>
+            </div>
+        </div>
+
+        @include('includes.header-side-bar')
+
         <div class="global-fixed-right">
             <a href="{{ $social->facebook ?? '' }}" aria-label="Face Book" target="_blank" class="fix-face d-flex align-items-center justify-content-center">
                 <img width="25" height="25" alt="mes" src="{{ asset('images/logo/icon-facebook.png') }}">
@@ -131,16 +141,6 @@
                     <b class="d-block">Chat Zalo</b><br><span>(8h-22h30)</span>
                 </div>
             </a>
-        </div>
-
-        @include('includes.header-side-bar')
-
-        <div class="global-fixed-left">
-            <div class="sale">
-                <a href="{{ route('promotion') }}">
-                    <img width="64" height="64" alt="khuyen-mai" src="{{ asset('images/sale.png') }}" data-was-processed="true">
-                </a>
-            </div>
         </div>
 
         @include('includes.modal-youtube-play')
