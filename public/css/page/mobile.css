@@ -884,6 +884,11 @@
         margin-left: inherit !important;
         right: 0;
     }
+
+    #all-content-in {
+        width: 100% !important;
+        margin: inherit !important;
+    }
 }
 
 @media only screen and (min-width: 651px) and (max-width: 1919px) {
@@ -897,5 +902,10 @@
 
     .global-fixed-right {
         margin-left: 600px !important;
+    }
+
+    #all-content-in {
+        width: 650px !important;
+        margin: auto !important;
     }
 }
