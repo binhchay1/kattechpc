@@ -1405,8 +1405,8 @@ tr:nth-child(even) {
     }
 
     .modal-content {
-        width: 80%;
-        height: 90%;
+        width: 600px;
+        height: inherit !important;
     }
 
     .qtv-comment {

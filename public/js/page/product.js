@@ -24,7 +24,7 @@ $(document).ready(function () {
     $(".product-image-prev").addClass('d-none');
 
     $('#read-all-product-detail').on('click', function () {
-        $('#modalDetail').show();
+        $('#modalDetail').css('display', 'flex');
     });
 
     $('.close').click(function () {
