@@ -1,6 +1,5 @@
 var isMobileDetected = false;
 var indexImage = 0;
-
 $(document).ready(function () {
     var defaultTransProductViewed = 0;
     var defaultTransProductRelated = 0;

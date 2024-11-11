@@ -2415,9 +2415,8 @@ a {
 .wrap1 {
     margin-top: 28px;
     display: none;
-    width: 60%;
     position: absolute;
-    left: 45%;
+    left: 40%;
     transform: translate(-50%, -50%);
 }
 
@@ -2532,6 +2531,10 @@ a {
     float: right;
     width: 35%;
     margin-left: 10px;
+}
+
+.carousel-inner-slide {
+    position: relative;
 }
 
 .box-menu-mobile.active {
@@ -2655,14 +2658,6 @@ a {
 
 .slider-banner-mobile {
     display: none;
-}
-
-.swiper-button-next-slide {
-    right: calc(23px + 39%);
-}
-
-.swiper-button-prev-slide {
-    left: calc(23px + 14%);
 }
 
 .swiper-wrapper {
