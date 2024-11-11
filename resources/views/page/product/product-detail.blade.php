@@ -116,7 +116,7 @@
                     </div>
                 </div>
                 <div class="swiper-button-next product-image-next" tabindex="0" role="button" aria-label="Next slide" onclick="handleSlideImage('next')"></div>
-                <div class="swiper-button-prev product-image-prev" style="left: calc(20px + 12%);" tabindex="0" role="button" aria-label="Previous slide" onclick="handleSlideImage('prev')"></div>
+                <div class="swiper-button-prev product-image-prev" tabindex="0" role="button" aria-label="Previous slide" onclick="handleSlideImage('prev')"></div>
                 <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
             </div>
 

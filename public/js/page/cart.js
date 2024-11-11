@@ -8,7 +8,9 @@ var Parameter = {
 };
 var promise = axios(Parameter);
 promise.then(function (result) {
-    renderCity(result.data);
+    if (total_amount > 0) {
+        renderCity(result.data);
+    }
 });
 
 $(document).ready(function () {

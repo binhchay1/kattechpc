@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
     checkSessions();
 
     if (typeof WURFL !== 'undefined') {
+        console.log(WURFL);
         if (WURFL.is_mobile) {
             mobileScreenHandle();
         } else {
@@ -612,11 +613,11 @@ function mobileScreenHandle() {
     }
 
     if(widthDevice <= 650) {
-        $('#swiper-next-slide').css('right', '0');
-        $('#swiper-prev-slide').css('left', '0');
+        $('.swiper-button-next-slide-mobile').css('right', '0');
+        $('.swiper-button-prev-slide-mobile').css('left', '0');
     } else {
-        $('#swiper-next-slide').css('right', 'calc(20% + 17px)');
-        $('#swiper-prev-slide').css('left', 'calc(20% + 17px)');
+        $('.swiper-button-next-slide-mobile').css('right', 'calc(20% + 17px)');
+        $('.swiper-button-prev-slide-mobile').css('left', 'calc(20% + 17px)');
     }
 
     countFlash = 0;
