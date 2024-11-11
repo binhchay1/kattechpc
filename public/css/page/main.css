@@ -2668,6 +2668,14 @@ a {
     display: none;
 }
 
+.swiper-button-next-slide {
+    margin-top: 26%;
+}
+
+.swiper-button-prev-slide {
+    margin-top: 26%;
+}
+
 .slider-banner-main-mobile {
     z-index: -1;
 }

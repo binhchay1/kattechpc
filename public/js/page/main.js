@@ -611,6 +611,14 @@ function mobileScreenHandle() {
         $('.main-menu-category').removeClass('d-none');
     }
 
+    if(widthDevice <= 650) {
+        $('#swiper-next-slide').css('right', '0');
+        $('#swiper-prev-slide').css('left', '0');
+    } else {
+        $('#swiper-next-slide').css('right', 'calc(20% + 17px)');
+        $('#swiper-prev-slide').css('left', 'calc(20% + 17px)');
+    }
+
     countFlash = 0;
     countProduct = 0;
     countTopSale = 0;

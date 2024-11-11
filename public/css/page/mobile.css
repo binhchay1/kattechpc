@@ -870,6 +870,14 @@
         margin-top: 10px !important;
         margin-left: 0 !important;
     }
+
+    .swiper-button-next-slide {
+        top: 40%;
+    }
+
+    .swiper-button-prev-slide {
+        top: 40%;
+    }
 }
 
 @media only screen and (max-width: 650px) {
