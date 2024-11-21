@@ -49,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
     checkSessions();
 
     if (typeof WURFL !== 'undefined') {
-        console.log(WURFL);
         if (WURFL.is_mobile) {
             mobileScreenHandle();
         } else {
@@ -72,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     window.addEventListener('resize', function () {
-        if (window.innerWidth >= 1920) {
+        if (window.innerWidth >= 651) {
             $('.global-fixed-right a').removeClass('right-inherit');
             $('body').css('width', '100%');
             $('body').css('overflow', 'auto');
