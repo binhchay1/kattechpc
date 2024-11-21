@@ -887,4 +887,8 @@
         width: 100% !important;
         margin: inherit !important;
     }
+
+    .autocomplete-suggestions {
+        width: calc(100% + 120px) !important;
+    }
 }
