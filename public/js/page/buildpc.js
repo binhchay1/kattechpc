@@ -349,7 +349,7 @@ function renderProductToModal(data) {
                             </a>
                         </div>
                         <div class="col-lg-10 process-in-mobile">
-                        <div class="col-lg-6 info" style="max-width: 100%; padding-left: 0">
+                        <div class="col-lg-6 info" style="padding-left: 0">
                             <a href="" class="p-name">` + name + `</a>
                             <table>
                                 <tbody>

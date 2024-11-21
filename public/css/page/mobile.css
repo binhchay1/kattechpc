@@ -580,7 +580,6 @@
 
     .global-breadcrumb ol {
         padding: 0;
-        justify-content: center;
         line-height: 30px;
     }
 
@@ -848,14 +847,6 @@
 
     .drive-checked {
         width: 100%;
-    }
-
-    #js-search-result-mobile-scroll {
-        display: none !important;
-    }
-
-    #js-search-result-mobile {
-        display: none !important;
     }
 
     .box-breadcrumb-global {
