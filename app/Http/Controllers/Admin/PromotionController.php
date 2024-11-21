@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\promotionRequest;
+use App\Http\Requests\PromotionRequest;
 use App\Http\Requests\PromotionUpdateRequest;
 use App\Repositories\PromotionRepository;
 use Illuminate\Support\Str;
