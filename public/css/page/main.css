@@ -779,7 +779,6 @@ a:hover {
 .img-article img {
     display: block;
     width: 100%;
-    object-fit: cover;
     transition: 0.5s all;
 }
 
