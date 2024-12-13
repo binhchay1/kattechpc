@@ -22,7 +22,7 @@
         "predis/predis": "^2.2",
         "socialiteproviders/facebook": "^4.1",
         "socialiteproviders/google": "^4.1",
-        "spatie/browsershot": "^3.61",
+        "spatie/browsershot": "^5.0",
         "yoeunes/toastr": "^2.3"
     },
     "require-dev": {
