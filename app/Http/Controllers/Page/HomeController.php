@@ -214,8 +214,7 @@ class HomeController extends Controller
         $layout = $this->layoutRepository->getListLayout();
         $social = $this->socialRepository->index();
 
-        if ($getFlashSale['flash_sale_timer'] != null or $getFlashSale['flash_sale_timer'] != null) {
-
+        if ($getFlashSale != null and array_key_exists('flash_sale_timer', $getFlashSale) and $getFlashSale['flash_sale_timer'] != null) {
             if (isset($getFlashSale->flash_sale_list_product_id)) {
                 $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
                 foreach ($listProductFlashSale as $key => $value) {
@@ -370,7 +369,7 @@ class HomeController extends Controller
             $listSlideFooter = json_decode($getSlideFooter->footer_slide_thumbnail, true);
         }
 
-        if ($getFlashSale['flash_sale_timer'] != null or $getFlashSale['flash_sale_timer'] != null) {
+        if ($getFlashSale != null and array_key_exists('flash_sale_timer', $getFlashSale) and $getFlashSale['flash_sale_timer'] != null) {
             if (isset($getFlashSale->flash_sale_list_product_id)) {
                 $listProductFlashSale = json_decode($getFlashSale->flash_sale_list_product_id, true);
                 foreach ($listProductFlashSale as $key => $value) {
