@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Role;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use DB;
@@ -18,6 +19,8 @@ class UsersDB extends Seeder
             'name' => 'Admin',
             'email' => 'admin@kattechpc.vn',
             'password' => Hash::make('123456789As'),
+            'role' => Role::ADMIN,
+            'title' => Role::ADMIN,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
