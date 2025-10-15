@@ -1,53 +1,111 @@
-kattechpc là một website bán các sản phẩm gaming, xây dựng bằng Laravel với hệ thống quản trị hiện đại và giao diện shop chuyên nghiệp.
+# 🖥️ KattechPC – Website Bán Hàng Gaming Hiện Đại
 
-🚀 Tính năng nổi bật
-👑 Admin CMS
-Quản lý sản phẩm: thêm, sửa, xóa, tổ chức hình ảnh, thương hiệu, danh mục
+**KattechPC** là website thương mại điện tử chuyên cung cấp **sản phẩm Gaming & PC Custom**, được xây dựng bằng **Laravel** với **hệ thống quản trị (CMS) mạnh mẽ** và **giao diện bán hàng chuyên nghiệp, hiện đại**.
 
-Đơn hàng & Vận chuyển: theo dõi, xử lý và báo cáo đơn hàng
+---
 
-Mã giảm giá & Khuyến mãi: quản lý coupon, chương trình flash sale, gói bảo hành
+## 🚀 Tổng Quan
 
-Bài viết & Đánh giá: quản lý blog/tin tức, bình luận, đánh giá khách hàng
+KattechPC hướng đến trải nghiệm **mượt mà – linh hoạt – trực quan** cho cả người mua lẫn quản trị viên, với đầy đủ tính năng quản lý sản phẩm, đơn hàng, khuyến mãi và kho hàng chuyên nghiệp.
 
-Người dùng & Vai trò: phân quyền, quản lý profile, bảo mật
+---
 
-Quản trị giao diện: landing page, layout động, quản lý Youtube, Social login
+## 👑 Hệ Thống Quản Trị (Admin CMS)
 
-🛒 Shop bán hàng
-Trải nghiệm mua sắm tối ưu: tìm kiếm, lọc sản phẩm theo nhu cầu gaming
+### 🔧 Quản Lý Sản Phẩm & Kho Hàng
+- Thêm, sửa, xóa sản phẩm nhanh chóng.
+- Quản lý **hình ảnh, thương hiệu, danh mục** (quan hệ cha – con).
+- Theo dõi **số lượng tồn kho**, cập nhật tự động khi có đơn hàng.
+- Hỗ trợ **nhiều loại sản phẩm** (PC, linh kiện, gaming gear...).
+- Tổ chức **thuộc tính sản phẩm** (RAM, CPU, VGA, màu sắc, v.v.).
 
-Giỏ hàng, đặt hàng nhanh: quản lý đơn, chọn gói bảo hành
+### 🧭 Quản Lý Danh Mục & Thương Hiệu
+- Hỗ trợ **phân cấp danh mục** (cha – con nhiều cấp).
+- Quản lý **thương hiệu** gắn với sản phẩm.
+- Hệ thống **slug** và **SEO meta** tự động.
 
-Build PC: cấu hình máy tính theo sở thích riêng
+### 🛒 Quản Lý Đơn Hàng & Vận Chuyển
+- Theo dõi tình trạng đơn hàng (đang xử lý, giao hàng, hoàn thành...).
+- Tự động cập nhật tồn kho và doanh thu.
+- Quản lý phương thức thanh toán, vận chuyển, báo cáo thống kê.
 
-Chương trình khuyến mãi: flash sale, top sale sản phẩm gaming
+### 💸 Mã Giảm Giá & Chương Trình Khuyến Mãi
+- Tạo và quản lý **coupon giảm giá**, **flash sale**, **combo ưu đãi**.
+- Hỗ trợ **gói bảo hành mở rộng**, **chính sách quà tặng**.
+- Theo dõi lịch sử sử dụng mã giảm giá.
 
-Xác thực mạng xã hội: đăng nhập bằng Facebook/Youtube/Google, v.v.
+### 🧾 Quản Lý Bài Viết, Blog & Đánh Giá
+- Tạo, chỉnh sửa, phân loại **bài viết / tin tức**.
+- Hỗ trợ **SEO**, **tag**, **slug** thân thiện.
+- Quản lý **bình luận, đánh giá** của người dùng trên sản phẩm.
 
-Đánh giá, tương tác: bình luận, review trực tiếp trên sản phẩm
+### 👥 Quản Lý Người Dùng & Nhân Viên
+- Quản lý **tài khoản người dùng, nhân viên, quản trị viên**.
+- Tạo **các cấp nhân viên** (Admin, Editor, Seller, Support...).
+- **Phân quyền chi tiết** theo vai trò (Role-Based Access Control).
+- Quản lý thông tin profile, bảo mật 2 lớp.
 
-🔌 Plugins & Công nghệ
-Frontend: Blade template, responsive UI
+### 🎨 Quản Trị Giao Diện
+- Tùy chỉnh **Landing Page**, **layout động**.
+- Quản lý **Banner, Video Youtube, Social Links**.
+- Tích hợp **Social Login** (Facebook, Google, YouTube...).
 
-Plugin: ApexCharts, CKEditor, DataTables, Dropzone, Flatpicker, FullCalendar, Lightbox, SweetAlert2, Swiper, Tippy.js...
+---
 
-Stack: Laravel (PHP), JavaScript, CSS
+## 🛍️ Tính Năng Cửa Hàng (Frontend)
 
-📂 Khởi động dự án
-bash
-# Clone source code
+- **Giao diện Responsive**, tối ưu cho PC, tablet, mobile.
+- **Tìm kiếm & lọc sản phẩm** theo nhu cầu gaming.
+- **Giỏ hàng động**, **thanh toán nhanh**, chọn gói bảo hành.
+- **Build PC**: cấu hình máy tính theo sở thích cá nhân.
+- **Đánh giá & bình luận trực tiếp** trên sản phẩm.
+- **Flash sale, top sale, hot product** hiển thị tự động.
+- **Xác thực mạng xã hội**: đăng nhập bằng Facebook, Google, YouTube.
+
+---
+
+## 🔌 Công Nghệ & Plugin Sử Dụng
+
+**Frontend:**
+- Blade Template (Laravel)
+- Responsive UI/UX hiện đại
+
+**Plugins & Libraries:**
+- `ApexCharts` – biểu đồ thống kê
+- `CKEditor` – soạn thảo nội dung
+- `DataTables` – bảng dữ liệu động
+- `Dropzone` – upload file kéo thả
+- `Flatpicker` – chọn ngày/giờ
+- `FullCalendar` – lịch sự kiện
+- `Lightbox` – hiển thị hình ảnh
+- `SweetAlert2` – thông báo đẹp
+- `Swiper` – slider sản phẩm
+- `Tippy.js` – tooltip nâng cao
+
+**Stack Công Nghệ:**
+- Backend: **Laravel (PHP)**
+- Frontend: **JavaScript, Blade, CSS**
+- Database: **MySQL**
+- Auth: **Laravel Breeze / Socialite**
+
+---
+
+## ⚙️ Hướng Dẫn Cài Đặt
+
+```bash
+# 1️⃣ Clone source code
 git clone https://github.com/binhchay1/kattechpc.git
 
-# Cài đặt dependencies
+# 2️⃣ Cài đặt dependencies
 composer install
 npm install && npm run dev
 
-# Tạo file .env từ .env.example và cấu hình database
-# php artisan migrate --seed
+# 3️⃣ Cấu hình môi trường
+cp .env.example .env
+php artisan key:generate
 
-# Khởi động server
+# 4️⃣ Tạo và seed database
+php artisan migrate --seed
+
+# 5️⃣ Khởi động server
 php artisan serve
-📄 Đóng góp
-Mọi ý kiến, PR hoặc Issues đều rất được hoan nghênh!
-Chúc bạn có trải nghiệm tuyệt vời với kattechpc 🚀
